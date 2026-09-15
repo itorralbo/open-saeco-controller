@@ -1,0 +1,14 @@
+name: scaffold
+on: [push, pull_request]
+jobs:
+  host:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python tools/check_scaffold.py
+      - run: cmake -S firmware/stm32 -B build/host
+      - run: cmake --build build/host
+      - run: ctest --test-dir build/host --output-on-failure

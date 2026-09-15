@@ -1,0 +1,13 @@
+function,document_connector,pin,orientation,voltage,polarity,mcu_pin,status,source
+pump,JP24,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_37
+valve,JP3,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_37
+grinder,JP8,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_37
+temperature,JP13,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_37
+flowmeter,JP5,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_37
+brew_switches,JP16,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_35_36
+door_drawer,JP14,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_35
+water_level,JP23,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_34
+front_panel,JP21,TBD,TBD,TBD,TBD,TBD,document_only,manual_pdf_34
+heater,TBD,TBD,TBD,TBD,TBD,TBD,unverified,TBD
+brew_motor,TBD,TBD,TBD,TBD,TBD,TBD,unverified,TBD
+mains_pe,TBD,TBD,TBD,TBD,TBD,TBD,unverified,owner

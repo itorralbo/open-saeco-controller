@@ -1,0 +1,8 @@
+{
+  "schema_version": 0,
+  "id": "hd8911-placeholder",
+  "simulation_only": true,
+  "machine_profile": "HD8911-TBD",
+  "targets": {"temperature_c": null, "water_ml": null, "grind_duration_ms": null},
+  "steps": []
+}

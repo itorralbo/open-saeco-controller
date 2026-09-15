@@ -1,0 +1,14 @@
+build/
+**/build/
+__pycache__/
+*.pyc
+.vscode/
+.idea/
+sdkconfig
+sdkconfig.old
+managed_components/
+*-backups/
+*.kicad_prl
+# Referencias locales de terceros: revisar derechos antes de incorporar.
+docs/*.pdf
+docs/fotos/
