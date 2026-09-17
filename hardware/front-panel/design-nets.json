@@ -1,0 +1,699 @@
+{
+  "status": "review_only_not_fabricable",
+  "components": [
+    {
+      "reference": "J1",
+      "value": "UI_LINK / IDC 2x8 2.54mm",
+      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "Megastar",
+      "mpn": "ZX-IDC2.54-2-8PZZ",
+      "lcsc": "C7501244",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI",
+        "3": "LCD_SCLK",
+        "4": "GND_UI",
+        "5": "LCD_MOSI",
+        "6": "GND_UI",
+        "7": "LCD_CS_N",
+        "8": "LCD_DC",
+        "9": "LCD_RST_N",
+        "10": "LCD_BL_PWM",
+        "11": "KEY_SCL",
+        "12": "KEY_SDA",
+        "13": "KEY_INT_N",
+        "14": "GND_UI",
+        "15": "GND_UI",
+        "16": null
+      }
+    },
+    {
+      "reference": "U1",
+      "value": "TCA9534PWR",
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TCA9534PWR",
+      "lcsc": "C783615",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "16": "3V3_UI",
+        "8": "GND_UI",
+        "14": "KEY_SCL",
+        "15": "KEY_SDA",
+        "13": "KEY_INT_N",
+        "1": "GND_UI",
+        "2": "GND_UI",
+        "3": "GND_UI",
+        "4": "KEY_1_N",
+        "5": "KEY_2_N",
+        "6": "KEY_3_N",
+        "7": "KEY_4_N",
+        "9": "KEY_5_N",
+        "10": "KEY_6_N",
+        "11": "KEY_7_N",
+        "12": "KEY_8_N"
+      }
+    },
+    {
+      "reference": "C1",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C2",
+      "value": "1uF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J2",
+      "value": "LCD_ADAPTER / 8 pins",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI",
+        "3": "LCD_MOSI",
+        "4": "LCD_SCLK",
+        "5": "LCD_CS_N",
+        "6": "LCD_DC",
+        "7": "LCD_RST_N",
+        "8": "LCD_BL_PWM"
+      }
+    },
+    {
+      "reference": "R1",
+      "value": "4.7k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4701T5E",
+      "lcsc": "C23162",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_SCL"
+      }
+    },
+    {
+      "reference": "R2",
+      "value": "4.7k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4701T5E",
+      "lcsc": "C23162",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_SDA"
+      }
+    },
+    {
+      "reference": "R3",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_INT_N"
+      }
+    },
+    {
+      "reference": "R4",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "LCD_CS_N"
+      }
+    },
+    {
+      "reference": "R5",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "LCD_RST_N"
+      }
+    },
+    {
+      "reference": "R6",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "LCD_BL_PWM",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C3",
+      "value": "10uF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A106MA8NRNC",
+      "lcsc": "C96446",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R11",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_1_N"
+      }
+    },
+    {
+      "reference": "R21",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_1_N",
+        "2": "SW_1_RAW"
+      }
+    },
+    {
+      "reference": "SW1",
+      "value": "KEY 1 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_1_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C11",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_1_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R12",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_2_N"
+      }
+    },
+    {
+      "reference": "R22",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_2_N",
+        "2": "SW_2_RAW"
+      }
+    },
+    {
+      "reference": "SW2",
+      "value": "KEY 2 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_2_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C12",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_2_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R13",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_3_N"
+      }
+    },
+    {
+      "reference": "R23",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_3_N",
+        "2": "SW_3_RAW"
+      }
+    },
+    {
+      "reference": "SW3",
+      "value": "KEY 3 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_3_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C13",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_3_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R14",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_4_N"
+      }
+    },
+    {
+      "reference": "R24",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_4_N",
+        "2": "SW_4_RAW"
+      }
+    },
+    {
+      "reference": "SW4",
+      "value": "KEY 4 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_4_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C14",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_4_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R15",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_5_N"
+      }
+    },
+    {
+      "reference": "R25",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_5_N",
+        "2": "SW_5_RAW"
+      }
+    },
+    {
+      "reference": "SW5",
+      "value": "KEY 5 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_5_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C15",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_5_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R16",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_6_N"
+      }
+    },
+    {
+      "reference": "R26",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_6_N",
+        "2": "SW_6_RAW"
+      }
+    },
+    {
+      "reference": "SW6",
+      "value": "KEY 6 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_6_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C16",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_6_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R17",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_7_N"
+      }
+    },
+    {
+      "reference": "R27",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_7_N",
+        "2": "SW_7_RAW"
+      }
+    },
+    {
+      "reference": "SW7",
+      "value": "KEY 7 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_7_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C17",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_7_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R18",
+      "value": "10k / pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "KEY_8_N"
+      }
+    },
+    {
+      "reference": "R28",
+      "value": "1k / serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_8_N",
+        "2": "SW_8_RAW"
+      }
+    },
+    {
+      "reference": "SW8",
+      "value": "KEY 8 / NO",
+      "footprint": "",
+      "status": "mechanical_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "SW_8_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C18",
+      "value": "100nF / filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "KEY_8_N",
+        "2": "GND_UI"
+      }
+    }
+  ]
+}

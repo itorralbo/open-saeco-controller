@@ -1,0 +1,45 @@
+reference,value,footprint,status,manufacturer,mpn,lcsc,jlc_class,pcba_type
+J1,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candidate,Megastar,ZX-IDC2.54-2-8PZZ,C7501244,Extended,Economic and Standard
+U1,TCA9534PWR,Package_SO:TSSOP-16_4.4x5mm_P0.65mm,candidate,Texas Instruments,TCA9534PWR,C783615,Extended,Economic and Standard
+C1,100nF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C2,1uF,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+J2,LCD_ADAPTER / 8 pins,,connector_TBD,,,,,
+R1,4.7k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
+R2,4.7k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
+R3,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R4,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R5,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R6,100k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+C3,10uF,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard
+R11,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R21,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW1,KEY 1 / NO,,mechanical_TBD,,,,,
+C11,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R12,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R22,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW2,KEY 2 / NO,,mechanical_TBD,,,,,
+C12,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R13,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R23,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW3,KEY 3 / NO,,mechanical_TBD,,,,,
+C13,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R14,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R24,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW4,KEY 4 / NO,,mechanical_TBD,,,,,
+C14,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R15,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R25,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW5,KEY 5 / NO,,mechanical_TBD,,,,,
+C15,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R16,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R26,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW6,KEY 6 / NO,,mechanical_TBD,,,,,
+C16,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R17,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R27,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW7,KEY 7 / NO,,mechanical_TBD,,,,,
+C17,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R18,10k / pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R28,1k / serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+SW8,KEY 8 / NO,,mechanical_TBD,,,,,
+C18,100nF / filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard

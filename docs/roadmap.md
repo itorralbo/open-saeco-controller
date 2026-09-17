@@ -11,10 +11,24 @@
 
 Prioridades: variante exacta, conectores, alimentación de motores, protecciones,
 calibraciones, aislamiento, selección MCU, interfaz, protocolo y límites de receta.
-Panel original, OTA y MQTT quedan para después.
+El frontal nuevo entra en el diseño: copia mecánica de botones y pantalla reemplazable,
+con [primer esquema y BOM candidata](../hardware/front-panel/README.md).
+La integración física requiere cotas y selección del display. La reutilización de la
+electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para después.
+
+Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
+con conexiones de depuración/UART, todavía sin I/O de máquina, fuente ni potencia.
+El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
+base mecánica de la Rev A; ya no bloquean la colocación de la principal.
+Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.
+Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
 
 ## Verificaciones
 - Python: enlaces locales y receta no ejecutable.
+- Frontal: comprobación de conexiones del esquema frente al pinout previsto;
+  ERC nativo y netlist cotejados. Huellas mecánicas y layout pendientes.
+- Principal y frontal: proyectos KiCad con PCB de trabajo; [DRC con incidencias
+  pendientes](../hardware/kicad-workflow.md), no fabricables.
 - Host C/CTest: arranque inactivo, START bloqueado, fallo enclavado y STOP sin rearme.
 - ESP-IDF: build pendiente de SDK disponible y versión fijada.
 - Futuro banco: timeout real, parser corrupto, duplicados, reset, brownout y watchdog.

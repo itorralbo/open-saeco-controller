@@ -1,0 +1,1670 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<export version="E">
+  <design>
+    <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/front-panel/kicad/front-panel-reva.kicad_sch</source>
+    <date>2026-09-17T18:42:07</date>
+    <tool>Eeschema 10.0.6</tool>
+    <sheet number="1" name="/" tstamps="/">
+      <title_block>
+        <title>Open Saeco front panel / REVIEW ONLY</title>
+        <company/>
+        <rev>A.0-draft</rev>
+        <date>2026-09-16</date>
+        <source>front-panel-reva.kicad_sch</source>
+        <comment number="1" value="Not for fabrication. Mechanics and connector footprints pending; see validation report."/>
+        <comment number="2" value=""/>
+        <comment number="3" value=""/>
+        <comment number="4" value=""/>
+        <comment number="5" value=""/>
+        <comment number="6" value=""/>
+        <comment number="7" value=""/>
+        <comment number="8" value=""/>
+        <comment number="9" value=""/>
+      </title_block>
+    </sheet>
+  </design>
+  <components>
+    <comp ref="C1">
+      <value>100nF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6dcf99ac-da63-5102-b719-49c2f1076ea6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C2">
+      <value>1uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">Samsung Electro-Mechanics</field>
+        <field name="mpn">CL10A105KB8NNNC</field>
+        <field name="lcsc">C15849</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="Samsung Electro-Mechanics"/>
+      <property name="mpn" value="CL10A105KB8NNNC"/>
+      <property name="lcsc" value="C15849"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>46945d6a-9b99-5f2d-adb9-fa0d92e9d3c8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C3">
+      <value>10uF</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">Samsung Electro-Mechanics</field>
+        <field name="mpn">CL10A106MA8NRNC</field>
+        <field name="lcsc">C96446</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="Samsung Electro-Mechanics"/>
+      <property name="mpn" value="CL10A106MA8NRNC"/>
+      <property name="lcsc" value="C96446"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>115f1fa2-182d-5701-bd60-b041d1454963</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C11">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b3472a45-dd44-5d61-ab5e-845eebedac4a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C12">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>21c8a4b9-b1a3-5a06-b517-34097eb1a9bd</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C13">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ee3a2f63-5157-5f5b-98b6-79fb830d44ed</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C14">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9eed7cd0-b0fd-54e8-92db-5aed2b664cd1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C15">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>daf8dbcd-836a-5d15-a2aa-eb83a6bdc926</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C16">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8b297548-ada1-5a0d-a9cc-a8ed677a484e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C17">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>81d3bdc5-eaf5-5673-b534-251898ed46c8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C18">
+      <value>100nF / filtro</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0f3fcb6f-60b3-50b3-990d-4611ec930001</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J1">
+      <value>UI_LINK / IDC 2x8 2.54mm</value>
+      <footprint>Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="manufacturer">Megastar</field>
+        <field name="mpn">ZX-IDC2.54-2-8PZZ</field>
+        <field name="lcsc">C7501244</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="J16" description=""/>
+      <property name="manufacturer" value="Megastar"/>
+      <property name="mpn" value="ZX-IDC2.54-2-8PZZ"/>
+      <property name="lcsc" value="C7501244"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2c3c41fb-d869-5788-a777-5d78dc5614a2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+            <pin num="13"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="16"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J2">
+      <value>LCD_ADAPTER / 8 pins</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="J8" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>85008a0b-9755-5b04-8789-677d4341ff94</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="8"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R1">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF4701T5E</field>
+        <field name="lcsc">C23162</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF4701T5E"/>
+      <property name="lcsc" value="C23162"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>0fdad6c7-f523-5b2c-b20a-fa3109dc155f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R2">
+      <value>4.7k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF4701T5E</field>
+        <field name="lcsc">C23162</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF4701T5E"/>
+      <property name="lcsc" value="C23162"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>9994b8e2-8b36-5e38-b948-9447ede0f8b4</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R3">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>aee5b49d-f65e-5e51-b28e-9879745c869f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R4">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b7c24d91-975e-564b-a953-8fe093b68d4f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R5">
+      <value>10k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>5848bc92-b5b4-5ebe-9fe7-9fc3a51c2fd2</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R6">
+      <value>100k</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e8de9256-0ed0-5a5c-87b5-a9049e7565ef</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R11">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>46adae36-aeaa-574c-ab08-550c06720652</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R12">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a74de5cc-d786-5b76-8a8a-6cf27494436b</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R13">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>20a36710-299c-52a3-a224-c52063056267</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R14">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8134be14-e277-5859-ba75-c3531f3e335f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R15">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>17c6b089-2113-5424-bf8c-d82a958be42a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R16">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>67c2051f-742b-57f1-b3ab-2ccf6a1cebca</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R17">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8057f003-3dab-5785-8ab4-18009451729f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R18">
+      <value>10k / pull-up</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7f4bf42e-c739-5e3a-86d5-038c3ee35d08</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R21">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>87760a15-909f-517c-9701-dc704b46ad98</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R22">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>87e2d437-4aa7-56f1-84df-4362719a692a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R23">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a4efd7b8-5d7f-523b-b8c6-0d358e3aa2f9</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R24">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b01ff5ca-cb9c-590d-8a70-391576e8ed79</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R25">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>2c61fcb8-79fa-584c-9a20-dc68507724d1</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R26">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c26afd62-f774-5d34-b096-3458aff3acb5</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R27">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8c0dda13-088d-5098-b74b-2b5fe23bdcff</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R28">
+      <value>1k / serie</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1001T5E</field>
+        <field name="lcsc">C21190</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1001T5E"/>
+      <property name="lcsc" value="C21190"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f0c3e87f-b37b-5648-93fc-9133f2e00188</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW1">
+      <value>KEY 1 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6f513498-49f1-50fa-9068-87acace08622</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW2">
+      <value>KEY 2 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>76075335-935f-57a8-b56b-6072e8d18e55</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW3">
+      <value>KEY 3 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>b9ced64a-4393-5489-b727-928d6b786e27</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW4">
+      <value>KEY 4 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>21befab7-c4bb-5a3f-bb45-b87cb8ab842c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW5">
+      <value>KEY 5 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c17349ac-ea8a-5815-9ebd-cf7615960e5c</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW6">
+      <value>KEY 6 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>ec9baf38-2033-55fb-9889-bdde11c55ed0</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW7">
+      <value>KEY 7 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>845ee22c-d0d7-58f4-a86e-ba04e870641d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="SW8">
+      <value>KEY 8 / NO</value>
+      <fields>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f5aad9fb-8257-5c39-89e0-ede4cc234c18</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="U1">
+      <value>TCA9534PWR</value>
+      <footprint>Package_SO:TSSOP-16_4.4x5mm_P0.65mm</footprint>
+      <fields>
+        <field name="manufacturer">Texas Instruments</field>
+        <field name="mpn">TCA9534PWR</field>
+        <field name="lcsc">C783615</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Package_SO:TSSOP-16_4.4x5mm_P0.65mm</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="TCA9534" description=""/>
+      <property name="manufacturer" value="Texas Instruments"/>
+      <property name="mpn" value="TCA9534PWR"/>
+      <property name="lcsc" value="C783615"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>6b49bda3-51d1-5a0c-b77b-683bcea977ef</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="16"/>
+            <pin num="8"/>
+            <pin num="14"/>
+            <pin num="15"/>
+            <pin num="13"/>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
+            <pin num="7"/>
+            <pin num="9"/>
+            <pin num="10"/>
+            <pin num="11"/>
+            <pin num="12"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+  </components>
+  <libparts>
+    <libpart lib="OpenSaeco" part="C">
+      <fields>
+        <field name="Reference">C</field>
+        <field name="Value">C</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OpenSaeco" part="J16">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">J16</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="5" name="5" type="passive"/>
+        <pin num="6" name="6" type="passive"/>
+        <pin num="7" name="7" type="passive"/>
+        <pin num="8" name="8" type="passive"/>
+        <pin num="9" name="9" type="passive"/>
+        <pin num="10" name="10" type="passive"/>
+        <pin num="11" name="11" type="passive"/>
+        <pin num="12" name="12" type="passive"/>
+        <pin num="13" name="13" type="passive"/>
+        <pin num="14" name="14" type="passive"/>
+        <pin num="15" name="15" type="passive"/>
+        <pin num="16" name="16" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OpenSaeco" part="J8">
+      <fields>
+        <field name="Reference">J</field>
+        <field name="Value">J8</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="1" type="passive"/>
+        <pin num="2" name="2" type="passive"/>
+        <pin num="3" name="3" type="passive"/>
+        <pin num="4" name="4" type="passive"/>
+        <pin num="5" name="5" type="passive"/>
+        <pin num="6" name="6" type="passive"/>
+        <pin num="7" name="7" type="passive"/>
+        <pin num="8" name="8" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OpenSaeco" part="R">
+      <fields>
+        <field name="Reference">R</field>
+        <field name="Value">R</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OpenSaeco" part="SW">
+      <fields>
+        <field name="Reference">S</field>
+        <field name="Value">SW</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="" type="passive"/>
+        <pin num="2" name="" type="passive"/>
+      </pins>
+    </libpart>
+    <libpart lib="OpenSaeco" part="TCA9534">
+      <fields>
+        <field name="Reference">T</field>
+        <field name="Value">TCA9534</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="A0" type="input"/>
+        <pin num="2" name="A1" type="input"/>
+        <pin num="3" name="A2" type="input"/>
+        <pin num="4" name="P0" type="bidirectional"/>
+        <pin num="5" name="P1" type="bidirectional"/>
+        <pin num="6" name="P2" type="bidirectional"/>
+        <pin num="7" name="P3" type="bidirectional"/>
+        <pin num="8" name="GND" type="power_in"/>
+        <pin num="9" name="P4" type="bidirectional"/>
+        <pin num="10" name="P5" type="bidirectional"/>
+        <pin num="11" name="P6" type="bidirectional"/>
+        <pin num="12" name="P7" type="bidirectional"/>
+        <pin num="13" name="~{INT}" type="open_collector"/>
+        <pin num="14" name="SCL" type="input"/>
+        <pin num="15" name="SDA" type="bidirectional"/>
+        <pin num="16" name="VCC" type="power_in"/>
+      </pins>
+    </libpart>
+  </libparts>
+  <libraries>
+    <library logical="OpenSaeco">
+      <uri>${KIPRJMOD}/OpenSaeco.kicad_sym</uri>
+    </library>
+  </libraries>
+  <nets>
+    <net code="1" name="/3V3_UI" class="Default">
+      <node ref="C1" pin="1" pintype="passive"/>
+      <node ref="C2" pin="1" pintype="passive"/>
+      <node ref="C3" pin="1" pintype="passive"/>
+      <node ref="J1" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J2" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="R1" pin="1" pintype="passive"/>
+      <node ref="R11" pin="1" pintype="passive"/>
+      <node ref="R12" pin="1" pintype="passive"/>
+      <node ref="R13" pin="1" pintype="passive"/>
+      <node ref="R14" pin="1" pintype="passive"/>
+      <node ref="R15" pin="1" pintype="passive"/>
+      <node ref="R16" pin="1" pintype="passive"/>
+      <node ref="R17" pin="1" pintype="passive"/>
+      <node ref="R18" pin="1" pintype="passive"/>
+      <node ref="R2" pin="1" pintype="passive"/>
+      <node ref="R3" pin="1" pintype="passive"/>
+      <node ref="R4" pin="1" pintype="passive"/>
+      <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="U1" pin="16" pinfunction="VCC_16" pintype="power_in"/>
+    </net>
+    <net code="2" name="/GND_UI" class="Default">
+      <node ref="C1" pin="2" pintype="passive"/>
+      <node ref="C11" pin="2" pintype="passive"/>
+      <node ref="C12" pin="2" pintype="passive"/>
+      <node ref="C13" pin="2" pintype="passive"/>
+      <node ref="C14" pin="2" pintype="passive"/>
+      <node ref="C15" pin="2" pintype="passive"/>
+      <node ref="C16" pin="2" pintype="passive"/>
+      <node ref="C17" pin="2" pintype="passive"/>
+      <node ref="C18" pin="2" pintype="passive"/>
+      <node ref="C2" pin="2" pintype="passive"/>
+      <node ref="C3" pin="2" pintype="passive"/>
+      <node ref="J1" pin="14" pinfunction="14_14" pintype="passive"/>
+      <node ref="J1" pin="15" pinfunction="15_15" pintype="passive"/>
+      <node ref="J1" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J1" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="J1" pin="6" pinfunction="6_6" pintype="passive"/>
+      <node ref="J2" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="R6" pin="2" pintype="passive"/>
+      <node ref="SW1" pin="2" pintype="passive"/>
+      <node ref="SW2" pin="2" pintype="passive"/>
+      <node ref="SW3" pin="2" pintype="passive"/>
+      <node ref="SW4" pin="2" pintype="passive"/>
+      <node ref="SW5" pin="2" pintype="passive"/>
+      <node ref="SW6" pin="2" pintype="passive"/>
+      <node ref="SW7" pin="2" pintype="passive"/>
+      <node ref="SW8" pin="2" pintype="passive"/>
+      <node ref="U1" pin="1" pinfunction="A0_1" pintype="input"/>
+      <node ref="U1" pin="2" pinfunction="A1_2" pintype="input"/>
+      <node ref="U1" pin="3" pinfunction="A2_3" pintype="input"/>
+      <node ref="U1" pin="8" pinfunction="GND_8" pintype="power_in"/>
+    </net>
+    <net code="3" name="/KEY_1_N" class="Default">
+      <node ref="C11" pin="1" pintype="passive"/>
+      <node ref="R11" pin="2" pintype="passive"/>
+      <node ref="R21" pin="1" pintype="passive"/>
+      <node ref="U1" pin="4" pinfunction="P0_4" pintype="bidirectional"/>
+    </net>
+    <net code="4" name="/KEY_2_N" class="Default">
+      <node ref="C12" pin="1" pintype="passive"/>
+      <node ref="R12" pin="2" pintype="passive"/>
+      <node ref="R22" pin="1" pintype="passive"/>
+      <node ref="U1" pin="5" pinfunction="P1_5" pintype="bidirectional"/>
+    </net>
+    <net code="5" name="/KEY_3_N" class="Default">
+      <node ref="C13" pin="1" pintype="passive"/>
+      <node ref="R13" pin="2" pintype="passive"/>
+      <node ref="R23" pin="1" pintype="passive"/>
+      <node ref="U1" pin="6" pinfunction="P2_6" pintype="bidirectional"/>
+    </net>
+    <net code="6" name="/KEY_4_N" class="Default">
+      <node ref="C14" pin="1" pintype="passive"/>
+      <node ref="R14" pin="2" pintype="passive"/>
+      <node ref="R24" pin="1" pintype="passive"/>
+      <node ref="U1" pin="7" pinfunction="P3_7" pintype="bidirectional"/>
+    </net>
+    <net code="7" name="/KEY_5_N" class="Default">
+      <node ref="C15" pin="1" pintype="passive"/>
+      <node ref="R15" pin="2" pintype="passive"/>
+      <node ref="R25" pin="1" pintype="passive"/>
+      <node ref="U1" pin="9" pinfunction="P4_9" pintype="bidirectional"/>
+    </net>
+    <net code="8" name="/KEY_6_N" class="Default">
+      <node ref="C16" pin="1" pintype="passive"/>
+      <node ref="R16" pin="2" pintype="passive"/>
+      <node ref="R26" pin="1" pintype="passive"/>
+      <node ref="U1" pin="10" pinfunction="P5_10" pintype="bidirectional"/>
+    </net>
+    <net code="9" name="/KEY_7_N" class="Default">
+      <node ref="C17" pin="1" pintype="passive"/>
+      <node ref="R17" pin="2" pintype="passive"/>
+      <node ref="R27" pin="1" pintype="passive"/>
+      <node ref="U1" pin="11" pinfunction="P6_11" pintype="bidirectional"/>
+    </net>
+    <net code="10" name="/KEY_8_N" class="Default">
+      <node ref="C18" pin="1" pintype="passive"/>
+      <node ref="R18" pin="2" pintype="passive"/>
+      <node ref="R28" pin="1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="P7_12" pintype="bidirectional"/>
+    </net>
+    <net code="11" name="/KEY_INT_N" class="Default">
+      <node ref="J1" pin="13" pinfunction="13_13" pintype="passive"/>
+      <node ref="R3" pin="2" pintype="passive"/>
+      <node ref="U1" pin="13" pinfunction="~{INT}_13" pintype="open_collector"/>
+    </net>
+    <net code="12" name="/KEY_SCL" class="Default">
+      <node ref="J1" pin="11" pinfunction="11_11" pintype="passive"/>
+      <node ref="R1" pin="2" pintype="passive"/>
+      <node ref="U1" pin="14" pinfunction="SCL_14" pintype="input"/>
+    </net>
+    <net code="13" name="/KEY_SDA" class="Default">
+      <node ref="J1" pin="12" pinfunction="12_12" pintype="passive"/>
+      <node ref="R2" pin="2" pintype="passive"/>
+      <node ref="U1" pin="15" pinfunction="SDA_15" pintype="bidirectional"/>
+    </net>
+    <net code="14" name="/LCD_BL_PWM" class="Default">
+      <node ref="J1" pin="10" pinfunction="10_10" pintype="passive"/>
+      <node ref="J2" pin="8" pinfunction="8_8" pintype="passive"/>
+      <node ref="R6" pin="1" pintype="passive"/>
+    </net>
+    <net code="15" name="/LCD_CS_N" class="Default">
+      <node ref="J1" pin="7" pinfunction="7_7" pintype="passive"/>
+      <node ref="J2" pin="5" pinfunction="5_5" pintype="passive"/>
+      <node ref="R4" pin="2" pintype="passive"/>
+    </net>
+    <net code="16" name="/LCD_DC" class="Default">
+      <node ref="J1" pin="8" pinfunction="8_8" pintype="passive"/>
+      <node ref="J2" pin="6" pinfunction="6_6" pintype="passive"/>
+    </net>
+    <net code="17" name="/LCD_MOSI" class="Default">
+      <node ref="J1" pin="5" pinfunction="5_5" pintype="passive"/>
+      <node ref="J2" pin="3" pinfunction="3_3" pintype="passive"/>
+    </net>
+    <net code="18" name="/LCD_RST_N" class="Default">
+      <node ref="J1" pin="9" pinfunction="9_9" pintype="passive"/>
+      <node ref="J2" pin="7" pinfunction="7_7" pintype="passive"/>
+      <node ref="R5" pin="2" pintype="passive"/>
+    </net>
+    <net code="19" name="/LCD_SCLK" class="Default">
+      <node ref="J1" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="J2" pin="4" pinfunction="4_4" pintype="passive"/>
+    </net>
+    <net code="20" name="/SW_1_RAW" class="Default">
+      <node ref="R21" pin="2" pintype="passive"/>
+      <node ref="SW1" pin="1" pintype="passive"/>
+    </net>
+    <net code="21" name="/SW_2_RAW" class="Default">
+      <node ref="R22" pin="2" pintype="passive"/>
+      <node ref="SW2" pin="1" pintype="passive"/>
+    </net>
+    <net code="22" name="/SW_3_RAW" class="Default">
+      <node ref="R23" pin="2" pintype="passive"/>
+      <node ref="SW3" pin="1" pintype="passive"/>
+    </net>
+    <net code="23" name="/SW_4_RAW" class="Default">
+      <node ref="R24" pin="2" pintype="passive"/>
+      <node ref="SW4" pin="1" pintype="passive"/>
+    </net>
+    <net code="24" name="/SW_5_RAW" class="Default">
+      <node ref="R25" pin="2" pintype="passive"/>
+      <node ref="SW5" pin="1" pintype="passive"/>
+    </net>
+    <net code="25" name="/SW_6_RAW" class="Default">
+      <node ref="R26" pin="2" pintype="passive"/>
+      <node ref="SW6" pin="1" pintype="passive"/>
+    </net>
+    <net code="26" name="/SW_7_RAW" class="Default">
+      <node ref="R27" pin="2" pintype="passive"/>
+      <node ref="SW7" pin="1" pintype="passive"/>
+    </net>
+    <net code="27" name="/SW_8_RAW" class="Default">
+      <node ref="R28" pin="2" pintype="passive"/>
+      <node ref="SW8" pin="1" pintype="passive"/>
+    </net>
+    <net code="28" name="unconnected-(J1-Pad16)" class="Default">
+      <node ref="J1" pin="16" pinfunction="16_16" pintype="passive+no_connect"/>
+    </net>
+  </nets>
+</export>

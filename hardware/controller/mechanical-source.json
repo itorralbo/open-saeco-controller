@@ -1,0 +1,22 @@
+{
+  "status": "owner_accepted_rev_a_baseline",
+  "accepted_on": "2026-09-17",
+  "accepted_scope": "outline and mounting holes for Rev A layout",
+  "source_date": "2026-09-17",
+  "source_images": ["IMG_1098.HEIC", "IMG_1099.HEIC", "IMG_1100.HEIC", "IMG_1101.HEIC"],
+  "coordinate_system": "component side; origin top-left; +X right; +Y down; JP21 at top-left",
+  "outline_mm": {
+    "width": 141.6,
+    "height": 135.2,
+    "uncertainty": 0.15
+  },
+  "mounting_holes": [
+    {"reference": "MH1", "x": 23.5, "y": 46.3, "diameter": 3.5},
+    {"reference": "MH2", "x": 37.8, "y": 112.8, "diameter": 3.5},
+    {"reference": "MH3", "x": 136.5, "y": 128.8, "diameter": 3.5}
+  ],
+  "hole_center_uncertainty_mm": 0.6,
+  "hole_diameter_uncertainty_mm": 0.3,
+  "mechanical_layout_released": true,
+  "manufacturing_release": false
+}

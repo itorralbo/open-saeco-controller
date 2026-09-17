@@ -9,6 +9,8 @@ jobs:
         with:
           python-version: '3.12'
       - run: python tools/check_scaffold.py
+      - run: python tools/check_front_panel.py
+      - run: python tools/check_controller_core.py
       - run: cmake -S firmware/stm32 -B build/host
       - run: cmake --build build/host
       - run: ctest --test-dir build/host --output-on-failure

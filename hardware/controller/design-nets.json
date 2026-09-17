@@ -1,0 +1,856 @@
+{
+  "status": "review_only_not_fabricable",
+  "components": [
+    {
+      "reference": "U101",
+      "value": "STM32G431RBT6",
+      "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+      "status": "candidate",
+      "manufacturer": "STMicroelectronics",
+      "mpn": "STM32G431RBT6",
+      "lcsc": "C431633",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": null,
+        "3": null,
+        "4": null,
+        "5": null,
+        "6": null,
+        "7": "STM_NRST",
+        "8": null,
+        "9": null,
+        "10": null,
+        "11": null,
+        "12": "GND_UI",
+        "13": "3V3_CORE",
+        "14": null,
+        "15": null,
+        "16": null,
+        "17": null,
+        "18": "GND_UI",
+        "19": "3V3_CORE",
+        "20": "3V3_CORE",
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": "UI_PWR_EN",
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": "GND_UI",
+        "32": "3V3_CORE",
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": null,
+        "37": null,
+        "38": null,
+        "39": null,
+        "40": null,
+        "41": null,
+        "42": null,
+        "43": "STM_TX_RAW",
+        "44": "ESP_TO_STM",
+        "45": null,
+        "46": null,
+        "47": "GND_UI",
+        "48": "3V3_CORE",
+        "49": "STM_SWDIO",
+        "50": "STM_SWCLK",
+        "51": null,
+        "52": null,
+        "53": null,
+        "54": null,
+        "55": null,
+        "56": "STM_SWO",
+        "57": null,
+        "58": null,
+        "59": null,
+        "60": null,
+        "61": "STM_BOOT0",
+        "62": null,
+        "63": "GND_UI",
+        "64": "3V3_CORE"
+      }
+    },
+    {
+      "reference": "U201",
+      "value": "ESP32-S3-WROOM-1-N8R8",
+      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "status": "candidate",
+      "manufacturer": "Espressif Systems",
+      "mpn": "ESP32-S3-WROOM-1-N8R8",
+      "lcsc": "C2913201",
+      "jlc_class": "Extended",
+      "pcba_type": "Standard Only",
+      "pins": {
+        "1": "GND_UI",
+        "2": "3V3_CORE",
+        "3": "ESP_EN",
+        "4": "KEY_SDA",
+        "5": "KEY_SCL",
+        "6": "KEY_INT_N",
+        "7": "BL_RAW",
+        "8": null,
+        "9": null,
+        "10": "ESP_TX_RAW",
+        "11": "STM_TO_ESP",
+        "12": "RST_RAW",
+        "13": null,
+        "14": null,
+        "15": null,
+        "16": null,
+        "17": "DC_RAW",
+        "18": "CS_RAW",
+        "19": "MOSI_RAW",
+        "20": "SCLK_RAW",
+        "21": null,
+        "22": null,
+        "23": null,
+        "24": null,
+        "25": null,
+        "26": null,
+        "27": "ESP_BOOT0",
+        "28": null,
+        "29": null,
+        "30": null,
+        "31": null,
+        "32": null,
+        "33": null,
+        "34": null,
+        "35": null,
+        "36": "ESP_DEBUG_RX",
+        "37": "ESP_DEBUG_TX",
+        "38": null,
+        "39": null,
+        "40": "GND_UI",
+        "41": "GND_UI"
+      }
+    },
+    {
+      "reference": "J101",
+      "value": "12V_ISOLATED_INPUT / JST XH",
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "status": "candidate",
+      "manufacturer": "JST",
+      "mpn": "S2B-XH-A-1(LF)(SN)",
+      "lcsc": "C163035",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J102",
+      "value": "STM_SWD / 1x6 2.54mm",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "hanxia",
+      "mpn": "HX PH254-01-06-Z-L11.5 through hole header",
+      "lcsc": "C52016393",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "STM_SWDIO",
+        "3": "GND_UI",
+        "4": "STM_SWCLK",
+        "5": "STM_NRST",
+        "6": "STM_SWO"
+      }
+    },
+    {
+      "reference": "J103",
+      "value": "ESP_UART / 1x6 2.54mm",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "hanxia",
+      "mpn": "HX PH254-01-06-Z-L11.5 through hole header",
+      "lcsc": "C52016393",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI",
+        "3": "ESP_DEBUG_TX",
+        "4": "ESP_DEBUG_RX",
+        "5": "ESP_EN",
+        "6": "ESP_BOOT0"
+      }
+    },
+    {
+      "reference": "J104",
+      "value": "UI_LINK / IDC 2x8 2.54mm",
+      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "Megastar",
+      "mpn": "ZX-IDC2.54-2-8PZZ",
+      "lcsc": "C7501244",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI",
+        "3": "LCD_SCLK",
+        "4": "GND_UI",
+        "5": "LCD_MOSI",
+        "6": "GND_UI",
+        "7": "LCD_CS_N",
+        "8": "LCD_DC",
+        "9": "LCD_RST_N",
+        "10": "LCD_BL_PWM",
+        "11": "KEY_SCL",
+        "12": "KEY_SDA",
+        "13": "KEY_INT_N",
+        "14": "GND_UI",
+        "15": "GND_UI",
+        "16": null
+      }
+    },
+    {
+      "reference": "R101",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "STM_NRST"
+      }
+    },
+    {
+      "reference": "C101",
+      "value": "100nF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "STM_NRST",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R102",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "STM_BOOT0",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R201",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "ESP_EN"
+      }
+    },
+    {
+      "reference": "C201",
+      "value": "1uF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "ESP_EN",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R202",
+      "value": "10k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "ESP_BOOT0"
+      }
+    },
+    {
+      "reference": "R211",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "STM_TX_RAW",
+        "2": "STM_TO_ESP"
+      }
+    },
+    {
+      "reference": "R212",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "ESP_TX_RAW",
+        "2": "ESP_TO_STM"
+      }
+    },
+    {
+      "reference": "R213",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "SCLK_RAW",
+        "2": "LCD_SCLK"
+      }
+    },
+    {
+      "reference": "R214",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "MOSI_RAW",
+        "2": "LCD_MOSI"
+      }
+    },
+    {
+      "reference": "R215",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "CS_RAW",
+        "2": "LCD_CS_N"
+      }
+    },
+    {
+      "reference": "R216",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "DC_RAW",
+        "2": "LCD_DC"
+      }
+    },
+    {
+      "reference": "R217",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RST_RAW",
+        "2": "LCD_RST_N"
+      }
+    },
+    {
+      "reference": "R218",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BL_RAW",
+        "2": "LCD_BL_PWM"
+      }
+    },
+    {
+      "reference": "C102",
+      "value": "100nF / VDD13",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C103",
+      "value": "100nF / VDD32",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C104",
+      "value": "100nF / VDD48",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C105",
+      "value": "100nF / VDD64",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C106",
+      "value": "4.7uF / bulk STM",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A475KO8NNNC",
+      "lcsc": "C19666",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C107",
+      "value": "10nF / VDDA20",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B103K500NT",
+      "lcsc": "C57112",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C108",
+      "value": "1uF / VDDA20",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C109",
+      "value": "100nF / VREF19",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C110",
+      "value": "1uF / VREF19",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C111",
+      "value": "100nF / VBAT1",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C202",
+      "value": "100nF / ESP pad2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C203",
+      "value": "10uF / ESP pad2",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A106MA8NRNC",
+      "lcsc": "C96446",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "F301",
+      "value": "1A / 72VDC",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "prosemi",
+      "mpn": "1206TD-1A",
+      "lcsc": "C2838907",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "12V_FUSED"
+      }
+    },
+    {
+      "reference": "D301",
+      "value": "SS34",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "12V_FUSED",
+        "1": "12V_PROTECTED"
+      }
+    },
+    {
+      "reference": "D302",
+      "value": "SMAJ18A",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "JUXING",
+      "mpn": "SMAJ18A",
+      "lcsc": "C5356039",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "GND_UI",
+        "1": "12V_PROTECTED"
+      }
+    },
+    {
+      "reference": "C301",
+      "value": "10uF / 25V input",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL21A106KAYNNNE",
+      "lcsc": "C15850",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C302",
+      "value": "100nF / input HF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U301",
+      "value": "AP63203WU-7",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "status": "candidate",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "AP63203WU-7",
+      "lcsc": "C780769",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "12V_PROTECTED",
+        "3": "12V_PROTECTED",
+        "6": "BST_NODE",
+        "5": "SW_NODE",
+        "4": "GND_UI"
+      }
+    },
+    {
+      "reference": "C303",
+      "value": "100nF / bootstrap",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BST_NODE",
+        "2": "SW_NODE"
+      }
+    },
+    {
+      "reference": "L301",
+      "value": "3.9uH",
+      "footprint": "Inductor_SMD:L_Bourns-SRN6028",
+      "status": "candidate",
+      "manufacturer": "Bourns",
+      "mpn": "SRN6028C-3R9M",
+      "lcsc": "C19947652",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "SW_NODE",
+        "2": "3V3_CORE"
+      }
+    },
+    {
+      "reference": "C304",
+      "value": "22uF / 10V output",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "status": "candidate",
+      "manufacturer": "CCTC",
+      "mpn": "TCC0805X5R226M100FT",
+      "lcsc": "C380338",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C305",
+      "value": "22uF / 10V output",
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "status": "candidate",
+      "manufacturer": "CCTC",
+      "mpn": "TCC0805X5R226M100FT",
+      "lcsc": "C380338",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C306",
+      "value": "100nF / output HF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U302",
+      "value": "TPS22918DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS22918DBVR",
+      "lcsc": "C131941",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI",
+        "3": "UI_PWR_EN",
+        "6": "3V3_UI",
+        "5": "3V3_UI",
+        "4": "UI_RISE"
+      }
+    },
+    {
+      "reference": "R301",
+      "value": "100k",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "UI_PWR_EN"
+      }
+    },
+    {
+      "reference": "C307",
+      "value": "1nF / CT",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10B102KB8NNNC",
+      "lcsc": "C1588",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "UI_RISE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C308",
+      "value": "1uF / switch input",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C309",
+      "value": "10uF / switch output",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A106MA8NRNC",
+      "lcsc": "C96446",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
+        "2": "GND_UI"
+      }
+    }
+  ]
+}

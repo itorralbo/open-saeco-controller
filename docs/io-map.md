@@ -14,7 +14,7 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 | Presencia/posición grupo | JP16 | 35–36 | Contactos y lógica exacta TBD |
 | Puerta/cajón | JP14 | 35 | Contactos y dependencia mecánica TBD |
 | Nivel depósito | JP23 | 34 | Interfaz y niveles TBD |
-| Panel frontal | JP21 | 34 | Protocolo y pines TBD; posterior a Rev A |
+| Panel frontal original | JP21 | 34 | Pines/niveles TBD; sustituido por frontal nuevo con arnés propio |
 | Calentador | TBD | TBD | Potencia, conector y protecciones TBD |
 | Motor grupo | TBD | TBD | Tensión, driver y conector TBD |
 | Entrada red / PE | TBD | Identificación del propietario | Bornes y protección TBD |
@@ -25,3 +25,6 @@ No equipararlas a conectores JP sin trazabilidad. Ninguna etiqueta
 demuestra aislamiento ni nivel lógico compatible con un microcontrolador.
 
 Registro editable: [connectors.csv](HD8911/connectors.csv).
+
+La [interfaz nueva del frontal](../hardware/controller/front-panel-interface.md)
+tiene su propia numeración J_UI/J1; no reemplaza ni confirma ninguna cavidad de JP21.

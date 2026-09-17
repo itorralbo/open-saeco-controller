@@ -1,0 +1,128 @@
+{
+  "status": "unrouted_staging_not_fabricable",
+  "kicad_version": "10.0.6",
+  "imported": {
+    "C1": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C2": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C3": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C11": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C12": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C13": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C14": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C15": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C16": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C17": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "C18": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    },
+    "J1": {
+      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical"
+    },
+    "R1": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R2": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R3": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R4": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R5": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R6": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R11": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R12": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R13": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R14": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R15": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R16": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R17": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R18": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R21": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R22": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R23": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R24": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R25": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R26": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R27": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R28": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "U1": {
+      "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
+    }
+  },
+  "missing_footprints": [
+    "J2",
+    "SW1",
+    "SW2",
+    "SW3",
+    "SW4",
+    "SW5",
+    "SW6",
+    "SW7",
+    "SW8"
+  ],
+  "new_connector_footprints_staged": [
+    "J1"
+  ],
+  "tracks": 0,
+  "outline": false,
+  "pad_nets_verified_after_reload": true
+}

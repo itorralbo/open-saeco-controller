@@ -2,14 +2,21 @@
 
 ## Responsabilidades
 - STM32: adquisición, límites, interlocks, estados y autoridad única sobre actuadores.
-- ESP32: USB/web, configuración y telemetría; sin acceso directo a GPIO de potencia.
-- STM32G4 y ESP32-S3 son candidatos. Referencias exactas, encapsulados y pines TBD.
-- UART entre procesadores es una propuesta; velocidad, niveles y aislamiento TBD.
+- ESP32: USB/web, configuración, telemetría y frontal; sin acceso directo a GPIO de potencia.
+- STM32G431RBT6 y ESP32-S3-WROOM-1-N8R8 están instanciados en el
+  [núcleo lógico preliminar](../hardware/controller/core-design.md). Hay una
+  [reserva de pines](../hardware/controller/front-panel-interface.md), aún sin BSP.
+- Frontal nuevo: reproduce posiciones de botones y fijaciones de la PCB original,
+  con display SPI mediante adaptador reemplazable. No depende del protocolo de JP21.
+  [Primer esquema](../hardware/front-panel/README.md); geometría y display exacto pendientes.
+- UART entre procesadores está dibujada a 3,3 V en el mismo dominio lógico;
+  velocidad, framing, temporización y ensayos siguen pendientes.
 - Fuente y dominios se definirán tras caracterización. Un motor DC no implica SELV.
 
 ```mermaid
 flowchart LR
     U[USB / navegador] --> E[ESP32: interfaz]
+    F[PCB frontal: botones I2C + display SPI] <--> E
     E -->|solicitudes| S[STM32: control e interlocks]
     I[Sensores acondicionados] --> S
     S --> P[Potencia experimental]

@@ -1,0 +1,229 @@
+{
+  "status": "unrouted_staging_not_fabricable",
+  "kicad_version": "10.0.6",
+  "imported": {
+    "C101": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C102": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C103": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C104": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C105": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C106": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C107": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C108": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C109": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C110": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C111": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C201": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C202": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C203": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C301": {
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "numbered_pads": 2
+    },
+    "C302": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C303": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C304": {
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "numbered_pads": 2
+    },
+    "C305": {
+      "footprint": "Capacitor_SMD:C_0805_2012Metric",
+      "numbered_pads": 2
+    },
+    "C306": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C307": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C308": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C309": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "D301": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
+    "D302": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
+    "F301": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "J101": {
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "numbered_pads": 2
+    },
+    "J102": {
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "numbered_pads": 6
+    },
+    "J103": {
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "numbered_pads": 6
+    },
+    "J104": {
+      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
+      "numbered_pads": 16
+    },
+    "L301": {
+      "footprint": "Inductor_SMD:L_Bourns-SRN6028",
+      "numbered_pads": 2
+    },
+    "R101": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R102": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R201": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R202": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R211": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R212": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R213": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R214": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R215": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R216": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R217": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R218": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R301": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "U101": {
+      "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
+      "numbered_pads": 64
+    },
+    "U201": {
+      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "numbered_pads": 41
+    },
+    "U301": {
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "numbered_pads": 6
+    },
+    "U302": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "numbered_pads": 6
+    }
+  },
+  "missing_footprints": [],
+  "staged_footprints": [
+    "C301",
+    "C302",
+    "C303",
+    "C304",
+    "C305",
+    "C306",
+    "C307",
+    "C308",
+    "C309",
+    "D301",
+    "D302",
+    "F301",
+    "J101",
+    "J102",
+    "J103",
+    "J104",
+    "L301",
+    "R301",
+    "U301",
+    "U302"
+  ],
+  "tracks": 0,
+  "outline": true,
+  "mounting_holes_preserved": [
+    "MH1",
+    "MH2",
+    "MH3"
+  ],
+  "pad_nets_verified_after_reload": true
+}

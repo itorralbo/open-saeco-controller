@@ -1,0 +1,483 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1680" height="1188" viewBox="0 0 420 297"><rect width="420" height="297" fill="white"/><g font-family="Arial, sans-serif"><text x="12" y="12" font-size="2.5" text-anchor="start" fill="#213b50">OPEN SAECO / FRONTAL Rev A.0 — BORRADOR ELÉCTRICO</text>
+<text x="12" y="19" font-size="1.5" text-anchor="start" fill="#213b50">Sin contorno ni posición real de botones. No fabricar. Validación: tools/validate_kicad.py.</text>
+<text x="12" y="30" font-size="1.5" text-anchor="start" fill="#213b50">01 / Enlace nuevo a ESP32</text>
+<rect x="49.53" y="40.004999999999995" width="10.16" height="63.5" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="54.61" y="35.004999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">J1</text>
+<text x="54.61" y="37.504999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">UI_LINK / IDC 2x8 2.54mm</text>
+<path d="M 49.53 43.18 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="43.48" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="47.59" y="42.68" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="44.050000000000004" y="42.68" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 49.53 46.99 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="47.29" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="47.59" y="46.49" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="44.050000000000004" y="46.49" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 49.53 50.8 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="51.099999999999994" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="47.59" y="50.3" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="44.050000000000004" y="50.3" font-size="0.9" text-anchor="end" fill="#23745f">LCD_SCLK</text>
+<path d="M 49.53 54.61 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="54.91" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="47.59" y="54.11" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="44.050000000000004" y="54.11" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 49.53 58.42 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="58.72" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
+<text x="47.59" y="57.92" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="44.050000000000004" y="57.92" font-size="0.9" text-anchor="end" fill="#23745f">LCD_MOSI</text>
+<path d="M 49.53 62.23 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="62.529999999999994" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
+<text x="47.59" y="61.73" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="44.050000000000004" y="61.73" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 49.53 66.04 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="66.34" font-size="0.9" text-anchor="start" fill="#213b50">7</text>
+<text x="47.59" y="65.54" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="44.050000000000004" y="65.54" font-size="0.9" text-anchor="end" fill="#23745f">LCD_CS_N</text>
+<path d="M 49.53 69.85 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="70.14999999999999" font-size="0.9" text-anchor="start" fill="#213b50">8</text>
+<text x="47.59" y="69.35" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="44.050000000000004" y="69.35" font-size="0.9" text-anchor="end" fill="#23745f">LCD_DC</text>
+<path d="M 49.53 73.66 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="73.96" font-size="0.9" text-anchor="start" fill="#213b50">9</text>
+<text x="47.59" y="73.16" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
+<text x="44.050000000000004" y="73.16" font-size="0.9" text-anchor="end" fill="#23745f">LCD_RST_N</text>
+<path d="M 49.53 77.47 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="77.77" font-size="0.9" text-anchor="start" fill="#213b50">10</text>
+<text x="47.59" y="76.97" font-size="0.65" text-anchor="middle" fill="#213b50">10</text>
+<text x="44.050000000000004" y="76.97" font-size="0.9" text-anchor="end" fill="#23745f">LCD_BL_PWM</text>
+<path d="M 49.53 81.28 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="81.58" font-size="0.9" text-anchor="start" fill="#213b50">11</text>
+<text x="47.59" y="80.78" font-size="0.65" text-anchor="middle" fill="#213b50">11</text>
+<text x="44.050000000000004" y="80.78" font-size="0.9" text-anchor="end" fill="#23745f">KEY_SCL</text>
+<path d="M 49.53 85.09 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="85.39" font-size="0.9" text-anchor="start" fill="#213b50">12</text>
+<text x="47.59" y="84.59" font-size="0.65" text-anchor="middle" fill="#213b50">12</text>
+<text x="44.050000000000004" y="84.59" font-size="0.9" text-anchor="end" fill="#23745f">KEY_SDA</text>
+<path d="M 49.53 88.9 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="89.2" font-size="0.9" text-anchor="start" fill="#213b50">13</text>
+<text x="47.59" y="88.4" font-size="0.65" text-anchor="middle" fill="#213b50">13</text>
+<text x="44.050000000000004" y="88.4" font-size="0.9" text-anchor="end" fill="#23745f">KEY_INT_N</text>
+<path d="M 49.53 92.71 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="93.00999999999999" font-size="0.9" text-anchor="start" fill="#213b50">14</text>
+<text x="47.59" y="92.21" font-size="0.65" text-anchor="middle" fill="#213b50">14</text>
+<text x="44.050000000000004" y="92.21" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 49.53 96.52 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="96.82" font-size="0.9" text-anchor="start" fill="#213b50">15</text>
+<text x="47.59" y="96.02" font-size="0.65" text-anchor="middle" fill="#213b50">15</text>
+<text x="44.050000000000004" y="96.02" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 49.53 100.33 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="50.23" y="100.63" font-size="0.9" text-anchor="start" fill="#213b50">16</text>
+<text x="47.59" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">16</text>
+<text x="44.45" y="100.63" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="12" y="111" font-size="1.5" text-anchor="start" fill="#213b50">J1 NO corresponde a JP21 Saeco.</text>
+<text x="12" y="116" font-size="1.2" text-anchor="start" fill="#213b50">16 sin conectar. Vista eléctrica, no del cable.</text>
+<rect x="72.39" y="95.25" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="74.93" y="90.25" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG01</text>
+<text x="74.93" y="92.75" font-size="1.05" text-anchor="middle" fill="#213b50">External supply via J1</text>
+<path d="M 72.39 96.52 H 67.31" stroke="#27856d" stroke-width=".22"/>
+<text x="73.09" y="96.82" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="70.44999999999999" y="96.02" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="66.91" y="96.02" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<rect x="72.39" y="104.14" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="74.93" y="99.14" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG02</text>
+<text x="74.93" y="101.64" font-size="1.05" text-anchor="middle" fill="#213b50">External return via J1</text>
+<path d="M 72.39 105.41 H 67.31" stroke="#27856d" stroke-width=".22"/>
+<text x="73.09" y="105.71" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="70.44999999999999" y="104.91" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="66.91" y="104.91" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="116" y="30" font-size="1.5" text-anchor="start" fill="#213b50">02 / Botones I2C — dirección 0x20</text>
+<rect x="153.67000000000002" y="48.894999999999996" width="20.32" height="33.02" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="163.83" y="43.894999999999996" font-size="1.05" text-anchor="middle" fill="#213b50">U1</text>
+<text x="163.83" y="46.394999999999996" font-size="1.05" text-anchor="middle" fill="#213b50">TCA9534PWR</text>
+<path d="M 153.67000000000002 52.07 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="52.37" font-size="0.9" text-anchor="start" fill="#213b50">VCC</text>
+<text x="151.73" y="51.57" font-size="0.65" text-anchor="middle" fill="#213b50">16</text>
+<text x="148.19" y="51.57" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 153.67000000000002 55.88 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="56.18" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="151.73" y="55.38" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="148.19" y="55.38" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 153.67000000000002 59.69 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="59.989999999999995" font-size="0.9" text-anchor="start" fill="#213b50">SCL</text>
+<text x="151.73" y="59.19" font-size="0.65" text-anchor="middle" fill="#213b50">14</text>
+<text x="148.19" y="59.19" font-size="0.9" text-anchor="end" fill="#23745f">KEY_SCL</text>
+<path d="M 153.67000000000002 63.5 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="63.8" font-size="0.9" text-anchor="start" fill="#213b50">SDA</text>
+<text x="151.73" y="63.0" font-size="0.65" text-anchor="middle" fill="#213b50">15</text>
+<text x="148.19" y="63.0" font-size="0.9" text-anchor="end" fill="#23745f">KEY_SDA</text>
+<path d="M 153.67000000000002 67.31 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="67.61" font-size="0.9" text-anchor="start" fill="#213b50">/INT</text>
+<text x="151.73" y="66.81" font-size="0.65" text-anchor="middle" fill="#213b50">13</text>
+<text x="148.19" y="66.81" font-size="0.9" text-anchor="end" fill="#23745f">KEY_INT_N</text>
+<path d="M 153.67000000000002 71.12 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="71.42" font-size="0.9" text-anchor="start" fill="#213b50">A0</text>
+<text x="151.73" y="70.62" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="148.19" y="70.62" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 153.67000000000002 74.93 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="75.23" font-size="0.9" text-anchor="start" fill="#213b50">A1</text>
+<text x="151.73" y="74.43" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="148.19" y="74.43" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 153.67000000000002 78.74 H 148.59" stroke="#27856d" stroke-width=".22"/>
+<text x="154.37" y="79.03999999999999" font-size="0.9" text-anchor="start" fill="#213b50">A2</text>
+<text x="151.73" y="78.24" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="148.19" y="78.24" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 173.99 52.07 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="52.37" font-size="0.9" text-anchor="end" fill="#213b50">P0</text>
+<text x="175.93" y="51.57" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="179.47" y="51.57" font-size="0.9" text-anchor="start" fill="#23745f">KEY_1_N</text>
+<path d="M 173.99 55.88 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="56.18" font-size="0.9" text-anchor="end" fill="#213b50">P1</text>
+<text x="175.93" y="55.38" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="179.47" y="55.38" font-size="0.9" text-anchor="start" fill="#23745f">KEY_2_N</text>
+<path d="M 173.99 59.69 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="59.989999999999995" font-size="0.9" text-anchor="end" fill="#213b50">P2</text>
+<text x="175.93" y="59.19" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="179.47" y="59.19" font-size="0.9" text-anchor="start" fill="#23745f">KEY_3_N</text>
+<path d="M 173.99 63.5 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="63.8" font-size="0.9" text-anchor="end" fill="#213b50">P3</text>
+<text x="175.93" y="63.0" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="179.47" y="63.0" font-size="0.9" text-anchor="start" fill="#23745f">KEY_4_N</text>
+<path d="M 173.99 67.31 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="67.61" font-size="0.9" text-anchor="end" fill="#213b50">P4</text>
+<text x="175.93" y="66.81" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
+<text x="179.47" y="66.81" font-size="0.9" text-anchor="start" fill="#23745f">KEY_5_N</text>
+<path d="M 173.99 71.12 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="71.42" font-size="0.9" text-anchor="end" fill="#213b50">P5</text>
+<text x="175.93" y="70.62" font-size="0.65" text-anchor="middle" fill="#213b50">10</text>
+<text x="179.47" y="70.62" font-size="0.9" text-anchor="start" fill="#23745f">KEY_6_N</text>
+<path d="M 173.99 74.93 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="75.23" font-size="0.9" text-anchor="end" fill="#213b50">P6</text>
+<text x="175.93" y="74.43" font-size="0.65" text-anchor="middle" fill="#213b50">11</text>
+<text x="179.47" y="74.43" font-size="0.9" text-anchor="start" fill="#23745f">KEY_7_N</text>
+<path d="M 173.99 78.74 H 179.07" stroke="#27856d" stroke-width=".22"/>
+<text x="173.29000000000002" y="79.03999999999999" font-size="0.9" text-anchor="end" fill="#213b50">P7</text>
+<text x="175.93" y="78.24" font-size="0.65" text-anchor="middle" fill="#213b50">12</text>
+<text x="179.47" y="78.24" font-size="0.9" text-anchor="start" fill="#23745f">KEY_8_N</text>
+<path d="M 143.51000000000002 97.79 H 145.41500000000002 M 146.685 97.79 H 148.59 M 145.41500000000002 96.29 V 99.29 M 146.685 96.29 V 99.29" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="146.05" y="91.29" font-size="1.05" text-anchor="middle" fill="#213b50">C1</text>
+<text x="146.05" y="93.79" font-size="1.05" text-anchor="middle" fill="#213b50">100nF</text>
+<path d="M 143.51000000000002 97.79 H 138.43" stroke="#27856d" stroke-width=".22"/>
+<text x="138.03" y="97.29" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 148.59 97.79 H 153.67" stroke="#27856d" stroke-width=".22"/>
+<text x="154.07" y="97.29" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 193.04000000000002 97.79 H 194.94500000000002 M 196.215 97.79 H 198.12 M 194.94500000000002 96.29 V 99.29 M 196.215 96.29 V 99.29" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="195.58" y="91.29" font-size="1.05" text-anchor="middle" fill="#213b50">C2</text>
+<text x="195.58" y="93.79" font-size="1.05" text-anchor="middle" fill="#213b50">1uF</text>
+<path d="M 193.04000000000002 97.79 H 187.96" stroke="#27856d" stroke-width=".22"/>
+<text x="187.56" y="97.29" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 198.12 97.79 H 203.2" stroke="#27856d" stroke-width=".22"/>
+<text x="203.6" y="97.29" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="230" y="30" font-size="1.5" text-anchor="start" fill="#213b50">03 / Adaptador LCD SPI, lógica 3V3</text>
+<rect x="274.32" y="46.355000000000004" width="10.16" height="33.02" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="279.4" y="41.355000000000004" font-size="1.05" text-anchor="middle" fill="#213b50">J2</text>
+<text x="279.4" y="43.855000000000004" font-size="1.05" text-anchor="middle" fill="#213b50">LCD_ADAPTER / 8 pins</text>
+<path d="M 274.32 49.53 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="49.83" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="272.38" y="49.03" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="268.84000000000003" y="49.03" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 274.32 53.34 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="53.64" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="272.38" y="52.84" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="268.84000000000003" y="52.84" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 274.32 57.15 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="57.449999999999996" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="272.38" y="56.65" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="268.84000000000003" y="56.65" font-size="0.9" text-anchor="end" fill="#23745f">LCD_MOSI</text>
+<path d="M 274.32 60.96 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="61.26" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="272.38" y="60.46" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="268.84000000000003" y="60.46" font-size="0.9" text-anchor="end" fill="#23745f">LCD_SCLK</text>
+<path d="M 274.32 64.77 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="65.07" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
+<text x="272.38" y="64.27" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="268.84000000000003" y="64.27" font-size="0.9" text-anchor="end" fill="#23745f">LCD_CS_N</text>
+<path d="M 274.32 68.58 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="68.88" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
+<text x="272.38" y="68.08" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="268.84000000000003" y="68.08" font-size="0.9" text-anchor="end" fill="#23745f">LCD_DC</text>
+<path d="M 274.32 72.39 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="72.69" font-size="0.9" text-anchor="start" fill="#213b50">7</text>
+<text x="272.38" y="71.89" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="268.84000000000003" y="71.89" font-size="0.9" text-anchor="end" fill="#23745f">LCD_RST_N</text>
+<path d="M 274.32 76.2 H 269.24" stroke="#27856d" stroke-width=".22"/>
+<text x="275.02" y="76.5" font-size="0.9" text-anchor="start" fill="#213b50">8</text>
+<text x="272.38" y="75.7" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="268.84000000000003" y="75.7" font-size="0.9" text-anchor="end" fill="#23745f">LCD_BL_PWM</text>
+<text x="228" y="92" font-size="1.2" text-anchor="start" fill="#213b50">BL: entrada lógica de módulo; no LED desnudo.</text>
+<text x="322" y="30" font-size="1.5" text-anchor="start" fill="#213b50">04 / Polarización y reserva de desacoplo</text>
+<rect x="358.14" y="42.18" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="37.18" font-size="1.05" text-anchor="middle" fill="#213b50">R1</text>
+<text x="360.68" y="39.68" font-size="1.05" text-anchor="middle" fill="#213b50">4.7k</text>
+<path d="M 358.14 43.18 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="42.68" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 363.22 43.18 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="42.68" font-size="0.9" text-anchor="start" fill="#23745f">KEY_SCL</text>
+<rect x="358.14" y="54.88" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="49.88" font-size="1.05" text-anchor="middle" fill="#213b50">R2</text>
+<text x="360.68" y="52.38" font-size="1.05" text-anchor="middle" fill="#213b50">4.7k</text>
+<path d="M 358.14 55.88 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="55.38" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 363.22 55.88 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="55.38" font-size="0.9" text-anchor="start" fill="#23745f">KEY_SDA</text>
+<rect x="358.14" y="67.58" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="62.58" font-size="1.05" text-anchor="middle" fill="#213b50">R3</text>
+<text x="360.68" y="65.08" font-size="1.05" text-anchor="middle" fill="#213b50">10k</text>
+<path d="M 358.14 68.58 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="68.08" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 363.22 68.58 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="68.08" font-size="0.9" text-anchor="start" fill="#23745f">KEY_INT_N</text>
+<rect x="358.14" y="81.55" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="76.55" font-size="1.05" text-anchor="middle" fill="#213b50">R4</text>
+<text x="360.68" y="79.05" font-size="1.05" text-anchor="middle" fill="#213b50">10k</text>
+<path d="M 358.14 82.55 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="82.05" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 363.22 82.55 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="82.05" font-size="0.9" text-anchor="start" fill="#23745f">LCD_CS_N</text>
+<rect x="358.14" y="94.25" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="89.25" font-size="1.05" text-anchor="middle" fill="#213b50">R5</text>
+<text x="360.68" y="91.75" font-size="1.05" text-anchor="middle" fill="#213b50">10k</text>
+<path d="M 358.14 95.25 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="94.75" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 363.22 95.25 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="94.75" font-size="0.9" text-anchor="start" fill="#23745f">LCD_RST_N</text>
+<rect x="358.14" y="106.95" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="360.68" y="101.95" font-size="1.05" text-anchor="middle" fill="#213b50">R6</text>
+<text x="360.68" y="104.45" font-size="1.05" text-anchor="middle" fill="#213b50">100k</text>
+<path d="M 358.14 107.95 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="352.66" y="107.45" font-size="0.9" text-anchor="end" fill="#23745f">LCD_BL_PWM</text>
+<path d="M 363.22 107.95 H 368.3" stroke="#27856d" stroke-width=".22"/>
+<text x="368.7" y="107.45" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 257.81 107.95 H 259.71500000000003 M 260.985 107.95 H 262.89000000000004 M 259.71500000000003 106.45 V 109.45 M 260.985 106.45 V 109.45" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="260.35" y="101.45" font-size="1.05" text-anchor="middle" fill="#213b50">C3</text>
+<text x="260.35" y="103.95" font-size="1.05" text-anchor="middle" fill="#213b50">10uF</text>
+<path d="M 257.81 107.95 H 252.73" stroke="#27856d" stroke-width=".22"/>
+<text x="252.32999999999998" y="107.45" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 262.89000000000004 107.95 H 267.97" stroke="#27856d" stroke-width=".22"/>
+<text x="268.37" y="107.45" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="12" y="130" font-size="1.5" text-anchor="start" fill="#213b50">05 / Ocho canales previstos — cantidad y mecánica originales pendientes</text>
+<rect x="49.53" y="142.51" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="52.07" y="137.51" font-size="1.05" text-anchor="middle" fill="#213b50">R11</text>
+<text x="52.07" y="140.01" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 49.53 143.51 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="143.01" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 54.61 143.51 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="143.01" font-size="0.9" text-anchor="start" fill="#23745f">KEY_1_N</text>
+<rect x="49.53" y="155.21" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="52.07" y="150.21" font-size="1.05" text-anchor="middle" fill="#213b50">R21</text>
+<text x="52.07" y="152.71" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 49.53 156.21 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="155.71" font-size="0.9" text-anchor="end" fill="#23745f">KEY_1_N</text>
+<path d="M 54.61 156.21 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="155.71" font-size="0.9" text-anchor="start" fill="#23745f">SW_1_RAW</text>
+<path d="M 49.53 168.91 L 53.97 167.41" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="52.07" y="162.41" font-size="1.05" text-anchor="middle" fill="#213b50">SW1</text>
+<text x="52.07" y="164.91" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 1 / NO</text>
+<path d="M 49.53 168.91 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="168.41" font-size="0.9" text-anchor="end" fill="#23745f">SW_1_RAW</text>
+<path d="M 54.61 168.91 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="168.41" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 49.53 181.61 H 51.435 M 52.705 181.61 H 54.61 M 51.435 180.11 V 183.11 M 52.705 180.11 V 183.11" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="52.07" y="175.11" font-size="1.05" text-anchor="middle" fill="#213b50">C11</text>
+<text x="52.07" y="177.61" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 49.53 181.61 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="181.11" font-size="0.9" text-anchor="end" fill="#23745f">KEY_1_N</text>
+<path d="M 54.61 181.61 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="181.11" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="147.32000000000002" y="142.51" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="149.86" y="137.51" font-size="1.05" text-anchor="middle" fill="#213b50">R12</text>
+<text x="149.86" y="140.01" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 147.32000000000002 143.51 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="143.01" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 152.4 143.51 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="143.01" font-size="0.9" text-anchor="start" fill="#23745f">KEY_2_N</text>
+<rect x="147.32000000000002" y="155.21" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="149.86" y="150.21" font-size="1.05" text-anchor="middle" fill="#213b50">R22</text>
+<text x="149.86" y="152.71" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 147.32000000000002 156.21 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="155.71" font-size="0.9" text-anchor="end" fill="#23745f">KEY_2_N</text>
+<path d="M 152.4 156.21 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="155.71" font-size="0.9" text-anchor="start" fill="#23745f">SW_2_RAW</text>
+<path d="M 147.32000000000002 168.91 L 151.76000000000002 167.41" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="149.86" y="162.41" font-size="1.05" text-anchor="middle" fill="#213b50">SW2</text>
+<text x="149.86" y="164.91" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 2 / NO</text>
+<path d="M 147.32000000000002 168.91 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="168.41" font-size="0.9" text-anchor="end" fill="#23745f">SW_2_RAW</text>
+<path d="M 152.4 168.91 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="168.41" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 147.32000000000002 181.61 H 149.22500000000002 M 150.495 181.61 H 152.4 M 149.22500000000002 180.11 V 183.11 M 150.495 180.11 V 183.11" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="149.86" y="175.11" font-size="1.05" text-anchor="middle" fill="#213b50">C12</text>
+<text x="149.86" y="177.61" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 147.32000000000002 181.61 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="181.11" font-size="0.9" text-anchor="end" fill="#23745f">KEY_2_N</text>
+<path d="M 152.4 181.61 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="181.11" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="245.11" y="142.51" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="247.65" y="137.51" font-size="1.05" text-anchor="middle" fill="#213b50">R13</text>
+<text x="247.65" y="140.01" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 245.11 143.51 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="143.01" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 250.19 143.51 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="143.01" font-size="0.9" text-anchor="start" fill="#23745f">KEY_3_N</text>
+<rect x="245.11" y="155.21" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="247.65" y="150.21" font-size="1.05" text-anchor="middle" fill="#213b50">R23</text>
+<text x="247.65" y="152.71" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 245.11 156.21 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="155.71" font-size="0.9" text-anchor="end" fill="#23745f">KEY_3_N</text>
+<path d="M 250.19 156.21 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="155.71" font-size="0.9" text-anchor="start" fill="#23745f">SW_3_RAW</text>
+<path d="M 245.11 168.91 L 249.55 167.41" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="247.65" y="162.41" font-size="1.05" text-anchor="middle" fill="#213b50">SW3</text>
+<text x="247.65" y="164.91" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 3 / NO</text>
+<path d="M 245.11 168.91 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="168.41" font-size="0.9" text-anchor="end" fill="#23745f">SW_3_RAW</text>
+<path d="M 250.19 168.91 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="168.41" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 245.11 181.61 H 247.01500000000001 M 248.285 181.61 H 250.19 M 247.01500000000001 180.11 V 183.11 M 248.285 180.11 V 183.11" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="247.65" y="175.11" font-size="1.05" text-anchor="middle" fill="#213b50">C13</text>
+<text x="247.65" y="177.61" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 245.11 181.61 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="181.11" font-size="0.9" text-anchor="end" fill="#23745f">KEY_3_N</text>
+<path d="M 250.19 181.61 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="181.11" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="342.9" y="142.51" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="345.44" y="137.51" font-size="1.05" text-anchor="middle" fill="#213b50">R14</text>
+<text x="345.44" y="140.01" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 342.9 143.51 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="143.01" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 347.98 143.51 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="143.01" font-size="0.9" text-anchor="start" fill="#23745f">KEY_4_N</text>
+<rect x="342.9" y="155.21" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="345.44" y="150.21" font-size="1.05" text-anchor="middle" fill="#213b50">R24</text>
+<text x="345.44" y="152.71" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 342.9 156.21 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="155.71" font-size="0.9" text-anchor="end" fill="#23745f">KEY_4_N</text>
+<path d="M 347.98 156.21 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="155.71" font-size="0.9" text-anchor="start" fill="#23745f">SW_4_RAW</text>
+<path d="M 342.9 168.91 L 347.34 167.41" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="345.44" y="162.41" font-size="1.05" text-anchor="middle" fill="#213b50">SW4</text>
+<text x="345.44" y="164.91" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 4 / NO</text>
+<path d="M 342.9 168.91 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="168.41" font-size="0.9" text-anchor="end" fill="#23745f">SW_4_RAW</text>
+<path d="M 347.98 168.91 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="168.41" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 342.9 181.61 H 344.805 M 346.075 181.61 H 347.98 M 344.805 180.11 V 183.11 M 346.075 180.11 V 183.11" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="345.44" y="175.11" font-size="1.05" text-anchor="middle" fill="#213b50">C14</text>
+<text x="345.44" y="177.61" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 342.9 181.61 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="181.11" font-size="0.9" text-anchor="end" fill="#23745f">KEY_4_N</text>
+<path d="M 347.98 181.61 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="181.11" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="49.53" y="202.2" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="52.07" y="197.2" font-size="1.05" text-anchor="middle" fill="#213b50">R15</text>
+<text x="52.07" y="199.7" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 49.53 203.2 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="202.7" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 54.61 203.2 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="202.7" font-size="0.9" text-anchor="start" fill="#23745f">KEY_5_N</text>
+<rect x="49.53" y="214.9" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="52.07" y="209.9" font-size="1.05" text-anchor="middle" fill="#213b50">R25</text>
+<text x="52.07" y="212.4" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 49.53 215.9 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="215.4" font-size="0.9" text-anchor="end" fill="#23745f">KEY_5_N</text>
+<path d="M 54.61 215.9 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="215.4" font-size="0.9" text-anchor="start" fill="#23745f">SW_5_RAW</text>
+<path d="M 49.53 228.6 L 53.97 227.1" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="52.07" y="222.1" font-size="1.05" text-anchor="middle" fill="#213b50">SW5</text>
+<text x="52.07" y="224.6" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 5 / NO</text>
+<path d="M 49.53 228.6 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="228.1" font-size="0.9" text-anchor="end" fill="#23745f">SW_5_RAW</text>
+<path d="M 54.61 228.6 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="228.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 49.53 242.57 H 51.435 M 52.705 242.57 H 54.61 M 51.435 241.07 V 244.07 M 52.705 241.07 V 244.07" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="52.07" y="236.07" font-size="1.05" text-anchor="middle" fill="#213b50">C15</text>
+<text x="52.07" y="238.57" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 49.53 242.57 H 44.45" stroke="#27856d" stroke-width=".22"/>
+<text x="44.050000000000004" y="242.07" font-size="0.9" text-anchor="end" fill="#23745f">KEY_5_N</text>
+<path d="M 54.61 242.57 H 59.69" stroke="#27856d" stroke-width=".22"/>
+<text x="60.089999999999996" y="242.07" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="147.32000000000002" y="202.2" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="149.86" y="197.2" font-size="1.05" text-anchor="middle" fill="#213b50">R16</text>
+<text x="149.86" y="199.7" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 147.32000000000002 203.2 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="202.7" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 152.4 203.2 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="202.7" font-size="0.9" text-anchor="start" fill="#23745f">KEY_6_N</text>
+<rect x="147.32000000000002" y="214.9" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="149.86" y="209.9" font-size="1.05" text-anchor="middle" fill="#213b50">R26</text>
+<text x="149.86" y="212.4" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 147.32000000000002 215.9 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="215.4" font-size="0.9" text-anchor="end" fill="#23745f">KEY_6_N</text>
+<path d="M 152.4 215.9 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="215.4" font-size="0.9" text-anchor="start" fill="#23745f">SW_6_RAW</text>
+<path d="M 147.32000000000002 228.6 L 151.76000000000002 227.1" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="149.86" y="222.1" font-size="1.05" text-anchor="middle" fill="#213b50">SW6</text>
+<text x="149.86" y="224.6" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 6 / NO</text>
+<path d="M 147.32000000000002 228.6 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="228.1" font-size="0.9" text-anchor="end" fill="#23745f">SW_6_RAW</text>
+<path d="M 152.4 228.6 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="228.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 147.32000000000002 242.57 H 149.22500000000002 M 150.495 242.57 H 152.4 M 149.22500000000002 241.07 V 244.07 M 150.495 241.07 V 244.07" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="149.86" y="236.07" font-size="1.05" text-anchor="middle" fill="#213b50">C16</text>
+<text x="149.86" y="238.57" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 147.32000000000002 242.57 H 142.24" stroke="#27856d" stroke-width=".22"/>
+<text x="141.84" y="242.07" font-size="0.9" text-anchor="end" fill="#23745f">KEY_6_N</text>
+<path d="M 152.4 242.57 H 157.48" stroke="#27856d" stroke-width=".22"/>
+<text x="157.88" y="242.07" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="245.11" y="202.2" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="247.65" y="197.2" font-size="1.05" text-anchor="middle" fill="#213b50">R17</text>
+<text x="247.65" y="199.7" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 245.11 203.2 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="202.7" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 250.19 203.2 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="202.7" font-size="0.9" text-anchor="start" fill="#23745f">KEY_7_N</text>
+<rect x="245.11" y="214.9" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="247.65" y="209.9" font-size="1.05" text-anchor="middle" fill="#213b50">R27</text>
+<text x="247.65" y="212.4" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 245.11 215.9 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="215.4" font-size="0.9" text-anchor="end" fill="#23745f">KEY_7_N</text>
+<path d="M 250.19 215.9 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="215.4" font-size="0.9" text-anchor="start" fill="#23745f">SW_7_RAW</text>
+<path d="M 245.11 228.6 L 249.55 227.1" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="247.65" y="222.1" font-size="1.05" text-anchor="middle" fill="#213b50">SW7</text>
+<text x="247.65" y="224.6" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 7 / NO</text>
+<path d="M 245.11 228.6 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="228.1" font-size="0.9" text-anchor="end" fill="#23745f">SW_7_RAW</text>
+<path d="M 250.19 228.6 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="228.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 245.11 242.57 H 247.01500000000001 M 248.285 242.57 H 250.19 M 247.01500000000001 241.07 V 244.07 M 248.285 241.07 V 244.07" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="247.65" y="236.07" font-size="1.05" text-anchor="middle" fill="#213b50">C17</text>
+<text x="247.65" y="238.57" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 245.11 242.57 H 240.03" stroke="#27856d" stroke-width=".22"/>
+<text x="239.63" y="242.07" font-size="0.9" text-anchor="end" fill="#23745f">KEY_7_N</text>
+<path d="M 250.19 242.57 H 255.27" stroke="#27856d" stroke-width=".22"/>
+<text x="255.67000000000002" y="242.07" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="342.9" y="202.2" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="345.44" y="197.2" font-size="1.05" text-anchor="middle" fill="#213b50">R18</text>
+<text x="345.44" y="199.7" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pull-up</text>
+<path d="M 342.9 203.2 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="202.7" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 347.98 203.2 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="202.7" font-size="0.9" text-anchor="start" fill="#23745f">KEY_8_N</text>
+<rect x="342.9" y="214.9" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="345.44" y="209.9" font-size="1.05" text-anchor="middle" fill="#213b50">R28</text>
+<text x="345.44" y="212.4" font-size="1.05" text-anchor="middle" fill="#213b50">1k / serie</text>
+<path d="M 342.9 215.9 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="215.4" font-size="0.9" text-anchor="end" fill="#23745f">KEY_8_N</text>
+<path d="M 347.98 215.9 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="215.4" font-size="0.9" text-anchor="start" fill="#23745f">SW_8_RAW</text>
+<path d="M 342.9 228.6 L 347.34 227.1" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="345.44" y="222.1" font-size="1.05" text-anchor="middle" fill="#213b50">SW8</text>
+<text x="345.44" y="224.6" font-size="1.05" text-anchor="middle" fill="#213b50">KEY 8 / NO</text>
+<path d="M 342.9 228.6 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="228.1" font-size="0.9" text-anchor="end" fill="#23745f">SW_8_RAW</text>
+<path d="M 347.98 228.6 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="228.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 342.9 242.57 H 344.805 M 346.075 242.57 H 347.98 M 344.805 241.07 V 244.07 M 346.075 241.07 V 244.07" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="345.44" y="236.07" font-size="1.05" text-anchor="middle" fill="#213b50">C18</text>
+<text x="345.44" y="238.57" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / filtro</text>
+<path d="M 342.9 242.57 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="337.42" y="242.07" font-size="0.9" text-anchor="end" fill="#23745f">KEY_8_N</text>
+<path d="M 347.98 242.57 H 353.06" stroke="#27856d" stroke-width=".22"/>
+<text x="353.46" y="242.07" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="12" y="260" font-size="1.5" text-anchor="start" fill="#213b50">Entradas activas a 0. Los pulsadores son órdenes de UI, no interlocks ni corte de emergencia.</text>
+<text x="12" y="267" font-size="1.2" text-anchor="start" fill="#213b50">100nF: X7R; 1uF/10uF: X5R, temperatura y DC bias pendientes. J2 y SW1–SW8 sin huella.</text>
+<text x="12" y="274" font-size="1.2" text-anchor="start" fill="#213b50">Vista SVG auxiliar del generador; no sustituye apertura, exportación de netlist y ERC en KiCad.</text></g></svg>

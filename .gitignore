@@ -4,11 +4,15 @@ __pycache__/
 *.pyc
 .vscode/
 .idea/
+.DS_Store
+**/.DS_Store
 sdkconfig
 sdkconfig.old
 managed_components/
 *-backups/
 *.kicad_prl
+*.lck
 # Referencias locales de terceros: revisar derechos antes de incorporar.
 docs/*.pdf
+docs/**/*.pdf
 docs/fotos/

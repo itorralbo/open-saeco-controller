@@ -1,0 +1,49 @@
+reference,value,footprint,status,manufacturer,mpn,lcsc,jlc_class,pcba_type
+U101,STM32G431RBT6,Package_QFP:LQFP-64_10x10mm_P0.5mm,candidate,STMicroelectronics,STM32G431RBT6,C431633,Extended,Economic and Standard
+U201,ESP32-S3-WROOM-1-N8R8,RF_Module:ESP32-S3-WROOM-1,candidate,Espressif Systems,ESP32-S3-WROOM-1-N8R8,C2913201,Extended,Standard Only
+J101,12V_ISOLATED_INPUT / JST XH,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J102,STM_SWD / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
+J103,ESP_UART / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
+J104,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candidate,Megastar,ZX-IDC2.54-2-8PZZ,C7501244,Extended,Economic and Standard
+R101,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+C101,100nF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+R102,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R201,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+C201,1uF,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+R202,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R211,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R212,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R213,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R214,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R215,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R216,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R217,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R218,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+C102,100nF / VDD13,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C103,100nF / VDD32,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C104,100nF / VDD48,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C105,100nF / VDD64,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C106,4.7uF / bulk STM,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A475KO8NNNC,C19666,Basic,Economic and Standard
+C107,10nF / VDDA20,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
+C108,1uF / VDDA20,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+C109,100nF / VREF19,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C110,1uF / VREF19,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+C111,100nF / VBAT1,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C202,100nF / ESP pad2,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C203,10uF / ESP pad2,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard
+F301,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
+D301,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
+D302,SMAJ18A,Diode_SMD:D_SMA,candidate,JUXING,SMAJ18A,C5356039,Extended,Economic and Standard
+C301,10uF / 25V input,Capacitor_SMD:C_0805_2012Metric,candidate,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,Basic,Economic and Standard
+C302,100nF / input HF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+U301,AP63203WU-7,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63203WU-7,C780769,Extended,Economic and Standard
+C303,100nF / bootstrap,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+L301,3.9uH,Inductor_SMD:L_Bourns-SRN6028,candidate,Bourns,SRN6028C-3R9M,C19947652,Extended,Economic and Standard
+C304,22uF / 10V output,Capacitor_SMD:C_0805_2012Metric,candidate,CCTC,TCC0805X5R226M100FT,C380338,Extended,Economic and Standard
+C305,22uF / 10V output,Capacitor_SMD:C_0805_2012Metric,candidate,CCTC,TCC0805X5R226M100FT,C380338,Extended,Economic and Standard
+C306,100nF / output HF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+U302,TPS22918DBVR,Package_TO_SOT_SMD:SOT-23-6,candidate,Texas Instruments,TPS22918DBVR,C131941,Extended,Economic and Standard
+R301,100k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+C307,1nF / CT,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10B102KB8NNNC,C1588,Basic,Economic and Standard
+C308,1uF / switch input,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+C309,10uF / switch output,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard

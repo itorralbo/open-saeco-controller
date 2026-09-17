@@ -8,20 +8,27 @@ experimental hasta verificación. Este código no permite controlar cargas.**
 
 ## Objetivo
 Controlar la máquina sin depender de la electrónica original, inicialmente por USB/web.
-Conservar mecánica y cableado solo tras verificar compatibilidad. Panel original posterior
-a Rev A. STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
+Conservar mecánica y cableado solo tras verificar compatibilidad. Se diseñará un frontal
+nuevo que reproduzca la posición de los botones y use una pantalla reemplazable.
+STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
 
 ## Documentación
 - [Arquitectura](docs/architecture.md)
 - [Reverse engineering HD8911](docs/HD8911/README.md)
 - [Mapa I/O preliminar](docs/io-map.md)
+- [Diseño preliminar del frontal y pantalla](hardware/front-panel/README.md)
+- [Núcleo inicial de la principal](hardware/controller/core-design.md)
+- [Abrir y editar los proyectos KiCad](hardware/kicad-workflow.md)
+- [Componentes y fabricación JLCPCB](hardware/assembly/README.md)
 - [Seguridad](docs/safety.md)
 - [Roadmap y validación](docs/roadmap.md)
 - [Licencias y fuentes](docs/licensing.md)
 
 ## Estructura
 ```
-hardware/controller/  requisitos del futuro diseño KiCad
+hardware/controller/  esquema parcial del núcleo lógico y BOM candidata
+hardware/front-panel/ esquema KiCad preliminar, BOM y mecánica pendiente
+hardware/assembly/    catálogo de componentes con códigos JLC y stock observado
 hardware/power/       requisitos de potencia experimental
 firmware/stm32/       núcleo C portable, sin BSP ni pines
 firmware/esp32/       proyecto mínimo ESP-IDF
@@ -32,6 +39,9 @@ tests/                pruebas de bloqueo del núcleo
 
 ## Verificación local
 Con Python 3: `python tools/check_scaffold.py`.
+Conexiones del frontal: `python tools/check_front_panel.py` (no sustituye ERC).
+Núcleo y suministro: `python tools/check_controller_core.py` (no sustituye ERC/DRC).
+ERC y netlist nativos, con KiCad 10: `python3 tools/validate_kicad.py`.
 Con CMake >= 3.20 y compilador C:
 ```
 cmake -S firmware/stm32 -B build/host
