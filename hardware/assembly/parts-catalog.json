@@ -331,6 +331,21 @@
       "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941",
       "selection": "candidate_not_released"
     },
+    "DRV8876PWPR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "DRV8876PWPR",
+      "lcsc": "C575551",
+      "specification": "4.5-37V 3.5A peak H-bridge, integrated current sense/regulation, 700mohm typ",
+      "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 30138,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-18",
+      "stock_evidence": "LCSC rendered product page, read-only browser observation; JLCPCB assembly availability not yet verified",
+      "url": "https://www.lcsc.com/product-detail/C575551.html",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_RA": {
       "manufacturer": "JST",
       "mpn": "S2B-XH-A-1(LF)(SN)",

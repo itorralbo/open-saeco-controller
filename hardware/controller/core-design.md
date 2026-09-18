@@ -98,6 +98,35 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 | Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
+### Candidato para el motor del grupo
+
+La resistencia medida del motor del grupo es 54,7 Ω. A 24 V equivale a
+`24 V / 54,7 Ω = 0,439 A` como estimación resistiva con el rotor parado en la
+posición de medida. No se usa como corriente nominal: las escobillas, la posición
+del colector, la temperatura y la fuerza contraelectromotriz cambian el valor.
+
+El candidato de trabajo es
+[**DRV8876PWPR**](https://www.ti.com/lit/ds/symlink/drv8876.pdf) (TI, `C575551`), puente H para 4,5–37 V,
+3,5 A pico y encapsulado HTSSOP-16 con pad térmico. Integra lectura proporcional
+`IPROPI`, regulación de corriente y `nFAULT`, lo que evita un shunt de potencia y
+encaja con la autodosis basada en corriente del grupo. La hoja de datos incluye
+precisamente un caso de 24 V, 0,5 A RMS y límite de 1 A.
+
+Para la primera revisión se propone `RIPROPI = 2,49 kΩ`, `RREF1 = 16,0 kΩ` y
+`RREF2 = 49,9 kΩ` desde 3,3 V. El divisor produce aproximadamente 2,498 V y el
+límite teórico es aproximadamente 1,00 A. `IPROPI` entregaría unos 1,245 V a
+0,5 A y quedaría limitado cerca de 2,5 V, dentro del ADC de 3,3 V. IMODE se
+plantea a masa para regulación fixed-off-time con recuperación automática; la
+elección debe revisarse junto con la estrategia de fallo del firmware.
+
+Todavía no se incorpora al esquema: faltan confirmar los dos hilos de motor y los
+dos contactos de JP16, cerrar el rail de 24 V, dimensionar capacidad bulk y
+validar corriente, inversión, frenado, ruido y temperatura con una fuente de
+laboratorio limitada. El catálogo registra la pieza como candidata y no como
+liberada para compra. La huella de catálogo representa el pad térmico de 3×3 mm;
+antes del esquema final se derivará una huella local con la matriz de vías y el
+área de cobre recomendadas por TI.
+
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)
 y el corte del frontal la

@@ -20,6 +20,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Botones frontal | TCA9534PWR | [C783615](https://jlcpcb.com/partdetail/C783615) | 2.103 | 2.055 | Economic / Standard |
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 26.107 | 21.974 | Economic / Standard |
 | Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 1.849 | 1.767 | Economic / Standard |
+| Puente H motor del grupo, candidato | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
 | Inductor buck | SRN6028C-3R9M | [C19947652](https://www.lcsc.com/product-detail/C19947652.html) | 227 | 227 | Economic / Standard |
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 270.440 | 270.440 | Economic / Standard |
 | Entrada 12 V | JST S2B-XH-A-1(LF)(SN) | [C163035](https://www.lcsc.com/product-detail/C163035.html) | 100.630 | 100.630 | Economic / Standard |
@@ -34,6 +35,11 @@ Los integrados y magnéticos figuran como Extended; los pasivos de mayor volumen
 se han elegido Basic cuando existe una referencia adecuada. El código
 genérico de montaje `C9900171795` no identifica la variante N8R8 del módulo:
 no sustituye a `C2913201`.
+
+El DRV8876 figura en LCSC con stock, pero aún no se ha verificado su categoría ni
+su disponibilidad dentro del selector de montaje de JLCPCB. Su inclusión en el
+catálogo permite conservar MPN, código y huella mientras se completa el bloque;
+no forma parte de la BOM actual de 68 posiciones.
 
 La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado. El
 frontal podría cotizarse aparte en Economic, sujeto a los conectores/pulsadores
