@@ -111,6 +111,10 @@ Comprobaciones independientes tras rectificar:
   SW1–SW8 siguen sin huella hasta conocer la altura del actuador.
 - J1 y U1 pasan a la zona de staging fuera de la placa; la colocación sigue pendiente.
 
+Comprobado en KiCad 10.0.6: contorno cerrado de 10 vértices con 4 agujeros
+(10 066 mm²), ninguna huella dentro de la placa y DRC sin infracciones. Quedan
+70 conexiones sin rutear y J2 y SW1–SW8 sin huella.
+
 ## Lo que estas fotos no cierran
 
 - Espesor de la PCB y altura del actuador de los pulsadores sobre la PCB

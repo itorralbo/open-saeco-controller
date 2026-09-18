@@ -57,10 +57,10 @@ del texto de las etiquetas del lado izquierdo.
 
 | Resultado | Principal | Frontal |
 |---|---:|---:|
-| Infracciones geométricas/de reglas | 0 | 1: contorno todavía ausente (antes del 2026-09-18) |
+| Infracciones geométricas/de reglas | 0 | 0 |
 | Conexiones pendientes de rutear | 165 | 70 |
 | Huellas ausentes respecto al esquema | 0 | 9 |
-| Contorno ausente | 0 | 1 |
+| Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
 
 El pad expuesto del ESP32 usa doce vías térmicas de 0,20 mm. Se ha fijado 0,20 mm
@@ -71,8 +71,9 @@ perfil de fabricación completo.
 
 La paridad de la principal solo informa las tres huellas de montaje adicionales
 al esquema. Son intencionales y proceden del registro mecánico; no se han excluido.
-El frontal informa J2 y SW1–SW8 sin huella. Su DRC es anterior al contorno
-aplicado el 2026-09-18 y debe repetirse con KiCad.
+El frontal informa J2 y SW1–SW8 sin huella. Su DRC se repitió con KiCad 10.0.6
+tras aplicar el contorno el 2026-09-18: desaparece la infracción de contorno
+ausente y no aparece ninguna nueva.
 
 Informes y vistas:
 

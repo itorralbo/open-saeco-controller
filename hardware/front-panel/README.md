@@ -26,7 +26,8 @@ están aceptadas como línea base del layout y aplicadas a la PCB de trabajo. Ve
 El circuito contiene alimentación externa de 3,3 V, un TCA9534PWR, ocho canales
 de pulsadores filtrados y una salida a adaptador de display SPI. Ocho es capacidad
 de diseño; la PCB original tiene **siete pulsadores** (PB1–PB8, falta uno).
-No hay PCB enrutada; el contorno procede del registro mecánico. El ERC nativo pasa; el DRC está pendiente de cierre.
+No hay PCB enrutada; el contorno procede del registro mecánico. El ERC nativo pasa; el DRC no tiene infracciones, pero quedan 70 conexiones
+sin rutear y nueve huellas pendientes.
 No está listo para fabricar.
 
 ## Circuito propuesto
