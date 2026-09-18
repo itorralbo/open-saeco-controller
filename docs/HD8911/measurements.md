@@ -73,6 +73,11 @@ conviene confirmar que la orientación de las huellas candidatas conserva ese
 orden al enchufar los arneses. Para JP16, comprobar si la secuencia visual del manual coincide físicamente con
 rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 
+Para JP3 faltan dos comprobaciones que bloquean el driver de la válvula: identificar
+las dos cavidades usadas respecto al pad cuadrado/pin 1 y medir en modo diodo en
+ambos sentidos. Una caída solo en un sentido indicaría supresión integrada y
+obligaría a conservar polaridad; dos cables negros no permiten descartarla.
+
 ## Plantilla para devolver resultados
 
 | ID | Vista/orientación | Estado/condiciones | Medida | Foto asociada |
@@ -84,4 +89,5 @@ rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 | JP16-WORK | pestaña arriba | fuera/en trabajo |  |  |
 | LOAD-BU-R | rojo–azul | desconectado; temperatura TBD | 54,7 Ω | comunicación del propietario |
 | LOAD-VALVE-R | terminales bobina | desconectada; temperatura TBD | 56,7 Ω | comunicación del propietario |
+| JP3-DIODE | terminales bobina, ambas polaridades | desconectada |  |  |
 | LOAD-GRINDER-R | blanco–negro | desconectado; temperatura TBD | 68 Ω | comunicación del propietario |

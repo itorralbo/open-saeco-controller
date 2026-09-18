@@ -230,3 +230,14 @@ de cargas siguen pendientes en el esquema principal.
   243 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
 - No se libera la etapa: faltan una fuente de 24 V limitada, medida de corriente
   de marcha/arranque/bloqueo, inversión, frenado, ruido, térmica, bulk y TVS.
+
+## Estudio de la electroválvula, 2026-09-19
+
+- La bobina de 56,7 Ω implica 0,423 A y 10,16 W resistivos a 24 V, coherente con
+  la referencia nominal de 10 W.
+- Se documenta una [etapa low-side candidata](../hardware/power/valve-driver.md)
+  con UCC27517DBVR, MOSFET SI2308A de 60 V, rueda libre y fusible propio.
+- No se incorpora al esquema: faltan las dos cavidades físicas de JP3 y una medida
+  en modo diodo en ambos sentidos para detectar supresión integrada y polaridad.
+- Motor y válvula sumarían unos 0,862 A resistivos; F303=1 A no se considera una
+  protección común válida sin medir transitorios, arranque y temperatura.

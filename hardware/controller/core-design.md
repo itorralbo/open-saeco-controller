@@ -126,7 +126,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
-| Resto de potencia | Driver de válvula 24 V y dominio separado para red/molino | Corrientes reales, aislamiento, térmica y corte independiente |
+| Resto de potencia | Incorporar la [etapa candidata de válvula 24 V](../power/valve-driver.md) y separar red/molino | Pinout JP3, corrientes reales, aislamiento, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
 ### Puente H del motor del grupo

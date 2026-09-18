@@ -21,6 +21,9 @@ con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión,
 entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
 carga es un DRV8876 para el motor del grupo, con entrada de 24 V de banco separada;
 queda sin ensayar y faltan válvula, calentador, bomba y molino.
+La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
+ya fija driver, MOSFET y protección, pero no entra al esquema hasta confirmar las
+dos cavidades de JP3 y comprobar si la bobina contiene un diodo.
 El manual ya permite dibujar las envolventes de
 conectores y separar sensores de cargas. Ya están documentadas las tensiones
 principales, la curva NTC y el caudalímetro; siguen pendientes la salida del nivel

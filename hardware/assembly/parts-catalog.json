@@ -421,6 +421,36 @@
       "url": "https://www.lcsc.com/product-detail/C575551.html",
       "selection": "candidate_not_released"
     },
+    "UCC27517DBVR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "UCC27517DBVR",
+      "lcsc": "C99395",
+      "specification": "4.5-18V single low-side gate driver, 4A peak, fixed TTL/CMOS thresholds",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 27530,
+      "available_order_qty_observed": 27530,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation; JLCPCB class not yet verified",
+      "url": "https://www.lcsc.com/product-detail/C99395.html",
+      "selection": "candidate_not_released"
+    },
+    "MOSFET:SI2308A_60V": {
+      "manufacturer": "UMW",
+      "mpn": "SI2308A",
+      "lcsc": "C347491",
+      "specification": "60V 3A N-channel MOSFET, 95mohm max at 4.5V",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 546570,
+      "available_order_qty_observed": 546570,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation; JLCPCB class not yet verified",
+      "url": "https://www.lcsc.com/product-detail/C347491.html",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_RA": {
       "manufacturer": "JST",
       "mpn": "S2B-XH-A-1(LF)(SN)",
