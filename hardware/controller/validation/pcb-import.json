@@ -126,6 +126,30 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C501": {
+      "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+      "numbered_pads": 2
+    },
+    "C502": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C503": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C504": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C505": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C506": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -138,11 +162,19 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D304": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "F301": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
     "F302": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F303": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
@@ -188,6 +220,10 @@
     },
     "J111": {
       "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "numbered_pads": 2
+    },
+    "J112": {
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
       "numbered_pads": 2
     },
     "L301": {
@@ -314,6 +350,46 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R501": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R502": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R503": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R504": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R505": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R506": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R507": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R508": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R509": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R510": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "U101": {
       "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
       "numbered_pads": 64
@@ -333,6 +409,10 @@
     "U302": {
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "numbered_pads": 6
+    },
+    "U501": {
+      "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
+      "numbered_pads": 17
     }
   },
   "missing_footprints": [],
@@ -354,11 +434,19 @@
     "C404",
     "C405",
     "C406",
+    "C501",
+    "C502",
+    "C503",
+    "C504",
+    "C505",
+    "C506",
     "D301",
     "D302",
     "D303",
+    "D304",
     "F301",
     "F302",
+    "F303",
     "J101",
     "J102",
     "J103",
@@ -370,6 +458,7 @@
     "J109",
     "J110",
     "J111",
+    "J112",
     "L301",
     "R221",
     "R222",
@@ -389,9 +478,20 @@
     "R409",
     "R410",
     "R411",
+    "R501",
+    "R502",
+    "R503",
+    "R504",
+    "R505",
+    "R506",
+    "R507",
+    "R508",
+    "R509",
+    "R510",
     "U203",
     "U301",
-    "U302"
+    "U302",
+    "U501"
   ],
   "tracks": 0,
   "outline": true,

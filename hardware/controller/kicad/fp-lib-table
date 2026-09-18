@@ -9,6 +9,7 @@
  (lib (name "Inductor_SMD") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Inductor_SMD.pretty") (options "") (descr "KiCad standard library"))
  (lib (name "Jumper") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Jumper.pretty") (options "") (descr "KiCad standard library"))
  (lib (name "Package_QFP") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Package_QFP.pretty") (options "") (descr "KiCad standard library"))
+ (lib (name "Package_SO") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Package_SO.pretty") (options "") (descr "KiCad standard library"))
  (lib (name "Package_TO_SOT_SMD") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Package_TO_SOT_SMD.pretty") (options "") (descr "KiCad standard library"))
  (lib (name "RF_Module") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/RF_Module.pretty") (options "") (descr "KiCad standard library"))
  (lib (name "Resistor_SMD") (type "KiCad") (uri "${KICAD10_FOOTPRINT_DIR}/Resistor_SMD.pretty") (options "") (descr "KiCad standard library"))

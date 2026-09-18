@@ -28,13 +28,13 @@
         "14": "NTC_ADC",
         "15": "FLOW_TIM",
         "16": "WATER_LEVEL",
-        "17": null,
+        "17": "BREW_CURRENT_ADC",
         "18": "GND_UI",
         "19": "3V3_CORE",
         "20": "3V3_CORE",
         "21": null,
         "22": null,
-        "23": null,
+        "23": "BREW_DIR_RAW",
         "24": null,
         "25": null,
         "26": null,
@@ -53,7 +53,7 @@
         "39": null,
         "40": null,
         "41": null,
-        "42": null,
+        "42": "BREW_PWM_RAW",
         "43": "STM_TX_RAW",
         "44": "ESP_TO_STM",
         "45": null,
@@ -69,8 +69,8 @@
         "55": null,
         "56": "STM_SWO",
         "57": null,
-        "58": null,
-        "59": null,
+        "58": "BREW_SLEEP_RAW",
+        "59": "BREW_FAULT_N",
         "60": null,
         "61": "STM_BOOT0",
         "62": null,
@@ -1258,8 +1258,8 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": null,
-        "2": null,
+        "1": "BREW_OUT1",
+        "2": "BREW_OUT2",
         "3": "BU_BRIDGE",
         "4": "BU_BRIDGE",
         "5": "GND_UI",
@@ -1401,6 +1401,321 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "WATER_LEVEL",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J112",
+      "value": "24V_BREW_INPUT / JST XH",
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "status": "candidate",
+      "manufacturer": "JST",
+      "mpn": "S2B-XH-A-1(LF)(SN)",
+      "lcsc": "C163035",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_BREW_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "F303",
+      "value": "1A / 72VDC",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "prosemi",
+      "mpn": "1206TD-1A",
+      "lcsc": "C2838907",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_BREW_RAW",
+        "2": "24V_BREW_FUSED"
+      }
+    },
+    {
+      "reference": "D304",
+      "value": "SS34",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "24V_BREW_FUSED",
+        "1": "24V_BREW"
+      }
+    },
+    {
+      "reference": "C501",
+      "value": "100uF / 35V motor bulk",
+      "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+      "status": "candidate",
+      "manufacturer": "Lelon",
+      "mpn": "VZH101M1VTR-0607",
+      "lcsc": "C176683",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_BREW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C502",
+      "value": "100nF / VM local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_BREW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U501",
+      "value": "DRV8876PWPR",
+      "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "DRV8876PWPR",
+      "lcsc": "C575551",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "BREW_EN_DRV",
+        "2": "BREW_DIR_DRV",
+        "3": "BREW_SLEEP_DRV",
+        "4": "BREW_FAULT_N",
+        "5": "BREW_VREF",
+        "6": "BREW_CURRENT_ADC",
+        "7": "GND_UI",
+        "8": "BREW_OUT1",
+        "9": "GND_UI",
+        "10": "BREW_OUT2",
+        "11": "24V_BREW",
+        "12": "BREW_VCP",
+        "13": "BREW_CPH",
+        "14": "BREW_CPL",
+        "15": "GND_UI",
+        "16": "GND_UI",
+        "17": "GND_UI"
+      }
+    },
+    {
+      "reference": "C503",
+      "value": "100nF / VCP-VM",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_VCP",
+        "2": "24V_BREW"
+      }
+    },
+    {
+      "reference": "C504",
+      "value": "22nF / CPH-CPL",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B223K500NT",
+      "lcsc": "C77571",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_CPH",
+        "2": "BREW_CPL"
+      }
+    },
+    {
+      "reference": "R501",
+      "value": "33 / EN",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_PWM_RAW",
+        "2": "BREW_EN_DRV"
+      }
+    },
+    {
+      "reference": "R502",
+      "value": "10k / EN pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_EN_DRV",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R503",
+      "value": "33 / PH",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_DIR_RAW",
+        "2": "BREW_DIR_DRV"
+      }
+    },
+    {
+      "reference": "R504",
+      "value": "10k / PH pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_DIR_DRV",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R505",
+      "value": "33 / nSLEEP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_SLEEP_RAW",
+        "2": "BREW_SLEEP_DRV"
+      }
+    },
+    {
+      "reference": "R506",
+      "value": "10k / nSLEEP pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_SLEEP_DRV",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R507",
+      "value": "10k / nFAULT pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "BREW_FAULT_N"
+      }
+    },
+    {
+      "reference": "R508",
+      "value": "16k / VREF top",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1602T5E",
+      "lcsc": "C4210",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "BREW_VREF"
+      }
+    },
+    {
+      "reference": "R509",
+      "value": "49.9k / VREF bottom",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4992T5E",
+      "lcsc": "C23184",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_VREF",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C505",
+      "value": "100nF / VREF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_VREF",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R510",
+      "value": "2.49k / IPROPI",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF2491T5E",
+      "lcsc": "C22908",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_CURRENT_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C506",
+      "value": "10nF / IPROPI",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B103K500NT",
+      "lcsc": "C57112",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_CURRENT_ADC",
         "2": "GND_UI"
       }
     }

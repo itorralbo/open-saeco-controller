@@ -8,7 +8,7 @@ esperará al final del layout para buscar referencias.
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,
 huella candidata, categoría, modalidad de montaje, URL y fecha de consulta.
-Existencias verificadas en las páginas renderizadas de JLCPCB/LCSC el **2026-09-16/18**,
+Existencias verificadas en las páginas renderizadas de JLCPCB/LCSC el **2026-09-16/19**,
 sin iniciar sesión ni hacer compras. Son una instantánea, no una reserva.
 `stock_observed` y `available_order_qty_observed` son campos distintos de la web;
 un valor `null` significa no observado, no cero ni disponibilidad garantizada.
@@ -20,7 +20,9 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Botones frontal | TCA9534PWR | [C783615](https://jlcpcb.com/partdetail/C783615) | 2.103 | 2.055 | Economic / Standard |
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 26.107 | 21.974 | Economic / Standard |
 | Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 1.849 | 1.767 | Economic / Standard |
-| Puente H motor del grupo, candidato | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
+| Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
+| Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 48.395 | 48.395 | Economic / Standard |
+| Bomba de carga DRV8876 | 22 nF/50 V X7R 0603 | [C77571](https://www.lcsc.com/product-detail/C77571.html) | 231.200 | 231.200 | Economic / Standard |
 | USB-C de servicio | HRO TYPE-C-31-M-12 | [C165948](https://jlcpcb.com/partdetail/C165948) | 219.670 | No observado | Economic / Standard |
 | Protección ESD USB | USBLC6-2SC6 | [C7519](https://jlcpcb.com/partdetail/C7519) | 32.360 | No observado | Economic / Standard |
 | PTC alimentación USB opcional | Littelfuse 1206L050YR | [C163512](https://www.lcsc.com/product-detail/C163512.html) | 21.680 | No observado | Categoría JLC por verificar |
@@ -40,9 +42,9 @@ genérico de montaje `C9900171795` no identifica la variante N8R8 del módulo:
 no sustituye a `C2913201`.
 
 El DRV8876 figura en LCSC con stock, pero aún no se ha verificado su categoría ni
-su disponibilidad dentro del selector de montaje de JLCPCB. Su inclusión en el
-catálogo permite conservar MPN, código y huella mientras se completa el bloque;
-no forma parte de la BOM actual de 83 posiciones.
+su disponibilidad dentro del selector de montaje de JLCPCB. Ya forma parte del
+esquema y de la BOM candidata junto con el bulk, la bomba de carga y la red de
+medida; sigue sin estar liberado para compra hasta validar el motor y la térmica.
 
 La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado. El
 frontal podría cotizarse aparte en Economic, sujeto a los conectores/pulsadores
@@ -69,9 +71,10 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  82 de 83 posiciones actuales con MPN, código y huella; J111 es un puente de
+  102 de 103 posiciones actuales con MPN, código y huella; J111 es un puente de
   cobre abierto y no requiere pieza. Las cabeceras de máquina
-  son candidatas mecánicas; faltan caracterizar la salida de JP22 y las etapas de potencia.
+  son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
+  puente H y completar las etapas de válvula/red/molino.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST S8B-PH-K-S(LF)(SN) (C157915, Extended),
@@ -80,8 +83,9 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
-protección de entrada DC, el buck, el corte del frontal y sensores de baja tensión. **No incluye** la fuente
-AC/DC aislada ni drivers de cargas. Ya incluye el USB de servicio: el porcentaje anterior
+protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
+USB de servicio y el driver del motor del grupo. **No incluye** fuentes AC/DC
+aisladas ni drivers de válvula, calentador, bomba o molino. El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

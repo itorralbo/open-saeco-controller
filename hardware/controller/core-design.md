@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 83 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 103 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 83 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 103 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 198 conexiones sin rutear.
+infracciones DRC, pero quedan 243 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -26,13 +26,18 @@ infracciones DRC, pero quedan 198 conexiones sin rutear.
 - Entradas activas a cero para JP14 y los micros de presencia/trabajo de JP16,
   con pull-up, resistencia serie y filtro RC.
 - J105–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
-  LCSC. Las dos vías de motor de JP16 quedan NC hasta seleccionar el puente H.
+  LCSC. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
+- J112 recibe 24 V DC aislados para el motor del grupo; F303, D304 y C501
+  protegen y desacoplan esta entrada separada del rail lógico.
+- U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
+  corriente candidato a 1 A y lectura `IPROPI` hacia el ADC del STM32.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
-a una asignación del arnés Saeco. No hay salidas hacia cargas en esta hoja.
+a una asignación del arnés Saeco. El motor del grupo es la primera salida de carga
+incorporada; válvula, calentador, bomba y molino aún no tienen driver.
 
 ## Alimentación y arranque
 
@@ -42,11 +47,11 @@ red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 (SMAJ18A) limita transitorios antes del regulador.
 
 La identificación posterior de cargas confirma que el motor del grupo y la
-electroválvula necesitan 24 V DC. Por tanto, esta entrada de 12 V solo resuelve el
-nucleo lógico actual: antes de congelar Rev A debe decidirse entre añadir un rail
-aislado de 24 V separado o migrar J101 a 24 V. La segunda opción obliga a revisar
-TVS, fusible, tensión de C301, conector y comportamiento del AP63203; no se puede
-aplicar 24 V al circuito dibujado.
+electroválvula necesitan 24 V DC. J112 añade de forma provisional un segundo rail
+aislado de 24 V dedicado al grupo; J101 continúa siendo exclusivamente de 12 V
+para lógica. Esta separación permite probar el puente H con una fuente de
+laboratorio limitada sin aplicar 24 V al AP63203. Antes de congelar Rev A hay que
+decidir si se conservan dos fuentes o se deriva la lógica de un único rail de 24 V.
 
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
 la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 µF/10 V
@@ -114,43 +119,52 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
-| Fuente aislada | Definir 24 V para grupo/válvula y alimentación de la lógica | Espacio, temperatura, aislamiento y potencia total |
+| Fuente aislada | Unificar o conservar J101 12 V y J112 24 V; definir fuente final | Espacio, temperatura, aislamiento y potencia total |
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
-| Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
+| Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
+| Resto de potencia | Driver de válvula 24 V y dominio separado para red/molino | Corrientes reales, aislamiento, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
-### Candidato para el motor del grupo
+### Puente H del motor del grupo
 
 La resistencia medida del motor del grupo es 54,7 Ω. A 24 V equivale a
 `24 V / 54,7 Ω = 0,439 A` como estimación resistiva con el rotor parado en la
 posición de medida. No se usa como corriente nominal: las escobillas, la posición
 del colector, la temperatura y la fuerza contraelectromotriz cambian el valor.
 
-El candidato de trabajo es
+U501 es un
 [**DRV8876PWPR**](https://www.ti.com/lit/ds/symlink/drv8876.pdf) (TI, `C575551`), puente H para 4,5–37 V,
 3,5 A pico y encapsulado HTSSOP-16 con pad térmico. Integra lectura proporcional
 `IPROPI`, regulación de corriente y `nFAULT`, lo que evita un shunt de potencia y
 encaja con la autodosis basada en corriente del grupo. La hoja de datos incluye
 precisamente un caso de 24 V, 0,5 A RMS y límite de 1 A.
 
-Para la primera revisión se propone `RIPROPI = 2,49 kΩ`, `RREF1 = 16,0 kΩ` y
+La primera revisión implementa `RIPROPI = 2,49 kΩ`, `RREF1 = 16,0 kΩ` y
 `RREF2 = 49,9 kΩ` desde 3,3 V. El divisor produce aproximadamente 2,498 V y el
 límite teórico es aproximadamente 1,00 A. `IPROPI` entregaría unos 1,245 V a
 0,5 A y quedaría limitado cerca de 2,5 V, dentro del ADC de 3,3 V. IMODE se
-plantea a masa para regulación fixed-off-time con recuperación automática; la
-elección debe revisarse junto con la estrategia de fallo del firmware.
+conecta a masa para regulación fixed-off-time con recuperación automática. PB5
+mantiene `nSLEEP` a cero durante reset mediante R506; el firmware deberá retirar
+`nSLEEP` inmediatamente al detectar `nFAULT`, ya que el modo elegido reintenta
+automáticamente tras una sobrecorriente.
 
-Todavía no se incorpora al esquema: faltan confirmar los dos hilos de motor y los
-dos contactos de JP16, cerrar el rail de 24 V, dimensionar capacidad bulk y
-validar corriente, inversión, frenado, ruido y temperatura con una fuente de
-laboratorio limitada. El catálogo registra la pieza como candidata y no como
-liberada para compra. La huella de catálogo representa el pad térmico de 3×3 mm;
-antes del esquema final se derivará una huella local con la matriz de vías y el
-área de cobre recomendadas por TI.
+PA8 gobierna EN/PWM, PA6 la dirección, PB5 `nSLEEP`, PB6 lee `nFAULT` y PA3 mide
+`IPROPI`. V1/V2 de JP16 son `OUT1/OUT2`; la numeración física del conector sigue
+siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF
+entre CPH y CPL siguen la aplicación de referencia de TI. C501=100 µF/35 V es un
+bulk inicial, no un dimensionado cerrado.
+
+J112 exige 24 V DC aislados y limitados. F303 es de 1 A y D304 protege contra
+polaridad inversa. No se ha añadido un TVS al rail de motor: su tensión de trabajo
+y energía deben elegirse con la tolerancia y respuesta transitoria de la fuente
+real para no superar los 40 V absolutos del DRV8876. El catálogo registra todas
+las piezas como candidatas, no liberadas para compra. La huella estándar incluye
+pad térmico de 3×3 mm; antes del layout final se derivará una huella local con la
+matriz de vías y el área de cobre recomendadas por TI.
 
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)
@@ -171,8 +185,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 83 componentes y 324 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 83 huellas en una colocación provisional. Las cinco cabeceras de
+KiCad: 103 componentes y 379 pines. El sincronizador conserva la mecánica, actualiza
+redes y mantiene 103 huellas en una colocación provisional. Las seis cabeceras de
 máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

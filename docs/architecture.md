@@ -16,8 +16,10 @@
   recibía red en JP17 y distribuía cargas, pero eso no autoriza a unir esos dominios:
   la fuente AC/DC, potencia y aislamiento se definirán tras caracterización.
 - Las referencias confirman dos cargas a 24 V DC (grupo y válvula), dos a 230 V AC
-  (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El borrador
-  de 12 V debe revisarse y la potencia de red debe tratarse como un bloque separado.
+  (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El grupo
+  ya tiene un DRV8876 y entrada J112 de 24 V aislados para banco; J101 conserva
+  12 V para lógica. La arquitectura final de fuentes sigue abierta y la potencia
+  de red se trata como un bloque separado.
 
 ```mermaid
 flowchart LR
@@ -25,7 +27,9 @@ flowchart LR
     F[PCB frontal: botones I2C + display SPI] <--> E
     E -->|solicitudes| S[STM32: control e interlocks]
     I[Sensores acondicionados] --> S
-    S --> P[Potencia experimental]
+    S --> G[DRV8876 grupo / 24 V de banco]
+    S --> P[Potencia restante experimental]
+    G --> C[Cargas caracterizadas]
     P --> C[Cargas caracterizadas]
     H[Protecciones independientes] --> P
 ```

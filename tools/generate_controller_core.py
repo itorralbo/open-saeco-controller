@@ -1,4 +1,4 @@
-"""Main-board logic core plus protected 12V-to-3V3 power stage.
+"""Main-board logic core, low-voltage supplies and brew-motor bridge.
 
 Uses the same draft drawing primitives as the front-panel generator. Both outputs
 remain review-only. Unassigned MCU pins marked NC must be reassigned as sheets grow.
@@ -83,6 +83,25 @@ def power_symbols():
         ('5', 'VBUS', 'passive', 7.62, 0, 180),
         ('4', 'I/O2', 'passive', 7.62, -3.81, 180),
     ], 5.08, 6.35)
+    d.DEFS['DRV8876PWP'] = ([
+        ('1', 'EN/IN1', 'input', -12.7, 15.24, 0),
+        ('2', 'PH/IN2', 'input', -12.7, 11.43, 0),
+        ('3', 'nSLEEP', 'input', -12.7, 7.62, 0),
+        ('4', 'nFAULT', 'open_collector', -12.7, 3.81, 0),
+        ('5', 'VREF', 'input', -12.7, 0, 0),
+        ('6', 'IPROPI', 'output', -12.7, -3.81, 0),
+        ('7', 'IMODE', 'input', -12.7, -7.62, 0),
+        ('8', 'OUT1', 'power_out', -12.7, -11.43, 0),
+        ('9', 'PGND', 'power_in', 12.7, -11.43, 180),
+        ('10', 'OUT2', 'power_out', 12.7, -7.62, 180),
+        ('11', 'VM', 'power_in', 12.7, -3.81, 180),
+        ('12', 'VCP', 'passive', 12.7, 0, 180),
+        ('13', 'CPH', 'passive', 12.7, 3.81, 180),
+        ('14', 'CPL', 'passive', 12.7, 7.62, 180),
+        ('15', 'GND', 'power_in', 12.7, 11.43, 180),
+        ('16', 'PMODE', 'input', 12.7, 15.24, 180),
+        ('17', 'EP', 'power_in', 12.7, -15.24, 180),
+    ], 10.16, 17.78)
 
 
 def main():
@@ -100,7 +119,10 @@ def main():
            'PA14': 'STM_SWCLK', 'PB3': 'STM_SWO',
            'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB0': 'UI_PWR_EN',
            'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC0': 'DOOR_CLOSED_N',
-           'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N'}
+           'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N',
+           'PA3': 'BREW_CURRENT_ADC', 'PA6': 'BREW_DIR_RAW',
+           'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
+           'PB6': 'BREW_FAULT_N'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -261,7 +283,7 @@ def main():
     d.note('PC0: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
     d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
-          [None,None,'BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
+          ['BREW_OUT1','BREW_OUT2','BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
           'Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal',
           status='photo_candidate', part_key='CONN:JST_XH_8_RA')
     d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
@@ -270,7 +292,7 @@ def main():
     d.passive('R409','R','10k / WORK pull-up',805,472,v,'BU_WORK_RAW')
     d.passive('R410','R','1k / WORK serie',805,489,'BU_WORK_RAW','BU_WORK_N')
     d.passive('C405','C','100nF / WORK filtro',805,506,'BU_WORK_N',g)
-    d.note('PC1/PC2 activos a 0. V1 rojo motor+, V2 azul motor-, V3/V4 puente,',660,530,1.1)
+    d.note('PC1/PC2 activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
     d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.',660,536,1.1)
 
     d.add('J109','J3','JP22 WATER / RED-WHITE-BLACK',520,536,
@@ -280,9 +302,47 @@ def main():
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
     d.note('PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
-    d.note('Falta: fuente aislada 24V, watchdog, contactos JP16 y etapas de potencia.',12,574)
+    d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
+    d.add('J112','J2','24V_BREW_INPUT / JST XH',905,62,['24V_BREW_RAW',g],
+          'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
+          status='candidate', part_key='CONN:JST_XH_2_RA')
+    d.add('#FLG105','PWR_FLAG','Isolated 24V motor source / J112',1000,62,['24V_BREW'])
+    d.add('F303','FUSE','1A / 72VDC',970,82,['24V_BREW_RAW','24V_BREW_FUSED'],
+          'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
+    d.add('D304','DIODE','SS34',1040,82,['24V_BREW_FUSED','24V_BREW'],
+          'Diode_SMD:D_SMA',part_key='D:SS34')
+    d.add('C501','C','100uF / 35V motor bulk',1110,72,['24V_BREW',g],
+          'Capacitor_SMD:CP_Elec_6.3x7.7',part_key='C:100uF_35V_SMD')
+    d.add('C502','C','100nF / VM local',1155,72,['24V_BREW',g],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
+    d.add('U501','DRV8876PWP','DRV8876PWPR',1030,165,
+          ['BREW_EN_DRV','BREW_DIR_DRV','BREW_SLEEP_DRV','BREW_FAULT_N',
+           'BREW_VREF','BREW_CURRENT_ADC',g,'BREW_OUT1',g,'BREW_OUT2',
+           '24V_BREW','BREW_VCP','BREW_CPH','BREW_CPL',g,g,g],
+          'Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm',
+          part_key='DRV8876PWPR')
+    d.add('C503','C','100nF / VCP-VM',1110,125,['BREW_VCP','24V_BREW'],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
+    d.add('C504','C','22nF / CPH-CPL',1110,145,['BREW_CPH','BREW_CPL'],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:22nF')
+    d.passive('R501','R','33 / EN',900,116,'BREW_PWM_RAW','BREW_EN_DRV')
+    d.passive('R502','R','10k / EN pull-down',900,133,'BREW_EN_DRV',g)
+    d.passive('R503','R','33 / PH',900,150,'BREW_DIR_RAW','BREW_DIR_DRV')
+    d.passive('R504','R','10k / PH pull-down',900,167,'BREW_DIR_DRV',g)
+    d.passive('R505','R','33 / nSLEEP',900,184,'BREW_SLEEP_RAW','BREW_SLEEP_DRV')
+    d.passive('R506','R','10k / nSLEEP pull-down',900,201,'BREW_SLEEP_DRV',g)
+    d.passive('R507','R','10k / nFAULT pull-up',900,218,v,'BREW_FAULT_N')
+    d.passive('R508','R','16k / VREF top',970,235,v,'BREW_VREF')
+    d.passive('R509','R','49.9k / VREF bottom',1040,235,'BREW_VREF',g)
+    d.passive('C505','C','100nF / VREF',1110,235,'BREW_VREF',g)
+    d.passive('R510','R','2.49k / IPROPI',970,255,'BREW_CURRENT_ADC',g)
+    d.passive('C506','C','10nF / IPROPI',1040,255,'BREW_CURRENT_ADC',g)
+    d.note('PA8 PWM, PA6 dirección, PB5 nSLEEP, PB6 nFAULT, PA3 ADC. PMODE/IMODE a GND.',870,280,1.1)
+    d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
+    d.note('J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.',870,294,1.1)
+    d.note('Falta: fuente aislada final, watchdog y etapas de válvula/red/molino.',12,574)
     d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,582)
-    d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A1',841,594)
+    d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 
 
 if __name__ == '__main__':

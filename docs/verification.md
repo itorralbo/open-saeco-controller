@@ -215,3 +215,18 @@ de cargas siguen pendientes en el esquema principal.
 - Las huellas quedan colocadas provisionalmente; el par de 90 Ω, el retorno de masa,
   la envolvente mecánica del conector y la política de pantalla/chasis siguen pendientes
   del routing y revisión física.
+
+## Puente H del motor del grupo, 2026-09-19
+
+- JP16 V1/V2 se asignan a `OUT1/OUT2` de un DRV8876PWPR. PA8 gobierna PWM,
+  PA6 dirección, PB5 `nSLEEP`, PB6 `nFAULT` y PA3 adquiere `IPROPI`.
+- J112 introduce 24 V DC aislados para pruebas; F303=1 A, D304=SS34 y
+  C501=100 µF/35 V forman la entrada provisional. Este rail no se une a J101.
+- R510=2,49 kΩ y el divisor R508/R509=16 kΩ/49,9 kΩ producen un límite teórico
+  cercano a 1,00 A. IMODE a masa activa recuperación automática; el firmware
+  deberá retirar `nSLEEP` al detectar `nFAULT`.
+- Comprobador propio y ERC KiCad 10.0.6: PASS, 0 infracciones, 103 componentes y
+  379 pines. La PCB contiene 103 huellas; DRC: 0 infracciones geométricas,
+  243 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
+- No se libera la etapa: faltan una fuente de 24 V limitada, medida de corriente
+  de marcha/arranque/bloqueo, inversión, frenado, ruido, térmica, bulk y TVS.

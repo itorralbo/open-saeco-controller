@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 83 | 83 | — |
+| Principal | 103 | 103 | — |
 | Frontal | 42 | 42 | — |
 
 Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
@@ -35,21 +35,24 @@ ESP32 requiere resolver borde y zona libre de antena. En la principal no hay pis
 zonas de cobre ni colocación final de los conectores de máquina. El **frontal está
 colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
 limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
-seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
-y queda colocado provisionalmente en el borde superior junto a JP21; no generar Gerbers/BOM de fabricación/CPL de la principal todavía.
+seleccionadas; J105–J109 y J112 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
+y queda colocado provisionalmente en el borde superior junto a JP21. U501 y su
+etapa de 24 V para el grupo están colocados solo para comprobar cabida; no generar
+Gerbers/BOM de fabricación/CPL de la principal todavía.
 
 ## Validación actualizada el 2026-09-19
 
 ERC nativo: cero errores y cero avisos en ambos esquemas, sin excluir infracciones.
 Se mantiene la configuración estándar de KiCad; los cuatro controles opcionales
 desactivados por defecto figuran en cada informe. En la principal, los PWR_FLAG
-declaran la fuente aislada de J101 y los nodos de potencia separados por elementos
-pasivos; U301 y U302 implementan la regulación y el corte del frontal. En el
+declaran las fuentes aisladas de J101/J112 y los nodos de potencia separados por elementos
+pasivos; U301/U302 implementan la regulación y el corte del frontal, y U501 el
+puente H del grupo. En el
 frontal, J1 sigue declarando su alimentación externa.
 Los GPIO aún sin asignar permanecen NC. Los tipos de pin de GPIO genéricos no
 comprueban las futuras funciones alternativas o la configuración de firmware.
 
-La netlist XML de KiCad coincide con los 324 pines de la principal y los 118 del
+La netlist XML de KiCad coincide con los 379 pines de la principal y los 118 del
 frontal. Se revisaron las exportaciones SVG nativas y se corrigió la orientación
 del texto de las etiquetas del lado izquierdo.
 
@@ -58,7 +61,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 198 | 0 |
+| Conexiones pendientes de rutear | 243 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
@@ -114,8 +117,9 @@ Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y dete
 la instalación habitual de macOS y de Windows. La creación inicial de PCB requiere el Python
 incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
 
-Siguiente trabajo eléctrico: rutear y ensayar USB, probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
-seleccionar el módulo AC/DC aislado, cerrar el
-presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
+Siguiente trabajo eléctrico: rutear y ensayar USB, probar el acoplamiento de J105–J109/J112,
+medir los niveles lleno/vacío de JP22, ensayar el motor del grupo con J112 limitado,
+seleccionar el módulo AC/DC aislado, cerrar el presupuesto de corriente y completar
+supervisión y drivers de válvula/red/molino. Siguiente
 trabajo mecánico: cerrar las comprobaciones previas al pedido del frontal
 ([layout.md](front-panel/layout.md#pendiente-antes-de-pedir)) y el adaptador de pantalla.

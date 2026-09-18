@@ -72,7 +72,9 @@ def main():
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
                      14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
-                     16:'WATER_LEVEL',10:'BU_WORK_N'}.items():
+                     16:'WATER_LEVEL',10:'BU_WORK_N',17:'BREW_CURRENT_ADC',
+                     23:'BREW_DIR_RAW',42:'BREW_PWM_RAW',58:'BREW_SLEEP_RAW',
+                     59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
     for pin in (1,40,41):
@@ -127,7 +129,7 @@ def main():
     assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
     assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_CLOSED_N'}
     assert nets['C403'] == {'1':'DOOR_CLOSED_N','2':g}
-    assert nets['J108'] == {'1':None,'2':None,
+    assert nets['J108'] == {'1':'BREW_OUT1','2':'BREW_OUT2',
                             '3':'BU_BRIDGE','4':'BU_BRIDGE','5':g,
                             '6':'BU_PRESENT_RAW','7':g,'8':'BU_WORK_RAW'}
     for prefix, raw, conditioned in [('PRES','BU_PRESENT_RAW','BU_PRESENT_N'),
@@ -157,10 +159,34 @@ def main():
     assert nets['F302'] == {'1':'USB_VBUS','2':'USB_VBUS_FUSED'}
     assert nets['J111'] == {'1':'USB_VBUS_FUSED','2':'USB_BENCH_ENABLE'}
     assert nets['D303'] == {'2':'USB_BENCH_ENABLE','1':'12V_PROTECTED'}
+    assert nets['J112'] == {'1':'24V_BREW_RAW','2':g}
+    assert nets['F303'] == {'1':'24V_BREW_RAW','2':'24V_BREW_FUSED'}
+    assert nets['D304'] == {'2':'24V_BREW_FUSED','1':'24V_BREW'}
+    assert nets['C501'] == {'1':'24V_BREW','2':g}
+    assert nets['C502'] == {'1':'24V_BREW','2':g}
+    assert nets['U501'] == {
+        '1':'BREW_EN_DRV','2':'BREW_DIR_DRV','3':'BREW_SLEEP_DRV',
+        '4':'BREW_FAULT_N','5':'BREW_VREF','6':'BREW_CURRENT_ADC','7':g,
+        '8':'BREW_OUT1','9':g,'10':'BREW_OUT2','11':'24V_BREW',
+        '12':'BREW_VCP','13':'BREW_CPH','14':'BREW_CPL','15':g,'16':g,'17':g}
+    assert nets['C503'] == {'1':'BREW_VCP','2':'24V_BREW'}
+    assert nets['C504'] == {'1':'BREW_CPH','2':'BREW_CPL'}
+    for ref, a, b in [('R501','BREW_PWM_RAW','BREW_EN_DRV'),
+                      ('R502','BREW_EN_DRV',g),('R503','BREW_DIR_RAW','BREW_DIR_DRV'),
+                      ('R504','BREW_DIR_DRV',g),('R505','BREW_SLEEP_RAW','BREW_SLEEP_DRV'),
+                      ('R506','BREW_SLEEP_DRV',g),('R507',v,'BREW_FAULT_N'),
+                      ('R508',v,'BREW_VREF'),('R509','BREW_VREF',g),
+                      ('R510','BREW_CURRENT_ADC',g),('C505','BREW_VREF',g),
+                      ('C506','BREW_CURRENT_ADC',g)]:
+        assert nets[ref] == {'1':a,'2':b}
     for ref, footprint, lcsc in [
             ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
-            ('F302','Fuse:Fuse_1206_3216Metric','C163512')]:
+            ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
+            ('J112','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
+            ('U501','Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm','C575551'),
+            ('C501','Capacitor_SMD:CP_Elec_6.3x7.7','C176683'),
+            ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     for ref, footprint, lcsc in [
             ('J105','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),

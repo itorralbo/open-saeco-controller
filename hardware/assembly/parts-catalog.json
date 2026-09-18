@@ -76,6 +76,51 @@
       "url": "https://jlcpcb.com/partdetail/C23140",
       "selection": "candidate_not_released"
     },
+    "R:2.49k": {
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF2491T5E",
+      "lcsc": "C22908",
+      "specification": "2.49k 1% 100mW; DRV8876 IPROPI",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1144000,
+      "available_order_qty_observed": 1144000,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation",
+      "url": "https://www.lcsc.com/product-detail/C22908.html",
+      "selection": "candidate_not_released"
+    },
+    "R:16k": {
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1602T5E",
+      "lcsc": "C4210",
+      "specification": "16k 1% 100mW; DRV8876 VREF high side",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 550000,
+      "available_order_qty_observed": 550000,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation",
+      "url": "https://www.lcsc.com/product-detail/C4210.html",
+      "selection": "candidate_not_released"
+    },
+    "R:49.9k": {
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4992T5E",
+      "lcsc": "C23184",
+      "specification": "49.9k 1% 100mW; DRV8876 VREF low side",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1727300,
+      "available_order_qty_observed": 1727300,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC and JLCPCB rendered product pages, read-only web observation",
+      "url": "https://jlcpcb.com/partdetail/C23184",
+      "selection": "candidate_not_released"
+    },
     "C:100nF": {
       "manufacturer": "YAGEO",
       "mpn": "CC0603KRX7R9BB104",
@@ -104,6 +149,21 @@
       "stock_checked_on": "2026-09-16",
       "stock_evidence": "JLCPCB rendered product page, read-only browser observation",
       "url": "https://jlcpcb.com/partdetail/C57112",
+      "selection": "candidate_not_released"
+    },
+    "C:22nF": {
+      "manufacturer": "FH",
+      "mpn": "0603B223K500NT",
+      "lcsc": "C77571",
+      "specification": "22nF 50V X7R 10%; DRV8876 charge pump",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 231200,
+      "available_order_qty_observed": 231200,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation",
+      "url": "https://www.lcsc.com/product-detail/C77571.html",
       "selection": "candidate_not_released"
     },
     "C:1uF": {
@@ -179,6 +239,21 @@
       "stock_checked_on": "2026-09-17",
       "stock_evidence": "LCSC rendered product page, read-only web observation",
       "url": "https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338",
+      "selection": "candidate_not_released"
+    },
+    "C:100uF_35V_SMD": {
+      "manufacturer": "Lelon",
+      "mpn": "VZH101M1VTR-0607",
+      "lcsc": "C176683",
+      "specification": "100uF 35V 20%, 5000h at 105C, SMD 6.3x7.7mm; motor bulk",
+      "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 48395,
+      "available_order_qty_observed": 48395,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC and JLCPCB rendered product pages, read-only web observation",
+      "url": "https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683",
       "selection": "candidate_not_released"
     },
     "C:1nF": {

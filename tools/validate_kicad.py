@@ -79,14 +79,15 @@ def main():
                                            svg_path.read_text(encoding='utf-8').splitlines())+'\n',
                                 encoding='utf-8')
         scope = ('La principal incluye el núcleo lógico, USB-C de servicio, entrada protegida '
-                 'de 12 V aislados, buck de 3,3 V, corte del frontal y acondicionamiento de NTC, '
-                 'caudalímetro, nivel de agua y tres contactos. No valida la fuente AC/DC, '
-                 'el routing USB ni las cargas.'
+                 'de 12 V aislados, buck de 3,3 V, corte del frontal, acondicionamiento de NTC, '
+                 'caudalímetro, nivel de agua, tres contactos y un puente H DRV8876 para el '
+                 'motor del grupo. No valida la fuente AC/DC, el routing ni las cargas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
-        remaining = ('Los GPIO sin asignar llevan NC. J105–J109 usan huellas candidatas '
-                     'XH/PH cotejadas con fotos; las dos vías de motor de JP16 permanecen '
-                     'NC hasta incorporar el puente H. La salida de JP22 requiere ensayo.'
+        remaining = ('Los GPIO sin asignar llevan NC. J105–J109 y J112 usan huellas candidatas '
+                     'XH/PH cotejadas con fotos. JP16 V1/V2 ya llegan al puente H, pero J112 '
+                     'requiere una fuente de 24 V aislada limitada; corriente, frenado, térmica '
+                     'y la salida de JP22 requieren ensayo.'
                      if directory == 'controller' else
                      'Todas las posiciones tienen huella: SW1–SW7 HRO K2-1102SP-A4SC-04 '
                      '(OpenSaeco.pretty), J2 JST PH 8 y LED STBY en P7. Contorno y '

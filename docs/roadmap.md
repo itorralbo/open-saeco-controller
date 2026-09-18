@@ -17,12 +17,14 @@ La integración física requiere cotas y selección del display. La reutilizaci�
 electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para después.
 
 Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
-con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión y
-entradas de NTC, caudalímetro, nivel de agua y contactos, todavía sin potencia de cargas.
+con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión,
+entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
+carga es un DRV8876 para el motor del grupo, con entrada de 24 V de banco separada;
+queda sin ensayar y faltan válvula, calentador, bomba y molino.
 El manual ya permite dibujar las envolventes de
 conectores y separar sensores de cargas. Ya están documentadas las tensiones
-principales, la curva NTC y el caudalímetro; siguen pendientes orden de pines,
-salida del nivel capacitivo y corrientes de arranque/bloqueo.
+principales, la curva NTC y el caudalímetro; siguen pendientes la salida del nivel
+capacitivo y las corrientes de marcha, arranque y bloqueo del grupo y del molino.
 El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
 base mecánica de la Rev A; ya no bloquean la colocación de la principal.
 Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.
