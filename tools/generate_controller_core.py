@@ -67,20 +67,22 @@ def main():
     chip('STM32G431RB', STM_PINS)
     chip('ESP32S3WROOM1', ESP_PINS)
     power_symbols()
-    for n in (2, 3, 4, 6):
+    for n in (2, 3, 4, 6, 8):
         d.DEFS[f'J{n}'] = (d.connector(n), 5.08, n*1.905+1.27)
     v, g = '3V3_CORE', 'GND_UI'
     stm = {'VBAT': v, 'VDD': v, 'VSS': g, 'VSSA': g, 'VDDA': v, 'VREF+': v,
            'NRST': 'STM_NRST', 'PB8': 'STM_BOOT0', 'PA13': 'STM_SWDIO',
            'PA14': 'STM_SWCLK', 'PB3': 'STM_SWO',
-           'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB0': 'UI_PWR_EN'}
+           'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB0': 'UI_PWR_EN',
+           'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC0': 'DOOR_N',
+           'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
            'IO6': 'KEY_INT_N', 'IO7': 'BL_RAW', 'IO8': 'RST_RAW', 'IO9': 'DC_RAW',
            'IO10': 'CS_RAW', 'IO11': 'MOSI_RAW', 'IO12': 'SCLK_RAW'}
     d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
-    d.note('BORRADOR: entrada aislada 12V y alimentación lógica implementadas. Sin red, cargas, sensores, watchdog ni USB.', 12, 22, 1.8)
+    d.note('BORRADOR: lógica, alimentación y entradas pasivas. Sin red, drivers de cargas, nivel de agua, watchdog ni USB.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
     d.add('U101','STM32G431RB','STM32G431RBT6',82,112,[stm.get(n) for n in STM_PINS],
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
@@ -174,8 +176,46 @@ def main():
     d.passive('C309','C','10uF / switch output',795,196,'3V3_UI',g)
     d.note('PB0 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.',610,244,1.2)
     d.note('QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.',610,250,1.2)
-    d.note('Falta: fuente AC/DC aislada certificada, USB/ESD, watchdog externo, I/O de máquina y etapas de potencia.',12,381)
-    d.note('Contorno y taladros aceptados; colocación y rutas siguen pendientes. BOM no liberada.',12,389)
+    d.note('09 / Entradas pasivas de máquina — conectores físicos pendientes', 12, 406, 1.8)
+    d.add('J105','J2','JP13 NTC / 2 vías',62,445,['NTC_RAW',g],
+          status='connector_TBD')
+    d.passive('R401','R','4.7k / NTC pull-up',145,430,v,'NTC_RAW')
+    d.passive('R402','R','1k / NTC serie',145,447,'NTC_RAW','NTC_ADC')
+    d.passive('C401','C','100nF / NTC filtro',145,464,'NTC_ADC',g)
+    d.note('PA0 ADC1_IN1. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.',20,486,1.2)
+
+    d.add('J106','J3','JP5 FLOW ADAPTER / VCC-GND-OC',292,445,
+          ['12V_PROTECTED',g,'FLOW_RAW'], status='connector_TBD')
+    d.passive('R403','R','4.7k / FLOW pull-up',385,430,v,'FLOW_RAW')
+    d.passive('R404','R','1k / FLOW serie',385,447,'FLOW_RAW','FLOW_TIM')
+    d.passive('C402','C','10nF / FLOW filtro',385,464,'FLOW_TIM',g)
+    d.note('PA1 TIM2_CH2. Pinout J106 propio; mapear JP5 tras medir el arnés.',245,486,1.2)
+    d.note('El FHKSC admite 3,8–20V: 12V_PROTECTED sirve mientras J101 siga siendo 12V.',245,493,1.2)
+
+    d.add('J107','J2','JP14 DOOR / contacto seco',520,445,['DOOR_RAW',g],
+          status='connector_TBD')
+    d.passive('R405','R','10k / DOOR pull-up',605,430,v,'DOOR_RAW')
+    d.passive('R406','R','1k / DOOR serie',605,447,'DOOR_RAW','DOOR_N')
+    d.passive('C403','C','100nF / DOOR filtro',605,464,'DOOR_N',g)
+    d.note('PC0. Entrada activa a 0; confirmar si el contacto usado es NO o NC.',490,486,1.2)
+
+    d.add('J108','J8','JP16 VISUAL V1..V8 / SIN HUELLA',705,457,
+          [None,None,'BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
+          status='connector_TBD')
+    d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
+    d.passive('R408','R','1k / PRES serie',805,438,'BU_PRESENT_RAW','BU_PRESENT_N')
+    d.passive('C404','C','100nF / PRES filtro',805,455,'BU_PRESENT_N',g)
+    d.passive('R409','R','10k / WORK pull-up',805,472,v,'BU_WORK_RAW')
+    d.passive('R410','R','1k / WORK serie',805,489,'BU_WORK_RAW','BU_WORK_N')
+    d.passive('C405','C','100nF / WORK filtro',805,506,'BU_WORK_N',g)
+    d.note('PC1/PC2 activos a 0. V1 rojo motor+, V2 azul motor-, V3/V4 puente,',660,530,1.1)
+    d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.',660,536,1.1)
+
+    d.add('J109','J3','JP22 WATER / CARACTERIZAR',520,536,
+          [None,None,None], status='connector_TBD')
+    d.note('Sin alimentación ni conexión MCU hasta medir VCC, GND y tipo/nivel de salida.',470,562,1.2)
+    d.note('Falta: fuente aislada 24V, USB/ESD, watchdog, nivel de agua y etapas de potencia.',12,574)
+    d.note('Contorno/taladros aceptados; conectores, colocación y rutas pendientes. BOM no liberada.',12,582)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A1',841,594)
 
 

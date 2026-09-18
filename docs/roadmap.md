@@ -17,8 +17,9 @@ La integración física requiere cotas y selección del display. La reutilizaci�
 electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para después.
 
 Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
-con conexiones de depuración/UART y fuente de baja tensión, todavía sin I/O de
-máquina ni potencia de cargas. El manual ya permite dibujar las envolventes de
+con conexiones de depuración/UART, fuente de baja tensión y entradas pasivas de
+NTC, caudalímetro y contactos, todavía sin nivel de agua ni potencia de cargas.
+El manual ya permite dibujar las envolventes de
 conectores y separar sensores de cargas. Ya están documentadas las tensiones
 principales, la curva NTC y el caudalímetro; siguen pendientes orden de pines,
 salida del nivel capacitivo y corrientes de arranque/bloqueo.

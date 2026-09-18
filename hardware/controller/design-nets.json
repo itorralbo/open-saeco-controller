@@ -19,14 +19,14 @@
         "5": null,
         "6": null,
         "7": "STM_NRST",
-        "8": null,
-        "9": null,
-        "10": null,
+        "8": "DOOR_N",
+        "9": "BU_PRESENT_N",
+        "10": "BU_WORK_N",
         "11": null,
         "12": "GND_UI",
         "13": "3V3_CORE",
-        "14": null,
-        "15": null,
+        "14": "NTC_ADC",
+        "15": "FLOW_TIM",
         "16": null,
         "17": null,
         "18": "GND_UI",
@@ -850,6 +850,314 @@
       "pins": {
         "1": "3V3_UI",
         "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J105",
+      "value": "JP13 NTC / 2 vías",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "NTC_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R401",
+      "value": "4.7k / NTC pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4701T5E",
+      "lcsc": "C23162",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "NTC_RAW"
+      }
+    },
+    {
+      "reference": "R402",
+      "value": "1k / NTC serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "NTC_RAW",
+        "2": "NTC_ADC"
+      }
+    },
+    {
+      "reference": "C401",
+      "value": "100nF / NTC filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "NTC_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J106",
+      "value": "JP5 FLOW ADAPTER / VCC-GND-OC",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND_UI",
+        "3": "FLOW_RAW"
+      }
+    },
+    {
+      "reference": "R403",
+      "value": "4.7k / FLOW pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4701T5E",
+      "lcsc": "C23162",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "FLOW_RAW"
+      }
+    },
+    {
+      "reference": "R404",
+      "value": "1k / FLOW serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "FLOW_RAW",
+        "2": "FLOW_TIM"
+      }
+    },
+    {
+      "reference": "C402",
+      "value": "10nF / FLOW filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B103K500NT",
+      "lcsc": "C57112",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "FLOW_TIM",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J107",
+      "value": "JP14 DOOR / contacto seco",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "DOOR_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R405",
+      "value": "10k / DOOR pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "DOOR_RAW"
+      }
+    },
+    {
+      "reference": "R406",
+      "value": "1k / DOOR serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "DOOR_RAW",
+        "2": "DOOR_N"
+      }
+    },
+    {
+      "reference": "C403",
+      "value": "100nF / DOOR filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "DOOR_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J108",
+      "value": "JP16 VISUAL V1..V8 / SIN HUELLA",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": null,
+        "2": null,
+        "3": "BU_BRIDGE",
+        "4": "BU_BRIDGE",
+        "5": "GND_UI",
+        "6": "BU_PRESENT_RAW",
+        "7": "GND_UI",
+        "8": "BU_WORK_RAW"
+      }
+    },
+    {
+      "reference": "R407",
+      "value": "10k / PRES pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "BU_PRESENT_RAW"
+      }
+    },
+    {
+      "reference": "R408",
+      "value": "1k / PRES serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BU_PRESENT_RAW",
+        "2": "BU_PRESENT_N"
+      }
+    },
+    {
+      "reference": "C404",
+      "value": "100nF / PRES filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BU_PRESENT_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R409",
+      "value": "10k / WORK pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "BU_WORK_RAW"
+      }
+    },
+    {
+      "reference": "R410",
+      "value": "1k / WORK serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BU_WORK_RAW",
+        "2": "BU_WORK_N"
+      }
+    },
+    {
+      "reference": "C405",
+      "value": "100nF / WORK filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BU_WORK_N",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J109",
+      "value": "JP22 WATER / CARACTERIZAR",
+      "footprint": "",
+      "status": "connector_TBD",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": null,
+        "2": null,
+        "3": null
       }
     }
   ]

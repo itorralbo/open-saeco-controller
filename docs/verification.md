@@ -150,3 +150,22 @@ de cargas siguen pendientes en el esquema principal.
   mide por separado para detectar falta de grano y bloqueo.
 - El módulo capacitivo `421941306721`, el orden de los conectores, los estados de
   micros y las corrientes de bloqueo siguen necesitando caracterización física.
+
+## Entradas pasivas de la principal, 2026-09-18
+
+- La principal pasa de 48 a 68 componentes. Hay 63 posiciones con MPN, código
+  JLC/LCSC y huella; J105–J109 quedan sin huella hasta identificar las carcasas.
+- JP13 usa un pull-up de 4,7 kΩ, 1 kΩ serie y 100 nF hacia PA0/ADC1_IN1.
+- El adaptador de JP5 alimenta el caudalímetro desde `12V_PROTECTED` y acondiciona
+  su colector abierto con pull-up a 3,3 V, 1 kΩ serie y 10 nF hacia PA1/TIM2_CH2.
+  Esta alimentación solo es válida mientras la entrada lógica siga siendo 12 V.
+- JP14 y los dos contactos de JP16 usan entradas activas a cero con 10 kΩ,
+  1 kΩ y 100 nF hacia PC0, PC1 y PC2. La secuencia V1–V8 de JP16 procede de la
+  vista del manual y no se presenta como numeración física confirmada.
+- JP22 y las vías de motor de JP16 se marcan NC explícitamente. No se aplica una
+  tensión desconocida al sensor capacitivo ni se anticipa el puente H.
+- Comprobador propio: PASS. ERC KiCad 10.0.6: 0 infracciones; netlist nativa:
+  68 componentes y 275 pines, coincidencia completa.
+- La PCB contiene 63 huellas eléctricas y conserva el contorno y los tres taladros.
+  DRC: 0 infracciones geométricas/de reglas, 147 conexiones sin rutear y 8 avisos
+  de paridad: J105–J109 y MH1–MH3.

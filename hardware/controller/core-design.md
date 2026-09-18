@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 48 componentes:
+Existe una hoja eléctrica parcial con 68 componentes:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 48 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 63 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 122 conexiones sin rutear.
+infracciones DRC, pero quedan 147 conexiones sin rutear y cinco conectores sin huella.
 
 ## Alcance implementado en el borrador
 
@@ -18,6 +18,13 @@ infracciones DRC, pero quedan 122 conexiones sin rutear.
   del display, para colocar cerca de sus respectivos emisores.
 - Entrada de 12 V DC aislada, protección de entrada, buck de 3,3 V y corte
   controlado del rail del frontal.
+- Divisor y filtro del NTC JP13 hacia PA0/ADC1_IN1, con diagnóstico de abierto/corto.
+- Alimentación a 12 V y entrada open collector del caudalímetro JP5 hacia
+  PA1/TIM2_CH2; el orden del arnés se resolverá con un adaptador.
+- Entradas activas a cero para JP14 y los micros de presencia/trabajo de JP16,
+  con pull-up, resistencia serie y filtro RC.
+- Envolventes J105–J109 sin huella. El nivel JP22 y las dos vías de motor de JP16
+  quedan NC hasta caracterizar el sensor y seleccionar el puente H.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
@@ -86,7 +93,7 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | USB-C, resistencias CC, protección ESD y política VBUS | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
-| Sensores | NTC, caudalímetro, contactos y nivel capacitivo | Pinout de JP5/JP22 y estados de contactos |
+| Sensores | Caracterizar nivel capacitivo y cerrar adaptadores | Pinout de JP5/JP22 y estados de contactos |
 | Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
@@ -109,8 +116,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 48 componentes y 227 pines. El sincronizador conserva la mecánica, actualiza
-redes y conserva una colocación provisional de las 16 huellas de alimentación y
-los cuatro conectores de baja tensión.
+KiCad: 68 componentes y 275 pines. El sincronizador conserva la mecánica, actualiza
+redes y mantiene 63 huellas en una colocación provisional. J105–J109 siguen sin
+huella hasta identificar la familia física.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

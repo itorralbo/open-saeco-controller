@@ -70,7 +70,9 @@ def main():
     for pin in (12,18,31,47,63):
         assert nets['U101'][str(pin)] == g, f'STM ground pad {pin}'
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
-                     50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN'}.items():
+                     50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
+                     14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_N',9:'BU_PRESENT_N',
+                     10:'BU_WORK_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
     for pin in (1,40,41):
@@ -112,6 +114,28 @@ def main():
     assert nets['C307'] == {'1':'UI_RISE','2':g}
     assert nets['C308'] == {'1':v,'2':g}
     assert nets['C309'] == {'1':'3V3_UI','2':g}
+    assert nets['J105'] == {'1':'NTC_RAW','2':g}
+    assert nets['R401'] == {'1':v,'2':'NTC_RAW'}
+    assert nets['R402'] == {'1':'NTC_RAW','2':'NTC_ADC'}
+    assert nets['C401'] == {'1':'NTC_ADC','2':g}
+    assert nets['J106'] == {'1':'12V_PROTECTED','2':g,'3':'FLOW_RAW'}
+    assert nets['R403'] == {'1':v,'2':'FLOW_RAW'}
+    assert nets['R404'] == {'1':'FLOW_RAW','2':'FLOW_TIM'}
+    assert nets['C402'] == {'1':'FLOW_TIM','2':g}
+    assert nets['J107'] == {'1':'DOOR_RAW','2':g}
+    assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
+    assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_N'}
+    assert nets['C403'] == {'1':'DOOR_N','2':g}
+    assert nets['J108'] == {'1':None,'2':None,
+                            '3':'BU_BRIDGE','4':'BU_BRIDGE','5':g,
+                            '6':'BU_PRESENT_RAW','7':g,'8':'BU_WORK_RAW'}
+    for prefix, raw, conditioned in [('PRES','BU_PRESENT_RAW','BU_PRESENT_N'),
+                                     ('WORK','BU_WORK_RAW','BU_WORK_N')]:
+        refs = {'PRES':('R407','R408','C404'), 'WORK':('R409','R410','C405')}[prefix]
+        assert nets[refs[0]] == {'1':v,'2':raw}
+        assert nets[refs[1]] == {'1':raw,'2':conditioned}
+        assert nets[refs[2]] == {'1':conditioned,'2':g}
+    assert nets['J109'] == {'1':None,'2':None,'3':None}
     exported = json.loads((base/'design-nets.json').read_text())
     assert nets == {c['reference']:c['pins'] for c in exported['components']}
 
@@ -133,7 +157,8 @@ def main():
             assert (date.today()-checked).days <= 7, f'Stale stock observation: {code}'
             matched += 1
         print(f'{board}: {matched}/{len(props)} positions have MPN + JLC code; remainder mechanical TBD.')
-    print('Core rail, UART, debug and sourcing checks pass. This checker does not run native ERC/DRC.')
+    print('Core rail, UART, debug, passive inputs and sourcing checks pass. '
+          'This checker does not run native ERC/DRC.')
 
 
 if __name__ == '__main__':
