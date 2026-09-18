@@ -1,8 +1,9 @@
 """Safely add newly selected front-panel footprints and refresh pad nets.
 
-The front PCB still has no accepted outline, so every coordinate remains staging
-only. Existing editable footprints are preserved and unexpected changes stop the
-script. Run with KiCad's bundled Python after validate_kicad.py.
+The outline and milled holes come from mechanical-source.json via
+apply_front_panel_mechanics.py and must stay untouched; footprint coordinates
+remain staging only. Existing editable footprints are preserved and unexpected
+changes stop the script. Run with KiCad's bundled Python after validate_kicad.py.
 """
 import json
 from pathlib import Path
@@ -16,7 +17,9 @@ from validate_kicad import ROOT, verify_netlist
 BASE = ROOT/'hardware/front-panel'
 BOARD_PATH = BASE/'kicad/front-panel-reva.kicad_pcb'
 FP_ROOT = Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints')
-NEW_POSITIONS = {'J1': (20, 40)}
+NEW_POSITIONS = {'J1': (130, 100)}
+MECHANICS = json.loads((BASE/'mechanical-source.json').read_text(encoding='utf-8'))
+EDGE_ITEMS = len(MECHANICS['outline_mm']['vertices'])+len(MECHANICS['holes'])
 
 
 def main():
@@ -25,7 +28,8 @@ def main():
     schematic = parse((BASE/'kicad/front-panel-reva.kicad_sch').read_text())
     root_uuid = one(schematic, 'uuid')[1]
     board = pcb.LoadBoard(str(BOARD_PATH))
-    assert not [d for d in board.GetDrawings() if d.GetLayer() == pcb.Edge_Cuts]
+    edges = [d for d in board.GetDrawings() if d.GetLayer() == pcb.Edge_Cuts]
+    assert len(edges) == EDGE_ITEMS, 'Unexpected Edge.Cuts; run apply_front_panel_mechanics.py'
 
     nets = {str(name): net for name, net in board.GetNetsByName().items()}
     node_nets = {}
@@ -84,6 +88,7 @@ def main():
 
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
+    assert len([d for d in check.GetDrawings() if d.GetLayer() == pcb.Edge_Cuts]) == EDGE_ITEMS
     by_ref = {fp.GetReference(): fp for fp in check.GetFootprints()}
     for ref, component in desired.items():
         for pad in by_ref[ref].Pads():
@@ -103,7 +108,9 @@ def main():
         'missing_footprints': missing,
         'new_connector_footprints_staged': sorted(new_refs),
         'tracks': len(list(check.GetTracks())),
-        'outline': False,
+        'outline': True,
+        'edge_cuts_items': EDGE_ITEMS,
+        'outline_source': 'hardware/front-panel/mechanical-source.json',
         'pad_nets_verified_after_reload': True,
     }, indent=2)+'\n')
     print(f'Front PCB synchronized: {len(desired)} footprints; '

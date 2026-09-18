@@ -82,5 +82,5 @@
 <text x="154.7" y="61.099999999999994" font-size="1.3" text-anchor="middle" fill="#666">JP3 (referencia, ±1 mm)</text>
 <path d="M0 68.3H100M0 67.3V69.3M100 67.3V69.3" stroke="#000" stroke-width="0.15"/>
 <text x="50" y="71.3" font-size="1.8" text-anchor="middle">100 mm: comprobar escala al imprimir</text>
-<text x="0" y="74.8" font-size="1.6">Frontal GIGI KYB_1.9.30.286.00_V03 · photo_derived_pending_owner_review · 2026-09-18 · cotas ±0.3 mm · vista cara de componentes, origen arriba-izquierda</text>
+<text x="0" y="74.8" font-size="1.6">Frontal GIGI KYB_1.9.30.286.00_V03 · owner_accepted_rev_a_baseline · 2026-09-18 · cotas ±0.3 mm · vista cara de componentes, origen arriba-izquierda</text>
 </svg>

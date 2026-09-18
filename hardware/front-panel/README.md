@@ -4,14 +4,15 @@ Decisión del propietario, 2026-09-16: reproducir la PCB frontal para conservar
 la disposición de botones y montar una pantalla nueva compatible con el hueco.
 Se conserva como objetivo la geometría original. El 2026-09-18 se recuperaron por
 fotogrametría contorno, taladros y centros de los siete pulsadores (184 × 54,3 mm);
-están pendientes de revisión y no se han llevado todavía a la PCB. Ver
+están aceptadas como línea base del layout y aplicadas a la PCB de trabajo. Ver
 [registro mecánico](mechanical.md).
 
 ## Entregables de esta iteración
 
 - [Esquema KiCad](kicad/front-panel-reva.kicad_sch), con símbolos embebidos.
 - [Proyecto KiCad](kicad/front-panel-reva.kicad_pro) y
-  [PCB de trabajo](kicad/front-panel-reva.kicad_pcb), con 35 huellas sin rutear.
+  [PCB de trabajo](kicad/front-panel-reva.kicad_pcb), con contorno, cuatro taladros
+  fresados y 35 huellas sin rutear en zona de staging.
 - [Vista nativa de KiCad](validation/front-panel-reva.svg) y
   [validación y límites](../kicad-workflow.md).
 - [Vista SVG del circuito](preview/front-panel.svg), generada como ayuda de revisión.
@@ -25,7 +26,7 @@ están pendientes de revisión y no se han llevado todavía a la PCB. Ver
 El circuito contiene alimentación externa de 3,3 V, un TCA9534PWR, ocho canales
 de pulsadores filtrados y una salida a adaptador de display SPI. Ocho es capacidad
 de diseño; la PCB original tiene **siete pulsadores** (PB1–PB8, falta uno).
-No hay PCB enrutada ni contorno inventado. El ERC nativo pasa; el DRC está pendiente de cierre.
+No hay PCB enrutada; el contorno procede del registro mecánico. El ERC nativo pasa; el DRC está pendiente de cierre.
 No está listo para fabricar.
 
 ## Circuito propuesto
@@ -121,7 +122,7 @@ exportación de KiCad ni evidencia de que su parser acepte el archivo.
 `python3 tools/check_front_panel.py` comprueba las conexiones del archivo de
 esquema contra requisitos del circuito. `python3 tools/validate_kicad.py` ejecuta
 ERC y coteja la netlist nativa de KiCad contra los 44 componentes y 122 pines.
-`python3 tools/render_front_panel_mechanics.py` regenera el plano 1:1 desde
-[mechanical-source.json](mechanical-source.json).
-Falta elegir J2 y pulsadores, validar la geometría fotogramétrica, cerrar
-colocación y rutear.
+`python3 tools/render_front_panel_mechanics.py` regenera el plano 1:1 y
+`python3 tools/apply_front_panel_mechanics.py` aplica contorno, taladros y
+referencias a la PCB desde [mechanical-source.json](mechanical-source.json).
+Falta elegir J2 y pulsadores, cerrar las comprobaciones de calibre, colocar y rutear.

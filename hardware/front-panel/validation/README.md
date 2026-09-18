@@ -8,5 +8,5 @@ footprint_filter, four_way_junction, simulation_model_issue, single_global_label
 
 Alcance: esquema parcial. El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.
 No valida mecánica completa, selección eléctrica completa ni fabricación.
-J1 ya tiene huella IDC; J2 y SW1–SW8 siguen pendientes de mecánica.
+J1 ya tiene huella IDC. Contorno y taladros Ø8,4 aplicados desde mechanical-source.json; J2 y SW1–SW8 siguen sin huella, con las posiciones de pulsador como referencia en Dwgs.User.
 Regenerar con `python3 tools/validate_kicad.py` desde la raíz.

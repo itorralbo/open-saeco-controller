@@ -85,7 +85,9 @@ def main():
                      'XH/PH cotejadas con fotos; las dos vías de motor de JP16 permanecen '
                      'NC hasta incorporar el puente H. La salida de JP22 requiere ensayo.'
                      if directory == 'controller' else
-                     'J1 ya tiene huella IDC; J2 y SW1–SW8 siguen pendientes de mecánica.')
+                     'J1 ya tiene huella IDC. Contorno y taladros Ø8,4 aplicados desde '
+                     'mechanical-source.json; J2 y SW1–SW8 siguen sin huella, con las '
+                     'posiciones de pulsador como referencia en Dwgs.User.')
         (out/'README.md').write_text(
             f'# Validación nativa — {name}\n\n'
             f'KiCad {version}. ERC: 0 errores y 0 avisos, sin exclusiones.\n'

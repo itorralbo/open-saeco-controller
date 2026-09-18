@@ -1,5 +1,9 @@
 {
-  "status": "photo_derived_pending_owner_review",
+  "status": "owner_accepted_rev_a_baseline",
+  "accepted_on": "2026-09-18",
+  "accepted_scope": "outline, 8.4 mm holes and switch reference positions for Rev A layout",
+  "pending_before_fabrication": ["caliper check of 54.3 body height, 62.3 tab and 82.1 x 35.0 hole pitch",
+    "1:1 print overlay on the original PCB", "function of SP1-SP3", "switch actuator height"],
   "source_date": "2026-09-18",
   "source_images": ["Frontal_01.HEIC", "Frontal_02.HEIC"],
   "board_reference": {
@@ -65,6 +69,6 @@
     "left_right_switch_footprints_equal": true,
     "holes_round": true
   },
-  "mechanical_layout_released": false,
+  "mechanical_layout_released": true,
   "manufacturing_release": false
 }

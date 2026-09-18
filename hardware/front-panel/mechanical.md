@@ -1,10 +1,14 @@
 # Registro mecánico del frontal
 
-Estado: **cotas fotogramétricas, pendientes de revisión del propietario**.
+Estado: **cotas fotogramétricas aceptadas por el propietario el 2026-09-18 como
+línea base del layout Rev A** y aplicadas a la
+[PCB de trabajo](kicad/front-panel-reva.kicad_pcb) con
+`python3 tools/apply_front_panel_mechanics.py`.
 Fuente de datos: [mechanical-source.json](mechanical-source.json). Plano imprimible
 1:1: [validation/mechanical-1to1.svg](validation/mechanical-1to1.svg). Superposición
 sobre la foto rectificada: [validation/photo-rectified-overlay.jpg](validation/photo-rectified-overlay.jpg).
-Ninguna cota está liberada para layout ni fabricación.
+Quedan liberadas para layout, no para fabricación: antes hay que cerrar las
+comprobaciones de calibre y superposición de más abajo.
 
 ## Placa original
 
@@ -96,6 +100,16 @@ Comprobaciones independientes tras rectificar:
   (paso 4,45–4,52; alcance 11,20–11,29). Sin rectificar diferían un 8 % en X y
   un 4 % en Y, como corresponde a la guiñada.
 - Dispersión entre centros que deberían estar alineados: ≤0,27 mm.
+
+## Cómo quedan en KiCad
+
+- Contorno: diez segmentos en Edge.Cuts.
+- MH1–MH4: círculos de Ø8,4 en Edge.Cuts, es decir, agujeros fresados sin cobre.
+  No se usa `MountingHole_8.4mm_M8` porque reserva la zona de cabeza de un
+  tornillo M8, en torno al doble del diámetro del agujero, y aquí no hay tornillos.
+- Pulsadores, DL1, SP1–SP3 y zona de JP3: solo referencias en Dwgs.User.
+  SW1–SW8 siguen sin huella hasta conocer la altura del actuador.
+- J1 y U1 pasan a la zona de staging fuera de la placa; la colocación sigue pendiente.
 
 ## Lo que estas fotos no cierran
 

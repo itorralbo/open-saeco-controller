@@ -31,7 +31,9 @@ componentes. **No representan colocación eléctrica definitiva ni dimensiones d
 la máquina.** La principal incorpora un [contorno y tres taladros aceptados para
 la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
 sigue siendo de trabajo. Los desacoplos todavía deben situarse junto a sus pines y el módulo
-ESP32 requiere resolver borde y zona libre de antena. No hay pistas, zonas de cobre,
+ESP32 requiere resolver borde y zona libre de antena. El frontal incorpora el
+[contorno y los cuatro taladros aceptados el 2026-09-18](front-panel/mechanical.md),
+con las posiciones originales de los pulsadores como referencia en Dwgs.User. No hay pistas, zonas de cobre,
 ni colocación final de los conectores de máquina. J101–J104 y J1 tienen huellas
 seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre;
 no generar Gerbers/BOM de fabricación/CPL desde aquí.
@@ -55,7 +57,7 @@ del texto de las etiquetas del lado izquierdo.
 
 | Resultado | Principal | Frontal |
 |---|---:|---:|
-| Infracciones geométricas/de reglas | 0 | 1: contorno todavía ausente |
+| Infracciones geométricas/de reglas | 0 | 1: contorno todavía ausente (antes del 2026-09-18) |
 | Conexiones pendientes de rutear | 165 | 70 |
 | Huellas ausentes respecto al esquema | 0 | 9 |
 | Contorno ausente | 0 | 1 |
@@ -69,7 +71,8 @@ perfil de fabricación completo.
 
 La paridad de la principal solo informa las tres huellas de montaje adicionales
 al esquema. Son intencionales y proceden del registro mecánico; no se han excluido.
-El frontal informa J2 y SW1–SW8 sin huella, además del contorno todavía ausente.
+El frontal informa J2 y SW1–SW8 sin huella. Su DRC es anterior al contorno
+aplicado el 2026-09-18 y debe repetirse con KiCad.
 
 Informes y vistas:
 
@@ -87,7 +90,8 @@ antes de editarlo manualmente, dejar de regenerarlo o trasladar los cambios al
 generador. La PCB ya es editable: `tools/create_pcb_staging.py` se niega a sobrescribir
 un archivo existente. `tools/sync_controller_pcb.py` actualiza las redes y huellas
 de la principal sin tocar el contorno ni los taladros. `tools/sync_front_panel_pcb.py`
-hace lo mismo para nuevas huellas del frontal. También se puede usar
+hace lo mismo para nuevas huellas del frontal; `tools/apply_front_panel_mechanics.py`
+aplica su contorno sin necesitar KiCad. También se puede usar
 «Actualizar PCB desde esquema» en KiCad conservando las posiciones revisadas.
 
 Desde la raíz del repositorio:
@@ -96,6 +100,7 @@ Desde la raíz del repositorio:
 python3 tools/check_front_panel.py
 python3 tools/check_controller_core.py
 python3 tools/validate_kicad.py
+python3 tools/apply_front_panel_mechanics.py
 <python de KiCad> tools/sync_controller_pcb.py
 <python de KiCad> tools/sync_front_panel_pcb.py
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb
@@ -109,4 +114,5 @@ incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas
 Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
 seleccionar el módulo AC/DC aislado, cerrar el
 presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
-trabajo mecánico: copiar contorno y centros de pulsadores del frontal.
+trabajo mecánico: medir la altura del actuador, asignar huella a SW1–SW8 y
+colocarlos sobre las referencias del frontal; situar J1 respecto a la pestaña de JP3.
