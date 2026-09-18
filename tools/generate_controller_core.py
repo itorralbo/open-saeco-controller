@@ -58,6 +58,31 @@ def power_symbols():
                          ('1', 'K', 'passive', 5.08, 0, 180)], 2.54, 1.5)
     d.DEFS['FUSE'] = (two, 2.54, 1.5)
     d.DEFS['L'] = (two, 2.54, 1.5)
+    # USB-C USB 2.0 receptacle: duplicated A/B contacts and a separate shield pad.
+    usb_a = [('A1', 'GND', 'passive'), ('A4', 'VBUS', 'passive'),
+             ('A5', 'CC1', 'passive'), ('A6', 'D+', 'passive'),
+             ('A7', 'D-', 'passive'), ('A8', 'SBU1', 'passive'),
+             ('A9', 'VBUS', 'passive'), ('A12', 'GND', 'passive'),
+             ('SH', 'SHIELD', 'passive')]
+    usb_b = [('B1', 'GND', 'passive'), ('B4', 'VBUS', 'passive'),
+             ('B5', 'CC2', 'passive'), ('B6', 'D+', 'passive'),
+             ('B7', 'D-', 'passive'), ('B8', 'SBU2', 'passive'),
+             ('B9', 'VBUS', 'passive'), ('B12', 'GND', 'passive')]
+    d.DEFS['USB_C_16'] = ([
+        (number, name, typ, -12.7, 15.24-i*3.81, 0)
+        for i, (number, name, typ) in enumerate(usb_a)
+    ] + [
+        (number, name, typ, 12.7, 15.24-i*3.81, 180)
+        for i, (number, name, typ) in enumerate(usb_b)
+    ], 10.16, 17.78)
+    d.DEFS['USBLC6'] = ([
+        ('1', 'I/O1', 'passive', -7.62, 3.81, 0),
+        ('2', 'GND', 'passive', -7.62, 0, 0),
+        ('3', 'I/O2', 'passive', -7.62, -3.81, 0),
+        ('6', 'I/O1', 'passive', 7.62, 3.81, 180),
+        ('5', 'VBUS', 'passive', 7.62, 0, 180),
+        ('4', 'I/O2', 'passive', 7.62, -3.81, 180),
+    ], 5.08, 6.35)
 
 
 def main():
@@ -80,9 +105,11 @@ def main():
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
            'IO6': 'KEY_INT_N', 'IO7': 'BL_RAW', 'IO8': 'RST_RAW', 'IO9': 'DC_RAW',
-           'IO10': 'CS_RAW', 'IO11': 'MOSI_RAW', 'IO12': 'SCLK_RAW'}
+           'IO10': 'CS_RAW', 'IO11': 'MOSI_RAW', 'IO12': 'SCLK_RAW',
+           'IO19': 'USB_DM_RAW', 'IO20': 'USB_DP_RAW',
+           'IO21': 'USB_VBUS_SENSE'}
     d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
-    d.note('BORRADOR: lógica, alimentación y sensores de baja tensión. Sin red, drivers de cargas, watchdog ni USB.', 12, 22, 1.8)
+    d.note('BORRADOR: lógica, alimentación, USB y sensores de baja tensión. Sin red, drivers de cargas ni watchdog.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
     d.add('U101','STM32G431RB','STM32G431RBT6',82,112,[stm.get(n) for n in STM_PINS],
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
@@ -91,7 +118,7 @@ def main():
     d.note('02 / ESP32 de interfaz — C2913201', 195, 36, 1.8)
     d.add('U201','ESP32S3WROOM1','ESP32-S3-WROOM-1-N8R8',263,112,
           [esp.get(n) for n in ESP_PINS], 'RF_Module:ESP32-S3-WROOM-1')
-    d.note('GPIO35/36/37 reservados PSRAM. USB19/20 sin conectar en esta hoja.',195,163)
+    d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO21 detecta VBUS.',195,163)
     d.note('03 / Conexiones internas y programación',390,36,1.8)
     d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_ISO_RAW',g],
           'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
@@ -176,7 +203,37 @@ def main():
     d.passive('C309','C','10uF / switch output',795,196,'3V3_UI',g)
     d.note('PB0 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.',610,244,1.2)
     d.note('QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.',610,250,1.2)
-    d.note('09 / Entradas pasivas — huellas candidatas según fotos con calibre', 12, 406, 1.8)
+
+    d.note('09 / USB-C de servicio — datos ESP32 y alimentación de banco opcional',610,276,1.8)
+    d.add('J110','USB_C_16','USB-C SERVICE / USB 2.0',650,326,
+          [g,'USB_VBUS','USB_CC1','USB_DP_PORT','USB_DM_PORT',None,
+           'USB_VBUS',g,g,g,'USB_VBUS','USB_CC2','USB_DP_PORT',
+           'USB_DM_PORT',None,'USB_VBUS',g],
+          'Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12',
+          status='candidate', part_key='CONN:USB_C_HRO_16')
+    d.add('U203','USBLC6','USBLC6-2SC6',742,326,
+          ['USB_DP_PORT',g,'USB_DM_PORT','USB_DP_DEVICE','USB_VBUS','USB_DM_DEVICE'],
+          'Package_TO_SOT_SMD:SOT-23-6', part_key='USBLC6-2SC6')
+    d.passive('R221','R','33',805,315,'USB_DM_DEVICE','USB_DM_RAW')
+    d.passive('R222','R','33',805,334,'USB_DP_DEVICE','USB_DP_RAW')
+    d.passive('R223','R','5.1k / CC1 Rd',625,357,'USB_CC1',g)
+    d.passive('R224','R','5.1k / CC2 Rd',685,357,'USB_CC2',g)
+    d.passive('R225','R','100k / VBUS sense top',745,357,'USB_VBUS','USB_VBUS_SENSE')
+    d.passive('R226','R','100k / VBUS sense bottom',805,357,'USB_VBUS_SENSE',g)
+    d.passive('C204','C','10nF / VBUS sense',805,375,'USB_VBUS_SENSE',g)
+    d.passive('C205','C','1uF / USB VBUS',745,375,'USB_VBUS',g)
+    d.add('F302','FUSE','500mA resettable PTC',625,390,['USB_VBUS','USB_VBUS_FUSED'],
+          'Fuse:Fuse_1206_3216Metric', part_key='F:500mA_PTC')
+    d.add('J111','J2','USB BENCH POWER / OPEN',700,390,
+          ['USB_VBUS_FUSED','USB_BENCH_ENABLE'],
+          'Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm',
+          status='dnp_open_by_default')
+    d.add('D303','DIODE','SS34 / USB power OR',775,390,
+          ['USB_BENCH_ENABLE','12V_PROTECTED'],
+          'Diode_SMD:D_SMA', part_key='D:SS34')
+    d.note('GPIO19=D-, GPIO20=D+. R221/R222 junto al ESP; par diferencial 90 ohm y misma longitud.',610,402,1.1)
+    d.note('J111 se fabrica ABIERTO. Cerrarlo solo en banco: USB limitado a 500mA alimenta el buck; no cargas.',610,408,1.1)
+    d.note('10 / Entradas pasivas — huellas candidatas según fotos con calibre', 12, 406, 1.8)
     d.add('J105','J2','JP13 NTC / 2 vías',62,445,['NTC_RAW',g],
           'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
           status='photo_candidate', part_key='CONN:JST_XH_2_RA')
@@ -223,7 +280,7 @@ def main():
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
     d.note('PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
-    d.note('Falta: fuente aislada 24V, USB/ESD, watchdog, contactos JP16 y etapas de potencia.',12,574)
+    d.note('Falta: fuente aislada 24V, watchdog, contactos JP16 y etapas de potencia.',12,574)
     d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,582)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A1',841,594)
 

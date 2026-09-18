@@ -78,9 +78,10 @@ def main():
             svg_path.write_text('\n'.join(line.rstrip() for line in
                                            svg_path.read_text(encoding='utf-8').splitlines())+'\n',
                                 encoding='utf-8')
-        scope = ('La principal incluye el núcleo lógico, entrada protegida de 12 V aislados, '
-                 'buck de 3,3 V, corte del frontal y acondicionamiento de NTC, caudalímetro '
-                 'nivel de agua y tres contactos. No valida la fuente AC/DC ni las cargas.'
+        scope = ('La principal incluye el núcleo lógico, USB-C de servicio, entrada protegida '
+                 'de 12 V aislados, buck de 3,3 V, corte del frontal y acondicionamiento de NTC, '
+                 'caudalímetro, nivel de agua y tres contactos. No valida la fuente AC/DC, '
+                 'el routing USB ni las cargas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
         remaining = ('Los GPIO sin asignar llevan NC. J105–J109 usan huellas candidatas '

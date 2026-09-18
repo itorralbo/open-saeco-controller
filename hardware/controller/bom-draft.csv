@@ -47,6 +47,19 @@ R301,100k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C258
 C307,1nF / CT,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10B102KB8NNNC,C1588,Basic,Economic and Standard
 C308,1uF / switch input,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
 C309,10uF / switch output,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard
+J110,USB-C SERVICE / USB 2.0,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,candidate,HRO ELECTRONICS,TYPE-C-31-M-12,C165948,Extended,Economic and Standard
+U203,USBLC6-2SC6,Package_TO_SOT_SMD:SOT-23-6,candidate,STMicroelectronics,USBLC6-2SC6,C7519,Extended,Economic and Standard
+R221,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R222,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R223,5.1k / CC1 Rd,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF5101T5E,C23186,Basic,Economic and Standard
+R224,5.1k / CC2 Rd,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF5101T5E,C23186,Basic,Economic and Standard
+R225,100k / VBUS sense top,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+R226,100k / VBUS sense bottom,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+C204,10nF / VBUS sense,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
+C205,1uF / USB VBUS,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+F302,500mA resettable PTC,Fuse:Fuse_1206_3216Metric,candidate,Littelfuse,1206L050YR,C163512,TBD,TBD
+J111,USB BENCH POWER / OPEN,Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,dnp_open_by_default,,,,,
+D303,SS34 / USB power OR,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,photo_candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
 R401,4.7k / NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R402,1k / NTC serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard

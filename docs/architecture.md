@@ -3,6 +3,7 @@
 ## Responsabilidades
 - STM32: adquisición, límites, interlocks, estados y autoridad única sobre actuadores.
 - ESP32: USB/web, configuración, telemetría y frontal; sin acceso directo a GPIO de potencia.
+  El [USB-C de servicio](service-usb.md) está ya en el esquema y será la pasarela de banco.
 - STM32G431RBT6 y ESP32-S3-WROOM-1-N8R8 están instanciados en el
   [núcleo lógico preliminar](../hardware/controller/core-design.md). Hay una
   [reserva de pines](../hardware/controller/front-panel-interface.md), aún sin BSP.

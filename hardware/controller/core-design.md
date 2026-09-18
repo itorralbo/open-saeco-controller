@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 70 componentes:
+Existe una hoja eléctrica parcial con 83 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 70 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 83 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 165 conexiones sin rutear.
+infracciones DRC, pero quedan 198 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -27,6 +27,8 @@ infracciones DRC, pero quedan 165 conexiones sin rutear.
   con pull-up, resistencia serie y filtro RC.
 - J105–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
   LCSC. Las dos vías de motor de JP16 quedan NC hasta seleccionar el puente H.
+- J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
+  resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
@@ -79,12 +81,34 @@ Faltan la configuración de reloj, tolerancia del enlace y opciones de arranque.
 NRST debe conservar función reset: no reconfigurarlo como PG10 de uso general.
 J102 y J103 usan cabezales 1×6 de 2,54 mm con numeración propia; el orden no
 corresponde al conector Cortex de 10 pines ni a un adaptador USB-serie concreto.
-Su pin de 3V3 es referencia para el programador; no se ha diseñado combinación
-de fuentes ni alimentación desde USB.
+Su pin de 3V3 es referencia para el programador; no se alimenta desde él.
 
 J104 y J1 del frontal usan cabezales IDC polarizados 2×8 de 2,54 mm. El cable es
 plano 1:1 de 16 conductores; el saliente rojo original JP21 no comparte pinout.
 Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
+
+## USB de servicio y control en banco
+
+J110 es un HRO TYPE-C-31-M-12 (`C165948`) USB 2.0 colocado provisionalmente en
+el borde superior, junto a la zona del conector rojo JP21 original. GPIO19 y
+GPIO20 del ESP32-S3 implementan D− y D+ a través de R221/R222 de 33 Ω. U203
+(USBLC6-2SC6, `C7519`) protege ambas líneas y R223/R224 de 5,1 kΩ anuncian un
+dispositivo USB en CC1/CC2. GPIO21 recibe `USB_VBUS_SENSE` mediante 100 kΩ/100 kΩ
+y 10 nF, necesario para que un equipo autoalimentado detecte la presencia del host.
+La carcasa se une provisionalmente a `GND_UI`; la política EMI/chasis se revisará
+con el layout y la envolvente final.
+
+El layout deberá mantener D+/D− a 90 Ω diferencial ±10 %, longitudes igualadas,
+plano de masa continuo y el mínimo de vías. U203 irá junto a J110 y R221/R222 junto
+al ESP32. Son requisitos de colocación/routing; el PCB actual solo coloca huellas.
+
+La vía de alimentación USB es deliberadamente opcional: F302 limita a 500 mA,
+J111 es un puente de soldadura que se fabrica **abierto** y D303 impide retorno
+hacia VBUS. Cerrado en banco, inyecta aproximadamente 5 V en la entrada del buck
+existente; sirve para firmware y lógica con consumo controlado. No se autoriza
+alimentar actuadores, el frontal completo ni la máquina desde el PC. Con J111
+abierto, USB sigue disponible para datos cuando J101 alimenta la lógica. El uso
+de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.md).
 
 ## Bloques que faltan en la principal
 
@@ -93,7 +117,7 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 | Fuente aislada | Definir 24 V para grupo/válvula y alimentación de la lógica | Espacio, temperatura, aislamiento y potencia total |
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
-| USB | USB-C, resistencias CC, protección ESD y política VBUS | Acceso mecánico y dominio aislado verificado |
+| USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
@@ -147,8 +171,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 70 componentes y 279 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 70 huellas en una colocación provisional. Las cinco cabeceras de
+KiCad: 83 componentes y 324 pines. El sincronizador conserva la mecánica, actualiza
+redes y mantiene 83 huellas en una colocación provisional. Las cinco cabeceras de
 máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

@@ -38,6 +38,17 @@ NEW_POSITIONS = {
     'R411': (50, 116), 'C406': (56, 116),
     'J105': (5, 124), 'J106': (16, 124), 'J107': (30, 124),
     'J109': (42, 124), 'J108': (107.5, 124),
+    'J110': (25, 4.45), 'U203': (25, 13.5),
+    'R221': (80, 58), 'R222': (80, 64),
+    'R223': (18, 17), 'R224': (24, 17),
+    'R225': (18, 28), 'R226': (24, 28), 'C204': (30, 28),
+    'C205': (30, 17), 'F302': (18, 22), 'J111': (24, 22),
+    'D303': (30, 22),
+}
+NEW_ORIENTATIONS = {'J110': 180}
+REFERENCE_POSITIONS = {
+    'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),
+    'R221': (76.5, 58), 'R222': (76.5, 64),
 }
 
 
@@ -98,6 +109,14 @@ def main():
             x, y = NEW_POSITIONS[ref]
             fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y)))
             fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y-3)))
+        if ref in NEW_ORIENTATIONS:
+            fp.SetOrientationDegrees(NEW_ORIENTATIONS[ref])
+        if ref in REFERENCE_POSITIONS:
+            x, y = REFERENCE_POSITIONS[ref]
+            fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y)))
+        # Library jumpers may be marked BOM-excluded. The schematic remains the
+        # source of assembly status, so keep board/schematic attributes in parity.
+        fp.SetExcludedFromBOM(False)
         fp.SetReference(ref)
         fp.SetValue(component.findtext('value'))
         fp.SetFPIDAsString(footprint)

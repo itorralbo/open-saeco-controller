@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 70 | 70 | — |
+| Principal | 83 | 83 | — |
 | Frontal | 42 | 42 | — |
 
 Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
@@ -35,10 +35,10 @@ ESP32 requiere resolver borde y zona libre de antena. En la principal no hay pis
 zonas de cobre ni colocación final de los conectores de máquina. El **frontal está
 colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
 limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
-seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre;
-no generar Gerbers/BOM de fabricación/CPL de la principal todavía.
+seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
+y queda colocado provisionalmente en el borde superior junto a JP21; no generar Gerbers/BOM de fabricación/CPL de la principal todavía.
 
-## Validación actualizada el 2026-09-18
+## Validación actualizada el 2026-09-19
 
 ERC nativo: cero errores y cero avisos en ambos esquemas, sin excluir infracciones.
 Se mantiene la configuración estándar de KiCad; los cuatro controles opcionales
@@ -49,7 +49,7 @@ frontal, J1 sigue declarando su alimentación externa.
 Los GPIO aún sin asignar permanecen NC. Los tipos de pin de GPIO genéricos no
 comprueban las futuras funciones alternativas o la configuración de firmware.
 
-La netlist XML de KiCad coincide con los 279 pines de la principal y los 118 del
+La netlist XML de KiCad coincide con los 324 pines de la principal y los 118 del
 frontal. Se revisaron las exportaciones SVG nativas y se corrigió la orientación
 del texto de las etiquetas del lado izquierdo.
 
@@ -58,7 +58,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 165 | 0 |
+| Conexiones pendientes de rutear | 198 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
@@ -114,7 +114,7 @@ Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y dete
 la instalación habitual de macOS y de Windows. La creación inicial de PCB requiere el Python
 incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
 
-Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
+Siguiente trabajo eléctrico: rutear y ensayar USB, probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
 seleccionar el módulo AC/DC aislado, cerrar el
 presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
 trabajo mecánico: cerrar las comprobaciones previas al pedido del frontal

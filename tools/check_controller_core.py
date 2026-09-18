@@ -81,7 +81,8 @@ def main():
         assert nets['U201'][str(pin)] is None, 'Do not use octal PSRAM pins'
     for pin, net in {3:'ESP_EN',27:'ESP_BOOT0',10:'ESP_TX_RAW',11:'STM_TO_ESP',
                      4:'KEY_SDA',5:'KEY_SCL',6:'KEY_INT_N',7:'BL_RAW',12:'RST_RAW',
-                     17:'DC_RAW',18:'CS_RAW',19:'MOSI_RAW',20:'SCLK_RAW'}.items():
+                     17:'DC_RAW',18:'CS_RAW',19:'MOSI_RAW',20:'SCLK_RAW',
+                     13:'USB_DM_RAW',14:'USB_DP_RAW',23:'USB_VBUS_SENSE'}.items():
         assert nets['U201'][str(pin)] == net
     expected_link = ['3V3_UI',g,'LCD_SCLK',g,'LCD_MOSI',g,'LCD_CS_N','LCD_DC',
                      'LCD_RST_N','LCD_BL_PWM','KEY_SCL','KEY_SDA','KEY_INT_N',g,g,None]
@@ -138,6 +139,29 @@ def main():
     assert nets['J109'] == {'1':v,'2':'WATER_RAW','3':g}
     assert nets['R411'] == {'1':'WATER_RAW','2':'WATER_LEVEL'}
     assert nets['C406'] == {'1':'WATER_LEVEL','2':g}
+    assert nets['J110'] == {
+        'A1':g,'A4':'USB_VBUS','A5':'USB_CC1','A6':'USB_DP_PORT',
+        'A7':'USB_DM_PORT','A8':None,'A9':'USB_VBUS','A12':g,'SH':g,
+        'B1':g,'B4':'USB_VBUS','B5':'USB_CC2','B6':'USB_DP_PORT',
+        'B7':'USB_DM_PORT','B8':None,'B9':'USB_VBUS','B12':g}
+    assert nets['U203'] == {'1':'USB_DP_PORT','2':g,'3':'USB_DM_PORT',
+                            '6':'USB_DP_DEVICE','5':'USB_VBUS','4':'USB_DM_DEVICE'}
+    assert nets['R221'] == {'1':'USB_DM_DEVICE','2':'USB_DM_RAW'}
+    assert nets['R222'] == {'1':'USB_DP_DEVICE','2':'USB_DP_RAW'}
+    assert nets['R223'] == {'1':'USB_CC1','2':g}
+    assert nets['R224'] == {'1':'USB_CC2','2':g}
+    assert nets['R225'] == {'1':'USB_VBUS','2':'USB_VBUS_SENSE'}
+    assert nets['R226'] == {'1':'USB_VBUS_SENSE','2':g}
+    assert nets['C204'] == {'1':'USB_VBUS_SENSE','2':g}
+    assert nets['C205'] == {'1':'USB_VBUS','2':g}
+    assert nets['F302'] == {'1':'USB_VBUS','2':'USB_VBUS_FUSED'}
+    assert nets['J111'] == {'1':'USB_VBUS_FUSED','2':'USB_BENCH_ENABLE'}
+    assert nets['D303'] == {'2':'USB_BENCH_ENABLE','1':'12V_PROTECTED'}
+    for ref, footprint, lcsc in [
+            ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
+            ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
+            ('F302','Fuse:Fuse_1206_3216Metric','C163512')]:
+        assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     for ref, footprint, lcsc in [
             ('J105','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
             ('J106','Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal','C157928'),

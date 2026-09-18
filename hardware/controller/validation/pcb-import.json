@@ -58,6 +58,14 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C204": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C205": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "C301": {
       "footprint": "Capacitor_SMD:C_0805_2012Metric",
       "numbered_pads": 2
@@ -126,7 +134,15 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D303": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "F301": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F302": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
@@ -165,6 +181,14 @@
     "J109": {
       "footprint": "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal",
       "numbered_pads": 3
+    },
+    "J110": {
+      "footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "numbered_pads": 17
+    },
+    "J111": {
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "numbered_pads": 2
     },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
@@ -215,6 +239,30 @@
       "numbered_pads": 2
     },
     "R218": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R221": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R222": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R223": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R224": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R225": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R226": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -274,6 +322,10 @@
       "footprint": "RF_Module:ESP32-S3-WROOM-1",
       "numbered_pads": 41
     },
+    "U203": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "numbered_pads": 6
+    },
     "U301": {
       "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
       "numbered_pads": 6
@@ -285,6 +337,8 @@
   },
   "missing_footprints": [],
   "staged_footprints": [
+    "C204",
+    "C205",
     "C301",
     "C302",
     "C303",
@@ -302,7 +356,9 @@
     "C406",
     "D301",
     "D302",
+    "D303",
     "F301",
+    "F302",
     "J101",
     "J102",
     "J103",
@@ -312,7 +368,15 @@
     "J107",
     "J108",
     "J109",
+    "J110",
+    "J111",
     "L301",
+    "R221",
+    "R222",
+    "R223",
+    "R224",
+    "R225",
+    "R226",
     "R301",
     "R401",
     "R402",
@@ -325,6 +389,7 @@
     "R409",
     "R410",
     "R411",
+    "U203",
     "U301",
     "U302"
   ],

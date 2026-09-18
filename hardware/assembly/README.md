@@ -21,6 +21,9 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 26.107 | 21.974 | Economic / Standard |
 | Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 1.849 | 1.767 | Economic / Standard |
 | Puente H motor del grupo, candidato | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
+| USB-C de servicio | HRO TYPE-C-31-M-12 | [C165948](https://jlcpcb.com/partdetail/C165948) | 219.670 | No observado | Economic / Standard |
+| Protección ESD USB | USBLC6-2SC6 | [C7519](https://jlcpcb.com/partdetail/C7519) | 32.360 | No observado | Economic / Standard |
+| PTC alimentación USB opcional | Littelfuse 1206L050YR | [C163512](https://www.lcsc.com/product-detail/C163512.html) | 21.680 | No observado | Categoría JLC por verificar |
 | Inductor buck | SRN6028C-3R9M | [C19947652](https://www.lcsc.com/product-detail/C19947652.html) | 227 | 227 | Economic / Standard |
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 270.440 | 270.440 | Economic / Standard |
 | Entrada 12 V | JST S2B-XH-A-1(LF)(SN) | [C163035](https://www.lcsc.com/product-detail/C163035.html) | 100.630 | 100.630 | Economic / Standard |
@@ -39,7 +42,7 @@ no sustituye a `C2913201`.
 El DRV8876 figura en LCSC con stock, pero aún no se ha verificado su categoría ni
 su disponibilidad dentro del selector de montaje de JLCPCB. Su inclusión en el
 catálogo permite conservar MPN, código y huella mientras se completa el bloque;
-no forma parte de la BOM actual de 70 posiciones.
+no forma parte de la BOM actual de 83 posiciones.
 
 La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado. El
 frontal podría cotizarse aparte en Economic, sujeto a los conectores/pulsadores
@@ -66,7 +69,8 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  70 de 70 posiciones actuales con MPN, código y huella. Las cabeceras de máquina
+  82 de 83 posiciones actuales con MPN, código y huella; J111 es un puente de
+  cobre abierto y no requiere pieza. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22 y las etapas de potencia.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
@@ -77,7 +81,7 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
 protección de entrada DC, el buck, el corte del frontal y sensores de baja tensión. **No incluye** la fuente
-AC/DC aislada, drivers de cargas ni USB: el porcentaje anterior
+AC/DC aislada ni drivers de cargas. Ya incluye el USB de servicio: el porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

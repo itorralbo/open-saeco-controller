@@ -45,7 +45,7 @@ J1/J2 están dentro del mismo dominio lógico; no hay aislamiento en el frontal.
 ## Reserva candidata ESP32-S3-WROOM-1-N8R8
 
 Selección de trabajo del módulo, instanciada en el [núcleo inicial](core-design.md).
-No hay BSP; USB sigue reservado pero sin conectar. No usar números de un DevKit.
+No hay BSP; USB ya está conectado en el esquema principal y queda por rutear y ensayar. No usar números de un DevKit.
 Tabla cotejada con la sección de pines de la
 [hoja de datos Espressif del módulo](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.html).
 
@@ -63,9 +63,10 @@ Tabla cotejada con la sección de pines de la
 | UART_TX hacia STM32 | 17 | 10 |
 | UART_RX desde STM32 | 18 | 11 |
 | USB D− / D+ | 19 / 20 | 13 / 14 |
+| USB VBUS sense | 21 | 23 |
 
 Esta asignación evita pines de arranque 0/3/45/46 y, para la variante con PSRAM
-octal N8R8, 35/36/37. Quedan por diseñar alimentación, EN, BOOT, USB, depuración,
+octal N8R8, 35/36/37. Quedan por cerrar el layout USB, alimentación final, depuración,
 antena y enlace STM32. La tabla reserva recursos, no completa esos circuitos.
 
 ## Condiciones eléctricas pendientes de cierre

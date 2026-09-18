@@ -101,8 +101,8 @@
         "10": "ESP_TX_RAW",
         "11": "STM_TO_ESP",
         "12": "RST_RAW",
-        "13": null,
-        "14": null,
+        "13": "USB_DM_RAW",
+        "14": "USB_DP_RAW",
         "15": null,
         "16": null,
         "17": "DC_RAW",
@@ -111,7 +111,7 @@
         "20": "SCLK_RAW",
         "21": null,
         "22": null,
-        "23": null,
+        "23": "USB_VBUS_SENSE",
         "24": null,
         "25": null,
         "26": null,
@@ -850,6 +850,220 @@
       "pins": {
         "1": "3V3_UI",
         "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J110",
+      "value": "USB-C SERVICE / USB 2.0",
+      "footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "status": "candidate",
+      "manufacturer": "HRO ELECTRONICS",
+      "mpn": "TYPE-C-31-M-12",
+      "lcsc": "C165948",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "A1": "GND_UI",
+        "A4": "USB_VBUS",
+        "A5": "USB_CC1",
+        "A6": "USB_DP_PORT",
+        "A7": "USB_DM_PORT",
+        "A8": null,
+        "A9": "USB_VBUS",
+        "A12": "GND_UI",
+        "SH": "GND_UI",
+        "B1": "GND_UI",
+        "B4": "USB_VBUS",
+        "B5": "USB_CC2",
+        "B6": "USB_DP_PORT",
+        "B7": "USB_DM_PORT",
+        "B8": null,
+        "B9": "USB_VBUS",
+        "B12": "GND_UI"
+      }
+    },
+    {
+      "reference": "U203",
+      "value": "USBLC6-2SC6",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "status": "candidate",
+      "manufacturer": "STMicroelectronics",
+      "mpn": "USBLC6-2SC6",
+      "lcsc": "C7519",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_DP_PORT",
+        "2": "GND_UI",
+        "3": "USB_DM_PORT",
+        "6": "USB_DP_DEVICE",
+        "5": "USB_VBUS",
+        "4": "USB_DM_DEVICE"
+      }
+    },
+    {
+      "reference": "R221",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_DM_DEVICE",
+        "2": "USB_DM_RAW"
+      }
+    },
+    {
+      "reference": "R222",
+      "value": "33",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_DP_DEVICE",
+        "2": "USB_DP_RAW"
+      }
+    },
+    {
+      "reference": "R223",
+      "value": "5.1k / CC1 Rd",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF5101T5E",
+      "lcsc": "C23186",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_CC1",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R224",
+      "value": "5.1k / CC2 Rd",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF5101T5E",
+      "lcsc": "C23186",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_CC2",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R225",
+      "value": "100k / VBUS sense top",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_VBUS",
+        "2": "USB_VBUS_SENSE"
+      }
+    },
+    {
+      "reference": "R226",
+      "value": "100k / VBUS sense bottom",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_VBUS_SENSE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C204",
+      "value": "10nF / VBUS sense",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B103K500NT",
+      "lcsc": "C57112",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_VBUS_SENSE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C205",
+      "value": "1uF / USB VBUS",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "USB_VBUS",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "F302",
+      "value": "500mA resettable PTC",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "Littelfuse",
+      "mpn": "1206L050YR",
+      "lcsc": "C163512",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "USB_VBUS",
+        "2": "USB_VBUS_FUSED"
+      }
+    },
+    {
+      "reference": "J111",
+      "value": "USB BENCH POWER / OPEN",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm",
+      "status": "dnp_open_by_default",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "USB_VBUS_FUSED",
+        "2": "USB_BENCH_ENABLE"
+      }
+    },
+    {
+      "reference": "D303",
+      "value": "SS34 / USB power OR",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "USB_BENCH_ENABLE",
+        "1": "12V_PROTECTED"
       }
     },
     {

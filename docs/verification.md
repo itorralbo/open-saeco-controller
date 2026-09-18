@@ -199,3 +199,19 @@ de cargas siguen pendientes en el esquema principal.
 - La principal pasa a 70 componentes/279 pines y 70 huellas eléctricas. Comprobador
   propio y ERC nativo: PASS, 0 infracciones. DRC: 0 infracciones geométricas,
   165 conexiones sin rutear y 3 diferencias de paridad correspondientes a MH1–MH3.
+
+## USB-C de servicio, 2026-09-19
+
+- J110 implementa USB 2.0 nativo del ESP32-S3: GPIO19=D−, GPIO20=D+ y GPIO21
+  detecta VBUS mediante 100 kΩ/100 kΩ y 10 nF.
+- Se seleccionan HRO TYPE-C-31-M-12 (`C165948`), USBLC6-2SC6 (`C7519`), dos
+  resistencias CC de 5,1 kΩ y 33 Ω serie en cada línea de datos.
+- La alimentación de banco pasa por PTC de 500 mA, puente J111 abierto por defecto
+  y SS34 hacia la entrada del buck. No está destinada a cargas ni autoriza conectar
+  USB mientras no se haya verificado el aislamiento de la máquina.
+- La principal pasa a 83 componentes/324 pines y 83 huellas eléctricas. Comprobador
+  propio y ERC KiCad 10.0.6: PASS, 0 infracciones. DRC: 0 infracciones geométricas,
+  198 conexiones sin rutear y 3 diferencias de paridad correspondientes a MH1–MH3.
+- Las huellas quedan colocadas provisionalmente; el par de 90 Ω, el retorno de masa,
+  la envolvente mecánica del conector y la política de pantalla/chasis siguen pendientes
+  del routing y revisión física.
