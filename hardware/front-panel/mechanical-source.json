@@ -1,0 +1,70 @@
+{
+  "status": "photo_derived_pending_owner_review",
+  "source_date": "2026-09-18",
+  "source_images": ["Frontal_01.HEIC", "Frontal_02.HEIC"],
+  "board_reference": {
+    "silkscreen": "GIGI KYB_1.9.30.286.00_V03",
+    "label": "421941307291/04 8Y1638 30384"
+  },
+  "coordinate_system": "component side (tact switches toward viewer, silkscreen readable); origin top-left corner; +X right; +Y down; JP3 tab at bottom right",
+  "owner_inputs_mm": {
+    "width": 184.0,
+    "narrow_side_height": 52.0
+  },
+  "outline_mm": {
+    "vertices": [
+      [0.0, 0.0], [184.0, 0.0], [184.0, 54.3],
+      [171.6, 54.3], [171.6, 62.3], [125.7, 62.3], [125.7, 54.3],
+      [30.7, 54.3], [30.7, 52.0], [0.0, 52.0]
+    ],
+    "corners": "square at photo resolution; radius below 0.5 mm not resolved",
+    "uncertainty": 0.3
+  },
+  "holes": [
+    {"reference": "MH1", "x": 51.9, "y": 8.7, "diameter": 8.4, "type": "NPTH"},
+    {"reference": "MH2", "x": 134.0, "y": 8.7, "diameter": 8.4, "type": "NPTH"},
+    {"reference": "MH3", "x": 51.9, "y": 43.7, "diameter": 8.4, "type": "NPTH"},
+    {"reference": "MH4", "x": 134.0, "y": 43.7, "diameter": 8.4, "type": "NPTH"}
+  ],
+  "hole_center_uncertainty_mm": 0.3,
+  "hole_diameter_uncertainty_mm": 0.2,
+  "square_pads": [
+    {"reference": "SP1", "x": 6.7, "y": 10.9, "size": 4.9, "note": "exposed copper, central ring ~3.4 mm; no see-through hole; function TBD"},
+    {"reference": "SP2", "x": 6.7, "y": 39.0, "size": 4.9, "note": "same as SP1"},
+    {"reference": "SP3", "x": 177.9, "y": 28.2, "size": 4.9, "note": "same as SP1"}
+  ],
+  "switches": {
+    "body": "6 x 6 mm SMD tact switch, 4 gull-wing legs, round red actuator",
+    "leg_pitch_mm": 4.5,
+    "pad_outer_span_mm": 11.2,
+    "actuator_height_mm": null,
+    "positions": [
+      {"original": "PB1", "x": 19.2, "y": 9.9, "legs": "top/bottom"},
+      {"original": "PB2", "x": 19.2, "y": 25.6, "legs": "top/bottom"},
+      {"original": "PB3", "x": 19.2, "y": 41.2, "legs": "top/bottom"},
+      {"original": "PB7", "x": 164.6, "y": 9.9, "legs": "top/bottom"},
+      {"original": "PB5", "x": 164.6, "y": 25.6, "legs": "top/bottom", "note": "label partly hidden by sticker"},
+      {"original": "PB4/PB6", "x": 164.6, "y": 41.2, "legs": "top/bottom", "note": "label hidden by sticker"},
+      {"original": "PB8", "x": 91.7, "y": 43.5, "legs": "left/right", "note": "standby key; LED DL1 below"}
+    ],
+    "center_uncertainty_mm": 0.3
+  },
+  "indicators": [
+    {"original": "DL1", "x": 91.8, "y": 48.5, "note": "LED STBY, SMD, below PB8"}
+  ],
+  "reference_only_mm": {
+    "note": "connector bodies include parallax; do not use as footprint coordinates",
+    "JP1": {"center": [77.6, 4.4], "description": "white 4-way header, backlight cable of OEM display"},
+    "JP2": {"center": [92.0, 6.4], "description": "18-way 0.5 mm FPC connector, OEM display"},
+    "JP3": {"x": [143.1, 166.3], "y": [51.5, 59.3], "description": "red 2x8 staggered, 16 contacts, Micro-MaTch style; harness to main board"}
+  },
+  "validation": {
+    "method": "projective rectification from outline edges; camera focal from EXIF",
+    "u1_soic_pitch_mm": {"measured": 1.273, "nominal": 1.27},
+    "narrow_side_height_mm": {"photo": 52.2, "owner": 52.0},
+    "left_right_switch_footprints_equal": true,
+    "holes_round": true
+  },
+  "mechanical_layout_released": false,
+  "manufacturing_release": false
+}

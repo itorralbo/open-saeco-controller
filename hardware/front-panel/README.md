@@ -2,8 +2,10 @@
 
 Decisión del propietario, 2026-09-16: reproducir la PCB frontal para conservar
 la disposición de botones y montar una pantalla nueva compatible con el hueco.
-Se conserva como objetivo la geometría original; todavía no hay fotos ni cotas
-del frontal que permitan copiar contorno, taladros o centros de pulsadores.
+Se conserva como objetivo la geometría original. El 2026-09-18 se recuperaron por
+fotogrametría contorno, taladros y centros de los siete pulsadores (184 × 54,3 mm);
+están pendientes de revisión y no se han llevado todavía a la PCB. Ver
+[registro mecánico](mechanical.md).
 
 ## Entregables de esta iteración
 
@@ -15,14 +17,15 @@ del frontal que permitan copiar contorno, taladros o centros de pulsadores.
 - [Vista SVG del circuito](preview/front-panel.svg), generada como ayuda de revisión.
 - [BOM candidata](bom-draft.csv) y [conexiones previstas](design-nets.json).
 - [Contrato con la principal](../controller/front-panel-interface.md).
-- [Registro mecánico pendiente](mechanical.md).
+- [Registro mecánico fotogramétrico](mechanical.md), [datos](mechanical-source.json)
+  y [plano 1:1 imprimible](validation/mechanical-1to1.svg).
 - [Selección de componentes y montaje JLCPCB](../assembly/README.md): 35 posiciones
   con MPN/código y stock observado; nueve posiciones mecánicas aún pendientes.
 
 El circuito contiene alimentación externa de 3,3 V, un TCA9534PWR, ocho canales
 de pulsadores filtrados y una salida a adaptador de display SPI. Ocho es capacidad
-de diseño, **no un recuento observado de botones Saeco**. No hay PCB enrutada ni
-contorno inventado. El ERC nativo pasa; el DRC está pendiente de cierre.
+de diseño; la PCB original tiene **siete pulsadores** (PB1–PB8, falta uno).
+No hay PCB enrutada ni contorno inventado. El ERC nativo pasa; el DRC está pendiente de cierre.
 No está listo para fabricar.
 
 ## Circuito propuesto
@@ -118,4 +121,7 @@ exportación de KiCad ni evidencia de que su parser acepte el archivo.
 `python3 tools/check_front_panel.py` comprueba las conexiones del archivo de
 esquema contra requisitos del circuito. `python3 tools/validate_kicad.py` ejecuta
 ERC y coteja la netlist nativa de KiCad contra los 44 componentes y 122 pines.
-Falta elegir J2 y pulsadores, recuperar geometría, cerrar colocación y rutear.
+`python3 tools/render_front_panel_mechanics.py` regenera el plano 1:1 desde
+[mechanical-source.json](mechanical-source.json).
+Falta elegir J2 y pulsadores, validar la geometría fotogramétrica, cerrar
+colocación y rutear.

@@ -73,3 +73,25 @@ candidata hasta probar físicamente una muestra. Tras la identificación del
 Digmesa y el seguimiento visual aportado por el propietario, JP5 queda como
 1=señal, 2=GND, 3=VCC. En JP22 los conductores son rojo=VCC, blanco=señal y
 negro=GND; la huella se orientará para que correspondan a pines 1, 2 y 3.
+
+## Frontal, 2026-09-18
+
+`Frontal_01.HEIC` es una vista casi cenital de la PCB frontal completa con el
+display OEM desconectado al lado; `Frontal_02.HEIC` es un detalle a 2× de la zona
+central. Con el ancho de 184 mm y el lado estrecho de 52 mm medidos por el
+propietario se rectificó la primera y se extrajeron contorno, taladros y centros
+de pulsador en el [registro mecánico del frontal](../../hardware/front-panel/mechanical.md).
+
+| Elemento | Observación |
+|---|---|
+| Identificación | Serigrafía `GIGI KYB_1.9.30.286.00_V03`; etiqueta `421941307291/04 8Y1638 30384` |
+| Pulsadores | Siete táctiles SMD 6 × 6 mm: PB1–PB3, PB5, PB7, PB8 y uno tapado por la etiqueta (PB4 o PB6) |
+| Lectura de teclas | U1 = 74HCT166 (TI), registro de desplazamiento de carga paralela |
+| Indicador | DL1, LED STBY bajo PB8 |
+| Display OEM | Marcaje `10107-LED-C-A173-160406-RoHS`; FPC de 18 vías y 0,5 mm a JP2; retroiluminación por cable de 4 hilos a JP1 |
+| Arnés | JP3 rojo, 2 × 8 al tresbolillo, 16 contactos, estilo Micro-MaTch, en una pestaña del borde |
+| Configuración | JP5 con puentes serigrafiados OTC / AMF / CMF; JP4 sin poblar |
+
+El recuento de 16 contactos en JP3 no coincide con los 20 de JP21: no se deduce
+la correspondencia del arnés original. Las funciones de los pulsadores y de los
+puentes de JP5 no se infieren de la serigrafía.

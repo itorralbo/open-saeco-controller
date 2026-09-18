@@ -90,9 +90,11 @@ Señales sobre J_UI (16 contactos, arnés 1:1), todas lógica 3,3 V:
   Una tecla mantenida al reiniciar **no** se convierte en START.
 - NACK, lectura caducada o fallo de bus **invalidan el teclado** (≠ "ninguna tecla"): el frontal no
   emite nuevas solicitudes START en ese estado.
-- **TBD: mapa físico de botones.** El recuento y las etiquetas Saeco no están confirmados (el frontal
-  reserva 8 canales como capacidad, no como recuento observado). La navegación se diseña para
-  degradar bien entre ~4 y 8 teclas; el mapa definitivo se cierra con la mecánica y la UX.
+- **Mapa físico observado (2026-09-18):** la PCB original tiene **siete pulsadores**: tres en cada
+  extremo de la placa y PB8 (standby, con LED) abajo en el centro. Posiciones en el
+  [registro mecánico del frontal](../hardware/front-panel/mechanical.md). El frontal nuevo
+  conserva 8 canales; el octavo queda libre. **TBD: función y etiqueta de cada tecla**
+  en el frontal plástico; se cierran con la UX.
 
 ## 7. Árbol de pantallas (propuesta) y mapa a estados del STM32
 
@@ -142,7 +144,7 @@ de estados implementada.
 - MPN del panel: contorno, activa, espesor, conector y código de compra.
 - Cota de la ventana visible del OEM (para el recorte del bisel y el tamaño percibido).
 - Diseño del adaptador de display (orden de pines, driver de BL, ESD).
-- Mapa físico y etiquetas de botones.
+- Función y etiqueta de cada uno de los siete botones.
 - Versión de ESP-IDF y de LVGL a fijar; parámetros SPI (modo, R serie) por medida.
 - Longitud máxima del arnés y validación de integridad de señal a 10 MHz.
 
