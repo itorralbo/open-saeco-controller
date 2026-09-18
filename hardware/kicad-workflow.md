@@ -24,19 +24,19 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
 | Principal | 70 | 70 | — |
-| Frontal | 44 | 35 | J2, SW1–SW8 |
+| Frontal | 42 | 42 | — |
 
 Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
 componentes. **No representan colocación eléctrica definitiva ni dimensiones de
 la máquina.** La principal incorpora un [contorno y tres taladros aceptados para
 la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
 sigue siendo de trabajo. Los desacoplos todavía deben situarse junto a sus pines y el módulo
-ESP32 requiere resolver borde y zona libre de antena. El frontal incorpora el
-[contorno y los cuatro taladros aceptados el 2026-09-18](front-panel/mechanical.md),
-con las posiciones originales de los pulsadores como referencia en Dwgs.User. No hay pistas, zonas de cobre,
-ni colocación final de los conectores de máquina. J101–J104 y J1 tienen huellas
+ESP32 requiere resolver borde y zona libre de antena. En la principal no hay pistas,
+zonas de cobre ni colocación final de los conectores de máquina. El **frontal está
+colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
+limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
 seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre;
-no generar Gerbers/BOM de fabricación/CPL desde aquí.
+no generar Gerbers/BOM de fabricación/CPL de la principal todavía.
 
 ## Validación actualizada el 2026-09-18
 
@@ -49,7 +49,7 @@ frontal, J1 sigue declarando su alimentación externa.
 Los GPIO aún sin asignar permanecen NC. Los tipos de pin de GPIO genéricos no
 comprueban las futuras funciones alternativas o la configuración de firmware.
 
-La netlist XML de KiCad coincide con los 279 pines de la principal y los 122 del
+La netlist XML de KiCad coincide con los 279 pines de la principal y los 118 del
 frontal. Se revisaron las exportaciones SVG nativas y se corrigió la orientación
 del texto de las etiquetas del lado izquierdo.
 
@@ -58,8 +58,8 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 165 | 70 |
-| Huellas ausentes respecto al esquema | 0 | 9 |
+| Conexiones pendientes de rutear | 165 | 0 |
+| Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
 
@@ -71,9 +71,8 @@ perfil de fabricación completo.
 
 La paridad de la principal solo informa las tres huellas de montaje adicionales
 al esquema. Son intencionales y proceden del registro mecánico; no se han excluido.
-El frontal informa J2 y SW1–SW8 sin huella. Su DRC se repitió con KiCad 10.0.6
-tras aplicar el contorno el 2026-09-18: desaparece la infracción de contorno
-ausente y no aparece ninguna nueva.
+El frontal, ruteado el 2026-09-18, pasa el DRC de KiCad 10.0.6 con paridad y todas
+las severidades sin infracciones, conexiones pendientes ni diferencias con el esquema.
 
 Informes y vistas:
 
@@ -92,7 +91,8 @@ generador. La PCB ya es editable: `tools/create_pcb_staging.py` se niega a sobre
 un archivo existente. `tools/sync_controller_pcb.py` actualiza las redes y huellas
 de la principal sin tocar el contorno ni los taladros. `tools/sync_front_panel_pcb.py`
 hace lo mismo para nuevas huellas del frontal; `tools/apply_front_panel_mechanics.py`
-aplica su contorno sin necesitar KiCad. También se puede usar
+aplica su contorno sin necesitar KiCad y `tools/layout_front_panel_pcb.py` coloca y
+rutea el frontal con Freerouting (el script es la fuente del layout). También se puede usar
 «Actualizar PCB desde esquema» en KiCad conservando las posiciones revisadas.
 
 Desde la raíz del repositorio:
@@ -104,16 +104,18 @@ python3 tools/validate_kicad.py
 python3 tools/apply_front_panel_mechanics.py
 <python de KiCad> tools/sync_controller_pcb.py
 <python de KiCad> tools/sync_front_panel_pcb.py
+<python de KiCad> tools/layout_front_panel_pcb.py
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb
-kicad-cli pcb drc --schematic-parity --format json -o hardware/front-panel/validation/drc-staging.json hardware/front-panel/kicad/front-panel-reva.kicad_pcb
+kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/front-panel/validation/drc-staging.json hardware/front-panel/kicad/front-panel-reva.kicad_pcb
+python3 tools/export_front_panel_fab.py
 ```
 
 Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y detecta
-la instalación habitual de macOS. La creación inicial de PCB requiere el Python
+la instalación habitual de macOS y de Windows. La creación inicial de PCB requiere el Python
 incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
 
 Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
 seleccionar el módulo AC/DC aislado, cerrar el
 presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
-trabajo mecánico: medir la altura del actuador, asignar huella a SW1–SW8 y
-colocarlos sobre las referencias del frontal; situar J1 respecto a la pestaña de JP3.
+trabajo mecánico: cerrar las comprobaciones previas al pedido del frontal
+([layout.md](front-panel/layout.md#pendiente-antes-de-pedir)) y el adaptador de pantalla.

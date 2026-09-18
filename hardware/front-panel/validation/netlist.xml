@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/front-panel/kicad/front-panel-reva.kicad_sch</source>
-    <date>2026-09-17T18:42:07</date>
+    <source>C:\Developer\open-saeco-controller\hardware\front-panel\kicad\front-panel-reva.kicad_sch</source>
+    <date>2026-09-18T22:02:27</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -11,7 +11,7 @@
         <rev>A.0-draft</rev>
         <date>2026-09-16</date>
         <source>front-panel-reva.kicad_sch</source>
-        <comment number="1" value="Not for fabrication. Mechanics and connector footprints pending; see validation report."/>
+        <comment number="1" value="Draft under review: footprints assigned, layout in progress; see validation report."/>
         <comment number="2" value=""/>
         <comment number="3" value=""/>
         <comment number="4" value=""/>
@@ -344,29 +344,29 @@
         </unit>
       </units>
     </comp>
-    <comp ref="C18">
-      <value>100nF / filtro</value>
-      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+    <comp ref="D1">
+      <value>KT-0603R / STBY</value>
+      <footprint>LED_SMD:LED_0603_1608Metric</footprint>
       <fields>
-        <field name="manufacturer">YAGEO</field>
-        <field name="mpn">CC0603KRX7R9BB104</field>
-        <field name="lcsc">C14663</field>
+        <field name="manufacturer">Hubei KENTO Elec</field>
+        <field name="mpn">KT-0603R</field>
+        <field name="lcsc">C2286</field>
         <field name="jlc_class">Basic</field>
         <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Footprint">LED_SMD:LED_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="OpenSaeco" part="C" description=""/>
-      <property name="manufacturer" value="YAGEO"/>
-      <property name="mpn" value="CC0603KRX7R9BB104"/>
-      <property name="lcsc" value="C14663"/>
+      <libsource lib="OpenSaeco" part="LED" description=""/>
+      <property name="manufacturer" value="Hubei KENTO Elec"/>
+      <property name="mpn" value="KT-0603R"/>
+      <property name="lcsc" value="C2286"/>
       <property name="jlc_class" value="Basic"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
-      <tstamps>0f3fcb6f-60b3-50b3-990d-4611ec930001</tstamps>
+      <tstamps>a64d2832-c95e-5eef-9ca3-84f5a0e9717a</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -423,13 +423,24 @@
       </units>
     </comp>
     <comp ref="J2">
-      <value>LCD_ADAPTER / 8 pins</value>
+      <value>LCD_ADAPTER / JST PH 8</value>
+      <footprint>Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">JST</field>
+        <field name="mpn">S8B-PH-K-S(LF)(SN)</field>
+        <field name="lcsc">C157915</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J8" description=""/>
+      <property name="manufacturer" value="JST"/>
+      <property name="mpn" value="S8B-PH-K-S(LF)(SN)"/>
+      <property name="lcsc" value="C157915"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -632,6 +643,38 @@
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>e8de9256-0ed0-5a5c-87b5-a9049e7565ef</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R7">
+      <value>470 / LED</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF4700T5E</field>
+        <field name="lcsc">C23179</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF4700T5E"/>
+      <property name="lcsc" value="C23179"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="front-panel-reva"/>
+      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>1cb7f720-3ae6-59e9-9e11-9f1e6c86a969</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -865,38 +908,6 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R18">
-      <value>10k / pull-up</value>
-      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
-      <fields>
-        <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1002T5E</field>
-        <field name="lcsc">C25804</field>
-        <field name="jlc_class">Basic</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="OpenSaeco" part="R" description=""/>
-      <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1002T5E"/>
-      <property name="lcsc" value="C25804"/>
-      <property name="jlc_class" value="Basic"/>
-      <property name="pcba_type" value="Economic and Standard"/>
-      <property name="Sheetname" value="front-panel-reva"/>
-      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>7f4bf42e-c739-5e3a-86d5-038c3ee35d08</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="R21">
       <value>1k / serie</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
@@ -1121,46 +1132,25 @@
         </unit>
       </units>
     </comp>
-    <comp ref="R28">
-      <value>1k / serie</value>
-      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
-      <fields>
-        <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1001T5E</field>
-        <field name="lcsc">C21190</field>
-        <field name="jlc_class">Basic</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="OpenSaeco" part="R" description=""/>
-      <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1001T5E"/>
-      <property name="lcsc" value="C21190"/>
-      <property name="jlc_class" value="Basic"/>
-      <property name="pcba_type" value="Economic and Standard"/>
-      <property name="Sheetname" value="front-panel-reva"/>
-      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f0c3e87f-b37b-5648-93fc-9133f2e00188</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
     <comp ref="SW1">
-      <value>KEY 1 / NO</value>
+      <value>KEY 1 / PB1</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1175,13 +1165,24 @@
       </units>
     </comp>
     <comp ref="SW2">
-      <value>KEY 2 / NO</value>
+      <value>KEY 2 / PB2</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1196,13 +1197,24 @@
       </units>
     </comp>
     <comp ref="SW3">
-      <value>KEY 3 / NO</value>
+      <value>KEY 3 / PB3</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1217,13 +1229,24 @@
       </units>
     </comp>
     <comp ref="SW4">
-      <value>KEY 4 / NO</value>
+      <value>KEY 4 / PB8</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1238,13 +1261,24 @@
       </units>
     </comp>
     <comp ref="SW5">
-      <value>KEY 5 / NO</value>
+      <value>KEY 5 / PB4/PB6</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1259,13 +1293,24 @@
       </units>
     </comp>
     <comp ref="SW6">
-      <value>KEY 6 / NO</value>
+      <value>KEY 6 / PB5</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -1280,38 +1325,28 @@
       </units>
     </comp>
     <comp ref="SW7">
-      <value>KEY 7 / NO</value>
+      <value>KEY 7 / PB7</value>
+      <footprint>OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</footprint>
       <fields>
-        <field name="Footprint"/>
+        <field name="manufacturer">Korean Hroparts Elec</field>
+        <field name="mpn">K2-1102SP-A4SC-04</field>
+        <field name="lcsc">C83916</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">OpenSaeco:SW_HRO_K2-1102SP-A4SC-04</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="SW" description=""/>
+      <property name="manufacturer" value="Korean Hroparts Elec"/>
+      <property name="mpn" value="K2-1102SP-A4SC-04"/>
+      <property name="lcsc" value="C83916"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>845ee22c-d0d7-58f4-a86e-ba04e870641d</tstamps>
-      <units>
-        <unit name="A">
-          <pins>
-            <pin num="1"/>
-            <pin num="2"/>
-          </pins>
-        </unit>
-      </units>
-    </comp>
-    <comp ref="SW8">
-      <value>KEY 8 / NO</value>
-      <fields>
-        <field name="Footprint"/>
-        <field name="Datasheet"/>
-        <field name="Description"/>
-      </fields>
-      <libsource lib="OpenSaeco" part="SW" description=""/>
-      <property name="Sheetname" value="front-panel-reva"/>
-      <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
-      <sheetpath names="/" tstamps="/"/>
-      <tstamps>f5aad9fb-8257-5c39-89e0-ede4cc234c18</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -1428,6 +1463,19 @@
         <pin num="8" name="8" type="passive"/>
       </pins>
     </libpart>
+    <libpart lib="OpenSaeco" part="LED">
+      <fields>
+        <field name="Reference">L</field>
+        <field name="Value">LED</field>
+        <field name="Footprint"/>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <pins>
+        <pin num="1" name="K" type="passive"/>
+        <pin num="2" name="A" type="passive"/>
+      </pins>
+    </libpart>
     <libpart lib="OpenSaeco" part="R">
       <fields>
         <field name="Reference">R</field>
@@ -1488,7 +1536,7 @@
     </library>
   </libraries>
   <nets>
-    <net code="1" name="/3V3_UI" class="Default">
+    <net code="1" name="/3V3_UI" class="Power">
       <node ref="C1" pin="1" pintype="passive"/>
       <node ref="C2" pin="1" pintype="passive"/>
       <node ref="C3" pin="1" pintype="passive"/>
@@ -1502,11 +1550,11 @@
       <node ref="R15" pin="1" pintype="passive"/>
       <node ref="R16" pin="1" pintype="passive"/>
       <node ref="R17" pin="1" pintype="passive"/>
-      <node ref="R18" pin="1" pintype="passive"/>
       <node ref="R2" pin="1" pintype="passive"/>
       <node ref="R3" pin="1" pintype="passive"/>
       <node ref="R4" pin="1" pintype="passive"/>
       <node ref="R5" pin="1" pintype="passive"/>
+      <node ref="R7" pin="1" pintype="passive"/>
       <node ref="U1" pin="16" pinfunction="VCC_16" pintype="power_in"/>
     </net>
     <net code="2" name="/GND_UI" class="Default">
@@ -1518,7 +1566,6 @@
       <node ref="C15" pin="2" pintype="passive"/>
       <node ref="C16" pin="2" pintype="passive"/>
       <node ref="C17" pin="2" pintype="passive"/>
-      <node ref="C18" pin="2" pintype="passive"/>
       <node ref="C2" pin="2" pintype="passive"/>
       <node ref="C3" pin="2" pintype="passive"/>
       <node ref="J1" pin="14" pinfunction="14_14" pintype="passive"/>
@@ -1535,7 +1582,6 @@
       <node ref="SW5" pin="2" pintype="passive"/>
       <node ref="SW6" pin="2" pintype="passive"/>
       <node ref="SW7" pin="2" pintype="passive"/>
-      <node ref="SW8" pin="2" pintype="passive"/>
       <node ref="U1" pin="1" pinfunction="A0_1" pintype="input"/>
       <node ref="U1" pin="2" pinfunction="A1_2" pintype="input"/>
       <node ref="U1" pin="3" pinfunction="A2_3" pintype="input"/>
@@ -1583,85 +1629,83 @@
       <node ref="R27" pin="1" pintype="passive"/>
       <node ref="U1" pin="11" pinfunction="P6_11" pintype="bidirectional"/>
     </net>
-    <net code="10" name="/KEY_8_N" class="Default">
-      <node ref="C18" pin="1" pintype="passive"/>
-      <node ref="R18" pin="2" pintype="passive"/>
-      <node ref="R28" pin="1" pintype="passive"/>
-      <node ref="U1" pin="12" pinfunction="P7_12" pintype="bidirectional"/>
-    </net>
-    <net code="11" name="/KEY_INT_N" class="Default">
+    <net code="10" name="/KEY_INT_N" class="Default">
       <node ref="J1" pin="13" pinfunction="13_13" pintype="passive"/>
       <node ref="R3" pin="2" pintype="passive"/>
       <node ref="U1" pin="13" pinfunction="~{INT}_13" pintype="open_collector"/>
     </net>
-    <net code="12" name="/KEY_SCL" class="Default">
+    <net code="11" name="/KEY_SCL" class="Default">
       <node ref="J1" pin="11" pinfunction="11_11" pintype="passive"/>
       <node ref="R1" pin="2" pintype="passive"/>
       <node ref="U1" pin="14" pinfunction="SCL_14" pintype="input"/>
     </net>
-    <net code="13" name="/KEY_SDA" class="Default">
+    <net code="12" name="/KEY_SDA" class="Default">
       <node ref="J1" pin="12" pinfunction="12_12" pintype="passive"/>
       <node ref="R2" pin="2" pintype="passive"/>
       <node ref="U1" pin="15" pinfunction="SDA_15" pintype="bidirectional"/>
     </net>
-    <net code="14" name="/LCD_BL_PWM" class="Default">
+    <net code="13" name="/LCD_BL_PWM" class="Default">
       <node ref="J1" pin="10" pinfunction="10_10" pintype="passive"/>
       <node ref="J2" pin="8" pinfunction="8_8" pintype="passive"/>
       <node ref="R6" pin="1" pintype="passive"/>
     </net>
-    <net code="15" name="/LCD_CS_N" class="Default">
+    <net code="14" name="/LCD_CS_N" class="Default">
       <node ref="J1" pin="7" pinfunction="7_7" pintype="passive"/>
       <node ref="J2" pin="5" pinfunction="5_5" pintype="passive"/>
       <node ref="R4" pin="2" pintype="passive"/>
     </net>
-    <net code="16" name="/LCD_DC" class="Default">
+    <net code="15" name="/LCD_DC" class="Default">
       <node ref="J1" pin="8" pinfunction="8_8" pintype="passive"/>
       <node ref="J2" pin="6" pinfunction="6_6" pintype="passive"/>
     </net>
-    <net code="17" name="/LCD_MOSI" class="Default">
+    <net code="16" name="/LCD_MOSI" class="Default">
       <node ref="J1" pin="5" pinfunction="5_5" pintype="passive"/>
       <node ref="J2" pin="3" pinfunction="3_3" pintype="passive"/>
     </net>
-    <net code="18" name="/LCD_RST_N" class="Default">
+    <net code="17" name="/LCD_RST_N" class="Default">
       <node ref="J1" pin="9" pinfunction="9_9" pintype="passive"/>
       <node ref="J2" pin="7" pinfunction="7_7" pintype="passive"/>
       <node ref="R5" pin="2" pintype="passive"/>
     </net>
-    <net code="19" name="/LCD_SCLK" class="Default">
+    <net code="18" name="/LCD_SCLK" class="Default">
       <node ref="J1" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="J2" pin="4" pinfunction="4_4" pintype="passive"/>
     </net>
-    <net code="20" name="/SW_1_RAW" class="Default">
+    <net code="19" name="/LED_STBY_A" class="Default">
+      <node ref="D1" pin="2" pinfunction="A_2" pintype="passive"/>
+      <node ref="R7" pin="2" pintype="passive"/>
+    </net>
+    <net code="20" name="/LED_STBY_N" class="Default">
+      <node ref="D1" pin="1" pinfunction="K_1" pintype="passive"/>
+      <node ref="U1" pin="12" pinfunction="P7_12" pintype="bidirectional"/>
+    </net>
+    <net code="21" name="/SW_1_RAW" class="Default">
       <node ref="R21" pin="2" pintype="passive"/>
       <node ref="SW1" pin="1" pintype="passive"/>
     </net>
-    <net code="21" name="/SW_2_RAW" class="Default">
+    <net code="22" name="/SW_2_RAW" class="Default">
       <node ref="R22" pin="2" pintype="passive"/>
       <node ref="SW2" pin="1" pintype="passive"/>
     </net>
-    <net code="22" name="/SW_3_RAW" class="Default">
+    <net code="23" name="/SW_3_RAW" class="Default">
       <node ref="R23" pin="2" pintype="passive"/>
       <node ref="SW3" pin="1" pintype="passive"/>
     </net>
-    <net code="23" name="/SW_4_RAW" class="Default">
+    <net code="24" name="/SW_4_RAW" class="Default">
       <node ref="R24" pin="2" pintype="passive"/>
       <node ref="SW4" pin="1" pintype="passive"/>
     </net>
-    <net code="24" name="/SW_5_RAW" class="Default">
+    <net code="25" name="/SW_5_RAW" class="Default">
       <node ref="R25" pin="2" pintype="passive"/>
       <node ref="SW5" pin="1" pintype="passive"/>
     </net>
-    <net code="25" name="/SW_6_RAW" class="Default">
+    <net code="26" name="/SW_6_RAW" class="Default">
       <node ref="R26" pin="2" pintype="passive"/>
       <node ref="SW6" pin="1" pintype="passive"/>
     </net>
-    <net code="26" name="/SW_7_RAW" class="Default">
+    <net code="27" name="/SW_7_RAW" class="Default">
       <node ref="R27" pin="2" pintype="passive"/>
       <node ref="SW7" pin="1" pintype="passive"/>
-    </net>
-    <net code="27" name="/SW_8_RAW" class="Default">
-      <node ref="R28" pin="2" pintype="passive"/>
-      <node ref="SW8" pin="1" pintype="passive"/>
     </net>
     <net code="28" name="unconnected-(J1-Pad16)" class="Default">
       <node ref="J1" pin="16" pinfunction="16_16" pintype="passive+no_connect"/>

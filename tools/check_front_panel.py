@@ -106,7 +106,8 @@ def main():
                    '8': 'GND_UI', '13': 'KEY_INT_N', '14': 'KEY_SCL',
                    '15': 'KEY_SDA', '16': '3V3_UI'}
     expected_ic.update({str(pin): f'KEY_{i}_N' for i, pin in
-                        enumerate([4, 5, 6, 7, 9, 10, 11, 12], 1)})
+                        enumerate([4, 5, 6, 7, 9, 10, 11], 1)})
+    expected_ic['12'] = 'LED_STBY_N'  # P7 drives the standby LED, active low.
     assert actual['U1'] == expected_ic, 'TCA9534 package pinout mismatch'
     expected_link = ['3V3_UI', 'GND_UI', 'LCD_SCLK', 'GND_UI', 'LCD_MOSI',
                      'GND_UI', 'LCD_CS_N', 'LCD_DC', 'LCD_RST_N', 'LCD_BL_PWM',
@@ -120,7 +121,7 @@ def main():
         assert actual[ref] == {'1': a, '2': b}, f'Wrong circuit at {ref}'
         assert values[ref].split(' / ')[0] == value, f'Wrong value at {ref}'
 
-    for i in range(1, 9):
+    for i in range(1, 8):
         key, raw = f'KEY_{i}_N', f'SW_{i}_RAW'
         pair(f'R{10+i}', '10k', '3V3_UI', key)
         pair(f'R{20+i}', '1k', key, raw)
@@ -134,7 +135,9 @@ def main():
                           ('R6', '100k', 'LCD_BL_PWM', 'GND_UI'),
                           ('C1', '100nF', '3V3_UI', 'GND_UI'),
                           ('C2', '1uF', '3V3_UI', 'GND_UI'),
-                          ('C3', '10uF', '3V3_UI', 'GND_UI')]:
+                          ('C3', '10uF', '3V3_UI', 'GND_UI'),
+                          ('R7', '470', '3V3_UI', 'LED_STBY_A'),
+                          ('D1', 'KT-0603R', 'LED_STBY_N', 'LED_STBY_A')]:
         pair(ref, val, a, b)
     net_export = json.loads((BASE/'design-nets.json').read_text())
     assert actual == {c['reference']: c['pins'] for c in net_export['components']}

@@ -19,6 +19,11 @@ UPLINK = [VCC, GND, 'LCD_SCLK', GND, 'LCD_MOSI', GND,
           'KEY_SCL', 'KEY_SDA', 'KEY_INT_N', GND, GND, None]
 DISPLAY = [VCC, GND, 'LCD_MOSI', 'LCD_SCLK', 'LCD_CS_N',
            'LCD_DC', 'LCD_RST_N', 'LCD_BL_PWM']
+# SWn -> original key position (hardware/front-panel/mechanical.md). P0-P3 (left side
+# of U1) serve the left column and PB8; P4-P6 (right side, bottom to top) serve the
+# right column bottom to top, so both fan-outs route without crossings on F.Cu.
+KEYS = ['PB1', 'PB2', 'PB3', 'PB8', 'PB4/PB6', 'PB5', 'PB7']
+SWITCH_FP = 'OpenSaeco:SW_HRO_K2-1102SP-A4SC-04'
 
 
 def uid(name):
@@ -62,10 +67,16 @@ DEFS = {'R': (TWO, 2.54, 1.0), 'C': (TWO, 2.54, 1.5),
         'J8': (connector(8), 5.08, 16.51),
         'TCA9534': (IC_PINS, 10.16, 16.51)}
 DEFS['PWR_FLAG'] = ([('1', 'pwr', 'power_out', -5.08, 0, 0)], 2.54, 1.27)
+DEFS['LED'] = ([('1', 'K', 'passive', -5.08, 0, 0),
+                ('2', 'A', 'passive', 5.08, 0, 180)], 2.54, 1.5)
 
 
 def body(kind, width, height):
     stroke = '(stroke (width 0.254) (type default))'
+    if kind == 'LED':
+        return (f'(polyline (pts (xy 1.27 -1.27) (xy 1.27 1.27) (xy -1.27 0) (xy 1.27 -1.27)) {stroke} (fill (type none)))'
+                f'(polyline (pts (xy -1.27 -1.27) (xy -1.27 1.27)) {stroke} (fill (type none)))'
+                f'(polyline (pts (xy -2.54 0) (xy 2.54 0)) {stroke} (fill (type none)))')
     if kind in ('C', 'SW'):
         paths = ([(-2.54, 0, -0.635, 0), (0.635, 0, 2.54, 0),
                   (-0.635, -1.5, -0.635, 1.5), (0.635, -1.5, 0.635, 1.5)]
@@ -137,6 +148,9 @@ def add(ref, kind, value, x, y, nets, footprint='', status='candidate', part_key
     elif kind == 'SW':
         svg.append(f'<path d="M {x-width} {y} L {x+1.9} {y-1.5}"'
                    ' stroke="#213b50" stroke-width=".25" fill="none"/>')
+    elif kind == 'LED':
+        svg.append(f'<path d="M {x-width} {y} H {x+width} M {x+1.27} {y-1.27} V {y+1.27} L {x-1.27} {y} Z'
+                   f' M {x-1.27} {y-1.27} V {y+1.27}" stroke="#213b50" stroke-width=".25" fill="none"/>')
     else:
         svg.append(f'<rect x="{x-width}" y="{y-height}" width="{2*width}" '
                    f'height="{2*height}" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>')
@@ -178,7 +192,7 @@ def passive(ref, kind, value, x, y, net1, net2):
 
 def main():
     note('OPEN SAECO / FRONTAL Rev A.0 — BORRADOR ELÉCTRICO', 12, 12, 2.5)
-    note('Sin contorno ni posición real de botones. No fabricar. Validación: tools/validate_kicad.py.', 12, 19)
+    note('Contorno y pulsadores según hardware/front-panel/mechanical.md. Borrador en revisión. Validación: tools/validate_kicad.py.', 12, 19)
     note('01 / Enlace nuevo a ESP32', 12, 30)
     add('J1', 'J16', 'UI_LINK / IDC 2x8 2.54mm', 55, 72, UPLINK,
         'Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical',
@@ -189,13 +203,15 @@ def main():
     add('#FLG02', 'PWR_FLAG', 'External return via J1', 75, 105, [GND])
     note('02 / Botones I2C — dirección 0x20', 116, 30)
     icnets = [VCC, GND, 'KEY_SCL', 'KEY_SDA', 'KEY_INT_N', GND, GND, GND]
-    icnets += [f'KEY_{i}_N' for i in range(1, 9)]
+    icnets += [f'KEY_{i}_N' for i in range(1, 8)] + ['LED_STBY_N']
     add('U1', 'TCA9534', 'TCA9534PWR', 164, 65, icnets,
         'Package_SO:TSSOP-16_4.4x5mm_P0.65mm')
     passive('C1', 'C', '100nF', 146, 98, VCC, GND)
     passive('C2', 'C', '1uF', 195, 98, VCC, GND)
     note('03 / Adaptador LCD SPI, lógica 3V3', 230, 30)
-    add('J2', 'J8', 'LCD_ADAPTER / 8 pins', 280, 63, DISPLAY, status='connector_TBD')
+    add('J2', 'J8', 'LCD_ADAPTER / JST PH 8', 280, 63, DISPLAY,
+        'Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal', part_key='CONN:JST_PH_8_RA')
+    note('Orden del cable PH 2,0 del módulo Waveshare 2": VCC GND DIN CLK CS DC RST BL.', 228, 97, 1.2)
     note('BL: entrada lógica de módulo; no LED desnudo.', 228, 92, 1.2)
     note('04 / Polarización y reserva de desacoplo', 322, 30)
     for ref, value, net1, net2, y in [
@@ -207,17 +223,22 @@ def main():
         ('R6', '100k', 'LCD_BL_PWM', GND, 108)]:
         passive(ref, 'R', value, 361, y, net1, net2)
     passive('C3', 'C', '10uF', 260, 108, VCC, GND)
-    note('05 / Ocho canales previstos — cantidad y mecánica originales pendientes', 12, 130)
-    for i in range(1, 9):
+    note('05 / Siete pulsadores en las posiciones originales; P7 enciende el LED STBY (activo a 0)', 12, 130)
+    for i, original in enumerate(KEYS, 1):
         x = 52 + ((i-1) % 4)*98
         y = 143 + ((i-1)//4)*60
         key, raw = f'KEY_{i}_N', f'SW_{i}_RAW'
         passive(f'R{10+i}', 'R', '10k / pull-up', x, y, VCC, key)
         passive(f'R{20+i}', 'R', '1k / serie', x, y+13, key, raw)
-        passive(f'SW{i}', 'SW', f'KEY {i} / NO', x, y+26, raw, GND)
+        add(f'SW{i}', 'SW', f'KEY {i} / {original}', x, y+26, [raw, GND], SWITCH_FP,
+            part_key='SW:TACT_6X6X4.3_SMD')
         passive(f'C{10+i}', 'C', '100nF / filtro', x, y+39, key, GND)
+    passive('R7', 'R', '470 / LED', 52 + 3*98, 203, VCC, 'LED_STBY_A')
+    add('D1', 'LED', 'KT-0603R / STBY', 52 + 3*98, 216, ['LED_STBY_N', 'LED_STBY_A'],
+        'LED_SMD:LED_0603_1608Metric', part_key='LED:RED_0603')
+    note('LED: 3V3 - R7 - D1 - P7. P7 arranca como entrada: LED apagado hasta configurarlo.', 330, 236, 1.2)
     note('Entradas activas a 0. Los pulsadores son órdenes de UI, no interlocks ni corte de emergencia.', 12, 260)
-    note('100nF: X7R; 1uF/10uF: X5R, temperatura y DC bias pendientes. J2 y SW1–SW8 sin huella.', 12, 267, 1.2)
+    note('100nF: X7R; 1uF/10uF: X5R, temperatura y DC bias pendientes. SW: HRO K2-1102SP-A4SC-04, 6x6x4,3 mm.', 12, 267, 1.2)
     note('Vista SVG auxiliar del generador; no sustituye apertura, exportación de netlist y ERC en KiCad.', 12, 274, 1.2)
     write_outputs('Open Saeco front panel / REVIEW ONLY', preview='front-panel.svg')
 
@@ -227,7 +248,7 @@ def write_outputs(title, paper='A3', width=420, height=297, preview='core.svg'):
                  f' (uuid {uid("root")}) (paper "{paper}")'
                  f' (title_block (title {q(title)})'
                  ' (date "2026-09-16") (rev "A.0-draft")'
-                 ' (comment 1 "Not for fabrication. Mechanics and connector footprints pending; see validation report."))'
+                 ' (comment 1 "Draft under review: footprints assigned, layout in progress; see validation report."))'
                  ' (lib_symbols ' + '\n'.join(library(k) for k in DEFS) + ')\n'
                  + '\n'.join(objects) + '\n(sheet_instances (path "/" (page "1")))\n)\n')
     (OUT/'kicad').mkdir(parents=True, exist_ok=True)

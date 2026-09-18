@@ -3,7 +3,7 @@
 Reads hardware/front-panel/mechanical-source.json and adds the outline as
 Edge.Cuts segments and the four 8.4 mm holes as Edge.Cuts circles (milled NPTH,
 no screw-head keep-out). Switch centres, DL1, SP1-SP3 and the original JP3 go
-to Dwgs.User as placement references; SW1-SW8 still have no footprint. Staging
+to Dwgs.User as placement references for layout_front_panel_pcb.py. Staging
 footprints covered by the new outline (J1, U1) move to the off-board area.
 
 Edits the KiCad 10 S-expression text, so pcbnew is not required. UUIDs derive

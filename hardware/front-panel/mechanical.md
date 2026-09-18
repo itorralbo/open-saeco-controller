@@ -107,13 +107,12 @@ Comprobaciones independientes tras rectificar:
 - MH1–MH4: círculos de Ø8,4 en Edge.Cuts, es decir, agujeros fresados sin cobre.
   No se usa `MountingHole_8.4mm_M8` porque reserva la zona de cabeza de un
   tornillo M8, en torno al doble del diámetro del agujero, y aquí no hay tornillos.
-- Pulsadores, DL1, SP1–SP3 y zona de JP3: solo referencias en Dwgs.User.
-  SW1–SW8 siguen sin huella hasta conocer la altura del actuador.
-- J1 y U1 pasan a la zona de staging fuera de la placa; la colocación sigue pendiente.
+- Pulsadores, DL1, SP1–SP3 y zona de JP3: referencias en Dwgs.User. Sobre ellas
+  se colocaron SW1–SW7 y D1 al hacer el [layout](layout.md).
+- J1 va en la pestaña de JP3 y J2 arriba al centro; el resto, en [layout.md](layout.md).
 
 Comprobado en KiCad 10.0.6: contorno cerrado de 10 vértices con 4 agujeros
-(10 066 mm²), ninguna huella dentro de la placa y DRC sin infracciones. Quedan
-70 conexiones sin rutear y J2 y SW1–SW8 sin huella.
+(10 066 mm²). El DRC de la placa ya ruteada está en [layout.md](layout.md#verificación).
 
 ## Lo que estas fotos no cierran
 

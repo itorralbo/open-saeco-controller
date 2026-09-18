@@ -80,8 +80,10 @@ Señales sobre J_UI (16 contactos, arnés 1:1), todas lógica 3,3 V:
 
 ## 6. Modelo de entrada (teclado)
 
-- Botones del frontal leídos por **TCA9534** (I²C, `0x20`), 8 canales de entrada, INT drenador abierto.
-  Config `0x03`=`0xFF`, Polarity `0x02`=`0x00`, lectura de Input `0x00` (ver front-panel README).
+- Botones del frontal leídos por **TCA9534** (I²C, `0x20`): P0–P6 son las siete teclas y P7 el
+  LED de standby (salida, activo a 0); INT drenador abierto. Secuencia: Output `0x01`=`0xFF`,
+  Polarity `0x02`=`0x00`, Configuration `0x03`=`0x7F`; Input `0x00` bits 0–6. Mapa bit → tecla
+  en el [layout del frontal](../hardware/front-panel/layout.md#teclas-led-y-registros-del-tca9534).
 - El firmware expone las teclas a LVGL como **grupo con navegación por foco** (keypad indev):
   las pocas teclas físicas mueven foco y confirman, no hay puntero.
 - Muestreo cada 5 ms con exigencia de 20 ms de estabilidad; INT adelanta lectura pero **se conserva
@@ -93,8 +95,8 @@ Señales sobre J_UI (16 contactos, arnés 1:1), todas lógica 3,3 V:
 - **Mapa físico observado (2026-09-18):** la PCB original tiene **siete pulsadores**: tres en cada
   extremo de la placa y PB8 (standby, con LED) abajo en el centro. Posiciones en el
   [registro mecánico del frontal](../hardware/front-panel/mechanical.md). El frontal nuevo
-  conserva 8 canales; el octavo queda libre. **TBD: función y etiqueta de cada tecla**
-  en el frontal plástico; se cierran con la UX.
+  usa siete canales y dedica el octavo al LED STBY bajo PB8, como el original.
+  **TBD: función y etiqueta de cada tecla** en el frontal plástico; se cierran con la UX.
 
 ## 7. Árbol de pantallas (propuesta) y mapa a estados del STM32
 

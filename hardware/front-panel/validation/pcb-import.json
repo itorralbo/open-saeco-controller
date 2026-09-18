@@ -1,5 +1,5 @@
 {
-  "status": "unrouted_staging_not_fabricable",
+  "status": "footprints_synchronized_layout_by_layout_front_panel_pcb",
   "kicad_version": "10.0.6",
   "imported": {
     "C1": {
@@ -32,11 +32,14 @@
     "C17": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric"
     },
-    "C18": {
-      "footprint": "Capacitor_SMD:C_0603_1608Metric"
+    "D1": {
+      "footprint": "LED_SMD:LED_0603_1608Metric"
     },
     "J1": {
       "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical"
+    },
+    "J2": {
+      "footprint": "Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal"
     },
     "R1": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
@@ -54,6 +57,9 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric"
     },
     "R6": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    },
+    "R7": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
     },
     "R11": {
@@ -77,9 +83,6 @@
     "R17": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
     },
-    "R18": {
-      "footprint": "Resistor_SMD:R_0603_1608Metric"
-    },
     "R21": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
     },
@@ -101,25 +104,34 @@
     "R27": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
     },
-    "R28": {
-      "footprint": "Resistor_SMD:R_0603_1608Metric"
+    "SW1": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW2": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW3": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW4": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW5": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW6": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
+    },
+    "SW7": {
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04"
     },
     "U1": {
       "footprint": "Package_SO:TSSOP-16_4.4x5mm_P0.65mm"
     }
   },
-  "missing_footprints": [
-    "J2",
-    "SW1",
-    "SW2",
-    "SW3",
-    "SW4",
-    "SW5",
-    "SW6",
-    "SW7",
-    "SW8"
-  ],
-  "new_connector_footprints_staged": [],
+  "missing_footprints": [],
+  "new_footprints_staged": [],
+  "removed_footprints": [],
   "tracks": 0,
   "outline": true,
   "edge_cuts_items": 14,

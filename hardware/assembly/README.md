@@ -68,8 +68,11 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
   70 de 70 posiciones actuales con MPN, código y huella. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22 y las etapas de potencia.
-- [Frontal](../front-panel/bom-draft.csv): 35 de 44 posiciones con MPN y código;
-  el conector de pantalla y ocho pulsadores siguen pendientes de cotas.
+- [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
+  Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
+  Extended; no hay 6 × 6 SMD Basic), JST S8B-PH-K-S(LF)(SN) (C157915, Extended),
+  LED KT-0603R (C2286, Basic) y 470 Ω (C23179, Basic). Paquete JLCPCB candidato en
+  [front-panel/fabrication](../front-panel/fabrication/).
 
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
@@ -105,6 +108,7 @@ identifica Comment, Designator y Footprint. Añadiremos el código de componente
 para evitar coincidencias ambiguas. Las referencias de BOM y CPL deben coincidir;
 ver [guía de preparación](https://jlcpcb.com/help/article/advice-for-bom-and-cpl-files-preparation).
 
-Las BOM actuales son de diseño: no hay CPL sin posiciones reales, ni Gerbers sin
-contorno y routing. Antes de cotizar, refrescar stock y cantidades con merma,
+La BOM de la principal es de diseño: no hay CPL sin posiciones reales, ni Gerbers sin
+contorno y routing. El frontal ya tiene Gerbers, BOM y CPL generados por
+`tools/export_front_panel_fab.py`, pendientes de revisión antes del pedido. Antes de cotizar, refrescar stock y cantidades con merma,
 revisar orientaciones en la vista de montaje y cerrar las piezas todavía pendientes.

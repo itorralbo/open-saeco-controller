@@ -435,6 +435,66 @@
       "stock_evidence": "JLCPCB rendered product page, read-only web observation",
       "url": "https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244",
       "selection": "candidate_not_released"
+    },
+    "R:470": {
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4700T5E",
+      "lcsc": "C23179",
+      "specification": "470R 1% 100mW",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 6991356,
+      "available_order_qty_observed": 6519827,
+      "stock_checked_on": "2026-09-18",
+      "stock_evidence": "JLCPCB rendered product page, read-only browser observation",
+      "url": "https://jlcpcb.com/partdetail/C23179",
+      "selection": "candidate_not_released"
+    },
+    "LED:RED_0603": {
+      "manufacturer": "Hubei KENTO Elec",
+      "mpn": "KT-0603R",
+      "lcsc": "C2286",
+      "specification": "red LED 0603, 615-630 nm, Vf 1.8-2.4 V, water clear",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 3250429,
+      "available_order_qty_observed": 2787848,
+      "stock_checked_on": "2026-09-18",
+      "stock_evidence": "JLCPCB rendered product page, read-only browser observation",
+      "url": "https://jlcpcb.com/partdetail/C2286",
+      "selection": "candidate_not_released"
+    },
+    "SW:TACT_6X6X4.3_SMD": {
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "specification": "tact switch SPST 6x6 mm, 4.3 mm high, 2.5 N, round actuator, SMD 4 pads",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 86749,
+      "available_order_qty_observed": 86418,
+      "stock_checked_on": "2026-09-18",
+      "stock_evidence": "JLCPCB rendered product page, read-only browser observation; land pattern from the EasyEDA footprint shown on the same page",
+      "url": "https://jlcpcb.com/partdetail/C83916",
+      "selection": "candidate_not_released"
+    },
+    "CONN:JST_PH_8_RA": {
+      "manufacturer": "JST",
+      "mpn": "S8B-PH-K-S(LF)(SN)",
+      "lcsc": "C157915",
+      "specification": "PH, 8 circuits, 2.00mm, right-angle THT, 2A",
+      "footprint": "Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 10984,
+      "available_order_qty_observed": 10896,
+      "stock_checked_on": "2026-09-18",
+      "stock_evidence": "JLCPCB rendered product page, read-only browser observation; assembly type Wave Soldering",
+      "url": "https://jlcpcb.com/partdetail/C157915",
+      "selection": "candidate_not_released"
     }
   }
 }

@@ -6,6 +6,7 @@ remain staging only. Existing editable footprints are preserved and unexpected
 changes stop the script. Run with KiCad's bundled Python after validate_kicad.py.
 """
 import json
+import os
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -16,13 +17,28 @@ from validate_kicad import ROOT, verify_netlist
 
 BASE = ROOT/'hardware/front-panel'
 BOARD_PATH = BASE/'kicad/front-panel-reva.kicad_pcb'
-FP_ROOT = Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints')
-NEW_POSITIONS = {'J1': (130, 100)}
+PROJECT_LIBS = {'OpenSaeco': BASE/'kicad/OpenSaeco.pretty'}
+# Off-board staging for footprints added by the schematic; the layout script places them.
+NEW_POSITIONS = {'J1': (130, 100), 'J2': (150, 100), 'R7': (50, 112), 'D1': (60, 112),
+                 **{f'SW{i}': (18+12*i, 126) for i in range(1, 8)}}
+# Channel 8 became the standby LED on 2026-09-18; only these may be deleted.
+REMOVED = {'R18', 'R28', 'C18'}
 MECHANICS = json.loads((BASE/'mechanical-source.json').read_text(encoding='utf-8'))
 EDGE_ITEMS = len(MECHANICS['outline_mm']['vertices'])+len(MECHANICS['holes'])
 
 
+def footprint_root():
+    candidates = [os.environ.get('KICAD10_FOOTPRINT_DIR'),
+                  '/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints',
+                  'C:/Program Files/KiCad/10.0/share/kicad/footprints']
+    for candidate in candidates:
+        if candidate and Path(candidate).is_dir():
+            return Path(candidate)
+    raise SystemExit('KiCad footprint library not found; set KICAD10_FOOTPRINT_DIR.')
+
+
 def main():
+    fp_root = footprint_root()
     xml = ET.parse(BASE/'validation/netlist.xml').getroot()
     verify_netlist(BASE, xml)
     schematic = parse((BASE/'kicad/front-panel-reva.kicad_sch').read_text())
@@ -45,6 +61,9 @@ def main():
     desired = {c.attrib['ref']: c for c in xml.findall('components/comp')
                if c.findtext('footprint')}
     existing = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    removed = sorted((set(existing)-set(desired)) & REMOVED)
+    for ref in removed:
+        board.Delete(existing.pop(ref))
     assert set(existing) <= set(desired), 'Unexpected footprint; preserve manual work'
     new_refs = set(desired)-set(existing)
     assert new_refs <= set(NEW_POSITIONS), f'No reviewed position for {sorted(new_refs)}'
@@ -58,7 +77,7 @@ def main():
             fp = existing[ref]
             assert fp.GetFPIDAsString() == footprint, f'Footprint changed for {ref}'
         else:
-            fp = pcb.FootprintLoad(str(FP_ROOT/(lib+'.pretty')), name)
+            fp = pcb.FootprintLoad(str(PROJECT_LIBS.get(lib, fp_root/(lib+'.pretty'))), name)
             if not fp:
                 raise RuntimeError(f'Footprint not found: {footprint}')
             x, y = NEW_POSITIONS[ref]
@@ -96,25 +115,28 @@ def main():
                 assert pad.GetNetname() == node_nets[(ref, pad.GetNumber())].GetNetname()
 
     (BASE/'kicad/fp-lib-table').write_text('(fp_lib_table (version 7)\n'+''.join(
+        f' (lib (name "{lib}") (type "KiCad") (uri "${{KIPRJMOD}}/{lib}.pretty") (options "") (descr "Project footprints"))\n'
+        if lib in PROJECT_LIBS else
         f' (lib (name "{lib}") (type "KiCad") (uri "${{KICAD10_FOOTPRINT_DIR}}/{lib}.pretty") (options "") (descr "KiCad standard library"))\n'
         for lib in sorted(libs))+')\n')
     missing = sorted(c.attrib['ref'] for c in xml.findall('components/comp')
                      if not c.findtext('footprint'))
     (BASE/'validation/pcb-import.json').write_text(json.dumps({
-        'status': 'unrouted_staging_not_fabricable',
+        'status': 'footprints_synchronized_layout_by_layout_front_panel_pcb',
         'kicad_version': pcb.GetBuildVersion(),
         'imported': {ref: {'footprint': c.findtext('footprint')}
                      for ref, c in desired.items()},
         'missing_footprints': missing,
-        'new_connector_footprints_staged': sorted(new_refs),
+        'new_footprints_staged': sorted(new_refs),
+        'removed_footprints': removed,
         'tracks': len(list(check.GetTracks())),
         'outline': True,
         'edge_cuts_items': EDGE_ITEMS,
         'outline_source': 'hardware/front-panel/mechanical-source.json',
         'pad_nets_verified_after_reload': True,
     }, indent=2)+'\n')
-    print(f'Front PCB synchronized: {len(desired)} footprints; '
-          f'{len(missing)} mechanical footprints pending.')
+    print(f'Front PCB synchronized: {len(desired)} footprints; {len(new_refs)} added, '
+          f'{len(removed)} removed, {len(missing)} without footprint.')
 
 
 if __name__ == '__main__':

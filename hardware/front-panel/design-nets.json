@@ -56,7 +56,7 @@
         "9": "KEY_5_N",
         "10": "KEY_6_N",
         "11": "KEY_7_N",
-        "12": "KEY_8_N"
+        "12": "LED_STBY_N"
       }
     },
     {
@@ -91,14 +91,14 @@
     },
     {
       "reference": "J2",
-      "value": "LCD_ADAPTER / 8 pins",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "LCD_ADAPTER / JST PH 8",
+      "footprint": "Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal",
+      "status": "candidate",
+      "manufacturer": "JST",
+      "mpn": "S8B-PH-K-S(LF)(SN)",
+      "lcsc": "C157915",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "3V3_UI",
         "2": "GND_UI",
@@ -247,14 +247,14 @@
     },
     {
       "reference": "SW1",
-      "value": "KEY 1 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 1 / PB1",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_1_RAW",
         "2": "GND_UI"
@@ -307,14 +307,14 @@
     },
     {
       "reference": "SW2",
-      "value": "KEY 2 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 2 / PB2",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_2_RAW",
         "2": "GND_UI"
@@ -367,14 +367,14 @@
     },
     {
       "reference": "SW3",
-      "value": "KEY 3 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 3 / PB3",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_3_RAW",
         "2": "GND_UI"
@@ -427,14 +427,14 @@
     },
     {
       "reference": "SW4",
-      "value": "KEY 4 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 4 / PB8",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_4_RAW",
         "2": "GND_UI"
@@ -487,14 +487,14 @@
     },
     {
       "reference": "SW5",
-      "value": "KEY 5 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 5 / PB4/PB6",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_5_RAW",
         "2": "GND_UI"
@@ -547,14 +547,14 @@
     },
     {
       "reference": "SW6",
-      "value": "KEY 6 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 6 / PB5",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_6_RAW",
         "2": "GND_UI"
@@ -607,14 +607,14 @@
     },
     {
       "reference": "SW7",
-      "value": "KEY 7 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "KEY 7 / PB7",
+      "footprint": "OpenSaeco:SW_HRO_K2-1102SP-A4SC-04",
+      "status": "candidate",
+      "manufacturer": "Korean Hroparts Elec",
+      "mpn": "K2-1102SP-A4SC-04",
+      "lcsc": "C83916",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "SW_7_RAW",
         "2": "GND_UI"
@@ -636,63 +636,33 @@
       }
     },
     {
-      "reference": "R18",
-      "value": "10k / pull-up",
+      "reference": "R7",
+      "value": "470 / LED",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF1002T5E",
-      "lcsc": "C25804",
+      "mpn": "0603WAF4700T5E",
+      "lcsc": "C23179",
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "3V3_UI",
-        "2": "KEY_8_N"
+        "2": "LED_STBY_A"
       }
     },
     {
-      "reference": "R28",
-      "value": "1k / serie",
-      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "reference": "D1",
+      "value": "KT-0603R / STBY",
+      "footprint": "LED_SMD:LED_0603_1608Metric",
       "status": "candidate",
-      "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF1001T5E",
-      "lcsc": "C21190",
+      "manufacturer": "Hubei KENTO Elec",
+      "mpn": "KT-0603R",
+      "lcsc": "C2286",
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "KEY_8_N",
-        "2": "SW_8_RAW"
-      }
-    },
-    {
-      "reference": "SW8",
-      "value": "KEY 8 / NO",
-      "footprint": "",
-      "status": "mechanical_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
-      "pins": {
-        "1": "SW_8_RAW",
-        "2": "GND_UI"
-      }
-    },
-    {
-      "reference": "C18",
-      "value": "100nF / filtro",
-      "footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "status": "candidate",
-      "manufacturer": "YAGEO",
-      "mpn": "CC0603KRX7R9BB104",
-      "lcsc": "C14663",
-      "jlc_class": "Basic",
-      "pcba_type": "Economic and Standard",
-      "pins": {
-        "1": "KEY_8_N",
-        "2": "GND_UI"
+        "1": "LED_STBY_N",
+        "2": "LED_STBY_A"
       }
     }
   ]

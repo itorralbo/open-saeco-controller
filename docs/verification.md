@@ -15,7 +15,7 @@ La CI se incluye pero no se ha ejecutado en GitHub.
 
 macOS / AppleClang 21.0.0:
 - `python3 tools/check_scaffold.py`: PASS.
-- `python3 tools/check_front_panel.py`: PASS; 44 componentes, pinout del TCA9534,
+- `python3 tools/check_front_panel.py`: PASS; 44 componentes (hoy 42: siete teclas y LED), pinout del TCA9534,
   conectores, filtros, polarización y correspondencia con BOM/netlist prevista.
 - CMake/build/CTest: PASS, `controller_lockout` 1/1.
 - `git diff --check`: PASS.

@@ -17,8 +17,10 @@ BOARDS = [('controller', 'controller-core-reva'), ('front-panel', 'front-panel-r
 
 def cli_path():
     candidate = os.environ.get('KICAD_CLI') or shutil.which('kicad-cli')
-    if not candidate:
-        candidate = '/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli'
+    for default in ('/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli',
+                    'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe'):
+        if not candidate and Path(default).is_file():
+            candidate = default
     if not Path(candidate).is_file():
         raise SystemExit('KiCad CLI not found; set KICAD_CLI.')
     return candidate
@@ -85,9 +87,9 @@ def main():
                      'XH/PH cotejadas con fotos; las dos vías de motor de JP16 permanecen '
                      'NC hasta incorporar el puente H. La salida de JP22 requiere ensayo.'
                      if directory == 'controller' else
-                     'J1 ya tiene huella IDC. Contorno y taladros Ø8,4 aplicados desde '
-                     'mechanical-source.json; J2 y SW1–SW8 siguen sin huella, con las '
-                     'posiciones de pulsador como referencia en Dwgs.User.')
+                     'Todas las posiciones tienen huella: SW1–SW7 HRO K2-1102SP-A4SC-04 '
+                     '(OpenSaeco.pretty), J2 JST PH 8 y LED STBY en P7. Contorno y '
+                     'taladros Ø8,4 desde mechanical-source.json.')
         (out/'README.md').write_text(
             f'# Validación nativa — {name}\n\n'
             f'KiCad {version}. ERC: 0 errores y 0 avisos, sin exclusiones.\n'
