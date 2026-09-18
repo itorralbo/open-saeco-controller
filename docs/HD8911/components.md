@@ -48,12 +48,15 @@ aporta:
 El valor nominal equivale a **0,519 ml/pulso**. Los 200 pulsos de reserva descritos
 por Saeco representan unos **104 ml**. Digmesa exige calibrar pulsos/litro en el
 conjunto real, por lo que 1925 es una constante inicial, no la calibración final.
-El propio manual redondea la relación a unos 2000 pulsos/litro. El cable Saeco
-`996530073488` confirma tres conductores, pero no su orden eléctrico.
+El propio manual redondea la relación a unos 2000 pulsos/litro. El propietario
+identificó la unidad física como `932-9521-B` y siguió el pad cuadrado para fijar
+el orden eléctrico en vista cenital de la tarjeta: **pin 1 izquierdo = señal,
+pin 2 = GND y pin 3 = VCC**.
 
-Interfaz candidata: alimentar a 5 V, pull-up de señal a 3,3 V, filtro/ESD junto
-al conector y entrada de temporizador del STM32. Falta identificar el orden físico
-VCC/GND/señal del arnés.
+La Rev A alimenta VCC desde `12V_PROTECTED`, dentro del intervalo admitido, y
+eleva la salida de colector abierto a 3,3 V con 4,7 kΩ. Una resistencia serie de
+1 kΩ y 10 nF protegen/filtran la entrada PA1/TIM2_CH2. Así el sensor trabaja a
+12 V pero nunca aplica 12 V al GPIO.
 
 ## NTC JP13
 
@@ -131,15 +134,16 @@ terminales de cada contacto; queda por medir si son COM–NO o COM–NC.
   activa a cero de la Rev A representa por tanto `DOOR_CLOSED_N`.
 - El nivel de agua es el conjunto capacitivo V3 `421941306721`, con soporte
   `996530073436` y cable de tres polos `421946035161`. Está situado aproximadamente
-  a un tercio de la altura del depósito. Su tensión, pinout y tipo de salida siguen
-  sin documentarse; conviene conservar el módulo original y caracterizar sus tres
-  hilos antes de diseñar un sustituto.
+  a un tercio de la altura del depósito. El cable observado usa rojo=VCC,
+  blanco=señal y negro=GND; el propietario confirma alimentación válida a 3,3 o
+  5 V. La Rev A elige 3,3 V y lleva la señal a PA2 mediante 1 kΩ/10 nF. Sigue
+  pendiente medir si la salida es analógica, push-pull o colector abierto y sus
+  niveles con depósito lleno/vacío.
 
 ## Datos que aún requieren la unidad física
 
-1. Orden VCC/GND/señal de JP5 y JP22.
-2. Tensión y forma de salida del módulo capacitivo `421941306721`.
-3. COM–NO/COM–NC de los dos contactos de JP16.
-4. Corrientes de arranque y bloqueo del motor de grupo y del molino.
-5. Corriente en caliente de la electroválvula.
-6. Referencia completa marcada en los microinterruptores y verificación de acoplamiento de las carcasas candidatas.
+1. Forma y niveles de salida del módulo capacitivo `421941306721` con depósito lleno/vacío.
+2. COM–NO/COM–NC de los dos contactos de JP16.
+3. Corrientes de arranque y bloqueo del motor de grupo y del molino.
+4. Corriente en caliente de la electroválvula.
+5. Referencia completa marcada en los microinterruptores y verificación de acoplamiento de las carcasas candidatas.

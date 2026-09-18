@@ -2,7 +2,7 @@
 
 Estado: contrato de diseño nuevo; no es el pinout de JP21 Saeco.
 Compatible con el [esquema preliminar del frontal](../front-panel/README.md).
-Display seleccionado (ST7789 2,0") y presupuestos en el [subsistema display + UI](../display-ui.md).
+Display seleccionado (ST7789 2,0") y presupuestos en el [subsistema display + UI](../../docs/display-ui.md).
 
 ## Distribución de funciones
 
@@ -80,7 +80,7 @@ antena y enlace STM32. La tabla reserva recursos, no completa esos circuitos.
   `tr ≈ 0,8473 × R × C` da aproximadamente 1 µs a 250 pF. Medir capacitancia y
   flancos del arnés completo; no se declara una longitud máxima admisible.
 - SPI: **reloj de partida 10 MHz** (decisión; ver
-  [subsistema display + UI](../display-ui.md)) con resistencias serie candidatas de
+  [subsistema display + UI](../../docs/display-ui.md)) con resistencias serie candidatas de
   22–47 Ω cerca del ESP32, especialmente en reloj. Revisable al alza solo por medida
   de flancos con el arnés real; la frecuencia no garantiza por sí sola integridad de señal.
 - Un frame 240 × 320 RGB565 (1,2288 Mbit) tarda ≈ 123 ms a 10 MHz (≈ 1,23 s a 1 MHz),

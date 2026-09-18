@@ -69,5 +69,7 @@ y PH para JP22. Las dimensiones se cotejaron con los catálogos oficiales
 [JST XH](https://www.jst-mfg.com/product/index.php?lang=2&series=277) y
 [JST PH](https://www.jst-mfg.com/product/index.php?lang=2&series=199).
 La marca del fabricante no se ve en las carcasas; la selección sigue siendo
-candidata hasta probar físicamente una muestra. Los pines de JP5 y JP22 permanecen
-NC aunque ya exista huella: la foto no revela VCC, masa ni señal.
+candidata hasta probar físicamente una muestra. Tras la identificación del
+Digmesa y el seguimiento visual aportado por el propietario, JP5 queda como
+1=señal, 2=GND, 3=VCC. En JP22 los conductores son rojo=VCC, blanco=señal y
+negro=GND; la huella se orientará para que correspondan a pines 1, 2 y 3.

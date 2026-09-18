@@ -18,8 +18,9 @@
   [components.md](components.md).
 
 El manual y las referencias confirman conectores, destinos y buena parte de las
-tensiones y potencias. Siguen pendientes la numeración eléctrica de JP5/JP22, el
-sensor capacitivo, los contactos de JP16 y corrientes dinámicas de motores. Ya hay
+tensiones y potencias. JP5 y los colores funcionales de JP22 ya están identificados;
+siguen pendientes la forma de salida del sensor capacitivo, los contactos de JP16
+y corrientes dinámicas de motores. Ya hay
 resistencias de tres cargas y continuidad funcional de JP14. No se han importado esquemas internos, firmware
 ni conclusiones eléctricas no mostradas por el fabricante. Los archivos fuente no
 se incluyen en este paquete y conservan sus derechos originales.

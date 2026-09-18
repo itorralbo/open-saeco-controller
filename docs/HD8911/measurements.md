@@ -13,6 +13,8 @@ o incertidumbre, se conserva expresamente como dato pendiente.
 | LOAD-BU-R | 2026-09-18 / propietario | motor del grupo | rojo–azul de JP16 | multímetro/modelo TBD | desconectado; temperatura/posición de rotor TBD | 54,7 Ω | comunicación del propietario | Medida inicial |
 | JP14-CONT | 2026-09-18 / propietario | puerta/cajón | dos blancos | continuidad/modelo TBD | puerta o cajón retirados | circuito abierto | comunicación del propietario | Estado funcional confirmado |
 | JP14-CONT | 2026-09-18 / propietario | puerta/cajón | dos blancos | continuidad/modelo TBD | cajón y puerta colocados | circuito cerrado | comunicación del propietario | Estado funcional confirmado |
+| JP5-PINOUT | 2026-09-18 / propietario | caudalímetro | vista cenital, pad cuadrado a la izquierda | seguimiento visual | unidad identificada 932-9521-B | 1 señal; 2 GND; 3 VCC | comunicación del propietario + hoja Digmesa | Pinout adoptado Rev A |
+| JP22-PINOUT | 2026-09-18 / propietario | sensor de agua | arnés de tres hilos | seguimiento por color | módulo desconectado | rojo VCC; blanco señal; negro GND; VCC 3,3/5 V | comunicación del propietario + foto JP22 | Pinout adoptado Rev A; salida TBD |
 
 Clasificar cada entrada como documento, observación, hipótesis o medida. Conservar
 datos contradictorios y bloquear decisiones dependientes hasta resolverlos.
@@ -65,10 +67,10 @@ con una fuente aislada y limitada; no se obtiene bloqueando motores desde la má
 
 ### 4. Orden de conductores
 
-Para JP5 y JP22, registrar los tres colores/identificadores desde izquierda a
-derecha mirando las cavidades con la pestaña arriba, y repetir el orden mirando
-el cabezal de la PCB. No asignar todavía VCC/GND/señal solo por el color. Para
-JP16, comprobar si la secuencia visual del manual coincide físicamente con
+JP5 ya queda identificado como 1 señal, 2 GND y 3 VCC. JP22 queda identificado
+por color como rojo VCC, blanco señal y negro GND. Antes de fabricar todavía
+conviene confirmar que la orientación de las huellas candidatas conserva ese
+orden al enchufar los arneses. Para JP16, comprobar si la secuencia visual del manual coincide físicamente con
 rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 
 ## Plantilla para devolver resultados

@@ -78,12 +78,12 @@ def main():
                                 encoding='utf-8')
         scope = ('La principal incluye el núcleo lógico, entrada protegida de 12 V aislados, '
                  'buck de 3,3 V, corte del frontal y acondicionamiento de NTC, caudalímetro '
-                 'y tres contactos. No valida la fuente AC/DC ni las cargas.'
+                 'nivel de agua y tres contactos. No valida la fuente AC/DC ni las cargas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
         remaining = ('Los GPIO sin asignar llevan NC. J105–J109 usan huellas candidatas '
-                     'XH/PH cotejadas con fotos; JP5, JP22 y las dos vías de motor de JP16 '
-                     'permanecen NC de forma explícita hasta cerrar sus interfaces.'
+                     'XH/PH cotejadas con fotos; las dos vías de motor de JP16 permanecen '
+                     'NC hasta incorporar el puente H. La salida de JP22 requiere ensayo.'
                      if directory == 'controller' else
                      'J1 ya tiene huella IDC; J2 y SW1–SW8 siguen pendientes de mecánica.')
         (out/'README.md').write_text(

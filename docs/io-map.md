@@ -11,10 +11,10 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 | Electroválvula de vapor | JP3 | 37, 59 | 24 V DC, bobina 56,7 Ω medida: ≈0,423 A/10,16 W derivados; driver TBD |
 | Molino | JP8 | 37, 59 | Motor V3.2, 68 Ω medidos; servicio a 320 V DC; corriente dinámica y driver HV TBD |
 | Temperatura | JP13 | 37, 59 | NTC `996530073428`; tabla disponible, R25≈49,9 kΩ/B≈4037 K derivados |
-| Caudalímetro | JP5 | 37, 59 | Digmesa 932-9521-B, 3,8–20 V, NPN OC, ≈1925 pulsos/l; orden de pines TBD |
+| Caudalímetro | JP5 | 37, 59 | Digmesa 932-9521-B, 3,8–20 V, NPN OC, ≈1925 pulsos/l; vista cenital: 1 señal, 2 GND, 3 VCC |
 | Presencia/posición grupo | JP16 | 35–36, 59 | 8 posiciones: motor, puente y dos micros; orden físico y lógica exacta TBD |
 | Puerta/cajón | JP14 | 35, 59 | Abierto si falta puerta o cajón; cerrado únicamente con ambos colocados |
-| Nivel depósito | JP22 | 34, 59 | Módulo capacitivo V3 `421941306721`, 3 posiciones; niveles y orden de pines TBD |
+| Nivel depósito | JP22 | 34, 59 | Módulo capacitivo V3 `421941306721`; rojo VCC, blanco señal, negro GND; 3,3/5 V, salida TBD |
 | Panel frontal original | JP21 | 34, 59 | Multipolar; pines/niveles TBD; sustituido por frontal nuevo con arnés propio |
 | Calentador | JP19 | 59 | XS4 220–230 V AC, 1900 W; 4 posiciones/2 cableadas; driver y protecciones TBD |
 | Motor grupo | JP16 | 59 | 24 V DC reversible, 54,7 Ω medidos; medida de corriente de compresión para autodosis; driver TBD |

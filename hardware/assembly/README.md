@@ -39,7 +39,7 @@ no sustituye a `C2913201`.
 El DRV8876 figura en LCSC con stock, pero aún no se ha verificado su categoría ni
 su disponibilidad dentro del selector de montaje de JLCPCB. Su inclusión en el
 catálogo permite conservar MPN, código y huella mientras se completa el bloque;
-no forma parte de la BOM actual de 68 posiciones.
+no forma parte de la BOM actual de 70 posiciones.
 
 La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado. El
 frontal podría cotizarse aparte en Economic, sujeto a los conectores/pulsadores
@@ -65,16 +65,16 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal, lógica, alimentación y entradas pasivas](../controller/bom-draft.csv):
-  68 de 68 posiciones actuales con MPN, código y huella. Las cabeceras de máquina
-  son candidatas mecánicas; faltan pinouts JP5/JP22 y las etapas de potencia.
+- [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
+  70 de 70 posiciones actuales con MPN, código y huella. Las cabeceras de máquina
+  son candidatas mecánicas; faltan caracterizar la salida de JP22 y las etapas de potencia.
 - [Frontal](../front-panel/bom-draft.csv): 35 de 44 posiciones con MPN y código;
   el conector de pantalla y ocho pulsadores siguen pendientes de cotas.
 
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
-protección de entrada DC, el buck, el corte del frontal y entradas pasivas. **No incluye** la fuente
-AC/DC aislada, drivers de cargas, interfaz activa de nivel ni USB: el porcentaje anterior
+protección de entrada DC, el buck, el corte del frontal y sensores de baja tensión. **No incluye** la fuente
+AC/DC aislada, drivers de cargas ni USB: el porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

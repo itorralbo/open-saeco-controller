@@ -27,7 +27,7 @@
         "13": "3V3_CORE",
         "14": "NTC_ADC",
         "15": "FLOW_TIM",
-        "16": null,
+        "16": "WATER_LEVEL",
         "17": null,
         "18": "GND_UI",
         "19": "3V3_CORE",
@@ -916,16 +916,16 @@
       "reference": "J106",
       "value": "JP5 FLOW ADAPTER / VCC-GND-OC",
       "footprint": "Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal",
-      "status": "photo_candidate_pinout_TBD",
+      "status": "photo_candidate_owner_pinout",
       "manufacturer": "JST",
       "mpn": "S3B-XH-A(LF)(SN)",
       "lcsc": "C157928",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": null,
-        "2": null,
-        "3": null
+        "1": "FLOW_RAW",
+        "2": "GND_UI",
+        "3": "12V_PROTECTED"
       }
     },
     {
@@ -1146,18 +1146,48 @@
     },
     {
       "reference": "J109",
-      "value": "JP22 WATER / CARACTERIZAR",
+      "value": "JP22 WATER / RED-WHITE-BLACK",
       "footprint": "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal",
-      "status": "photo_candidate_pinout_TBD",
+      "status": "photo_candidate_owner_pinout",
       "manufacturer": "JST",
       "mpn": "S3B-PH-K(LF)(SN)",
       "lcsc": "C545716",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": null,
-        "2": null,
-        "3": null
+        "1": "3V3_CORE",
+        "2": "WATER_RAW",
+        "3": "GND_UI"
+      }
+    },
+    {
+      "reference": "R411",
+      "value": "1k / WATER serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_RAW",
+        "2": "WATER_LEVEL"
+      }
+    },
+    {
+      "reference": "C406",
+      "value": "10nF / WATER filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "FH",
+      "mpn": "0603B103K500NT",
+      "lcsc": "C57112",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_LEVEL",
+        "2": "GND_UI"
       }
     }
   ]

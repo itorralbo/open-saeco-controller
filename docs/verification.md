@@ -185,3 +185,17 @@ de cargas siguen pendientes en el esquema principal.
   LCSC y huella. JP5 y JP22 permanecen NC por pinout eléctrico desconocido.
 - ERC: 0 infracciones, 68 componentes/275 pines. DRC: 0 infracciones geométricas,
   156 conexiones sin rutear y 3 diferencias de paridad correspondientes a MH1–MH3.
+
+## Pinout de caudal y nivel de agua, 2026-09-18
+
+- El propietario confirmó el Digmesa `932-9521-B` y el seguimiento físico de JP5:
+  vista cenital, pad cuadrado/pin 1 izquierdo=señal, pin 2=GND y pin 3=VCC.
+- La hoja oficial de Digmesa confirma 3,8–20 V, menos de 8 mA y salida NPN de
+  colector abierto. JP5 queda alimentado a 12 V y su señal se eleva a 3,3 V antes
+  de PA1/TIM2_CH2.
+- JP22 usa rojo=VCC, blanco=señal y negro=GND. Se selecciona alimentación a 3,3 V
+  y entrada PA2/ADC1_IN3 mediante 1 kΩ/10 nF; la forma de salida y los niveles
+  lleno/vacío todavía requieren medida.
+- La principal pasa a 70 componentes/279 pines y 70 huellas eléctricas. Comprobador
+  propio y ERC nativo: PASS, 0 infracciones. DRC: 0 infracciones geométricas,
+  165 conexiones sin rutear y 3 diferencias de paridad correspondientes a MH1–MH3.

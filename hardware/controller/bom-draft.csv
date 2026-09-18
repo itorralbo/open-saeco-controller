@@ -51,7 +51,7 @@ J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,ph
 R401,4.7k / NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R402,1k / NTC serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C401,100nF / NTC filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal,photo_candidate_pinout_TBD,JST,S3B-XH-A(LF)(SN),C157928,Extended,Economic and Standard
+J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal,photo_candidate_owner_pinout,JST,S3B-XH-A(LF)(SN),C157928,Extended,Economic and Standard
 R403,4.7k / FLOW pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R404,1k / FLOW serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C402,10nF / FLOW filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
@@ -66,4 +66,6 @@ C404,100nF / PRES filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603K
 R409,10k / WORK pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R410,1k / WORK serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C405,100nF / WORK filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J109,JP22 WATER / CARACTERIZAR,Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal,photo_candidate_pinout_TBD,JST,S3B-PH-K(LF)(SN),C545716,Extended,Economic and Standard
+J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal,photo_candidate_owner_pinout,JST,S3B-PH-K(LF)(SN),C545716,Extended,Economic and Standard
+R411,1k / WATER serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard

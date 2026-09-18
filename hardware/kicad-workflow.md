@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 68 | 68 | — |
+| Principal | 70 | 70 | — |
 | Frontal | 44 | 35 | J2, SW1–SW8 |
 
 Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
@@ -47,7 +47,7 @@ frontal, J1 sigue declarando su alimentación externa.
 Los GPIO aún sin asignar permanecen NC. Los tipos de pin de GPIO genéricos no
 comprueban las futuras funciones alternativas o la configuración de firmware.
 
-La netlist XML de KiCad coincide con los 275 pines de la principal y los 122 del
+La netlist XML de KiCad coincide con los 279 pines de la principal y los 122 del
 frontal. Se revisaron las exportaciones SVG nativas y se corrigió la orientación
 del texto de las etiquetas del lado izquierdo.
 
@@ -56,7 +56,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 1: contorno todavía ausente |
-| Conexiones pendientes de rutear | 156 | 70 |
+| Conexiones pendientes de rutear | 165 | 70 |
 | Huellas ausentes respecto al esquema | 0 | 9 |
 | Contorno ausente | 0 | 1 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
@@ -106,7 +106,7 @@ Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y dete
 la instalación habitual de macOS. La creación inicial de PCB requiere el Python
 incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
 
-Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, caracterizar JP22,
+Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, medir los niveles lleno/vacío de JP22,
 seleccionar el módulo AC/DC aislado, cerrar el
 presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
 trabajo mecánico: copiar contorno y centros de pulsadores del frontal.
