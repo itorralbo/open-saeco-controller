@@ -2,6 +2,7 @@
 
 Estado: contrato de diseño nuevo; no es el pinout de JP21 Saeco.
 Compatible con el [esquema preliminar del frontal](../front-panel/README.md).
+Display seleccionado (ST7789 2,0") y presupuestos en el [subsistema display + UI](../display-ui.md).
 
 ## Distribución de funciones
 
@@ -78,12 +79,14 @@ antena y enlace STM32. La tabla reserva recursos, no completa esos circuitos.
 - I²C: arrancar en banco a 100 kHz. Con 4,7 kΩ, el modelo RC
   `tr ≈ 0,8473 × R × C` da aproximadamente 1 µs a 250 pF. Medir capacitancia y
   flancos del arnés completo; no se declara una longitud máxima admisible.
-- SPI: comenzar a 1 MHz y reservar resistencias serie candidatas de 22–47 Ω
-  cerca del ESP32, especialmente en reloj. Selección por medida de flancos;
-  la frecuencia no garantiza por sí sola integridad de señal.
-- Un frame 240 × 320 RGB565 necesita al menos 1,23 s a 1 MHz, sin contar comandos.
-  Es una velocidad de puesta en marcha, no un objetivo de interfaz fluida.
-  Evaluar actualización parcial y velocidad final con el arnés real.
+- SPI: **reloj de partida 10 MHz** (decisión; ver
+  [subsistema display + UI](../display-ui.md)) con resistencias serie candidatas de
+  22–47 Ω cerca del ESP32, especialmente en reloj. Revisable al alza solo por medida
+  de flancos con el arnés real; la frecuencia no garantiza por sí sola integridad de señal.
+- Un frame 240 × 320 RGB565 (1,2288 Mbit) tarda ≈ 123 ms a 10 MHz (≈ 1,23 s a 1 MHz),
+  sin contar comandos. LVGL repinta solo el área sucia, así que el full-frame es el
+  peor caso, no un objetivo de interfaz fluida. Evaluar actualización parcial y
+  velocidad final con el arnés real.
 - Separar el arnés de UI de cableados de potencia en el diseño mecánico.
   Si el recorrido no permite SPI/I²C fiables, revisar la ubicación del ESP32
   o introducir un controlador local; no congelar conectores antes de medirlo.

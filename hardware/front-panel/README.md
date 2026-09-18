@@ -63,6 +63,8 @@ automatizado THT en JLCPCB. Su posición definitiva depende del contorno del fro
 
 ## Pantalla reemplazable
 
+> Decisión registrada (2026-09-18): se adopta un **TFT ST7789 2,0"** (240×320, SPI 4 hilos, 3,3 V) sobre frontal nuevo; se descarta reutilizar la PCB OEM. Ver [ADR-0001](../../docs/adr/0001-front-panel-display-st7789.md) y el [subsistema display + UI](../../docs/display-ui.md) (stack LVGL 9 + esp_lcd, SPI 10 MHz, presupuestos y árbol de pantallas). La tabla siguiente se conserva como registro de evaluación de hueco.
+
 La compatibilidad se define por ventana visible, contorno total, altura,
 orientación, lógica de 3,3 V, consumo y protocolo. La diagonal sola no basta.
 La PCB de botones y el adaptador del display serán diseños independientes,

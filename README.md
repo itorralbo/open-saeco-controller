@@ -17,6 +17,8 @@ STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
 - [Reverse engineering HD8911](docs/HD8911/README.md)
 - [Mapa I/O preliminar](docs/io-map.md)
 - [Diseño preliminar del frontal y pantalla](hardware/front-panel/README.md)
+- [Subsistema display y UI (ST7789 + LVGL)](docs/display-ui.md)
+- [Decisión de frontal/display (ADR-0001)](docs/adr/0001-front-panel-display-st7789.md)
 - [Núcleo inicial de la principal](hardware/controller/core-design.md)
 - [Abrir y editar los proyectos KiCad](hardware/kicad-workflow.md)
 - [Componentes y fabricación JLCPCB](hardware/assembly/README.md)
