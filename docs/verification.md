@@ -118,3 +118,35 @@ de cargas siguen pendientes en el esquema principal.
   marca el contorno ausente y las nueve huellas mecánicas aún pendientes.
 - El mínimo de taladro se fija en 0,20 mm para las vías térmicas del ESP32, valor
   preferido publicado por JLCPCB. No equivale a liberar el stack-up ni la fabricación.
+
+## Diagrama de interconexión del manual, 2026-09-18
+
+- La página PDF 59, capítulo 10, hoja 1/1, se renderizó y cotejó visualmente con
+  la transcripción aportada por el propietario. Es un diagrama de interconexión,
+  no un esquema de la electrónica interna de la placa.
+- Se corrigió el nivel de agua de JP23/2 a **JP22/3**.
+- Se confirmaron JP17 (entrada de red), JP1/JP9 (PE), JP19 (calentador), JP24
+  (bomba), JP3 (válvula), JP8 (molino), JP13 (temperatura), JP5 (caudalímetro),
+  JP16 (motor del grupo y dos micros), JP14 (puerta/cajón) y JP21 (interfaz original).
+- JP16 tiene ocho posiciones: dos para motor, dos unidas por puente y dos pares
+  para los micros de presencia y posición de trabajo. JP2 aparece expresamente
+  sin conectar.
+- La comprobación no determina niveles, corrientes, curvas, estados de contactos,
+  numeración física ni familias comerciales. Esos datos siguen bloqueando la
+  selección final de drivers y huellas del arnés de máquina.
+
+## Identificación de cargas y sensores, 2026-09-18
+
+- Las referencias aportadas se cotejaron con el manual y el despiece HD8911.
+  Quedan confirmados: calentador 220–230 V/1900 W, bomba 220–230 V/48 W,
+  electroválvula 24 V DC, motor de grupo 24 V DC y molino accionado a 320 V DC
+  según el modo de servicio.
+- `996530059843` se identificó con el Digmesa FHKSC `932-9521-B`: alimentación
+  3,8–20 V, salida NPN de colector abierto y aproximadamente 1925 pulsos/litro.
+- La tabla NTC se ajustó únicamente como ayuda de diseño: R25≈49,9 kΩ y B≈4037 K.
+  El firmware deberá usar tabla/interpolación y tolerancias del manual.
+- Se aclaró que el ajuste de dosis usa la corriente de compresión del motor del
+  grupo: I0=100–300 mA y objetivos I0+55/100/200 mA. La corriente del molino se
+  mide por separado para detectar falta de grano y bloqueo.
+- El módulo capacitivo `421941306721`, el orden de los conectores, los estados de
+  micros y las corrientes de bloqueo siguen necesitando caracterización física.

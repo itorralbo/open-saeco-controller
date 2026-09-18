@@ -11,7 +11,12 @@
   [Primer esquema](../hardware/front-panel/README.md); geometría y display exacto pendientes.
 - UART entre procesadores está dibujada a 3,3 V en el mismo dominio lógico;
   velocidad, framing, temporización y ensayos siguen pendientes.
-- Fuente y dominios se definirán tras caracterización. Un motor DC no implica SELV.
+- La Rev A recibe 12 V DC aislados en J101. El manual muestra que la placa original
+  recibía red en JP17 y distribuía cargas, pero eso no autoriza a unir esos dominios:
+  la fuente AC/DC, potencia y aislamiento se definirán tras caracterización.
+- Las referencias confirman dos cargas a 24 V DC (grupo y válvula), dos a 230 V AC
+  (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El borrador
+  de 12 V debe revisarse y la potencia de red debe tratarse como un bloque separado.
 
 ```mermaid
 flowchart LR

@@ -2,17 +2,27 @@
 
 ## Evidencias iniciales
 - E001: identificación aportada por propietario: HD8911, 421941308981/01, 220–230 V.
-- E002: `docs/Service_manual_-_HD8911_01_-_2016-05-16.pdf`, referencia local de terceros.
-  Páginas PDF 34–37 del capítulo 05 consultadas y cotejadas visualmente.
+- E002: `docs/HD8911/Service_manual_-_HD8911_01_-_2016-05-16.pdf`, referencia
+  local de terceros no incluida en Git. Páginas PDF 34–37 del capítulo 05 y página
+  PDF 59, capítulo 10, consultadas y cotejadas visualmente.
   Cubre variantes: cotejar con la unidad concreta.
-- E003: `docs/Exploded view Saeco Incanto.pdf`, localizado; análisis pendiente.
-- E004: siete fotografías HEIC en `docs/fotos/`, IMG_1085 a IMG_1091.
+- E003: `docs/HD8911/Exploded view Saeco Incanto.pdf`; tablas de cargas, sensores,
+  arneses y referencias cotejadas con la variante HD8911.
+- E004: fotografías HEIC en `docs/HD8911/photos/` y adjuntos del propietario.
   HEIC inventariados; observaciones sobre JPEG de la conversación en [photos.md](photos.md).
 - E005: conversación previa. Las inferencias del asistente no son evidencia medida.
+- E006: transcripción aportada por el propietario del capítulo 10, contrastada con
+  la página PDF 59 y consolidada en [electrical-diagram.md](electrical-diagram.md).
+- E007: referencias de cargas y sensores identificadas por el propietario,
+  contrastadas con manual, despiece y hojas de fabricante en
+  [components.md](components.md).
 
-No hay pinouts ni medidas de continuidad confirmados. No se han importado esquemas,
-firmware ni conclusiones eléctricas del fabricante. Los archivos fuente no se incluyen
-en este paquete y conservan sus derechos originales.
+El manual y las referencias confirman conectores, destinos y buena parte de las
+tensiones y potencias. Siguen pendientes la numeración física de los pines, el
+sensor capacitivo, estados de contactos y corrientes de arranque/bloqueo. No hay
+medidas de continuidad confirmadas. No se han importado esquemas internos, firmware
+ni conclusiones eléctricas no mostradas por el fabricante. Los archivos fuente no
+se incluyen en este paquete y conservan sus derechos originales.
 
 ## Procedimiento inicial
 1. Confirmar variante, revisión, etiquetas y orientación de cada conector por fotografía.

@@ -17,7 +17,11 @@ La integración física requiere cotas y selección del display. La reutilizaci�
 electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para después.
 
 Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
-con conexiones de depuración/UART, todavía sin I/O de máquina, fuente ni potencia.
+con conexiones de depuración/UART y fuente de baja tensión, todavía sin I/O de
+máquina ni potencia de cargas. El manual ya permite dibujar las envolventes de
+conectores y separar sensores de cargas. Ya están documentadas las tensiones
+principales, la curva NTC y el caudalímetro; siguen pendientes orden de pines,
+salida del nivel capacitivo y corrientes de arranque/bloqueo.
 El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
 base mecánica de la Rev A; ya no bloquean la colocación de la principal.
 Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.

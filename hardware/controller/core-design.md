@@ -30,6 +30,13 @@ recibir 12 V DC de una fuente AC/DC aislada y certificada; no admite conexión a
 red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 (SMAJ18A) limita transitorios antes del regulador.
 
+La identificación posterior de cargas confirma que el motor del grupo y la
+electroválvula necesitan 24 V DC. Por tanto, esta entrada de 12 V solo resuelve el
+nucleo lógico actual: antes de congelar Rev A debe decidirse entre añadir un rail
+aislado de 24 V separado o migrar J101 a 24 V. La segunda opción obliga a revisar
+TVS, fusible, tensión de C301, conector y comportamiento del AP63203; no se puede
+aplicar 24 V al circuito dibujado.
+
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
 la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 µF/10 V
 y C303=100 nF entre BST y SW. C302 y C306 añaden desacoplo de alta frecuencia.
@@ -74,13 +81,13 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
-| Fuente aislada | Seleccionar módulo AC/DC certificado de 12 V y su montaje | Espacio, temperatura, aislamiento y potencia total |
+| Fuente aislada | Definir 24 V para grupo/válvula y alimentación de la lógica | Espacio, temperatura, aislamiento y potencia total |
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | USB-C, resistencias CC, protección ESD y política VBUS | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
-| Sensores | Acondicionamiento, protección y diagnóstico | Conectores, tensiones, NTC y contactos medidos |
-| Potencia | Drivers y protección de cada carga | Ratings, corriente de arranque/bloqueo, térmica y corte independiente |
+| Sensores | NTC, caudalímetro, contactos y nivel capacitivo | Pinout de JP5/JP22 y estados de contactos |
+| Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
 La selección del buck sigue la

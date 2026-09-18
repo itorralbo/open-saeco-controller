@@ -41,7 +41,10 @@ extraído contorno y taladros de la principal en el
 [registro mecánico](main-board-mechanics.md). Las fotos permiten una plantilla
 de encaje provisional. JP21 queda como candidato TE Micro-MaTch y los conectores
 blancos pequeños como candidatos JST XH. Se cuentan con claridad JP21=20,
-JP24/PUMP=2, JP8/GRINDER=3, JP13/NTC=2, JP5/TURBO=3, JP14=2 y JP23=2 contactos.
-En JP16 se ven al menos ocho, pero parte queda ocluida. El resultado está en
+JP24/PUMP=2, JP8/GRINDER=3, JP13/NTC=2, JP5/TURBO=3 y JP14=2 contactos.
+La lectura fotográfica que atribuía dos contactos a JP23 era errónea: el diagrama
+eléctrico del manual identifica el nivel de agua como JP22, de tres posiciones.
+El mismo diagrama confirma ocho posiciones en JP16, aunque en la foto parte queda
+ocluida. El resultado consolidado está en
 [connectors.csv](connectors.csv). Las fotos no cierran espesor, alturas ni patrón
 de anclaje de los conectores originales, por lo que aún no se les asigna huella.
