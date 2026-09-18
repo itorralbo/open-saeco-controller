@@ -46,5 +46,28 @@ La lectura fotográfica que atribuía dos contactos a JP23 era errónea: el diag
 eléctrico del manual identifica el nivel de agua como JP22, de tres posiciones.
 El mismo diagrama confirma ocho posiciones en JP16, aunque en la foto parte queda
 ocluida. El resultado consolidado está en
-[connectors.csv](connectors.csv). Las fotos no cierran espesor, alturas ni patrón
-de anclaje de los conectores originales, por lo que aún no se les asigna huella.
+[connectors.csv](connectors.csv). En esa revisión las fotos no cerraban espesor,
+alturas ni patrón de anclaje y todavía no se asignaron huellas.
+
+## Conectores desmontados con calibre, 2026-09-18
+
+Las fotos de `photos/Conectores/` muestran las carcasas de cable de frente y con
+el calibre en el mismo plano. La anchura, número de vías, paso aparente y forma de
+la cara de acoplamiento coinciden con estas familias:
+
+| Conectores | Familia compatible candidata | Evidencia visible |
+|---|---|---|
+| JP13, JP14 | JST XH, 2 vías, 2,50 mm | cuerpo estrecho ≈5,7 mm y dos cavidades |
+| JP5 | JST XH, 3 vías, 2,50 mm | cuerpo ≈8,2 mm y tres cavidades |
+| JP3 | JST XH, 5 vías, 2,50 mm | cuerpo ≈13,2 mm y cinco cavidades |
+| JP16 | JST XH, 8 vías, 2,50 mm | cuerpo ≈20,7 mm; rojo, azul, negro×2, verde×2, rojo×2 |
+| JP22 | JST PH, 3 vías, 2,00 mm | carcasa y conductores menores que JP5; tres cavidades |
+| JP8, JP17, JP24 | potencia de paso mayor, compatible visualmente con JST VH o equivalente | carcasa, terminal y separación mayores; huella todavía pendiente |
+
+La placa de trabajo usa cabeceras JST acodadas XH para JP13, JP14, JP5 y JP16,
+y PH para JP22. Las dimensiones se cotejaron con los catálogos oficiales
+[JST XH](https://www.jst-mfg.com/product/index.php?lang=2&series=277) y
+[JST PH](https://www.jst-mfg.com/product/index.php?lang=2&series=199).
+La marca del fabricante no se ve en las carcasas; la selección sigue siendo
+candidata hasta probar físicamente una muestra. Los pines de JP5 y JP22 permanecen
+NC aunque ya exista huella: la foto no revela VCC, masa ni señal.

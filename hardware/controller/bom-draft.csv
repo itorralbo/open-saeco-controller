@@ -47,23 +47,23 @@ R301,100k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C258
 C307,1nF / CT,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10B102KB8NNNC,C1588,Basic,Economic and Standard
 C308,1uF / switch input,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
 C309,10uF / switch output,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard
-J105,JP13 NTC / 2 vías,,connector_TBD,,,,,
+J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,photo_candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
 R401,4.7k / NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R402,1k / NTC serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C401,100nF / NTC filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J106,JP5 FLOW ADAPTER / VCC-GND-OC,,connector_TBD,,,,,
+J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal,photo_candidate_pinout_TBD,JST,S3B-XH-A(LF)(SN),C157928,Extended,Economic and Standard
 R403,4.7k / FLOW pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R404,1k / FLOW serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C402,10nF / FLOW filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J107,JP14 DOOR / contacto seco,,connector_TBD,,,,,
+J107,JP14 DOOR / contacto seco,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,photo_candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
 R405,10k / DOOR pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R406,1k / DOOR serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C403,100nF / DOOR filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J108,JP16 VISUAL V1..V8 / SIN HUELLA,,connector_TBD,,,,,
+J108,JP16 VISUAL V1..V8 / XH-8,Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal,photo_candidate,JST,S8B-XH-A(LF)(SN),C157914,Extended,Economic and Standard
 R407,10k / PRES pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R408,1k / PRES serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C404,100nF / PRES filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R409,10k / WORK pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R410,1k / WORK serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C405,100nF / WORK filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J109,JP22 WATER / CARACTERIZAR,,connector_TBD,,,,,
+J109,JP22 WATER / CARACTERIZAR,Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal,photo_candidate_pinout_TBD,JST,S3B-PH-K(LF)(SN),C545716,Extended,Economic and Standard

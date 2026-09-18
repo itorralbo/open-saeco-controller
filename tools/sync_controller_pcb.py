@@ -20,7 +20,8 @@ BOARD_PATH = BASE/'kicad/controller-core-reva.kicad_pcb'
 FP_ROOT = Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints')
 
 # Provisional placement, clear of the current ESP antenna area. J104 occupies
-# the original front-panel cable corner but retains the new electrical pinout.
+# the original front-panel cable corner. J105-J109 are staged away from the
+# accepted mounting holes; final edge positions still depend on harness reach.
 NEW_POSITIONS = {
     'J101': (92, 6), 'J102': (70, 116), 'J103': (90, 116), 'J104': (5.5, 6),
     'F301': (36, 15), 'D301': (44, 15), 'D302': (52, 15),
@@ -34,6 +35,8 @@ NEW_POSITIONS = {
     'R405': (10, 89), 'R406': (15, 89), 'C403': (20, 89),
     'R407': (10, 96), 'R408': (15, 96), 'C404': (20, 96),
     'R409': (10, 103), 'R410': (15, 103), 'C405': (20, 103),
+    'J105': (5, 124), 'J106': (16, 124), 'J107': (30, 124),
+    'J109': (42, 124), 'J108': (107.5, 124),
 }
 
 

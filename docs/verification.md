@@ -169,3 +169,19 @@ de cargas siguen pendientes en el esquema principal.
 - La PCB contiene 63 huellas eléctricas y conserva el contorno y los tres taladros.
   DRC: 0 infracciones geométricas/de reglas, 147 conexiones sin rutear y 8 avisos
   de paridad: J105–J109 y MH1–MH3.
+
+## Medidas de cargas y conectores, 2026-09-18
+
+- Resistencias aportadas por el propietario: molino 68 Ω, electroválvula 56,7 Ω
+  y motor del grupo 54,7 Ω. A sus tensiones documentadas dan límites resistivos
+  derivados de 4,71 A a 320 V, 0,423 A a 24 V y 0,439 A a 24 V, respectivamente.
+  No se presentan como corrientes nominales de los motores.
+- JP14 queda abierto si falta puerta o cajón y cerrado únicamente con ambos
+  colocados. La red se renombra `DOOR_CLOSED_N`: nivel bajo significa cierre.
+- Las fotos con calibre encajan con JST XH 2,50 mm para JP13/JP14/JP5/JP16 y
+  JST PH 2,00 mm para JP22. Se seleccionaron cabeceras acodadas genuinas con stock
+  LCSC observado, manteniendo el estado candidato hasta probar el acoplamiento.
+- La principal incorpora las cinco huellas: 68/68 componentes con MPN, código
+  LCSC y huella. JP5 y JP22 permanecen NC por pinout eléctrico desconocido.
+- ERC: 0 infracciones, 68 componentes/275 pines. DRC: 0 infracciones geométricas,
+  156 conexiones sin rutear y 3 diferencias de paridad correspondientes a MH1–MH3.

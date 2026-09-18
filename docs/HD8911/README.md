@@ -18,9 +18,9 @@
   [components.md](components.md).
 
 El manual y las referencias confirman conectores, destinos y buena parte de las
-tensiones y potencias. Siguen pendientes la numeración física de los pines, el
-sensor capacitivo, estados de contactos y corrientes de arranque/bloqueo. No hay
-medidas de continuidad confirmadas. No se han importado esquemas internos, firmware
+tensiones y potencias. Siguen pendientes la numeración eléctrica de JP5/JP22, el
+sensor capacitivo, los contactos de JP16 y corrientes dinámicas de motores. Ya hay
+resistencias de tres cargas y continuidad funcional de JP14. No se han importado esquemas internos, firmware
 ni conclusiones eléctricas no mostradas por el fabricante. Los archivos fuente no
 se incluyen en este paquete y conservan sus derechos originales.
 

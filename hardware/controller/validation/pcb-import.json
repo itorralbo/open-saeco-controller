@@ -142,6 +142,26 @@
       "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
       "numbered_pads": 16
     },
+    "J105": {
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "numbered_pads": 2
+    },
+    "J106": {
+      "footprint": "Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal",
+      "numbered_pads": 3
+    },
+    "J107": {
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "numbered_pads": 2
+    },
+    "J108": {
+      "footprint": "Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal",
+      "numbered_pads": 8
+    },
+    "J109": {
+      "footprint": "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal",
+      "numbered_pads": 3
+    },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
       "numbered_pads": 2
@@ -255,13 +275,7 @@
       "numbered_pads": 6
     }
   },
-  "missing_footprints": [
-    "J105",
-    "J106",
-    "J107",
-    "J108",
-    "J109"
-  ],
+  "missing_footprints": [],
   "staged_footprints": [
     "C301",
     "C302",
@@ -284,6 +298,11 @@
     "J102",
     "J103",
     "J104",
+    "J105",
+    "J106",
+    "J107",
+    "J108",
+    "J109",
     "L301",
     "R301",
     "R401",

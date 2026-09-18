@@ -8,7 +8,7 @@ esperará al final del layout para buscar referencias.
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,
 huella candidata, categoría, modalidad de montaje, URL y fecha de consulta.
-Existencias verificadas en las páginas renderizadas de JLCPCB/LCSC el **2026-09-16/17**,
+Existencias verificadas en las páginas renderizadas de JLCPCB/LCSC el **2026-09-16/18**,
 sin iniciar sesión ni hacer compras. Son una instantánea, no una reserva.
 `stock_observed` y `available_order_qty_observed` son campos distintos de la web;
 un valor `null` significa no observado, no cero ni disponibilidad garantizada.
@@ -23,6 +23,10 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Inductor buck | SRN6028C-3R9M | [C19947652](https://www.lcsc.com/product-detail/C19947652.html) | 227 | 227 | Economic / Standard |
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 270.440 | 270.440 | Economic / Standard |
 | Entrada 12 V | JST S2B-XH-A-1(LF)(SN) | [C163035](https://www.lcsc.com/product-detail/C163035.html) | 100.630 | 100.630 | Economic / Standard |
+| JP13/JP14, 2 unidades | JST S2B-XH-A-1(LF)(SN) | [C163035](https://www.lcsc.com/product-detail/C163035.html) | 100.630 | 100.630 | Economic / Standard |
+| JP5 | JST S3B-XH-A(LF)(SN) | [C157928](https://www.lcsc.com/product-detail/C157928.html) | 139.550 | 139.550 | Economic / Standard |
+| JP16 | JST S8B-XH-A(LF)(SN) | [C157914](https://www.lcsc.com/product-detail/C157914.html) | 17.350 | 17.350 | Economic / Standard |
+| JP22 | JST S3B-PH-K(LF)(SN) | [C545716](https://www.lcsc.com/product-detail/C545716.html) | 14.715 | 14.715 | Economic / Standard |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 35.363 | 35.210 | Economic / Standard |
 | Enlace principal–frontal, 2 unidades | IDC polarizado 2×8 2,54 mm | [C7501244](https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244) | 1.643 | 1.603 | Economic / Standard |
 
@@ -55,15 +59,16 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal, lógica y alimentación parcial](../controller/bom-draft.csv): 48 de 48 posiciones
-  actuales con MPN, código y huella. Aún faltan las interfaces de máquina.
+- [Principal, lógica, alimentación y entradas pasivas](../controller/bom-draft.csv):
+  68 de 68 posiciones actuales con MPN, código y huella. Las cabeceras de máquina
+  son candidatas mecánicas; faltan pinouts JP5/JP22 y las etapas de potencia.
 - [Frontal](../front-panel/bom-draft.csv): 35 de 44 posiciones con MPN y código;
   el conector de pantalla y ocho pulsadores siguen pendientes de cotas.
 
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
-protección de entrada DC, el buck y el corte del frontal. **No incluye** la fuente
-AC/DC aislada, drivers de cargas, sensores ni USB: el porcentaje anterior
+protección de entrada DC, el buck, el corte del frontal y entradas pasivas. **No incluye** la fuente
+AC/DC aislada, drivers de cargas, interfaz activa de nivel ni USB: el porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

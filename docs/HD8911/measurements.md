@@ -1,12 +1,18 @@
 # Registro de medidas
 
-Sin medidas registradas. Crear una fila por medida, incluyendo incertidumbre y unidad.
+Medidas aportadas por el propietario. Cuando no se indicó instrumento, temperatura
+o incertidumbre, se conserva expresamente como dato pendiente.
 
 | ID | Fecha/operador | PCB | Conector/cavidad/orientación | Instrumento | Condiciones | Resultado/unidad | Evidencia | Revisión |
 |---|---|---|---|---|---|---|---|---|
 | MAIN-W | 2026-09-17 / foto | principal | borde izquierdo–derecho | calibre 0,05 mm | PCB desmontada, IMG_1098 | 141,6 ± 0,15 mm | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
 | MAIN-H | 2026-09-17 / foto | principal | borde superior–inferior | calibre 0,05 mm | PCB desmontada, IMG_1099 | 135,2 ± 0,15 mm | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
 | MAIN-MH | 2026-09-17 / fotogrametría | principal | 3 taladros, origen superior izquierdo | cuadrícula + contorno calibrado | vista casi normal, IMG_1098 | centros y diámetro en documento | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
+| LOAD-GRINDER-R | 2026-09-18 / propietario | molino | terminales del motor | multímetro/modelo TBD | desconectado; temperatura TBD | 68 Ω | comunicación del propietario | Medida inicial |
+| LOAD-VALVE-R | 2026-09-18 / propietario | electroválvula | terminales de bobina | multímetro/modelo TBD | desconectada; temperatura TBD | 56,7 Ω | comunicación del propietario | Confirma ≈10 W a 24 V |
+| LOAD-BU-R | 2026-09-18 / propietario | motor del grupo | rojo–azul de JP16 | multímetro/modelo TBD | desconectado; temperatura/posición de rotor TBD | 54,7 Ω | comunicación del propietario | Medida inicial |
+| JP14-CONT | 2026-09-18 / propietario | puerta/cajón | dos blancos | continuidad/modelo TBD | puerta o cajón retirados | circuito abierto | comunicación del propietario | Estado funcional confirmado |
+| JP14-CONT | 2026-09-18 / propietario | puerta/cajón | dos blancos | continuidad/modelo TBD | cajón y puerta colocados | circuito cerrado | comunicación del propietario | Estado funcional confirmado |
 
 Clasificar cada entrada como documento, observación, hipótesis o medida. Conservar
 datos contradictorios y bloquear decisiones dependientes hasta resolverlos.
@@ -19,7 +25,9 @@ máquina ni medir la red. Anotar siempre desde qué lado se mira el conector.
 
 ### 1. Fotos y conectores
 
-Para JP5, JP13, JP14, JP16 y JP22 hacen falta dos fotos nítidas por conector:
+Las fotos de cavidades con calibre de JP5, JP13, JP14, JP16 y JP22 ya están en
+`photos/Conectores/`. Permiten seleccionar huellas candidatas XH/PH. Para liberar
+la mecánica todavía conviene una comprobación real de acoplamiento con una muestra.
 
 1. Frontal de cavidades, con la pestaña de retención visible.
 2. Lateral de placa y carcasa, con calibre o regla en el mismo plano.
@@ -36,7 +44,7 @@ Usar continuidad u ohmios; registrar resistencia aproximada y estado mecánico:
 
 | ID propuesto | Par | Estado A | Estado B | Resultado esperado del trabajo |
 |---|---|---|---|---|
-| JP14-CONT | dos blancos | puerta/cajón abierto | cerrado | Determinar cuál de los estados cierra el contacto |
+| JP14-CONT | dos blancos | puerta/cajón abierto | cerrado | **Cerrado únicamente con cajón y puerta colocados** |
 | JP16-BRIDGE | dos negros | reposo | reposo | Confirmar puente local cercano a 0 Ω |
 | JP16-PRES | dos verdes | grupo retirado | insertado | Determinar NO/NC funcional |
 | JP16-WORK | dos rojos | fuera de posición | posición de trabajo | Determinar NO/NC funcional |
@@ -67,11 +75,11 @@ rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 
 | ID | Vista/orientación | Estado/condiciones | Medida | Foto asociada |
 |---|---|---|---|---|
-| JP14-CONT | pestaña arriba | abierto |  |  |
-| JP14-CONT | pestaña arriba | cerrado |  |  |
+| JP14-CONT | dos blancos | puerta/cajón retirados | abierto | comunicación del propietario |
+| JP14-CONT | dos blancos | cajón y puerta colocados | cerrado | comunicación del propietario |
 | JP16-BRIDGE | pestaña arriba | desconectado |  |  |
 | JP16-PRES | pestaña arriba | grupo retirado/insertado |  |  |
 | JP16-WORK | pestaña arriba | fuera/en trabajo |  |  |
-| LOAD-BU-R | rojo–azul | frío |  |  |
-| LOAD-VALVE-R | terminales bobina | frío |  |  |
-| LOAD-GRINDER-R | blanco–negro | frío |  |  |
+| LOAD-BU-R | rojo–azul | desconectado; temperatura TBD | 54,7 Ω | comunicación del propietario |
+| LOAD-VALVE-R | terminales bobina | desconectada; temperatura TBD | 56,7 Ω | comunicación del propietario |
+| LOAD-GRINDER-R | blanco–negro | desconectado; temperatura TBD | 68 Ω | comunicación del propietario |

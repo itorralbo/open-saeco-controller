@@ -71,7 +71,7 @@ def main():
         assert nets['U101'][str(pin)] == g, f'STM ground pad {pin}'
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
-                     14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_N',9:'BU_PRESENT_N',
+                     14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
                      10:'BU_WORK_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
@@ -118,14 +118,14 @@ def main():
     assert nets['R401'] == {'1':v,'2':'NTC_RAW'}
     assert nets['R402'] == {'1':'NTC_RAW','2':'NTC_ADC'}
     assert nets['C401'] == {'1':'NTC_ADC','2':g}
-    assert nets['J106'] == {'1':'12V_PROTECTED','2':g,'3':'FLOW_RAW'}
+    assert nets['J106'] == {'1':None,'2':None,'3':None}
     assert nets['R403'] == {'1':v,'2':'FLOW_RAW'}
     assert nets['R404'] == {'1':'FLOW_RAW','2':'FLOW_TIM'}
     assert nets['C402'] == {'1':'FLOW_TIM','2':g}
     assert nets['J107'] == {'1':'DOOR_RAW','2':g}
     assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
-    assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_N'}
-    assert nets['C403'] == {'1':'DOOR_N','2':g}
+    assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_CLOSED_N'}
+    assert nets['C403'] == {'1':'DOOR_CLOSED_N','2':g}
     assert nets['J108'] == {'1':None,'2':None,
                             '3':'BU_BRIDGE','4':'BU_BRIDGE','5':g,
                             '6':'BU_PRESENT_RAW','7':g,'8':'BU_WORK_RAW'}
@@ -136,6 +136,13 @@ def main():
         assert nets[refs[1]] == {'1':raw,'2':conditioned}
         assert nets[refs[2]] == {'1':conditioned,'2':g}
     assert nets['J109'] == {'1':None,'2':None,'3':None}
+    for ref, footprint, lcsc in [
+            ('J105','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
+            ('J106','Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal','C157928'),
+            ('J107','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
+            ('J108','Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal','C157914'),
+            ('J109','Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal','C545716')]:
+        assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     exported = json.loads((base/'design-nets.json').read_text())
     assert nets == {c['reference']:c['pins'] for c in exported['components']}
 

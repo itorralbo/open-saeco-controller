@@ -10,9 +10,9 @@ derivadas se identifican como tales; no sustituyen los marcados de la unidad.
 |---|---|---|---|
 | Calentador XS4 | `421944028841` | 220–230 V AC, 1900 W; el manual especifica dos termostatos de un solo uso de 190 °C | Corriente nominal derivada: 8,26 A a 230 V y 8,64 A a 220 V. Requiere etapa y conectores de red, protección térmica independiente y dimensionado con margen |
 | Bomba | `996530007753`, ULKA EP5/S GW | 220–230 V AC, 50 Hz, 48 W, 15 bar, servicio 2 min conectado / 1 min desconectado | Corriente nominal ideal derivada: 0,21 A a 230 V; la conmutación debe admitir la carga inductiva y sus transitorios |
-| Electroválvula | `421944029371` | 24 V DC, dos vías | Driver low-side con rueda libre. Varias fuentes de recambio la describen como 10 W, que implicaría 0,42 A, pero debe confirmarse en la bobina antes de fijar el rating |
-| Motor del grupo | `996530002796` / `11005214` | 24 V DC, reversible | Puente H con medida de corriente, frenado/estado seguro y margen para bloqueo. La corriente de bloqueo sigue sin conocerse |
-| Motor del molino V3.2 | `421944049151` | Conjunto 220–230 V; el modo de servicio indica accionamiento a 320 V DC | Es una carga de continua rectificada de red. Corriente nominal, arranque y bloqueo siguen pendientes; debe permanecer en el dominio de alta tensión |
+| Electroválvula | `421944029371` | 24 V DC, dos vías; bobina medida 56,7 Ω | Driver low-side con rueda libre. Derivación resistiva: 0,423 A y 10,16 W a 24 V, coherente con el recambio de 10 W |
+| Motor del grupo | `996530002796` / `11005214` | 24 V DC, reversible; devanado medido 54,7 Ω | Puente H con medida de corriente, frenado/estado seguro y margen para bloqueo. Límite resistivo derivado ≈0,439 A a 24 V; falta medir transitorio y variación con rotor/temperatura |
+| Motor del molino V3.2 | `421944049151` | Conjunto 220–230 V; modo de servicio a 320 V DC; devanado medido 68 Ω | Continua rectificada de red. El límite resistivo parado sería ≈4,71 A a 320 V, no corriente nominal; arranque, funcionamiento y bloqueo siguen pendientes |
 
 El modo de servicio del manual separa expresamente las cargas: motor de grupo a
 24 V DC; bomba a 230 V AC; electroválvula a 24 V DC; calentador a 230 V AC y
@@ -126,8 +126,9 @@ terminales de cada contacto; queda por medir si son COM–NO o COM–NC.
 - La puerta/cajón usa `996530073209` / `12001890`, descrito como
   `MICROSWITCH XG/V3D`. No se ha localizado una hoja de datos primaria que una
   inequívocamente ese código Saeco con un rating y una configuración de contactos.
-  JP14 usa dos hilos, por lo que se tratará como contacto seco hasta comprobar
-  continuidad y estado mecánico.
+  JP14 usa dos hilos. La medida física confirma circuito abierto con puerta o
+  cajón retirados y cerrado únicamente cuando ambos están colocados. La entrada
+  activa a cero de la Rev A representa por tanto `DOOR_CLOSED_N`.
 - El nivel de agua es el conjunto capacitivo V3 `421941306721`, con soporte
   `996530073436` y cable de tres polos `421946035161`. Está situado aproximadamente
   a un tercio de la altura del depósito. Su tensión, pinout y tipo de salida siguen
@@ -138,7 +139,7 @@ terminales de cada contacto; queda por medir si son COM–NO o COM–NC.
 
 1. Orden VCC/GND/señal de JP5 y JP22.
 2. Tensión y forma de salida del módulo capacitivo `421941306721`.
-3. COM–NO/COM–NC de JP14 y los contactos de JP16.
+3. COM–NO/COM–NC de los dos contactos de JP16.
 4. Corrientes de arranque y bloqueo del motor de grupo y del molino.
-5. Resistencia real de la electroválvula y corriente en caliente.
-6. Referencia completa marcada en los microinterruptores y las carcasas del arnés.
+5. Corriente en caliente de la electroválvula.
+6. Referencia completa marcada en los microinterruptores y verificación de acoplamiento de las carcasas candidatas.

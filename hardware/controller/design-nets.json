@@ -19,7 +19,7 @@
         "5": null,
         "6": null,
         "7": "STM_NRST",
-        "8": "DOOR_N",
+        "8": "DOOR_CLOSED_N",
         "9": "BU_PRESENT_N",
         "10": "BU_WORK_N",
         "11": null,
@@ -855,13 +855,13 @@
     {
       "reference": "J105",
       "value": "JP13 NTC / 2 vías",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "status": "photo_candidate",
+      "manufacturer": "JST",
+      "mpn": "S2B-XH-A-1(LF)(SN)",
+      "lcsc": "C163035",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "NTC_RAW",
         "2": "GND_UI"
@@ -915,17 +915,17 @@
     {
       "reference": "J106",
       "value": "JP5 FLOW ADAPTER / VCC-GND-OC",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal",
+      "status": "photo_candidate_pinout_TBD",
+      "manufacturer": "JST",
+      "mpn": "S3B-XH-A(LF)(SN)",
+      "lcsc": "C157928",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "12V_PROTECTED",
-        "2": "GND_UI",
-        "3": "FLOW_RAW"
+        "1": null,
+        "2": null,
+        "3": null
       }
     },
     {
@@ -976,13 +976,13 @@
     {
       "reference": "J107",
       "value": "JP14 DOOR / contacto seco",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "status": "photo_candidate",
+      "manufacturer": "JST",
+      "mpn": "S2B-XH-A-1(LF)(SN)",
+      "lcsc": "C163035",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "DOOR_RAW",
         "2": "GND_UI"
@@ -1015,7 +1015,7 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "DOOR_RAW",
-        "2": "DOOR_N"
+        "2": "DOOR_CLOSED_N"
       }
     },
     {
@@ -1029,20 +1029,20 @@
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "DOOR_N",
+        "1": "DOOR_CLOSED_N",
         "2": "GND_UI"
       }
     },
     {
       "reference": "J108",
-      "value": "JP16 VISUAL V1..V8 / SIN HUELLA",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "value": "JP16 VISUAL V1..V8 / XH-8",
+      "footprint": "Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal",
+      "status": "photo_candidate",
+      "manufacturer": "JST",
+      "mpn": "S8B-XH-A(LF)(SN)",
+      "lcsc": "C157914",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": null,
         "2": null,
@@ -1147,13 +1147,13 @@
     {
       "reference": "J109",
       "value": "JP22 WATER / CARACTERIZAR",
-      "footprint": "",
-      "status": "connector_TBD",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal",
+      "status": "photo_candidate_pinout_TBD",
+      "manufacturer": "JST",
+      "mpn": "S3B-PH-K(LF)(SN)",
+      "lcsc": "C545716",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": null,
         "2": null,

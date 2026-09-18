@@ -35,7 +35,7 @@
 <path d="M 67.31 80.01 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="80.31" font-size="0.9" text-anchor="start" fill="#213b50">PC0</text>
 <text x="65.36999999999999" y="79.51" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
-<text x="61.83" y="79.51" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_N</text>
+<text x="61.83" y="79.51" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 67.31 83.82 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="84.11999999999999" font-size="0.9" text-anchor="start" fill="#213b50">PC1</text>
 <text x="65.36999999999999" y="83.32" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
@@ -955,7 +955,7 @@
 <text x="803.04" y="195.08" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="610" y="244" font-size="1.2" text-anchor="start" fill="#213b50">PB0 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.</text>
 <text x="610" y="250" font-size="1.2" text-anchor="start" fill="#213b50">QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.</text>
-<text x="12" y="406" font-size="1.8" text-anchor="start" fill="#213b50">09 / Entradas pasivas de máquina — conectores físicos pendientes</text>
+<text x="12" y="406" font-size="1.8" text-anchor="start" fill="#213b50">09 / Entradas pasivas — huellas candidatas según fotos con calibre</text>
 <rect x="57.15" y="440.055" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="62.23" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J105</text>
 <text x="62.23" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP13 NTC / 2 vías</text>
@@ -995,15 +995,15 @@
 <path d="M 287.02000000000004 440.69 H 281.94" stroke="#27856d" stroke-width=".22"/>
 <text x="287.72" y="440.99" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="285.08000000000004" y="440.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="281.54" y="440.19" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<text x="281.94" y="440.99" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 287.02000000000004 444.5 H 281.94" stroke="#27856d" stroke-width=".22"/>
 <text x="287.72" y="444.8" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="285.08000000000004" y="444.0" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="281.54" y="444.0" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="281.94" y="444.8" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 287.02000000000004 448.31 H 281.94" stroke="#27856d" stroke-width=".22"/>
 <text x="287.72" y="448.61" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="285.08000000000004" y="447.81" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="281.54" y="447.81" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_RAW</text>
+<text x="281.94" y="448.61" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <rect x="382.27" y="429.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="384.81" y="424.53" font-size="1.05" text-anchor="middle" fill="#213b50">R403</text>
 <text x="384.81" y="427.03" font-size="1.05" text-anchor="middle" fill="#213b50">4.7k / FLOW pull-up</text>
@@ -1025,7 +1025,7 @@
 <text x="376.79" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_TIM</text>
 <path d="M 387.35 463.55 H 392.43" stroke="#27856d" stroke-width=".22"/>
 <text x="392.83" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="245" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA1 TIM2_CH2. Pinout J106 propio; mapear JP5 tras medir el arnés.</text>
+<text x="245" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA1 TIM2_CH2. J106 queda NC hasta medir VCC/GND/señal de JP5.</text>
 <text x="245" y="493" font-size="1.2" text-anchor="start" fill="#213b50">El FHKSC admite 3,8–20V: 12V_PROTECTED sirve mientras J101 siga siendo 12V.</text>
 <rect x="514.3499999999999" y="440.055" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="519.43" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J107</text>
@@ -1051,18 +1051,18 @@
 <path d="M 601.98 447.04 H 596.9" stroke="#27856d" stroke-width=".22"/>
 <text x="596.5" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_RAW</text>
 <path d="M 607.06 447.04 H 612.14" stroke="#27856d" stroke-width=".22"/>
-<text x="612.54" y="446.54" font-size="0.9" text-anchor="start" fill="#23745f">DOOR_N</text>
+<text x="612.54" y="446.54" font-size="0.9" text-anchor="start" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 601.98 463.55 H 603.885 M 605.155 463.55 H 607.06 M 603.885 462.05 V 465.05 M 605.155 462.05 V 465.05" stroke="#213b50" stroke-width=".25" fill="none"/>
 <text x="604.52" y="457.05" font-size="1.05" text-anchor="middle" fill="#213b50">C403</text>
 <text x="604.52" y="459.55" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / DOOR filtro</text>
 <path d="M 601.98 463.55 H 596.9" stroke="#27856d" stroke-width=".22"/>
-<text x="596.5" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_N</text>
+<text x="596.5" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 607.06 463.55 H 612.14" stroke="#27856d" stroke-width=".22"/>
 <text x="612.54" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PC0. Entrada activa a 0; confirmar si el contacto usado es NO o NC.</text>
+<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PC0: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.</text>
 <rect x="699.77" y="440.055" width="10.16" height="33.02" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="704.85" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J108</text>
-<text x="704.85" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP16 VISUAL V1..V8 / SIN HUELLA</text>
+<text x="704.85" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP16 VISUAL V1..V8 / XH-8</text>
 <path d="M 699.77 443.23 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="443.53000000000003" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="697.83" y="442.73" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -1155,5 +1155,5 @@
 <text x="512.41" y="539.25" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="509.27" y="540.05" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <text x="470" y="562" font-size="1.2" text-anchor="start" fill="#213b50">Sin alimentación ni conexión MCU hasta medir VCC, GND y tipo/nivel de salida.</text>
-<text x="12" y="574" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada 24V, USB/ESD, watchdog, nivel de agua y etapas de potencia.</text>
-<text x="12" y="582" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; conectores, colocación y rutas pendientes. BOM no liberada.</text></g></svg>
+<text x="12" y="574" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada 24V, USB/ESD, watchdog, pinouts JP5/JP22 y etapas de potencia.</text>
+<text x="12" y="582" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>

@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 68 | 63 | J105–J109 |
+| Principal | 68 | 68 | — |
 | Frontal | 44 | 35 | J2, SW1–SW8 |
 
 Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
@@ -32,8 +32,8 @@ la máquina.** La principal incorpora un [contorno y tres taladros aceptados par
 la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
 sigue siendo de trabajo. Los desacoplos todavía deben situarse junto a sus pines y el módulo
 ESP32 requiere resolver borde y zona libre de antena. No hay pistas, zonas de cobre,
-ni conectores de la máquina original. J101–J104 y J1 ya tienen huellas seleccionadas;
-J105–J109 son envolventes eléctricas sin huella;
+ni colocación final de los conectores de máquina. J101–J104 y J1 tienen huellas
+seleccionadas; J105–J109 usan candidatas JST XH/PH según las fotos con calibre;
 no generar Gerbers/BOM de fabricación/CPL desde aquí.
 
 ## Validación actualizada el 2026-09-18
@@ -56,8 +56,8 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 1: contorno todavía ausente |
-| Conexiones pendientes de rutear | 147 | 70 |
-| Huellas ausentes respecto al esquema | 5 | 9 |
+| Conexiones pendientes de rutear | 156 | 70 |
+| Huellas ausentes respecto al esquema | 0 | 9 |
 | Contorno ausente | 0 | 1 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
 
@@ -67,9 +67,8 @@ por JLCPCB para placas rígidas. Esto elimina la discrepancia del footprint sin
 modificarlo. Las reglas siguen sin cubrir aislamiento de red ni constituir un
 perfil de fabricación completo.
 
-La paridad de la principal informa J105–J109 sin huella y las tres huellas de
-montaje adicionales al esquema. Estas últimas son intencionales y proceden del
-registro mecánico; no se han excluido.
+La paridad de la principal solo informa las tres huellas de montaje adicionales
+al esquema. Son intencionales y proceden del registro mecánico; no se han excluido.
 El frontal informa J2 y SW1–SW8 sin huella, además del contorno todavía ausente.
 
 Informes y vistas:
@@ -107,7 +106,7 @@ Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y dete
 la instalación habitual de macOS. La creación inicial de PCB requiere el Python
 incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
 
-Siguiente trabajo eléctrico: identificar las carcasas J105–J109, caracterizar JP22,
+Siguiente trabajo eléctrico: probar el acoplamiento de J105–J109, caracterizar JP22,
 seleccionar el módulo AC/DC aislado, cerrar el
 presupuesto de corriente y completar supervisión, sensores y drivers. Siguiente
 trabajo mecánico: copiar contorno y centros de pulsadores del frontal.

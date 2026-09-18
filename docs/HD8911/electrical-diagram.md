@@ -50,7 +50,7 @@ La identificación de componentes y otras secciones del manual cierran tensiones
 potencia del calentador y bomba, curva NTC y características del caudalímetro. El
 resultado se mantiene en [components.md](components.md).
 
-Siguen sin conocerse corrientes de arranque/bloqueo, pinout del sensor capacitivo,
-COM/NO/NC de los microinterruptores, pinout de JP21 o PROG. y referencias completas
+Siguen sin conocerse corrientes dinámicas de motores, pinout del sensor capacitivo,
+COM/NO/NC de los dos micros de JP16, pinout de JP21 o PROG. y referencias completas
 de las carcasas. Estos datos requieren continuidad sin tensión y ensayos específicos
 antes de cerrar las etapas eléctricas.

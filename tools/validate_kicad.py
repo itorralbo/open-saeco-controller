@@ -81,9 +81,9 @@ def main():
                  'y tres contactos. No valida la fuente AC/DC ni las cargas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
-        remaining = ('Los GPIO sin asignar llevan NC. J101–J104 ya tienen huella; '
-                     'J105–J109 carecen de huella hasta identificar las carcasas. JP22 y las '
-                     'dos vías de motor de JP16 permanecen NC de forma explícita.'
+        remaining = ('Los GPIO sin asignar llevan NC. J105–J109 usan huellas candidatas '
+                     'XH/PH cotejadas con fotos; JP5, JP22 y las dos vías de motor de JP16 '
+                     'permanecen NC de forma explícita hasta cerrar sus interfaces.'
                      if directory == 'controller' else
                      'J1 ya tiene huella IDC; J2 y SW1–SW8 siguen pendientes de mecánica.')
         (out/'README.md').write_text(

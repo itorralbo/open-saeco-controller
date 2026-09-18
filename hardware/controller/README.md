@@ -4,8 +4,9 @@ Primer [núcleo lógico en KiCad](core-design.md): STM32G431RBT6 y
 ESP32-S3-WROOM-1-N8R8, entrada externa aislada de 12 V, reset, depuración y UART.
 Incluye entrada aislada de 12 V protegida, buck de 3,3 V, corte del frontal y
 acondicionamiento de NTC, caudalímetro y tres contactos secos.
-68 componentes; 63 con MPN, código JLC/LCSC y huella importada a la PCB de trabajo.
-Los cinco conectores de máquina carecen de huella hasta identificar su carcasa.
+68 componentes; los 68 con MPN, código JLC/LCSC y huella importada a la PCB de
+trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
+calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno y
 taladros aceptados, sin rutas ni etapas de potencia de las cargas. El DRC no
 presenta infracciones de reglas; quedan conexiones sin rutear, el nivel de agua y

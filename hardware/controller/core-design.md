@@ -4,9 +4,9 @@ Existe una hoja eléctrica parcial con 68 componentes:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 63 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 68 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 147 conexiones sin rutear y cinco conectores sin huella.
+infracciones DRC, pero quedan 156 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -23,8 +23,9 @@ infracciones DRC, pero quedan 147 conexiones sin rutear y cinco conectores sin h
   PA1/TIM2_CH2; el orden del arnés se resolverá con un adaptador.
 - Entradas activas a cero para JP14 y los micros de presencia/trabajo de JP16,
   con pull-up, resistencia serie y filtro RC.
-- Envolventes J105–J109 sin huella. El nivel JP22 y las dos vías de motor de JP16
-  quedan NC hasta caracterizar el sensor y seleccionar el puente H.
+- J105–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
+  LCSC. JP5, JP22 y las dos vías de motor de JP16 quedan NC hasta cerrar pinouts
+  y seleccionar el puente H.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
@@ -93,7 +94,7 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | USB-C, resistencias CC, protección ESD y política VBUS | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
-| Sensores | Caracterizar nivel capacitivo y cerrar adaptadores | Pinout de JP5/JP22 y estados de contactos |
+| Sensores | Caracterizar nivel capacitivo y cerrar adaptadores | Pinout de JP5/JP22 y estados de contactos JP16 |
 | Potencia | Puente H 24 V, válvula 24 V y dominio de red separado | Medida de corriente de grupo y molino, bloqueo, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
@@ -117,7 +118,7 @@ UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
 KiCad: 68 componentes y 275 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 63 huellas en una colocación provisional. J105–J109 siguen sin
-huella hasta identificar la familia física.
+redes y mantiene 68 huellas en una colocación provisional. Las cinco cabeceras de
+máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.
