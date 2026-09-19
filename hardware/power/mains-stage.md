@@ -54,8 +54,17 @@ El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
 variantes y conservar margen ante cargas inductivas. Esa unificación no libera
 la térmica: para el calentador, una caída cercana a 1,5 V a 8,3 A implica del
 orden de 12 W en el semiconductor y exige un disipador similar al de la placa
-original, que mide 40 mm de ancho y 35 mm de alto sobre la placa. Falta su fondo,
-su fijación y qué semiconductores lleva. Para bomba y molinillo se calculará la pérdida con corriente medida.
+original, que mide 40 mm de ancho y 35 mm de alto sobre la placa.
+
+IMG_1098, IMG_1100 e IMG_1101 muestran ese disipador: un perfil extruido negro
+colocado de pie, con la extrusión perpendicular a la placa. En planta ocupa unos
+40 × 33 mm, estimados sobre IMG_1098 con la escala del calibre. Tiene dos canales
+con un TO-220 atornillado en cada uno, y la cara de soldaduras (IMG_1091) muestra
+dos anclajes soldados. Está centrado en x ≈ 72 mm e y ≈ 97 mm de la placa
+original, justo encima de JP8 y AC_LOADS/JP19. El tercer semiconductor, un
+BTA208-800B, está de pie y sin disipador junto a un relé beige, en el centro-
+izquierda. Rev A seguirá el mismo esquema: calentador y bomba en un disipador
+equivalente y molinillo en TO-220 al aire, tras comprobar su pérdida. Para bomba y molinillo se calculará la pérdida con corriente medida.
 
 El MOC3083 de cruce por cero se reserva al calentador. La bomba y el molinillo
 mantienen optotriac de disparo aleatorio para no cerrar prematuramente la opción
