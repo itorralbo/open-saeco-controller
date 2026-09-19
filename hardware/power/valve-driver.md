@@ -5,12 +5,19 @@ fabricación ni conectar a la máquina hasta ensayar la bobina.
 
 ## Datos disponibles
 
-La referencia identificada es `421944029371`, nominal 24 V DC / 10 W. La bobina
+La referencia identificada es `421944029371` y la bobina es OLAB
+`6000BH/B0DN`, nominal 24 V DC / 10 W. El catálogo oficial indica tolerancia de
+tensión DC ±5 %; la familia 6000BH usa aislamiento clase H (180 °C). La bobina
 desconectada mide 56,7 Ω; la estimación resistiva es `24 / 56,7 = 0,423 A` y
 `24² / 56,7 = 10,16 W`. El propietario ha seguido el arnés: visto desde arriba,
 JP3.1 es el pad cuadrado y llega al pin 1 del solenoide, +24 V; JP3.2 llega al pin 2,
 retorno de 0 V. JP3.3–5 no se usan. El terminal GND separado del solenoide no está
 conectado.
+
+En modo diodo se miden 0,073 V en ambos sentidos. Esa simetría, junto con los
+56,7 Ω, indica que el instrumento está leyendo el devanado y no una unión de diodo
+en paralelo. No se ha detectado supresión interna accesible desde los terminales;
+la rueda libre externa forma parte necesaria del driver.
 
 JP3 parece JST XH de cinco vías y 2,50 mm. La huella compatible de trabajo es
 `JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal`; la referencia JST disponible
@@ -39,7 +46,8 @@ puerta del MOSFET. El SI2308A tiene mucho margen de corriente para los 0,423 A
 estimados; con 95 mΩ la pérdida resistiva ideal sería unos 17 mW. Estas cifras no
 sustituyen la medida térmica ni la comprobación de corriente en caliente.
 
-Fuentes: [UCC27517 de TI](https://www.ti.com/lit/ds/symlink/ucc27517.pdf),
+Fuentes: [bobina 6000BH de OLAB](https://www.olabitaly.com/products/fluid-control/direct-indirect-and-mixed-action-solenoid-valves/direct-action-solenoid-valves/coils_211.html),
+[UCC27517 de TI](https://www.ti.com/lit/ds/symlink/ucc27517.pdf),
 [UCC27517DBVR en LCSC](https://www.lcsc.com/product-detail/C99395.html) y
 [SI2308A en LCSC](https://www.lcsc.com/product-detail/C347491.html). El 2026-09-19
 se observaron 27.530 unidades del driver y 546.570 del MOSFET; no constituyen una
@@ -47,18 +55,15 @@ reserva.
 
 ## Decisiones pendientes antes del esquema
 
-1. Medir la bobina en modo diodo en ambos sentidos. Si aparece una caída de diodo
-   integrada, conservar esa polaridad y revisar el diodo externo.
-2. Confirmar si el arnés o la válvula incorpora supresión. Dos cables negros no
-   demuestran ausencia de polaridad.
-3. Medir corriente de activación y corriente estabilizada con fuente de 24 V
+1. Medir corriente de activación y corriente estabilizada con fuente de 24 V
    limitada, además del tiempo de liberación.
-4. Decidir la supresión: SS34 produce caída lenta y poco ruido; un TVS o zéner
+2. Comparar el tiempo de liberación con SS34: produce caída lenta y poco ruido;
+   un TVS o zéner
    acelera la liberación a costa de mayor tensión. La función hidráulica decidirá.
-5. Recalcular la entrada de 24 V. Motor y válvula suman aproximadamente 0,862 A
+3. Recalcular la entrada de 24 V. Motor y válvula suman aproximadamente 0,862 A
    resistivos, demasiado cerca de F303=1 A para autorizar uso simultáneo. Cada
    carga debe tener fusible propio y la fuente/conector común deben dimensionarse
    con arranque, bloqueo y margen térmico.
 
-El pinout ya permite incorporar JP3 y la etapa low-side al esquema conservando la
-polaridad. La prueba en modo diodo sigue siendo obligatoria antes de energizarla.
+El pinout y la ausencia de diodo interno detectable permiten incorporar JP3 y la
+etapa low-side al esquema conservando la polaridad y el SS34 externo.

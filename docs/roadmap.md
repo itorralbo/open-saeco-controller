@@ -23,8 +23,9 @@ carga es un DRV8876 para el motor del grupo, con entrada de 24 V de banco separa
 queda sin ensayar y faltan válvula, calentador, bomba y molino.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya fija driver, MOSFET y protección, pero no entra al esquema hasta confirmar las
-características de la bobina. JP3.1=+24 V y JP3.2=retorno ya están confirmados;
-queda comprobar si la bobina contiene un diodo antes de energizarla.
+características dinámicas de la bobina. JP3.1=+24 V y JP3.2=retorno están
+confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión
+interna polarizada detectable y permite dibujar la rueda libre externa.
 El manual ya permite dibujar las envolventes de
 conectores y separar sensores de cargas. Ya están documentadas las tensiones
 principales, la curva NTC y el caudalímetro; siguen pendientes la salida del nivel

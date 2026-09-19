@@ -239,6 +239,7 @@ de cargas siguen pendientes en el esquema principal.
   con UCC27517DBVR, MOSFET SI2308A de 60 V, rueda libre y fusible propio.
 - El propietario confirma JP3.1 (pad cuadrado) a solenoide.1/+24 V y JP3.2 a
   solenoide.2/retorno 0 V; JP3.3–5 y el terminal GND separado quedan sin conectar.
-  Falta medir en modo diodo en ambos sentidos para detectar supresión integrada.
+  La bobina se identifica como OLAB 6000BH/B0DN, 24 V DC/10 W, y mide 0,073 V
+  en modo diodo en ambos sentidos: no se detecta supresión interna polarizada.
 - Motor y válvula sumarían unos 0,862 A resistivos; F303=1 A no se considera una
   protección común válida sin medir transitorios, arranque y temperatura.

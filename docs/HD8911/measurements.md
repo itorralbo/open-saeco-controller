@@ -16,6 +16,7 @@ o incertidumbre, se conserva expresamente como dato pendiente.
 | JP5-PINOUT | 2026-09-18 / propietario | caudalímetro | vista cenital, pad cuadrado a la izquierda | seguimiento visual | unidad identificada 932-9521-B | 1 señal; 2 GND; 3 VCC | comunicación del propietario + hoja Digmesa | Pinout adoptado Rev A |
 | JP22-PINOUT | 2026-09-18 / propietario | sensor de agua | arnés de tres hilos | seguimiento por color | módulo desconectado | rojo VCC; blanco señal; negro GND; VCC 3,3/5 V | comunicación del propietario + foto JP22 | Pinout adoptado Rev A; salida TBD |
 | JP3-PINOUT | 2026-09-19 / propietario | electroválvula | vista cenital, pad cuadrado=pin 1 | seguimiento de continuidad y polaridad | arnés desconectado | JP3.1→solenoide.1=+24 V; JP3.2→solenoide.2=retorno 0 V; JP3.3–5 sin uso; terminal GND del solenoide sin conectar | comunicación del propietario | Pinout adoptado Rev A; modo diodo aún TBD |
+| JP3-DIODE | 2026-09-19 / propietario | OLAB 6000BH/B0DN | terminales 1–2, ambas polaridades | multímetro en modo diodo/modelo TBD | bobina desconectada | 0,073 V en ambos sentidos | comunicación del propietario | No se detecta diodo interno polarizado; rueda libre externa requerida |
 
 Clasificar cada entrada como documento, observación, hipótesis o medida. Conservar
 datos contradictorios y bloquear decisiones dependientes hasta resolverlos.
@@ -77,8 +78,9 @@ rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 JP3 queda identificado: visto desde arriba, el pad cuadrado es el pin 1 y conduce
 al pin 1 de la electroválvula, +24 V; JP3.2 conduce al pin 2, retorno de 0 V. Las
 posiciones 3–5 no se usan y el terminal GND separado del solenoide no está conectado.
-Solo falta medir la bobina en modo diodo en ambos sentidos. Una caída en un único
-sentido indicaría supresión integrada y confirmaría que la polaridad debe conservarse.
+La bobina OLAB 6000BH/B0DN mide 0,073 V en modo diodo en ambos sentidos. La lectura
+simétrica es compatible con la resistencia del devanado y no muestra una unión de
+diodo interna polarizada. Se conserva la polaridad física y se requiere rueda libre externa.
 
 ## Plantilla para devolver resultados
 
@@ -91,5 +93,5 @@ sentido indicaría supresión integrada y confirmaría que la polaridad debe con
 | JP16-WORK | pestaña arriba | fuera/en trabajo |  |  |
 | LOAD-BU-R | rojo–azul | desconectado; temperatura TBD | 54,7 Ω | comunicación del propietario |
 | LOAD-VALVE-R | terminales bobina | desconectada; temperatura TBD | 56,7 Ω | comunicación del propietario |
-| JP3-DIODE | terminales bobina, ambas polaridades | desconectada |  |  |
+| JP3-DIODE | terminales bobina, ambas polaridades | desconectada | 0,073 V / 0,073 V | comunicación del propietario |
 | LOAD-GRINDER-R | blanco–negro | desconectado; temperatura TBD | 68 Ω | comunicación del propietario |
