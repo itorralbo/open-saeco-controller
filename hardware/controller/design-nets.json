@@ -1258,8 +1258,8 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "BREW_OUT1",
-        "2": "BREW_OUT2",
+        "1": "BREW_OUT2",
+        "2": "BREW_OUT1",
         "3": "BU_BRIDGE",
         "4": "BU_BRIDGE",
         "5": "GND_UI",

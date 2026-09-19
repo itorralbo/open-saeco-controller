@@ -30433,7 +30433,7 @@
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
 			(roundrect_rratio 0.147059)
-			(net "/BREW_OUT1")
+			(net "/BREW_OUT2")
 			(uuid "18b40e5c-01c0-4946-a7d5-0b7117f99827")
 		)
 		(pad "2" thru_hole oval
@@ -30442,7 +30442,7 @@
 			(drill 0.95)
 			(layers "*.Cu" "*.Mask")
 			(remove_unused_layers no)
-			(net "/BREW_OUT2")
+			(net "/BREW_OUT1")
 			(uuid "d07634f1-a350-49c3-b9af-e9e0f274dba4")
 		)
 		(pad "3" thru_hole oval

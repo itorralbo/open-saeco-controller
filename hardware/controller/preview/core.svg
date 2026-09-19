@@ -1256,11 +1256,11 @@
 <path d="M 699.77 443.23 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="443.53000000000003" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="697.83" y="442.73" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="694.2900000000001" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT1</text>
+<text x="694.2900000000001" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT2</text>
 <path d="M 699.77 447.04 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="447.34000000000003" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="697.83" y="446.54" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="694.2900000000001" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT2</text>
+<text x="694.2900000000001" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT1</text>
 <path d="M 699.77 450.85 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="451.15000000000003" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="697.83" y="450.35" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>

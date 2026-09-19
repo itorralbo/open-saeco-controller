@@ -131,7 +131,7 @@ def main():
     assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
     assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_CLOSED_N'}
     assert nets['C403'] == {'1':'DOOR_CLOSED_N','2':g}
-    assert nets['J108'] == {'1':'BREW_OUT1','2':'BREW_OUT2',
+    assert nets['J108'] == {'1':'BREW_OUT2','2':'BREW_OUT1',
                             '3':'BU_BRIDGE','4':'BU_BRIDGE','5':g,
                             '6':'BU_PRESENT_RAW','7':g,'8':'BU_WORK_RAW'}
     for prefix, raw, conditioned in [('PRES','BU_PRESENT_RAW','BU_PRESENT_N'),

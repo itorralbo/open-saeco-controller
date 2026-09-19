@@ -389,3 +389,12 @@ de cargas siguen pendientes en el esquema principal.
   las dos caras. L_IN hasta y = 77 mm, la fase protegida y el par NO de K701 van
   duplicados, con siete vías de 1,6/0,8 mm. DRC: 0 infracciones (152 segmentos,
   23 vías).
+
+## Prueba de autorrutado y cambio en JP16, 2026-09-19
+
+- Freerouting v2.4.1 sobre las redes SELV, con el cobre revisado fijo y el
+  dominio de red vetado. El DRC de KiCad no encontró infracciones de separación,
+  pero hubo 17 conexiones abiertas, 62 pistas de 0,15 mm y 2,3 m de pista en
+  B.Cu. Resultado descartado y no incorporado a la placa.
+- JP16/J108: V1 pasa a `BREW_OUT2` y V2 a `BREW_OUT1` para rutear el motor sin
+  cruces. ERC 0, netlist coincidente y comprobador del núcleo correcto.

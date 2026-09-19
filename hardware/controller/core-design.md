@@ -177,8 +177,10 @@ mantiene `nSLEEP` a cero durante reset mediante R506; el firmware deberá retira
 automáticamente tras una sobrecorriente.
 
 PA8 gobierna EN/PWM, PA6 la dirección, PB5 `nSLEEP`, PB6 lee `nFAULT` y PA3 mide
-`IPROPI`. V1/V2 de JP16 son `OUT1/OUT2`; la numeración física del conector sigue
-siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF
+`IPROPI`. V1/V2 de JP16 son `OUT2/OUT1`. Ese orden, con el DRV8876 girado 270°,
+evita que se crucen las pistas del motor; el motor es de continua y el signo de
+DIR para cada sentido se fijará en el ensayo del grupo. La numeración física del
+conector sigue siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF
 entre CPH y CPL siguen la aplicación de referencia de TI. C501=100 µF/35 V es un
 bulk inicial, no un dimensionado cerrado.
 

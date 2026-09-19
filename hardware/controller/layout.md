@@ -192,7 +192,24 @@ conectores, polaridad, puntos de medida y seguridad después del routing.
 
 ## Siguiente paso
 
-Siguen el mando del relé (U603, Q701, D701), las señales del STM32 por los
-canales reservados, los 12 V y el 3,3 V. Las etapas de calentador, bomba y
-molinillo esperan a elegir el disipador y a las huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
+Plan acordado con el propietario (2026-09-19), pendiente de ejecutar:
+
+1. Llevar el puente H junto a JP16: U501 girado 270° en el hueco de J102, encima
+   de MH1 (centro aproximado 35/37 mm). Bomba de carga C503/C504 y C501 debajo;
+   resistencias de control al este, hacia el STM32. OUT1 y OUT2, de 0,8 mm, bajan
+   por la izquierda y entran en J108 a y = 62 y 64,5 mm, entre las filas de
+   filtros de J108. J108 ya lleva OUT2 en V1 y OUT1 en V2 para que no se crucen.
+2. Mover J102 y J103 a la esquina superior derecha, al sitio que deja el
+   puente H.
+3. Rutear a mano, con geometría escrita en `route_controller_pcb.py` y DRC
+   tras cada bloque: puente H, mando del relé (U603/Q701/D701), bucks de 12 V y
+   3,3 V y, después, las señales del STM32 por sus canales.
+
+Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
+usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
+pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y no
+consiguió rutear el puente H. Se descartó a favor del ruteo manual.
+
+Las etapas de calentador, bomba y molinillo esperan a elegir el disipador y a
+las huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
 abiertas o la revisión de aislamiento pendiente.

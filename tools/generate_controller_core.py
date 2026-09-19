@@ -337,7 +337,8 @@ def main():
     d.note('PC0: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
     d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
-          ['BREW_OUT1','BREW_OUT2','BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
+          # OUT2 on V1 and OUT1 on V2 keep both motor leads uncrossed on the PCB.
+          ['BREW_OUT2','BREW_OUT1','BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
           'Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal',
           status='photo_candidate', part_key='CONN:JST_XH_8_RA')
     d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
