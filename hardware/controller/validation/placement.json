@@ -29,5 +29,28 @@
     "JP1",
     "JP9"
   ],
-  "connector_position_uncertainty_mm": 1.5
+  "connector_position_uncertainty_mm": 1.5,
+  "mains_barrier_centre_line_mm": [
+    [
+      51.0,
+      135.2
+    ],
+    [
+      51.0,
+      100.5
+    ],
+    [
+      69.5,
+      100.5
+    ],
+    [
+      69.5,
+      76.0
+    ],
+    [
+      141.6,
+      76.0
+    ]
+  ],
+  "mains_barrier_width_mm": 8.0
 }

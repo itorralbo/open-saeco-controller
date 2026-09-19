@@ -27,11 +27,11 @@ PIN_WIDTH = 0.25
 RING_WIDTH = 0.30
 
 GND_PLANE_NAME = 'GND_UI SELV plane (provisional)'
-# SELV side of the board. The mains_to_selv rules keep the fill 8 mm from any
-# primary copper; the outline stops short of the PS701 primary half and the
-# bottom mains connector row until the barrier geometry is fixed.
-GND_PLANE_OUTLINE = [(0.5, 0.5), (141.1, 0.5), (141.1, 66.5), (70.0, 66.5),
-                     (70.0, 109.5), (50.0, 109.5), (50.0, 134.7), (0.5, 134.7)]
+# SELV side of the barrier drawn by layout_controller_pcb.py, up to the SELV
+# edge of its keepout band. The mains_to_selv rules still hold the fill 8 mm
+# from any primary copper.
+GND_PLANE_OUTLINE = [(0.5, 0.5), (141.1, 0.5), (141.1, 72.0), (65.5, 72.0),
+                     (65.5, 96.5), (47.0, 96.5), (47.0, 134.7), (0.5, 134.7)]
 
 
 def net(board, name):

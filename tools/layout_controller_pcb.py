@@ -59,6 +59,43 @@ def pending_power_connector_keepouts(board):
         board.Add(zone)
 
 
+# Centre line of the primary/SELV barrier, from the bottom edge between J106
+# and J115, around the relay contacts and across PS701 to the right edge. A
+# band MAINS_BARRIER_MM wide around it holds no copper, vias or pads; parts
+# certified across it (K701, PS701 and future optocouplers) may span it.
+MAINS_BARRIER = [(51.0, 135.2), (51.0, 100.5), (69.5, 100.5), (69.5, 76.0),
+                 (141.6, 76.0)]
+MAINS_BARRIER_MM = 8.0
+BARRIER_ZONE_NAME = 'mains/SELV barrier'
+
+
+def mains_barrier_keepout(board):
+    for zone in list(board.Zones()):
+        if zone.GetZoneName() == BARRIER_ZONE_NAME:
+            board.Delete(zone)
+    half = MAINS_BARRIER_MM/2
+    (x0, y0), (x1, y1), (x2, _), (x3, y3), (x4, _) = MAINS_BARRIER
+    # Axis-aligned polyline, so the band outline is its offset on each side.
+    band = [(x0-half, y0), (x1-half, y1-half), (x2-half, y1-half),
+            (x3-half, y3-half), (x4, y3-half), (x4, y3+half),
+            (x3+half, y3+half), (x2+half, y1+half), (x1+half, y1+half),
+            (x0+half, y0)]
+    zone = pcb.ZONE(board)
+    zone.SetIsRuleArea(True)
+    zone.SetLayerSet(pcb.LSET.AllCuMask())
+    zone.SetDoNotAllowTracks(True)
+    zone.SetDoNotAllowVias(True)
+    zone.SetDoNotAllowZoneFills(True)
+    zone.SetDoNotAllowPads(True)
+    zone.SetDoNotAllowFootprints(False)
+    zone.SetZoneName(BARRIER_ZONE_NAME)
+    poly = zone.Outline()
+    poly.NewOutline()
+    for x, y in band:
+        poly.Append(MM(x), MM(y))
+    board.Add(zone)
+
+
 # Coordinates use the accepted component-side origin in mechanical-source.json.
 # Original harness connectors use the photo-derived positions in
 # mechanical-source.json. U201 orientation 0 puts its antenna/keepout at the top
@@ -70,21 +107,25 @@ PLACE = {
     'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
     'J118': (106.04, 121.3, 0),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
-    'J112': (108, 6, 0), 'J114': (96, 60, 90),
+    'J112': (108, 6, 0), 'J114': (84, 64.5, 90),
 
-    # Integrated mains supply. The IRM module is rotated so its mains pins face
-    # the right-side high-voltage corridor and its 24 V pins face the logic.
-    'F701': (137, 52, 90), 'RV701': (130, 61, 0), 'F702': (137, 27, 90),
-    'PS701': (105, 89, 180), 'J121': (69, 113, 0),
-    'U303': (51, 106, 0), 'L302': (61, 104, 0),
-    'C310': (47, 112, 0), 'C311': (54, 113, 0), 'C312': (62, 113, 0),
-    'C313': (67, 96, 0), 'R302': (68, 100, 0), 'R303': (68, 104, 0),
-    'C314': (68, 108, 0),
+    # Mains domain: everything below/right of MAINS_BARRIER. PS701 stands on
+    # the right edge with its AC pins beside J118 and its 24 V pins in SELV.
+    # Fuses and MOV sit between J118 and the relay; the free area left of them
+    # is reserved for the heater, pump and grinder stages.
+    'PS701': (121.3, 82.4, 90), 'F701': (99, 109, 180), 'F702': (79, 102, 0),
+    'RV701': (84, 114, 0), 'J121': (108.5, 45.2, 0),
 
-    # Independent phase-cut relay and low-voltage drive.
-    'U603': (34, 80, 0), 'Q701': (28, 93, 0),
-    'R801': (29, 81, 0), 'R802': (29, 86, 0), 'D701': (29, 115, 0),
-    'K701': (49, 93, 0),
+    # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
+    'C310': (117.5, 5, 0), 'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
+    'L302': (132, 5, 0), 'C311': (139, 4, 90), 'C312': (139, 10.5, 90),
+    'R302': (121, 10, 0), 'R303': (125, 10, 0), 'C314': (129, 10, 0),
+
+    # Phase-cut relay straddles the barrier: coil pins in SELV, contacts in
+    # the mains domain. Its drive and flyback diode stay beside the coil.
+    'U603': (34, 80, 0), 'Q701': (47.5, 91, 0),
+    'R801': (29, 81, 0), 'R802': (29, 86, 0), 'D701': (53, 91, 90),
+    'K701': (72, 91, 180),
 
     # STM32 reset, analog supply and local decoupling. Each capacitor sits at
     # its VDD/VSS pair outside the signal escape channels planned in layout.md;
@@ -111,8 +152,8 @@ PLACE = {
     'C301': (110, 27, 0), 'C302': (113, 31, 90), 'U301': (97, 36, 0),
     'C303': (102, 33, 0), 'L301': (104, 39, 0),
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
-    'U302': (101, 51, 0), 'R301': (96, 48, 0), 'C307': (107, 54, 0),
-    'C308': (96, 53, 90), 'C309': (107, 49, 90),
+    'U302': (98.5, 51, 0), 'R301': (96, 48, 0), 'C307': (99, 55, 0),
+    'C308': (94.5, 53, 90), 'C309': (99.5, 46.5, 0),
 
     # Passive sensor interfaces follow the original harness connector zones.
     'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),
@@ -126,14 +167,15 @@ PLACE = {
     'R704': (70, 59, 0), 'R705': (75, 59, 0),
     'R706': (80, 59, 0), 'C702': (85, 59, 0),
     'F303': (76, 52, 0), 'D304': (84, 52, 0),
+    # Kept above PS701; the right-edge column holds fault, VREF and IPROPI parts.
     'C501': (124, 21, 0), 'C502': (116, 21, 0), 'U501': (128, 43, 0),
-    'C503': (133, 37, 90), 'C504': (133, 49, 90),
+    'C503': (133, 37, 90), 'C504': (134, 42.3, 90),
     'R501': (114, 34, 0), 'R502': (119, 34, 0),
     'R503': (114, 40, 0), 'R504': (119, 40, 0),
     'R505': (112, 46, 0), 'R506': (118, 46, 0),
-    'R507': (112, 51, 0), 'R508': (118, 51, 0),
-    'R509': (112, 56, 0), 'C505': (118, 56, 0),
-    'R510': (112, 61, 0), 'C506': (118, 61, 0),
+    'R507': (136, 21, 0), 'R508': (136, 25, 0),
+    'R509': (136, 29, 0), 'C505': (139.5, 29, 0),
+    'R510': (136, 33, 0), 'C506': (139.5, 33, 0),
 
     # Valve branch above original JP3, kept away from sensor conditioning.
     'F304': (7, 91, 0), 'D305': (15, 91, 0), 'D306': (22, 99, 0),
@@ -183,6 +225,7 @@ def main():
                          'Original harness positions estimated from IMG_1098/1101; copper pending')
 
     pending_power_connector_keepouts(board)
+    mains_barrier_keepout(board)
 
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -207,6 +250,8 @@ def main():
             if item['new_reference'] not in after
         ],
         'connector_position_uncertainty_mm': MECHANICAL['connector_position_uncertainty_mm'],
+        'mains_barrier_centre_line_mm': MAINS_BARRIER,
+        'mains_barrier_width_mm': MAINS_BARRIER_MM,
     }
     (BASE/'validation/placement.json').write_text(json.dumps(result, indent=2)+'\n')
     print(f'Controller mechanical/functional placement applied to {len(PLACE)} footprints; '
