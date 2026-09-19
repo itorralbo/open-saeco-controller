@@ -78,7 +78,7 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  122 de 123 posiciones actuales con MPN, código y huella; J111 es un puente de
+  131 de 132 posiciones actuales con MPN, código y huella; J111 es un puente de
   cobre abierto y no requiere pieza. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
   puente H y la válvula, y completar las etapas de red/molino.
@@ -91,8 +91,8 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
 protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
-USB de servicio, el driver del motor del grupo, la etapa de válvula y el watchdog
-con interlock hardware. **No incluye**
+  USB de servicio, telemetría de 12/24 V, el driver del motor del grupo, la etapa
+  de válvula y el watchdog con interlock hardware. **No incluye**
 fuentes AC/DC aisladas ni drivers de calentador, bomba o molino. El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 

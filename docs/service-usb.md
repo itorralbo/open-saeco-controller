@@ -50,6 +50,13 @@ un tiempo máximo, límites eléctricos y condición de parada definidos en el S
 La desconexión USB, pérdida de UART o bloqueo del ESP32 cancelará la orden activa.
 El primer ensayo se hará únicamente con cargas desconectadas y entradas simuladas.
 
+`STATUS` y `STREAM` incluirán como mínimo `rail_12v_mv`, `rail_24v_mv`,
+`brew_current_ma`, `brew_fault_n`, estado de puerta/grupo y bits de interlock.
+Las tensiones proceden de PA4/ADC2_IN17 y PA5/ADC2_IN13 con factor nominal 21;
+el firmware aplicará calibración y límites plausibles antes de usarlas para
+diagnóstico. La cabecera J114 permite contrastar los valores sin interrumpir la
+sesión USB.
+
 El ESP32-S3 comparte el PHY entre USB-OTG y USB Serial/JTAG. El firmware deberá
 elegir una configuración coherente; no puede asumir ambos controladores a la vez.
 Véase la [documentación oficial de dispositivo USB](https://docs.espressif.com/projects/esp-usb/en/latest/esp32s3/usb_device.html).

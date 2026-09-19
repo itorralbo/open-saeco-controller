@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="4756" height="3364" viewBox="0 0 1189 841"><rect width="1189" height="841" fill="white"/><g font-family="Arial, sans-serif"><text x="12" y="12" font-size="3" text-anchor="start" fill="#213b50">OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0</text>
-<text x="12" y="22" font-size="1.8" text-anchor="start" fill="#213b50">BORRADOR: lógica, alimentación, USB y sensores de baja tensión. Sin red, drivers de cargas ni watchdog.</text>
+<text x="12" y="22" font-size="1.8" text-anchor="start" fill="#213b50">BORRADOR: lógica, alimentación, USB, sensores y dos cargas de 24V. Sin etapas de red.</text>
 <text x="20" y="36" font-size="1.8" text-anchor="start" fill="#213b50">01 / STM32 de control — C431633</text>
 <rect x="67.31" y="50.16499999999999" width="30.48" height="124.46000000000001" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="82.55" y="45.16499999999999" font-size="1.05" text-anchor="middle" fill="#213b50">U101</text>
@@ -87,11 +87,11 @@
 <path d="M 67.31 129.54 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="129.84" font-size="0.9" text-anchor="start" fill="#213b50">PA4</text>
 <text x="65.36999999999999" y="129.04" font-size="0.65" text-anchor="middle" fill="#213b50">21</text>
-<text x="62.23" y="129.84" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="129.04" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
 <path d="M 67.31 133.35 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="133.65" font-size="0.9" text-anchor="start" fill="#213b50">PA5</text>
 <text x="65.36999999999999" y="132.85" font-size="0.65" text-anchor="middle" fill="#213b50">22</text>
-<text x="62.23" y="133.65" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="132.85" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
 <path d="M 67.31 137.16 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="137.46" font-size="0.9" text-anchor="start" fill="#213b50">PA6</text>
 <text x="65.36999999999999" y="136.66" font-size="0.65" text-anchor="middle" fill="#213b50">23</text>
@@ -1837,5 +1837,91 @@
 <text x="12" y="744" font-size="1.1" text-anchor="start" fill="#213b50">PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.</text>
 <text x="12" y="752" font-size="1.1" text-anchor="start" fill="#213b50">~RESET open-drain comparte STM_NRST y fuerza ambas salidas a 0 mediante U602.</text>
 <text x="12" y="760" font-size="1.1" text-anchor="start" fill="#213b50">R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.</text>
+<text x="470" y="610" font-size="1.8" text-anchor="start" fill="#213b50">14 / Telemetría de alimentación y cabecera de medida</text>
+<rect x="497.84" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="500.38" y="634.08" font-size="1.05" text-anchor="middle" fill="#213b50">R701</text>
+<text x="500.38" y="636.58" font-size="1.05" text-anchor="middle" fill="#213b50">100k / 12V div A</text>
+<path d="M 497.84 640.08 H 492.76" stroke="#27856d" stroke-width=".22"/>
+<text x="492.36" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 502.92 640.08 H 508.0" stroke="#27856d" stroke-width=".22"/>
+<text x="508.4" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">RAIL_12V_DIV</text>
+<rect x="567.69" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="570.23" y="634.08" font-size="1.05" text-anchor="middle" fill="#213b50">R702</text>
+<text x="570.23" y="636.58" font-size="1.05" text-anchor="middle" fill="#213b50">100k / 12V div B</text>
+<path d="M 567.69 640.08 H 562.61" stroke="#27856d" stroke-width=".22"/>
+<text x="562.21" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_DIV</text>
+<path d="M 572.77 640.08 H 577.85" stroke="#27856d" stroke-width=".22"/>
+<text x="578.25" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">RAIL_12V_ADC</text>
+<rect x="637.5400000000001" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="640.08" y="634.08" font-size="1.05" text-anchor="middle" fill="#213b50">R703</text>
+<text x="640.08" y="636.58" font-size="1.05" text-anchor="middle" fill="#213b50">10k / 12V div low</text>
+<path d="M 637.5400000000001 640.08 H 632.46" stroke="#27856d" stroke-width=".22"/>
+<text x="632.0600000000001" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
+<path d="M 642.62 640.08 H 647.7" stroke="#27856d" stroke-width=".22"/>
+<text x="648.1" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 707.39 640.08 H 709.295 M 710.5649999999999 640.08 H 712.4699999999999 M 709.295 638.58 V 641.58 M 710.5649999999999 638.58 V 641.58" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="709.93" y="633.58" font-size="1.05" text-anchor="middle" fill="#213b50">C701</text>
+<text x="709.93" y="636.08" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / 12V ADC</text>
+<path d="M 707.39 640.08 H 702.31" stroke="#27856d" stroke-width=".22"/>
+<text x="701.91" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
+<path d="M 712.4699999999999 640.08 H 717.55" stroke="#27856d" stroke-width=".22"/>
+<text x="717.9499999999999" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="497.84" y="683.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="500.38" y="678.53" font-size="1.05" text-anchor="middle" fill="#213b50">R704</text>
+<text x="500.38" y="681.03" font-size="1.05" text-anchor="middle" fill="#213b50">100k / 24V div A</text>
+<path d="M 497.84 684.53 H 492.76" stroke="#27856d" stroke-width=".22"/>
+<text x="492.36" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 502.92 684.53 H 508.0" stroke="#27856d" stroke-width=".22"/>
+<text x="508.4" y="684.03" font-size="0.9" text-anchor="start" fill="#23745f">RAIL_24V_DIV</text>
+<rect x="567.69" y="683.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="570.23" y="678.53" font-size="1.05" text-anchor="middle" fill="#213b50">R705</text>
+<text x="570.23" y="681.03" font-size="1.05" text-anchor="middle" fill="#213b50">100k / 24V div B</text>
+<path d="M 567.69 684.53 H 562.61" stroke="#27856d" stroke-width=".22"/>
+<text x="562.21" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_DIV</text>
+<path d="M 572.77 684.53 H 577.85" stroke="#27856d" stroke-width=".22"/>
+<text x="578.25" y="684.03" font-size="0.9" text-anchor="start" fill="#23745f">RAIL_24V_ADC</text>
+<rect x="637.5400000000001" y="683.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="640.08" y="678.53" font-size="1.05" text-anchor="middle" fill="#213b50">R706</text>
+<text x="640.08" y="681.03" font-size="1.05" text-anchor="middle" fill="#213b50">10k / 24V div low</text>
+<path d="M 637.5400000000001 684.53 H 632.46" stroke="#27856d" stroke-width=".22"/>
+<text x="632.0600000000001" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
+<path d="M 642.62 684.53 H 647.7" stroke="#27856d" stroke-width=".22"/>
+<text x="648.1" y="684.03" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 707.39 684.53 H 709.295 M 710.5649999999999 684.53 H 712.4699999999999 M 709.295 683.03 V 686.03 M 710.5649999999999 683.03 V 686.03" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="709.93" y="678.03" font-size="1.05" text-anchor="middle" fill="#213b50">C702</text>
+<text x="709.93" y="680.53" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / 24V ADC</text>
+<path d="M 707.39 684.53 H 702.31" stroke="#27856d" stroke-width=".22"/>
+<text x="701.91" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
+<path d="M 712.4699999999999 684.53 H 717.55" stroke="#27856d" stroke-width=".22"/>
+<text x="717.9499999999999" y="684.03" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="800.0999999999999" y="659.765" width="10.16" height="25.4" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="805.18" y="654.765" font-size="1.05" text-anchor="middle" fill="#213b50">J114</text>
+<text x="805.18" y="657.265" font-size="1.05" text-anchor="middle" fill="#213b50">POWER MONITOR / MEASURE ONLY</text>
+<path d="M 800.0999999999999 662.94 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="663.24" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="798.16" y="662.44" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="794.62" y="662.44" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 800.0999999999999 666.75 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="667.05" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="798.16" y="666.25" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="794.62" y="666.25" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 800.0999999999999 670.56 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="670.8599999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="798.16" y="670.06" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="794.62" y="670.06" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 800.0999999999999 674.37 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="674.67" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="798.16" y="673.87" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="794.62" y="673.87" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 800.0999999999999 678.18 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="678.4799999999999" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
+<text x="798.16" y="677.68" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="794.62" y="677.68" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
+<path d="M 800.0999999999999 681.99 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="682.29" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
+<text x="798.16" y="681.49" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
+<text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
+<text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
 <text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final y etapas de red/molino.</text>
 <text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>

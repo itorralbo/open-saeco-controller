@@ -300,3 +300,13 @@ de cargas siguen pendientes en el esquema principal.
   frontal y retroiluminación para validar F301 y la térmica.
 - Red, bomba, calentador y molino quedan fuera de la principal de baja tensión
   hasta definir aislamiento, cortes independientes, protección y mecánica.
+
+## Telemetría de rails, 2026-09-19
+
+- PA4/ADC2_IN17 mide `12V_PROTECTED` y PA5/ADC2_IN13 mide `24V_ACT_RAW`; ambas
+  funciones se cotejaron con la tabla de pines LQFP64 del STM32G431.
+- Cada entrada usa 200 kΩ sobre 10 kΩ y 100 nF: factor 21, 0,571 V nominal para
+  12 V y 1,143 V nominal para 24 V. El rango teórico hasta 3,3 V alcanza 69,3 V,
+  dejando margen de diagnóstico sin depender de los diodos internos del MCU.
+- J114 expone GND, 3,3 V, ambos rails y ambas señales ADC para comparar firmware
+  y multímetro. Es una cabecera de medida, no de alimentación.

@@ -29,6 +29,8 @@ La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md
 fija dos fuentes DC externas aisladas para el banco: 12 V para lógica y 24 V para
 grupo/válvula. Permite avanzar el layout de baja tensión mientras las etapas de
 red permanecen en un bloque de potencia separado y pendiente de revisión.
+La principal ya mide ambos rails en PA4/PA5 y expone J114 para correlacionar la
+telemetría USB con el multímetro durante los ensayos.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión

@@ -166,6 +166,14 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C701": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C702": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -257,6 +265,10 @@
     "J113": {
       "footprint": "Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal",
       "numbered_pads": 5
+    },
+    "J114": {
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "numbered_pads": 6
     },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
@@ -458,6 +470,30 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R701": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R702": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R703": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R704": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R705": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R706": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "U101": {
       "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
       "numbered_pads": 64
@@ -524,6 +560,8 @@
     "C508",
     "C601",
     "C602",
+    "C701",
+    "C702",
     "D301",
     "D302",
     "D303",
@@ -547,6 +585,7 @@
     "J111",
     "J112",
     "J113",
+    "J114",
     "L301",
     "Q501",
     "R221",
@@ -585,6 +624,12 @@
     "R602",
     "R603",
     "R604",
+    "R701",
+    "R702",
+    "R703",
+    "R704",
+    "R705",
+    "R706",
     "U203",
     "U301",
     "U302",

@@ -32,8 +32,8 @@
         "18": "GND_UI",
         "19": "3V3_CORE",
         "20": "3V3_CORE",
-        "21": null,
-        "22": null,
+        "21": "RAIL_12V_ADC",
+        "22": "RAIL_24V_ADC",
         "23": "BREW_DIR_RAW",
         "24": "VALVE_EN_RAW",
         "25": null,
@@ -2033,6 +2033,145 @@
       "pins": {
         "1": "3V3_CORE",
         "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R701",
+      "value": "100k / 12V div A",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "RAIL_12V_DIV"
+      }
+    },
+    {
+      "reference": "R702",
+      "value": "100k / 12V div B",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_12V_DIV",
+        "2": "RAIL_12V_ADC"
+      }
+    },
+    {
+      "reference": "R703",
+      "value": "10k / 12V div low",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_12V_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C701",
+      "value": "100nF / 12V ADC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_12V_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R704",
+      "value": "100k / 24V div A",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "2": "RAIL_24V_DIV"
+      }
+    },
+    {
+      "reference": "R705",
+      "value": "100k / 24V div B",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_24V_DIV",
+        "2": "RAIL_24V_ADC"
+      }
+    },
+    {
+      "reference": "R706",
+      "value": "10k / 24V div low",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_24V_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C702",
+      "value": "100nF / 24V ADC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "RAIL_24V_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J114",
+      "value": "POWER MONITOR / MEASURE ONLY",
+      "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "hanxia",
+      "mpn": "HX PH254-01-06-Z-L11.5 through hole header",
+      "lcsc": "C52016393",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "GND_UI",
+        "2": "3V3_CORE",
+        "3": "12V_PROTECTED",
+        "4": "24V_ACT_RAW",
+        "5": "RAIL_12V_ADC",
+        "6": "RAIL_24V_ADC"
       }
     }
   ]

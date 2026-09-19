@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-19T09:47:26</date>
+    <date>2026-09-19T09:57:40</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -1336,6 +1336,70 @@
         </unit>
       </units>
     </comp>
+    <comp ref="C701">
+      <value>100nF / 12V ADC</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>92ed60f9-6935-5230-8039-f6ef4efb93e6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C702">
+      <value>100nF / 24V ADC</value>
+      <footprint>Capacitor_SMD:C_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">YAGEO</field>
+        <field name="mpn">CC0603KRX7R9BB104</field>
+        <field name="lcsc">C14663</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="YAGEO"/>
+      <property name="mpn" value="CC0603KRX7R9BB104"/>
+      <property name="lcsc" value="C14663"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4b9d3e6f-1c71-5a45-b96e-bfaf0883e55f</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="D301">
       <value>SS34</value>
       <footprint>Diode_SMD:D_SMA</footprint>
@@ -2106,6 +2170,42 @@
             <pin num="3"/>
             <pin num="4"/>
             <pin num="5"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="J114">
+      <value>POWER MONITOR / MEASURE ONLY</value>
+      <footprint>Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical</footprint>
+      <fields>
+        <field name="manufacturer">hanxia</field>
+        <field name="mpn">HX PH254-01-06-Z-L11.5 through hole header</field>
+        <field name="lcsc">C52016393</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="J6" description=""/>
+      <property name="manufacturer" value="hanxia"/>
+      <property name="mpn" value="HX PH254-01-06-Z-L11.5 through hole header"/>
+      <property name="lcsc" value="C52016393"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>330ccda9-b5fb-5e60-a47b-961dcd542e9e</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+            <pin num="3"/>
+            <pin num="4"/>
+            <pin num="5"/>
+            <pin num="6"/>
           </pins>
         </unit>
       </units>
@@ -3711,6 +3811,198 @@
         </unit>
       </units>
     </comp>
+    <comp ref="R701">
+      <value>100k / 12V div A</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>a405cb8f-9058-5c1d-80e8-df7605e8505d</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R702">
+      <value>100k / 12V div B</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>f9a545dd-5a61-579e-bcbf-0e37a07262cb</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R703">
+      <value>10k / 12V div low</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>97a3a3e8-d809-5081-b6ae-ddcb8bd844e6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R704">
+      <value>100k / 24V div A</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>36f86f7c-f532-512f-9089-e46c99d9f1d7</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R705">
+      <value>100k / 24V div B</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>4ee0d4ed-3ce9-52a1-a4cf-66f137f282c6</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R706">
+      <value>10k / 24V div low</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1002T5E</field>
+        <field name="lcsc">C25804</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1002T5E"/>
+      <property name="lcsc" value="C25804"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>c94415b6-697d-514b-95ec-c0da808a1a2a</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="U101">
       <value>STM32G431RBT6</value>
       <footprint>Package_QFP:LQFP-64_10x10mm_P0.5mm</footprint>
@@ -4640,6 +4932,7 @@
       <node ref="J102" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J103" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J109" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J114" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="L301" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="R101" pin="1" pintype="passive"/>
       <node ref="R201" pin="1" pintype="passive"/>
@@ -4689,6 +4982,8 @@
       <node ref="D302" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D303" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="J106" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="J114" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="R701" pin="1" pintype="passive"/>
       <node ref="U301" pin="2" pinfunction="EN_2" pintype="input"/>
       <node ref="U301" pin="3" pinfunction="VIN_3" pintype="power_in"/>
       <node ref="U502" pin="5" pinfunction="VDD_5" pintype="power_in"/>
@@ -4697,6 +4992,8 @@
       <node ref="F303" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="F304" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J112" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J114" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="R704" pin="1" pintype="passive"/>
     </net>
     <net code="7" name="/24V_BREW" class="Default">
       <node ref="C501" pin="1" pintype="passive"/>
@@ -4913,6 +5210,8 @@
       <node ref="C508" pin="2" pintype="passive"/>
       <node ref="C601" pin="2" pintype="passive"/>
       <node ref="C602" pin="2" pintype="passive"/>
+      <node ref="C701" pin="2" pintype="passive"/>
+      <node ref="C702" pin="2" pintype="passive"/>
       <node ref="D302" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="J101" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J102" pin="3" pinfunction="3_3" pintype="passive"/>
@@ -4934,6 +5233,7 @@
       <node ref="J110" pin="B12" pinfunction="GND_B12" pintype="passive"/>
       <node ref="J110" pin="SH" pinfunction="SHIELD_SH" pintype="passive"/>
       <node ref="J112" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J114" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="Q501" pin="2" pinfunction="S_2" pintype="power_in"/>
       <node ref="R102" pin="2" pintype="passive"/>
       <node ref="R223" pin="2" pintype="passive"/>
@@ -4949,6 +5249,8 @@
       <node ref="R602" pin="2" pintype="passive"/>
       <node ref="R603" pin="2" pintype="passive"/>
       <node ref="R604" pin="2" pintype="passive"/>
+      <node ref="R703" pin="2" pintype="passive"/>
+      <node ref="R706" pin="2" pintype="passive"/>
       <node ref="U101" pin="12" pinfunction="VSS_12" pintype="power_in"/>
       <node ref="U101" pin="18" pinfunction="VSSA_18" pintype="power_in"/>
       <node ref="U101" pin="31" pinfunction="VSS_31" pintype="power_in"/>
@@ -5020,19 +5322,41 @@
       <node ref="R401" pin="2" pintype="passive"/>
       <node ref="R402" pin="1" pintype="passive"/>
     </net>
-    <net code="58" name="/RST_RAW" class="Default">
+    <net code="58" name="/RAIL_12V_ADC" class="Default">
+      <node ref="C701" pin="1" pintype="passive"/>
+      <node ref="J114" pin="5" pinfunction="5_5" pintype="passive"/>
+      <node ref="R702" pin="2" pintype="passive"/>
+      <node ref="R703" pin="1" pintype="passive"/>
+      <node ref="U101" pin="21" pinfunction="PA4_21" pintype="bidirectional"/>
+    </net>
+    <net code="59" name="/RAIL_12V_DIV" class="Default">
+      <node ref="R701" pin="2" pintype="passive"/>
+      <node ref="R702" pin="1" pintype="passive"/>
+    </net>
+    <net code="60" name="/RAIL_24V_ADC" class="Default">
+      <node ref="C702" pin="1" pintype="passive"/>
+      <node ref="J114" pin="6" pinfunction="6_6" pintype="passive"/>
+      <node ref="R705" pin="2" pintype="passive"/>
+      <node ref="R706" pin="1" pintype="passive"/>
+      <node ref="U101" pin="22" pinfunction="PA5_22" pintype="bidirectional"/>
+    </net>
+    <net code="61" name="/RAIL_24V_DIV" class="Default">
+      <node ref="R704" pin="2" pintype="passive"/>
+      <node ref="R705" pin="1" pintype="passive"/>
+    </net>
+    <net code="62" name="/RST_RAW" class="Default">
       <node ref="R217" pin="1" pintype="passive"/>
       <node ref="U201" pin="12" pinfunction="IO8_12" pintype="bidirectional"/>
     </net>
-    <net code="59" name="/SCLK_RAW" class="Default">
+    <net code="63" name="/SCLK_RAW" class="Default">
       <node ref="R213" pin="1" pintype="passive"/>
       <node ref="U201" pin="20" pinfunction="IO12_20" pintype="bidirectional"/>
     </net>
-    <net code="60" name="/STM_BOOT0" class="Default">
+    <net code="64" name="/STM_BOOT0" class="Default">
       <node ref="R102" pin="1" pintype="passive"/>
       <node ref="U101" pin="61" pinfunction="PB8_61" pintype="bidirectional"/>
     </net>
-    <net code="61" name="/STM_NRST" class="Default">
+    <net code="65" name="/STM_NRST" class="Default">
       <node ref="C101" pin="1" pintype="passive"/>
       <node ref="J102" pin="5" pinfunction="5_5" pintype="passive"/>
       <node ref="R101" pin="2" pintype="passive"/>
@@ -5041,79 +5365,79 @@
       <node ref="U602" pin="2" pinfunction="1B_2" pintype="input"/>
       <node ref="U602" pin="6" pinfunction="2B_6" pintype="input"/>
     </net>
-    <net code="62" name="/STM_SWCLK" class="Default">
+    <net code="66" name="/STM_SWCLK" class="Default">
       <node ref="J102" pin="4" pinfunction="4_4" pintype="passive"/>
       <node ref="U101" pin="50" pinfunction="PA14_50" pintype="bidirectional"/>
     </net>
-    <net code="63" name="/STM_SWDIO" class="Default">
+    <net code="67" name="/STM_SWDIO" class="Default">
       <node ref="J102" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="U101" pin="49" pinfunction="PA13_49" pintype="bidirectional"/>
     </net>
-    <net code="64" name="/STM_SWO" class="Default">
+    <net code="68" name="/STM_SWO" class="Default">
       <node ref="J102" pin="6" pinfunction="6_6" pintype="passive"/>
       <node ref="U101" pin="56" pinfunction="PB3_56" pintype="bidirectional"/>
     </net>
-    <net code="65" name="/STM_TO_ESP" class="Default">
+    <net code="69" name="/STM_TO_ESP" class="Default">
       <node ref="R211" pin="2" pintype="passive"/>
       <node ref="U201" pin="11" pinfunction="IO18_11" pintype="bidirectional"/>
     </net>
-    <net code="66" name="/STM_TX_RAW" class="Default">
+    <net code="70" name="/STM_TX_RAW" class="Default">
       <node ref="R211" pin="1" pintype="passive"/>
       <node ref="U101" pin="43" pinfunction="PA9_43" pintype="bidirectional"/>
     </net>
-    <net code="67" name="/SW_NODE" class="Default">
+    <net code="71" name="/SW_NODE" class="Default">
       <node ref="C303" pin="2" pintype="passive"/>
       <node ref="L301" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U301" pin="5" pinfunction="SW_5" pintype="power_out"/>
     </net>
-    <net code="68" name="/UI_PWR_EN" class="Default">
+    <net code="72" name="/UI_PWR_EN" class="Default">
       <node ref="R301" pin="2" pintype="passive"/>
       <node ref="U101" pin="27" pinfunction="PB0_27" pintype="bidirectional"/>
       <node ref="U302" pin="3" pinfunction="ON_3" pintype="input"/>
     </net>
-    <net code="69" name="/UI_RISE" class="Default">
+    <net code="73" name="/UI_RISE" class="Default">
       <node ref="C307" pin="1" pintype="passive"/>
       <node ref="U302" pin="4" pinfunction="CT_4" pintype="output"/>
     </net>
-    <net code="70" name="/USB_BENCH_ENABLE" class="Default">
+    <net code="74" name="/USB_BENCH_ENABLE" class="Default">
       <node ref="D303" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="J111" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
-    <net code="71" name="/USB_CC1" class="Default">
+    <net code="75" name="/USB_CC1" class="Default">
       <node ref="J110" pin="A5" pinfunction="CC1_A5" pintype="passive"/>
       <node ref="R223" pin="1" pintype="passive"/>
     </net>
-    <net code="72" name="/USB_CC2" class="Default">
+    <net code="76" name="/USB_CC2" class="Default">
       <node ref="J110" pin="B5" pinfunction="CC2_B5" pintype="passive"/>
       <node ref="R224" pin="1" pintype="passive"/>
     </net>
-    <net code="73" name="/USB_DM_DEVICE" class="Default">
+    <net code="77" name="/USB_DM_DEVICE" class="Default">
       <node ref="R221" pin="1" pintype="passive"/>
       <node ref="U203" pin="4" pinfunction="I/O2_4" pintype="passive"/>
     </net>
-    <net code="74" name="/USB_DM_PORT" class="Default">
+    <net code="78" name="/USB_DM_PORT" class="Default">
       <node ref="J110" pin="A7" pinfunction="D-_A7" pintype="passive"/>
       <node ref="J110" pin="B7" pinfunction="D-_B7" pintype="passive"/>
       <node ref="U203" pin="3" pinfunction="I/O2_3" pintype="passive"/>
     </net>
-    <net code="75" name="/USB_DM_RAW" class="Default">
+    <net code="79" name="/USB_DM_RAW" class="Default">
       <node ref="R221" pin="2" pintype="passive"/>
       <node ref="U201" pin="13" pinfunction="IO19_13" pintype="bidirectional"/>
     </net>
-    <net code="76" name="/USB_DP_DEVICE" class="Default">
+    <net code="80" name="/USB_DP_DEVICE" class="Default">
       <node ref="R222" pin="1" pintype="passive"/>
       <node ref="U203" pin="6" pinfunction="I/O1_6" pintype="passive"/>
     </net>
-    <net code="77" name="/USB_DP_PORT" class="Default">
+    <net code="81" name="/USB_DP_PORT" class="Default">
       <node ref="J110" pin="A6" pinfunction="D+_A6" pintype="passive"/>
       <node ref="J110" pin="B6" pinfunction="D+_B6" pintype="passive"/>
       <node ref="U203" pin="1" pinfunction="I/O1_1" pintype="passive"/>
     </net>
-    <net code="78" name="/USB_DP_RAW" class="Default">
+    <net code="82" name="/USB_DP_RAW" class="Default">
       <node ref="R222" pin="2" pintype="passive"/>
       <node ref="U201" pin="14" pinfunction="IO20_14" pintype="bidirectional"/>
     </net>
-    <net code="79" name="/USB_VBUS" class="Default">
+    <net code="83" name="/USB_VBUS" class="Default">
       <node ref="C205" pin="1" pintype="passive"/>
       <node ref="F302" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J110" pin="A4" pinfunction="VBUS_A4" pintype="passive"/>
@@ -5123,228 +5447,222 @@
       <node ref="R225" pin="1" pintype="passive"/>
       <node ref="U203" pin="5" pinfunction="VBUS_5" pintype="passive"/>
     </net>
-    <net code="80" name="/USB_VBUS_FUSED" class="Default">
+    <net code="84" name="/USB_VBUS_FUSED" class="Default">
       <node ref="F302" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J111" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="81" name="/USB_VBUS_SENSE" class="Default">
+    <net code="85" name="/USB_VBUS_SENSE" class="Default">
       <node ref="C204" pin="1" pintype="passive"/>
       <node ref="R225" pin="2" pintype="passive"/>
       <node ref="R226" pin="1" pintype="passive"/>
       <node ref="U201" pin="23" pinfunction="IO21_23" pintype="bidirectional"/>
     </net>
-    <net code="82" name="/VALVE_EN_DRV" class="Default">
+    <net code="86" name="/VALVE_EN_DRV" class="Default">
       <node ref="R511" pin="2" pintype="passive"/>
       <node ref="R512" pin="1" pintype="passive"/>
       <node ref="U502" pin="1" pinfunction="IN+_1" pintype="input"/>
     </net>
-    <net code="83" name="/VALVE_EN_INTERLOCK" class="Default">
+    <net code="87" name="/VALVE_EN_INTERLOCK" class="Default">
       <node ref="R511" pin="1" pintype="passive"/>
       <node ref="U602" pin="3" pinfunction="2Y_3" pintype="output"/>
     </net>
-    <net code="84" name="/VALVE_EN_RAW" class="Default">
+    <net code="88" name="/VALVE_EN_RAW" class="Default">
       <node ref="R604" pin="1" pintype="passive"/>
       <node ref="U101" pin="24" pinfunction="PA7_24" pintype="bidirectional"/>
       <node ref="U602" pin="5" pinfunction="2A_5" pintype="input"/>
     </net>
-    <net code="85" name="/VALVE_GATE" class="Default">
+    <net code="89" name="/VALVE_GATE" class="Default">
       <node ref="Q501" pin="1" pinfunction="G_1" pintype="input"/>
       <node ref="R513" pin="2" pintype="passive"/>
       <node ref="R514" pin="1" pintype="passive"/>
     </net>
-    <net code="86" name="/VALVE_GATE_RAW" class="Default">
+    <net code="90" name="/VALVE_GATE_RAW" class="Default">
       <node ref="R513" pin="1" pintype="passive"/>
       <node ref="U502" pin="4" pinfunction="OUT_4" pintype="output"/>
     </net>
-    <net code="87" name="/VALVE_RETURN" class="Default">
+    <net code="91" name="/VALVE_RETURN" class="Default">
       <node ref="D306" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="J113" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="Q501" pin="3" pinfunction="D_3" pintype="power_out"/>
     </net>
-    <net code="88" name="/WATCHDOG_KICK" class="Default">
+    <net code="92" name="/WATCHDOG_KICK" class="Default">
       <node ref="R601" pin="2" pintype="passive"/>
       <node ref="R602" pin="1" pintype="passive"/>
       <node ref="U601" pin="4" pinfunction="WDI_4" pintype="input"/>
     </net>
-    <net code="89" name="/WATCHDOG_KICK_RAW" class="Default">
+    <net code="93" name="/WATCHDOG_KICK_RAW" class="Default">
       <node ref="R601" pin="1" pintype="passive"/>
       <node ref="U101" pin="57" pinfunction="PB4_57" pintype="bidirectional"/>
     </net>
-    <net code="90" name="/WATER_LEVEL" class="Default">
+    <net code="94" name="/WATER_LEVEL" class="Default">
       <node ref="C406" pin="1" pintype="passive"/>
       <node ref="R411" pin="2" pintype="passive"/>
       <node ref="U101" pin="16" pinfunction="PA2_16" pintype="bidirectional"/>
     </net>
-    <net code="91" name="/WATER_RAW" class="Default">
+    <net code="95" name="/WATER_RAW" class="Default">
       <node ref="J109" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="R411" pin="1" pintype="passive"/>
     </net>
-    <net code="92" name="unconnected-(J104-Pad16)" class="Default">
+    <net code="96" name="unconnected-(J104-Pad16)" class="Default">
       <node ref="J104" pin="16" pinfunction="16_16" pintype="passive+no_connect"/>
     </net>
-    <net code="93" name="unconnected-(J110-SBU1-PadA8)" class="Default">
+    <net code="97" name="unconnected-(J110-SBU1-PadA8)" class="Default">
       <node ref="J110" pin="A8" pinfunction="SBU1_A8" pintype="passive+no_connect"/>
     </net>
-    <net code="94" name="unconnected-(J110-SBU2-PadB8)" class="Default">
+    <net code="98" name="unconnected-(J110-SBU2-PadB8)" class="Default">
       <node ref="J110" pin="B8" pinfunction="SBU2_B8" pintype="passive+no_connect"/>
     </net>
-    <net code="95" name="unconnected-(J113-Pad3)" class="Default">
+    <net code="99" name="unconnected-(J113-Pad3)" class="Default">
       <node ref="J113" pin="3" pinfunction="3_3" pintype="passive+no_connect"/>
     </net>
-    <net code="96" name="unconnected-(J113-Pad4)" class="Default">
+    <net code="100" name="unconnected-(J113-Pad4)" class="Default">
       <node ref="J113" pin="4" pinfunction="4_4" pintype="passive+no_connect"/>
     </net>
-    <net code="97" name="unconnected-(J113-Pad5)" class="Default">
+    <net code="101" name="unconnected-(J113-Pad5)" class="Default">
       <node ref="J113" pin="5" pinfunction="5_5" pintype="passive+no_connect"/>
     </net>
-    <net code="98" name="unconnected-(U101-PA4-Pad21)" class="Default">
-      <node ref="U101" pin="21" pinfunction="PA4_21" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="99" name="unconnected-(U101-PA5-Pad22)" class="Default">
-      <node ref="U101" pin="22" pinfunction="PA5_22" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="100" name="unconnected-(U101-PA11-Pad45)" class="Default">
+    <net code="102" name="unconnected-(U101-PA11-Pad45)" class="Default">
       <node ref="U101" pin="45" pinfunction="PA11_45" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="101" name="unconnected-(U101-PA12-Pad46)" class="Default">
+    <net code="103" name="unconnected-(U101-PA12-Pad46)" class="Default">
       <node ref="U101" pin="46" pinfunction="PA12_46" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="102" name="unconnected-(U101-PA15-Pad51)" class="Default">
+    <net code="104" name="unconnected-(U101-PA15-Pad51)" class="Default">
       <node ref="U101" pin="51" pinfunction="PA15_51" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="103" name="unconnected-(U101-PB1-Pad28)" class="Default">
+    <net code="105" name="unconnected-(U101-PB1-Pad28)" class="Default">
       <node ref="U101" pin="28" pinfunction="PB1_28" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="104" name="unconnected-(U101-PB2-Pad29)" class="Default">
+    <net code="106" name="unconnected-(U101-PB2-Pad29)" class="Default">
       <node ref="U101" pin="29" pinfunction="PB2_29" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="105" name="unconnected-(U101-PB7-Pad60)" class="Default">
+    <net code="107" name="unconnected-(U101-PB7-Pad60)" class="Default">
       <node ref="U101" pin="60" pinfunction="PB7_60" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="106" name="unconnected-(U101-PB9-Pad62)" class="Default">
+    <net code="108" name="unconnected-(U101-PB9-Pad62)" class="Default">
       <node ref="U101" pin="62" pinfunction="PB9_62" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="107" name="unconnected-(U101-PB10-Pad30)" class="Default">
+    <net code="109" name="unconnected-(U101-PB10-Pad30)" class="Default">
       <node ref="U101" pin="30" pinfunction="PB10_30" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="108" name="unconnected-(U101-PB11-Pad33)" class="Default">
+    <net code="110" name="unconnected-(U101-PB11-Pad33)" class="Default">
       <node ref="U101" pin="33" pinfunction="PB11_33" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="109" name="unconnected-(U101-PB12-Pad34)" class="Default">
+    <net code="111" name="unconnected-(U101-PB12-Pad34)" class="Default">
       <node ref="U101" pin="34" pinfunction="PB12_34" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="110" name="unconnected-(U101-PB13-Pad35)" class="Default">
+    <net code="112" name="unconnected-(U101-PB13-Pad35)" class="Default">
       <node ref="U101" pin="35" pinfunction="PB13_35" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="111" name="unconnected-(U101-PB14-Pad36)" class="Default">
+    <net code="113" name="unconnected-(U101-PB14-Pad36)" class="Default">
       <node ref="U101" pin="36" pinfunction="PB14_36" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="112" name="unconnected-(U101-PB15-Pad37)" class="Default">
+    <net code="114" name="unconnected-(U101-PB15-Pad37)" class="Default">
       <node ref="U101" pin="37" pinfunction="PB15_37" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="113" name="unconnected-(U101-PC3-Pad11)" class="Default">
+    <net code="115" name="unconnected-(U101-PC3-Pad11)" class="Default">
       <node ref="U101" pin="11" pinfunction="PC3_11" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="114" name="unconnected-(U101-PC4-Pad25)" class="Default">
+    <net code="116" name="unconnected-(U101-PC4-Pad25)" class="Default">
       <node ref="U101" pin="25" pinfunction="PC4_25" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="115" name="unconnected-(U101-PC5-Pad26)" class="Default">
+    <net code="117" name="unconnected-(U101-PC5-Pad26)" class="Default">
       <node ref="U101" pin="26" pinfunction="PC5_26" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="116" name="unconnected-(U101-PC6-Pad38)" class="Default">
+    <net code="118" name="unconnected-(U101-PC6-Pad38)" class="Default">
       <node ref="U101" pin="38" pinfunction="PC6_38" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="117" name="unconnected-(U101-PC7-Pad39)" class="Default">
+    <net code="119" name="unconnected-(U101-PC7-Pad39)" class="Default">
       <node ref="U101" pin="39" pinfunction="PC7_39" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="118" name="unconnected-(U101-PC8-Pad40)" class="Default">
+    <net code="120" name="unconnected-(U101-PC8-Pad40)" class="Default">
       <node ref="U101" pin="40" pinfunction="PC8_40" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="119" name="unconnected-(U101-PC9-Pad41)" class="Default">
+    <net code="121" name="unconnected-(U101-PC9-Pad41)" class="Default">
       <node ref="U101" pin="41" pinfunction="PC9_41" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="120" name="unconnected-(U101-PC10-Pad52)" class="Default">
+    <net code="122" name="unconnected-(U101-PC10-Pad52)" class="Default">
       <node ref="U101" pin="52" pinfunction="PC10_52" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="121" name="unconnected-(U101-PC11-Pad53)" class="Default">
+    <net code="123" name="unconnected-(U101-PC11-Pad53)" class="Default">
       <node ref="U101" pin="53" pinfunction="PC11_53" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="122" name="unconnected-(U101-PC12-Pad54)" class="Default">
+    <net code="124" name="unconnected-(U101-PC12-Pad54)" class="Default">
       <node ref="U101" pin="54" pinfunction="PC12_54" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="123" name="unconnected-(U101-PC13-Pad2)" class="Default">
+    <net code="125" name="unconnected-(U101-PC13-Pad2)" class="Default">
       <node ref="U101" pin="2" pinfunction="PC13_2" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="124" name="unconnected-(U101-PC14-Pad3)" class="Default">
+    <net code="126" name="unconnected-(U101-PC14-Pad3)" class="Default">
       <node ref="U101" pin="3" pinfunction="PC14_3" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="125" name="unconnected-(U101-PC15-Pad4)" class="Default">
+    <net code="127" name="unconnected-(U101-PC15-Pad4)" class="Default">
       <node ref="U101" pin="4" pinfunction="PC15_4" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="126" name="unconnected-(U101-PD2-Pad55)" class="Default">
+    <net code="128" name="unconnected-(U101-PD2-Pad55)" class="Default">
       <node ref="U101" pin="55" pinfunction="PD2_55" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="127" name="unconnected-(U101-PF0-Pad5)" class="Default">
+    <net code="129" name="unconnected-(U101-PF0-Pad5)" class="Default">
       <node ref="U101" pin="5" pinfunction="PF0_5" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="128" name="unconnected-(U101-PF1-Pad6)" class="Default">
+    <net code="130" name="unconnected-(U101-PF1-Pad6)" class="Default">
       <node ref="U101" pin="6" pinfunction="PF1_6" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="129" name="unconnected-(U201-IO1-Pad39)" class="Default">
+    <net code="131" name="unconnected-(U201-IO1-Pad39)" class="Default">
       <node ref="U201" pin="39" pinfunction="IO1_39" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="130" name="unconnected-(U201-IO2-Pad38)" class="Default">
+    <net code="132" name="unconnected-(U201-IO2-Pad38)" class="Default">
       <node ref="U201" pin="38" pinfunction="IO2_38" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="131" name="unconnected-(U201-IO3-Pad15)" class="Default">
+    <net code="133" name="unconnected-(U201-IO3-Pad15)" class="Default">
       <node ref="U201" pin="15" pinfunction="IO3_15" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="132" name="unconnected-(U201-IO13-Pad21)" class="Default">
+    <net code="134" name="unconnected-(U201-IO13-Pad21)" class="Default">
       <node ref="U201" pin="21" pinfunction="IO13_21" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="133" name="unconnected-(U201-IO14-Pad22)" class="Default">
+    <net code="135" name="unconnected-(U201-IO14-Pad22)" class="Default">
       <node ref="U201" pin="22" pinfunction="IO14_22" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="134" name="unconnected-(U201-IO15-Pad8)" class="Default">
+    <net code="136" name="unconnected-(U201-IO15-Pad8)" class="Default">
       <node ref="U201" pin="8" pinfunction="IO15_8" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="135" name="unconnected-(U201-IO16-Pad9)" class="Default">
+    <net code="137" name="unconnected-(U201-IO16-Pad9)" class="Default">
       <node ref="U201" pin="9" pinfunction="IO16_9" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="136" name="unconnected-(U201-IO35-Pad28)" class="Default">
+    <net code="138" name="unconnected-(U201-IO35-Pad28)" class="Default">
       <node ref="U201" pin="28" pinfunction="IO35_28" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="137" name="unconnected-(U201-IO36-Pad29)" class="Default">
+    <net code="139" name="unconnected-(U201-IO36-Pad29)" class="Default">
       <node ref="U201" pin="29" pinfunction="IO36_29" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="138" name="unconnected-(U201-IO37-Pad30)" class="Default">
+    <net code="140" name="unconnected-(U201-IO37-Pad30)" class="Default">
       <node ref="U201" pin="30" pinfunction="IO37_30" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="139" name="unconnected-(U201-IO38-Pad31)" class="Default">
+    <net code="141" name="unconnected-(U201-IO38-Pad31)" class="Default">
       <node ref="U201" pin="31" pinfunction="IO38_31" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="140" name="unconnected-(U201-IO39-Pad32)" class="Default">
+    <net code="142" name="unconnected-(U201-IO39-Pad32)" class="Default">
       <node ref="U201" pin="32" pinfunction="IO39_32" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="141" name="unconnected-(U201-IO40-Pad33)" class="Default">
+    <net code="143" name="unconnected-(U201-IO40-Pad33)" class="Default">
       <node ref="U201" pin="33" pinfunction="IO40_33" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="142" name="unconnected-(U201-IO41-Pad34)" class="Default">
+    <net code="144" name="unconnected-(U201-IO41-Pad34)" class="Default">
       <node ref="U201" pin="34" pinfunction="IO41_34" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="143" name="unconnected-(U201-IO42-Pad35)" class="Default">
+    <net code="145" name="unconnected-(U201-IO42-Pad35)" class="Default">
       <node ref="U201" pin="35" pinfunction="IO42_35" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="144" name="unconnected-(U201-IO45-Pad26)" class="Default">
+    <net code="146" name="unconnected-(U201-IO45-Pad26)" class="Default">
       <node ref="U201" pin="26" pinfunction="IO45_26" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="145" name="unconnected-(U201-IO46-Pad16)" class="Default">
+    <net code="147" name="unconnected-(U201-IO46-Pad16)" class="Default">
       <node ref="U201" pin="16" pinfunction="IO46_16" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="146" name="unconnected-(U201-IO47-Pad24)" class="Default">
+    <net code="148" name="unconnected-(U201-IO47-Pad24)" class="Default">
       <node ref="U201" pin="24" pinfunction="IO47_24" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="147" name="unconnected-(U201-IO48-Pad25)" class="Default">
+    <net code="149" name="unconnected-(U201-IO48-Pad25)" class="Default">
       <node ref="U201" pin="25" pinfunction="IO48_25" pintype="bidirectional+no_connect"/>
     </net>
   </nets>

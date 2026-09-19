@@ -149,7 +149,8 @@ def main():
            'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB0': 'UI_PWR_EN',
            'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC0': 'DOOR_CLOSED_N',
            'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N',
-           'PA3': 'BREW_CURRENT_ADC', 'PA6': 'BREW_DIR_RAW',
+           'PA3': 'BREW_CURRENT_ADC', 'PA4': 'RAIL_12V_ADC',
+           'PA5': 'RAIL_24V_ADC', 'PA6': 'BREW_DIR_RAW',
            'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N'}
@@ -161,7 +162,7 @@ def main():
            'IO19': 'USB_DM_RAW', 'IO20': 'USB_DP_RAW',
            'IO21': 'USB_VBUS_SENSE'}
     d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
-    d.note('BORRADOR: lógica, alimentación, USB y sensores de baja tensión. Sin red, drivers de cargas ni watchdog.', 12, 22, 1.8)
+    d.note('BORRADOR: lógica, alimentación, USB, sensores y dos cargas de 24V. Sin etapas de red.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
     d.add('U101','STM32G431RB','STM32G431RBT6',82,112,[stm.get(n) for n in STM_PINS],
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
@@ -414,6 +415,21 @@ def main():
     d.note('PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.',12,744,1.1)
     d.note('~RESET open-drain comparte STM_NRST y fuerza ambas salidas a 0 mediante U602.',12,752,1.1)
     d.note('R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.',12,760,1.1)
+    d.note('14 / Telemetría de alimentación y cabecera de medida',470,610,1.8)
+    d.passive('R701','R','100k / 12V div A',500,640,'12V_PROTECTED','RAIL_12V_DIV')
+    d.passive('R702','R','100k / 12V div B',570,640,'RAIL_12V_DIV','RAIL_12V_ADC')
+    d.passive('R703','R','10k / 12V div low',640,640,'RAIL_12V_ADC',g)
+    d.passive('C701','C','100nF / 12V ADC',710,640,'RAIL_12V_ADC',g)
+    d.passive('R704','R','100k / 24V div A',500,684,'24V_ACT_RAW','RAIL_24V_DIV')
+    d.passive('R705','R','100k / 24V div B',570,684,'RAIL_24V_DIV','RAIL_24V_ADC')
+    d.passive('R706','R','10k / 24V div low',640,684,'RAIL_24V_ADC',g)
+    d.passive('C702','C','100nF / 24V ADC',710,684,'RAIL_24V_ADC',g)
+    d.add('J114','J6','POWER MONITOR / MEASURE ONLY',805,672,
+          [g,v,'12V_PROTECTED','24V_ACT_RAW','RAIL_12V_ADC','RAIL_24V_ADC'],
+          'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
+          status='candidate', part_key='CONN:HDR_1X6_2.54')
+    d.note('PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
+    d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
     d.note('Falta: fuente aislada final y etapas de red/molino.',12,804)
     d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)

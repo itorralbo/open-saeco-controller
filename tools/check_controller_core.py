@@ -73,6 +73,7 @@ def main():
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
                      14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
                      16:'WATER_LEVEL',10:'BU_WORK_N',17:'BREW_CURRENT_ADC',
+                     21:'RAIL_12V_ADC',22:'RAIL_24V_ADC',
                      23:'BREW_DIR_RAW',24:'VALVE_EN_RAW',42:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
@@ -200,6 +201,15 @@ def main():
                       ('R602','WATCHDOG_KICK',g),('R603','BREW_SLEEP_RAW',g),
                       ('R604','VALVE_EN_RAW',g),('C601',v,g),('C602',v,g)]:
         assert nets[ref] == {'1':a,'2':b}
+    for ref, a, b in [('R701','12V_PROTECTED','RAIL_12V_DIV'),
+                      ('R702','RAIL_12V_DIV','RAIL_12V_ADC'),
+                      ('R703','RAIL_12V_ADC',g),('C701','RAIL_12V_ADC',g),
+                      ('R704','24V_ACT_RAW','RAIL_24V_DIV'),
+                      ('R705','RAIL_24V_DIV','RAIL_24V_ADC'),
+                      ('R706','RAIL_24V_ADC',g),('C702','RAIL_24V_ADC',g)]:
+        assert nets[ref] == {'1':a,'2':b}
+    assert nets['J114'] == {'1':g,'2':v,'3':'12V_PROTECTED','4':'24V_ACT_RAW',
+                            '5':'RAIL_12V_ADC','6':'RAIL_24V_ADC'}
     for ref, footprint, lcsc in [
             ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
@@ -211,6 +221,7 @@ def main():
             ('Q501','Package_TO_SOT_SMD:SOT-23','C347491'),
             ('U601','Package_TO_SOT_SMD:SOT-23-5','C20032'),
             ('U602','Package_SO:SSOP-8_2.95x2.8mm_P0.65mm','C352973'),
+            ('J114','Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical','C52016393'),
             ('C501','Capacitor_SMD:CP_Elec_6.3x7.7','C176683'),
             ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc

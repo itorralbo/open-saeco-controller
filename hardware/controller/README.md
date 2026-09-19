@@ -8,13 +8,15 @@ DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentad
 desde una entrada aislada de 24 V con ramas protegidas por separado.
 Un TPS3828 externo supervisa el STM32 y una AND doble bloquea ambas salidas
 durante reset o timeout.
-123 posiciones; 122 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
+132 posiciones; 131 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
 trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno y
 taladros aceptados, sin rutas y con la primera etapa de carga aún sin ensayar. El DRC no
 presenta infracciones de reglas; quedan conexiones sin rutear, caracterizar la
 salida del nivel de agua y completar las demás etapas de potencia.
+Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita
+su medida directa durante las pruebas.
 El [contrato del frontal](front-panel-interface.md) propone un ESP32-S3-WROOM-1-N8R8
 y asigna sus GPIO de pantalla, botones, UART y USB. J110 implementa USB-C de
 servicio con ESD y alimentación de banco opcional; fuente AC/DC aislada final,

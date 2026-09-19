@@ -1,10 +1,10 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 123 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 132 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 123 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 132 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
 infracciones DRC, pero quedan 287 conexiones sin rutear.
 
@@ -39,6 +39,9 @@ infracciones DRC, pero quedan 287 conexiones sin rutear.
 - U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
   `STM_NRST`; U602 solo permite activar `nSLEEP` y la válvula mientras reset esté
   inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
+- PA4/ADC2_IN17 y PA5/ADC2_IN13 miden las entradas de 12 V y 24 V mediante
+  divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
+  señales ADC para medida en banco; no es una entrada de alimentación.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
@@ -175,6 +178,20 @@ las piezas como candidatas, no liberadas para compra. La huella estándar incluy
 pad térmico de 3×3 mm; antes del layout final se derivará una huella local con la
 matriz de vías y el área de cobre recomendadas por TI.
 
+### Telemetría de alimentación
+
+R701/R702/R703/C701 y R704/R705/R706/C702 acondicionan `12V_PROTECTED` y
+`24V_ACT_RAW`. Cada divisor tiene dos resistencias de 100 kΩ en serie y 10 kΩ a
+masa, por lo que `Vin = 21 × Vadc`; a 12 V se esperan 0,571 V y a 24 V, 1,143 V.
+La impedancia de Thévenin es 9,52 kΩ y el filtro de 100 nF produce una constante
+de tiempo aproximada de 0,95 ms. El firmware usará tiempos de muestreo largos y
+calibración con multímetro; estas entradas sirven para diagnóstico y brownout,
+no como instrumento de precisión.
+
+J114 ofrece GND, 3,3 V, 12 V protegidos, 24 V de entrada y las dos tensiones ADC.
+Se destina a osciloscopio/multímetro durante el banco; no se debe alimentar la
+placa a través de sus pines.
+
 ### Driver de la electroválvula
 
 La rama de válvula parte de `24V_ACT_RAW` pero dispone de F304=1 A y D305 propios.
@@ -220,8 +237,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 123 componentes y 435 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 123 huellas en una colocación provisional. Las siete cabeceras de
+KiCad. El sincronizador conserva la mecánica, actualiza redes y mantiene las
+huellas en una colocación provisional. Las siete cabeceras de
 máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

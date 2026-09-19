@@ -25,6 +25,10 @@ integrada se elegirá después de medir consumo, temperatura y espacio. No es
 necesario esperar a esa elección para probar firmware, sensores, motor del grupo
 y electroválvula.
 
+La principal mide ambos rails con divisores 200 kΩ/10 kΩ: PA4/ADC2_IN17 recibe
+`12V_PROTECTED` y PA5/ADC2_IN13 recibe `24V_ACT_RAW`. J114 expone rails y señales
+ADC para contrastarlas con el multímetro durante las pruebas por USB.
+
 ## Presupuesto provisional de 24 V
 
 Las resistencias medidas permiten calcular un punto de partida, no la corriente

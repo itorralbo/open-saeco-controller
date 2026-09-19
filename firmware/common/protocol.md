@@ -10,3 +10,8 @@ desconocida, comandos duplicados y datos caducados. CRC no autentica usuarios.
 Autenticación web, CSRF y provisión de red pendientes. Sin GPIO remoto directo.
 La desconexión USB, pérdida de UART o caducidad de la sesión cancela cualquier
 prueba activa. Véase [USB de servicio](../../docs/service-usb.md).
+
+La telemetría mínima prevista para `STATUS`/`STREAM` incluye las entradas de
+12 V y 24 V en milivoltios, corriente del motor del grupo en miliamperios,
+`nFAULT`, puerta/grupo e interlocks. Se enviarán valores calibrados y bits de
+validez; el formato binario y los límites exactos se fijarán al implementar el BSP.
