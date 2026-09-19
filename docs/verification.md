@@ -319,12 +319,12 @@ de cargas siguen pendientes en el esquema principal.
   respectivamente las zonas originales de JP21/JP16/JP14/JP3/JP22/JP13/JP5,
   con incertidumbre fotográfica asignada de ±1,5 mm.
 - `tools/layout_controller_pcb.py` consume esas coordenadas desde
-  `mechanical-source.json`, asigna posición y orientación a las 132 huellas y
+  `mechanical-source.json`, asigna posición y orientación a las huellas y
   conserva MH1–MH3. El script también comprueba que los siete conectores no se
   desplacen al regenerar la PCB.
-- JP8, JP19, JP24, JP17, JP1 y JP9 quedan como áreas de regla temporales: no
-  admiten huellas, pads, pistas, vías ni planos hasta incorporar la etapa de
-  potencia correspondiente. J110 queda junto a la zona del conector rojo.
+- JP8, JP24 y JP17 ya tienen huellas JST VH candidatas en sus posiciones
+  originales. JP19, JP1 y JP9 conservan áreas temporales hasta identificar sus
+  huellas. J110 queda junto a la zona del conector rojo.
 - U201 queda junto al borde superior y la zona de exclusión de su antena está
   libre. El DRC detectó las invasiones de la primera iteración y la colocación
   final registrada pasa con 0 infracciones.
@@ -344,5 +344,6 @@ de cargas siguen pendientes en el esquema principal.
   elegir stack-up y recalcular 90 Ω en la herramienta del fabricante.
 - Las áreas temporales de los seis conectores de potencia obligatorios y el keepout de antena
   de U201 se aplican a ambas capas de cobre.
-- KiCad 10.0.6: DRC 0 infracciones, 299 conexiones abiertas y tres diferencias
-  de paridad por MH1–MH3. Las reglas preparan el routing, no liberan fabricación.
+- KiCad 10.0.6: DRC 0 infracciones, 299 conexiones abiertas y seis diferencias
+  de paridad: MH1–MH3 y J116/J119/J120 sin huella. Las reglas preparan el routing,
+  no liberan fabricación.

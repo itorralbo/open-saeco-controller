@@ -1,5 +1,5 @@
 {
-  "status": "synchronized_preserving_existing_placement_not_fabricable",
+  "status": "new_footprints_staged_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "C101": {
@@ -270,6 +270,18 @@
       "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
       "numbered_pads": 6
     },
+    "J115": {
+      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "numbered_pads": 3
+    },
+    "J117": {
+      "footprint": "Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal",
+      "numbered_pads": 2
+    },
+    "J118": {
+      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "numbered_pads": 3
+    },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
       "numbered_pads": 2
@@ -531,9 +543,17 @@
       "numbered_pads": 8
     }
   },
-  "missing_footprints": [],
-  "newly_staged_footprints": [],
-  "tracks": 0,
+  "missing_footprints": [
+    "J116",
+    "J119",
+    "J120"
+  ],
+  "newly_staged_footprints": [
+    "J115",
+    "J117",
+    "J118"
+  ],
+  "tracks": 46,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

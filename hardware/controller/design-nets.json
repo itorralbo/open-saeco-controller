@@ -2173,6 +2173,98 @@
         "5": "RAIL_12V_ADC",
         "6": "RAIL_24V_ADC"
       }
+    },
+    {
+      "reference": "J115",
+      "value": "JP8 GRINDER / 320VDC",
+      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "status": "photo_candidate_owner_wiring",
+      "manufacturer": "JST",
+      "mpn": "S3P-VH(LF)(SN)",
+      "lcsc": "C264986",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "GRINDER_DC_PLUS",
+        "2": null,
+        "3": "GRINDER_DC_MINUS"
+      }
+    },
+    {
+      "reference": "J116",
+      "value": "JP19 HEATER / 4 POS 2 WIRED",
+      "footprint": "",
+      "status": "mechanical_and_pinout_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": null,
+        "2": null,
+        "3": null,
+        "4": null
+      }
+    },
+    {
+      "reference": "J117",
+      "value": "JP24 PUMP / 230VAC",
+      "footprint": "Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal",
+      "status": "photo_candidate",
+      "manufacturer": "JST",
+      "mpn": "S2P-VH(LF)(SN)",
+      "lcsc": "C160355",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "PUMP_AC_A",
+        "2": "PUMP_AC_B"
+      }
+    },
+    {
+      "reference": "J118",
+      "value": "JP17 MAINS / L-N",
+      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "status": "photo_candidate_owner_wiring",
+      "manufacturer": "JST",
+      "mpn": "S3P-VH(LF)(SN)",
+      "lcsc": "C264986",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "MAINS_L_SWITCHED",
+        "2": null,
+        "3": "MAINS_N"
+      }
+    },
+    {
+      "reference": "J119",
+      "value": "JP1 PE TO BOILER",
+      "footprint": "",
+      "status": "faston_6.3mm_mechanical_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "PROTECTIVE_EARTH"
+      }
+    },
+    {
+      "reference": "J120",
+      "value": "JP9 PE INPUT",
+      "footprint": "",
+      "status": "faston_6.3mm_mechanical_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "PROTECTIVE_EARTH"
+      }
     }
   ]
 }

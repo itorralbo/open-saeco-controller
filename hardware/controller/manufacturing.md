@@ -44,9 +44,9 @@ cotización real depende de cantidad, acabado, montaje, promociones y envío; es
 comparación justifica mantener dos capas mientras el DRC y la integridad de
 retorno lo permitan.
 
-Las áreas temporales de JP8, JP19, JP24, JP17, JP1 y JP9 bloquean ambas capas
-hasta que el esquema incorpore sus huellas. Después se sustituirán por conectores
-reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
+JP8, JP24 y JP17 ya tienen huellas JST VH candidatas. Las áreas temporales de
+JP19, JP1 y JP9 bloquean ambas capas hasta identificar sus huellas. Después se
+sustituirán por conectores reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
 relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm se
 modelará como keepout en ambas capas y se revisará antes de fabricar.
 

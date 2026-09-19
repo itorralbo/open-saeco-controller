@@ -140,7 +140,7 @@ def main():
     chip('STM32G431RB', STM_PINS)
     chip('ESP32S3WROOM1', ESP_PINS)
     power_symbols()
-    for n in (2, 3, 4, 5, 6, 8):
+    for n in (1, 2, 3, 4, 5, 6, 8):
         d.DEFS[f'J{n}'] = (d.connector(n), 5.08, n*1.905+1.27)
     v, g = '3V3_CORE', 'GND_UI'
     stm = {'VBAT': v, 'VDD': v, 'VSS': g, 'VSSA': g, 'VDDA': v, 'VREF+': v,
@@ -430,8 +430,35 @@ def main():
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
-    d.note('Siguiente hoja: JP17/JP19/JP24/JP8/PE, fuente aislada y etapas de red/molino en esta PCB.',12,804)
-    d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,812)
+    d.note('15 / Conectores de potencia obligatorios — misma PCB, dominio peligroso',870,610,1.8)
+    d.add('J115','J3','JP8 GRINDER / 320VDC',905,646,
+          ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
+          'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
+          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
+    d.add('J116','J4','JP19 HEATER / 4 POS 2 WIRED',1015,646,
+          [None,None,None,None], '', status='mechanical_and_pinout_tbd')
+    d.add('J117','J2','JP24 PUMP / 230VAC',1125,646,
+          ['PUMP_AC_A','PUMP_AC_B'],
+          'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',
+          status='photo_candidate', part_key='CONN:JST_VH_2_RA')
+    d.add('J118','J3','JP17 MAINS / L-N',905,718,
+          ['MAINS_L_SWITCHED',None,'MAINS_N'],
+          'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
+          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
+    d.add('J119','J1','JP1 PE TO BOILER',1015,718,['PROTECTIVE_EARTH'], '',
+          status='faston_6.3mm_mechanical_tbd')
+    d.add('J120','J1','JP9 PE INPUT',1125,718,['PROTECTIVE_EARTH'], '',
+          status='faston_6.3mm_mechanical_tbd')
+    for index, name in enumerate(['GRINDER_DC_PLUS','GRINDER_DC_MINUS',
+                                  'PUMP_AC_A','PUMP_AC_B',
+                                  'MAINS_L_SWITCHED','MAINS_N'], 107):
+        d.add(f'#FLG{index}','PWR_FLAG',f'Temporary power-sheet endpoint / {name}',
+              860 + (index-107)*48, 796, [name])
+    d.note('JP17: negro=L y azul=N, posición central libre. Confirmar numeración física antes de cobre.',870,762,1.1)
+    d.note('JP8: blanco=+ y negro=-, centro libre. JP19 mantiene pines y huella abiertos hasta medir.',870,770,1.1)
+    d.note('JP9 y JP1 comparten PE dedicado; no es GND_UI. Drivers y fuente aislada se añaden después.',870,778,1.1)
+    d.note('Siguiente: protección/filtro, fuente aislada 24V y etapas de calentador, bomba y molino.',12,804)
+    d.note('Contorno/taladros aceptados; conectores incompletos y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 
 

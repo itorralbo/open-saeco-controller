@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 132 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 138 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 132 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 135 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 287 conexiones sin rutear.
+infracciones DRC, pero quedan 299 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -42,6 +42,10 @@ infracciones DRC, pero quedan 287 conexiones sin rutear.
 - PA4/ADC2_IN17 y PA5/ADC2_IN13 miden las entradas de 12 V y 24 V mediante
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
+
+JP8, JP24 y JP17 ya aparecen como J115, J117 y J118 con huellas JST VH candidatas.
+JP19 y los dos FASTON de PE aparecen como J116/J119/J120, pero se mantienen sin
+huella hasta cerrar su geometría. Los drivers de red todavía no están dibujados.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale

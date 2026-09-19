@@ -8,8 +8,9 @@ DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentad
 desde una entrada aislada de 24 V con ramas protegidas por separado.
 Un TPS3828 externo supervisa el STM32 y una AND doble bloquea ambas salidas
 durante reset o timeout.
-132 posiciones; 131 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
-trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
+138 posiciones; 134 con MPN y código JLC/LCSC, más el puente de cobre J111.
+Hay 135 huellas importadas a la PCB; faltan las huellas mecánicas de JP19 y los
+dos FASTON de PE. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
@@ -25,6 +26,9 @@ pendientes. La placa final incluirá también JP17, fuente aislada/transformador
 los drivers de calentador, bomba y molino en las posiciones de la original; su
 [arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
 misma PCB.
+JP8, JP24 y JP17 ya están en el esquema y en la PCB como JST VH candidatos, en
+sus posiciones originales. JP19, JP1 y JP9 están en el esquema sin huella para
+evitar fijar una geometría no confirmada.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
 El [perfil de fabricación y clases de red](manufacturing.md) configura dos
 capas y reglas conservadoras para lógica, USB, alimentación y actuadores.

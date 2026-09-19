@@ -78,8 +78,9 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  131 de 132 posiciones actuales con MPN, código y huella; J111 es un puente de
-  cobre abierto y no requiere pieza. Las cabeceras de máquina
+  134 de 138 posiciones actuales con MPN y código; J111 es un puente de cobre
+  abierto y no requiere pieza. J116/J119/J120 aún no tienen huella ni referencia
+  comprable. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
   puente H y la válvula, y completar las etapas de red/molino.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.

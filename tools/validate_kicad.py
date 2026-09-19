@@ -101,7 +101,8 @@ def main():
                   'JP1 y JP9 son conectores obligatorios y mantienen áreas temporales hasta '
                   'incorporar sus huellas. El routing USB reproducible contiene 39 segmentos '
                   'y 7 vías; el DRC de esta etapa tiene 0 infracciones, 299 conexiones abiertas '
-                  'y tres diferencias de paridad intencionales por MH1–MH3.\n\n'
+                  'y seis diferencias de paridad: MH1–MH3 y las huellas aún '
+                  'desconocidas de JP19/JP1/JP9.\n\n'
                   'La principal usa dos capas y clases explícitas para USB, alimentación, '
                   'conmutación y actuadores. La geometría USB sigue pendiente de verificar '
                   'con el stack-up de fabricación.\n')

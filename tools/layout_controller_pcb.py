@@ -35,7 +35,10 @@ def pending_power_connector_keepouts(board):
         if zone.GetZoneName().startswith((prefix, legacy_prefix)):
             board.Delete(zone)
     layers = pcb.LSET.AllCuMask()
+    present = {fp.GetReference() for fp in board.GetFootprints()}
     for item in MECHANICAL['required_power_connector_placements']:
+        if item['new_reference'] in present:
+            continue
         cx, cy = item['center_mm']
         width, height = item['size_mm']
         x1, x2 = max(0, cx-width/2), min(MECHANICAL['outline_mm']['width'], cx+width/2)
@@ -64,8 +67,10 @@ PLACE = {
     'U101': (73, 65, 0), 'U201': (66, 31, 0),
     'J101': (96, 6, 0), 'J102': (49, 92, 0), 'J103': (54, 109, 90),
     **HARNESS_CONNECTORS,
+    'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
+    'J118': (106.04, 121.3, 0),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
-    'J112': (135, 6, 0), 'J114': (96, 106, 0),
+    'J112': (135, 6, 0), 'J114': (106, 101, 0),
 
     # STM32 reset, analog supply and local decoupling.
     'R101': (84, 61, 90), 'C101': (84, 65, 90), 'R102': (84, 69, 90),
@@ -182,6 +187,7 @@ def main():
         'required_power_connectors_pending_footprints': [
             item['original_reference']
             for item in MECHANICAL['required_power_connector_placements']
+            if item['new_reference'] not in after
         ],
         'connector_position_uncertainty_mm': MECHANICAL['connector_position_uncertainty_mm'],
     }

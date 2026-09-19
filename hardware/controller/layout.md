@@ -3,7 +3,7 @@
 Estado: colocación mecánica de conectores y colocación funcional inicial, con
 el primer routing USB pero no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
-coordenadas, coloca las 132 huellas y comprueba que los tres taladros aceptados
+coordenadas, coloca las 135 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
 
 ![Vista superior de la colocación](preview/pcb-staging-top.png)
@@ -32,10 +32,9 @@ nueva placa frontal. J110 queda inmediatamente a su derecha, accesible desde el
 mismo borde superior para las pruebas por ordenador.
 
 JP8, JP19, JP24, JP17 y los dos FASTON de tierra son conectores obligatorios de
-la principal completa. Hasta incorporar sus huellas al esquema, sus envolventes
-fotografiadas se protegen mediante áreas de regla para que ninguna colocación o
-ruta provisional invada el espacio necesario. No son reservas para otra placa:
-forman parte de esta misma PCB de sustitución.
+la principal completa. JP8, JP24 y JP17 ya tienen huella; las envolventes de
+JP19 y los FASTON se protegen mediante áreas de regla hasta cerrar su geometría.
+No son reservas para otra placa: forman parte de esta misma PCB de sustitución.
 
 ## Zonas funcionales
 
@@ -66,13 +65,14 @@ bloque, pero su distancia final a cada pad se optimizará durante el routing.
 
 ## Validación
 
-- 132/132 huellas eléctricas colocadas; contorno 141,6 × 135,2 mm y MH1–MH3
-  preservados.
+- 135/138 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
+  ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
+  141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6: 0 infracciones geométricas/de reglas.
 - El bloque USB tiene 39 segmentos y 7 vías, sin infracciones DRC; su impedancia
   se verificará con el stack-up real antes de fabricar.
-- 299 conexiones sin rutear y tres diferencias de paridad correspondientes a
-  los taladros mecánicos intencionales.
+- 299 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+  mecánicos intencionales y los tres conectores aún sin huella.
 - El keepout de antena del ESP32 está libre; esta comprobación se hace mediante
   la propia regla del footprint y falló durante la primera iteración hasta mover
   los componentes afectados.

@@ -32,8 +32,9 @@ molino. La siguiente ampliación del esquema añade esos bloques y extiende el
 interlock hardware a todas las cargas.
 La principal ya mide ambos rails en PA4/PA5 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
-Las 132 huellas tienen ya una [colocación funcional](../hardware/controller/layout.md)
-reproducible y con DRC limpio; el siguiente trabajo de A3 es el routing por bloques.
+Las 135 huellas actuales tienen ya una [colocación funcional](../hardware/controller/layout.md)
+reproducible y con DRC limpio; JP8, JP24 y JP17 ya ocupan sus posiciones originales.
+Faltan las huellas de JP19 y los dos FASTON antes del routing de potencia.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión
