@@ -77,10 +77,12 @@ MAINS_BARRIER_MM = 8.0
 BARRIER_ZONE_NAME = 'mains/SELV barrier'
 
 
-# Original heatsink profile (IMG_1098/1100): 40 x 33 mm footprint, 35 mm tall,
-# heater and pump triacs in its two channels, above JP8/JP19/JP24 as on the
-# original board. Only footprints are excluded until its part is selected.
-HEATSINK_AREA = (55.0, 84.5, 95.0, 117.5)
+# Original heatsink profile (IMG_1098/1100): 40 mm wide, 35 mm tall, heater
+# and pump triacs in its two channels, sitting right behind JP19 as on the
+# original board. Its base depth is taken as 28.5 mm, from the relay/MOV row to
+# the 22 mm JP19 housing; the 33 mm read on the top photo includes splayed fins.
+# Only footprints are excluded until its part is selected.
+HEATSINK_AREA = (55.0, 84.5, 95.0, 113.0)
 HEATSINK_ZONE_NAME = 'reserved heatsink: heater and pump triacs'
 
 

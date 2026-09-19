@@ -87,7 +87,7 @@
   ],
   "required_power_connector_placements": [
     {"original_reference": "JP8", "new_reference": "J115", "function": "grinder 320 VDC", "center_mm": [63.0, 128.0], "size_mm": [12.0, 14.0], "electrical_status": "required_in_final_board"},
-    {"original_reference": "JP19", "new_reference": "J116", "function": "heater 230 VAC", "center_mm": [80.5, 127.0], "size_mm": [15.0, 16.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP19", "new_reference": "J116", "function": "heater 230 VAC", "center_mm": [80.5, 124.2], "size_mm": [15.0, 22.0], "housing_mm": [22.0, 15.0, 13.0], "terminals": "4 FASTON tabs 6.3 x 0.8 mm at 5 mm pitch, 2 wired", "source": "owner measurement 2026-09-19; flush with the bottom edge assumed, overhang and solder-leg pattern pending", "electrical_status": "required_in_final_board"},
     {"original_reference": "JP24", "new_reference": "J117", "function": "pump 230 VAC", "center_mm": [93.0, 128.0], "size_mm": [8.0, 14.0], "electrical_status": "required_in_final_board"},
     {"original_reference": "JP17", "new_reference": "J118", "function": "mains input 230 VAC", "center_mm": [110.0, 127.0], "size_mm": [12.0, 16.0], "electrical_status": "required_in_final_board"},
     {"original_reference": "JP1", "new_reference": "J119", "function": "boiler protective earth", "center_mm": [121.5, 124.0], "size_mm": [5.0, 12.0], "electrical_status": "required_in_final_board"},

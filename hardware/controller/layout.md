@@ -93,9 +93,14 @@ molinillo junto al buck de 12 V. La colocación actual no tiene ninguna.
 ## Disipador de calentador y bomba
 
 El disipador original (IMG_1098, IMG_1100 e IMG_1101) es un perfil de pie de
-40 × 33 mm en planta y 35 mm de alto, con un TO-220 en cada canal. Se reserva
-el mismo sitio: `HEATSINK_AREA` (x = 55–95, y = 84,5–117,5 mm), justo encima de
-JP8, JP19 y JP24, como un área de regla que solo prohíbe huellas. Por eso se
+40 mm de ancho y 35 mm de alto, con un TO-220 en cada canal, pegado justo detrás
+de AC_LOADS (JP19). Se reserva el mismo sitio: `HEATSINK_AREA` (x = 55–95,
+y = 84,5–113 mm), como un área de regla que solo prohíbe huellas. Se toma un
+fondo de 28,5 mm, el espacio entre la fila de K701/RV701 y la carcasa de JP19;
+los 33 mm leídos en la foto cenital incluyen las aletas abiertas de arriba.
+JP19 mide 22 × 15 × 13 mm, con 4 lengüetas FASTON 6,3 × 0,8 mm a 5 mm de paso
+(medidas del propietario). Su envolvente pendiente es de 15 × 22 mm, a ras del
+borde inferior, hasta conocer cuánto sobresale y el patrón de patas. Por eso se
 cambió el ESP32 por la variante 1U de antena externa: la zona de exclusión de
 la antena impresa ocupaba unos 1 990 mm², el 10 % de la placa, y sin ese espacio
 no cabían a la vez el disipador, los fusibles, el MOV y K701.
