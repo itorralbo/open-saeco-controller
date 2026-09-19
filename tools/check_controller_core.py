@@ -77,6 +77,7 @@ def main():
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
+    assert nets['U101']['24'] is None, 'PA7 is reserved for the valve stage but remains NC until implemented'
     for pin in (1,40,41):
         assert nets['U201'][str(pin)] == g, f'ESP ground/EP pad {pin}'
     for pin in (28,29,30):

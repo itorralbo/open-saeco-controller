@@ -33,6 +33,8 @@ infracciones DRC, pero quedan 243 conexiones sin rutear.
   protegen y desacoplan esta entrada separada del rail lógico.
 - U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
   corriente candidato a 1 A y lectura `IPROPI` hacia el ADC del STM32.
+- PA7 queda reservado para el futuro `VALVE_EN_RAW`, pero permanece NC hasta
+  incorporar a la vez su pull-down y la etapa low-side completa.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale

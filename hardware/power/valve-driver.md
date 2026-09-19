@@ -40,6 +40,10 @@ Se propone un interruptor low-side independiente:
   del UCC27517 queda a masa. Con reset, ausencia de 12 V o UVLO, la válvula queda
   desactivada.
 
+Se reserva PA7 del STM32 para `VALVE_EN_RAW`. Permanece NC en el esquema hasta
+añadir simultáneamente el pull-down físico y el driver, para no crear una salida
+etiquetada sin estado seguro durante reset.
+
 El UCC27517 acepta nivel alto de 2,4 V como máximo de umbral y funciona con
 4,5–18 V, de modo que separa la compatibilidad lógica de 3,3 V del requisito de
 puerta del MOSFET. El SI2308A tiene mucho margen de corriente para los 0,423 A
