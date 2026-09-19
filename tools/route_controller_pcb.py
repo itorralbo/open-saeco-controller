@@ -26,9 +26,12 @@ USB_DRILL = 0.30
 PIN_WIDTH = 0.25
 RING_WIDTH = 0.30
 
-# Primary copper on 1 oz until the heater stage fixes the final pours. Phase
-# tracks carrying the load current are 3 mm; the PSU and MOV branches are light.
+# Primary copper stays on 1 oz (cheapest JLCPCB option). Phase tracks carrying
+# the load current (~10 A) are 3 mm on both layers, joined by stitching vias,
+# about 6 mm of 1 oz in total; the PSU and MOV branches are light.
 MAINS_PHASE_WIDTH = 3.0
+MAINS_VIA = 1.60
+MAINS_DRILL = 0.80
 MAINS_LIGHT_WIDTH = 1.0
 MAINS_N_WIDTH = 1.5
 ACT_WIDTH = 1.0
@@ -219,23 +222,35 @@ def route_mains_input(board):
     l_in, l_fused, psu_l = '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED'
     neutral, load_l = '/MAINS_N', '/LOAD_L_ENABLED'
     # The stub leaving J118.1 is narrower to clear the unused middle VH pin.
-    track(board, l_in, (106.04, 121.30), (104.50, 118.00), width=2.2)
+    # B.Cu doubles the phase up to y = 77: N crosses on B.Cu above that, so
+    # the last 3 mm bend and the F701 clip link stay on F.Cu only.
+    for layer in (pcb.F_Cu, pcb.B_Cu):
+        track(board, l_in, (106.04, 121.30), (104.50, 118.00), layer, width=2.2)
     polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
                            (96.50, 74.00), (87.00, 74.00)], width=MAINS_PHASE_WIDTH)
+    polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
+                           (96.50, 77.00)], pcb.B_Cu, width=MAINS_PHASE_WIDTH)
+    for point in [(102.00, 118.00), (96.50, 110.00), (96.50, 101.00),
+                  (96.50, 92.00), (96.50, 83.00), (96.50, 77.00)]:
+        via(board, l_in, point, MAINS_VIA, MAINS_DRILL)
     polyline(board, psu_l, [(87.00, 67.00), (101.20, 67.00), (101.20, 110.00),
                             (104.35, 113.15), (106.30, 113.15)],
              width=MAINS_LIGHT_WIDTH)
 
     # Fused phase: both fuse clips, the MOV and the doubled K701 COM pads.
-    for start, end in [((72.00, 67.00), (77.00, 67.00)),
-                       ((72.00, 74.00), (77.00, 74.00)),
-                       ((72.00, 67.00), (72.00, 80.00))]:
-        track(board, l_fused, start, end, width=MAINS_PHASE_WIDTH)
-    polyline(board, l_fused, [(57.00, 73.25), (57.00, 67.50), (72.00, 67.50)],
-             width=2.5)
+    # Every end is a THT pad, so both layers meet there; one stitching via
+    # mid-way along the K701 link.
+    for layer in (pcb.F_Cu, pcb.B_Cu):
+        for start, end in [((72.00, 67.00), (77.00, 67.00)),
+                           ((72.00, 74.00), (77.00, 74.00)),
+                           ((72.00, 67.00), (72.00, 80.00))]:
+            track(board, l_fused, start, end, layer, width=MAINS_PHASE_WIDTH)
+        polyline(board, l_fused, [(57.00, 73.25), (57.00, 67.50), (72.00, 67.50)],
+                 layer, width=2.5)
+        # Doubled K701 NO pads; the triac stages will extend this net.
+        track(board, load_l, (62.00, 73.25), (62.00, 80.75), layer, width=2.0)
+    via(board, l_fused, (64.50, 67.50), MAINS_VIA, MAINS_DRILL)
     track(board, l_fused, (57.00, 73.25), (57.00, 80.75), pcb.B_Cu, width=2.5)
-    # Doubled K701 NO pads; the triac stages will extend this net.
-    track(board, load_l, (62.00, 73.25), (62.00, 80.75), width=2.0)
 
     polyline(board, neutral, [(113.96, 121.30), (113.96, 116.50),
                               (111.80, 114.34), (111.80, 113.15)], width=2.5)

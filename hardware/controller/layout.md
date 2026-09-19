@@ -138,7 +138,7 @@ DP por B.Cu justo antes de los pads.
 ## Entrada de red
 
 - Fase: J118.1 sube por el paso entre el disipador y PS701 hasta F701 (3 mm en
-  F.Cu). PSU_L baja desde F702 por el mismo paso hasta PS701.1 (1 mm). Las dos
+  cada cara). PSU_L baja desde F702 por el mismo paso hasta PS701.1 (1 mm). Las dos
   pistas van anidadas y separadas 2,5 mm; por eso F702 está encima de F701.
 - Fase protegida: une las dos pinzas de F701 y F702, RV701 y los dos pads COM
   de K701. El par COM de K701 se une por B.Cu para dejar sitio a la unión del par
@@ -149,9 +149,12 @@ DP por B.Cu justo antes de los pads.
   comprobados por el DRC. La salida de J118.1 se estrecha a 2,2 mm para respetar
   1,2 mm hasta el pin central libre del VH.
 
-Los 3 mm de las fases son provisionales con 1 oz. Con unos 10 A de carga total,
-la versión definitiva necesita duplicar la pista en B.Cu o vertidos en ambas
-caras, o bien 2 oz. Se decidirá al diseñar la etapa del calentador.
+Las fases que llevan la corriente de carga (unos 10 A) van duplicadas: 3 mm en
+F.Cu y 3 mm en B.Cu, unidas por pads THT y vías de cosido de 1,6/0,8 mm. Son unos
+6 mm de cobre de 1 oz, frente a los ≈4,7 mm que pide IPC-2221 para 10 A con 20 °C
+de calentamiento. Se decidió así el 2026-09-19 porque sale más barato en JLCPCB
+que pasar a 2 oz. El tramo corto que une las pinzas de F701 y la curva superior,
+unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 
 ## Salida de 24 V
 
@@ -173,7 +176,7 @@ caras, o bien 2 oz. Se decidirá al diseñar la etapa del calentador.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
 - USB, alimentación y desacoplo del STM32, entrada de red, 24 V y plano GND:
-  142 segmentos y 16 vías. La impedancia USB se verificará con el stack-up real
+  152 segmentos y 23 vías. La impedancia USB se verificará con el stack-up real
   antes de fabricar.
 - 273 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.

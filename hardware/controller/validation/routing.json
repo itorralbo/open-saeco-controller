@@ -9,8 +9,8 @@
     "mains input: J118, F701, F702, RV701, K701 and PS701",
     "24 V: PS701, J121 and all 24V_ACT_RAW loads"
   ],
-  "track_segments": 142,
-  "vias": 16,
+  "track_segments": 152,
+  "vias": 23,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

@@ -83,8 +83,9 @@ rediseñará esa interfaz; no se bajará silenciosamente a 400 V.
   disposición térmica.
 - El filtro EMI se copiará funcionalmente, no por aspecto. Falta medir/identificar
   L5/L7 o elegir un choque certificado con corriente suficiente.
-- Las pistas del calentador se resolverán con vertidos anchos en ambas caras y
-  cosido de vías. Se calculará el cobre con 1 oz y 2 oz antes de cotizar.
+- Cobre de 1 oz. Las pistas del calentador y de la fase general se duplican en
+  las dos caras con vías de cosido, la opción más barata en JLCPCB (decisión del
+  2026-09-19). La entrada de red ya sigue ese criterio.
 - Se mantiene una barrera inicial de 8 mm entre red y SELV en las dos capas, con
   ranuras bajo optos o fuente si hacen falta para conservar creepage real.
 

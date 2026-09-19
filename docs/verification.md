@@ -384,3 +384,8 @@ de cargas siguen pendientes en el esquema principal.
   redes de red, 8 mm y creepage hasta SELV y la banda de barrera. Quedan 273
   conexiones abiertas; las redes de red y de 24 V están completas. Las fases
   van a 3 mm con 1 oz, anchura provisional hasta dimensionar el calentador.
+
+- Decisión del propietario: cobre de 1 oz con las fases de carga duplicadas en
+  las dos caras. L_IN hasta y = 77 mm, la fase protegida y el par NO de K701 van
+  duplicados, con siete vías de 1,6/0,8 mm. DRC: 0 infracciones (152 segmentos,
+  23 vías).

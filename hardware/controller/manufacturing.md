@@ -15,7 +15,9 @@ asignación prevista es:
 | F.Cu | componentes, señales críticas y potencia local |
 | B.Cu | plano de GND solo en SELV; retornos/rutas de potencia separados en la zona de red |
 
-El cobre de 1 oz es la referencia inicial. La geometría USB se comprobará con
+El cobre es de 1 oz. Las pistas de red que llevan la corriente de carga se
+duplican en las dos caras con vías de cosido en lugar de pasar a 2 oz, que sale
+más caro en JLCPCB. La geometría USB se comprobará con
 el espesor real y el calculador del fabricante antes de pedir la placa. La pareja
 USB tiene por ahora 0,20 mm de ancho y 0,20 mm de separación como regla de
 colocación/routing; no se declara todavía como 90 Ω controlados.
