@@ -69,7 +69,13 @@
           "thermal_relief_spoke_width": 0.5
         }
       },
-      "diff_pair_dimensions": [],
+      "diff_pair_dimensions": [
+        {
+          "gap": 0.2,
+          "via_gap": 0.25,
+          "width": 0.2
+        }
+      ],
       "drc_exclusions": [],
       "meta": {
         "version": 2
@@ -203,7 +209,13 @@
           "td_width_to_size_filter_ratio": 0.9
         }
       ],
-      "track_widths": [],
+      "track_widths": [
+        0.2,
+        0.3,
+        0.5,
+        0.6,
+        1.0
+      ],
       "tuning_pattern_settings": {
         "diff_pair_defaults": {
           "corner_radius_percentage": 80,
@@ -230,7 +242,20 @@
           "spacing": 0.6
         }
       },
-      "via_dimensions": [],
+      "via_dimensions": [
+        {
+          "diameter": 0.6,
+          "drill": 0.3
+        },
+        {
+          "diameter": 0.8,
+          "drill": 0.4
+        },
+        {
+          "diameter": 1.0,
+          "drill": 0.5
+        }
+      ],
       "zones_allow_external_fillets": false
     },
     "ipc2581": {
@@ -496,7 +521,7 @@
       {
         "bus_width": 12,
         "clearance": 0.2,
-        "diff_pair_gap": 0.25,
+        "diff_pair_gap": 0.2,
         "diff_pair_via_gap": 0.25,
         "diff_pair_width": 0.2,
         "line_style": 0,
@@ -511,6 +536,82 @@
         "via_diameter": 0.6,
         "via_drill": 0.3,
         "wire_width": 6
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Actuator",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "tuning_profile": "",
+        "wire_width": 6,
+        "clearance": 0.25,
+        "track_width": 1.0,
+        "via_diameter": 1.0,
+        "via_drill": 0.5,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Power",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "tuning_profile": "",
+        "wire_width": 6,
+        "clearance": 0.2,
+        "track_width": 0.5,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "Switching",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "tuning_profile": "",
+        "wire_width": 6,
+        "clearance": 0.25,
+        "track_width": 0.6,
+        "via_diameter": 0.8,
+        "via_drill": 0.4,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.25,
+        "diff_pair_via_gap": 0.25
+      },
+      {
+        "bus_width": 12,
+        "line_style": 0,
+        "microvia_diameter": 0.3,
+        "microvia_drill": 0.1,
+        "name": "USB",
+        "pcb_color": "rgba(0, 0, 0, 0.000)",
+        "priority": 0,
+        "schematic_color": "rgba(0, 0, 0, 0.000)",
+        "tuning_profile": "",
+        "wire_width": 6,
+        "clearance": 0.2,
+        "track_width": 0.2,
+        "via_diameter": 0.6,
+        "via_drill": 0.3,
+        "diff_pair_width": 0.2,
+        "diff_pair_gap": 0.2,
+        "diff_pair_via_gap": 0.25
       }
     ],
     "meta": {
@@ -518,7 +619,112 @@
     },
     "net_colors": null,
     "netclass_assignments": null,
-    "netclass_patterns": []
+    "netclass_patterns": [
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DP_PORT"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DM_PORT"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DP_RAW"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DM_RAW"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DP_DEVICE"
+      },
+      {
+        "netclass": "USB",
+        "pattern": "/USB_DM_DEVICE"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/12V_ISO_RAW"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/12V_FUSED"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/12V_PROTECTED"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/3V3_CORE"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/3V3_UI"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/USB_VBUS"
+      },
+      {
+        "netclass": "Power",
+        "pattern": "/USB_VBUS_FUSED"
+      },
+      {
+        "netclass": "Switching",
+        "pattern": "/SW_NODE"
+      },
+      {
+        "netclass": "Switching",
+        "pattern": "/BST_NODE"
+      },
+      {
+        "netclass": "Switching",
+        "pattern": "/BREW_CPH"
+      },
+      {
+        "netclass": "Switching",
+        "pattern": "/BREW_CPL"
+      },
+      {
+        "netclass": "Switching",
+        "pattern": "/BREW_VCP"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/24V_ACT_RAW"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/24V_BREW_FUSED"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/24V_BREW"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/24V_VALVE_FUSED"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/24V_VALVE"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/BREW_OUT1"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/BREW_OUT2"
+      },
+      {
+        "netclass": "Actuator",
+        "pattern": "/VALVE_RETURN"
+      }
+    ]
   },
   "pcbnew": {
     "last_paths": {

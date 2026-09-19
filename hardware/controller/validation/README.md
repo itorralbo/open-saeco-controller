@@ -16,4 +16,9 @@ es ±1,5 mm y debe comprobarse con una impresión 1:1 o una PCB sin montar. Las
 envolventes originales de JP8, JP19, JP24, JP17, JP1 y JP9 son áreas de regla
 reservadas. DRC de la colocación: 0 infracciones, 307 conexiones abiertas y tres
 diferencias de paridad intencionales por MH1–MH3.
+
+La principal está configurada con cuatro capas y clases de red explícitas para
+USB, alimentación, nodos conmutados y actuadores. La geometría USB de 0,20/0,20
+mm es provisional hasta seleccionar el stack-up de fabricación; no constituye
+una declaración de impedancia controlada.
 Regenerar con `python3 tools/validate_kicad.py` desde la raíz.

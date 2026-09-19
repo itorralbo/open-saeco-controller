@@ -330,3 +330,17 @@ de cargas siguen pendientes en el esquema principal.
 - La PCB continúa sin cobre: 307 conexiones pendientes y tres avisos de paridad
   por los taladros mecánicos. La colocación habilita el routing; no libera
   fabricación.
+
+## Reglas de fabricación y routing de la principal, 2026-09-19
+
+- El proyecto KiCad pasa de dos a cuatro capas: F.Cu, plano GND previsto en
+  In1.Cu, alimentación/señales lentas en In2.Cu y B.Cu para retorno/routing.
+- `tools/configure_controller_rules.py` instala cinco clases: Default 0,20 mm,
+  USB 0,20/0,20 mm, Power 0,50 mm, Switching 0,60 mm y Actuator 1,00 mm. Las
+  vías aumentan de 0,60/0,30 a 1,00/0,50 mm según corriente.
+- Se asignaron 26 redes explícitas. USB sigue como geometría provisional hasta
+  elegir stack-up y recalcular 90 Ω en la herramienta del fabricante.
+- Las áreas reservadas de los seis conectores de potencia y el keepout de antena
+  de U201 se aplican a todas las capas de cobre.
+- KiCad 10.0.6: DRC 0 infracciones, 307 conexiones abiertas y tres diferencias
+  de paridad por MH1–MH3. Las reglas preparan el routing, no liberan fabricación.

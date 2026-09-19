@@ -9,6 +9,8 @@
 	(paper "A4")
 	(layers
 		(0 "F.Cu" signal)
+		(4 "In1.Cu" signal)
+		(6 "In2.Cu" signal)
 		(2 "B.Cu" signal)
 		(9 "F.Adhes" user "F.Adhesive")
 		(11 "B.Adhes" user "B.Adhesive")
@@ -25177,7 +25179,7 @@
 			(uuid "e6cab03d-673f-4ab1-8feb-bfee7ee4506b")
 		)
 		(zone
-			(layers "F.Cu" "B.Cu")
+			(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
 			(uuid "88f9d437-6691-4087-a0ac-c9cb059191b5")
 			(hatch full 0.508)
 			(connect_pads
@@ -35337,70 +35339,8 @@
 		)
 	)
 	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "376554bd-30f4-4e31-8d38-7d5157fce06a")
-		(name "reserved original connector JP9")
-		(hatch edge 0.5)
-		(connect_pads
-			(clearance 0)
-		)
-		(min_thickness 0.25)
-		(keepout
-			(tracks not_allowed)
-			(vias not_allowed)
-			(pads not_allowed)
-			(copperpour not_allowed)
-			(footprints not_allowed)
-		)
-		(placement
-			(enabled no)
-			(sheetname "")
-		)
-		(fill
-			(thermal_gap 0.5)
-			(thermal_bridge_width 0.5)
-			(island_removal_mode 0)
-		)
-		(polygon
-			(pts
-				(xy 125.5 118) (xy 130.5 118) (xy 130.5 130) (xy 125.5 130)
-			)
-		)
-	)
-	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "b6ae29f2-6c94-4361-95c9-734aeeae0e79")
-		(name "reserved original connector JP19")
-		(hatch edge 0.5)
-		(connect_pads
-			(clearance 0)
-		)
-		(min_thickness 0.25)
-		(keepout
-			(tracks not_allowed)
-			(vias not_allowed)
-			(pads not_allowed)
-			(copperpour not_allowed)
-			(footprints not_allowed)
-		)
-		(placement
-			(enabled no)
-			(sheetname "")
-		)
-		(fill
-			(thermal_gap 0.5)
-			(thermal_bridge_width 0.5)
-			(island_removal_mode 0)
-		)
-		(polygon
-			(pts
-				(xy 73 119) (xy 88 119) (xy 88 135) (xy 73 135)
-			)
-		)
-	)
-	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "d8e10641-cfb6-4c5a-8927-33414f88d240")
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "740eb86c-3275-486d-ab5c-4a226ffe27b3")
 		(name "reserved original connector JP24")
 		(hatch edge 0.5)
 		(connect_pads
@@ -35430,9 +35370,9 @@
 		)
 	)
 	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "e69b3bd2-728c-4de2-ad96-e69a5370983d")
-		(name "reserved original connector JP1")
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "c2cc8e52-e10f-4475-8763-37693ce706ce")
+		(name "reserved original connector JP8")
 		(hatch edge 0.5)
 		(connect_pads
 			(clearance 0)
@@ -35456,13 +35396,13 @@
 		)
 		(polygon
 			(pts
-				(xy 119 118) (xy 124 118) (xy 124 130) (xy 119 130)
+				(xy 57 121) (xy 69 121) (xy 69 135) (xy 57 135)
 			)
 		)
 	)
 	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "eabdf70c-d5a1-42e8-b5e0-4a757794b513")
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "d6236231-1b8f-4eda-b567-71e66a0ce1eb")
 		(name "reserved original connector JP17")
 		(hatch edge 0.5)
 		(connect_pads
@@ -35492,9 +35432,9 @@
 		)
 	)
 	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "fd55b6f2-bab2-4389-854b-3db9e397383c")
-		(name "reserved original connector JP8")
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "e0902b73-bb4c-444a-9b42-7688fe5647ee")
+		(name "reserved original connector JP1")
 		(hatch edge 0.5)
 		(connect_pads
 			(clearance 0)
@@ -35518,7 +35458,69 @@
 		)
 		(polygon
 			(pts
-				(xy 57 121) (xy 69 121) (xy 69 135) (xy 57 135)
+				(xy 119 118) (xy 124 118) (xy 124 130) (xy 119 130)
+			)
+		)
+	)
+	(zone
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "e82cfae1-33a0-4acd-b1fb-0ef8893c621d")
+		(name "reserved original connector JP9")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads not_allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy 125.5 118) (xy 130.5 118) (xy 130.5 130) (xy 125.5 130)
+			)
+		)
+	)
+	(zone
+		(layers "F.Cu" "B.Cu" "In1.Cu" "In2.Cu")
+		(uuid "ffce799a-b1fd-4685-89a6-554aee676210")
+		(name "reserved original connector JP19")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads not_allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy 73 119) (xy 88 119) (xy 88 135) (xy 73 135)
 			)
 		)
 	)

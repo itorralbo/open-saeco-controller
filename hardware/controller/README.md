@@ -12,7 +12,7 @@ durante reset o timeout.
 trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
-taladros aceptados y [colocación funcional reproducible](layout.md), todavía sin
+taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), todavía sin
 rutas y con la primera etapa de carga sin ensayar. El DRC no
 presenta infracciones de reglas; quedan conexiones sin rutear, caracterizar la
 salida del nivel de agua y completar las demás etapas de potencia.
@@ -23,5 +23,7 @@ y asigna sus GPIO de pantalla, botones, UART y USB. J110 implementa USB-C de
 servicio con ESD y alimentación de banco opcional; fuente AC/DC aislada final,
 routing, ensayos y drivers de red/molino siguen pendientes.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
+El [perfil de fabricación y clases de red](manufacturing.md) configura cuatro
+capas y reglas conservadoras para lógica, USB, alimentación y actuadores.
 Entregables: esquema jerárquico, PCB, BOM trazable, ERC/DRC y planos de montaje.
 No trasladar pines de una placa de desarrollo al arnés sin verificación.

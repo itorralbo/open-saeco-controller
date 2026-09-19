@@ -33,9 +33,7 @@ def reserved_connector_keepouts(board):
     for zone in list(board.Zones()):
         if zone.GetZoneName().startswith(prefix):
             board.Delete(zone)
-    layers = pcb.LSET()
-    layers.AddLayer(pcb.F_Cu)
-    layers.AddLayer(pcb.B_Cu)
+    layers = pcb.LSET.AllCuMask()
     for item in MECHANICAL['reserved_original_connector_envelopes']:
         cx, cy = item['center_mm']
         width, height = item['size_mm']
@@ -135,7 +133,12 @@ PLACE = {
 
 def main():
     board = pcb.LoadBoard(str(BOARD_PATH))
+    board.SetCopperLayerCount(4)
     footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
+    # Keep the library's all-copper antenna exclusion after converting from two
+    # to four layers; otherwise KiCad correctly reports a library mismatch.
+    for zone in footprints['U201'].Zones():
+        zone.SetLayerSet(pcb.LSET.AllCuMask())
     electrical = set(footprints)-{'MH1','MH2','MH3'}
     assert electrical == set(PLACE), sorted(electrical ^ set(PLACE))
     before_holes = {ref: footprints[ref].GetPosition() for ref in ('MH1','MH2','MH3')}
@@ -171,6 +174,7 @@ def main():
     result = {
         'status': 'mechanical_connector_placement_unrouted_not_fabricable',
         'kicad_version': pcb.GetBuildVersion(),
+        'copper_layers': check.GetCopperLayerCount(),
         'electrical_footprints_placed': len(PLACE),
         'mounting_holes_preserved': sorted(before_holes),
         'antenna_at_top_edge': {'reference': 'U201', 'position_mm': PLACE['U201'][:2]},
