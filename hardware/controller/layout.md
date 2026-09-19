@@ -1,7 +1,8 @@
 # Colocación de la principal Rev A
 
-Estado: colocación mecánica de conectores y colocación funcional con dominio de
-red contiguo y barrera red/SELV comprobada por DRC; aún no fabricable. La fuente de verdad mecánica es
+Estado: colocación mecánica de conectores y colocación funcional con la
+distribución de la placa original, dominio de red contiguo, reserva del disipador
+y barrera red/SELV comprobada por DRC; aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 155 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
@@ -38,33 +39,34 @@ No son reservas para otra placa: forman parte de esta misma PCB de sustitución.
 
 ## Zonas funcionales
 
+La distribución sigue la de la placa original: lógica arriba y a la izquierda,
+red en el cuadrante inferior central y derecho, y el disipador de las cargas
+encima de JP8/JP19/JP24.
+
 - Borde superior izquierdo: enlace al frontal en la zona de JP21, USB-C a su
-  derecha y protección ESD.
-- Parte superior: ESP32 con la antena orientada hacia el borde y toda la zona de
-  exclusión del footprint libre de componentes y cobre.
-- Superior central: lógica y buck de 3,3 V; las entradas de 12/24 V se
-  conservan como puntos de banco.
-- Esquina superior derecha: buck AP63200 de 24 V a 12 V junto a la entrada J112
-  y, debajo, el puente H DRV8876 con su columna de fallo, VREF e IPROPI.
-- Borde derecho: módulo aislado IRM-30-24 en vertical. Sus salidas de 24 V y J121
-  quedan arriba, en SELV; sus pines AC quedan abajo, a 8 mm de J118.
-- Centro e izquierda: STM32, desacoplo, reset, watchdog e interlock hardware.
-- Zona inferior central y derecha: dominio de red. F701, F702 y RV701 están entre
-  J118 y K701; el relé cruza la barrera con la bobina en SELV y los contactos en red.
-- Lateral izquierdo: JP16 del grupo y JP14 de puerta/cajón en sus zonas originales.
-- Borde inferior izquierdo: JP3, JP22, JP13 y JP5, con el mismo orden y sentido
-  de entrada observados en la placa original.
-- Zona inferior central: conectores originales de potencia. Se preservan las
-  envolventes aún pendientes de JP19 y los dos FASTON de protección.
+  derecha con la protección ESD, y el ESP32-S3-WROOM-1U junto a ambos. El
+  conector U.FL del módulo queda arriba, hacia el borde.
+- Superior central: STM32 con su desacoplo, reset y SWD, y debajo J114, F303/D304,
+  el divisor de 24 V y las series del LCD. Más a la derecha, el buck de 3,3 V y el
+  corte del frontal.
+- Esquina superior derecha: entradas de banco J101/J112, buck AP63200 de 24 V a
+  12 V y, debajo, el puente H DRV8876 con su columna de fallo, VREF e IPROPI.
+- Lateral izquierdo: JP16 y JP14 en sus zonas originales, sus filtros, las
+  cabeceras de depuración, el watchdog e interlock (U601/U602) y el mando del
+  relé (U603, Q701, D701).
+- Borde inferior izquierdo: JP3, JP22, JP13 y JP5 con su acondicionamiento y la
+  etapa de válvula, en el mismo orden y sentido que en la original.
+- Dominio de red, por debajo y a la derecha de la barrera: K701 con los contactos
+  a la derecha de la barrera; F701, F702 y RV701 encima del disipador; y PS701 en
+  vertical en el borde derecho, con las salidas de 24 V arriba (SELV) y los pines
+  AC abajo, junto a J118. El paso de 6 mm entre el disipador y PS701 lleva L y
+  PSU_L entre J118, los fusibles y PS701.
+- Borde inferior central y derecho: conectores originales de potencia y las
+  envolventes aún pendientes de JP19 y de los dos FASTON de protección.
 
 USB, frontal, sensores, STM32, ESP32 y depuración permanecen íntegramente en
 SELV. Las órdenes hacia las cargas de red cruzarán la frontera únicamente por
 componentes de aislamiento y ningún plano de masa la atravesará.
-
-La colocación mantiene separadas las redes conmutadas del puente H y la válvula
-de los adaptadores de NTC, caudal, nivel y contactos. Los condensadores del buck
-y los componentes de carga de bomba del DRV8876 están en su bloque, pero su
-distancia final a cada pad se optimizará durante el routing.
 
 ## Barrera red/SELV verificable
 
@@ -76,29 +78,37 @@ queda en 1,2 mm porque la fija el paso de 3,96 mm de los VH originales. Los
 pines sin uso de conectores de red y los taladros sin red no cuentan como SELV.
 
 `layout_controller_pcb.py` fija además la línea central de la barrera
-(`MAINS_BARRIER`): sube desde el borde inferior en x = 51 mm, entre J106 y J115,
-rodea los contactos de K701 por y = 100,5 mm y x = 69,5 mm y cruza PS701 en
-y = 76 mm hasta el borde derecho. Alrededor de ella hay una banda de 8 mm en ambas
-capas sin pistas, vías, pads ni rellenos. K701, PS701 y los futuros
-optoacopladores pueden atravesarla porque su propio aislamiento cubre ese tramo.
-Un opto DIP-6 estándar tiene las filas a 7,62 mm y el DRC lo rechazará: hará falta
-una versión de patillas anchas o una ranura.
+(`MAINS_BARRIER`), que es una L: sube desde el borde inferior en x = 51 mm, entre
+J106 y J115, hasta y = 60 mm, y cruza hacia el borde derecho por encima de
+PS701. Alrededor de ella hay una banda de 8 mm en ambas capas sin pistas, vías,
+pads ni rellenos. K701, PS701 y los futuros optoacopladores pueden atravesarla
+porque su propio aislamiento cubre ese tramo. Un opto DIP-6 estándar tiene las
+filas a 7,62 mm y el DRC lo rechazará: hará falta una versión de patillas anchas
+o una ranura.
 
-La primera versión de la regla detectó 95 infracciones en la colocación anterior:
+La primera versión de la regla detectó 95 infracciones en la colocación inicial:
 fusibles junto al puente H, contactos de K701 entre la lógica y el bus del
-molinillo junto al buck de 12 V. La recolocación actual las elimina todas.
+molinillo junto al buck de 12 V. La colocación actual no tiene ninguna.
 
-Dentro del dominio de red quedan libres, para las etapas de calentador, bomba y
-molinillo, unos 26 × 13 mm sobre J115/JP19 (x = 55–77, y = 104–117) y unos
-14 × 20 mm a la derecha del relé (x = 87–101, y = 80–100). No cabe un
-disipador como el original, de 40 mm de ancho y 35 mm de alto. La única franja de
-esa anchura en el dominio de red es la que hay sobre los conectores de potencia
-(x = 55–101, y = 104,5–118, unos 46 × 13 mm), hoy ocupada por F701, F702 y RV701.
-Si el fondo del disipador no supera unos 12 mm, irá ahí y los fusibles y el MOV
-tendrán que cambiar de sitio o de formato.
+## Disipador de calentador y bomba
+
+El disipador original (IMG_1098, IMG_1100 e IMG_1101) es un perfil de pie de
+40 × 33 mm en planta y 35 mm de alto, con un TO-220 en cada canal. Se reserva
+el mismo sitio: `HEATSINK_AREA` (x = 55–95, y = 84,5–117,5 mm), justo encima de
+JP8, JP19 y JP24, como un área de regla que solo prohíbe huellas. Por eso se
+cambió el ESP32 por la variante 1U de antena externa: la zona de exclusión de
+la antena impresa ocupaba unos 1 990 mm², el 10 % de la placa, y sin ese espacio
+no cabían a la vez el disipador, los fusibles, el MOV y K701.
+
+El triac del molinillo irá en TO-220 de pie sin disipador, como el BTA208 de la
+original, tras comprobar su pérdida. Su puente rectificador, los optos y los
+snubbers ocuparán el hueco entre K701/RV701 y el disipador y el paso junto a
+PS701.
 
 ## Routing del STM32
 
+Todo el bloque del STM32 se desplaza junto con U101: la colocación lo define
+respecto a `U101_AT` y el routing aplica a sus pistas el desplazamiento de U101.
 Cada VSS baja al plano con su propia vía dentro del anillo de pads. Los VDD
 (1/64, 13, 19/20, 32 y 48) se unen mediante un anillo de 3V3 en F.Cu bajo el
 cuerpo del LQFP, y cada par VDD/VSS tiene su condensador fuera, en una esquina o
@@ -110,7 +120,7 @@ Canales reservados para las señales:
 
 - pines 7–10 (NRST y contactos): salida horizontal a la izquierda;
 - pines 14–17 (NTC, caudal, nivel, corriente del grupo): en L escalonadas hacia
-  abajo por x = 47,2–48,7 mm;
+  abajo, a 6,3–7,8 mm a la izquierda del centro de U101;
 - pines 21–24 y 27: hacia abajo, a la derecha de la columna de VDDA;
 - pines 42–44: a la derecha;
 - pines 49–61 (SWD, watchdog, armado y BOOT0): hacia arriba.
@@ -118,20 +128,24 @@ Canales reservados para las señales:
 El plano GND_UI de B.Cu cubre el lado SELV hasta el borde de la banda de
 barrera; además, el filler lo aparta 8 mm de todo cobre de red.
 
+## USB
+
+El puerto (J110 → U203) conserva su fanout. Del lado del dispositivo, la pareja
+rodea U203 por la izquierda hasta R221/R222 y llega a los pads 13/14 del ESP32,
+a unos 15 mm. Como sale de U203 en sentido opuesto al módulo, DM cruza una vez a
+DP por B.Cu justo antes de los pads.
+
 ## Validación
 
 - 155/158 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
   ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
-  barrera de 8 mm y los solapes de courtyard.
-- USB, alimentación y desacoplo del STM32 y plano GND provisional: 93 segmentos y
-  18 vías. La impedancia USB se verificará con el stack-up real antes de fabricar.
+  barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
+- USB, alimentación y desacoplo del STM32 y plano GND: 86 segmentos y 16 vías.
+  La impedancia USB se verificará con el stack-up real antes de fabricar.
 - 297 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
-- El keepout de antena del ESP32 está libre; esta comprobación se hace mediante
-  la propia regla del footprint y falló durante la primera iteración hasta mover
-  los componentes afectados.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
 genere conflictos de serigrafía. Se añadirán identificadores legibles de
@@ -139,8 +153,8 @@ conectores, polaridad, puntos de medida y seguridad después del routing.
 
 ## Siguiente paso
 
-Con la barrera limpia pueden rutearse ya la entrada de red (J118 → F701 → RV701,
-F702 → PS701 y K701) y los 24 V de PS701 hacia J121, junto con las señales del
-STM32 por los canales reservados. Las etapas de calentador, bomba y molinillo
-esperan a la selección térmica y a las huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones abiertas o la
-revisión de aislamiento pendiente.
+Pueden rutearse ya la entrada de red (J118 → F701 → RV701, F702 → PS701 y K701),
+los 24 V de PS701 hacia J121 y las señales del STM32 por los canales reservados.
+Las etapas de calentador, bomba y molinillo esperan a elegir el disipador y a las
+huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
+abiertas o la revisión de aislamiento pendiente.

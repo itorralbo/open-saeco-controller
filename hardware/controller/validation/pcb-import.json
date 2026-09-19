@@ -583,7 +583,7 @@
       "numbered_pads": 64
     },
     "U201": {
-      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "footprint": "RF_Module:ESP32-S3-WROOM-1U",
       "numbered_pads": 41
     },
     "U203": {
@@ -629,7 +629,7 @@
     "J120"
   ],
   "newly_staged_footprints": [],
-  "tracks": 46,
+  "tracks": 102,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

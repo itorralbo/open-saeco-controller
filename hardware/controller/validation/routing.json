@@ -7,8 +7,8 @@
     "STM32 VDD ring, VSS vias and decoupling",
     "provisional SELV GND_UI plane on B.Cu"
   ],
-  "track_segments": 93,
-  "vias": 18,
+  "track_segments": 86,
+  "vias": 16,
   "remaining_blocks": [
     "mains/SELV floorplan fix required by the 8 mm barrier rule",
     "mains input and isolated supply",

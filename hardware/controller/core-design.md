@@ -5,13 +5,18 @@ Existe una hoja eléctrica parcial con 158 posiciones eléctricas:
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
 Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 155 huellas,
-contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC geométricas, pero quedan 349 conexiones sin rutear.
+contorno y tres taladros. ERC nativo superado y DRC sin infracciones, con la
+barrera red/SELV comprobada; quedan 297 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
 - U101: STM32G431RBT6, LQFP64; alimentación, desacoplo, NRST, BOOT0 y SWD.
-- U201: ESP32-S3-WROOM-1-N8R8; alimentación, EN con RC, BOOT y UART de programación.
+- U201: ESP32-S3-WROOM-1U-N8R8 (LCSC C2980300); alimentación, EN con RC, BOOT y
+  UART de programación. Usa antena externa de 2,4 GHz por U.FL: su antena impresa
+  y la zona de exclusión del WROOM-1 ocupaban el 10 % de la placa, y ese espacio
+  hace falta para la zona de red. La antena y su cable (U.FL/IPEX MHF1) son un
+  accesorio del arnés, fuera de la BOM de la PCB. Hay que fijarla lejos de la
+  caldera y de chapa, y comprobar la cobertura con la carcasa cerrada.
 - UART entre MCU: STM PA9/TX → ESP GPIO18/RX; ESP GPIO17/TX → STM PA10/RX.
 - Conexión J104 al frontal, con el mismo pinout eléctrico que J1 del frontal.
 - Resistencias serie candidatas de 33 Ω en las dos salidas UART y seis señales

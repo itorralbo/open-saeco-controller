@@ -1,7 +1,7 @@
 # Controladora lógica
 
 Primer [diseño de la principal en KiCad](core-design.md): STM32G431RBT6 y
-ESP32-S3-WROOM-1-N8R8, alimentación integrada, reset, depuración y UART.
+ESP32-S3-WROOM-1U-N8R8 con antena externa U.FL, alimentación integrada, reset, depuración y UART.
 Incluye IRM-30-24 aislado, buck de 24 V a 12 V, buck de 3,3 V, corte del frontal y
 acondicionamiento de NTC, caudalímetro, nivel de agua, tres contactos y un
 DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentados
@@ -14,12 +14,13 @@ dos FASTON de PE. J105–J109 usan cabeceras JST XH/PH candidatas a partir de la
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
-el bloque USB ya encaminado y la primera etapa de carga sin ensayar. El DRC no
-presenta infracciones geométricas; quedan 349 conexiones sin rutear, caracterizar la
-salida del nivel de agua y completar las demás etapas de potencia.
+el USB y la alimentación del STM32 ya ruteados, y la primera etapa de carga sin
+ensayar. El DRC, con la barrera red/SELV de 8 mm como regla, no presenta
+infracciones; quedan 297 conexiones sin rutear, caracterizar la salida del nivel
+de agua y completar las demás etapas de potencia.
 Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita
 su medida directa durante las pruebas.
-El [contrato del frontal](front-panel-interface.md) propone un ESP32-S3-WROOM-1-N8R8
+El [contrato del frontal](front-panel-interface.md) usa un ESP32-S3-WROOM-1U-N8R8
 y asigna sus GPIO de pantalla, botones, UART y USB. J110 implementa USB-C de
 servicio con ESD y alimentación de banco opcional; routing y ensayos siguen
 pendientes. La placa ya incluye JP17, fuente aislada y relé general; faltan los

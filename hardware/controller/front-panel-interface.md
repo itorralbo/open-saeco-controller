@@ -42,9 +42,11 @@ la masa lógica propuesta; su nombre no demuestra separación de red. Su unión 
 la principal depende del diseño de alimentación y aislamiento todavía pendiente.
 J1/J2 están dentro del mismo dominio lógico; no hay aislamiento en el frontal.
 
-## Reserva candidata ESP32-S3-WROOM-1-N8R8
+## Reserva candidata ESP32-S3-WROOM-1U-N8R8
 
 Selección de trabajo del módulo, instanciada en el [núcleo inicial](core-design.md).
+La variante 1U tiene el mismo pinout que la WROOM-1 y sustituye la antena impresa
+por un conector U.FL para antena externa.
 No hay BSP; USB ya está conectado en el esquema principal y queda por rutear y ensayar. No usar números de un DevKit.
 Tabla cotejada con la sección de pines de la
 [hoja de datos Espressif del módulo](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.html).

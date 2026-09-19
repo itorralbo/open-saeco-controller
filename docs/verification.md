@@ -347,3 +347,27 @@ de cargas siguen pendientes en el esquema principal.
 - KiCad 10.0.6: DRC 0 infracciones, 299 conexiones abiertas y seis diferencias
   de paridad: MH1–MH3 y J116/J119/J120 sin huella. Las reglas preparan el routing,
   no liberan fabricación.
+
+## Barrera red/SELV, distribución de red y ESP32-1U, 2026-09-19
+
+- `configure_controller_rules.py` añade la clase `Mains` y escribe
+  `controller-core-reva.kicad_dru`: 8 mm de separación y creepage entre red y
+  SELV, y 2,5 mm entre pistas de redes de red distintas. Sobre la colocación
+  anterior detectó 95 infracciones: fusibles junto al puente H, K701 en la zona
+  lógica y J115 junto al buck de 12 V.
+- Primer routing del STM32: anillo de VDD bajo el LQFP, una vía por VSS y
+  desacoplo en cada par. El plano GND_UI de B.Cu se queda en el lado SELV.
+- Fotos IMG_1098/1100/1101: el disipador original ocupa 40 × 33 mm en planta,
+  mide 35 mm de alto, lleva dos TO-220 y está encima de JP8/JP19. El propietario
+  midió 1,6 mm de espesor de placa y confirmó 35 mm de altura libre.
+- U201 pasa a ESP32-S3-WROOM-1U-N8R8 (JLCPCB C2980300; 2.091 en stock y 1.984
+  disponibles para pedido, observados hoy). Tiene el mismo pinout y libera la
+  zona de exclusión de la antena, unos 1 990 mm².
+- La placa se reorganiza con la distribución de la original. La barrera en L es
+  una banda de 8 mm sin cobre, el hueco del disipador está reservado y PS701 está
+  en vertical junto a J118. `sync_controller_pcb.py` admite ahora cambios de
+  huella declarados.
+- KiCad 10.0.6: ERC 0; netlist nativa 158 componentes / 528 pines coincidente.
+  DRC con todas las severidades: 0 infracciones, 297 conexiones abiertas y seis
+  diferencias de paridad (MH1–MH3 y J116/J119/J120 sin huella). No libera
+  fabricación ni conexión a red.

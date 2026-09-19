@@ -64,7 +64,9 @@ dos anclajes soldados. Está centrado en x ≈ 72 mm e y ≈ 97 mm de la placa
 original, justo encima de JP8 y AC_LOADS/JP19. El tercer semiconductor, un
 BTA208-800B, está de pie y sin disipador junto a un relé beige, en el centro-
 izquierda. Rev A seguirá el mismo esquema: calentador y bomba en un disipador
-equivalente y molinillo en TO-220 al aire, tras comprobar su pérdida. Para bomba y molinillo se calculará la pérdida con corriente medida.
+equivalente y molinillo en TO-220 al aire, tras comprobar su pérdida. La PCB
+reserva ya ese hueco de 40 × 33 mm encima de JP8/JP19/JP24; ver
+[colocación](../controller/layout.md). Para bomba y molinillo se calculará la pérdida con corriente medida.
 
 El MOC3083 de cruce por cero se reserva al calentador. La bomba y el molinillo
 mantienen optotriac de disparo aleatorio para no cerrar prematuramente la opción

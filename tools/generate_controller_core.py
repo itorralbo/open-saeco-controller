@@ -12,7 +12,7 @@ STM_PINS = (
     'PB11 PB12 PB13 PB14 PB15 PC6 PC7 PC8 PC9 PA8 PA9 PA10 PA11 PA12 VSS VDD '
     'PA13 PA14 PA15 PC10 PC11 PC12 PD2 PB3 PB4 PB5 PB6 PB7 PB8 PB9 VSS VDD'
 ).split()
-# Espressif WROOM-1 module pads, including exposed ground pad 41.
+# Espressif WROOM-1/-1U module pads (identical), including exposed ground pad 41.
 ESP_PINS = (
     'GND 3V3 EN IO4 IO5 IO6 IO7 IO15 IO16 IO17 IO18 IO8 IO19 IO20 IO3 IO46 '
     'IO9 IO10 IO11 IO12 IO13 IO14 IO21 IO47 IO48 IO45 IO0 IO35 IO36 IO37 '
@@ -191,9 +191,9 @@ def main():
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
     d.note('NC = sin asignar en esta hoja parcial; revisar al integrar sensores y drivers.', 20, 187)
     d.note('Reloj HSI interno. USART1 PA9/PA10, AF7. VREFBUF interno deshabilitado.', 20, 194)
-    d.note('02 / ESP32 de interfaz — C2913201', 195, 36, 1.8)
-    d.add('U201','ESP32S3WROOM1','ESP32-S3-WROOM-1-N8R8',263,112,
-          [esp.get(n) for n in ESP_PINS], 'RF_Module:ESP32-S3-WROOM-1')
+    d.note('02 / ESP32 de interfaz, antena externa U.FL — C2980300', 195, 36, 1.8)
+    d.add('U201','ESP32S3WROOM1','ESP32-S3-WROOM-1U-N8R8',263,112,
+          [esp.get(n) for n in ESP_PINS], 'RF_Module:ESP32-S3-WROOM-1U')
     d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO21 detecta VBUS.',195,163)
     d.note('03 / Conexiones internas y programación',390,36,1.8)
     d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_ISO_RAW',g],

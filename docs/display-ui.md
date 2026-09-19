@@ -59,7 +59,7 @@ Señales sobre J_UI (16 contactos, arnés 1:1), todas lógica 3,3 V:
 - El límite es el enlace SPI sobre el cable, no la CPU del S3. Mantener el arnés de UI separado de
   cableados de potencia (ya recogido en el contrato de la interfaz).
 
-## 4. Presupuesto de memoria (ESP32-S3-WROOM-1-N8R8)
+## 4. Presupuesto de memoria (ESP32-S3-WROOM-1U-N8R8)
 
 - Recursos: 512 KB SRAM interna + **8 MB PSRAM** + 8 MB flash. Holgado para esta UI.
 - **Draw buffers LVGL**: dos buffers parciales de p. ej. 240 × 40 px × 2 B = 19,2 KB c/u (**≈38 KB**),

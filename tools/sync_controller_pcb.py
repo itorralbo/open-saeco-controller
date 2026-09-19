@@ -78,6 +78,11 @@ NEW_POSITIONS = {
     'R801': (44, 80), 'R802': (44, 84), 'D701': (57, 84),
     'K701': (54, 92),
 }
+# Reviewed package swaps. The new footprint takes the old position and rotation;
+# layout_controller_pcb.py then places it. Pads are re-netted below as usual.
+FOOTPRINT_REPLACEMENTS = {
+    'U201': ('RF_Module:ESP32-S3-WROOM-1', 'RF_Module:ESP32-S3-WROOM-1U'),
+}
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {
     'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),
@@ -139,7 +144,17 @@ def main():
         is_new = ref not in existing
         if not is_new:
             fp = existing[ref]
-            assert fp.GetFPIDAsString() == footprint, f'Footprint changed for {ref}'
+            if fp.GetFPIDAsString() != footprint:
+                assert FOOTPRINT_REPLACEMENTS.get(ref) == (fp.GetFPIDAsString(), footprint), \
+                    f'Footprint changed for {ref}'
+                old = fp
+                fp = load_footprint(footprint)
+                fp.SetPosition(old.GetPosition())
+                fp.SetOrientationDegrees(old.GetOrientationDegrees())
+                fp.Reference().SetTextSize(old.Reference().GetTextSize())
+                fp.Reference().SetTextThickness(old.Reference().GetTextThickness())
+                board.Remove(old)
+                board.Add(fp)
         else:
             fp = load_footprint(footprint)
             x, y = NEW_POSITIONS[ref]

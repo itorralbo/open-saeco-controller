@@ -16,7 +16,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Función | Referencia | Código | Stock observado | Cantidad disponible para pedido observada | Montaje |
 |---|---|---|---:|---:|---|
 | Control principal | STM32G431RBT6 | [C431633](https://jlcpcb.com/partdetail/C431633) | 387 | 242 | Economic / Standard |
-| Interfaz y comunicaciones | ESP32-S3-WROOM-1-N8R8 | [C2913201](https://jlcpcb.com/partdetail/C2913201) | 2.995 | No observado | Standard Only |
+| Interfaz y comunicaciones, antena externa U.FL | ESP32-S3-WROOM-1U-N8R8 | [C2980300](https://jlcpcb.com/partdetail/3401552-ESP32_S3_WROOM_1UN8R8/C2980300) | 2.091 | 1.984 | Standard Only |
 | Botones frontal | TCA9534PWR | [C783615](https://jlcpcb.com/partdetail/C783615) | 2.103 | 2.055 | Economic / Standard |
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 26.107 | 21.974 | Economic / Standard |
 | Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 1.849 | 1.767 | Economic / Standard |

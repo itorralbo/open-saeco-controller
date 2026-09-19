@@ -361,19 +361,19 @@
       "url": "https://jlcpcb.com/partdetail/C431633",
       "selection": "candidate_not_released"
     },
-    "ESP32-S3-WROOM-1-N8R8": {
+    "ESP32-S3-WROOM-1U-N8R8": {
       "manufacturer": "Espressif Systems",
-      "mpn": "ESP32-S3-WROOM-1-N8R8",
-      "lcsc": "C2913201",
-      "specification": "UI module; antenna PCB",
-      "footprint": "RF_Module:ESP32-S3-WROOM-1",
+      "mpn": "ESP32-S3-WROOM-1U-N8R8",
+      "lcsc": "C2980300",
+      "specification": "UI module; U.FL connector for an external 2.4 GHz antenna, no PCB antenna keepout",
+      "footprint": "RF_Module:ESP32-S3-WROOM-1U",
       "jlc_class": "Extended",
       "pcba_type": "Standard Only",
-      "stock_observed": 2995,
-      "available_order_qty_observed": null,
-      "stock_checked_on": "2026-09-16",
+      "stock_observed": 2091,
+      "available_order_qty_observed": 1984,
+      "stock_checked_on": "2026-09-19",
       "stock_evidence": "JLCPCB rendered product page, read-only browser observation",
-      "url": "https://jlcpcb.com/partdetail/C2913201",
+      "url": "https://jlcpcb.com/partdetail/3401552-ESP32_S3_WROOM_1UN8R8/C2980300",
       "selection": "candidate_not_released"
     },
     "AP63203WU-7": {

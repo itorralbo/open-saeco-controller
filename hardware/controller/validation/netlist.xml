@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-19T19:48:37</date>
+    <date>2026-09-19T20:52:01</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -4802,22 +4802,22 @@
       </units>
     </comp>
     <comp ref="U201">
-      <value>ESP32-S3-WROOM-1-N8R8</value>
-      <footprint>RF_Module:ESP32-S3-WROOM-1</footprint>
+      <value>ESP32-S3-WROOM-1U-N8R8</value>
+      <footprint>RF_Module:ESP32-S3-WROOM-1U</footprint>
       <fields>
         <field name="manufacturer">Espressif Systems</field>
-        <field name="mpn">ESP32-S3-WROOM-1-N8R8</field>
-        <field name="lcsc">C2913201</field>
+        <field name="mpn">ESP32-S3-WROOM-1U-N8R8</field>
+        <field name="lcsc">C2980300</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">Standard Only</field>
-        <field name="Footprint">RF_Module:ESP32-S3-WROOM-1</field>
+        <field name="Footprint">RF_Module:ESP32-S3-WROOM-1U</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="ESP32S3WROOM1" description=""/>
       <property name="manufacturer" value="Espressif Systems"/>
-      <property name="mpn" value="ESP32-S3-WROOM-1-N8R8"/>
-      <property name="lcsc" value="C2913201"/>
+      <property name="mpn" value="ESP32-S3-WROOM-1U-N8R8"/>
+      <property name="lcsc" value="C2980300"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Standard Only"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -6181,10 +6181,10 @@
       <node ref="U603" pin="5" pinfunction="2A_5" pintype="input"/>
       <node ref="U603" pin="6" pinfunction="2B_6" pintype="input"/>
     </net>
-    <net code="50" name="/GRINDER_DC_MINUS" class="Default">
+    <net code="50" name="/GRINDER_DC_MINUS" class="Mains">
       <node ref="J115" pin="3" pinfunction="3_3" pintype="passive"/>
     </net>
-    <net code="51" name="/GRINDER_DC_PLUS" class="Default">
+    <net code="51" name="/GRINDER_DC_PLUS" class="Mains">
       <node ref="J115" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
     <net code="52" name="/KEY_INT_N" class="Default">
@@ -6223,7 +6223,7 @@
       <node ref="J104" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="R213" pin="2" pintype="passive"/>
     </net>
-    <net code="61" name="/LOAD_L_ENABLED" class="Default">
+    <net code="61" name="/LOAD_L_ENABLED" class="Mains">
       <node ref="K701" pin="4" pinfunction="NO_A_4" pintype="passive"/>
       <node ref="K701" pin="5" pinfunction="NO_B_5" pintype="passive"/>
     </net>
@@ -6231,18 +6231,18 @@
       <node ref="U101" pin="60" pinfunction="PB7_60" pintype="bidirectional"/>
       <node ref="U603" pin="1" pinfunction="1A_1" pintype="input"/>
     </net>
-    <net code="63" name="/MAINS_L_FUSED" class="Default">
+    <net code="63" name="/MAINS_L_FUSED" class="Mains">
       <node ref="F701" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="F702" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="K701" pin="3" pinfunction="COM_A_3" pintype="passive"/>
       <node ref="K701" pin="6" pinfunction="COM_B_6" pintype="passive"/>
       <node ref="RV701" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="64" name="/MAINS_L_IN" class="Default">
+    <net code="64" name="/MAINS_L_IN" class="Mains">
       <node ref="F701" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J118" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="65" name="/MAINS_N" class="Default">
+    <net code="65" name="/MAINS_N" class="Mains">
       <node ref="J118" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="PS701" pin="2" pinfunction="AC/N_2" pintype="passive"/>
       <node ref="RV701" pin="2" pinfunction="2_2" pintype="passive"/>
@@ -6279,14 +6279,14 @@
       <node ref="J119" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J120" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="73" name="/PSU_L_FUSED" class="Default">
+    <net code="73" name="/PSU_L_FUSED" class="Mains">
       <node ref="F702" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="PS701" pin="1" pinfunction="AC/L_1" pintype="passive"/>
     </net>
-    <net code="74" name="/PUMP_AC_A" class="Default">
+    <net code="74" name="/PUMP_AC_A" class="Mains">
       <node ref="J117" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="75" name="/PUMP_AC_B" class="Default">
+    <net code="75" name="/PUMP_AC_B" class="Mains">
       <node ref="J117" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
     <net code="76" name="/RAIL_12V_ADC" class="Default">

@@ -11,8 +11,8 @@
   "antenna_at_top_edge": {
     "reference": "U201",
     "position_mm": [
-      66,
-      31
+      54,
+      14.2
     ]
   },
   "photo_aligned_harness_connectors": [
@@ -37,20 +37,18 @@
     ],
     [
       51.0,
-      100.5
-    ],
-    [
-      69.5,
-      100.5
-    ],
-    [
-      69.5,
-      76.0
+      60.0
     ],
     [
       141.6,
-      76.0
+      60.0
     ]
   ],
-  "mains_barrier_width_mm": 8.0
+  "mains_barrier_width_mm": 8.0,
+  "reserved_heatsink_area_mm": [
+    55.0,
+    84.5,
+    95.0,
+    117.5
+  ]
 }
