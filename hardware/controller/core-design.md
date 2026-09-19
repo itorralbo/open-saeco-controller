@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 115 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 123 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 115 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 123 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 265 conexiones sin rutear.
+infracciones DRC, pero quedan 287 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -36,6 +36,9 @@ infracciones DRC, pero quedan 265 conexiones sin rutear.
 - PA7 gobierna la electroválvula mediante U502, Q501 y una entrada con pull-down.
   J113 reproduce JP3: pin 1 a +24 V, pin 2 al retorno conmutado y 3–5 sin uso.
   D306 proporciona rueda libre externa.
+- U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
+  `STM_NRST`; U602 solo permite activar `nSLEEP` y la válvula mientras reset esté
+  inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
@@ -127,7 +130,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
-| Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
+| Supervisión | Ensayar el [watchdog e interlock implementados](../power/watchdog-interlock.md) | Firmware PB4, osciloscopio y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
 | Electroválvula | Ensayar la [etapa low-side implementada](../power/valve-driver.md), corriente, liberación y transitorios | Fuente 24 V limitada, bobina real y osciloscopio |
@@ -184,6 +187,19 @@ retorno conmutado; 3–5 quedan NC. La etapa se ha dibujado para probar la bobin
 OLAB 6000BH/B0DN. Antes de liberarla deben medirse corriente en caliente, tiempo
 de liberación, tensión de drenador y temperatura del MOSFET.
 
+### Watchdog e interlock de actuadores
+
+U601 (TPS3828-33DBVR) monitoriza `3V3_CORE` con umbral nominal de 2,93 V. Su
+salida open-drain comparte `STM_NRST`; un timeout de WDI o una caída del rail
+reinicia el STM32. PB4 alimenta WDI mediante R601=33 Ω y R602=1 kΩ a masa evita
+que el watchdog se desactive cuando el GPIO queda en alta impedancia.
+
+U602 (SN74LVC2G08DCTR) combina `STM_NRST` con `BREW_SLEEP_RAW` y
+`VALVE_EN_RAW`. Si reset está activo, fuerza `BREW_SLEEP_INTERLOCK` y
+`VALVE_EN_INTERLOCK` a cero independientemente del software. R603/R604 mantienen
+las órdenes brutas a cero mientras el MCU arranca. Ver el [diseño y temporización
+del supervisor](../power/watchdog-interlock.md).
+
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)
 y el corte del frontal la
@@ -203,8 +219,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 115 componentes y 410 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 115 huellas en una colocación provisional. Las siete cabeceras de
+KiCad: 123 componentes y 435 pines. El sincronizador conserva la mecánica, actualiza
+redes y mantiene 123 huellas en una colocación provisional. Las siete cabeceras de
 máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

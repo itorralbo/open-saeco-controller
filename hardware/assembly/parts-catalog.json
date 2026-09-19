@@ -466,6 +466,36 @@
       "url": "https://www.lcsc.com/product-detail/C263757.html",
       "selection": "candidate_not_released"
     },
+    "TPS3828-33DBVR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS3828-33DBVR",
+      "lcsc": "C20032",
+      "specification": "3.3V supervisor, 2.93V threshold, 1.6s nominal watchdog, 200ms reset, active-low open-drain output",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 49065,
+      "available_order_qty_observed": 49065,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation; JLCPCB assembly class not yet verified",
+      "url": "https://www.lcsc.com/product-detail/C20032.html",
+      "selection": "candidate_not_released"
+    },
+    "SN74LVC2G08DCTR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC2G08DCTR",
+      "lcsc": "C352973",
+      "specification": "dual 2-input positive-AND gate, 1.65V to 5.5V, DCT/SM8",
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 21000,
+      "available_order_qty_observed": 21000,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation; package checked against TI DCT drawing",
+      "url": "https://www.lcsc.com/product-detail/C352973.html",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_RA": {
       "manufacturer": "JST",
       "mpn": "S2B-XH-A-1(LF)(SN)",

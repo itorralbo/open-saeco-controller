@@ -257,3 +257,19 @@ de cargas siguen pendientes en el esquema principal.
   265 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
 - La etapa continúa sin liberar: faltan corriente en caliente, liberación,
   sobretensión de drenador, ruido y térmica con la bobina real y fuente limitada.
+
+## Watchdog e interlock de actuadores, 2026-09-19
+
+- U601 TPS3828-33DBVR (`C20032`) supervisa `3V3_CORE` a 2,93 V nominal y PB4/WDI.
+  Su salida open-drain comparte `STM_NRST`; timeout nominal 1,6 s y reset nominal
+  200 ms, con límites de hoja de datos de 0,9–2,5 s y 120–300 ms.
+- R602=1 kΩ evita que WDI flotante desactive el watchdog. U602 SN74LVC2G08DCTR
+  (`C352973`) combina `STM_NRST` con las órdenes de `nSLEEP` y válvula; R603/R604
+  mantienen las órdenes inactivas durante reset.
+- Existencias observadas: 49.065 unidades de C20032 y 21.000 de C352973. La
+  categoría exacta de montaje JLCPCB queda por verificar.
+- Comprobador propio y ERC KiCad 10.0.6: PASS, 0 infracciones, 123 componentes y
+  435 pines. La PCB contiene 123 huellas; DRC: 0 infracciones geométricas,
+  287 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
+- Falta implementar PB4 en firmware y comprobar con osciloscopio arranque,
+  brownout, timeout, rearme y corte efectivo de ambas cargas.

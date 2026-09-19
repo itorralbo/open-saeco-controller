@@ -22,6 +22,9 @@ entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
 carga es un DRV8876 para el motor del grupo y la válvula dispone de una etapa
 low-side, ambos desde una entrada de 24 V de banco con fusibles separados;
 quedan sin ensayar y faltan calentador, bomba y molino.
+El [watchdog e interlock hardware](../hardware/power/watchdog-interlock.md) ya
+reinicia el STM32 y bloquea motor/válvula ante timeout o reset; falta implementar
+el pulso periódico en PB4 y validar la temporización real.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión
@@ -43,5 +46,6 @@ Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
   pendientes](../hardware/kicad-workflow.md), no fabricables.
 - Host C/CTest: arranque inactivo, START bloqueado, fallo enclavado y STOP sin rearme.
 - ESP-IDF: build pendiente de SDK disponible y versión fijada.
-- Futuro banco: timeout real, parser corrupto, duplicados, reset, brownout y watchdog.
+- Futuro banco: timeout real, parser corrupto, duplicados, reset, brownout y
+  watchdog externo con corte observado en las salidas.
 - Potencia bloqueada hasta A3 y plan aprobado. Ningún build prueba seguridad eléctrica.

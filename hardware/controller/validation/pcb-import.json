@@ -158,6 +158,14 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C601": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C602": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -434,6 +442,22 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R601": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R602": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R603": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R604": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "U101": {
       "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
       "numbered_pads": 64
@@ -461,6 +485,14 @@
     "U502": {
       "footprint": "Package_TO_SOT_SMD:SOT-23-5",
       "numbered_pads": 5
+    },
+    "U601": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "numbered_pads": 5
+    },
+    "U602": {
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "numbered_pads": 8
     }
   },
   "missing_footprints": [],
@@ -490,6 +522,8 @@
     "C506",
     "C507",
     "C508",
+    "C601",
+    "C602",
     "D301",
     "D302",
     "D303",
@@ -547,11 +581,17 @@
     "R512",
     "R513",
     "R514",
+    "R601",
+    "R602",
+    "R603",
+    "R604",
     "U203",
     "U301",
     "U302",
     "U501",
-    "U502"
+    "U502",
+    "U601",
+    "U602"
   ],
   "tracks": 0,
   "outline": true,

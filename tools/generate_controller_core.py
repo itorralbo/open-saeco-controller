@@ -114,6 +114,23 @@ def power_symbols():
         ('2', 'S', 'power_in', 7.62, -3.81, 180),
         ('3', 'D', 'power_out', 7.62, 3.81, 180),
     ], 5.08, 5.08)
+    d.DEFS['TPS3828DBV'] = ([
+        ('1', '~{RESET}', 'open_collector', -7.62, 3.81, 0),
+        ('2', 'GND', 'power_in', -7.62, 0, 0),
+        ('3', '~{MR}', 'input', -7.62, -3.81, 0),
+        ('5', 'VDD', 'power_in', 7.62, 3.81, 180),
+        ('4', 'WDI', 'input', 7.62, -3.81, 180),
+    ], 5.08, 6.35)
+    d.DEFS['DUAL_AND'] = ([
+        ('1', '1A', 'input', -7.62, 7.62, 0),
+        ('2', '1B', 'input', -7.62, 3.81, 0),
+        ('5', '2A', 'input', -7.62, 0, 0),
+        ('6', '2B', 'input', -7.62, -3.81, 0),
+        ('8', 'VCC', 'power_in', 7.62, 7.62, 180),
+        ('4', 'GND', 'power_in', 7.62, 3.81, 180),
+        ('7', '1Y', 'output', 7.62, 0, 180),
+        ('3', '2Y', 'output', 7.62, -3.81, 180),
+    ], 5.08, 8.89)
 
 
 def main():
@@ -135,7 +152,7 @@ def main():
            'PA3': 'BREW_CURRENT_ADC', 'PA6': 'BREW_DIR_RAW',
            'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
-           'PB6': 'BREW_FAULT_N'}
+           'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -342,7 +359,7 @@ def main():
     d.passive('R502','R','10k / EN pull-down',900,133,'BREW_EN_DRV',g)
     d.passive('R503','R','33 / PH',900,150,'BREW_DIR_RAW','BREW_DIR_DRV')
     d.passive('R504','R','10k / PH pull-down',900,167,'BREW_DIR_DRV',g)
-    d.passive('R505','R','33 / nSLEEP',900,184,'BREW_SLEEP_RAW','BREW_SLEEP_DRV')
+    d.passive('R505','R','33 / nSLEEP',900,184,'BREW_SLEEP_INTERLOCK','BREW_SLEEP_DRV')
     d.passive('R506','R','10k / nSLEEP pull-down',900,201,'BREW_SLEEP_DRV',g)
     d.passive('R507','R','10k / nFAULT pull-up',900,218,v,'BREW_FAULT_N')
     d.passive('R508','R','16k / VREF top',970,235,v,'BREW_VREF')
@@ -371,7 +388,7 @@ def main():
     d.add('Q501','NMOS_SOT23','SI2308A',1070,430,
           ['VALVE_GATE',g,'VALVE_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
-    d.passive('R511','R','33 / IN',875,410,'VALVE_EN_RAW','VALVE_EN_DRV')
+    d.passive('R511','R','33 / IN',875,410,'VALVE_EN_INTERLOCK','VALVE_EN_DRV')
     d.passive('R512','R','10k / IN pull-down',875,430,'VALVE_EN_DRV',g)
     d.passive('R513','R','33 / gate',1020,454,'VALVE_GATE_RAW','VALVE_GATE')
     d.passive('R514','R','100k / gate pull-down',1090,454,'VALVE_GATE',g)
@@ -380,8 +397,25 @@ def main():
     d.note('JP3.1=+24V, JP3.2=retorno conmutado; JP3.3–5 sin uso. PA7 gobierna U502.',870,510,1.1)
     d.note('D306 es obligatoria: la medida 0,073V en ambos sentidos no demuestra diodo interno polarizado.',870,518,1.1)
     d.note('F304 separa la válvula de F303; validar corriente en caliente, transitorio y térmica en banco.',870,526,1.1)
-    d.note('Falta: fuente aislada final, watchdog y etapas de red/molino.',12,574)
-    d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,582)
+    d.note('13 / Supervisor y corte hardware — reset + watchdog + AND doble',12,610,1.8)
+    d.add('U601','TPS3828DBV','TPS3828-33DBVR',180,660,
+          ['STM_NRST',g,v,v,'WATCHDOG_KICK'],
+          'Package_TO_SOT_SMD:SOT-23-5',part_key='TPS3828-33DBVR')
+    d.add('U602','DUAL_AND','SN74LVC2G08DCTR',340,660,
+          ['BREW_SLEEP_RAW','STM_NRST','VALVE_EN_RAW','STM_NRST',v,g,
+           'BREW_SLEEP_INTERLOCK','VALVE_EN_INTERLOCK'],
+          'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
+    d.passive('R601','R','33 / WDI',60,640,'WATCHDOG_KICK_RAW','WATCHDOG_KICK')
+    d.passive('R602','R','1k / WDI pull-down',60,680,'WATCHDOG_KICK',g)
+    d.passive('R603','R','10k / brew arm pull-down',260,630,'BREW_SLEEP_RAW',g)
+    d.passive('R604','R','10k / valve pull-down',260,690,'VALVE_EN_RAW',g)
+    d.passive('C601','C','100nF / supervisor local',180,710,v,g)
+    d.passive('C602','C','100nF / logic local',340,710,v,g)
+    d.note('PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.',12,744,1.1)
+    d.note('~RESET open-drain comparte STM_NRST y fuerza ambas salidas a 0 mediante U602.',12,752,1.1)
+    d.note('R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.',12,760,1.1)
+    d.note('Falta: fuente aislada final y etapas de red/molino.',12,804)
+    d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 
 

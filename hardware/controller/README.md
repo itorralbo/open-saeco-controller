@@ -6,7 +6,9 @@ Incluye entrada aislada de 12 V protegida, buck de 3,3 V, corte del frontal y
 acondicionamiento de NTC, caudalímetro, nivel de agua, tres contactos y un
 DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentados
 desde una entrada aislada de 24 V con ramas protegidas por separado.
-115 posiciones; 114 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
+Un TPS3828 externo supervisa el STM32 y una AND doble bloquea ambas salidas
+durante reset o timeout.
+123 posiciones; 122 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
 trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno y

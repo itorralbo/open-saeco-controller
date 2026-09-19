@@ -231,7 +231,7 @@
 <path d="M 97.78999999999999 144.78 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="145.08" font-size="0.9" text-anchor="end" fill="#213b50">PB4</text>
 <text x="99.73" y="144.28" font-size="0.65" text-anchor="middle" fill="#213b50">57</text>
-<text x="102.87" y="145.08" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="103.27000000000001" y="144.28" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_KICK_RAW</text>
 <path d="M 97.78999999999999 148.59 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="148.89000000000001" font-size="0.9" text-anchor="end" fill="#213b50">PB5</text>
 <text x="99.73" y="148.09" font-size="0.65" text-anchor="middle" fill="#213b50">58</text>
@@ -1531,7 +1531,7 @@
 <text x="900.43" y="178.15" font-size="1.05" text-anchor="middle" fill="#213b50">R505</text>
 <text x="900.43" y="180.65" font-size="1.05" text-anchor="middle" fill="#213b50">33 / nSLEEP</text>
 <path d="M 897.89 184.15 H 892.81" stroke="#27856d" stroke-width=".22"/>
-<text x="892.41" y="183.65" font-size="0.9" text-anchor="end" fill="#23745f">BREW_SLEEP_RAW</text>
+<text x="892.41" y="183.65" font-size="0.9" text-anchor="end" fill="#23745f">BREW_SLEEP_INTERLOCK</text>
 <path d="M 902.9699999999999 184.15 H 908.05" stroke="#27856d" stroke-width=".22"/>
 <text x="908.4499999999999" y="183.65" font-size="0.9" text-anchor="start" fill="#23745f">BREW_SLEEP_DRV</text>
 <rect x="897.89" y="199.66" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
@@ -1692,7 +1692,7 @@
 <text x="875.03" y="404.21" font-size="1.05" text-anchor="middle" fill="#213b50">R511</text>
 <text x="875.03" y="406.71" font-size="1.05" text-anchor="middle" fill="#213b50">33 / IN</text>
 <path d="M 872.49 410.21 H 867.41" stroke="#27856d" stroke-width=".22"/>
-<text x="867.01" y="409.71" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_RAW</text>
+<text x="867.01" y="409.71" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_INTERLOCK</text>
 <path d="M 877.5699999999999 410.21 H 882.65" stroke="#27856d" stroke-width=".22"/>
 <text x="883.05" y="409.71" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_EN_DRV</text>
 <rect x="872.49" y="429.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
@@ -1733,5 +1733,109 @@
 <text x="870" y="510" font-size="1.1" text-anchor="start" fill="#213b50">JP3.1=+24V, JP3.2=retorno conmutado; JP3.3–5 sin uso. PA7 gobierna U502.</text>
 <text x="870" y="518" font-size="1.1" text-anchor="start" fill="#213b50">D306 es obligatoria: la medida 0,073V en ambos sentidos no demuestra diodo interno polarizado.</text>
 <text x="870" y="526" font-size="1.1" text-anchor="start" fill="#213b50">F304 separa la válvula de F303; validar corriente en caliente, transitorio y térmica en banco.</text>
-<text x="12" y="574" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final, watchdog y etapas de red/molino.</text>
-<text x="12" y="582" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>
+<text x="12" y="610" font-size="1.8" text-anchor="start" fill="#213b50">13 / Supervisor y corte hardware — reset + watchdog + AND doble</text>
+<rect x="175.26" y="654.05" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="180.34" y="649.05" font-size="1.05" text-anchor="middle" fill="#213b50">U601</text>
+<text x="180.34" y="651.55" font-size="1.05" text-anchor="middle" fill="#213b50">TPS3828-33DBVR</text>
+<path d="M 175.26 656.59 H 170.18" stroke="#27856d" stroke-width=".22"/>
+<text x="175.96" y="656.89" font-size="0.9" text-anchor="start" fill="#213b50">~{RESET}</text>
+<text x="173.32" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="169.78" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 175.26 660.4 H 170.18" stroke="#27856d" stroke-width=".22"/>
+<text x="175.96" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="173.32" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="169.78" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 175.26 664.21 H 170.18" stroke="#27856d" stroke-width=".22"/>
+<text x="175.96" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">~{MR}</text>
+<text x="173.32" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="169.78" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 185.42000000000002 656.59 H 190.5" stroke="#27856d" stroke-width=".22"/>
+<text x="184.72" y="656.89" font-size="0.9" text-anchor="end" fill="#213b50">VDD</text>
+<text x="187.36" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="190.9" y="656.09" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 185.42000000000002 664.21 H 190.5" stroke="#27856d" stroke-width=".22"/>
+<text x="184.72" y="664.51" font-size="0.9" text-anchor="end" fill="#213b50">WDI</text>
+<text x="187.36" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="190.9" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_KICK</text>
+<rect x="335.28000000000003" y="651.51" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="340.36" y="646.51" font-size="1.05" text-anchor="middle" fill="#213b50">U602</text>
+<text x="340.36" y="649.01" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC2G08DCTR</text>
+<path d="M 335.28000000000003 652.78 H 330.2" stroke="#27856d" stroke-width=".22"/>
+<text x="335.98" y="653.0799999999999" font-size="0.9" text-anchor="start" fill="#213b50">1A</text>
+<text x="333.34000000000003" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="329.8" y="652.28" font-size="0.9" text-anchor="end" fill="#23745f">BREW_SLEEP_RAW</text>
+<path d="M 335.28000000000003 656.59 H 330.2" stroke="#27856d" stroke-width=".22"/>
+<text x="335.98" y="656.89" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
+<text x="333.34000000000003" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="329.8" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 335.28000000000003 660.4 H 330.2" stroke="#27856d" stroke-width=".22"/>
+<text x="335.98" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
+<text x="333.34000000000003" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="329.8" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_RAW</text>
+<path d="M 335.28000000000003 664.21 H 330.2" stroke="#27856d" stroke-width=".22"/>
+<text x="335.98" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
+<text x="333.34000000000003" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="329.8" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 345.44 652.78 H 350.52" stroke="#27856d" stroke-width=".22"/>
+<text x="344.74" y="653.0799999999999" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
+<text x="347.38" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="350.91999999999996" y="652.28" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 345.44 656.59 H 350.52" stroke="#27856d" stroke-width=".22"/>
+<text x="344.74" y="656.89" font-size="0.9" text-anchor="end" fill="#213b50">GND</text>
+<text x="347.38" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="350.91999999999996" y="656.09" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 345.44 660.4 H 350.52" stroke="#27856d" stroke-width=".22"/>
+<text x="344.74" y="660.6999999999999" font-size="0.9" text-anchor="end" fill="#213b50">1Y</text>
+<text x="347.38" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="350.91999999999996" y="659.9" font-size="0.9" text-anchor="start" fill="#23745f">BREW_SLEEP_INTERLOCK</text>
+<path d="M 345.44 664.21 H 350.52" stroke="#27856d" stroke-width=".22"/>
+<text x="344.74" y="664.51" font-size="0.9" text-anchor="end" fill="#213b50">2Y</text>
+<text x="347.38" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="350.91999999999996" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_EN_INTERLOCK</text>
+<rect x="57.15" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="59.69" y="634.08" font-size="1.05" text-anchor="middle" fill="#213b50">R601</text>
+<text x="59.69" y="636.58" font-size="1.05" text-anchor="middle" fill="#213b50">33 / WDI</text>
+<path d="M 57.15 640.08 H 52.07" stroke="#27856d" stroke-width=".22"/>
+<text x="51.67" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">WATCHDOG_KICK_RAW</text>
+<path d="M 62.23 640.08 H 67.31" stroke="#27856d" stroke-width=".22"/>
+<text x="67.71000000000001" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_KICK</text>
+<rect x="57.15" y="678.45" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="59.69" y="673.45" font-size="1.05" text-anchor="middle" fill="#213b50">R602</text>
+<text x="59.69" y="675.95" font-size="1.05" text-anchor="middle" fill="#213b50">1k / WDI pull-down</text>
+<path d="M 57.15 679.45 H 52.07" stroke="#27856d" stroke-width=".22"/>
+<text x="51.67" y="678.95" font-size="0.9" text-anchor="end" fill="#23745f">WATCHDOG_KICK</text>
+<path d="M 62.23 679.45 H 67.31" stroke="#27856d" stroke-width=".22"/>
+<text x="67.71000000000001" y="678.95" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="257.81" y="628.92" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="260.35" y="623.92" font-size="1.05" text-anchor="middle" fill="#213b50">R603</text>
+<text x="260.35" y="626.42" font-size="1.05" text-anchor="middle" fill="#213b50">10k / brew arm pull-down</text>
+<path d="M 257.81 629.92 H 252.73" stroke="#27856d" stroke-width=".22"/>
+<text x="252.32999999999998" y="629.42" font-size="0.9" text-anchor="end" fill="#23745f">BREW_SLEEP_RAW</text>
+<path d="M 262.89000000000004 629.92 H 267.97" stroke="#27856d" stroke-width=".22"/>
+<text x="268.37" y="629.42" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="257.81" y="688.61" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="260.35" y="683.61" font-size="1.05" text-anchor="middle" fill="#213b50">R604</text>
+<text x="260.35" y="686.11" font-size="1.05" text-anchor="middle" fill="#213b50">10k / valve pull-down</text>
+<path d="M 257.81 689.61 H 252.73" stroke="#27856d" stroke-width=".22"/>
+<text x="252.32999999999998" y="689.11" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_RAW</text>
+<path d="M 262.89000000000004 689.61 H 267.97" stroke="#27856d" stroke-width=".22"/>
+<text x="268.37" y="689.11" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 177.8 709.93 H 179.705 M 180.975 709.93 H 182.88 M 179.705 708.43 V 711.43 M 180.975 708.43 V 711.43" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="180.34" y="703.43" font-size="1.05" text-anchor="middle" fill="#213b50">C601</text>
+<text x="180.34" y="705.93" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / supervisor local</text>
+<path d="M 177.8 709.93 H 172.72" stroke="#27856d" stroke-width=".22"/>
+<text x="172.32" y="709.43" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 182.88 709.93 H 187.96" stroke="#27856d" stroke-width=".22"/>
+<text x="188.36" y="709.43" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 337.82 709.93 H 339.725 M 340.995 709.93 H 342.90000000000003 M 339.725 708.43 V 711.43 M 340.995 708.43 V 711.43" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="340.36" y="703.43" font-size="1.05" text-anchor="middle" fill="#213b50">C602</text>
+<text x="340.36" y="705.93" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / logic local</text>
+<path d="M 337.82 709.93 H 332.74" stroke="#27856d" stroke-width=".22"/>
+<text x="332.34000000000003" y="709.43" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 342.90000000000003 709.93 H 347.98" stroke="#27856d" stroke-width=".22"/>
+<text x="348.38" y="709.43" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="12" y="744" font-size="1.1" text-anchor="start" fill="#213b50">PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.</text>
+<text x="12" y="752" font-size="1.1" text-anchor="start" fill="#213b50">~RESET open-drain comparte STM_NRST y fuerza ambas salidas a 0 mediante U602.</text>
+<text x="12" y="760" font-size="1.1" text-anchor="start" fill="#213b50">R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.</text>
+<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final y etapas de red/molino.</text>
+<text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>

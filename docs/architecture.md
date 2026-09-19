@@ -28,8 +28,10 @@ flowchart LR
     F[PCB frontal: botones I2C + display SPI] <--> E
     E -->|solicitudes| S[STM32: control e interlocks]
     I[Sensores acondicionados] --> S
-    S --> G[DRV8876 grupo / 24 V de banco]
-    S --> V[Low-side válvula / 24 V de banco]
+    W[TPS3828 watchdog + AND doble] --> S
+    W --> G[DRV8876 grupo / 24 V de banco]
+    W --> V[Low-side válvula / 24 V de banco]
+    S --> W
     S --> P[Potencia restante experimental]
     G --> C[Cargas caracterizadas]
     V --> C
@@ -41,7 +43,8 @@ flowchart LR
 BOOT pasa a SAFE_IDLE con entradas simuladas válidas. Un fallo de interlocks o enlace
 enclava FAULT. Todas las salidas permanecen inactivas. START siempre se rechaza;
 STOP no borra FAULT. SAFE_IDLE es un estado lógico, no una garantía eléctrica.
-El núcleo no incluye temporizadores, parser, HAL, GPIO, watchdog ni adquisición real.
+El núcleo de firmware no incluye temporizadores, parser, HAL, GPIO, servicio del
+watchdog ni adquisición real. El watchdog hardware ya existe en el esquema.
 
 ## Estados previstos
 SELF_TEST, HOMING, READY, HEATING, GRINDING, BREWING y CLEANING: pendientes de límites,
@@ -50,7 +53,8 @@ reanudar ciclos automáticamente. El rearme futuro requiere condiciones válidas
 acción explícita, sin eliminar la causa del fallo por software.
 
 ## Fronteras de seguridad
-El BSP futuro inicializará salidas inactivas antes del runtime. Enable hardware,
-watchdog y corte térmico independiente deben proteger también con MCU bloqueado.
+El BSP futuro inicializará salidas inactivas antes del runtime. El TPS3828 y la
+AND doble bloquean grupo y válvula con MCU en reset; el corte térmico independiente
+y las futuras salidas de red deben conservar protección equivalente.
 Un semiconductor puede fallar en corto: poner un GPIO a cero no garantiza aislamiento.
 USB y depuración solo serán accesibles en un dominio con separación verificada de red.

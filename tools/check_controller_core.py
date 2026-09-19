@@ -73,7 +73,7 @@ def main():
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
                      14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
                      16:'WATER_LEVEL',10:'BU_WORK_N',17:'BREW_CURRENT_ADC',
-                     23:'BREW_DIR_RAW',24:'VALVE_EN_RAW',42:'BREW_PWM_RAW',58:'BREW_SLEEP_RAW',
+                     23:'BREW_DIR_RAW',24:'VALVE_EN_RAW',42:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
@@ -173,7 +173,7 @@ def main():
     assert nets['C504'] == {'1':'BREW_CPH','2':'BREW_CPL'}
     for ref, a, b in [('R501','BREW_PWM_RAW','BREW_EN_DRV'),
                       ('R502','BREW_EN_DRV',g),('R503','BREW_DIR_RAW','BREW_DIR_DRV'),
-                      ('R504','BREW_DIR_DRV',g),('R505','BREW_SLEEP_RAW','BREW_SLEEP_DRV'),
+                      ('R504','BREW_DIR_DRV',g),('R505','BREW_SLEEP_INTERLOCK','BREW_SLEEP_DRV'),
                       ('R506','BREW_SLEEP_DRV',g),('R507',v,'BREW_FAULT_N'),
                       ('R508',v,'BREW_VREF'),('R509','BREW_VREF',g),
                       ('R510','BREW_CURRENT_ADC',g),('C505','BREW_VREF',g),
@@ -186,11 +186,19 @@ def main():
     assert nets['U502'] == {'1':'VALVE_EN_DRV','2':g,'3':g,
                             '4':'VALVE_GATE_RAW','5':'12V_PROTECTED'}
     assert nets['Q501'] == {'1':'VALVE_GATE','2':g,'3':'VALVE_RETURN'}
-    for ref, a, b in [('R511','VALVE_EN_RAW','VALVE_EN_DRV'),
+    for ref, a, b in [('R511','VALVE_EN_INTERLOCK','VALVE_EN_DRV'),
                       ('R512','VALVE_EN_DRV',g),
                       ('R513','VALVE_GATE_RAW','VALVE_GATE'),
                       ('R514','VALVE_GATE',g),
                       ('C507','12V_PROTECTED',g),('C508','12V_PROTECTED',g)]:
+        assert nets[ref] == {'1':a,'2':b}
+    assert nets['U601'] == {'1':'STM_NRST','2':g,'3':v,'4':'WATCHDOG_KICK','5':v}
+    assert nets['U602'] == {'1':'BREW_SLEEP_RAW','2':'STM_NRST',
+                            '5':'VALVE_EN_RAW','6':'STM_NRST','8':v,'4':g,
+                            '7':'BREW_SLEEP_INTERLOCK','3':'VALVE_EN_INTERLOCK'}
+    for ref, a, b in [('R601','WATCHDOG_KICK_RAW','WATCHDOG_KICK'),
+                      ('R602','WATCHDOG_KICK',g),('R603','BREW_SLEEP_RAW',g),
+                      ('R604','VALVE_EN_RAW',g),('C601',v,g),('C602',v,g)]:
         assert nets[ref] == {'1':a,'2':b}
     for ref, footprint, lcsc in [
             ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
@@ -201,6 +209,8 @@ def main():
             ('J113','Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal','C263757'),
             ('U502','Package_TO_SOT_SMD:SOT-23-5','C99395'),
             ('Q501','Package_TO_SOT_SMD:SOT-23','C347491'),
+            ('U601','Package_TO_SOT_SMD:SOT-23-5','C20032'),
+            ('U602','Package_SO:SSOP-8_2.95x2.8mm_P0.65mm','C352973'),
             ('C501','Capacitor_SMD:CP_Elec_6.3x7.7','C176683'),
             ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc

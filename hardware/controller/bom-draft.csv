@@ -114,3 +114,11 @@ R513,33 / gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E
 R514,100k / gate pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 C507,100nF / driver local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C508,1uF / driver local,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
+U601,TPS3828-33DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,TPS3828-33DBVR,C20032,TBD,TBD
+U602,SN74LVC2G08DCTR,Package_SO:SSOP-8_2.95x2.8mm_P0.65mm,candidate,Texas Instruments,SN74LVC2G08DCTR,C352973,TBD,TBD
+R601,33 / WDI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R602,1k / WDI pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+R603,10k / brew arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R604,10k / valve pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+C601,100nF / supervisor local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C602,100nF / logic local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard

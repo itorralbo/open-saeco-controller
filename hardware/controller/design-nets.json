@@ -68,7 +68,7 @@
         "54": null,
         "55": null,
         "56": "STM_SWO",
-        "57": null,
+        "57": "WATCHDOG_KICK_RAW",
         "58": "BREW_SLEEP_RAW",
         "59": "BREW_FAULT_N",
         "60": null,
@@ -1610,7 +1610,7 @@
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "BREW_SLEEP_RAW",
+        "1": "BREW_SLEEP_INTERLOCK",
         "2": "BREW_SLEEP_DRV"
       }
     },
@@ -1827,7 +1827,7 @@
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "VALVE_EN_RAW",
+        "1": "VALVE_EN_INTERLOCK",
         "2": "VALVE_EN_DRV"
       }
     },
@@ -1903,6 +1903,135 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "12V_PROTECTED",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U601",
+      "value": "TPS3828-33DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS3828-33DBVR",
+      "lcsc": "C20032",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "STM_NRST",
+        "2": "GND_UI",
+        "3": "3V3_CORE",
+        "5": "3V3_CORE",
+        "4": "WATCHDOG_KICK"
+      }
+    },
+    {
+      "reference": "U602",
+      "value": "SN74LVC2G08DCTR",
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC2G08DCTR",
+      "lcsc": "C352973",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "BREW_SLEEP_RAW",
+        "2": "STM_NRST",
+        "5": "VALVE_EN_RAW",
+        "6": "STM_NRST",
+        "8": "3V3_CORE",
+        "4": "GND_UI",
+        "7": "BREW_SLEEP_INTERLOCK",
+        "3": "VALVE_EN_INTERLOCK"
+      }
+    },
+    {
+      "reference": "R601",
+      "value": "33 / WDI",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATCHDOG_KICK_RAW",
+        "2": "WATCHDOG_KICK"
+      }
+    },
+    {
+      "reference": "R602",
+      "value": "1k / WDI pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATCHDOG_KICK",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R603",
+      "value": "10k / brew arm pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BREW_SLEEP_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R604",
+      "value": "10k / valve pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "VALVE_EN_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C601",
+      "value": "100nF / supervisor local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C602",
+      "value": "100nF / logic local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
         "2": "GND_UI"
       }
     }
