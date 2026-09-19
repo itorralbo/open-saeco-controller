@@ -135,6 +135,36 @@ rodea U203 por la izquierda hasta R221/R222 y llega a los pads 13/14 del ESP32,
 a unos 15 mm. Como sale de U203 en sentido opuesto al módulo, DM cruza una vez a
 DP por B.Cu justo antes de los pads.
 
+## Entrada de red
+
+- Fase: J118.1 sube por el paso entre el disipador y PS701 hasta F701 (3 mm en
+  F.Cu). PSU_L baja desde F702 por el mismo paso hasta PS701.1 (1 mm). Las dos
+  pistas van anidadas y separadas 2,5 mm; por eso F702 está encima de F701.
+- Fase protegida: une las dos pinzas de F701 y F702, RV701 y los dos pads COM
+  de K701. El par COM de K701 se une por B.Cu para dejar sitio a la unión del par
+  NO (`LOAD_L_ENABLED`), que espera a las etapas de carga.
+- Neutro: J118.3 → PS701.2 en F.Cu y, desde ahí, hasta RV701 por B.Cu, por
+  debajo de las dos fases. En el lado de red no hay plano, así que B.Cu está libre.
+- Todo el cobre de red mantiene 2,5 mm entre redes distintas y 8 mm hasta SELV,
+  comprobados por el DRC. La salida de J118.1 se estrecha a 2,2 mm para respetar
+  1,2 mm hasta el pin central libre del VH.
+
+Los 3 mm de las fases son provisionales con 1 oz. Con unos 10 A de carga total,
+la versión definitiva necesita duplicar la pista en B.Cu o vertidos en ambas
+caras, o bien 2 oz. Se decidirá al diseñar la etapa del calentador.
+
+## Salida de 24 V
+
+- PS701.4 → J121 (`24V_INTERNAL_RAW`), junto al extremo SELV del módulo.
+- `24V_ACT_RAW` sale de J121 por dos caminos:
+  - un carril de 0,8 mm en x = 107,85 mm, entre el buck de 3,3 V y las
+    resistencias del DRV8876, hasta J112 y el buck de 12 V;
+  - una troncal de 1 mm por el borde SELV de la banda de barrera (y = 55,1 mm)
+    que baja por x = 46 mm, a la izquierda de la banda. De ella salen F303
+    (rama del grupo), el divisor R704, J114.4, la bobina de K701, D701 y la
+    rama de la válvula (F304).
+- Para esos recorridos se giró J121 y se movieron C307 y Q701.
+
 ## Validación
 
 - 155/158 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
@@ -142,9 +172,10 @@ DP por B.Cu justo antes de los pads.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- USB, alimentación y desacoplo del STM32 y plano GND: 86 segmentos y 16 vías.
-  La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 297 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- USB, alimentación y desacoplo del STM32, entrada de red, 24 V y plano GND:
+  142 segmentos y 16 vías. La impedancia USB se verificará con el stack-up real
+  antes de fabricar.
+- 273 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
@@ -153,8 +184,7 @@ conectores, polaridad, puntos de medida y seguridad después del routing.
 
 ## Siguiente paso
 
-Pueden rutearse ya la entrada de red (J118 → F701 → RV701, F702 → PS701 y K701),
-los 24 V de PS701 hacia J121 y las señales del STM32 por los canales reservados.
-Las etapas de calentador, bomba y molinillo esperan a elegir el disipador y a las
-huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
+Siguen el mando del relé (U603, Q701, D701), las señales del STM32 por los
+canales reservados, los 12 V y el 3,3 V. Las etapas de calentador, bomba y
+molinillo esperan a elegir el disipador y a las huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
 abiertas o la revisión de aislamiento pendiente.

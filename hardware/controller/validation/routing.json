@@ -5,14 +5,14 @@
     "USB ESD-to-series-pair",
     "USB series-to-ESP32",
     "STM32 VDD ring, VSS vias and decoupling",
-    "provisional SELV GND_UI plane on B.Cu"
+    "provisional SELV GND_UI plane on B.Cu",
+    "mains input: J118, F701, F702, RV701, K701 and PS701",
+    "24 V: PS701, J121 and all 24V_ACT_RAW loads"
   ],
-  "track_segments": 86,
+  "track_segments": 142,
   "vias": 16,
   "remaining_blocks": [
-    "mains/SELV floorplan fix required by the 8 mm barrier rule",
-    "mains input and isolated supply",
-    "heater, pump and grinder",
+    "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",
     "logic",
     "sensors",

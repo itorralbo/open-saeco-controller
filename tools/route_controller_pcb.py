@@ -26,6 +26,14 @@ USB_DRILL = 0.30
 PIN_WIDTH = 0.25
 RING_WIDTH = 0.30
 
+# Primary copper on 1 oz until the heater stage fixes the final pours. Phase
+# tracks carrying the load current are 3 mm; the PSU and MOV branches are light.
+MAINS_PHASE_WIDTH = 3.0
+MAINS_LIGHT_WIDTH = 1.0
+MAINS_N_WIDTH = 1.5
+ACT_WIDTH = 1.0
+ACT_LANE_WIDTH = 0.8
+
 GND_PLANE_NAME = 'GND_UI SELV plane (provisional)'
 # SELV side of the barrier drawn by layout_controller_pcb.py, up to the SELV
 # edge of its keepout band. The mains_to_selv rules still hold the fill 8 mm
@@ -201,6 +209,75 @@ def route_stm32_supply(board):
     vi(gnd, (49.80, 78.00))
 
 
+def route_mains_input(board):
+    """J118 to F701, F702 and PS701; fused phase to RV701 and K701.
+
+    L_IN and PSU_L run nested down the gap between the heatsink area and
+    PS701, 2.5 mm apart. N reaches PS701 on F.Cu and continues to RV701 on
+    B.Cu, where no SELV plane exists, crossing under both phase tracks.
+    """
+    l_in, l_fused, psu_l = '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED'
+    neutral, load_l = '/MAINS_N', '/LOAD_L_ENABLED'
+    # The stub leaving J118.1 is narrower to clear the unused middle VH pin.
+    track(board, l_in, (106.04, 121.30), (104.50, 118.00), width=2.2)
+    polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
+                           (96.50, 74.00), (87.00, 74.00)], width=MAINS_PHASE_WIDTH)
+    polyline(board, psu_l, [(87.00, 67.00), (101.20, 67.00), (101.20, 110.00),
+                            (104.35, 113.15), (106.30, 113.15)],
+             width=MAINS_LIGHT_WIDTH)
+
+    # Fused phase: both fuse clips, the MOV and the doubled K701 COM pads.
+    for start, end in [((72.00, 67.00), (77.00, 67.00)),
+                       ((72.00, 74.00), (77.00, 74.00)),
+                       ((72.00, 67.00), (72.00, 80.00))]:
+        track(board, l_fused, start, end, width=MAINS_PHASE_WIDTH)
+    polyline(board, l_fused, [(57.00, 73.25), (57.00, 67.50), (72.00, 67.50)],
+             width=2.5)
+    track(board, l_fused, (57.00, 73.25), (57.00, 80.75), pcb.B_Cu, width=2.5)
+    # Doubled K701 NO pads; the triac stages will extend this net.
+    track(board, load_l, (62.00, 73.25), (62.00, 80.75), width=2.0)
+
+    polyline(board, neutral, [(113.96, 121.30), (113.96, 116.50),
+                              (111.80, 114.34), (111.80, 113.15)], width=2.5)
+    polyline(board, neutral, [(111.80, 113.15), (111.80, 70.50), (82.00, 70.50),
+                              (82.00, 79.70), (79.50, 82.20)], pcb.B_Cu,
+             width=MAINS_N_WIDTH)
+
+
+def route_24v_output(board):
+    """PS701 24 V through J121 to every 24V_ACT_RAW load on the SELV side.
+
+    A 0.8 mm lane at x = 107.85 mm between the 3.3 V buck and the DRV8876
+    resistors reaches J112 and the 12 V buck. The trunk follows the SELV edge
+    of the barrier band and drops at x = 46 mm, left of it, to the relay coil,
+    D701 and the valve branch.
+    """
+    internal, act = '/24V_INTERNAL_RAW', '/24V_ACT_RAW'
+    polyline(board, internal, [(115.30, 51.65), (115.30, 49.20), (111.00, 49.20),
+                               (109.15, 47.35), (109.15, 45.20)], width=ACT_WIDTH)
+
+    track(board, act, (107.85, 45.20), (107.85, 6.00), width=ACT_LANE_WIDTH)
+    polyline(board, act, [(107.85, 9.50), (114.00, 9.50), (116.025, 7.475),
+                          (116.025, 5.00)], width=ACT_LANE_WIDTH)
+    polyline(board, act, [(116.025, 7.30), (120.20, 7.30), (121.362, 6.14)],
+             width=ACT_LANE_WIDTH)
+    track(board, act, (121.362, 6.14), (121.362, 5.00), width=0.5)
+
+    polyline(board, act, [(107.85, 45.20), (107.85, 46.60), (103.40, 46.60),
+                          (101.80, 48.20), (101.80, 55.10), (46.00, 55.10),
+                          (46.00, 79.50), (44.75, 80.75), (42.00, 80.75)],
+             width=ACT_WIDTH)
+    polyline(board, act, [(46.00, 55.10), (46.00, 45.60), (45.60, 45.00)],
+             width=ACT_WIDTH)
+    track(board, act, (46.00, 52.00), (47.175, 52.00), width=ACT_LANE_WIDTH)
+    polyline(board, act, [(62.30, 55.10), (62.30, 42.80), (57.20, 42.80),
+                          (55.62, 41.22), (55.62, 40.00)], width=ACT_LANE_WIDTH)
+    polyline(board, act, [(42.00, 80.75), (43.20, 81.95), (43.20, 90.00),
+                          (45.50, 90.00)], width=ACT_WIDTH)
+    polyline(board, act, [(43.20, 90.00), (43.20, 93.50), (7.00, 93.50),
+                          (5.60, 92.10), (5.60, 91.00)], width=ACT_WIDTH)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -232,6 +309,8 @@ def main():
     route_usb_port(board)
     route_usb_device(board)
     route_stm32_supply(board)
+    route_mains_input(board)
+    route_24v_output(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -239,12 +318,13 @@ def main():
         'status': 'critical_routing_in_progress_not_fabricable',
         'routed_blocks': ['USB-C reversible fanout', 'USB ESD-to-series-pair', 'USB series-to-ESP32',
                           'STM32 VDD ring, VSS vias and decoupling',
-                          'provisional SELV GND_UI plane on B.Cu'],
+                          'provisional SELV GND_UI plane on B.Cu',
+                          'mains input: J118, F701, F702, RV701, K701 and PS701',
+                          '24 V: PS701, J121 and all 24V_ACT_RAW loads'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['mains/SELV floorplan fix required by the 8 mm barrier rule',
-                             'mains input and isolated supply', 'heater, pump and grinder',
+        'remaining_blocks': ['heater, pump and grinder stages',
                              '3V3 trunk and remaining decoupling', 'logic', 'sensors',
                              '24 V actuators', 'final domain copper fills'],
     }

@@ -14,9 +14,9 @@ dos FASTON de PE. J105–J109 usan cabeceras JST XH/PH candidatas a partir de la
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
-el USB y la alimentación del STM32 ya ruteados, y la primera etapa de carga sin
+el USB, la alimentación del STM32, la entrada de red y los 24 V ya ruteados, y la primera etapa de carga sin
 ensayar. El DRC, con la barrera red/SELV de 8 mm como regla, no presenta
-infracciones; quedan 297 conexiones sin rutear, caracterizar la salida del nivel
+infracciones; quedan 273 conexiones sin rutear, caracterizar la salida del nivel
 de agua y completar las demás etapas de potencia.
 Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita
 su medida directa durante las pruebas.

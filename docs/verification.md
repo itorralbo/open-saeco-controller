@@ -371,3 +371,16 @@ de cargas siguen pendientes en el esquema principal.
   DRC con todas las severidades: 0 infracciones, 297 conexiones abiertas y seis
   diferencias de paridad (MH1–MH3 y J116/J119/J120 sin huella). No libera
   fabricación ni conexión a red.
+
+## Entrada de red y salida de 24 V, 2026-09-19
+
+- Rutadas la fase J118 → F701, la rama F702 → PS701, la fase protegida hacia
+  RV701 y los dos pares de contactos de K701, y el neutro hacia PS701 y RV701.
+  L_IN y PSU_L van anidados por el paso junto a PS701 y N cruza por B.Cu.
+- Rutados PS701 → J121 y `24V_ACT_RAW` hasta J112, el buck de 12 V, F303, R704,
+  J114, K701, D701 y F304. Retoques: F701/F702 intercambiados, J121 girado, y
+  C307 y Q701 desplazados.
+- KiCad 10.0.6, todas las severidades: 0 infracciones, incluidos 2,5 mm entre
+  redes de red, 8 mm y creepage hasta SELV y la banda de barrera. Quedan 273
+  conexiones abiertas; las redes de red y de 24 V están completas. Las fases
+  van a 3 mm con 1 oz, anchura provisional hasta dimensionar el calentador.

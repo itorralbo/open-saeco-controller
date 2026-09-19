@@ -147,8 +147,10 @@ PLACE = {
     # edge with its AC pins beside J118 and its 24 V pins in SELV. Fuses and
     # MOV sit above the reserved heatsink; the gap between the heatsink and
     # PS701 carries L and PSU_L between J118, the fuses and PS701.
-    'PS701': (121.3, 82.4, 90), 'F701': (92, 67, 180), 'F702': (72, 74, 0),
-    'RV701': (72, 80, 0), 'J121': (108.5, 45.2, 0),
+    # F702 (PSU branch) sits above F701 so that L_IN and PSU_L run nested down
+    # the gap without crossing. J121 is turned so 24V_ACT_RAW leaves on the left.
+    'PS701': (121.3, 82.4, 90), 'F701': (92, 74, 180), 'F702': (72, 67, 0),
+    'RV701': (72, 80, 0), 'J121': (108.5, 45.2, 180),
 
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
     'C310': (117.5, 5, 0), 'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
@@ -157,7 +159,7 @@ PLACE = {
 
     # Phase-cut relay straddles the vertical barrier: coil pins in SELV,
     # contacts in the mains domain. Drive and flyback diode sit by the coil.
-    'U603': (34, 80, 0), 'Q701': (41, 88, 0),
+    'U603': (34, 80, 0), 'Q701': (39.5, 88, 0),
     'R801': (29, 81, 0), 'R802': (29, 86, 0), 'D701': (45.5, 88, 90),
     'K701': (52, 77, 180),
 
@@ -187,7 +189,7 @@ PLACE = {
     'C301': (110, 27, 0), 'C302': (113, 31, 90), 'U301': (97, 36, 0),
     'C303': (102, 33, 0), 'L301': (104, 39, 0),
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
-    'U302': (98.5, 51, 0), 'R301': (96, 48, 0), 'C307': (99, 55, 0),
+    'U302': (98.5, 51, 0), 'R301': (96, 48, 0), 'C307': (95.5, 44.5, 0),
     'C308': (94.5, 53, 90), 'C309': (99.5, 46.5, 0),
 
     # Passive sensor interfaces follow the original harness connector zones.

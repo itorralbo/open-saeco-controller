@@ -6,7 +6,7 @@ Existe una hoja eléctrica parcial con 158 posiciones eléctricas:
 Es una parte de la futura principal; no es una placa de sustitución terminada.
 Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 155 huellas,
 contorno y tres taladros. ERC nativo superado y DRC sin infracciones, con la
-barrera red/SELV comprobada; quedan 297 conexiones sin rutear.
+barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
