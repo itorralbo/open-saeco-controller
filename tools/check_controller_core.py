@@ -73,11 +73,10 @@ def main():
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
                      14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
                      16:'WATER_LEVEL',10:'BU_WORK_N',17:'BREW_CURRENT_ADC',
-                     23:'BREW_DIR_RAW',42:'BREW_PWM_RAW',58:'BREW_SLEEP_RAW',
+                     23:'BREW_DIR_RAW',24:'VALVE_EN_RAW',42:'BREW_PWM_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
-    assert nets['U101']['24'] is None, 'PA7 is reserved for the valve stage but remains NC until implemented'
     for pin in (1,40,41):
         assert nets['U201'][str(pin)] == g, f'ESP ground/EP pad {pin}'
     for pin in (28,29,30):
@@ -160,8 +159,8 @@ def main():
     assert nets['F302'] == {'1':'USB_VBUS','2':'USB_VBUS_FUSED'}
     assert nets['J111'] == {'1':'USB_VBUS_FUSED','2':'USB_BENCH_ENABLE'}
     assert nets['D303'] == {'2':'USB_BENCH_ENABLE','1':'12V_PROTECTED'}
-    assert nets['J112'] == {'1':'24V_BREW_RAW','2':g}
-    assert nets['F303'] == {'1':'24V_BREW_RAW','2':'24V_BREW_FUSED'}
+    assert nets['J112'] == {'1':'24V_ACT_RAW','2':g}
+    assert nets['F303'] == {'1':'24V_ACT_RAW','2':'24V_BREW_FUSED'}
     assert nets['D304'] == {'2':'24V_BREW_FUSED','1':'24V_BREW'}
     assert nets['C501'] == {'1':'24V_BREW','2':g}
     assert nets['C502'] == {'1':'24V_BREW','2':g}
@@ -180,12 +179,28 @@ def main():
                       ('R510','BREW_CURRENT_ADC',g),('C505','BREW_VREF',g),
                       ('C506','BREW_CURRENT_ADC',g)]:
         assert nets[ref] == {'1':a,'2':b}
+    assert nets['J113'] == {'1':'24V_VALVE','2':'VALVE_RETURN','3':None,'4':None,'5':None}
+    assert nets['F304'] == {'1':'24V_ACT_RAW','2':'24V_VALVE_FUSED'}
+    assert nets['D305'] == {'2':'24V_VALVE_FUSED','1':'24V_VALVE'}
+    assert nets['D306'] == {'2':'VALVE_RETURN','1':'24V_VALVE'}
+    assert nets['U502'] == {'1':'VALVE_EN_DRV','2':g,'3':g,
+                            '4':'VALVE_GATE_RAW','5':'12V_PROTECTED'}
+    assert nets['Q501'] == {'1':'VALVE_GATE','2':g,'3':'VALVE_RETURN'}
+    for ref, a, b in [('R511','VALVE_EN_RAW','VALVE_EN_DRV'),
+                      ('R512','VALVE_EN_DRV',g),
+                      ('R513','VALVE_GATE_RAW','VALVE_GATE'),
+                      ('R514','VALVE_GATE',g),
+                      ('C507','12V_PROTECTED',g),('C508','12V_PROTECTED',g)]:
+        assert nets[ref] == {'1':a,'2':b}
     for ref, footprint, lcsc in [
             ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
             ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
             ('J112','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
             ('U501','Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm','C575551'),
+            ('J113','Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal','C263757'),
+            ('U502','Package_TO_SOT_SMD:SOT-23-5','C99395'),
+            ('Q501','Package_TO_SOT_SMD:SOT-23','C347491'),
             ('C501','Capacitor_SMD:CP_Elec_6.3x7.7','C176683'),
             ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc

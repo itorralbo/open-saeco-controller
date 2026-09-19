@@ -19,11 +19,11 @@ electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para des
 Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
 con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión,
 entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
-carga es un DRV8876 para el motor del grupo, con entrada de 24 V de banco separada;
-queda sin ensayar y faltan válvula, calentador, bomba y molino.
+carga es un DRV8876 para el motor del grupo y la válvula dispone de una etapa
+low-side, ambos desde una entrada de 24 V de banco con fusibles separados;
+quedan sin ensayar y faltan calentador, bomba y molino.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
-ya fija driver, MOSFET y protección, pero no entra al esquema hasta confirmar las
-características dinámicas de la bobina. JP3.1=+24 V y JP3.2=retorno están
+ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión
 interna polarizada detectable y permite dibujar la rueda libre externa.
 El manual ya permite dibujar las envolventes de

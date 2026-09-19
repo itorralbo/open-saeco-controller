@@ -82,7 +82,7 @@ C405,100nF / WORK filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603K
 J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal,photo_candidate_owner_pinout,JST,S3B-PH-K(LF)(SN),C545716,Extended,Economic and Standard
 R411,1k / WATER serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J112,24V_BREW_INPUT / JST XH,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J112,24V_ACTUATOR_INPUT / JST XH,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
 F303,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D304,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 C501,100uF / 35V motor bulk,Capacitor_SMD:CP_Elec_6.3x7.7,candidate,Lelon,VZH101M1VTR-0607,C176683,Extended,Economic and Standard
@@ -102,3 +102,15 @@ R509,49.9k / VREF bottom,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603
 C505,100nF / VREF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R510,2.49k / IPROPI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2491T5E,C22908,Basic,Economic and Standard
 C506,10nF / IPROPI,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
+J113,JP3 VALVE / JST XH,Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal,owner_pinout_candidate,JST,S5B-XH-A(LF)(SN),C263757,Extended,Economic and Standard
+F304,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
+D305,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
+D306,SS34 / flyback,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
+U502,UCC27517DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,UCC27517DBVR,C99395,TBD,TBD
+Q501,SI2308A,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,TBD,TBD
+R511,33 / IN,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R512,10k / IN pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R513,33 / gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R514,100k / gate pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+C507,100nF / driver local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C508,1uF / driver local,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard

@@ -243,3 +243,17 @@ de cargas siguen pendientes en el esquema principal.
   en modo diodo en ambos sentidos: no se detecta supresión interna polarizada.
 - Motor y válvula sumarían unos 0,862 A resistivos; F303=1 A no se considera una
   protección común válida sin medir transitorios, arranque y temperatura.
+
+## Etapa de la electroválvula incorporada, 2026-09-19
+
+- J113 reproduce JP3 con JST S5B-XH-A(LF)(SN), `C263757`: pin 1 a +24 V, pin 2
+  al retorno conmutado y pines 3–5 NC. Se observaron 8.885 unidades en LCSC.
+- F304=1 A y D305 separan la rama desde `24V_ACT_RAW`. D306=SS34 queda como
+  rueda libre, con cátodo a +24 V y ánodo al drenador.
+- PA7 controla U502 UCC27517DBVR; Q501 SI2308A conmuta el retorno. Las entradas
+  y la puerta tienen pull-down, y el driver dispone de 100 nF + 1 µF locales.
+- Comprobador propio y ERC KiCad 10.0.6: PASS, 0 infracciones, 115 componentes y
+  410 pines. La PCB contiene 115 huellas; DRC: 0 infracciones geométricas,
+  265 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
+- La etapa continúa sin liberar: faltan corriente en caliente, liberación,
+  sobretensión de drenador, ruido y térmica con la bobina real y fuente limitada.

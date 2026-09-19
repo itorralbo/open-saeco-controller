@@ -1,6 +1,6 @@
 # Etapa candidata para la electroválvula de 24 V
 
-Estado: pinout de JP3 confirmado; diseño previo al esquema. No liberar para
+Estado: pinout de JP3 confirmado; etapa incorporada al esquema y PCB de trabajo. No liberar para
 fabricación ni conectar a la máquina hasta ensayar la bobina.
 
 ## Datos disponibles
@@ -20,16 +20,17 @@ en paralelo. No se ha detectado supresión interna accesible desde los terminale
 la rueda libre externa forma parte necesaria del driver.
 
 JP3 parece JST XH de cinco vías y 2,50 mm. La huella compatible de trabajo es
-`JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal`; la referencia JST disponible
-`S5B-XH-A-1(LF)(SN)` (`C163038`) tenía solo 10 unidades observadas, por lo que el
-conector no se congela y habrá que refrescar suministro o aprobar un equivalente.
+`JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal`; se selecciona
+`S5B-XH-A(LF)(SN)` (`C263757`), con 8.885 unidades LCSC observadas el 2026-09-19.
+La referencia continúa siendo candidata hasta probar el acoplamiento físico.
 
 ## Topología propuesta
 
-Se propone un interruptor low-side independiente:
+El esquema implementa un interruptor low-side independiente:
 
-- una rama propia desde `24V_BREW_RAW`, con fusible separado de 0,75–1 A;
-- JP3.1 a `24V_VALVE_FUSED`; JP3.2 al drenador como retorno conmutado;
+- una rama propia desde `24V_ACT_RAW`, con F304 de 1 A separado;
+- D305 bloquea polaridad inversa; JP3.1 va a `24V_VALVE` y JP3.2 al drenador
+  como retorno conmutado;
 - MOSFET N de 60 V `SI2308A` de UMW (`C347491`), SOT-23, 3 A y
   `RDS(on)` máximo publicado de 95 mΩ a 4,5 V;
 - diodo SS34 en paralelo con la bobina, cátodo a +24 V y ánodo al drenador;
@@ -40,9 +41,9 @@ Se propone un interruptor low-side independiente:
   del UCC27517 queda a masa. Con reset, ausencia de 12 V o UVLO, la válvula queda
   desactivada.
 
-Se reserva PA7 del STM32 para `VALVE_EN_RAW`. Permanece NC en el esquema hasta
-añadir simultáneamente el pull-down físico y el driver, para no crear una salida
-etiquetada sin estado seguro durante reset.
+PA7 del STM32 es `VALVE_EN_RAW`. R512 mantiene baja la entrada no inversora de
+U502 durante reset y R514 mantiene baja la puerta de Q501; la entrada inversora
+queda a masa.
 
 El UCC27517 acepta nivel alto de 2,4 V como máximo de umbral y funciona con
 4,5–18 V, de modo que separa la compatibilidad lógica de 3,3 V del requisito de
@@ -57,17 +58,18 @@ Fuentes: [bobina 6000BH de OLAB](https://www.olabitaly.com/products/fluid-contro
 se observaron 27.530 unidades del driver y 546.570 del MOSFET; no constituyen una
 reserva.
 
-## Decisiones pendientes antes del esquema
+## Ensayos pendientes antes de liberar la etapa
 
 1. Medir corriente de activación y corriente estabilizada con fuente de 24 V
    limitada, además del tiempo de liberación.
 2. Comparar el tiempo de liberación con SS34: produce caída lenta y poco ruido;
    un TVS o zéner
    acelera la liberación a costa de mayor tensión. La función hidráulica decidirá.
-3. Recalcular la entrada de 24 V. Motor y válvula suman aproximadamente 0,862 A
-   resistivos, demasiado cerca de F303=1 A para autorizar uso simultáneo. Cada
-   carga debe tener fusible propio y la fuente/conector común deben dimensionarse
-   con arranque, bloqueo y margen térmico.
+3. Dimensionar la fuente y J112. Motor y válvula suman aproximadamente 0,862 A
+   resistivos. F303 y F304 protegen ahora cada rama por separado, pero la fuente y
+   el conector común deben dimensionarse con arranque, bloqueo y margen térmico.
+4. Verificar con osciloscopio `VALVE_RETURN`, la tensión máxima de Q501 y el
+   comportamiento al conectar/desconectar 12 V y 24 V en cualquier orden.
 
-El pinout y la ausencia de diodo interno detectable permiten incorporar JP3 y la
-etapa low-side al esquema conservando la polaridad y el SS34 externo.
+ERC y DRC geométrico pasan sin infracciones. La PCB principal sigue sin rutear;
+esta validación comprueba coherencia del diseño, no el funcionamiento con la carga.

@@ -17,7 +17,8 @@
   la fuente AC/DC, potencia y aislamiento se definirán tras caracterización.
 - Las referencias confirman dos cargas a 24 V DC (grupo y válvula), dos a 230 V AC
   (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El grupo
-  ya tiene un DRV8876 y entrada J112 de 24 V aislados para banco; J101 conserva
+  ya tiene un DRV8876, la válvula un low-side protegido y ambos reciben la entrada
+  J112 de 24 V aislados para banco; J101 conserva
   12 V para lógica. La arquitectura final de fuentes sigue abierta y la potencia
   de red se trata como un bloque separado.
 
@@ -28,8 +29,10 @@ flowchart LR
     E -->|solicitudes| S[STM32: control e interlocks]
     I[Sensores acondicionados] --> S
     S --> G[DRV8876 grupo / 24 V de banco]
+    S --> V[Low-side válvula / 24 V de banco]
     S --> P[Potencia restante experimental]
     G --> C[Cargas caracterizadas]
+    V --> C
     P --> C[Cargas caracterizadas]
     H[Protecciones independientes] --> P
 ```

@@ -102,6 +102,18 @@ def power_symbols():
         ('16', 'PMODE', 'input', 12.7, 15.24, 180),
         ('17', 'EP', 'power_in', 12.7, -15.24, 180),
     ], 10.16, 17.78)
+    d.DEFS['UCC27517DBV'] = ([
+        ('1', 'IN+', 'input', -7.62, 3.81, 0),
+        ('2', 'GND', 'power_in', -7.62, 0, 0),
+        ('3', 'IN-', 'input', -7.62, -3.81, 0),
+        ('5', 'VDD', 'power_in', 7.62, 3.81, 180),
+        ('4', 'OUT', 'output', 7.62, -3.81, 180),
+    ], 5.08, 6.35)
+    d.DEFS['NMOS_SOT23'] = ([
+        ('1', 'G', 'input', -7.62, 0, 0),
+        ('2', 'S', 'power_in', 7.62, -3.81, 180),
+        ('3', 'D', 'power_out', 7.62, 3.81, 180),
+    ], 5.08, 5.08)
 
 
 def main():
@@ -111,7 +123,7 @@ def main():
     chip('STM32G431RB', STM_PINS)
     chip('ESP32S3WROOM1', ESP_PINS)
     power_symbols()
-    for n in (2, 3, 4, 6, 8):
+    for n in (2, 3, 4, 5, 6, 8):
         d.DEFS[f'J{n}'] = (d.connector(n), 5.08, n*1.905+1.27)
     v, g = '3V3_CORE', 'GND_UI'
     stm = {'VBAT': v, 'VDD': v, 'VSS': g, 'VSSA': g, 'VDDA': v, 'VREF+': v,
@@ -121,6 +133,7 @@ def main():
            'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC0': 'DOOR_CLOSED_N',
            'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N',
            'PA3': 'BREW_CURRENT_ADC', 'PA6': 'BREW_DIR_RAW',
+           'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB6': 'BREW_FAULT_N'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
@@ -303,11 +316,11 @@ def main():
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
     d.note('PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
     d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
-    d.add('J112','J2','24V_BREW_INPUT / JST XH',905,62,['24V_BREW_RAW',g],
+    d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_ACT_RAW',g],
           'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
           status='candidate', part_key='CONN:JST_XH_2_RA')
     d.add('#FLG105','PWR_FLAG','Isolated 24V motor source / J112',1000,62,['24V_BREW'])
-    d.add('F303','FUSE','1A / 72VDC',970,82,['24V_BREW_RAW','24V_BREW_FUSED'],
+    d.add('F303','FUSE','1A / 72VDC',970,82,['24V_ACT_RAW','24V_BREW_FUSED'],
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
     d.add('D304','DIODE','SS34',1040,82,['24V_BREW_FUSED','24V_BREW'],
           'Diode_SMD:D_SMA',part_key='D:SS34')
@@ -340,7 +353,34 @@ def main():
     d.note('PA8 PWM, PA6 dirección, PB5 nSLEEP, PB6 nFAULT, PA3 ADC. PMODE/IMODE a GND.',870,280,1.1)
     d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
     d.note('J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.',870,294,1.1)
-    d.note('Falta: fuente aislada final, watchdog y etapas de válvula/red/molino.',12,574)
+    d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
+    d.add('J113','J5','JP3 VALVE / JST XH',905,354,
+          ['24V_VALVE','VALVE_RETURN',None,None,None],
+          'Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal',
+          status='owner_pinout_candidate', part_key='CONN:JST_XH_5_RA')
+    d.add('F304','FUSE','1A / 72VDC',970,354,['24V_ACT_RAW','24V_VALVE_FUSED'],
+          'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
+    d.add('D305','DIODE','SS34',1040,354,['24V_VALVE_FUSED','24V_VALVE'],
+          'Diode_SMD:D_SMA',part_key='D:SS34')
+    d.add('#FLG106','PWR_FLAG','Protected valve rail',1110,354,['24V_VALVE'])
+    d.add('D306','DIODE','SS34 / flyback',1040,386,['VALVE_RETURN','24V_VALVE'],
+          'Diode_SMD:D_SMA',part_key='D:SS34')
+    d.add('U502','UCC27517DBV','UCC27517DBVR',970,430,
+          ['VALVE_EN_DRV',g,g,'12V_PROTECTED','VALVE_GATE_RAW'],
+          'Package_TO_SOT_SMD:SOT-23-5',part_key='UCC27517DBVR')
+    d.add('Q501','NMOS_SOT23','SI2308A',1070,430,
+          ['VALVE_GATE',g,'VALVE_RETURN'],
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('R511','R','33 / IN',875,410,'VALVE_EN_RAW','VALVE_EN_DRV')
+    d.passive('R512','R','10k / IN pull-down',875,430,'VALVE_EN_DRV',g)
+    d.passive('R513','R','33 / gate',1020,454,'VALVE_GATE_RAW','VALVE_GATE')
+    d.passive('R514','R','100k / gate pull-down',1090,454,'VALVE_GATE',g)
+    d.passive('C507','C','100nF / driver local',940,480,'12V_PROTECTED',g)
+    d.passive('C508','C','1uF / driver local',1010,480,'12V_PROTECTED',g)
+    d.note('JP3.1=+24V, JP3.2=retorno conmutado; JP3.3–5 sin uso. PA7 gobierna U502.',870,510,1.1)
+    d.note('D306 es obligatoria: la medida 0,073V en ambos sentidos no demuestra diodo interno polarizado.',870,518,1.1)
+    d.note('F304 separa la válvula de F303; validar corriente en caliente, transitorio y térmica en banco.',870,526,1.1)
+    d.note('Falta: fuente aislada final, watchdog y etapas de red/molino.',12,574)
     d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,582)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

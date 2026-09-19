@@ -1,12 +1,12 @@
 # Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
 
-Existe una hoja eléctrica parcial con 103 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 115 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 103 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 115 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 243 conexiones sin rutear.
+infracciones DRC, pero quedan 265 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -29,17 +29,19 @@ infracciones DRC, pero quedan 243 conexiones sin rutear.
   LCSC. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
-- J112 recibe 24 V DC aislados para el motor del grupo; F303, D304 y C501
-  protegen y desacoplan esta entrada separada del rail lógico.
+- J112 recibe 24 V DC aislados para los actuadores; F303/D304/C501 forman la
+  rama protegida del motor del grupo y F304/D305 la rama separada de válvula.
 - U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
   corriente candidato a 1 A y lectura `IPROPI` hacia el ADC del STM32.
-- PA7 queda reservado para el futuro `VALVE_EN_RAW`, pero permanece NC hasta
-  incorporar a la vez su pull-down y la etapa low-side completa.
+- PA7 gobierna la electroválvula mediante U502, Q501 y una entrada con pull-down.
+  J113 reproduce JP3: pin 1 a +24 V, pin 2 al retorno conmutado y 3–5 sin uso.
+  D306 proporciona rueda libre externa.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
 a una asignación del arnés Saeco. El motor del grupo es la primera salida de carga
-incorporada; válvula, calentador, bomba y molino aún no tienen driver.
+incorporada; la válvula tiene una etapa experimental y calentador, bomba y molino
+aún no tienen driver.
 
 ## Alimentación y arranque
 
@@ -50,7 +52,7 @@ red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 
 La identificación posterior de cargas confirma que el motor del grupo y la
 electroválvula necesitan 24 V DC. J112 añade de forma provisional un segundo rail
-aislado de 24 V dedicado al grupo; J101 continúa siendo exclusivamente de 12 V
+aislado de 24 V compartido en origen por ambas ramas protegidas; J101 continúa siendo exclusivamente de 12 V
 para lógica. Esta separación permite probar el puente H con una fuente de
 laboratorio limitada sin aplicar 24 V al AP63203. Antes de congelar Rev A hay que
 decidir si se conservan dos fuentes o se deriva la lógica de un único rail de 24 V.
@@ -128,7 +130,8 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Supervisión | Watchdog externo y habilitación independiente de cargas | Arquitectura de drivers y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
-| Resto de potencia | Incorporar la [etapa candidata de válvula 24 V](../power/valve-driver.md) y separar red/molino | Pinout JP3, corrientes reales, aislamiento, térmica y corte independiente |
+| Electroválvula | Ensayar la [etapa low-side implementada](../power/valve-driver.md), corriente, liberación y transitorios | Fuente 24 V limitada, bobina real y osciloscopio |
+| Resto de potencia | Diseñar y separar calentador, bomba y molino | Corrientes reales, aislamiento, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
 ### Puente H del motor del grupo
@@ -168,6 +171,19 @@ las piezas como candidatas, no liberadas para compra. La huella estándar incluy
 pad térmico de 3×3 mm; antes del layout final se derivará una huella local con la
 matriz de vías y el área de cobre recomendadas por TI.
 
+### Driver de la electroválvula
+
+La rama de válvula parte de `24V_ACT_RAW` pero dispone de F304=1 A y D305 propios.
+U502 (UCC27517DBVR) recibe PA7 mediante R511=33 Ω y R512=10 kΩ a masa; su salida
+de 12 V conduce Q501 (SI2308A, 60 V) a través de R513=33 Ω, con R514=100 kΩ entre
+puerta y source. C507=100 nF y C508=1 µF desacoplan el driver. D306 (SS34) queda
+en paralelo con la bobina, cátodo a `24V_VALVE` y ánodo a `VALVE_RETURN`.
+
+J113 usa JST S5B-XH-A(LF)(SN), LCSC `C263757`, con pin 1 a +24 V y pin 2 al
+retorno conmutado; 3–5 quedan NC. La etapa se ha dibujado para probar la bobina
+OLAB 6000BH/B0DN. Antes de liberarla deben medirse corriente en caliente, tiempo
+de liberación, tensión de drenador y temperatura del MOSFET.
+
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)
 y el corte del frontal la
@@ -187,8 +203,8 @@ El comprobador propio lee el esquema y verifica alimentación, masas, conexión 
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad: 103 componentes y 379 pines. El sincronizador conserva la mecánica, actualiza
-redes y mantiene 103 huellas en una colocación provisional. Las seis cabeceras de
+KiCad: 115 componentes y 410 pines. El sincronizador conserva la mecánica, actualiza
+redes y mantiene 115 huellas en una colocación provisional. Las siete cabeceras de
 máquina deben ensayarse con los arneses antes de liberar la mecánica.
 Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
 ni ensayo físico.

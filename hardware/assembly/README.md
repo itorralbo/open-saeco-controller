@@ -23,6 +23,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
 | Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 27.530 | 27.530 | Categoría JLC por verificar |
 | MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 546.570 | 546.570 | Categoría JLC por verificar |
+| Conector JP3 | JST S5B-XH-A(LF)(SN) | [C263757](https://www.lcsc.com/product-detail/C263757.html) | 8.885 | 8.885 | Economic / Standard |
 | Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 48.395 | 48.395 | Economic / Standard |
 | Bomba de carga DRV8876 | 22 nF/50 V X7R 0603 | [C77571](https://www.lcsc.com/product-detail/C77571.html) | 231.200 | 231.200 | Economic / Standard |
 | USB-C de servicio | HRO TYPE-C-31-M-12 | [C165948](https://jlcpcb.com/partdetail/C165948) | 219.670 | No observado | Economic / Standard |
@@ -73,10 +74,10 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  102 de 103 posiciones actuales con MPN, código y huella; J111 es un puente de
+  114 de 115 posiciones actuales con MPN, código y huella; J111 es un puente de
   cobre abierto y no requiere pieza. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
-  puente H y completar las etapas de válvula/red/molino.
+  puente H y la válvula, y completar las etapas de red/molino.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST S8B-PH-K-S(LF)(SN) (C157915, Extended),
@@ -86,8 +87,8 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
 protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
-USB de servicio y el driver del motor del grupo. **No incluye** fuentes AC/DC
-aisladas ni drivers de válvula, calentador, bomba o molino. El porcentaje anterior
+USB de servicio, el driver del motor del grupo y la etapa de válvula. **No incluye**
+fuentes AC/DC aisladas ni drivers de calentador, bomba o molino. El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

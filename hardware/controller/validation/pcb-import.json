@@ -150,6 +150,14 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C507": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C508": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -166,6 +174,14 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D305": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
+    "D306": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "F301": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
@@ -175,6 +191,10 @@
       "numbered_pads": 2
     },
     "F303": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F304": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
@@ -226,9 +246,17 @@
       "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
       "numbered_pads": 2
     },
+    "J113": {
+      "footprint": "Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal",
+      "numbered_pads": 5
+    },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
       "numbered_pads": 2
+    },
+    "Q501": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
     },
     "R101": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
@@ -390,6 +418,22 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R511": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R512": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R513": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R514": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "U101": {
       "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
       "numbered_pads": 64
@@ -413,6 +457,10 @@
     "U501": {
       "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
       "numbered_pads": 17
+    },
+    "U502": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "numbered_pads": 5
     }
   },
   "missing_footprints": [],
@@ -440,13 +488,18 @@
     "C504",
     "C505",
     "C506",
+    "C507",
+    "C508",
     "D301",
     "D302",
     "D303",
     "D304",
+    "D305",
+    "D306",
     "F301",
     "F302",
     "F303",
+    "F304",
     "J101",
     "J102",
     "J103",
@@ -459,7 +512,9 @@
     "J110",
     "J111",
     "J112",
+    "J113",
     "L301",
+    "Q501",
     "R221",
     "R222",
     "R223",
@@ -488,10 +543,15 @@
     "R508",
     "R509",
     "R510",
+    "R511",
+    "R512",
+    "R513",
+    "R514",
     "U203",
     "U301",
     "U302",
-    "U501"
+    "U501",
+    "U502"
   ],
   "tracks": 0,
   "outline": true,

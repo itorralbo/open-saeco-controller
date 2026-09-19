@@ -99,7 +99,7 @@
 <path d="M 67.31 140.97 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="141.27" font-size="0.9" text-anchor="start" fill="#213b50">PA7</text>
 <text x="65.36999999999999" y="140.47" font-size="0.65" text-anchor="middle" fill="#213b50">24</text>
-<text x="62.23" y="141.27" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="140.47" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_RAW</text>
 <path d="M 67.31 144.78 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="145.08" font-size="0.9" text-anchor="start" fill="#213b50">PC4</text>
 <text x="65.36999999999999" y="144.28" font-size="0.65" text-anchor="middle" fill="#213b50">25</text>
@@ -1362,11 +1362,11 @@
 <text x="870" y="36" font-size="1.8" text-anchor="start" fill="#213b50">11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A</text>
 <rect x="900.43" y="56.515" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="905.51" y="51.515" font-size="1.05" text-anchor="middle" fill="#213b50">J112</text>
-<text x="905.51" y="54.015" font-size="1.05" text-anchor="middle" fill="#213b50">24V_BREW_INPUT / JST XH</text>
+<text x="905.51" y="54.015" font-size="1.05" text-anchor="middle" fill="#213b50">24V_ACTUATOR_INPUT / JST XH</text>
 <path d="M 900.43 59.69 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="59.989999999999995" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="898.49" y="59.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="894.95" y="59.19" font-size="0.9" text-anchor="end" fill="#23745f">24V_BREW_RAW</text>
+<text x="894.95" y="59.19" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
 <path d="M 900.43 63.5 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="63.8" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="898.49" y="63.0" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
@@ -1384,7 +1384,7 @@
 <path d="M 967.74 82.55 H 962.66" stroke="#27856d" stroke-width=".22"/>
 <text x="968.4399999999999" y="82.85" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="965.8000000000001" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="962.26" y="82.05" font-size="0.9" text-anchor="end" fill="#23745f">24V_BREW_RAW</text>
+<text x="962.26" y="82.05" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
 <path d="M 972.8199999999999 82.55 H 977.9" stroke="#27856d" stroke-width=".22"/>
 <text x="972.12" y="82.85" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
 <text x="974.76" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
@@ -1586,5 +1586,152 @@
 <text x="870" y="280" font-size="1.1" text-anchor="start" fill="#213b50">PA8 PWM, PA6 dirección, PB5 nSLEEP, PB6 nFAULT, PA3 ADC. PMODE/IMODE a GND.</text>
 <text x="870" y="287" font-size="1.1" text-anchor="start" fill="#213b50">R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.</text>
 <text x="870" y="294" font-size="1.1" text-anchor="start" fill="#213b50">J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.</text>
-<text x="12" y="574" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final, watchdog y etapas de válvula/red/molino.</text>
+<text x="870" y="326" font-size="1.8" text-anchor="start" fill="#213b50">12 / Electroválvula 24V — low-side, fusible propio y rueda libre</text>
+<rect x="900.43" y="343.53499999999997" width="10.16" height="21.59" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="905.51" y="338.53499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">J113</text>
+<text x="905.51" y="341.03499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">JP3 VALVE / JST XH</text>
+<path d="M 900.43 346.71 H 895.35" stroke="#27856d" stroke-width=".22"/>
+<text x="901.13" y="347.01" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="898.49" y="346.21" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="894.95" y="346.21" font-size="0.9" text-anchor="end" fill="#23745f">24V_VALVE</text>
+<path d="M 900.43 350.52 H 895.35" stroke="#27856d" stroke-width=".22"/>
+<text x="901.13" y="350.82" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="898.49" y="350.02" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="894.95" y="350.02" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_RETURN</text>
+<path d="M 900.43 354.33 H 895.35" stroke="#27856d" stroke-width=".22"/>
+<text x="901.13" y="354.63" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="898.49" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="895.35" y="354.63" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 900.43 358.14 H 895.35" stroke="#27856d" stroke-width=".22"/>
+<text x="901.13" y="358.44" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="898.49" y="357.64" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="895.35" y="358.44" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 900.43 361.95 H 895.35" stroke="#27856d" stroke-width=".22"/>
+<text x="901.13" y="362.25" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
+<text x="898.49" y="361.45" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="895.35" y="362.25" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<rect x="967.74" y="352.83" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="970.28" y="347.83" font-size="1.05" text-anchor="middle" fill="#213b50">F304</text>
+<text x="970.28" y="350.33" font-size="1.05" text-anchor="middle" fill="#213b50">1A / 72VDC</text>
+<path d="M 967.74 354.33 H 962.66" stroke="#27856d" stroke-width=".22"/>
+<text x="968.4399999999999" y="354.63" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="965.8000000000001" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="962.26" y="353.83" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 972.8199999999999 354.33 H 977.9" stroke="#27856d" stroke-width=".22"/>
+<text x="972.12" y="354.63" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="974.76" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="978.3" y="353.83" font-size="0.9" text-anchor="start" fill="#23745f">24V_VALVE_FUSED</text>
+<rect x="1037.5900000000001" y="352.83" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1040.13" y="347.83" font-size="1.05" text-anchor="middle" fill="#213b50">D305</text>
+<text x="1040.13" y="350.33" font-size="1.05" text-anchor="middle" fill="#213b50">SS34</text>
+<path d="M 1037.5900000000001 354.33 H 1032.51" stroke="#27856d" stroke-width=".22"/>
+<text x="1038.2900000000002" y="354.63" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="1035.6499999999999" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1032.11" y="353.83" font-size="0.9" text-anchor="end" fill="#23745f">24V_VALVE_FUSED</text>
+<path d="M 1042.67 354.33 H 1047.75" stroke="#27856d" stroke-width=".22"/>
+<text x="1041.97" y="354.63" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
+<text x="1044.6100000000001" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1048.15" y="353.83" font-size="0.9" text-anchor="start" fill="#23745f">24V_VALVE</text>
+<rect x="1107.44" y="353.06" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1109.98" y="348.06" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG106</text>
+<text x="1109.98" y="350.56" font-size="1.05" text-anchor="middle" fill="#213b50">Protected valve rail</text>
+<path d="M 1107.44 354.33 H 1102.36" stroke="#27856d" stroke-width=".22"/>
+<text x="1108.14" y="354.63" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1105.5" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1101.9599999999998" y="353.83" font-size="0.9" text-anchor="end" fill="#23745f">24V_VALVE</text>
+<rect x="1037.5900000000001" y="384.58" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1040.13" y="379.58" font-size="1.05" text-anchor="middle" fill="#213b50">D306</text>
+<text x="1040.13" y="382.08" font-size="1.05" text-anchor="middle" fill="#213b50">SS34 / flyback</text>
+<path d="M 1037.5900000000001 386.08 H 1032.51" stroke="#27856d" stroke-width=".22"/>
+<text x="1038.2900000000002" y="386.38" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="1035.6499999999999" y="385.58" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1032.11" y="385.58" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_RETURN</text>
+<path d="M 1042.67 386.08 H 1047.75" stroke="#27856d" stroke-width=".22"/>
+<text x="1041.97" y="386.38" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
+<text x="1044.6100000000001" y="385.58" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1048.15" y="385.58" font-size="0.9" text-anchor="start" fill="#23745f">24V_VALVE</text>
+<rect x="965.1999999999999" y="424.17999999999995" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="970.28" y="419.17999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">U502</text>
+<text x="970.28" y="421.67999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">UCC27517DBVR</text>
+<path d="M 965.1999999999999 426.72 H 960.12" stroke="#27856d" stroke-width=".22"/>
+<text x="965.9" y="427.02000000000004" font-size="0.9" text-anchor="start" fill="#213b50">IN+</text>
+<text x="963.26" y="426.22" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="959.72" y="426.22" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_DRV</text>
+<path d="M 965.1999999999999 430.53 H 960.12" stroke="#27856d" stroke-width=".22"/>
+<text x="965.9" y="430.83" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="963.26" y="430.03" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="959.72" y="430.03" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 965.1999999999999 434.34 H 960.12" stroke="#27856d" stroke-width=".22"/>
+<text x="965.9" y="434.64" font-size="0.9" text-anchor="start" fill="#213b50">IN-</text>
+<text x="963.26" y="433.84" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="959.72" y="433.84" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 975.36 426.72 H 980.44" stroke="#27856d" stroke-width=".22"/>
+<text x="974.66" y="427.02000000000004" font-size="0.9" text-anchor="end" fill="#213b50">VDD</text>
+<text x="977.3" y="426.22" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="980.84" y="426.22" font-size="0.9" text-anchor="start" fill="#23745f">12V_PROTECTED</text>
+<path d="M 975.36 434.34 H 980.44" stroke="#27856d" stroke-width=".22"/>
+<text x="974.66" y="434.64" font-size="0.9" text-anchor="end" fill="#213b50">OUT</text>
+<text x="977.3" y="433.84" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="980.84" y="433.84" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_GATE_RAW</text>
+<rect x="1065.53" y="425.45" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1070.61" y="420.45" font-size="1.05" text-anchor="middle" fill="#213b50">Q501</text>
+<text x="1070.61" y="422.95" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A</text>
+<path d="M 1065.53 430.53 H 1060.45" stroke="#27856d" stroke-width=".22"/>
+<text x="1066.2299999999998" y="430.83" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
+<text x="1063.59" y="430.03" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1060.05" y="430.03" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_GATE</text>
+<path d="M 1075.6899999999998 434.34 H 1080.77" stroke="#27856d" stroke-width=".22"/>
+<text x="1074.99" y="434.64" font-size="0.9" text-anchor="end" fill="#213b50">S</text>
+<text x="1077.63" y="433.84" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1081.17" y="433.84" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1075.6899999999998 426.72 H 1080.77" stroke="#27856d" stroke-width=".22"/>
+<text x="1074.99" y="427.02000000000004" font-size="0.9" text-anchor="end" fill="#213b50">D</text>
+<text x="1077.63" y="426.22" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1081.17" y="426.22" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_RETURN</text>
+<rect x="872.49" y="409.21" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="875.03" y="404.21" font-size="1.05" text-anchor="middle" fill="#213b50">R511</text>
+<text x="875.03" y="406.71" font-size="1.05" text-anchor="middle" fill="#213b50">33 / IN</text>
+<path d="M 872.49 410.21 H 867.41" stroke="#27856d" stroke-width=".22"/>
+<text x="867.01" y="409.71" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_RAW</text>
+<path d="M 877.5699999999999 410.21 H 882.65" stroke="#27856d" stroke-width=".22"/>
+<text x="883.05" y="409.71" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_EN_DRV</text>
+<rect x="872.49" y="429.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="875.03" y="424.53" font-size="1.05" text-anchor="middle" fill="#213b50">R512</text>
+<text x="875.03" y="427.03" font-size="1.05" text-anchor="middle" fill="#213b50">10k / IN pull-down</text>
+<path d="M 872.49 430.53 H 867.41" stroke="#27856d" stroke-width=".22"/>
+<text x="867.01" y="430.03" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_EN_DRV</text>
+<path d="M 877.5699999999999 430.53 H 882.65" stroke="#27856d" stroke-width=".22"/>
+<text x="883.05" y="430.03" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="1017.27" y="452.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1019.81" y="447.39" font-size="1.05" text-anchor="middle" fill="#213b50">R513</text>
+<text x="1019.81" y="449.89" font-size="1.05" text-anchor="middle" fill="#213b50">33 / gate</text>
+<path d="M 1017.27 453.39 H 1012.19" stroke="#27856d" stroke-width=".22"/>
+<text x="1011.7900000000001" y="452.89" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_GATE_RAW</text>
+<path d="M 1022.3499999999999 453.39 H 1027.43" stroke="#27856d" stroke-width=".22"/>
+<text x="1027.8300000000002" y="452.89" font-size="0.9" text-anchor="start" fill="#23745f">VALVE_GATE</text>
+<rect x="1087.1200000000001" y="452.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1089.66" y="447.39" font-size="1.05" text-anchor="middle" fill="#213b50">R514</text>
+<text x="1089.66" y="449.89" font-size="1.05" text-anchor="middle" fill="#213b50">100k / gate pull-down</text>
+<path d="M 1087.1200000000001 453.39 H 1082.04" stroke="#27856d" stroke-width=".22"/>
+<text x="1081.6399999999999" y="452.89" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_GATE</text>
+<path d="M 1092.2 453.39 H 1097.28" stroke="#27856d" stroke-width=".22"/>
+<text x="1097.68" y="452.89" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 937.26 480.06 H 939.165 M 940.435 480.06 H 942.3399999999999 M 939.165 478.56 V 481.56 M 940.435 478.56 V 481.56" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="939.8" y="473.56" font-size="1.05" text-anchor="middle" fill="#213b50">C507</text>
+<text x="939.8" y="476.06" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / driver local</text>
+<path d="M 937.26 480.06 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="479.56" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 942.3399999999999 480.06 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="479.56" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1007.11 480.06 H 1009.015 M 1010.285 480.06 H 1012.1899999999999 M 1009.015 478.56 V 481.56 M 1010.285 478.56 V 481.56" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1009.65" y="473.56" font-size="1.05" text-anchor="middle" fill="#213b50">C508</text>
+<text x="1009.65" y="476.06" font-size="1.05" text-anchor="middle" fill="#213b50">1uF / driver local</text>
+<path d="M 1007.11 480.06 H 1002.03" stroke="#27856d" stroke-width=".22"/>
+<text x="1001.63" y="479.56" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 1012.1899999999999 480.06 H 1017.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1017.67" y="479.56" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="870" y="510" font-size="1.1" text-anchor="start" fill="#213b50">JP3.1=+24V, JP3.2=retorno conmutado; JP3.3–5 sin uso. PA7 gobierna U502.</text>
+<text x="870" y="518" font-size="1.1" text-anchor="start" fill="#213b50">D306 es obligatoria: la medida 0,073V en ambos sentidos no demuestra diodo interno polarizado.</text>
+<text x="870" y="526" font-size="1.1" text-anchor="start" fill="#213b50">F304 separa la válvula de F303; validar corriente en caliente, transitorio y térmica en banco.</text>
+<text x="12" y="574" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final, watchdog y etapas de red/molino.</text>
 <text x="12" y="582" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>

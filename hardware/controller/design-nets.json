@@ -35,7 +35,7 @@
         "21": null,
         "22": null,
         "23": "BREW_DIR_RAW",
-        "24": null,
+        "24": "VALVE_EN_RAW",
         "25": null,
         "26": null,
         "27": "UI_PWR_EN",
@@ -1406,7 +1406,7 @@
     },
     {
       "reference": "J112",
-      "value": "24V_BREW_INPUT / JST XH",
+      "value": "24V_ACTUATOR_INPUT / JST XH",
       "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
       "status": "candidate",
       "manufacturer": "JST",
@@ -1415,7 +1415,7 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "24V_BREW_RAW",
+        "1": "24V_ACT_RAW",
         "2": "GND_UI"
       }
     },
@@ -1430,7 +1430,7 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "24V_BREW_RAW",
+        "1": "24V_ACT_RAW",
         "2": "24V_BREW_FUSED"
       }
     },
@@ -1716,6 +1716,193 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "BREW_CURRENT_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "J113",
+      "value": "JP3 VALVE / JST XH",
+      "footprint": "Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal",
+      "status": "owner_pinout_candidate",
+      "manufacturer": "JST",
+      "mpn": "S5B-XH-A(LF)(SN)",
+      "lcsc": "C263757",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_VALVE",
+        "2": "VALVE_RETURN",
+        "3": null,
+        "4": null,
+        "5": null
+      }
+    },
+    {
+      "reference": "F304",
+      "value": "1A / 72VDC",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "prosemi",
+      "mpn": "1206TD-1A",
+      "lcsc": "C2838907",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "2": "24V_VALVE_FUSED"
+      }
+    },
+    {
+      "reference": "D305",
+      "value": "SS34",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "24V_VALVE_FUSED",
+        "1": "24V_VALVE"
+      }
+    },
+    {
+      "reference": "D306",
+      "value": "SS34 / flyback",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "VALVE_RETURN",
+        "1": "24V_VALVE"
+      }
+    },
+    {
+      "reference": "U502",
+      "value": "UCC27517DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "UCC27517DBVR",
+      "lcsc": "C99395",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "VALVE_EN_DRV",
+        "2": "GND_UI",
+        "3": "GND_UI",
+        "5": "12V_PROTECTED",
+        "4": "VALVE_GATE_RAW"
+      }
+    },
+    {
+      "reference": "Q501",
+      "value": "SI2308A",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "status": "candidate",
+      "manufacturer": "UMW",
+      "mpn": "SI2308A",
+      "lcsc": "C347491",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "VALVE_GATE",
+        "2": "GND_UI",
+        "3": "VALVE_RETURN"
+      }
+    },
+    {
+      "reference": "R511",
+      "value": "33 / IN",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "VALVE_EN_RAW",
+        "2": "VALVE_EN_DRV"
+      }
+    },
+    {
+      "reference": "R512",
+      "value": "10k / IN pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "VALVE_EN_DRV",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R513",
+      "value": "33 / gate",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "VALVE_GATE_RAW",
+        "2": "VALVE_GATE"
+      }
+    },
+    {
+      "reference": "R514",
+      "value": "100k / gate pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "VALVE_GATE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C507",
+      "value": "100nF / driver local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C508",
+      "value": "1uF / driver local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
         "2": "GND_UI"
       }
     }
