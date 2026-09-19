@@ -44,12 +44,19 @@ flowchart LR
     C -->|aislamiento| G
 ```
 
-No se cerrará todavía si la fuente será un transformador encapsulado más
-rectificación/regulación o un módulo AC/DC aislado. Debe caber en la zona del
-transformador original, entregar 24 V con margen para grupo y válvula y producir
-la potencia lógica sin degradarse por la temperatura del interior. J101 y J112
-se conservarán durante el desarrollo como entradas de banco o puntos DNP, con
-selección que impida realimentar la fuente integrada.
+Las fotos `IMG_1085` a `IMG_1089` muestran que la original usa una fuente
+conmutada flyback: puente `DB1`, controlador `U4`, transformador de ferrita `TR1`
+y separación por optoacopladores. No es un transformador de red de 50 Hz. Para
+Rev A se adopta como candidato el módulo AC/DC aislado encapsulado Mean Well
+`IRM-30-24` (`C6280124`), montado en esta misma PCB. Entrega 24 V/1,3 A, ocupa
+69,5 × 39 mm y evita desarrollar y homologar un primario flyback a medida.
+
+Los 31 W son suficientes para la corriente resistiva medida del motor de grupo
+(unos 0,44 A a 24 V), la lógica y, por separado, la válvula (unos 0,42 A). No se
+libera todavía el presupuesto en el caso de arranque, atasco o accionamiento
+simultáneo: la selección queda condicionada a medir esos tres casos en la máquina.
+J101 y J112 se conservarán durante el desarrollo como entradas de banco o puntos
+DNP, con selección que impida realimentar la fuente integrada.
 
 ## Cargas conocidas
 
@@ -64,10 +71,12 @@ selección que impida realimentar la fuente integrada.
 ## Estado seguro
 
 El calentador debe tener dos medios de corte en serie que no dependan de un único
-semiconductor ni de un único GPIO. Los termostatos externos de la máquina siguen
-siendo parte de la cadena de seguridad. Bomba y molino arrancarán desactivados y
-sus órdenes cruzarán aislamiento. El watchdog existente deberá retirar la
-habilitación de todas las cargas, no solo del grupo y la válvula.
+semiconductor ni de un único GPIO. Se añade como candidato un relé general
+normalmente abierto Omron `G5RL-1A-E-TV8 DC24` de 16 A delante de las tres ramas
+de carga. Cada carga conserva su propio triac y los dos termostatos externos de
+190 °C siguen en la cadena del calentador. Bomba y molino arrancarán desactivados
+y sus órdenes cruzarán aislamiento. El watchdog existente deberá retirar tanto
+la bobina del relé general como las órdenes individuales.
 
 Un semiconductor puede fallar en corto. Por ello el firmware, el watchdog y un
 triac/MOSFET apagado no bastan para afirmar desconexión. La selección definitiva

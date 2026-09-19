@@ -40,6 +40,11 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | JP22 | JST S3B-PH-K(LF)(SN) | [C545716](https://www.lcsc.com/product-detail/C545716.html) | 14.715 | 14.715 | Economic / Standard |
 | JP24, futuro | JST S2P-VH(LF)(SN), 2 vías/3,96 mm | [C160355](https://www.lcsc.com/product-detail/C160355.html) | 4.955 | No observado | Categoría JLC por verificar |
 | JP8/JP17, futuro | JST S3P-VH(LF)(SN), 3 vías/3,96 mm | [C264986](https://jlcpcb.com/partdetail/C264986) | 4.721 | 4.697 | Economic / Standard |
+| Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 2.161 | No observado | Economic / Standard; ola |
+| Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | No observado | No observado | Economic / Standard; ola |
+| Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.051 | No observado | Categoría JLC por verificar |
+| Optotriac calentador | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 11.916 | No observado | Categoría JLC por verificar |
+| Optotriac motores, candidato | Vishay VOT8125AG-V, aleatorio/800 V | C6925370 | No observado | No observado | Suministro y montaje por verificar |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 35.363 | 35.210 | Economic / Standard |
 | Enlace principal–frontal, 2 unidades | IDC polarizado 2×8 2,54 mm | [C7501244](https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244) | 1.643 | 1.603 | Economic / Standard |
 
@@ -53,7 +58,8 @@ su disponibilidad dentro del selector de montaje de JLCPCB. Ya forma parte del
 esquema y de la BOM candidata junto con el bulk, la bomba de carga y la red de
 medida; sigue sin estar liberado para compra hasta validar el motor y la térmica.
 
-La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado. El
+La principal se orienta a **Standard PCBA** por el módulo ESP32 seleccionado y
+requerirá montaje mixto/reflow más ola para módulo AC/DC, relé y conectores. El
 frontal podría cotizarse aparte en Economic, sujeto a los conectores/pulsadores
 que se elijan. No hay presupuesto de montaje calculado; las categorías no bastan
 para deducir el precio total de un pedido.
@@ -82,7 +88,9 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
   abierto y no requiere pieza. J116/J119/J120 aún no tienen huella ni referencia
   comprable. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
-  puente H y la válvula, y completar las etapas de red/molino.
+  puente H y la válvula, y completar las etapas de red/molino. Los candidatos
+  de red ya están catalogados en este documento, pero todavía no se contabilizan
+  en la BOM hasta incorporarlos al esquema.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST S8B-PH-K-S(LF)(SN) (C157915, Extended),
@@ -93,8 +101,9 @@ Los mismos campos están embebidos en los símbolos de los esquemas; el generado
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
 protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
   USB de servicio, telemetría de 12/24 V, el driver del motor del grupo, la etapa
-  de válvula y el watchdog con interlock hardware. **No incluye**
-fuentes AC/DC aisladas ni drivers de calentador, bomba o molino. El porcentaje anterior
+  de válvula y el watchdog con interlock hardware. **Todavía no incluye en el
+esquema** la fuente IRM-30, el relé ni los drivers de calentador, bomba o molino.
+El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
 Las referencias JST VH se incorporan al catálogo para reservar una opción
@@ -111,8 +120,9 @@ Los MPN mecánicos no se elegirán por stock antes de conocer altura, paso y enc
 ## Objetivos de layout
 
 Son decisiones iniciales de diseño, no reglas mínimas publicadas por el fabricante:
-- Principal: estudiar cuatro capas para retornos, desacoplo y coexistencia de los
-  MCU con los drivers. Frontal: dos capas si la mecánica lo permite.
+- Principal: dos capas como primera opción, con dominios, retornos y barrera de
+  aislamiento controlados. Solo se pasará a cuatro si el layout o la EMC lo exige.
+  Frontal: dos capas.
 - Componentes SMD preferiblemente en una cara; pasivos 0603 (1608 métrico).
 - Encapsulados con patas accesibles: LQFP64 y TSSOP; módulo de RF con antena integrada.
 - En señales lógicas, comenzar con pistas/espacios de 0,20 mm y vías 0,60/0,30 mm;
