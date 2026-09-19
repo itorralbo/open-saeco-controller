@@ -83,13 +83,13 @@
       "rotation_deg": 0
     }
   ],
-  "reserved_original_connector_envelopes": [
-    {"original_reference": "JP8", "function": "grinder", "center_mm": [63.0, 128.0], "size_mm": [12.0, 14.0]},
-    {"original_reference": "JP19", "function": "heater", "center_mm": [80.5, 127.0], "size_mm": [15.0, 16.0]},
-    {"original_reference": "JP24", "function": "pump", "center_mm": [93.0, 128.0], "size_mm": [8.0, 14.0]},
-    {"original_reference": "JP17", "function": "mains input", "center_mm": [110.0, 127.0], "size_mm": [12.0, 16.0]},
-    {"original_reference": "JP1", "function": "boiler protective earth", "center_mm": [121.5, 124.0], "size_mm": [5.0, 12.0]},
-    {"original_reference": "JP9", "function": "mains protective earth", "center_mm": [128.0, 124.0], "size_mm": [5.0, 12.0]}
+  "required_power_connector_placements": [
+    {"original_reference": "JP8", "new_reference": "J115", "function": "grinder 320 VDC", "center_mm": [63.0, 128.0], "size_mm": [12.0, 14.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP19", "new_reference": "J116", "function": "heater 230 VAC", "center_mm": [80.5, 127.0], "size_mm": [15.0, 16.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP24", "new_reference": "J117", "function": "pump 230 VAC", "center_mm": [93.0, 128.0], "size_mm": [8.0, 14.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP17", "new_reference": "J118", "function": "mains input 230 VAC", "center_mm": [110.0, 127.0], "size_mm": [12.0, 16.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP1", "new_reference": "J119", "function": "boiler protective earth", "center_mm": [121.5, 124.0], "size_mm": [5.0, 12.0], "electrical_status": "required_in_final_board"},
+    {"original_reference": "JP9", "new_reference": "J120", "function": "mains protective earth", "center_mm": [128.0, 124.0], "size_mm": [5.0, 12.0], "electrical_status": "required_in_final_board"}
   ],
   "hole_center_uncertainty_mm": 0.6,
   "hole_diameter_uncertainty_mm": 0.3,

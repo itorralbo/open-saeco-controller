@@ -83,7 +83,7 @@ def main():
                  'caudalímetro, nivel de agua, tres contactos y un puente H DRV8876 para el '
                  'motor del grupo, más una etapa low-side para la electroválvula de 24 V. '
                  'Un supervisor externo reinicia el STM32 y bloquea ambas salidas mediante '
-                 'lógica AND. No valida la fuente AC/DC, el routing ni las cargas.'
+                 'lógica AND. No valida todavía la fuente AC/DC integrada ni las cargas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
         remaining = ('Los GPIO sin asignar llevan NC. J105–J109 y J112–J113 usan huellas '
@@ -96,6 +96,16 @@ def main():
                      'Todas las posiciones tienen huella: SW1–SW7 HRO K2-1102SP-A4SC-04 '
                      '(OpenSaeco.pretty), J2 JST PH 8 y LED STBY en P7. Contorno y '
                      'taladros Ø8,4 desde mechanical-source.json.')
+        extra = (('\nLa colocación alinea J104, J108, J107, J113, J109, J105 y J106 con '
+                  'JP21, JP16, JP14, JP3, JP22, JP13 y JP5. JP8, JP19, JP24, JP17, '
+                  'JP1 y JP9 son conectores obligatorios y mantienen áreas temporales hasta '
+                  'incorporar sus huellas. El routing USB reproducible contiene 39 segmentos '
+                  'y 7 vías; el DRC de esta etapa tiene 0 infracciones, 299 conexiones abiertas '
+                  'y tres diferencias de paridad intencionales por MH1–MH3.\n\n'
+                  'La principal usa dos capas y clases explícitas para USB, alimentación, '
+                  'conmutación y actuadores. La geometría USB sigue pendiente de verificar '
+                  'con el stack-up de fabricación.\n')
+                 if directory == 'controller' else '')
         (out/'README.md').write_text(
             f'# Validación nativa — {name}\n\n'
             f'KiCad {version}. ERC: 0 errores y 0 avisos, sin exclusiones.\n'
@@ -105,6 +115,7 @@ def main():
             f'Alcance: esquema parcial. {scope}\n'
             'No valida mecánica completa, selección eléctrica completa ni fabricación.\n'
             f'{remaining}\n'
+            f'{extra}'
             'Regenerar con `python3 tools/validate_kicad.py` desde la raíz.\n', encoding='utf-8')
         print(f'{name}: native ERC PASS; {count} components / {pins} pins match.')
 

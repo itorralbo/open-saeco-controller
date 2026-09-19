@@ -162,7 +162,7 @@ def main():
            'IO19': 'USB_DM_RAW', 'IO20': 'USB_DP_RAW',
            'IO21': 'USB_VBUS_SENSE'}
     d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
-    d.note('BORRADOR: lógica, alimentación, USB, sensores y dos cargas de 24V. Sin etapas de red.', 12, 22, 1.8)
+    d.note('BORRADOR PARCIAL: lógica, USB, sensores y dos cargas de 24V. La principal final integra red.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
     d.add('U101','STM32G431RB','STM32G431RBT6',82,112,[stm.get(n) for n in STM_PINS],
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
@@ -430,7 +430,7 @@ def main():
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
-    d.note('Falta: fuente aislada final y etapas de red/molino.',12,804)
+    d.note('Siguiente hoja: JP17/JP19/JP24/JP8/PE, fuente aislada y etapas de red/molino en esta PCB.',12,804)
     d.note('Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

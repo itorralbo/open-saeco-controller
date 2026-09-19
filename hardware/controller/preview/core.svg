@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="4756" height="3364" viewBox="0 0 1189 841"><rect width="1189" height="841" fill="white"/><g font-family="Arial, sans-serif"><text x="12" y="12" font-size="3" text-anchor="start" fill="#213b50">OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0</text>
-<text x="12" y="22" font-size="1.8" text-anchor="start" fill="#213b50">BORRADOR: lógica, alimentación, USB, sensores y dos cargas de 24V. Sin etapas de red.</text>
+<text x="12" y="22" font-size="1.8" text-anchor="start" fill="#213b50">BORRADOR PARCIAL: lógica, USB, sensores y dos cargas de 24V. La principal final integra red.</text>
 <text x="20" y="36" font-size="1.8" text-anchor="start" fill="#213b50">01 / STM32 de control — C431633</text>
 <rect x="67.31" y="50.16499999999999" width="30.48" height="124.46000000000001" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="82.55" y="45.16499999999999" font-size="1.05" text-anchor="middle" fill="#213b50">U101</text>
@@ -1923,5 +1923,5 @@
 <text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
 <text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
 <text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
-<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Falta: fuente aislada final y etapas de red/molino.</text>
+<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente hoja: JP17/JP19/JP24/JP8/PE, fuente aislada y etapas de red/molino en esta PCB.</text>
 <text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; huellas de conector candidatas, colocación y rutas pendientes. BOM no liberada.</text></g></svg>

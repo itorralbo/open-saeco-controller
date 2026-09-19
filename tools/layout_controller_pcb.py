@@ -27,14 +27,15 @@ HARNESS_CONNECTORS = {
 }
 
 
-def reserved_connector_keepouts(board):
-    """Keep the photographed high-power connector volumes free for later revisions."""
-    prefix = 'reserved original connector '
+def pending_power_connector_keepouts(board):
+    """Protect required power-connector locations until their footprints exist."""
+    prefix = 'pending required power connector '
+    legacy_prefix = 'reserved original connector '
     for zone in list(board.Zones()):
-        if zone.GetZoneName().startswith(prefix):
+        if zone.GetZoneName().startswith((prefix, legacy_prefix)):
             board.Delete(zone)
     layers = pcb.LSET.AllCuMask()
-    for item in MECHANICAL['reserved_original_connector_envelopes']:
+    for item in MECHANICAL['required_power_connector_placements']:
         cx, cy = item['center_mm']
         width, height = item['size_mm']
         x1, x2 = max(0, cx-width/2), min(MECHANICAL['outline_mm']['width'], cx+width/2)
@@ -76,10 +77,10 @@ PLACE = {
     # ESP32 reset/boot, module supply, USB data and service-power path.
     'R201': (83, 29, 90), 'C201': (83, 33, 90), 'R202': (83, 37, 90),
     'C202': (78, 28, 90), 'C203': (81, 28, 90),
-    'U203': (20, 13.5, 0), 'R221': (40, 41, 90), 'R222': (40, 44, 90),
-    'R223': (15, 37, 0), 'R224': (15, 40, 0),
-    'R225': (25, 13, 0), 'R226': (28, 13, 0), 'C204': (28, 17, 90),
-    'C205': (24, 17, 90), 'F302': (14, 24, 0), 'D303': (28, 27, 0),
+    'U203': (34, 16, 180), 'R221': (50, 40.65, 0), 'R222': (50, 42.55, 0),
+    'R223': (44, 27, 0), 'R224': (48, 27, 0),
+    'R225': (26, 13, 0), 'R226': (27, 18, 90), 'C204': (23, 19, 0),
+    'C205': (23, 22, 0), 'F302': (18, 24, 0), 'D303': (28, 27, 0),
     **row(['R213','R214','R215','R216','R217','R218'], 47, 47, 3.3, 90),
     'R211': (61, 51, 0), 'R212': (64, 51, 0),
 
@@ -133,10 +134,9 @@ PLACE = {
 
 def main():
     board = pcb.LoadBoard(str(BOARD_PATH))
-    board.SetCopperLayerCount(4)
+    board.SetCopperLayerCount(2)
     footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
-    # Keep the library's all-copper antenna exclusion after converting from two
-    # to four layers; otherwise KiCad correctly reports a library mismatch.
+    # Keep the library's all-copper antenna exclusion intact.
     for zone in footprints['U201'].Zones():
         zone.SetLayerSet(pcb.LSET.AllCuMask())
     electrical = set(footprints)-{'MH1','MH2','MH3'}
@@ -160,7 +160,7 @@ def main():
             item.SetText('MECHANICAL CONNECTOR PLACEMENT / NOT FOR FABRICATION\n'
                          'Original harness positions estimated from IMG_1098/1101; copper pending')
 
-    reserved_connector_keepouts(board)
+    pending_power_connector_keepouts(board)
 
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -179,12 +179,11 @@ def main():
         'mounting_holes_preserved': sorted(before_holes),
         'antenna_at_top_edge': {'reference': 'U201', 'position_mm': PLACE['U201'][:2]},
         'photo_aligned_harness_connectors': sorted(HARNESS_CONNECTORS),
-        'reserved_original_connectors': [
+        'required_power_connectors_pending_footprints': [
             item['original_reference']
-            for item in MECHANICAL['reserved_original_connector_envelopes']
+            for item in MECHANICAL['required_power_connector_placements']
         ],
         'connector_position_uncertainty_mm': MECHANICAL['connector_position_uncertainty_mm'],
-        'tracks': len(list(check.GetTracks())),
     }
     (BASE/'validation/placement.json').write_text(json.dumps(result, indent=2)+'\n')
     print(f'Controller mechanical/functional placement applied to {len(PLACE)} footprints; '

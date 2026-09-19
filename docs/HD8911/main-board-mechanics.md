@@ -84,8 +84,8 @@ se orientan con la abertura hacia fuera de la placa. El mapa reproducible está 
 `hardware/controller/validation/main-connector-map.svg` y las coordenadas
 estructuradas en `hardware/controller/mechanical-source.json`.
 
-Se conservan además como zonas reservadas las posiciones de JP8, JP19, JP24,
-JP17, JP1 y JP9. Todavía no forman parte del circuito de baja tensión, pero dejar
+Se conservan además como posiciones obligatorias las de JP8, JP19, JP24,
+JP17, JP1 y JP9. Todavía no forman parte del esquema parcial, pero dejar
 libre su volumen evita cerrar el camino a una revisión que sustituya también la
 etapa conectada a red.
 

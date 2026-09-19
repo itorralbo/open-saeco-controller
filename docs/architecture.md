@@ -12,15 +12,17 @@
   [Primer esquema](../hardware/front-panel/README.md); geometría y display exacto pendientes.
 - UART entre procesadores está dibujada a 3,3 V en el mismo dominio lógico;
   velocidad, framing, temporización y ensayos siguen pendientes.
-- La Rev A recibe 12 V DC aislados en J101. El manual muestra que la placa original
-  recibía red en JP17 y distribuía cargas, pero eso no autoriza a unir esos dominios:
-  la fuente AC/DC, potencia y aislamiento se definirán tras caracterización.
+- La principal completa recibirá 230 V en JP17 e integrará protección, filtrado,
+  fuente aislada/transformador y todas las etapas de potencia, igual que la placa
+  original. J101 y J112 se mantienen como entradas auxiliares de banco durante
+  el desarrollo y deberán quedar aisladas de la fuente interna cuando se usen.
 - Las referencias confirman dos cargas a 24 V DC (grupo y válvula), dos a 230 V AC
   (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El grupo
   ya tiene un DRV8876, la válvula un low-side protegido y ambos reciben la entrada
   J112 de 24 V aislados para banco; J101 conserva
-  12 V para lógica. La arquitectura final de fuentes sigue abierta y la potencia
-  de red se trata como un bloque separado.
+  12 V para lógica. La [arquitectura de potencia](../hardware/power/power-architecture.md)
+  define los dominios que deben convivir en la misma PCB sin cruzar la barrera de
+  aislamiento.
 
 ```mermaid
 flowchart LR
@@ -32,11 +34,13 @@ flowchart LR
     W --> G[DRV8876 grupo / 24 V de banco]
     W --> V[Low-side válvula / 24 V de banco]
     S --> W
-    S --> P[Potencia restante experimental]
+    S -->|órdenes aisladas| P[Calentador / bomba / molino]
     G --> C[Cargas caracterizadas]
     V --> C
     P --> C[Cargas caracterizadas]
-    H[Protecciones independientes] --> P
+    H[Red, protecciones y fuente aislada integradas] --> P
+    H --> G
+    H --> V
 ```
 
 ## Núcleo actual
@@ -57,4 +61,5 @@ El BSP futuro inicializará salidas inactivas antes del runtime. El TPS3828 y la
 AND doble bloquean grupo y válvula con MCU en reset; el corte térmico independiente
 y las futuras salidas de red deben conservar protección equivalente.
 Un semiconductor puede fallar en corto: poner un GPIO a cero no garantiza aislamiento.
-USB y depuración solo serán accesibles en un dominio con separación verificada de red.
+USB y depuración solo serán accesibles en el dominio SELV, con separación
+verificada respecto de red y del bus rectificado del molino.

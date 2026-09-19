@@ -23,7 +23,7 @@ def rect(cx, cy, w, h, cls, label):
 parts = [f'''<svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 {W*S+60:.1f} {H*S+85:.1f}">
 <style>
 .board{{fill:#e7f2e7;stroke:#184d2c;stroke-width:2}} .hole{{fill:white;stroke:#184d2c;stroke-width:2}}
-.active{{fill:#ffca6a;stroke:#874c00;stroke-width:1.5}} .reserved{{fill:#ffd9d9;stroke:#9d2525;stroke-width:1.5;stroke-dasharray:5 3}}
+.active{{fill:#ffca6a;stroke:#874c00;stroke-width:1.5}} .required{{fill:#ffd9d9;stroke:#9d2525;stroke-width:1.5;stroke-dasharray:5 3}}
 .label{{font:8px sans-serif;text-anchor:middle;dominant-baseline:middle;fill:#17202a}}
 .note{{font:9px sans-serif;fill:#17202a}}
 </style>
@@ -47,10 +47,11 @@ for item in SOURCE['connector_placements']:
     dx, dy = offsets[item['original_reference']]
     parts.append(rect(x+dx, y+dy, w, h, 'active', f'{item["original_reference"]} / {item["new_reference"]}'))
 
-for item in SOURCE['reserved_original_connector_envelopes']:
-    parts.append(rect(*item['center_mm'], *item['size_mm'], 'reserved', item['original_reference']))
+for item in SOURCE['required_power_connector_placements']:
+    parts.append(rect(*item['center_mm'], *item['size_mm'], 'required',
+                      f'{item["original_reference"]} / {item["new_reference"]}'))
 
-parts.append(f'<text class="note" x="0" y="{H*S+24:.1f}">Naranja: conector implementado y alineado. Rojo discontinuo: envolvente original reservada. Incertidumbre fotográfica ±{SOURCE["connector_position_uncertainty_mm"]:.1f} mm.</text>')
+parts.append(f'<text class="note" x="0" y="{H*S+24:.1f}">Naranja: conector implementado y alineado. Rojo discontinuo: conector de potencia obligatorio pendiente de huella. Incertidumbre fotográfica ±{SOURCE["connector_position_uncertainty_mm"]:.1f} mm.</text>')
 parts.append('</svg>\n')
 OUT.write_text('\n'.join(parts))
 print(OUT)

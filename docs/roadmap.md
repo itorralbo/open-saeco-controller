@@ -26,9 +26,10 @@ El [watchdog e interlock hardware](../hardware/power/watchdog-interlock.md) ya
 reinicia el STM32 y bloquea motor/válvula ante timeout o reset; falta implementar
 el pulso periódico en PB4 y validar la temporización real.
 La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md)
-fija dos fuentes DC externas aisladas para el banco: 12 V para lógica y 24 V para
-grupo/válvula. Permite avanzar el layout de baja tensión mientras las etapas de
-red permanecen en un bloque de potencia separado y pendiente de revisión.
+mantiene dos fuentes DC externas aisladas para el banco, pero la principal final
+integra en la misma PCB la entrada de red, la fuente aislada, calentador, bomba y
+molino. La siguiente ampliación del esquema añade esos bloques y extiende el
+interlock hardware a todas las cargas.
 La principal ya mide ambos rails en PA4/PA5 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
 Las 132 huellas tienen ya una [colocación funcional](../hardware/controller/layout.md)

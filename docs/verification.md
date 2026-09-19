@@ -298,8 +298,9 @@ de cargas siguen pendientes en el esquema principal.
 - La carga completa de 3,3 V equivale aproximadamente a 0,65 A desde 12 V si el
   buck entrega 2 A con una eficiencia conservadora del 85 %. Falta medir ESP32,
   frontal y retroiluminación para validar F301 y la térmica.
-- Red, bomba, calentador y molino quedan fuera de la principal de baja tensión
-  hasta definir aislamiento, cortes independientes, protección y mecánica.
+- El esquema actual sigue siendo el subconjunto de baja tensión. La principal
+  final integrará red, bomba, calentador y molino con aislamiento, protección y
+  cortes independientes en la misma PCB.
 
 ## Telemetría de rails, 2026-09-19
 
@@ -321,26 +322,27 @@ de cargas siguen pendientes en el esquema principal.
   `mechanical-source.json`, asigna posición y orientación a las 132 huellas y
   conserva MH1–MH3. El script también comprueba que los siete conectores no se
   desplacen al regenerar la PCB.
-- JP8, JP19, JP24, JP17, JP1 y JP9 quedan como áreas de regla reservadas: no
+- JP8, JP19, JP24, JP17, JP1 y JP9 quedan como áreas de regla temporales: no
   admiten huellas, pads, pistas, vías ni planos hasta incorporar la etapa de
   potencia correspondiente. J110 queda junto a la zona del conector rojo.
 - U201 queda junto al borde superior y la zona de exclusión de su antena está
   libre. El DRC detectó las invasiones de la primera iteración y la colocación
   final registrada pasa con 0 infracciones.
-- La PCB continúa sin cobre: 307 conexiones pendientes y tres avisos de paridad
-  por los taladros mecánicos. La colocación habilita el routing; no libera
+- El primer routing USB contiene 39 segmentos y 7 vías. Quedan 299 conexiones
+  pendientes y tres avisos de paridad por los taladros mecánicos; no libera
   fabricación.
 
 ## Reglas de fabricación y routing de la principal, 2026-09-19
 
-- El proyecto KiCad pasa de dos a cuatro capas: F.Cu, plano GND previsto en
-  In1.Cu, alimentación/señales lentas en In2.Cu y B.Cu para retorno/routing.
+- Se evaluaron cuatro capas, pero la Rev A se mantiene en dos para reducir coste
+  y plazo: F.Cu concentra señales/potencia y B.Cu se reserva como plano de GND
+  casi continuo. El tamaño disponible y USB Full Speed hacen viable esta opción.
 - `tools/configure_controller_rules.py` instala cinco clases: Default 0,20 mm,
   USB 0,20/0,20 mm, Power 0,50 mm, Switching 0,60 mm y Actuator 1,00 mm. Las
   vías aumentan de 0,60/0,30 a 1,00/0,50 mm según corriente.
 - Se asignaron 26 redes explícitas. USB sigue como geometría provisional hasta
   elegir stack-up y recalcular 90 Ω en la herramienta del fabricante.
-- Las áreas reservadas de los seis conectores de potencia y el keepout de antena
-  de U201 se aplican a todas las capas de cobre.
-- KiCad 10.0.6: DRC 0 infracciones, 307 conexiones abiertas y tres diferencias
+- Las áreas temporales de los seis conectores de potencia obligatorios y el keepout de antena
+  de U201 se aplican a ambas capas de cobre.
+- KiCad 10.0.6: DRC 0 infracciones, 299 conexiones abiertas y tres diferencias
   de paridad por MH1–MH3. Las reglas preparan el routing, no liberan fabricación.

@@ -1,99 +1,95 @@
-# Arquitectura de alimentación y separación — Rev A
+# Arquitectura de alimentación y potencia — principal completa
 
-Estado: decisión de diseño para prototipo, no liberada para fabricar ni conectar
-a red. El objetivo es poder desarrollar y medir la controladora sin introducir
-todavía 230 V AC ni el bus rectificado del molino en la PCB principal.
+Estado: arquitectura de integración en curso. La PCB final sustituirá a la
+original y contendrá en la misma tarjeta la entrada de 230 V, sus protecciones,
+la fuente aislada/transformador, las salidas de red y la electrónica SELV. El
+esquema KiCad actual representa todavía solo el subconjunto de baja tensión.
 
-## Decisión para la Rev A de banco
+## Dominios obligatorios
 
-La controladora mantiene dos entradas DC procedentes de fuentes externas,
-aisladas y limitadas en corriente:
+| Dominio | Circuitos | Condición de integración |
+|---|---|---|
+| PE | JP9 de entrada y JP1 hacia caldera/chasis | camino dedicado, corto y dimensionado; no usar como retorno funcional |
+| 230 V AC | JP17, filtro/protección, calentador JP19 y bomba JP24 | separado físicamente de SELV y rotulado en ambas caras |
+| Bus rectificado | puente y conmutación del molino JP8, ≈325 V pico sin carga | pertenece al dominio peligroso; descarga y medida propias |
+| 24 V SELV | motor del grupo y electroválvula | generado por fuente aislada integrada; retorno común de lógica solo después de la barrera |
+| 12/3,3 V SELV | lógica, sensores, frontal, USB y depuración | accesible durante pruebas con la máquina alimentada únicamente si el aislamiento está verificado |
 
-| Entrada | Uso | Protección presente | Límite actual |
-|---|---|---|---|
-| J101, 12 V DC | buck de 3,3 V, lógica, frontal, caudalímetro y driver de puerta | F301 1 A, inversión y TVS | no alimentar actuadores |
-| J112, 24 V DC | motor del grupo y electroválvula | ramas F303/F304 de 1 A e inversión independientes | fuente de laboratorio limitada |
-| J110, USB-C 5 V | datos y alimentación opcional de lógica en banco | PTC 500 mA, diodo y puente J111 abierto | J111 solo se cierra expresamente en banco |
+La barrera primaria–SELV deberá ser continua en las dos capas. Como regla inicial
+de colocación se reservarán 8 mm sin cobre entre ambos dominios y se añadirán
+ranuras donde la geometría o los componentes lo requieran. Esta cifra es un
+margen de diseño provisional: la liberación exigirá recalcular separación y
+creepage según tensión, material, contaminación, categoría de sobretensión y la
+norma aplicable al electrodoméstico real.
 
-J101 y J112 comparten la masa lógica en la controladora. Por ello ambas fuentes
-deben ser salidas SELV aisladas de red; no se conectará el negativo a un nodo de
-potencia de la máquina. La entrada USB solo se conecta cuando todo el montaje
-alimentado pertenece al dominio aislado de banco.
+## Cadena funcional prevista
 
-Esta decisión permite cerrar y rutear la zona de baja tensión. La fuente final
-integrada se elegirá después de medir consumo, temperatura y espacio. No es
-necesario esperar a esa elección para probar firmware, sensores, motor del grupo
-y electroválvula.
+```mermaid
+flowchart LR
+    L[JP17 L/N] --> P[Fusible + MOV + filtro EMI]
+    PE[JP9 PE] --> PEO[JP1 / caldera y chasis]
+    P --> H[Conmutación aislada calentador]
+    H --> JH[JP19 / 1900 W]
+    P --> U[Conmutación aislada bomba]
+    U --> JP[JP24 / 48 W]
+    P --> B[Puente + limitación/protección]
+    B --> G[Conmutación molino]
+    G --> JG[JP8 / 320 VDC]
+    P --> T[Fuente aislada 24 V]
+    T --> M[Grupo + válvula]
+    T --> D[12 V y 3,3 V]
+    D --> C[STM32 + ESP32 + sensores + frontal + USB]
+    C -->|aislamiento| H
+    C -->|aislamiento| U
+    C -->|aislamiento| G
+```
 
-La principal mide ambos rails con divisores 200 kΩ/10 kΩ: PA4/ADC2_IN17 recibe
-`12V_PROTECTED` y PA5/ADC2_IN13 recibe `24V_ACT_RAW`. J114 expone rails y señales
-ADC para contrastarlas con el multímetro durante las pruebas por USB.
+No se cerrará todavía si la fuente será un transformador encapsulado más
+rectificación/regulación o un módulo AC/DC aislado. Debe caber en la zona del
+transformador original, entregar 24 V con margen para grupo y válvula y producir
+la potencia lógica sin degradarse por la temperatura del interior. J101 y J112
+se conservarán durante el desarrollo como entradas de banco o puntos DNP, con
+selección que impida realimentar la fuente integrada.
 
-## Presupuesto provisional de 24 V
+## Cargas conocidas
 
-Las resistencias medidas permiten calcular un punto de partida, no la corriente
-nominal de los motores:
+| Salida | Dato disponible | Implicación de diseño |
+|---|---|---|
+| Calentador JP19 | 220–230 V AC, 1900 W; 8,26 A a 230 V | conectores, contactos, cobre y corte redundante dimensionados con margen; mantener los dos termostatos externos de 190 °C |
+| Bomba JP24 | ULKA EP5/S GW, 220–230 V AC, 48 W, inductiva | conmutador y supresión compatibles con carga inductiva y ciclo 2 min ON / 1 min OFF |
+| Molino JP8 | servicio a 320 V DC; bobinado 68 Ω | puente y semiconductor para red rectificada; medir corriente de arranque, marcha y bloqueo antes de fijar protección |
+| Grupo | 24 V DC; 54,7 Ω medidos | DRV8876 y límite de corriente ya dibujados; alimentar desde 24 V aislados integrados |
+| Electroválvula JP3 | OLAB 6000BH/B0DN, 24 V DC; 56,7 Ω | etapa low-side y rueda libre ya dibujadas; alimentar desde 24 V aislados integrados |
 
-| Carga | Dato | Corriente resistiva | Potencia resistiva |
-|---|---:|---:|---:|
-| Motor del grupo | 54,7 Ω | 0,439 A | 10,53 W |
-| Electroválvula | 56,7 Ω | 0,423 A | 10,16 W |
-| Ambas | — | 0,862 A | 20,69 W |
+## Estado seguro
 
-El DRV8876 limita inicialmente el motor a aproximadamente 1 A. El peor caso de
-diseño de las dos ramas activas es por tanto 1,423 A, antes de tolerancias y
-transitorios. Para las primeras pruebas se requiere una fuente ajustable de
-24 V capaz de al menos 1,5 A, configurada al principio con un límite mucho menor
-y aumentado de forma controlada. Una fuente de 2 A aporta margen para observar
-el arranque sin convertir esa cifra en la especificación final.
+El calentador debe tener dos medios de corte en serie que no dependan de un único
+semiconductor ni de un único GPIO. Los termostatos externos de la máquina siguen
+siendo parte de la cadena de seguridad. Bomba y molino arrancarán desactivados y
+sus órdenes cruzarán aislamiento. El watchdog existente deberá retirar la
+habilitación de todas las cargas, no solo del grupo y la válvula.
 
-F303 y F304 protegen las ramas por separado; no se presupone que un fusible de
-1 A común pueda distinguir un bloqueo del motor del funcionamiento simultáneo.
-El valor y la curva de los fusibles se revisarán con las formas de onda reales.
+Un semiconductor puede fallar en corto. Por ello el firmware, el watchdog y un
+triac/MOSFET apagado no bastan para afirmar desconexión. La selección definitiva
+de relé, triacs, optoacopladores, fusibles, MOV, filtro, puente y fuente se hará
+con hojas de datos, disponibilidad y proceso de montaje compatibles con JLCPCB o
+un ensamblador equivalente.
 
-## Presupuesto provisional de 12 V
+## Orden de diseño
 
-El AP63203 puede entregar hasta 2 A a 3,3 V. A plena carga serían 6,6 W de salida;
-con una eficiencia conservadora del 85 %, la entrada demandaría unos 0,65 A a
-12 V. El caudalímetro añade menos de 8 mA y el driver de puerta de la válvula una
-carga pequeña frente al buck. F301 de 1 A deja margen provisional, pero no valida
-el consumo del display ni el arranque simultáneo de los radios.
+1. Incorporar JP17, JP19, JP24, JP8, JP1 y JP9 al esquema y fijar sus huellas.
+2. Elegir la fuente aislada de 24 V y cerrar el presupuesto de potencia/temperatura.
+3. Diseñar protección y filtro de entrada, conmutación del calentador y bomba y
+   puente/conmutación del molino.
+4. Extender el interlock hardware a las tres salidas peligrosas.
+5. Delimitar dominios y reglas de aislamiento en KiCad antes de continuar rutas.
+6. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
+7. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
+   eléctrica independiente y el plan de puesta en marcha.
 
-El ensayo debe registrar corriente media y pico con STM32, ESP32, Wi-Fi, display
-y retroiluminación activos. Si el conjunto supera el margen térmico del buck o
-del fusible, se corrige la arquitectura antes de elegir la fuente final.
+## Uso de banco mientras se integra la red
 
-## Potencia de red y molino
-
-JP17 (red), JP24 (bomba), JP19 (calentador) y JP8 (molino a 320 V DC de servicio)
-quedan fuera del dominio de baja tensión de esta revisión. Sus conectores pueden
-identificarse y reservarse, pero no se colocan ni se cablean en la principal de
-banco.
-
-El siguiente diseño de potencia debe incluir, como bloque revisable por separado:
-
-- corte seguro de calentador, bomba y molino en reset, watchdog y fallo;
-- aislamiento de sus órdenes y retornos respecto de USB, sensores y usuario;
-- protección de sobrecorriente y sobretensión dimensionada con medidas reales;
-- corte térmico independiente del firmware para el calentador;
-- separación física, ranuras, stack-up, materiales y envolvente definidos antes
-  de fijar reglas de aislamiento;
-- puesta a tierra y unión de pantallas/chasis verificadas en el conjunto mecánico.
-
-Hasta cerrar esos puntos, el banco usa cargas DC aisladas y no energiza los
-conectores de red. Esta limitación se aplica aunque ERC y DRC resulten limpios.
-
-## Secuencia de validación
-
-1. Alimentar solo J101 con límite de corriente; comprobar 3,3 V, reset, USB y
-   consumo con el frontal apagado y encendido.
-2. Conectar J112 sin cargas y verificar que motor y válvula permanecen apagados
-   durante arranque, reset y timeout del watchdog.
-3. Probar la electroválvula con límite bajo; medir corriente, drenador, liberación
-   y temperatura antes de aumentar el tiempo activado.
-4. Probar el motor del grupo sin carga y después en la máquina; registrar arranque,
-   inversión, frenado, bloqueo, `IPROPI`, `nFAULT` y temperatura.
-5. Recalcular fuente, fusibles, bulk y TVS a partir de los máximos observados.
-
-La incorporación de cualquier etapa conectada a red requiere su propio esquema,
-reglas de PCB, revisión y plan de ensayo; no se deduce de este documento.
+J101 y J112 permiten seguir probando lógica y actuadores de 24 V con fuentes SELV
+limitadas. J111 permanece abierto por defecto. El USB puede alimentar solo la
+lógica en banco; nunca las cargas. Esta ruta de ensayo no cambia el alcance de la
+PCB final y no elimina ninguno de los bloques de potencia anteriores.

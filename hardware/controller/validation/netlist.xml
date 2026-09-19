@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-19T09:57:40</date>
+    <date>2026-09-19T14:59:05</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -4910,7 +4910,7 @@
     </library>
   </libraries>
   <nets>
-    <net code="1" name="/3V3_CORE" class="Default">
+    <net code="1" name="/3V3_CORE" class="Power">
       <node ref="C102" pin="1" pintype="passive"/>
       <node ref="C103" pin="1" pintype="passive"/>
       <node ref="C104" pin="1" pintype="passive"/>
@@ -4959,21 +4959,21 @@
       <node ref="U601" pin="5" pinfunction="VDD_5" pintype="power_in"/>
       <node ref="U602" pin="8" pinfunction="VCC_8" pintype="power_in"/>
     </net>
-    <net code="2" name="/3V3_UI" class="Default">
+    <net code="2" name="/3V3_UI" class="Power">
       <node ref="C309" pin="1" pintype="passive"/>
       <node ref="J104" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U302" pin="5" pinfunction="QOD_5" pintype="passive"/>
       <node ref="U302" pin="6" pinfunction="VOUT_6" pintype="power_out"/>
     </net>
-    <net code="3" name="/12V_FUSED" class="Default">
+    <net code="3" name="/12V_FUSED" class="Power">
       <node ref="D301" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="F301" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
-    <net code="4" name="/12V_ISO_RAW" class="Default">
+    <net code="4" name="/12V_ISO_RAW" class="Power">
       <node ref="F301" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J101" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="5" name="/12V_PROTECTED" class="Default">
+    <net code="5" name="/12V_PROTECTED" class="Power">
       <node ref="C301" pin="1" pintype="passive"/>
       <node ref="C302" pin="1" pintype="passive"/>
       <node ref="C507" pin="1" pintype="passive"/>
@@ -4988,30 +4988,30 @@
       <node ref="U301" pin="3" pinfunction="VIN_3" pintype="power_in"/>
       <node ref="U502" pin="5" pinfunction="VDD_5" pintype="power_in"/>
     </net>
-    <net code="6" name="/24V_ACT_RAW" class="Default">
+    <net code="6" name="/24V_ACT_RAW" class="Actuator">
       <node ref="F303" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="F304" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J112" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J114" pin="4" pinfunction="4_4" pintype="passive"/>
       <node ref="R704" pin="1" pintype="passive"/>
     </net>
-    <net code="7" name="/24V_BREW" class="Default">
+    <net code="7" name="/24V_BREW" class="Actuator">
       <node ref="C501" pin="1" pintype="passive"/>
       <node ref="C502" pin="1" pintype="passive"/>
       <node ref="C503" pin="2" pintype="passive"/>
       <node ref="D304" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="U501" pin="11" pinfunction="VM_11" pintype="power_in"/>
     </net>
-    <net code="8" name="/24V_BREW_FUSED" class="Default">
+    <net code="8" name="/24V_BREW_FUSED" class="Actuator">
       <node ref="D304" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="F303" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
-    <net code="9" name="/24V_VALVE" class="Default">
+    <net code="9" name="/24V_VALVE" class="Actuator">
       <node ref="D305" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D306" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="J113" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
-    <net code="10" name="/24V_VALVE_FUSED" class="Default">
+    <net code="10" name="/24V_VALVE_FUSED" class="Actuator">
       <node ref="D305" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="F304" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
@@ -5019,11 +5019,11 @@
       <node ref="R218" pin="1" pintype="passive"/>
       <node ref="U201" pin="7" pinfunction="IO7_7" pintype="bidirectional"/>
     </net>
-    <net code="12" name="/BREW_CPH" class="Default">
+    <net code="12" name="/BREW_CPH" class="Switching">
       <node ref="C504" pin="1" pintype="passive"/>
       <node ref="U501" pin="13" pinfunction="CPH_13" pintype="passive"/>
     </net>
-    <net code="13" name="/BREW_CPL" class="Default">
+    <net code="13" name="/BREW_CPL" class="Switching">
       <node ref="C504" pin="2" pintype="passive"/>
       <node ref="U501" pin="14" pinfunction="CPL_14" pintype="passive"/>
     </net>
@@ -5052,11 +5052,11 @@
       <node ref="U101" pin="59" pinfunction="PB6_59" pintype="bidirectional"/>
       <node ref="U501" pin="4" pinfunction="nFAULT_4" pintype="open_collector"/>
     </net>
-    <net code="19" name="/BREW_OUT1" class="Default">
+    <net code="19" name="/BREW_OUT1" class="Actuator">
       <node ref="J108" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U501" pin="8" pinfunction="OUT1_8" pintype="power_out"/>
     </net>
-    <net code="20" name="/BREW_OUT2" class="Default">
+    <net code="20" name="/BREW_OUT2" class="Actuator">
       <node ref="J108" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="U501" pin="10" pinfunction="OUT2_10" pintype="power_out"/>
     </net>
@@ -5078,7 +5078,7 @@
       <node ref="U101" pin="58" pinfunction="PB5_58" pintype="bidirectional"/>
       <node ref="U602" pin="1" pinfunction="1A_1" pintype="input"/>
     </net>
-    <net code="25" name="/BREW_VCP" class="Default">
+    <net code="25" name="/BREW_VCP" class="Switching">
       <node ref="C503" pin="1" pintype="passive"/>
       <node ref="U501" pin="12" pinfunction="VCP_12" pintype="passive"/>
     </net>
@@ -5088,7 +5088,7 @@
       <node ref="R509" pin="1" pintype="passive"/>
       <node ref="U501" pin="5" pinfunction="VREF_5" pintype="input"/>
     </net>
-    <net code="27" name="/BST_NODE" class="Default">
+    <net code="27" name="/BST_NODE" class="Switching">
       <node ref="C303" pin="1" pintype="passive"/>
       <node ref="U301" pin="6" pinfunction="BST_6" pintype="passive"/>
     </net>
@@ -5385,7 +5385,7 @@
       <node ref="R211" pin="1" pintype="passive"/>
       <node ref="U101" pin="43" pinfunction="PA9_43" pintype="bidirectional"/>
     </net>
-    <net code="71" name="/SW_NODE" class="Default">
+    <net code="71" name="/SW_NODE" class="Switching">
       <node ref="C303" pin="2" pintype="passive"/>
       <node ref="L301" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U301" pin="5" pinfunction="SW_5" pintype="power_out"/>
@@ -5411,33 +5411,33 @@
       <node ref="J110" pin="B5" pinfunction="CC2_B5" pintype="passive"/>
       <node ref="R224" pin="1" pintype="passive"/>
     </net>
-    <net code="77" name="/USB_DM_DEVICE" class="Default">
+    <net code="77" name="/USB_DM_DEVICE" class="USB">
       <node ref="R221" pin="1" pintype="passive"/>
       <node ref="U203" pin="4" pinfunction="I/O2_4" pintype="passive"/>
     </net>
-    <net code="78" name="/USB_DM_PORT" class="Default">
+    <net code="78" name="/USB_DM_PORT" class="USB">
       <node ref="J110" pin="A7" pinfunction="D-_A7" pintype="passive"/>
       <node ref="J110" pin="B7" pinfunction="D-_B7" pintype="passive"/>
       <node ref="U203" pin="3" pinfunction="I/O2_3" pintype="passive"/>
     </net>
-    <net code="79" name="/USB_DM_RAW" class="Default">
+    <net code="79" name="/USB_DM_RAW" class="USB">
       <node ref="R221" pin="2" pintype="passive"/>
       <node ref="U201" pin="13" pinfunction="IO19_13" pintype="bidirectional"/>
     </net>
-    <net code="80" name="/USB_DP_DEVICE" class="Default">
+    <net code="80" name="/USB_DP_DEVICE" class="USB">
       <node ref="R222" pin="1" pintype="passive"/>
       <node ref="U203" pin="6" pinfunction="I/O1_6" pintype="passive"/>
     </net>
-    <net code="81" name="/USB_DP_PORT" class="Default">
+    <net code="81" name="/USB_DP_PORT" class="USB">
       <node ref="J110" pin="A6" pinfunction="D+_A6" pintype="passive"/>
       <node ref="J110" pin="B6" pinfunction="D+_B6" pintype="passive"/>
       <node ref="U203" pin="1" pinfunction="I/O1_1" pintype="passive"/>
     </net>
-    <net code="82" name="/USB_DP_RAW" class="Default">
+    <net code="82" name="/USB_DP_RAW" class="USB">
       <node ref="R222" pin="2" pintype="passive"/>
       <node ref="U201" pin="14" pinfunction="IO20_14" pintype="bidirectional"/>
     </net>
-    <net code="83" name="/USB_VBUS" class="Default">
+    <net code="83" name="/USB_VBUS" class="Power">
       <node ref="C205" pin="1" pintype="passive"/>
       <node ref="F302" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J110" pin="A4" pinfunction="VBUS_A4" pintype="passive"/>
@@ -5447,7 +5447,7 @@
       <node ref="R225" pin="1" pintype="passive"/>
       <node ref="U203" pin="5" pinfunction="VBUS_5" pintype="passive"/>
     </net>
-    <net code="84" name="/USB_VBUS_FUSED" class="Default">
+    <net code="84" name="/USB_VBUS_FUSED" class="Power">
       <node ref="F302" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J111" pin="1" pinfunction="1_1" pintype="passive"/>
     </net>
@@ -5480,7 +5480,7 @@
       <node ref="R513" pin="1" pintype="passive"/>
       <node ref="U502" pin="4" pinfunction="OUT_4" pintype="output"/>
     </net>
-    <net code="91" name="/VALVE_RETURN" class="Default">
+    <net code="91" name="/VALVE_RETURN" class="Actuator">
       <node ref="D306" pin="2" pinfunction="A_2" pintype="passive"/>
       <node ref="J113" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="Q501" pin="3" pinfunction="D_3" pintype="power_out"/>

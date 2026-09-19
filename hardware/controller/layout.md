@@ -1,7 +1,7 @@
 # Colocación de la principal Rev A
 
-Estado: colocación mecánica de conectores y colocación funcional inicial, sin
-cobre y no fabricable. La fuente de verdad mecánica es
+Estado: colocación mecánica de conectores y colocación funcional inicial, con
+el primer routing USB pero no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 132 huellas y comprueba que los tres taladros aceptados
 no se muevan.
@@ -31,11 +31,11 @@ pero no reproduce su interfaz: el IDC 2×8 nuevo es algo más ancho y enlaza con
 nueva placa frontal. J110 queda inmediatamente a su derecha, accesible desde el
 mismo borde superior para las pruebas por ordenador.
 
-También se reservan mediante áreas de regla las envolventes fotografiadas de
-JP8, JP19, JP24, JP17 y los dos FASTON de tierra. Esas cargas de red no están
-implementadas eléctricamente en la Rev A de baja tensión, pero otros componentes,
-pistas, vías o planos no pueden invadir su espacio si una revisión posterior
-recupera el control completo de la máquina.
+JP8, JP19, JP24, JP17 y los dos FASTON de tierra son conectores obligatorios de
+la principal completa. Hasta incorporar sus huellas al esquema, sus envolventes
+fotografiadas se protegen mediante áreas de regla para que ninguna colocación o
+ruta provisional invada el espacio necesario. No son reservas para otra placa:
+forman parte de esta misma PCB de sustitución.
 
 ## Zonas funcionales
 
@@ -43,14 +43,21 @@ recupera el control completo de la máquina.
   derecha y protección ESD.
 - Parte superior: ESP32 con la antena orientada hacia el borde y toda la zona de
   exclusión del footprint libre de componentes y cobre.
-- Superior central: entrada de 12 V, buck de 3,3 V y corte de alimentación del
-  frontal.
-- Superior derecho: entrada de 24 V, protección, bulk y puente H del grupo.
+- Superior central: lógica y regulación SELV; las entradas de 12/24 V actuales
+  quedan como puntos de banco hasta sustituirlas por la fuente integrada.
+- Derecha e inferior: entrada de red, protección/filtrado, fuente aislada,
+  conmutación de calentador y bomba y rectificación/conmutación del molino.
 - Centro: STM32, desacoplo, reset, watchdog e interlock hardware.
 - Lateral izquierdo: JP16 del grupo y JP14 de puerta/cajón en sus zonas originales.
 - Borde inferior izquierdo: JP3, JP22, JP13 y JP5, con el mismo orden y sentido
   de entrada observados en la placa original.
-- Zona inferior central: rama de válvula de 24 V y cabeceras SWD/medida.
+- Zona inferior central: conectores originales de potencia; la rama de válvula
+  y las cabeceras de medida se recolocarán al integrar ese bloque.
+
+La frontera entre primario/red y SELV se trazará en la PCB antes de rutear más
+señales. USB, frontal, sensores, STM32, ESP32 y depuración permanecerán íntegramente
+en SELV. Las órdenes hacia las cargas de red cruzarán la frontera únicamente por
+componentes de aislamiento y ningún plano de masa la atravesará.
 
 La colocación mantiene separadas las redes conmutadas del puente H y la válvula
 de los adaptadores de NTC, caudal, nivel y contactos. Los condensadores del buck,
@@ -62,7 +69,9 @@ bloque, pero su distancia final a cada pad se optimizará durante el routing.
 - 132/132 huellas eléctricas colocadas; contorno 141,6 × 135,2 mm y MH1–MH3
   preservados.
 - DRC KiCad 10.0.6: 0 infracciones geométricas/de reglas.
-- 307 conexiones sin rutear y tres diferencias de paridad correspondientes a
+- El bloque USB tiene 39 segmentos y 7 vías, sin infracciones DRC; su impedancia
+  se verificará con el stack-up real antes de fabricar.
+- 299 conexiones sin rutear y tres diferencias de paridad correspondientes a
   los taladros mecánicos intencionales.
 - El keepout de antena del ESP32 está libre; esta comprobación se hace mediante
   la propia regla del footprint y falló durante la primera iteración hasta mover
@@ -74,9 +83,8 @@ conectores, polaridad, puntos de medida y seguridad después del routing.
 
 ## Siguiente paso
 
-Antes del routing completo se comprobarán interferencias de los cuerpos 3D y se
-imprimirá el mapa a escala 1:1 para presentarlo sobre la placa original. Después
-se rutearán USB, el buck y los desacoplos; sensores y señales lógicas; y por
-último las ramas de 24 V con anchos y retorno revisados. Los planos de masa se
-añadirán cuando las rutas críticas estén fijadas. No se generarán Gerbers de la
-principal mientras queden conexiones abiertas.
+El siguiente paso es incorporar al esquema los seis conectores de potencia y el
+diagrama de bloques completo de red. Después se delimitarán en la placa las zonas
+de red/alta tensión y SELV, la barrera de aislamiento y las ranuras necesarias.
+Solo entonces se rehará la colocación y se continuará el routing. No se generarán
+Gerbers mientras queden conexiones abiertas o la revisión de aislamiento pendiente.

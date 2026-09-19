@@ -18,7 +18,7 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 | Panel frontal original | JP21 | 34, 59 | Multipolar; pines/niveles TBD; sustituido por frontal nuevo con arnés propio |
 | Calentador | JP19 | 59 | XS4 220–230 V AC, 1900 W; 4 posiciones/2 cableadas; driver y protecciones TBD |
 | Motor grupo | JP16 | 59 | 24 V DC reversible, 54,7 Ω medidos; medida de corriente de compresión para autodosis; DRV8876 experimental incorporado |
-| Entrada de red | JP17 | 59 | 3 posiciones JST VH candidato, 2 cableadas después del interruptor bipolar; no conectar a Rev A |
+| Entrada de red | JP17 | 59 | 3 posiciones JST VH candidato, 2 cableadas después del interruptor bipolar; obligatoria en la principal completa, todavía ausente del esquema parcial |
 | Tierra de protección | JP1 / JP9 | 59 | Caldera / entrada IEC; continuidad y construcción de protección TBD |
 
 Las etiquetas PWR, EARTH, PUMP, GRINDER, NTC, GR.PULSE y TURBO se leen en la copia

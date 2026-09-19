@@ -40,7 +40,9 @@ rojos para posición de trabajo. Esta secuencia se registra como posición visua
   y la etapa del motor deben mantenerse diferenciados aunque compartan carcasa.
 - JP17 introduce red y JP19 conduce el circuito del calentador. La controladora
   actual solo acepta 12 V DC aislados por J101; este documento no autoriza conectar
-  JP17 o JP19 a la Rev A ni selecciona los drivers de potencia.
+  JP17 o JP19 al subconjunto de baja tensión actual ni selecciona por sí solo los
+  drivers de potencia. Ambos conectores y sus etapas sí son obligatorios en la
+  principal completa.
 - JP2 debe permanecer sin uso hasta encontrar documentación que contradiga de
   forma verificable la indicación `NOT CONNECT`.
 

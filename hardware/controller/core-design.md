@@ -61,8 +61,9 @@ electroválvula necesitan 24 V DC. J112 añade un segundo rail aislado de 24 V
 compartido en origen por ambas ramas protegidas; J101 continúa siendo
 exclusivamente de 12 V para lógica. La [decisión de alimentación de Rev A](../power/power-architecture.md)
 mantiene ambas fuentes externas para poder probar con límites independientes sin
-aplicar 24 V al AP63203. La fuente final integrada se elegirá con las medidas del
-prototipo.
+aplicar 24 V al AP63203. La fuente aislada integrada forma parte de esta misma PCB
+y se elegirá con las medidas del prototipo; J101/J112 quedarán como entradas
+auxiliares de banco o DNP.
 
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
 la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 µF/10 V
@@ -130,7 +131,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
-| Fuente aislada | Medir la arquitectura Rev A de dos entradas y definir la fuente final | Espacio, temperatura, aislamiento y potencia total |
+| Fuente aislada | Elegir e integrar la fuente/transformador de 230 V a 24 V | Espacio original, temperatura, aislamiento y potencia total |
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
@@ -138,7 +139,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
 | Electroválvula | Ensayar la [etapa low-side implementada](../power/valve-driver.md), corriente, liberación y transitorios | Fuente 24 V limitada, bobina real y osciloscopio |
-| Resto de potencia | Diseñar y separar calentador, bomba y molino | Corrientes reales, aislamiento, térmica y corte independiente |
+| Resto de potencia | Integrar calentador, bomba y molino en la zona de red de esta PCB | Corrientes reales, aislamiento, térmica y corte independiente |
 | Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
 
 ### Puente H del motor del grupo

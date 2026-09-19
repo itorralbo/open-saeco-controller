@@ -2,20 +2,22 @@
 
 Estado: objetivo de diseño para routing, aún no liberado para fabricar.
 
-La principal se configura como FR-4 de cuatro capas y 1,6 mm. La asignación
-prevista es:
+La principal se configura inicialmente como FR-4 de dos capas y 1,6 mm. La placa
+es grande y USB funciona a Full Speed, por lo que dos capas siguen siendo la
+opción preferida por coste y plazo. La integración de red exige partición física,
+no más capas: se mantendrán dos si la colocación permite planos SELV continuos,
+rutas de potencia dimensionadas y una barrera primaria-SELV sin cruces. La
+asignación prevista es:
 
 | Capa | Uso principal |
 |---|---|
 | F.Cu | componentes, señales críticas y potencia local |
-| In1.Cu | plano continuo de GND |
-| In2.Cu | distribución de 3,3/12/24 V y señales lentas donde sea necesario |
-| B.Cu | señales secundarias y relleno de GND |
+| B.Cu | plano de GND solo en SELV; retornos/rutas de potencia separados en la zona de red |
 
-El cobre de 1 oz es la referencia inicial. El stack-up exacto y la geometría de
-USB se elegirán en la calculadora de impedancia del fabricante antes de pedir la
-placa. La pareja USB tiene por ahora 0,20 mm de ancho y 0,20 mm de separación
-como regla de colocación/routing; no se declara todavía como 90 Ω controlados.
+El cobre de 1 oz es la referencia inicial. La geometría USB se comprobará con
+el espesor real y el calculador del fabricante antes de pedir la placa. La pareja
+USB tiene por ahora 0,20 mm de ancho y 0,20 mm de separación como regla de
+colocación/routing; no se declara todavía como 90 Ω controlados.
 
 ## Reglas de KiCad
 
@@ -31,20 +33,30 @@ como regla de colocación/routing; no se declara todavía como 90 Ω controlados
 
 Son valores deliberadamente más conservadores que los mínimos publicados por
 JLCPCB para cobre de 1 oz. La tabla de capacidades consultada el 2026-09-19
-admite cuatro capas, placas mayores que 141,6 × 135,2 mm y pistas/espacios mucho
+admite dos capas, placas mayores que 141,6 × 135,2 mm y pistas/espacios mucho
 menores que 0,20 mm. La fuente es la
 [tabla oficial de capacidades de JLCPCB](https://jlcpcb.com/capabilities/Capab).
 
-Las áreas de JP8, JP19, JP24, JP17, JP1 y JP9 bloquean todas las capas de cobre.
-Aunque esas conexiones no están implementadas, no se deben cruzar con pistas ni
-planos: quedan reservadas para mantener la mecánica de sustitución y para no
-comprometer una futura revisión de potencia.
+Como referencia comercial publicada por JLCPCB en la misma fecha, la producción
+por superficie se anuncia desde 56 USD/m² para dos capas y 91 USD/m² para cuatro
+capas, con plazos anunciados de 24 horas y cuatro días respectivamente. La
+cotización real depende de cantidad, acabado, montaje, promociones y envío; esta
+comparación justifica mantener dos capas mientras el DRC y la integridad de
+retorno lo permitan.
+
+Las áreas temporales de JP8, JP19, JP24, JP17, JP1 y JP9 bloquean ambas capas
+hasta que el esquema incorpore sus huellas. Después se sustituirán por conectores
+reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
+relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm se
+modelará como keepout en ambas capas y se revisará antes de fabricar.
 
 ## Antes de generar Gerbers
 
-- Elegir en la cotización un stack-up real de cuatro capas y recalcular USB.
+- Confirmar 1,6 mm/1 oz en la cotización y recalcular la geometría USB.
+- Validar con JLCPCB material, acabado, ranuras y reglas reales de separación de
+  la zona de red; aumentar a cuatro capas solo si el layout demuestra que hace falta.
 - Revisar capacidad de corriente y temperatura de las pistas de 24 V con cobre,
   longitud, vías y corriente medidas, incluida la corriente de bloqueo del motor.
-- Añadir planos, cosido de GND y reglas de retorno después de fijar rutas críticas.
+- Mantener B.Cu como plano de GND, añadir cosido y revisar cada cruce que lo corte.
 - Revisar en 3D alturas, orientación de conectores y acceso al USB.
 - Ejecutar ERC, DRC, paridad esquema/PCB y una prueba mecánica 1:1.

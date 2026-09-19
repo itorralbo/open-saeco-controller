@@ -1,7 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="-30 -30 768.0 761.0">
 <style>
 .board{fill:#e7f2e7;stroke:#184d2c;stroke-width:2} .hole{fill:white;stroke:#184d2c;stroke-width:2}
-.active{fill:#ffca6a;stroke:#874c00;stroke-width:1.5} .reserved{fill:#ffd9d9;stroke:#9d2525;stroke-width:1.5;stroke-dasharray:5 3}
+.active{fill:#ffca6a;stroke:#874c00;stroke-width:1.5} .required{fill:#ffd9d9;stroke:#9d2525;stroke-width:1.5;stroke-dasharray:5 3}
 .label{font:8px sans-serif;text-anchor:middle;dominant-baseline:middle;fill:#17202a}
 .note{font:9px sans-serif;fill:#17202a}
 </style>
@@ -19,11 +19,11 @@
 <rect class="active" x="82.5" y="631.5" width="45.0" height="43.5" rx="3"/><text x="105.0" y="653.2" class="label">JP22 / J109</text>
 <rect class="active" x="130.0" y="612.5" width="42.5" height="62.5" rx="3"/><text x="151.2" y="643.8" class="label">JP13 / J105</text>
 <rect class="active" x="177.5" y="612.5" width="55.0" height="62.5" rx="3"/><text x="205.0" y="643.8" class="label">JP5 / J106</text>
-<rect class="reserved" x="285.0" y="605.0" width="60.0" height="70.0" rx="3"/><text x="315.0" y="640.0" class="label">JP8</text>
-<rect class="reserved" x="365.0" y="595.0" width="75.0" height="80.0" rx="3"/><text x="402.5" y="635.0" class="label">JP19</text>
-<rect class="reserved" x="445.0" y="605.0" width="40.0" height="70.0" rx="3"/><text x="465.0" y="640.0" class="label">JP24</text>
-<rect class="reserved" x="520.0" y="595.0" width="60.0" height="80.0" rx="3"/><text x="550.0" y="635.0" class="label">JP17</text>
-<rect class="reserved" x="595.0" y="590.0" width="25.0" height="60.0" rx="3"/><text x="607.5" y="620.0" class="label">JP1</text>
-<rect class="reserved" x="627.5" y="590.0" width="25.0" height="60.0" rx="3"/><text x="640.0" y="620.0" class="label">JP9</text>
-<text class="note" x="0" y="700.0">Naranja: conector implementado y alineado. Rojo discontinuo: envolvente original reservada. Incertidumbre fotográfica ±1.5 mm.</text>
+<rect class="required" x="285.0" y="605.0" width="60.0" height="70.0" rx="3"/><text x="315.0" y="640.0" class="label">JP8 / J115</text>
+<rect class="required" x="365.0" y="595.0" width="75.0" height="80.0" rx="3"/><text x="402.5" y="635.0" class="label">JP19 / J116</text>
+<rect class="required" x="445.0" y="605.0" width="40.0" height="70.0" rx="3"/><text x="465.0" y="640.0" class="label">JP24 / J117</text>
+<rect class="required" x="520.0" y="595.0" width="60.0" height="80.0" rx="3"/><text x="550.0" y="635.0" class="label">JP17 / J118</text>
+<rect class="required" x="595.0" y="590.0" width="25.0" height="60.0" rx="3"/><text x="607.5" y="620.0" class="label">JP1 / J119</text>
+<rect class="required" x="627.5" y="590.0" width="25.0" height="60.0" rx="3"/><text x="640.0" y="620.0" class="label">JP9 / J120</text>
+<text class="note" x="0" y="700.0">Naranja: conector implementado y alineado. Rojo discontinuo: conector de potencia obligatorio pendiente de huella. Incertidumbre fotográfica ±1.5 mm.</text>
 </svg>
