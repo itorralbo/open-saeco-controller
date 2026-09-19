@@ -71,7 +71,7 @@
         "57": "WATCHDOG_KICK_RAW",
         "58": "BREW_SLEEP_RAW",
         "59": "BREW_FAULT_N",
-        "60": null,
+        "60": "MAINS_ARM_RAW",
         "61": "STM_BOOT0",
         "62": null,
         "63": "GND_UI",
@@ -2233,7 +2233,7 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "MAINS_L_SWITCHED",
+        "1": "MAINS_L_IN",
         "2": null,
         "3": "MAINS_N"
       }
@@ -2264,6 +2264,323 @@
       "pcba_type": "",
       "pins": {
         "1": "PROTECTIVE_EARTH"
+      }
+    },
+    {
+      "reference": "F701",
+      "value": "T10A / 250V MAIN / provisional",
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "status": "rating_and_holder_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "MAINS_L_IN",
+        "2": "MAINS_L_FUSED"
+      }
+    },
+    {
+      "reference": "RV701",
+      "value": "275VAC MOV / energy TBD",
+      "footprint": "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm",
+      "status": "mpn_and_energy_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "MAINS_L_FUSED",
+        "2": "MAINS_N"
+      }
+    },
+    {
+      "reference": "F702",
+      "value": "T1A / PSU / provisional",
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "status": "rating_and_holder_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "MAINS_L_FUSED",
+        "2": "PSU_L_FUSED"
+      }
+    },
+    {
+      "reference": "PS701",
+      "value": "IRM-30-24",
+      "footprint": "OpenSaeco:MeanWell_IRM-30_THT",
+      "status": "candidate_pending_motor_current_validation",
+      "manufacturer": "MEAN WELL",
+      "mpn": "IRM-30-24",
+      "lcsc": "C6280124",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PSU_L_FUSED",
+        "2": "MAINS_N",
+        "3": "GND_UI",
+        "4": "24V_INTERNAL_RAW"
+      }
+    },
+    {
+      "reference": "J121",
+      "value": "24V INTERNAL SELECT / OPEN FOR BENCH",
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm",
+      "status": "normally_closed_open_for_external_24V",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "24V_INTERNAL_RAW",
+        "2": "24V_ACT_RAW"
+      }
+    },
+    {
+      "reference": "U303",
+      "value": "AP63200WU-7 / 24V to 12V",
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "status": "candidate",
+      "manufacturer": "Diodes Incorporated",
+      "mpn": "AP63200WU-7",
+      "lcsc": "C2071868",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "BUCK12_FB",
+        "2": "24V_ACT_RAW",
+        "3": "24V_ACT_RAW",
+        "6": "BUCK12_BST",
+        "5": "BUCK12_SW",
+        "4": "GND_UI"
+      }
+    },
+    {
+      "reference": "L302",
+      "value": "10uH / 3.5A",
+      "footprint": "Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm",
+      "status": "candidate",
+      "manufacturer": "Bourns",
+      "mpn": "SRP7028A-100M",
+      "lcsc": "C2687402",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "BUCK12_SW",
+        "2": "12V_ISO_RAW"
+      }
+    },
+    {
+      "reference": "C310",
+      "value": "10uF / 50V input",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL31B106KBHNNNE",
+      "lcsc": "C89632",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C311",
+      "value": "22uF / 25V output A",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "status": "candidate",
+      "manufacturer": "CCTC",
+      "mpn": "TCC1210X7R226K250MT",
+      "lcsc": "C49118556",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C312",
+      "value": "22uF / 25V output B",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "status": "candidate",
+      "manufacturer": "CCTC",
+      "mpn": "TCC1210X7R226K250MT",
+      "lcsc": "C49118556",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C313",
+      "value": "100nF / BST",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "BUCK12_BST",
+        "2": "BUCK12_SW"
+      }
+    },
+    {
+      "reference": "R302",
+      "value": "249k / 12V FB high",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF2493T5E",
+      "lcsc": "C22918",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "BUCK12_FB"
+      }
+    },
+    {
+      "reference": "R303",
+      "value": "18k / 12V FB low",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1802T5E",
+      "lcsc": "C25810",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "BUCK12_FB",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C314",
+      "value": "56pF / feed-forward",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "AIDE CAPACITOR",
+      "mpn": "0603C0G560J500NT",
+      "lcsc": "C49326334",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_ISO_RAW",
+        "2": "BUCK12_FB"
+      }
+    },
+    {
+      "reference": "U603",
+      "value": "SN74LVC2G08DCTR",
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC2G08DCTR",
+      "lcsc": "C352973",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "MAINS_ARM_RAW",
+        "2": "STM_NRST",
+        "5": "GND_UI",
+        "6": "GND_UI",
+        "8": "3V3_CORE",
+        "4": "GND_UI",
+        "7": "MAINS_RELAY_EN",
+        "3": null
+      }
+    },
+    {
+      "reference": "Q701",
+      "value": "SI2308A / relay coil",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "status": "candidate",
+      "manufacturer": "UMW",
+      "mpn": "SI2308A",
+      "lcsc": "C347491",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "MAINS_RELAY_GATE",
+        "2": "GND_UI",
+        "3": "MAINS_RELAY_RETURN"
+      }
+    },
+    {
+      "reference": "R801",
+      "value": "33 / relay gate",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "MAINS_RELAY_EN",
+        "2": "MAINS_RELAY_GATE"
+      }
+    },
+    {
+      "reference": "R802",
+      "value": "100k / relay off",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "MAINS_RELAY_GATE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "D701",
+      "value": "SS34 / relay flyback",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "MAINS_RELAY_RETURN",
+        "1": "24V_ACT_RAW"
+      }
+    },
+    {
+      "reference": "K701",
+      "value": "G5RL-1A-E-TV8 DC24",
+      "footprint": "OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8",
+      "status": "candidate_not_released",
+      "manufacturer": "Omron Electronics",
+      "mpn": "G5RL-1A-E-TV8 DC24",
+      "lcsc": "C2896748",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "8": "MAINS_RELAY_RETURN",
+        "3": "MAINS_L_FUSED",
+        "6": "MAINS_L_FUSED",
+        "4": "LOAD_L_ENABLED",
+        "5": "LOAD_L_ENABLED"
       }
     }
   ]

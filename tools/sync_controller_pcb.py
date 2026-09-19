@@ -18,6 +18,7 @@ from validate_kicad import ROOT, verify_netlist
 BASE = ROOT/'hardware/controller'
 BOARD_PATH = BASE/'kicad/controller-core-reva.kicad_pcb'
 FP_ROOT = Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints')
+LOCAL_FP_ROOT = BASE/'kicad/OpenSaeco.pretty'
 
 # Provisional placement, clear of the current ESP antenna area. J104 occupies
 # the original front-panel cable corner. J105-J109 are staged away from the
@@ -67,8 +68,17 @@ NEW_POSITIONS = {
     'J114': (106, 101),
     'J115': (59.04, 120.8), 'J117': (91.02, 120.8),
     'J118': (106.04, 121.3),
+    'F701': (128, 52), 'RV701': (119, 55), 'F702': (128, 27),
+    'PS701': (105, 89), 'J121': (66, 104),
+    'U303': (53, 103), 'L302': (61, 103),
+    'C310': (49, 108), 'C311': (57, 108), 'C312': (63, 108),
+    'C313': (57, 99), 'R302': (66, 100), 'R303': (66, 104),
+    'C314': (66, 108),
+    'U603': (50, 79), 'Q701': (48, 84),
+    'R801': (44, 80), 'R802': (44, 84), 'D701': (57, 84),
+    'K701': (54, 92),
 }
-NEW_ORIENTATIONS = {'J110': 180}
+NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {
     'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),
     'R221': (76.5, 58), 'R222': (76.5, 64),
@@ -82,7 +92,8 @@ REFERENCE_POSITIONS = {
 
 def load_footprint(footprint):
     lib, name = footprint.split(':')
-    fp = pcb.FootprintLoad(str(FP_ROOT/(lib+'.pretty')), name)
+    root = LOCAL_FP_ROOT if lib == 'OpenSaeco' else FP_ROOT/(lib+'.pretty')
+    fp = pcb.FootprintLoad(str(root), name)
     if not fp:
         raise RuntimeError(f'Footprint not found: {footprint}')
     return fp
@@ -190,9 +201,16 @@ def main():
                 expected = node_nets[(ref, pad.GetNumber())].GetNetname()
                 assert pad.GetNetname() == expected, f'Pad net mismatch: {ref}.{pad.GetNumber()}'
 
-    (BASE/'kicad/fp-lib-table').write_text('(fp_lib_table (version 7)\n'+''.join(
-        f' (lib (name "{lib}") (type "KiCad") (uri "${{KICAD10_FOOTPRINT_DIR}}/{lib}.pretty") (options "") (descr "KiCad standard library"))\n'
-        for lib in sorted(libs))+')\n')
+    def fp_lib_entry(lib):
+        if lib == 'OpenSaeco':
+            return (' (lib (name "OpenSaeco") (type "KiCad") '
+                    '(uri "${KIPRJMOD}/OpenSaeco.pretty") (options "") '
+                    '(descr "Open Saeco project footprints"))\n')
+        return (f' (lib (name "{lib}") (type "KiCad") '
+                f'(uri "${{KICAD10_FOOTPRINT_DIR}}/{lib}.pretty") (options "") '
+                f'(descr "KiCad standard library"))\n')
+    (BASE/'kicad/fp-lib-table').write_text(
+        '(fp_lib_table (version 7)\n'+''.join(fp_lib_entry(lib) for lib in sorted(libs))+')\n')
     missing = sorted(c.attrib['ref'] for c in xml.findall('components/comp')
                      if not c.findtext('footprint'))
     (BASE/'validation/pcb-import.json').write_text(json.dumps({

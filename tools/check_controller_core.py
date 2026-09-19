@@ -3,6 +3,7 @@
 This limited endpoint/label checker is not the KiCad parser, ERC or DRC.
 """
 import json
+import csv
 from datetime import date
 from pathlib import Path
 from check_front_panel import parse, children, one, point
@@ -237,22 +238,41 @@ def main():
 
     catalog = json.loads((ROOT/'hardware/assembly/parts-catalog.json').read_text())['parts']
     by_code = {p['lcsc']:p for p in catalog.values()}
+    main_status = {row['reference']: row['status'] for row in
+                   csv.DictReader((base/'bom-draft.csv').open())}
+    front_status = {row['reference']: row['status'] for row in
+                    csv.DictReader((ROOT/'hardware/front-panel/bom-draft.csv').open())}
     for board, path in [('main', base/'kicad/controller-core-reva.kicad_sch'),
                         ('front', ROOT/'hardware/front-panel/kicad/front-panel-reva.kicad_sch')]:
         _, props = read_connections(path)
+        statuses = main_status if board == 'main' else front_status
         matched = 0
+        supply_pending = 0
+        allowed_without_part = {
+            'dnp_open_by_default', 'mechanical_and_pinout_tbd',
+            'faston_6.3mm_mechanical_tbd', 'rating_and_holder_tbd',
+            'mpn_and_energy_tbd', 'normally_closed_open_for_external_24V',
+        }
         for ref, p in props.items():
             code = p.get('lcsc')
             if not code:
-                assert ref.startswith(('J','SW')), f'Unsourced electronic part {board}:{ref}'
+                assert statuses[ref] in allowed_without_part, (
+                    f'Unsourced electronic part without explicit pending status {board}:{ref}')
                 continue
             part = by_code[code]
             assert p['mpn'] == part['mpn'] and p['Footprint'] == part['footprint']
+            if part['stock_observed'] is None:
+                assert part['selection'] in ('candidate_supply_pending',
+                                             'candidate_not_released')
+                supply_pending += 1
+                continue
             assert part['stock_observed'] > 0, f'No stock at last check: {code}'
             checked = date.fromisoformat(part['stock_checked_on'])
             assert (date.today()-checked).days <= 7, f'Stale stock observation: {code}'
             matched += 1
-        print(f'{board}: {matched}/{len(props)} positions have MPN + JLC code; remainder mechanical TBD.')
+        print(f'{board}: {matched}/{len(props)} positions have recent positive stock; '
+              f'{supply_pending} catalogued candidates need a supply refresh; '
+              'remainder explicitly mechanical/DNP/TBD.')
     print('Core rail, UART, debug, passive inputs and sourcing checks pass. '
           'This checker does not run native ERC/DRC.')
 

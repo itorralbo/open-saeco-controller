@@ -78,12 +78,12 @@ def main():
             svg_path.write_text('\n'.join(line.rstrip() for line in
                                            svg_path.read_text(encoding='utf-8').splitlines())+'\n',
                                 encoding='utf-8')
-        scope = ('La principal incluye el núcleo lógico, USB-C de servicio, entrada protegida '
-                 'de 12 V aislados, buck de 3,3 V, corte del frontal, acondicionamiento de NTC, '
-                 'caudalímetro, nivel de agua, tres contactos y un puente H DRV8876 para el '
-                 'motor del grupo, más una etapa low-side para la electroválvula de 24 V. '
-                 'Un supervisor externo reinicia el STM32 y bloquea ambas salidas mediante '
-                 'lógica AND. No valida todavía la fuente AC/DC integrada ni las cargas.'
+        scope = ('La principal incluye el núcleo lógico, USB-C de servicio, fuente aislada '
+                 'IRM-30-24, selección de 24 V internos/externos, buck AP63200 de 24 V a 12 V, '
+                 'buck de 3,3 V, sensores, puente H DRV8876 y etapa low-side de válvula. '
+                 'Un relé G5RL normalmente abierto corta la fase de las cargas y solo se arma '
+                 'mediante reset válido y orden explícita. Todavía no valida los drivers de '
+                 'calentador, bomba o molino.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
         remaining = ('Los GPIO sin asignar llevan NC. J105–J109 y J112–J113 usan huellas '
@@ -100,7 +100,7 @@ def main():
                   'JP21, JP16, JP14, JP3, JP22, JP13 y JP5. JP8, JP19, JP24, JP17, '
                   'JP1 y JP9 son conectores obligatorios y mantienen áreas temporales hasta '
                   'incorporar sus huellas. El routing USB reproducible contiene 39 segmentos '
-                  'y 7 vías; el DRC de esta etapa tiene 0 infracciones, 299 conexiones abiertas '
+                  'y 7 vías; el DRC de esta etapa tiene 0 infracciones geométricas, 349 conexiones abiertas '
                   'y seis diferencias de paridad: MH1–MH3 y las huellas aún '
                   'desconocidas de JP19/JP1/JP9.\n\n'
                   'La principal usa dos capas y clases explícitas para USB, alimentación, '

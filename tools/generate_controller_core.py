@@ -43,6 +43,9 @@ def power_symbols():
         ('5', 'SW', 'power_out', 7.62, 0, 180),
         ('4', 'GND', 'power_in', 7.62, -3.81, 180),
     ], 5.08, 6.35)
+    # AP63200 shares package and pinout with AP63203 but exposes FB for an
+    # adjustable 24 V -> 12 V stage.
+    d.DEFS['AP63200'] = d.DEFS['AP63203']
     d.DEFS['TPS22918'] = ([
         ('1', 'VIN', 'power_in', -7.62, 3.81, 0),
         ('2', 'GND', 'power_in', -7.62, 0, 0),
@@ -58,6 +61,25 @@ def power_symbols():
                          ('1', 'K', 'passive', 5.08, 0, 180)], 2.54, 1.5)
     d.DEFS['FUSE'] = (two, 2.54, 1.5)
     d.DEFS['L'] = (two, 2.54, 1.5)
+    d.DEFS['MOV'] = (two, 2.54, 1.5)
+    d.DEFS['ACDC4'] = ([
+        # The module is an isolated source, but its mains terminals and return
+        # are passive from ERC's point of view. Only +V sources the DC rail.
+        ('1', 'AC/L', 'passive', -10.16, 3.81, 0),
+        ('2', 'AC/N', 'passive', -10.16, -3.81, 0),
+        ('3', '-V', 'passive', 10.16, -3.81, 180),
+        ('4', '+V', 'power_out', 10.16, 3.81, 180),
+    ], 7.62, 6.35)
+    # High-capacity G5RL-1A-E duplicates each 16 A contact terminal. The two
+    # pads on each side are intentionally assigned to the same schematic net.
+    d.DEFS['RELAY_G5RL'] = ([
+        ('1', 'COIL_A', 'passive', -10.16, 7.62, 0),
+        ('8', 'COIL_B', 'passive', -10.16, 3.81, 0),
+        ('3', 'COM_A', 'passive', -10.16, -3.81, 0),
+        ('6', 'COM_B', 'passive', -10.16, -7.62, 0),
+        ('4', 'NO_A', 'passive', 10.16, -3.81, 180),
+        ('5', 'NO_B', 'passive', 10.16, -7.62, 180),
+    ], 7.62, 10.16)
     # USB-C USB 2.0 receptacle: duplicated A/B contacts and a separate shield pad.
     usb_a = [('A1', 'GND', 'passive'), ('A4', 'VBUS', 'passive'),
              ('A5', 'CC1', 'passive'), ('A6', 'D+', 'passive'),
@@ -153,7 +175,8 @@ def main():
            'PA5': 'RAIL_24V_ADC', 'PA6': 'BREW_DIR_RAW',
            'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
-           'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N'}
+           'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
+           'PB7': 'MAINS_ARM_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -430,34 +453,100 @@ def main():
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
-    d.note('15 / Conectores de potencia obligatorios — misma PCB, dominio peligroso',870,610,1.8)
-    d.add('J115','J3','JP8 GRINDER / 320VDC',905,646,
+    d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
+    d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,
           ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
           'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
           status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
-    d.add('J116','J4','JP19 HEATER / 4 POS 2 WIRED',1015,646,
+    d.add('J116','J4','JP19 HEATER / 4 POS 2 WIRED',1155,674,
           [None,None,None,None], '', status='mechanical_and_pinout_tbd')
-    d.add('J117','J2','JP24 PUMP / 230VAC',1125,646,
+    d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
           ['PUMP_AC_A','PUMP_AC_B'],
           'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',
           status='photo_candidate', part_key='CONN:JST_VH_2_RA')
-    d.add('J118','J3','JP17 MAINS / L-N',905,718,
-          ['MAINS_L_SWITCHED',None,'MAINS_N'],
+    d.add('J118','J3','JP17 MAINS / L-N',1155,738,
+          ['MAINS_L_IN',None,'MAINS_N'],
           'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
           status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
-    d.add('J119','J1','JP1 PE TO BOILER',1015,718,['PROTECTIVE_EARTH'], '',
+    d.add('J119','J1','JP1 PE TO BOILER',1100,768,['PROTECTIVE_EARTH'], '',
           status='faston_6.3mm_mechanical_tbd')
-    d.add('J120','J1','JP9 PE INPUT',1125,718,['PROTECTIVE_EARTH'], '',
+    d.add('J120','J1','JP9 PE INPUT',1155,768,['PROTECTIVE_EARTH'], '',
           status='faston_6.3mm_mechanical_tbd')
-    for index, name in enumerate(['GRINDER_DC_PLUS','GRINDER_DC_MINUS',
-                                  'PUMP_AC_A','PUMP_AC_B',
-                                  'MAINS_L_SWITCHED','MAINS_N'], 107):
-        d.add(f'#FLG{index}','PWR_FLAG',f'Temporary power-sheet endpoint / {name}',
-              860 + (index-107)*48, 796, [name])
-    d.note('JP17: negro=L y azul=N, posición central libre. Confirmar numeración física antes de cobre.',870,762,1.1)
-    d.note('JP8: blanco=+ y negro=-, centro libre. JP19 mantiene pines y huella abiertos hasta medir.',870,770,1.1)
-    d.note('JP9 y JP1 comparten PE dedicado; no es GND_UI. Drivers y fuente aislada se añaden después.',870,778,1.1)
-    d.note('Siguiente: protección/filtro, fuente aislada 24V y etapas de calentador, bomba y molino.',12,804)
+    # Main input protection and the isolated supply. Values for F701/F702/RV701
+    # remain provisional until the complete inrush and fault-current budget exists.
+    d.add('F701','FUSE','T10A / 250V MAIN / provisional',835,640,
+          ['MAINS_L_IN','MAINS_L_FUSED'],
+          'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
+          status='rating_and_holder_tbd')
+    d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
+          ['MAINS_L_FUSED','MAINS_N'],
+          'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')
+    d.add('F702','FUSE','T1A / PSU / provisional',835,690,
+          ['MAINS_L_FUSED','PSU_L_FUSED'],
+          'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
+          status='rating_and_holder_tbd')
+    d.add('PS701','ACDC4','IRM-30-24',930,676,
+          ['PSU_L_FUSED','MAINS_N',g,'24V_INTERNAL_RAW'],
+          'OpenSaeco:MeanWell_IRM-30_THT',
+          status='candidate_pending_motor_current_validation',part_key='PSU:IRM-30-24')
+    d.add('J121','J2','24V INTERNAL SELECT / OPEN FOR BENCH',1008,647,
+          ['24V_INTERNAL_RAW','24V_ACT_RAW'],
+          'Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm',
+          status='normally_closed_open_for_external_24V')
+
+    # 24 V -> 12 V is required because the existing logic and valve gate driver
+    # cannot be fed directly from the IRM-30 output.
+    d.add('U303','AP63200','AP63200WU-7 / 24V to 12V',808,739,
+          ['BUCK12_FB','24V_ACT_RAW','24V_ACT_RAW','BUCK12_BST','BUCK12_SW',g],
+          'Package_TO_SOT_SMD:TSOT-23-6',part_key='AP63200WU-7')
+    d.add('L302','L','10uH / 3.5A',870,732,['BUCK12_SW','12V_ISO_RAW'],
+          'Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm',part_key='L:10uH_3.5A')
+    d.add('C310','C','10uF / 50V input',772,770,['24V_ACT_RAW',g],
+          'Capacitor_SMD:C_1206_3216Metric',part_key='C:10uF_50V_1206')
+    d.add('C311','C','22uF / 25V output A',842,780,['12V_ISO_RAW',g],
+          'Capacitor_SMD:C_1210_3225Metric',part_key='C:22uF_25V_1210')
+    d.add('C312','C','22uF / 25V output B',880,780,['12V_ISO_RAW',g],
+          'Capacitor_SMD:C_1210_3225Metric',part_key='C:22uF_25V_1210')
+    d.add('C313','C','100nF / BST',924,744,['BUCK12_BST','BUCK12_SW'],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
+    d.add('R302','R','249k / 12V FB high',938,772,['12V_ISO_RAW','BUCK12_FB'],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:249k')
+    d.add('R303','R','18k / 12V FB low',978,772,['BUCK12_FB',g],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:18k')
+    d.add('C314','C','56pF / feed-forward',1018,772,['12V_ISO_RAW','BUCK12_FB'],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:56pF')
+    # J121 intentionally permits disconnecting the onboard supply. Mark the
+    # selected actuator rail as powered on the load side of that jumper.
+    d.add('#FLG113','PWR_FLAG','Selected 24V actuator source',990,703,['24V_ACT_RAW'])
+
+    # Independent normally-open phase cut. U603 is a second known dual-AND;
+    # its unused channel is tied low so the relay cannot arm on floating inputs.
+    d.add('U603','DUAL_AND','SN74LVC2G08DCTR',735,660,
+          ['MAINS_ARM_RAW','STM_NRST',g,g,v,g,'MAINS_RELAY_EN',None],
+          'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
+    d.add('Q701','NMOS_SOT23','SI2308A / relay coil',735,716,
+          ['MAINS_RELAY_GATE',g,'MAINS_RELAY_RETURN'],
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('R801','R','33 / relay gate',680,704,'MAINS_RELAY_EN','MAINS_RELAY_GATE')
+    d.passive('R802','R','100k / relay off',680,724,'MAINS_RELAY_GATE',g)
+    d.add('D701','DIODE','SS34 / relay flyback',735,756,
+          ['MAINS_RELAY_RETURN','24V_ACT_RAW'],'Diode_SMD:D_SMA',part_key='D:SS34')
+    d.add('K701','RELAY_G5RL','G5RL-1A-E-TV8 DC24',1040,716,
+          ['24V_ACT_RAW','MAINS_RELAY_RETURN','MAINS_L_FUSED','MAINS_L_FUSED',
+           'LOAD_L_ENABLED','LOAD_L_ENABLED'],
+          'OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8',
+          status='candidate_not_released',part_key='RELAY:G5RL-1A-E-TV8_24V')
+    d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
+    d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])
+    # Temporary endpoint markers until the grinder bridge and pump triac are
+    # inserted in the next power-stage pass.
+    d.add('#FLG117','PWR_FLAG','Grinder DC plus endpoint pending bridge',1100,810,['GRINDER_DC_PLUS'])
+    d.add('#FLG118','PWR_FLAG','Grinder DC minus endpoint pending bridge',1100,822,['GRINDER_DC_MINUS'])
+    d.add('#FLG119','PWR_FLAG','Pump AC A endpoint pending triac',1160,810,['PUMP_AC_A'])
+    d.add('#FLG120','PWR_FLAG','Pump AC B endpoint pending triac',1160,822,['PUMP_AC_B'])
+    d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
+    d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
+    d.note('Siguiente: optotriacs, BTA24, puente del molino, filtro EMI y huellas JP19/PE.',12,804)
     d.note('Contorno/taladros aceptados; conectores incompletos y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

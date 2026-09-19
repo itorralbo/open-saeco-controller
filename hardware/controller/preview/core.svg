@@ -243,7 +243,7 @@
 <path d="M 97.78999999999999 156.21 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="156.51000000000002" font-size="0.9" text-anchor="end" fill="#213b50">PB7</text>
 <text x="99.73" y="155.71" font-size="0.65" text-anchor="middle" fill="#213b50">60</text>
-<text x="102.87" y="156.51000000000002" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="103.27000000000001" y="155.71" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_ARM_RAW</text>
 <path d="M 97.78999999999999 160.02 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="160.32000000000002" font-size="0.9" text-anchor="end" fill="#213b50">PB8</text>
 <text x="99.73" y="159.52" font-size="0.65" text-anchor="middle" fill="#213b50">61</text>
@@ -1923,125 +1923,383 @@
 <text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
 <text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
 <text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
-<text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Conectores de potencia obligatorios — misma PCB, dominio peligroso</text>
-<rect x="900.43" y="639.4449999999999" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="905.51" y="634.4449999999999" font-size="1.05" text-anchor="middle" fill="#213b50">J115</text>
-<text x="905.51" y="636.9449999999999" font-size="1.05" text-anchor="middle" fill="#213b50">JP8 GRINDER / 320VDC</text>
-<path d="M 900.43 642.62 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="642.92" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="898.49" y="642.12" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="894.95" y="642.12" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
-<path d="M 900.43 646.43 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="646.7299999999999" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
-<text x="898.49" y="645.93" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="895.35" y="646.7299999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<path d="M 900.43 650.24 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="650.54" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
-<text x="898.49" y="649.74" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="894.95" y="649.74" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
-<rect x="1009.65" y="636.905" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1014.73" y="631.905" font-size="1.05" text-anchor="middle" fill="#213b50">J116</text>
-<text x="1014.73" y="634.405" font-size="1.05" text-anchor="middle" fill="#213b50">JP19 HEATER / 4 POS 2 WIRED</text>
-<path d="M 1009.65 640.08 H 1004.57" stroke="#27856d" stroke-width=".22"/>
-<text x="1010.35" y="640.38" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="1007.71" y="639.58" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1004.57" y="640.38" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<path d="M 1009.65 643.89 H 1004.57" stroke="#27856d" stroke-width=".22"/>
-<text x="1010.35" y="644.1899999999999" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
-<text x="1007.71" y="643.39" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="1004.57" y="644.1899999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<path d="M 1009.65 647.7 H 1004.57" stroke="#27856d" stroke-width=".22"/>
-<text x="1010.35" y="648.0" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
-<text x="1007.71" y="647.2" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="1004.57" y="648.0" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<path d="M 1009.65 651.51 H 1004.57" stroke="#27856d" stroke-width=".22"/>
-<text x="1010.35" y="651.81" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
-<text x="1007.71" y="651.01" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="1004.57" y="651.81" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<rect x="1120.14" y="640.7149999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1125.22" y="635.7149999999999" font-size="1.05" text-anchor="middle" fill="#213b50">J117</text>
-<text x="1125.22" y="638.2149999999999" font-size="1.05" text-anchor="middle" fill="#213b50">JP24 PUMP / 230VAC</text>
-<path d="M 1120.14 643.89 H 1115.06" stroke="#27856d" stroke-width=".22"/>
-<text x="1120.84" y="644.1899999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="1118.1999999999998" y="643.39" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1114.6599999999999" y="643.39" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
-<path d="M 1120.14 647.7 H 1115.06" stroke="#27856d" stroke-width=".22"/>
-<text x="1120.84" y="648.0" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
-<text x="1118.1999999999998" y="647.2" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="1114.6599999999999" y="647.2" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
-<rect x="900.43" y="710.5649999999999" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="905.51" y="705.5649999999999" font-size="1.05" text-anchor="middle" fill="#213b50">J118</text>
-<text x="905.51" y="708.0649999999999" font-size="1.05" text-anchor="middle" fill="#213b50">JP17 MAINS / L-N</text>
-<path d="M 900.43 713.74 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="714.04" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="898.49" y="713.24" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="894.95" y="713.24" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_SWITCHED</text>
-<path d="M 900.43 717.55 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="717.8499999999999" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
-<text x="898.49" y="717.05" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="895.35" y="717.8499999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<path d="M 900.43 721.36 H 895.35" stroke="#27856d" stroke-width=".22"/>
-<text x="901.13" y="721.66" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
-<text x="898.49" y="720.86" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="894.95" y="720.86" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
-<rect x="1009.65" y="714.375" width="10.16" height="6.35" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1014.73" y="709.375" font-size="1.05" text-anchor="middle" fill="#213b50">J119</text>
-<text x="1014.73" y="711.875" font-size="1.05" text-anchor="middle" fill="#213b50">JP1 PE TO BOILER</text>
-<path d="M 1009.65 717.55 H 1004.57" stroke="#27856d" stroke-width=".22"/>
-<text x="1010.35" y="717.8499999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="1007.71" y="717.05" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1004.1700000000001" y="717.05" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
-<rect x="1120.14" y="714.375" width="10.16" height="6.35" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1125.22" y="709.375" font-size="1.05" text-anchor="middle" fill="#213b50">J120</text>
-<text x="1125.22" y="711.875" font-size="1.05" text-anchor="middle" fill="#213b50">JP9 PE INPUT</text>
-<path d="M 1120.14 717.55 H 1115.06" stroke="#27856d" stroke-width=".22"/>
-<text x="1120.84" y="717.8499999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="1118.1999999999998" y="717.05" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1114.6599999999999" y="717.05" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
-<rect x="857.25" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="859.79" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG107</text>
-<text x="859.79" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / GRINDER_DC_PLUS</text>
-<path d="M 857.25 796.29 H 852.17" stroke="#27856d" stroke-width=".22"/>
-<text x="857.9499999999999" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="855.3100000000001" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="851.77" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
-<rect x="905.51" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="908.05" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG108</text>
-<text x="908.05" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / GRINDER_DC_MINUS</text>
-<path d="M 905.51 796.29 H 900.43" stroke="#27856d" stroke-width=".22"/>
-<text x="906.2099999999999" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="903.57" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="900.03" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
-<rect x="953.77" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="956.31" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG109</text>
-<text x="956.31" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / PUMP_AC_A</text>
-<path d="M 953.77 796.29 H 948.69" stroke="#27856d" stroke-width=".22"/>
-<text x="954.4699999999999" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="951.83" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="948.2900000000001" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
-<rect x="1002.0300000000001" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1004.57" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG110</text>
-<text x="1004.57" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / PUMP_AC_B</text>
-<path d="M 1002.0300000000001 796.29 H 996.95" stroke="#27856d" stroke-width=".22"/>
-<text x="1002.73" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1000.09" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="996.5500000000001" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
-<rect x="1049.02" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1051.56" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG111</text>
-<text x="1051.56" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / MAINS_L_SWITCHED</text>
-<path d="M 1049.02 796.29 H 1043.94" stroke="#27856d" stroke-width=".22"/>
-<text x="1049.72" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1047.08" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1043.54" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_SWITCHED</text>
-<rect x="1097.28" y="795.02" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1099.82" y="790.02" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG112</text>
-<text x="1099.82" y="792.52" font-size="1.05" text-anchor="middle" fill="#213b50">Temporary power-sheet endpoint / MAINS_N</text>
-<path d="M 1097.28 796.29 H 1092.2" stroke="#27856d" stroke-width=".22"/>
-<text x="1097.98" y="796.5899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1095.34" y="795.79" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1091.8" y="795.79" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
-<text x="870" y="762" font-size="1.1" text-anchor="start" fill="#213b50">JP17: negro=L y azul=N, posición central libre. Confirmar numeración física antes de cobre.</text>
-<text x="870" y="770" font-size="1.1" text-anchor="start" fill="#213b50">JP8: blanco=+ y negro=-, centro libre. JP19 mantiene pines y huella abiertos hasta medir.</text>
-<text x="870" y="778" font-size="1.1" text-anchor="start" fill="#213b50">JP9 y JP1 comparten PE dedicado; no es GND_UI. Drivers y fuente aislada se añaden después.</text>
-<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: protección/filtro, fuente aislada 24V y etapas de calentador, bomba y molino.</text>
+<text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Red, fuente aislada y conectores de potencia — misma PCB</text>
+<rect x="1094.74" y="634.365" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1099.82" y="629.365" font-size="1.05" text-anchor="middle" fill="#213b50">J115</text>
+<text x="1099.82" y="631.865" font-size="1.05" text-anchor="middle" fill="#213b50">JP8 GRINDER / 320VDC</text>
+<path d="M 1094.74 637.54 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="637.8399999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1092.8" y="637.04" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1089.26" y="637.04" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
+<path d="M 1094.74 641.35 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="641.65" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="1092.8" y="640.85" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1089.66" y="641.65" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1094.74 645.16 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="645.4599999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="1092.8" y="644.66" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1089.26" y="644.66" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
+<rect x="1149.3500000000001" y="664.845" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1154.43" y="659.845" font-size="1.05" text-anchor="middle" fill="#213b50">J116</text>
+<text x="1154.43" y="662.345" font-size="1.05" text-anchor="middle" fill="#213b50">JP19 HEATER / 4 POS 2 WIRED</text>
+<path d="M 1149.3500000000001 668.02 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="668.3199999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1147.4099999999999" y="667.52" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1144.27" y="668.3199999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1149.3500000000001 671.83 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="672.13" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="1147.4099999999999" y="671.33" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1144.27" y="672.13" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1149.3500000000001 675.64 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="675.9399999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="1147.4099999999999" y="675.14" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1144.27" y="675.9399999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1149.3500000000001 679.45 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="679.75" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="1147.4099999999999" y="678.95" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="1144.27" y="679.75" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<rect x="1094.74" y="696.5949999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1099.82" y="691.5949999999999" font-size="1.05" text-anchor="middle" fill="#213b50">J117</text>
+<text x="1099.82" y="694.0949999999999" font-size="1.05" text-anchor="middle" fill="#213b50">JP24 PUMP / 230VAC</text>
+<path d="M 1094.74 699.77 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="700.0699999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1092.8" y="699.27" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1089.26" y="699.27" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
+<path d="M 1094.74 703.58 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="703.88" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="1092.8" y="703.08" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1089.26" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
+<rect x="1149.3500000000001" y="730.885" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1154.43" y="725.885" font-size="1.05" text-anchor="middle" fill="#213b50">J118</text>
+<text x="1154.43" y="728.385" font-size="1.05" text-anchor="middle" fill="#213b50">JP17 MAINS / L-N</text>
+<path d="M 1149.3500000000001 734.06 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="734.3599999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1147.4099999999999" y="733.56" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1143.87" y="733.56" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_IN</text>
+<path d="M 1149.3500000000001 737.87 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="738.17" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="1147.4099999999999" y="737.37" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1144.27" y="738.17" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1149.3500000000001 741.68 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="741.9799999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="1147.4099999999999" y="741.18" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1143.87" y="741.18" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
+<rect x="1094.74" y="765.1750000000001" width="10.16" height="6.35" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1099.82" y="760.1750000000001" font-size="1.05" text-anchor="middle" fill="#213b50">J119</text>
+<text x="1099.82" y="762.6750000000001" font-size="1.05" text-anchor="middle" fill="#213b50">JP1 PE TO BOILER</text>
+<path d="M 1094.74 768.35 H 1089.66" stroke="#27856d" stroke-width=".22"/>
+<text x="1095.4399999999998" y="768.65" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1092.8" y="767.85" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1089.26" y="767.85" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
+<rect x="1149.3500000000001" y="765.1750000000001" width="10.16" height="6.35" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1154.43" y="760.1750000000001" font-size="1.05" text-anchor="middle" fill="#213b50">J120</text>
+<text x="1154.43" y="762.6750000000001" font-size="1.05" text-anchor="middle" fill="#213b50">JP9 PE INPUT</text>
+<path d="M 1149.3500000000001 768.35 H 1144.27" stroke="#27856d" stroke-width=".22"/>
+<text x="1150.05" y="768.65" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1147.4099999999999" y="767.85" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1143.87" y="767.85" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
+<rect x="831.85" y="638.58" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="834.39" y="633.58" font-size="1.05" text-anchor="middle" fill="#213b50">F701</text>
+<text x="834.39" y="636.08" font-size="1.05" text-anchor="middle" fill="#213b50">T10A / 250V MAIN / provisional</text>
+<path d="M 831.85 640.08 H 826.77" stroke="#27856d" stroke-width=".22"/>
+<text x="832.55" y="640.38" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="829.91" y="639.58" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="826.37" y="639.58" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_IN</text>
+<path d="M 836.93 640.08 H 842.01" stroke="#27856d" stroke-width=".22"/>
+<text x="836.23" y="640.38" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="838.87" y="639.58" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="842.41" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_L_FUSED</text>
+<rect x="831.85" y="663.98" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="834.39" y="658.98" font-size="1.05" text-anchor="middle" fill="#213b50">RV701</text>
+<text x="834.39" y="661.48" font-size="1.05" text-anchor="middle" fill="#213b50">275VAC MOV / energy TBD</text>
+<path d="M 831.85 665.48 H 826.77" stroke="#27856d" stroke-width=".22"/>
+<text x="832.55" y="665.78" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="829.91" y="664.98" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="826.37" y="664.98" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_FUSED</text>
+<path d="M 836.93 665.48 H 842.01" stroke="#27856d" stroke-width=".22"/>
+<text x="836.23" y="665.78" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="838.87" y="664.98" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="842.41" y="664.98" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_N</text>
+<rect x="831.85" y="688.11" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="834.39" y="683.11" font-size="1.05" text-anchor="middle" fill="#213b50">F702</text>
+<text x="834.39" y="685.61" font-size="1.05" text-anchor="middle" fill="#213b50">T1A / PSU / provisional</text>
+<path d="M 831.85 689.61 H 826.77" stroke="#27856d" stroke-width=".22"/>
+<text x="832.55" y="689.91" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="829.91" y="689.11" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="826.37" y="689.11" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_FUSED</text>
+<path d="M 836.93 689.61 H 842.01" stroke="#27856d" stroke-width=".22"/>
+<text x="836.23" y="689.91" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="838.87" y="689.11" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="842.41" y="689.11" font-size="0.9" text-anchor="start" fill="#23745f">PSU_L_FUSED</text>
+<rect x="922.02" y="669.29" width="15.24" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="929.64" y="664.29" font-size="1.05" text-anchor="middle" fill="#213b50">PS701</text>
+<text x="929.64" y="666.79" font-size="1.05" text-anchor="middle" fill="#213b50">IRM-30-24</text>
+<path d="M 922.02 671.83 H 916.94" stroke="#27856d" stroke-width=".22"/>
+<text x="922.72" y="672.13" font-size="0.9" text-anchor="start" fill="#213b50">AC/L</text>
+<text x="920.08" y="671.33" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="916.5400000000001" y="671.33" font-size="0.9" text-anchor="end" fill="#23745f">PSU_L_FUSED</text>
+<path d="M 922.02 679.45 H 916.94" stroke="#27856d" stroke-width=".22"/>
+<text x="922.72" y="679.75" font-size="0.9" text-anchor="start" fill="#213b50">AC/N</text>
+<text x="920.08" y="678.95" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="916.5400000000001" y="678.95" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
+<path d="M 937.26 679.45 H 942.34" stroke="#27856d" stroke-width=".22"/>
+<text x="936.56" y="679.75" font-size="0.9" text-anchor="end" fill="#213b50">-V</text>
+<text x="939.1999999999999" y="678.95" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="942.74" y="678.95" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 937.26 671.83 H 942.34" stroke="#27856d" stroke-width=".22"/>
+<text x="936.56" y="672.13" font-size="0.9" text-anchor="end" fill="#213b50">+V</text>
+<text x="939.1999999999999" y="671.33" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="942.74" y="671.33" font-size="0.9" text-anchor="start" fill="#23745f">24V_INTERNAL_RAW</text>
+<rect x="1003.3" y="641.985" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1008.38" y="636.985" font-size="1.05" text-anchor="middle" fill="#213b50">J121</text>
+<text x="1008.38" y="639.485" font-size="1.05" text-anchor="middle" fill="#213b50">24V INTERNAL SELECT / OPEN FOR BENCH</text>
+<path d="M 1003.3 645.16 H 998.22" stroke="#27856d" stroke-width=".22"/>
+<text x="1004.0" y="645.4599999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="1001.36" y="644.66" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="997.82" y="644.66" font-size="0.9" text-anchor="end" fill="#23745f">24V_INTERNAL_RAW</text>
+<path d="M 1003.3 648.97 H 998.22" stroke="#27856d" stroke-width=".22"/>
+<text x="1004.0" y="649.27" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="1001.36" y="648.47" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="997.82" y="648.47" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<rect x="802.64" y="732.79" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="807.72" y="727.79" font-size="1.05" text-anchor="middle" fill="#213b50">U303</text>
+<text x="807.72" y="730.29" font-size="1.05" text-anchor="middle" fill="#213b50">AP63200WU-7 / 24V to 12V</text>
+<path d="M 802.64 735.33 H 797.56" stroke="#27856d" stroke-width=".22"/>
+<text x="803.34" y="735.63" font-size="0.9" text-anchor="start" fill="#213b50">FB</text>
+<text x="800.7" y="734.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="797.16" y="734.83" font-size="0.9" text-anchor="end" fill="#23745f">BUCK12_FB</text>
+<path d="M 802.64 739.14 H 797.56" stroke="#27856d" stroke-width=".22"/>
+<text x="803.34" y="739.4399999999999" font-size="0.9" text-anchor="start" fill="#213b50">EN</text>
+<text x="800.7" y="738.64" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="797.16" y="738.64" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 802.64 742.95 H 797.56" stroke="#27856d" stroke-width=".22"/>
+<text x="803.34" y="743.25" font-size="0.9" text-anchor="start" fill="#213b50">VIN</text>
+<text x="800.7" y="742.45" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="797.16" y="742.45" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 812.8000000000001 735.33 H 817.88" stroke="#27856d" stroke-width=".22"/>
+<text x="812.1" y="735.63" font-size="0.9" text-anchor="end" fill="#213b50">BST</text>
+<text x="814.74" y="734.83" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="818.28" y="734.83" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_BST</text>
+<path d="M 812.8000000000001 739.14 H 817.88" stroke="#27856d" stroke-width=".22"/>
+<text x="812.1" y="739.4399999999999" font-size="0.9" text-anchor="end" fill="#213b50">SW</text>
+<text x="814.74" y="738.64" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="818.28" y="738.64" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_SW</text>
+<path d="M 812.8000000000001 742.95 H 817.88" stroke="#27856d" stroke-width=".22"/>
+<text x="812.1" y="743.25" font-size="0.9" text-anchor="end" fill="#213b50">GND</text>
+<text x="814.74" y="742.45" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="818.28" y="742.45" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="867.4100000000001" y="730.02" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="869.95" y="725.02" font-size="1.05" text-anchor="middle" fill="#213b50">L302</text>
+<text x="869.95" y="727.52" font-size="1.05" text-anchor="middle" fill="#213b50">10uH / 3.5A</text>
+<path d="M 867.4100000000001 731.52 H 862.33" stroke="#27856d" stroke-width=".22"/>
+<text x="868.11" y="731.8199999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="865.47" y="731.02" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="861.9300000000001" y="731.02" font-size="0.9" text-anchor="end" fill="#23745f">BUCK12_SW</text>
+<path d="M 872.49 731.52 H 877.57" stroke="#27856d" stroke-width=".22"/>
+<text x="871.7900000000001" y="731.8199999999999" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="874.43" y="731.02" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="877.97" y="731.02" font-size="0.9" text-anchor="start" fill="#23745f">12V_ISO_RAW</text>
+<path d="M 769.62 769.62 H 771.525 M 772.795 769.62 H 774.6999999999999 M 771.525 768.12 V 771.12 M 772.795 768.12 V 771.12" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="772.16" y="763.12" font-size="1.05" text-anchor="middle" fill="#213b50">C310</text>
+<text x="772.16" y="765.62" font-size="1.05" text-anchor="middle" fill="#213b50">10uF / 50V input</text>
+<path d="M 769.62 769.62 H 764.54" stroke="#27856d" stroke-width=".22"/>
+<text x="764.14" y="769.12" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 774.6999999999999 769.62 H 779.78" stroke="#27856d" stroke-width=".22"/>
+<text x="780.18" y="769.12" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 839.47 779.78 H 841.375 M 842.645 779.78 H 844.55 M 841.375 778.28 V 781.28 M 842.645 778.28 V 781.28" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="842.01" y="773.28" font-size="1.05" text-anchor="middle" fill="#213b50">C311</text>
+<text x="842.01" y="775.78" font-size="1.05" text-anchor="middle" fill="#213b50">22uF / 25V output A</text>
+<path d="M 839.47 779.78 H 834.39" stroke="#27856d" stroke-width=".22"/>
+<text x="833.99" y="779.28" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<path d="M 844.55 779.78 H 849.63" stroke="#27856d" stroke-width=".22"/>
+<text x="850.03" y="779.28" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 877.57 779.78 H 879.475 M 880.745 779.78 H 882.65 M 879.475 778.28 V 781.28 M 880.745 778.28 V 781.28" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="880.11" y="773.28" font-size="1.05" text-anchor="middle" fill="#213b50">C312</text>
+<text x="880.11" y="775.78" font-size="1.05" text-anchor="middle" fill="#213b50">22uF / 25V output B</text>
+<path d="M 877.57 779.78 H 872.49" stroke="#27856d" stroke-width=".22"/>
+<text x="872.09" y="779.28" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<path d="M 882.65 779.78 H 887.73" stroke="#27856d" stroke-width=".22"/>
+<text x="888.13" y="779.28" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 922.02 744.22 H 923.925 M 925.1949999999999 744.22 H 927.0999999999999 M 923.925 742.72 V 745.72 M 925.1949999999999 742.72 V 745.72" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="924.56" y="737.72" font-size="1.05" text-anchor="middle" fill="#213b50">C313</text>
+<text x="924.56" y="740.22" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / BST</text>
+<path d="M 922.02 744.22 H 916.94" stroke="#27856d" stroke-width=".22"/>
+<text x="916.5400000000001" y="743.72" font-size="0.9" text-anchor="end" fill="#23745f">BUCK12_BST</text>
+<path d="M 927.0999999999999 744.22 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="932.5799999999999" y="743.72" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_SW</text>
+<rect x="935.99" y="771.16" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="938.53" y="766.16" font-size="1.05" text-anchor="middle" fill="#213b50">R302</text>
+<text x="938.53" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">249k / 12V FB high</text>
+<path d="M 935.99 772.16 H 930.91" stroke="#27856d" stroke-width=".22"/>
+<text x="930.51" y="771.66" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<path d="M 941.0699999999999 772.16 H 946.15" stroke="#27856d" stroke-width=".22"/>
+<text x="946.55" y="771.66" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_FB</text>
+<rect x="975.36" y="771.16" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="977.9" y="766.16" font-size="1.05" text-anchor="middle" fill="#213b50">R303</text>
+<text x="977.9" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">18k / 12V FB low</text>
+<path d="M 975.36 772.16 H 970.28" stroke="#27856d" stroke-width=".22"/>
+<text x="969.88" y="771.66" font-size="0.9" text-anchor="end" fill="#23745f">BUCK12_FB</text>
+<path d="M 980.4399999999999 772.16 H 985.52" stroke="#27856d" stroke-width=".22"/>
+<text x="985.92" y="771.66" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1016.0 772.16 H 1017.905 M 1019.175 772.16 H 1021.0799999999999 M 1017.905 770.66 V 773.66 M 1019.175 770.66 V 773.66" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1018.54" y="765.66" font-size="1.05" text-anchor="middle" fill="#213b50">C314</text>
+<text x="1018.54" y="768.16" font-size="1.05" text-anchor="middle" fill="#213b50">56pF / feed-forward</text>
+<path d="M 1016.0 772.16 H 1010.92" stroke="#27856d" stroke-width=".22"/>
+<text x="1010.52" y="771.66" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<path d="M 1021.0799999999999 772.16 H 1026.16" stroke="#27856d" stroke-width=".22"/>
+<text x="1026.5600000000002" y="771.66" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_FB</text>
+<rect x="988.0600000000001" y="702.3100000000001" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="990.6" y="697.3100000000001" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG113</text>
+<text x="990.6" y="699.8100000000001" font-size="1.05" text-anchor="middle" fill="#213b50">Selected 24V actuator source</text>
+<path d="M 988.0600000000001 703.58 H 982.98" stroke="#27856d" stroke-width=".22"/>
+<text x="988.76" y="703.88" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="986.12" y="703.08" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="982.58" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<rect x="730.25" y="651.51" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="735.33" y="646.51" font-size="1.05" text-anchor="middle" fill="#213b50">U603</text>
+<text x="735.33" y="649.01" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC2G08DCTR</text>
+<path d="M 730.25 652.78 H 725.17" stroke="#27856d" stroke-width=".22"/>
+<text x="730.95" y="653.0799999999999" font-size="0.9" text-anchor="start" fill="#213b50">1A</text>
+<text x="728.3100000000001" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="724.77" y="652.28" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_ARM_RAW</text>
+<path d="M 730.25 656.59 H 725.17" stroke="#27856d" stroke-width=".22"/>
+<text x="730.95" y="656.89" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
+<text x="728.3100000000001" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="724.77" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 730.25 660.4 H 725.17" stroke="#27856d" stroke-width=".22"/>
+<text x="730.95" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
+<text x="728.3100000000001" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="724.77" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 730.25 664.21 H 725.17" stroke="#27856d" stroke-width=".22"/>
+<text x="730.95" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
+<text x="728.3100000000001" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="724.77" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 740.4100000000001 652.78 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="653.0799999999999" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
+<text x="742.35" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="745.89" y="652.28" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 740.4100000000001 656.59 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="656.89" font-size="0.9" text-anchor="end" fill="#213b50">GND</text>
+<text x="742.35" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="745.89" y="656.09" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 740.4100000000001 660.4 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="660.6999999999999" font-size="0.9" text-anchor="end" fill="#213b50">1Y</text>
+<text x="742.35" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="745.89" y="659.9" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_RELAY_EN</text>
+<path d="M 740.4100000000001 664.21 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="664.51" font-size="0.9" text-anchor="end" fill="#213b50">2Y</text>
+<text x="742.35" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="745.49" y="664.51" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<rect x="730.25" y="711.1999999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="735.33" y="706.1999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">Q701</text>
+<text x="735.33" y="708.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / relay coil</text>
+<path d="M 730.25 716.28 H 725.17" stroke="#27856d" stroke-width=".22"/>
+<text x="730.95" y="716.5799999999999" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
+<text x="728.3100000000001" y="715.78" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="724.77" y="715.78" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_RELAY_GATE</text>
+<path d="M 740.4100000000001 720.09 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="720.39" font-size="0.9" text-anchor="end" fill="#213b50">S</text>
+<text x="742.35" y="719.59" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="745.89" y="719.59" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 740.4100000000001 712.47 H 745.49" stroke="#27856d" stroke-width=".22"/>
+<text x="739.71" y="712.77" font-size="0.9" text-anchor="end" fill="#213b50">D</text>
+<text x="742.35" y="711.97" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="745.89" y="711.97" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_RELAY_RETURN</text>
+<rect x="676.9100000000001" y="702.58" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="679.45" y="697.58" font-size="1.05" text-anchor="middle" fill="#213b50">R801</text>
+<text x="679.45" y="700.08" font-size="1.05" text-anchor="middle" fill="#213b50">33 / relay gate</text>
+<path d="M 676.9100000000001 703.58 H 671.83" stroke="#27856d" stroke-width=".22"/>
+<text x="671.4300000000001" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_RELAY_EN</text>
+<path d="M 681.99 703.58 H 687.07" stroke="#27856d" stroke-width=".22"/>
+<text x="687.47" y="703.08" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_RELAY_GATE</text>
+<rect x="676.9100000000001" y="722.9" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="679.45" y="717.9" font-size="1.05" text-anchor="middle" fill="#213b50">R802</text>
+<text x="679.45" y="720.4" font-size="1.05" text-anchor="middle" fill="#213b50">100k / relay off</text>
+<path d="M 676.9100000000001 723.9 H 671.83" stroke="#27856d" stroke-width=".22"/>
+<text x="671.4300000000001" y="723.4" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_RELAY_GATE</text>
+<path d="M 681.99 723.9 H 687.07" stroke="#27856d" stroke-width=".22"/>
+<text x="687.47" y="723.4" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="732.7900000000001" y="754.15" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="735.33" y="749.15" font-size="1.05" text-anchor="middle" fill="#213b50">D701</text>
+<text x="735.33" y="751.65" font-size="1.05" text-anchor="middle" fill="#213b50">SS34 / relay flyback</text>
+<path d="M 732.7900000000001 755.65 H 727.71" stroke="#27856d" stroke-width=".22"/>
+<text x="733.49" y="755.9499999999999" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="730.85" y="755.15" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="727.3100000000001" y="755.15" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_RELAY_RETURN</text>
+<path d="M 737.87 755.65 H 742.95" stroke="#27856d" stroke-width=".22"/>
+<text x="737.1700000000001" y="755.9499999999999" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
+<text x="739.81" y="755.15" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="743.35" y="755.15" font-size="0.9" text-anchor="start" fill="#23745f">24V_ACT_RAW</text>
+<rect x="1032.5100000000002" y="706.12" width="15.24" height="20.32" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1040.13" y="701.12" font-size="1.05" text-anchor="middle" fill="#213b50">K701</text>
+<text x="1040.13" y="703.62" font-size="1.05" text-anchor="middle" fill="#213b50">G5RL-1A-E-TV8 DC24</text>
+<path d="M 1032.5100000000002 708.66 H 1027.43" stroke="#27856d" stroke-width=".22"/>
+<text x="1033.21" y="708.9599999999999" font-size="0.9" text-anchor="start" fill="#213b50">COIL_A</text>
+<text x="1030.57" y="708.16" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1027.03" y="708.16" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 1032.5100000000002 712.47 H 1027.43" stroke="#27856d" stroke-width=".22"/>
+<text x="1033.21" y="712.77" font-size="0.9" text-anchor="start" fill="#213b50">COIL_B</text>
+<text x="1030.57" y="711.97" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="1027.03" y="711.97" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_RELAY_RETURN</text>
+<path d="M 1032.5100000000002 720.09 H 1027.43" stroke="#27856d" stroke-width=".22"/>
+<text x="1033.21" y="720.39" font-size="0.9" text-anchor="start" fill="#213b50">COM_A</text>
+<text x="1030.57" y="719.59" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1027.03" y="719.59" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_FUSED</text>
+<path d="M 1032.5100000000002 723.9 H 1027.43" stroke="#27856d" stroke-width=".22"/>
+<text x="1033.21" y="724.1999999999999" font-size="0.9" text-anchor="start" fill="#213b50">COM_B</text>
+<text x="1030.57" y="723.4" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="1027.03" y="723.4" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_FUSED</text>
+<path d="M 1047.75 720.09 H 1052.83" stroke="#27856d" stroke-width=".22"/>
+<text x="1047.0500000000002" y="720.39" font-size="0.9" text-anchor="end" fill="#213b50">NO_A</text>
+<text x="1049.69" y="719.59" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="1053.23" y="719.59" font-size="0.9" text-anchor="start" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1047.75 723.9 H 1052.83" stroke="#27856d" stroke-width=".22"/>
+<text x="1047.0500000000002" y="724.1999999999999" font-size="0.9" text-anchor="end" fill="#213b50">NO_B</text>
+<text x="1049.69" y="723.4" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="1053.23" y="723.4" font-size="0.9" text-anchor="start" fill="#23745f">LOAD_L_ENABLED</text>
+<rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
+<text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>
+<path d="M 1042.67 792.48 H 1037.59" stroke="#27856d" stroke-width=".22"/>
+<text x="1043.3700000000001" y="792.78" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1040.73" y="791.98" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1037.1899999999998" y="791.98" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<rect x="1082.04" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1084.58" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG116</text>
+<text x="1084.58" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Mains neutral endpoint</text>
+<path d="M 1082.04 792.48 H 1076.96" stroke="#27856d" stroke-width=".22"/>
+<text x="1082.74" y="792.78" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1080.1" y="791.98" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1076.56" y="791.98" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
+<rect x="1097.28" y="808.99" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1099.82" y="803.99" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG117</text>
+<text x="1099.82" y="806.49" font-size="1.05" text-anchor="middle" fill="#213b50">Grinder DC plus endpoint pending bridge</text>
+<path d="M 1097.28 810.26 H 1092.2" stroke="#27856d" stroke-width=".22"/>
+<text x="1097.98" y="810.56" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1095.34" y="809.76" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1091.8" y="809.76" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
+<rect x="1097.28" y="820.4200000000001" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1099.82" y="815.4200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG118</text>
+<text x="1099.82" y="817.9200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">Grinder DC minus endpoint pending bridge</text>
+<path d="M 1097.28 821.69 H 1092.2" stroke="#27856d" stroke-width=".22"/>
+<text x="1097.98" y="821.99" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1095.34" y="821.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1091.8" y="821.19" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
+<rect x="1156.97" y="808.99" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1159.51" y="803.99" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG119</text>
+<text x="1159.51" y="806.49" font-size="1.05" text-anchor="middle" fill="#213b50">Pump AC A endpoint pending triac</text>
+<path d="M 1156.97 810.26 H 1151.89" stroke="#27856d" stroke-width=".22"/>
+<text x="1157.67" y="810.56" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1155.03" y="809.76" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1151.49" y="809.76" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
+<rect x="1156.97" y="820.4200000000001" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1159.51" y="815.4200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG120</text>
+<text x="1159.51" y="817.9200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">Pump AC B endpoint pending triac</text>
+<path d="M 1156.97 821.69 H 1151.89" stroke="#27856d" stroke-width=".22"/>
+<text x="1157.67" y="821.99" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="1155.03" y="821.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1151.49" y="821.19" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
+<text x="650" y="806" font-size="1.0" text-anchor="start" fill="#213b50">PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.</text>
+<text x="870" y="817" font-size="1.0" text-anchor="start" fill="#213b50">JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.</text>
+<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: optotriacs, BTA24, puente del molino, filtro EMI y huellas JP19/PE.</text>
 <text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; conectores incompletos y rutas pendientes. BOM no liberada.</text></g></svg>

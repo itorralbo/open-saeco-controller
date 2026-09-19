@@ -1,12 +1,12 @@
-# Principal Rev A.0 — núcleo lógico y alimentación de baja tensión
+# Principal Rev A.0 — lógica y alimentación integrada
 
-Existe una hoja eléctrica parcial con 138 posiciones eléctricas:
+Existe una hoja eléctrica parcial con 158 posiciones eléctricas:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
 [vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
 Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 135 huellas,
+Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 155 huellas,
 contorno y tres taladros. ERC nativo superado; la geometría actual no tiene
-infracciones DRC, pero quedan 299 conexiones sin rutear.
+infracciones DRC geométricas, pero quedan 349 conexiones sin rutear.
 
 ## Alcance implementado en el borrador
 
@@ -31,6 +31,8 @@ infracciones DRC, pero quedan 299 conexiones sin rutear.
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
 - J112 recibe 24 V DC aislados para los actuadores; F303/D304/C501 forman la
   rama protegida del motor del grupo y F304/D305 la rama separada de válvula.
+- PS701 integra la alimentación de red como módulo IRM-30-24; U303 deriva 12 V,
+  y K701 corta de forma general la fase entregada a las cargas peligrosas.
 - U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
   corriente candidato a 1 A y lectura `IPROPI` hacia el ADC del STM32.
 - PA7 gobierna la electroválvula mediante U502, Q501 y una entrada con pull-down.
@@ -222,6 +224,25 @@ U602 (SN74LVC2G08DCTR) combina `STM_NRST` con `BREW_SLEEP_RAW` y
 `VALVE_EN_INTERLOCK` a cero independientemente del software. R603/R604 mantienen
 las órdenes brutas a cero mientras el MCU arranca. Ver el [diseño y temporización
 del supervisor](../power/watchdog-interlock.md).
+
+### Fuente integrada y corte general de cargas
+
+PS701 es un Mean Well IRM-30-24 montado en la propia principal. F701 protege la
+entrada completa, F702 separa la rama de la fuente y RV701 limita sobretensiones;
+sus valores siguen provisionales hasta cerrar corriente de falta, energía del MOV
+y corriente de irrupción. J121 se entrega puenteado para alimentar `24V_ACT_RAW`
+desde PS701 y se abre antes de inyectar 24 V limitados por J112 durante el banco.
+
+U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación usa
+10 µH, 10 µF/50 V en entrada, dos condensadores de 22 µF/25 V en salida y divisor
+249 kΩ/18 kΩ con 56 pF de avance, siguiendo la tabla de 12 V del fabricante.
+
+K701 es un relé Omron G5RL-1A-E-TV8 DC24 normalmente abierto. Sus dos pads COM y
+sus dos pads NO se mantienen duplicados para repartir corriente. U603 exige a la
+vez `STM_NRST` inactivo y `MAINS_ARM_RAW`; Q701 excita la bobina y D701 absorbe su
+energía. `LOAD_L_ENABLED` será la única fase entregada a los drivers de calentador,
+bomba y molino. El dimensionado final depende aún de medir los motores y revisar
+el calentador de 1900 W.
 
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)

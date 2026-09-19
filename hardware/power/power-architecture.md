@@ -86,9 +86,11 @@ un ensamblador equivalente.
 
 ## Orden de diseño
 
-1. Incorporar JP17, JP19, JP24, JP8, JP1 y JP9 al esquema y fijar sus huellas.
-2. Elegir la fuente aislada de 24 V y cerrar el presupuesto de potencia/temperatura.
-3. Diseñar protección y filtro de entrada, conmutación del calentador y bomba y
+1. Cerrar las huellas aún pendientes de JP19, JP1 y JP9; JP17, JP24 y JP8 ya
+   están colocados en sus posiciones originales estimadas.
+2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
+   sustituir la fuente candidata IRM-30-24 ya incorporada al esquema y PCB.
+3. Cerrar los valores de fusibles/MOV/filtro y diseñar conmutación del calentador y bomba y
    puente/conmutación del molino.
 4. Extender el interlock hardware a las tres salidas peligrosas.
 5. Delimitar dominios y reglas de aislamiento en KiCad antes de continuar rutas.

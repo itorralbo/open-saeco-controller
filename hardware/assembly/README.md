@@ -42,6 +42,10 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | JP8/JP17, futuro | JST S3P-VH(LF)(SN), 3 vías/3,96 mm | [C264986](https://jlcpcb.com/partdetail/C264986) | 4.721 | 4.697 | Economic / Standard |
 | Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 2.161 | No observado | Economic / Standard; ola |
 | Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | No observado | No observado | Economic / Standard; ola |
+| Buck 24 V → 12 V | Diodes AP63200WU-7, 2 A | [C2071868](https://www.lcsc.com/product-detail/C2071868.html) | 30.090 | No observado | Categoría JLC por verificar |
+| Inductor buck 12 V | Bourns SRP7028A-100M, 10 µH/3,5 A | [C2687402](https://www.lcsc.com/product-detail/C2687402.html) | No observado | No observado | Categoría JLC por verificar |
+| Entrada buck 24 V | Samsung CL31B106KBHNNNE, 10 µF/50 V X7R | [C89632](https://jlcpcb.com/partdetail/90812-CL31B106KBHNNNE/C89632) | 231.690 | 174.742 | Economic / Standard; Extended |
+| Salida buck 12 V, 2 unidades | CCTC TCC1210X7R226K250MT, 22 µF/25 V X7R | [C49118556](https://jlcpcb.com/partdetail/CCTC-TCC1210X7R226K250MT/C49118556) | 46.369 | 42.198 | Economic / Standard; Extended |
 | Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.051 | No observado | Categoría JLC por verificar |
 | Optotriac calentador | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 11.916 | No observado | Categoría JLC por verificar |
 | Optotriac motores, candidato | Vishay VOT8125AG-V, aleatorio/800 V | C6925370 | No observado | No observado | Suministro y montaje por verificar |
@@ -84,13 +88,13 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 ## BOM de cada placa
 
 - [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  134 de 138 posiciones actuales con MPN y código; J111 es un puente de cobre
-  abierto y no requiere pieza. J116/J119/J120 aún no tienen huella ni referencia
+  150 de 158 posiciones actuales tienen MPN y código LCSC; J111 y
+  J121 son puentes de cobre y no requieren pieza. J116/J119/J120 aún no tienen huella ni referencia
   comprable. Las cabeceras de máquina
   son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
-  puente H y la válvula, y completar las etapas de red/molino. Los candidatos
-  de red ya están catalogados en este documento, pero todavía no se contabilizan
-  en la BOM hasta incorporarlos al esquema.
+  puente H y la válvula, y completar las etapas de calentador, bomba y molino.
+  La fuente IRM-30, el relé, el buck de 12 V y la protección de entrada ya se
+  contabilizan en la BOM; fusibles, MOV y tres pasivos del buck siguen abiertos.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST S8B-PH-K-S(LF)(SN) (C157915, Extended),
@@ -101,8 +105,9 @@ Los mismos campos están embebidos en los símbolos de los esquemas; el generado
 reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
 protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
   USB de servicio, telemetría de 12/24 V, el driver del motor del grupo, la etapa
-  de válvula y el watchdog con interlock hardware. **Todavía no incluye en el
-esquema** la fuente IRM-30, el relé ni los drivers de calentador, bomba o molino.
+  de válvula, la fuente IRM-30, el relé general y el watchdog con interlock
+  hardware. **Todavía no incluye en el esquema** los drivers de calentador,
+  bomba o molino.
 El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 

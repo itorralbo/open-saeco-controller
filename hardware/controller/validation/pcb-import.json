@@ -1,5 +1,5 @@
 {
-  "status": "new_footprints_staged_not_fabricable",
+  "status": "synchronized_preserving_existing_placement_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "C101": {
@@ -102,6 +102,26 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C310": {
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "C311": {
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "numbered_pads": 2
+    },
+    "C312": {
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "numbered_pads": 2
+    },
+    "C313": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C314": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "C401": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
@@ -198,6 +218,10 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D701": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "F301": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
@@ -212,6 +236,14 @@
     },
     "F304": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F701": {
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "numbered_pads": 2
+    },
+    "F702": {
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
       "numbered_pads": 2
     },
     "J101": {
@@ -282,11 +314,31 @@
       "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
       "numbered_pads": 3
     },
+    "J121": {
+      "footprint": "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm",
+      "numbered_pads": 2
+    },
+    "K701": {
+      "footprint": "OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8",
+      "numbered_pads": 6
+    },
     "L301": {
       "footprint": "Inductor_SMD:L_Bourns-SRN6028",
       "numbered_pads": 2
     },
+    "L302": {
+      "footprint": "Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm",
+      "numbered_pads": 2
+    },
+    "PS701": {
+      "footprint": "OpenSaeco:MeanWell_IRM-30_THT",
+      "numbered_pads": 4
+    },
     "Q501": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
+    },
+    "Q701": {
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "numbered_pads": 3
     },
@@ -363,6 +415,14 @@
       "numbered_pads": 2
     },
     "R301": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R302": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R303": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -506,6 +566,18 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R801": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R802": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "RV701": {
+      "footprint": "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm",
+      "numbered_pads": 2
+    },
     "U101": {
       "footprint": "Package_QFP:LQFP-64_10x10mm_P0.5mm",
       "numbered_pads": 64
@@ -526,6 +598,10 @@
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "numbered_pads": 6
     },
+    "U303": {
+      "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
+      "numbered_pads": 6
+    },
     "U501": {
       "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
       "numbered_pads": 17
@@ -541,6 +617,10 @@
     "U602": {
       "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
       "numbered_pads": 8
+    },
+    "U603": {
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "numbered_pads": 8
     }
   },
   "missing_footprints": [
@@ -548,11 +628,7 @@
     "J119",
     "J120"
   ],
-  "newly_staged_footprints": [
-    "J115",
-    "J117",
-    "J118"
-  ],
+  "newly_staged_footprints": [],
   "tracks": 46,
   "outline": true,
   "mounting_holes_preserved": [
