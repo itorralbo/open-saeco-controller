@@ -15,6 +15,7 @@ o incertidumbre, se conserva expresamente como dato pendiente.
 | JP14-CONT | 2026-09-18 / propietario | puerta/cajón | dos blancos | continuidad/modelo TBD | cajón y puerta colocados | circuito cerrado | comunicación del propietario | Estado funcional confirmado |
 | JP5-PINOUT | 2026-09-18 / propietario | caudalímetro | vista cenital, pad cuadrado a la izquierda | seguimiento visual | unidad identificada 932-9521-B | 1 señal; 2 GND; 3 VCC | comunicación del propietario + hoja Digmesa | Pinout adoptado Rev A |
 | JP22-PINOUT | 2026-09-18 / propietario | sensor de agua | arnés de tres hilos | seguimiento por color | módulo desconectado | rojo VCC; blanco señal; negro GND; VCC 3,3/5 V | comunicación del propietario + foto JP22 | Pinout adoptado Rev A; salida TBD |
+| JP3-PINOUT | 2026-09-19 / propietario | electroválvula | vista cenital, pad cuadrado=pin 1 | seguimiento de continuidad y polaridad | arnés desconectado | JP3.1→solenoide.1=+24 V; JP3.2→solenoide.2=retorno 0 V; JP3.3–5 sin uso; terminal GND del solenoide sin conectar | comunicación del propietario | Pinout adoptado Rev A; modo diodo aún TBD |
 
 Clasificar cada entrada como documento, observación, hipótesis o medida. Conservar
 datos contradictorios y bloquear decisiones dependientes hasta resolverlos.
@@ -73,10 +74,11 @@ conviene confirmar que la orientación de las huellas candidatas conserva ese
 orden al enchufar los arneses. Para JP16, comprobar si la secuencia visual del manual coincide físicamente con
 rojo motor, azul motor, negro, negro, verde, verde, rojo, rojo.
 
-Para JP3 faltan dos comprobaciones que bloquean el driver de la válvula: identificar
-las dos cavidades usadas respecto al pad cuadrado/pin 1 y medir en modo diodo en
-ambos sentidos. Una caída solo en un sentido indicaría supresión integrada y
-obligaría a conservar polaridad; dos cables negros no permiten descartarla.
+JP3 queda identificado: visto desde arriba, el pad cuadrado es el pin 1 y conduce
+al pin 1 de la electroválvula, +24 V; JP3.2 conduce al pin 2, retorno de 0 V. Las
+posiciones 3–5 no se usan y el terminal GND separado del solenoide no está conectado.
+Solo falta medir la bobina en modo diodo en ambos sentidos. Una caída en un único
+sentido indicaría supresión integrada y confirmaría que la polaridad debe conservarse.
 
 ## Plantilla para devolver resultados
 

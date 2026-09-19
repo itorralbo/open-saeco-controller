@@ -237,7 +237,8 @@ de cargas siguen pendientes en el esquema principal.
   la referencia nominal de 10 W.
 - Se documenta una [etapa low-side candidata](../hardware/power/valve-driver.md)
   con UCC27517DBVR, MOSFET SI2308A de 60 V, rueda libre y fusible propio.
-- No se incorpora al esquema: faltan las dos cavidades físicas de JP3 y una medida
-  en modo diodo en ambos sentidos para detectar supresión integrada y polaridad.
+- El propietario confirma JP3.1 (pad cuadrado) a solenoide.1/+24 V y JP3.2 a
+  solenoide.2/retorno 0 V; JP3.3–5 y el terminal GND separado quedan sin conectar.
+  Falta medir en modo diodo en ambos sentidos para detectar supresión integrada.
 - Motor y válvula sumarían unos 0,862 A resistivos; F303=1 A no se considera una
   protección común válida sin medir transitorios, arranque y temperatura.

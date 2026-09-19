@@ -10,7 +10,7 @@ derivadas se identifican como tales; no sustituyen los marcados de la unidad.
 |---|---|---|---|
 | Calentador XS4 | `421944028841` | 220–230 V AC, 1900 W; el manual especifica dos termostatos de un solo uso de 190 °C | Corriente nominal derivada: 8,26 A a 230 V y 8,64 A a 220 V. Requiere etapa y conectores de red, protección térmica independiente y dimensionado con margen |
 | Bomba | `996530007753`, ULKA EP5/S GW | 220–230 V AC, 50 Hz, 48 W, 15 bar, servicio 2 min conectado / 1 min desconectado | Corriente nominal ideal derivada: 0,21 A a 230 V; la conmutación debe admitir la carga inductiva y sus transitorios |
-| Electroválvula | `421944029371` | 24 V DC, dos vías; bobina medida 56,7 Ω | Driver low-side con rueda libre. Derivación resistiva: 0,423 A y 10,16 W a 24 V, coherente con el recambio de 10 W |
+| Electroválvula | `421944029371` | 24 V DC; JP3.1 cuadrado a solenoide.1/+24 V, JP3.2 a solenoide.2/retorno; bobina 56,7 Ω; GND separado sin conectar | Driver low-side con rueda libre. Derivación resistiva: 0,423 A y 10,16 W a 24 V, coherente con el recambio de 10 W |
 | Motor del grupo | `996530002796` / `11005214` | 24 V DC, reversible; devanado medido 54,7 Ω | Puente H con medida de corriente, frenado/estado seguro y margen para bloqueo. Límite resistivo derivado ≈0,439 A a 24 V; falta medir transitorio y variación con rotor/temperatura |
 | Motor del molino V3.2 | `421944049151` | Conjunto 220–230 V; modo de servicio a 320 V DC; devanado medido 68 Ω | Continua rectificada de red. El límite resistivo parado sería ≈4,71 A a 320 V, no corriente nominal; arranque, funcionamiento y bloqueo siguen pendientes |
 
