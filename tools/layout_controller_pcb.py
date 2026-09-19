@@ -86,12 +86,15 @@ PLACE = {
     'R801': (29, 81, 0), 'R802': (29, 86, 0), 'D701': (29, 115, 0),
     'K701': (49, 93, 0),
 
-    # STM32 reset, analog supply and local decoupling.
+    # STM32 reset, analog supply and local decoupling. Each capacitor sits at
+    # its VDD/VSS pair outside the signal escape channels planned in layout.md;
+    # route_controller_pcb.py joins the VDD pins through a ring under the body.
     'R101': (66, 61, 90), 'C101': (66, 65, 90), 'R102': (66, 69, 90),
-    'C102': (49, 56, 0), 'C103': (53, 56, 0),
-    'C104': (57, 56, 0), 'C105': (61, 56, 0),
-    'C106': (47, 75, 0), 'C107': (51, 75, 0), 'C108': (55, 75, 0),
-    'C109': (59, 75, 0), 'C110': (63, 75, 0), 'C111': (45, 65, 90),
+    'C102': (45.3, 67.6, 90), 'C103': (58.5, 73.2, 180),
+    'C104': (62.8, 60.1, 90), 'C105': (50.9, 56.6, 90),
+    'C106': (64.4, 60.1, 90), 'C107': (50.9, 73.6, 180),
+    'C108': (50.9, 76.8, 180), 'C109': (50.9, 75.2, 180),
+    'C110': (58.5, 74.8, 180), 'C111': (46.6, 61.25, 180),
 
     # ESP32 reset/boot, module supply, USB data and service-power path.
     'R201': (83, 29, 90), 'C201': (83, 33, 90), 'R202': (83, 37, 90),

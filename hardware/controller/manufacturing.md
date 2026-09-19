@@ -25,11 +25,16 @@ colocación/routing; no se declara todavía como 90 Ω controlados.
 
 | Clase | Ancho | Separación | Vía / taladro | Redes |
 |---|---:|---:|---:|---|
+| Mains | 2,50 mm | 1,20 mm* | 1,60 / 0,80 mm | L, N, fases de carga y bus del molinillo |
 | Default | 0,20 mm | 0,20 mm | 0,60 / 0,30 mm | lógica y analógicas |
 | USB | 0,20 mm | 0,20 mm | 0,60 / 0,30 mm | D+/D− de puerto, protección y dispositivo |
 | Power | 0,50 mm | 0,20 mm | 0,80 / 0,40 mm | 3,3 V, 12 V y VBUS |
 | Switching | 0,60 mm | 0,25 mm | 0,80 / 0,40 mm | nodos del buck y charge pump |
 | Actuator | 1,00 mm | 0,25 mm | 1,00 / 0,50 mm | 24 V, motor y electroválvula |
+
+\* Entre pads de red la limita el paso de 3,96 mm de los VH originales. El mismo
+script escribe `controller-core-reva.kicad_dru`, que exige 2,5 mm entre pistas de
+redes `Mains` distintas y 8 mm de separación y creepage entre `Mains` y SELV.
 
 Son valores deliberadamente más conservadores que los mínimos publicados por
 JLCPCB para cobre de 1 oz. La tabla de capacidades consultada el 2026-09-19
@@ -47,8 +52,8 @@ retorno lo permitan.
 JP8, JP24 y JP17 ya tienen huellas JST VH candidatas. Las áreas temporales de
 JP19, JP1 y JP9 bloquean ambas capas hasta identificar sus huellas. Después se
 sustituirán por conectores reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
-relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm se
-modelará como keepout en ambas capas y se revisará antes de fabricar.
+relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
+comprueba en el DRC y se revisará antes de fabricar.
 
 ## Antes de generar Gerbers
 

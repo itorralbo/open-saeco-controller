@@ -1,0 +1,13 @@
+(version 1)
+
+(rule "mains_functional_copper"
+  (condition "A.NetClass == 'Mains' && B.NetClass == 'Mains' && A.Type != 'Pad' && B.Type != 'Pad'")
+  (constraint clearance (min 2.5mm)))
+
+(rule "mains_to_selv_clearance"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'")
+  (constraint clearance (min 8.0mm)))
+
+(rule "mains_to_selv_creepage"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'")
+  (constraint creepage (min 8.0mm)))

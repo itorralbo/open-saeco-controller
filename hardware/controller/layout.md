@@ -61,19 +61,62 @@ en SELV. Las órdenes hacia las cargas de red cruzarán la frontera únicamente 
 componentes de aislamiento y ningún plano de masa la atravesará.
 
 La colocación mantiene separadas las redes conmutadas del puente H y la válvula
-de los adaptadores de NTC, caudal, nivel y contactos. Los condensadores del buck,
-los desacoplos de MCU y los componentes de carga de bomba del DRV8876 están en su
-bloque, pero su distancia final a cada pad se optimizará durante el routing.
+de los adaptadores de NTC, caudal, nivel y contactos. Los condensadores del buck
+y los componentes de carga de bomba del DRV8876 están en su bloque, pero su
+distancia final a cada pad se optimizará durante el routing.
+
+## Barrera red/SELV verificable
+
+La clase `Mains` agrupa L, N, fase tras fusibles y relé, bomba y bus del
+molinillo. `controller-core-reva.kicad_dru` exige 8 mm de separación y de
+creepage entre cualquier cobre `Mains` y cualquier red SELV, y 2,5 mm entre
+pistas de redes `Mains` distintas. La separación de clase entre pads de red se
+queda en 1,2 mm porque la fija el paso de 3,96 mm de los VH originales. Los
+pines sin uso de conectores de red y los taladros sin red no cuentan como SELV.
+
+Con la regla activa el DRC marca 95 infracciones, todas de la colocación actual:
+
+| Pieza de red | Conflicto SELV | Consecuencia |
+|---|---|---|
+| F701, F702 | U501, C501, C503 y C504, a menos de 1 mm | el corredor de red del borde derecho no cabe junto al puente H |
+| K701 | U601, U603, R601–R603, R802, R403/R404 y C401/C402 | los contactos de fase están en mitad de la zona lógica |
+| J115 | C311, C312 y J121 | el bus del molinillo toca la salida del buck de 12 V |
+
+Por tanto, no se rutea todavía ninguna red `Mains`: primero hay que recolocar
+fusibles, MOV y relé en un dominio de red contiguo y apartar de él el puente H y
+el buck de 12 V.
+
+## Routing del STM32
+
+Cada VSS baja al plano con su propia vía dentro del anillo de pads. Los VDD
+(1/64, 13, 19/20, 32 y 48) se unen mediante un anillo de 3V3 en F.Cu bajo el
+cuerpo del LQFP, y cada par VDD/VSS tiene su condensador fuera, en una esquina o
+junto al par: C105/C111 arriba a la izquierda, C102 a la izquierda, C104 con el
+bulk C106 arriba a la derecha, C103/C110 abajo a la derecha y la columna
+C107/C109/C108 de VDDA/VREF+ bajo los pines 18–20.
+
+Canales reservados para las señales:
+
+- pines 7–10 (NRST y contactos): salida horizontal a la izquierda;
+- pines 14–17 (NTC, caudal, nivel, corriente del grupo): en L escalonadas hacia
+  abajo por x = 47,2–48,7 mm;
+- pines 21–24 y 27: hacia abajo, a la derecha de la columna de VDDA;
+- pines 42–44: a la derecha;
+- pines 49–61 (SWD, watchdog, armado y BOOT0): hacia arriba.
+
+El plano GND_UI de B.Cu es provisional: cubre el lado SELV, el filler lo aparta
+8 mm de todo cobre de red y se rehará cuando se fije la frontera definitiva.
 
 ## Validación
 
 - 155/158 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
   ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
-- DRC KiCad 10.0.6: 0 infracciones geométricas/de reglas.
-- El bloque USB tiene 39 segmentos y 7 vías, sin infracciones DRC; su impedancia
-  se verificará con el stack-up real antes de fabricar.
-- 349 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- DRC KiCad 10.0.6: 95 infracciones, todas de la barrera de red/SELV descrita
+  arriba; ninguna procede del cobre ruteado ni del plano.
+- USB, alimentación y desacoplo del STM32 y plano GND provisional: 93 segmentos y
+  18 vías. La impedancia USB se verificará con el stack-up real antes de fabricar.
+- 298 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - El keepout de antena del ESP32 está libre; esta comprobación se hace mediante
   la propia regla del footprint y falló durante la primera iteración hasta mover
@@ -85,8 +128,10 @@ conectores, polaridad, puntos de medida y seguridad después del routing.
 
 ## Siguiente paso
 
-El siguiente paso es incorporar las etapas aisladas de calentador, bomba y
-molino, cerrar las huellas de JP19/JP1/JP9 y convertir la frontera de red/SELV en
-reglas y áreas de exclusión verificables. Después se podrán rutear primero la
-entrada de red y la alimentación aislada. No se generarán Gerbers mientras
-queden conexiones abiertas o la revisión de aislamiento pendiente.
+La frontera de red/SELV ya es una regla DRC. El siguiente paso es recolocar la
+parte de red en un dominio contiguo hasta dejar esa regla sin infracciones,
+reservando sitio para las etapas aisladas de calentador, bomba y molino y para
+JP19/JP1/JP9. Solo entonces se rutearán la entrada de red y la alimentación
+aislada. En paralelo pueden rutearse las señales del STM32 por los canales
+reservados. No se generarán Gerbers mientras queden conexiones abiertas o la
+revisión de aislamiento pendiente.

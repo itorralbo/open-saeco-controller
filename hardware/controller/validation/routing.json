@@ -3,17 +3,20 @@
   "routed_blocks": [
     "USB-C reversible fanout",
     "USB ESD-to-series-pair",
-    "USB series-to-ESP32"
+    "USB series-to-ESP32",
+    "STM32 VDD ring, VSS vias and decoupling",
+    "provisional SELV GND_UI plane on B.Cu"
   ],
-  "track_segments": 39,
-  "vias": 7,
+  "track_segments": 93,
+  "vias": 18,
   "remaining_blocks": [
+    "mains/SELV floorplan fix required by the 8 mm barrier rule",
     "mains input and isolated supply",
     "heater, pump and grinder",
-    "decoupling",
+    "3V3 trunk and remaining decoupling",
     "logic",
     "sensors",
     "24 V actuators",
-    "domain-specific copper fills"
+    "final domain copper fills"
   ]
 }

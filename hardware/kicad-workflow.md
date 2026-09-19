@@ -110,9 +110,12 @@ python3 tools/validate_kicad.py
 python3 tools/apply_front_panel_mechanics.py
 <python de KiCad> tools/sync_controller_pcb.py
 <python de KiCad> tools/layout_controller_pcb.py
+python3 tools/configure_controller_rules.py
+<python de KiCad> tools/route_controller_pcb.py
 <python de KiCad> tools/sync_front_panel_pcb.py
 <python de KiCad> tools/layout_front_panel_pcb.py
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb
+kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/pcb/drc.json hardware/controller/kicad/controller-core-reva.kicad_pcb
 kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/front-panel/validation/drc-staging.json hardware/front-panel/kicad/front-panel-reva.kicad_pcb
 python3 tools/export_front_panel_fab.py
 ```
