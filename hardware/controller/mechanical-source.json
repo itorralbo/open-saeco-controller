@@ -1,7 +1,7 @@
 {
   "status": "owner_accepted_rev_a_baseline",
   "accepted_on": "2026-09-17",
-  "accepted_scope": "outline and mounting holes for Rev A layout",
+  "accepted_scope": "outline, mounting holes and photo-estimated connector placement for Rev A layout",
   "source_date": "2026-09-17",
   "source_images": ["IMG_1098.HEIC", "IMG_1099.HEIC", "IMG_1100.HEIC", "IMG_1101.HEIC"],
   "coordinate_system": "component side; origin top-left; +X right; +Y down; JP21 at top-left",
@@ -14,6 +14,82 @@
     {"reference": "MH1", "x": 23.5, "y": 46.3, "diameter": 3.5},
     {"reference": "MH2", "x": 37.8, "y": 112.8, "diameter": 3.5},
     {"reference": "MH3", "x": 136.5, "y": 128.8, "diameter": 3.5}
+  ],
+  "connector_placement_method": "IMG_1098 rectified against the accepted 141.6 x 135.2 mm outline; IMG_1101 used to confirm left-edge entry direction",
+  "connector_position_uncertainty_mm": 1.5,
+  "connector_placements": [
+    {
+      "original_reference": "JP21",
+      "new_reference": "J104",
+      "function": "new front-panel link in the original front-panel zone",
+      "edge": "top",
+      "entry_direction": "top",
+      "footprint_origin_mm": [6.2, 6.5],
+      "rotation_deg": 90,
+      "note": "The new 2x8 IDC is wider than the original 2x10 Micro-MaTch envelope; its left edge is aligned to the original zone."
+    },
+    {
+      "original_reference": "JP16",
+      "new_reference": "J108",
+      "function": "brew motor and switches",
+      "edge": "left",
+      "entry_direction": "left",
+      "footprint_origin_mm": [3.0, 64.5],
+      "rotation_deg": 90
+    },
+    {
+      "original_reference": "JP14",
+      "new_reference": "J107",
+      "function": "door and drawer switch",
+      "edge": "left",
+      "entry_direction": "left",
+      "footprint_origin_mm": [3.0, 73.5],
+      "rotation_deg": 90
+    },
+    {
+      "original_reference": "JP3",
+      "new_reference": "J113",
+      "function": "24 V valve",
+      "edge": "bottom",
+      "entry_direction": "bottom",
+      "footprint_origin_mm": [3.5, 125.3],
+      "rotation_deg": 0
+    },
+    {
+      "original_reference": "JP22",
+      "new_reference": "J109",
+      "function": "water level",
+      "edge": "bottom",
+      "entry_direction": "bottom",
+      "footprint_origin_mm": [19.0, 128.2],
+      "rotation_deg": 0
+    },
+    {
+      "original_reference": "JP13",
+      "new_reference": "J105",
+      "function": "boiler NTC",
+      "edge": "bottom",
+      "entry_direction": "bottom",
+      "footprint_origin_mm": [29.0, 125.3],
+      "rotation_deg": 0
+    },
+    {
+      "original_reference": "JP5",
+      "new_reference": "J106",
+      "function": "flowmeter",
+      "edge": "bottom",
+      "entry_direction": "bottom",
+      "footprint_origin_mm": [38.5, 125.3],
+      "rotation_deg": 0
+    }
+  ],
+  "reserved_original_connector_envelopes": [
+    {"original_reference": "JP8", "function": "grinder", "center_mm": [63.0, 128.0], "size_mm": [12.0, 14.0]},
+    {"original_reference": "JP19", "function": "heater", "center_mm": [80.5, 127.0], "size_mm": [15.0, 16.0]},
+    {"original_reference": "JP24", "function": "pump", "center_mm": [93.0, 128.0], "size_mm": [8.0, 14.0]},
+    {"original_reference": "JP17", "function": "mains input", "center_mm": [110.0, 127.0], "size_mm": [12.0, 16.0]},
+    {"original_reference": "JP1", "function": "boiler protective earth", "center_mm": [121.5, 124.0], "size_mm": [5.0, 12.0]},
+    {"original_reference": "JP9", "function": "mains protective earth", "center_mm": [128.0, 124.0], "size_mm": [5.0, 12.0]}
   ],
   "hole_center_uncertainty_mm": 0.6,
   "hole_diameter_uncertainty_mm": 0.3,

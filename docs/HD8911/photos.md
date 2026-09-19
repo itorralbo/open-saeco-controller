@@ -75,6 +75,19 @@ Digmesa y el seguimiento visual aportado por el propietario, JP5 queda como
 1=señal, 2=GND, 3=VCC. En JP22 los conductores son rojo=VCC, blanco=señal y
 negro=GND; la huella se orientará para que correspondan a pines 1, 2 y 3.
 
+## Distribución mecánica de conectores
+
+La vista casi cenital IMG_1098 permite recuperar el orden y la posición con una
+incertidumbre estimada de ±1,5 mm. JP21 ocupa la esquina superior izquierda;
+JP16 y JP14 entran por el lateral izquierdo; en el borde inferior, de izquierda
+a derecha, aparecen JP3, JP22, JP13 y JP5 antes de las conexiones de potencia.
+IMG_1101 confirma que las aberturas de JP16 y JP14 miran hacia el exterior.
+
+La PCB nueva sitúa J104, J108, J107, J113, J109, J105 y J106 en esas zonas,
+respectivamente. El mapa completo, incluidos los huecos reservados de potencia,
+se mantiene en `hardware/controller/mechanical-source.json` y se renderiza como
+`hardware/controller/validation/main-connector-map.svg`.
+
 Para los tres conectores de potencia se cotejaron las fotos con el plano oficial
 de la serie [JST VH](https://www.jst-mfg.com/product/index.php?series=262):
 paso de 3,96 mm, VHR-2N de 7,86 mm y VHR-3N de 11,82 mm de ancho. Se reservan

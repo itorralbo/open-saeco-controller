@@ -1,8 +1,9 @@
-"""Apply the reviewed functional placement to the Rev A controller PCB.
+"""Apply the reviewed mechanical/functional placement to the Rev A PCB.
 
 This step does not create copper. It keeps the accepted outline and mounting
-holes, places every electrical footprint by functional block, and refuses a
-partial placement map. Run after sync_controller_pcb.py with KiCad's Python.
+holes and photo-derived harness locations, places every electrical footprint by
+functional block, and refuses a partial placement map. Run after
+sync_controller_pcb.py with KiCad's Python.
 """
 import json
 from pathlib import Path
@@ -19,16 +20,53 @@ def row(refs, x0, y, dx=3.2, rot=0):
     return {ref: (x0+i*dx, y, rot) for i, ref in enumerate(refs)}
 
 
+MECHANICAL = json.loads((BASE/'mechanical-source.json').read_text())
+HARNESS_CONNECTORS = {
+    item['new_reference']: (*item['footprint_origin_mm'], item['rotation_deg'])
+    for item in MECHANICAL['connector_placements']
+}
+
+
+def reserved_connector_keepouts(board):
+    """Keep the photographed high-power connector volumes free for later revisions."""
+    prefix = 'reserved original connector '
+    for zone in list(board.Zones()):
+        if zone.GetZoneName().startswith(prefix):
+            board.Delete(zone)
+    layers = pcb.LSET()
+    layers.AddLayer(pcb.F_Cu)
+    layers.AddLayer(pcb.B_Cu)
+    for item in MECHANICAL['reserved_original_connector_envelopes']:
+        cx, cy = item['center_mm']
+        width, height = item['size_mm']
+        x1, x2 = max(0, cx-width/2), min(MECHANICAL['outline_mm']['width'], cx+width/2)
+        y1, y2 = max(0, cy-height/2), min(MECHANICAL['outline_mm']['height'], cy+height/2)
+        zone = pcb.ZONE(board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayerSet(layers)
+        zone.SetDoNotAllowTracks(True)
+        zone.SetDoNotAllowVias(True)
+        zone.SetDoNotAllowZoneFills(True)
+        zone.SetDoNotAllowPads(True)
+        zone.SetDoNotAllowFootprints(True)
+        zone.SetZoneName(prefix+item['original_reference'])
+        poly = zone.Outline()
+        poly.NewOutline()
+        for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):
+            poly.Append(MM(x), MM(y))
+        board.Add(zone)
+
+
 # Coordinates use the accepted component-side origin in mechanical-source.json.
-# Connectors stay on board edges; their final rotations still require an arnes
-# mating check. U201 orientation 0 puts its antenna/keepout at the top edge.
+# Original harness connectors use the photo-derived positions in
+# mechanical-source.json. U201 orientation 0 puts its antenna/keepout at the top
+# edge. New service/power connectors avoid the original connector envelopes.
 PLACE = {
-    'U101': (73, 65, 0), 'U201': (55, 31, 0),
-    'J101': (92, 6, 0), 'J102': (49, 92, 0), 'J103': (7, 78, 0),
-    'J104': (5.5, 7, 0), 'J105': (5, 124, 0), 'J106': (16, 124, 0),
-    'J107': (30, 124, 0), 'J108': (107.5, 124, 0), 'J109': (42, 124, 0),
-    'J110': (20, 4.45, 180), 'J111': (21, 27, 0),
-    'J112': (135, 6, 0), 'J113': (63, 124, 0), 'J114': (96, 106, 0),
+    'U101': (73, 65, 0), 'U201': (66, 31, 0),
+    'J101': (96, 6, 0), 'J102': (49, 92, 0), 'J103': (54, 109, 90),
+    **HARNESS_CONNECTORS,
+    'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
+    'J112': (135, 6, 0), 'J114': (96, 106, 0),
 
     # STM32 reset, analog supply and local decoupling.
     'R101': (84, 61, 90), 'C101': (84, 65, 90), 'R102': (84, 69, 90),
@@ -38,8 +76,8 @@ PLACE = {
     'C109': (77, 75, 0), 'C110': (81, 75, 0), 'C111': (63, 65, 90),
 
     # ESP32 reset/boot, module supply, USB data and service-power path.
-    'R201': (76, 29, 90), 'C201': (76, 33, 90), 'R202': (76, 37, 90),
-    'C202': (68, 28, 90), 'C203': (72, 28, 90),
+    'R201': (83, 29, 90), 'C201': (83, 33, 90), 'R202': (83, 37, 90),
+    'C202': (78, 28, 90), 'C203': (81, 28, 90),
     'U203': (20, 13.5, 0), 'R221': (40, 41, 90), 'R222': (40, 44, 90),
     'R223': (15, 37, 0), 'R224': (15, 40, 0),
     'R225': (25, 13, 0), 'R226': (28, 13, 0), 'C204': (28, 17, 90),
@@ -48,20 +86,20 @@ PLACE = {
     'R211': (61, 51, 0), 'R212': (64, 51, 0),
 
     # 12 V input, 3.3 V buck and UI load switch.
-    'F301': (82, 21, 0), 'D301': (89, 21, 0), 'D302': (97, 21, 0),
-    'C301': (104, 21, 0), 'C302': (107, 25, 90), 'U301': (91, 32, 0),
-    'C303': (96, 29, 0), 'L301': (98, 34, 0),
-    'C304': (104, 32, 0), 'C305': (104, 36, 0), 'C306': (100, 39, 0),
-    'U302': (95, 46, 0), 'R301': (90, 43, 0), 'C307': (101, 49, 0),
-    'C308': (90, 48, 90), 'C309': (101, 44, 90),
+    'F301': (88, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
+    'C301': (110, 27, 0), 'C302': (113, 31, 90), 'U301': (97, 36, 0),
+    'C303': (102, 33, 0), 'L301': (104, 39, 0),
+    'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
+    'U302': (101, 51, 0), 'R301': (96, 48, 0), 'C307': (107, 54, 0),
+    'C308': (96, 53, 90), 'C309': (107, 49, 90),
 
-    # Passive sensor interfaces, directly above their edge connectors.
-    'R401': (5, 108, 90), 'R402': (8, 108, 90), 'C401': (11, 108, 90),
-    'R403': (16, 108, 90), 'R404': (19, 108, 90), 'C402': (22, 108, 90),
-    'R405': (29, 108, 90), 'R406': (32, 108, 90), 'C403': (35, 108, 90),
-    'R411': (42, 108, 90), 'C406': (45, 108, 90),
-    'R407': (103, 108, 90), 'R408': (106, 108, 90), 'C404': (109, 108, 90),
-    'R409': (112, 108, 90), 'R410': (115, 108, 90), 'C405': (118, 108, 90),
+    # Passive sensor interfaces follow the original harness connector zones.
+    'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),
+    'R403': (38, 104, 90), 'R404': (41, 104, 90), 'C402': (44, 104, 90),
+    'R405': (15, 71, 90), 'R406': (18, 71, 90), 'C403': (21, 71, 90),
+    'R411': (19, 116, 90), 'C406': (22, 116, 90),
+    'R407': (16, 52, 90), 'R408': (19, 52, 90), 'C404': (22, 52, 90),
+    'R409': (16, 59, 90), 'R410': (19, 59, 90), 'C405': (22, 59, 90),
 
     # 24 V input and brew-unit bridge.
     'R704': (112, 7, 0), 'R705': (118, 7, 0),
@@ -69,19 +107,19 @@ PLACE = {
     'F303': (108, 14, 0), 'D304': (116, 14, 0),
     'C501': (129, 21, 0), 'C502': (120, 21, 0), 'U501': (129, 43, 0),
     'C503': (136, 37, 90), 'C504': (136, 49, 90),
-    'R501': (112, 36, 0), 'R502': (118, 36, 0),
-    'R503': (112, 41, 0), 'R504': (118, 41, 0),
+    'R501': (114, 34, 0), 'R502': (119, 34, 0),
+    'R503': (114, 40, 0), 'R504': (119, 40, 0),
     'R505': (112, 46, 0), 'R506': (118, 46, 0),
     'R507': (112, 51, 0), 'R508': (118, 51, 0),
     'R509': (112, 56, 0), 'C505': (118, 56, 0),
     'R510': (112, 61, 0), 'C506': (118, 61, 0),
 
-    # Valve branch next to JP3, kept away from sensor conditioning.
-    'F304': (64, 88, 0), 'D305': (72, 88, 0), 'D306': (78, 96, 0),
-    'U502': (68, 98, 0), 'Q501': (78, 104, 0),
-    'R511': (62, 96, 0), 'R512': (62, 101, 0),
-    'R513': (72, 105, 0), 'R514': (77, 110, 0),
-    'C507': (67, 92, 0), 'C508': (71, 92, 0),
+    # Valve branch above original JP3, kept away from sensor conditioning.
+    'F304': (7, 91, 0), 'D305': (15, 91, 0), 'D306': (22, 99, 0),
+    'U502': (11, 101, 0), 'Q501': (22, 107, 0),
+    'R511': (5, 99, 0), 'R512': (5, 104, 0),
+    'R513': (16, 108, 0), 'R514': (21, 113, 0),
+    'C507': (10, 95, 0), 'C508': (14, 95, 0),
 
     # Hardware watchdog/interlock beside the STM32 and actuator commands.
     'U601': (88, 80, 0), 'U602': (98, 80, 0),
@@ -90,8 +128,8 @@ PLACE = {
     'C601': (88, 75, 0), 'C602': (98, 75, 0),
 
     # 12/24 V diagnostic dividers; high-side pairs remain near each input.
-    'R701': (100, 8, 90), 'R702': (103, 8, 90),
-    'R703': (106, 8, 90), 'C701': (109, 8, 90),
+    'R701': (100, 19, 90), 'R702': (103, 19, 90),
+    'R703': (106, 19, 90), 'C701': (109, 19, 90),
 }
 
 
@@ -113,26 +151,40 @@ def main():
         fp.Reference().SetPosition(fp.GetPosition())
 
     for item in board.GetDrawings():
-        if isinstance(item, pcb.PCB_TEXT) and item.GetText().startswith('UNROUTED COMPONENT STAGING'):
-            item.SetText('FUNCTIONAL PLACEMENT / NOT FOR FABRICATION\n'
-                         'Rev A low-voltage blocks placed; copper routing pending')
+        if isinstance(item, pcb.PCB_TEXT) and (
+                item.GetText().startswith('UNROUTED COMPONENT STAGING') or
+                item.GetText().startswith('FUNCTIONAL PLACEMENT')):
+            item.SetText('MECHANICAL CONNECTOR PLACEMENT / NOT FOR FABRICATION\n'
+                         'Original harness positions estimated from IMG_1098/1101; copper pending')
+
+    reserved_connector_keepouts(board)
 
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
     after = {fp.GetReference(): fp for fp in check.GetFootprints()}
     for ref, position in before_holes.items():
         assert after[ref].GetPosition() == position, f'Mounting hole moved: {ref}'
+    for ref, (x, y, rotation) in HARNESS_CONNECTORS.items():
+        actual = after[ref]
+        assert actual.GetPosition() == pcb.VECTOR2I(MM(x), MM(y)), f'Connector moved: {ref}'
+        assert actual.GetOrientationDegrees() == rotation, f'Connector rotated: {ref}'
     result = {
-        'status': 'functional_placement_unrouted_not_fabricable',
+        'status': 'mechanical_connector_placement_unrouted_not_fabricable',
         'kicad_version': pcb.GetBuildVersion(),
         'electrical_footprints_placed': len(PLACE),
         'mounting_holes_preserved': sorted(before_holes),
         'antenna_at_top_edge': {'reference': 'U201', 'position_mm': PLACE['U201'][:2]},
-        'connectors_on_edges': [f'J{i}' for i in range(101,115)],
+        'photo_aligned_harness_connectors': sorted(HARNESS_CONNECTORS),
+        'reserved_original_connectors': [
+            item['original_reference']
+            for item in MECHANICAL['reserved_original_connector_envelopes']
+        ],
+        'connector_position_uncertainty_mm': MECHANICAL['connector_position_uncertainty_mm'],
         'tracks': len(list(check.GetTracks())),
     }
     (BASE/'validation/placement.json').write_text(json.dumps(result, indent=2)+'\n')
-    print(f'Controller functional placement applied to {len(PLACE)} footprints; holes preserved.')
+    print(f'Controller mechanical/functional placement applied to {len(PLACE)} footprints; '
+          f'{len(HARNESS_CONNECTORS)} harness connectors and holes preserved.')
 
 
 if __name__ == '__main__':

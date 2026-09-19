@@ -60,9 +60,39 @@ y el desenfoque del canto determinan las incertidumbres indicadas.
   la colocación, pero no para garantizar que encaje el arnés rígido.
 - Radio de esquina, tolerancia de fresado y holgura necesaria en la carcasa.
 
-La geometría queda liberada para el layout Rev A. Esta aceptación cierra contorno
-y fijaciones; no libera todavía la PCB completa, porque conectores, alimentación,
-potencia, rutas y comprobaciones eléctricas siguen pendientes.
+## Posición de conectores recuperada
+
+La sustitución directa exige conservar la llegada de los mazos, por lo que se
+adopta una segunda calibración sobre IMG_1098. Se ajustó el borde de la imagen al
+rectángulo aceptado y se contrastó en IMG_1101 qué conectores entran por el
+lateral izquierdo. Las coordenadas siguientes son orígenes de huella KiCad, no
+centros de carcasa:
+
+| Conector original | Referencia Rev A | X (mm) | Y (mm) | Giro | Entrada |
+|---|---|---:|---:|---:|---|
+| JP21 | J104 | 6,2 | 6,5 | 90° | borde superior |
+| JP16 | J108 | 3,0 | 64,5 | 90° | lateral izquierdo |
+| JP14 | J107 | 3,0 | 73,5 | 90° | lateral izquierdo |
+| JP3 | J113 | 3,5 | 125,3 | 0° | borde inferior |
+| JP22 | J109 | 19,0 | 128,2 | 0° | borde inferior |
+| JP13 | J105 | 29,0 | 125,3 | 0° | borde inferior |
+| JP5 | J106 | 38,5 | 125,3 | 0° | borde inferior |
+
+La incertidumbre asignada es ±1,5 mm, suficiente para congelar el placement de
+Rev A y preparar una verificación física 1:1. Los conectores laterales de KiCad
+se orientan con la abertura hacia fuera de la placa. El mapa reproducible está en
+`hardware/controller/validation/main-connector-map.svg` y las coordenadas
+estructuradas en `hardware/controller/mechanical-source.json`.
+
+Se conservan además como zonas reservadas las posiciones de JP8, JP19, JP24,
+JP17, JP1 y JP9. Todavía no forman parte del circuito de baja tensión, pero dejar
+libre su volumen evita cerrar el camino a una revisión que sustituya también la
+etapa conectada a red.
+
+La geometría queda liberada para el layout Rev A. Esta aceptación cierra contorno,
+fijaciones y una primera posición de conectores; no libera todavía la PCB
+completa, porque alimentación, potencia, rutas y comprobaciones eléctricas siguen
+pendientes.
 
 ## Familias mecánicas que ya pueden acotarse
 

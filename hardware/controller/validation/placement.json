@@ -1,5 +1,5 @@
 {
-  "status": "functional_placement_unrouted_not_fabricable",
+  "status": "mechanical_connector_placement_unrouted_not_fabricable",
   "kicad_version": "10.0.6",
   "electrical_footprints_placed": 132,
   "mounting_holes_preserved": [
@@ -10,25 +10,27 @@
   "antenna_at_top_edge": {
     "reference": "U201",
     "position_mm": [
-      55,
+      66,
       31
     ]
   },
-  "connectors_on_edges": [
-    "J101",
-    "J102",
-    "J103",
+  "photo_aligned_harness_connectors": [
     "J104",
     "J105",
     "J106",
     "J107",
     "J108",
     "J109",
-    "J110",
-    "J111",
-    "J112",
-    "J113",
-    "J114"
+    "J113"
   ],
+  "reserved_original_connectors": [
+    "JP8",
+    "JP19",
+    "JP24",
+    "JP17",
+    "JP1",
+    "JP9"
+  ],
+  "connector_position_uncertainty_mm": 1.5,
   "tracks": 0
 }

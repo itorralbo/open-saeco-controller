@@ -311,11 +311,19 @@ de cargas siguen pendientes en el esquema principal.
 - J114 expone GND, 3,3 V, ambos rails y ambas señales ADC para comparar firmware
   y multímetro. Es una cabecera de medida, no de alimentación.
 
-## Colocación funcional de la principal, 2026-09-19
+## Colocación mecánica de conectores de la principal, 2026-09-19
 
-- `tools/layout_controller_pcb.py` asigna posición y orientación a las 132 huellas
-  eléctricas y conserva MH1–MH3. Los conectores quedan en el borde y los bloques
-  USB, lógica, sensores y actuadores ocupan zonas diferenciadas.
+- IMG_1098 se ajustó al contorno aceptado de 141,6 × 135,2 mm e IMG_1101 confirmó
+  la entrada por el lateral izquierdo. J104/J108/J107/J113/J109/J105/J106 ocupan
+  respectivamente las zonas originales de JP21/JP16/JP14/JP3/JP22/JP13/JP5,
+  con incertidumbre fotográfica asignada de ±1,5 mm.
+- `tools/layout_controller_pcb.py` consume esas coordenadas desde
+  `mechanical-source.json`, asigna posición y orientación a las 132 huellas y
+  conserva MH1–MH3. El script también comprueba que los siete conectores no se
+  desplacen al regenerar la PCB.
+- JP8, JP19, JP24, JP17, JP1 y JP9 quedan como áreas de regla reservadas: no
+  admiten huellas, pads, pistas, vías ni planos hasta incorporar la etapa de
+  potencia correspondiente. J110 queda junto a la zona del conector rojo.
 - U201 queda junto al borde superior y la zona de exclusión de su antena está
   libre. El DRC detectó las invasiones de la primera iteración y la colocación
   final registrada pasa con 0 infracciones.
