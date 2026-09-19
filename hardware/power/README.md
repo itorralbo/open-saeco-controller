@@ -10,3 +10,8 @@ sin driver.
 Faltan corrientes dinámicas, arranque, aislamiento y modos de fallo de cada carga.
 Un motor DC puede trabajar a tensión peligrosa. Fuente aislada y corte independiente
 requieren revisión. No se autoriza fabricación.
+
+Las fotos dimensionales permiten reservar JST VH acodado de 3,96 mm como familia
+candidata: S3P-VH para JP8/JP17 y S2P-VH para JP24. No se añaden todavía al
+esquema porque su identificación mecánica no resuelve la separación de red, el
+corte de seguridad ni los drivers de molino y bomba. JP19 continúa sin huella.

@@ -646,6 +646,36 @@
       "url": "https://jlcpcb.com/partdetail/C157915",
       "selection": "candidate_not_released"
     },
+    "CONN:JST_VH_2_RA": {
+      "manufacturer": "JST",
+      "mpn": "S2P-VH(LF)(SN)",
+      "lcsc": "C160355",
+      "specification": "VH, 2 circuits, 3.96mm, right-angle THT, 10A 250V; JP24 mechanical candidate",
+      "footprint": "Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "stock_observed": 4955,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "LCSC rendered product page, read-only web observation; JLCPCB assembly class not yet verified",
+      "url": "https://www.lcsc.com/product-detail/C160355.html",
+      "selection": "candidate_not_released"
+    },
+    "CONN:JST_VH_3_RA": {
+      "manufacturer": "JST",
+      "mpn": "S3P-VH(LF)(SN)",
+      "lcsc": "C264986",
+      "specification": "VH, 3 circuits, 3.96mm, right-angle THT, 10A 250V; JP8/JP17 mechanical candidate",
+      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 4721,
+      "available_order_qty_observed": 4697,
+      "stock_checked_on": "2026-09-19",
+      "stock_evidence": "JLCPCB rendered product page, read-only web observation; assembly type Wave Soldering",
+      "url": "https://jlcpcb.com/partdetail/C264986",
+      "selection": "candidate_not_released"
+    },
     "CONN:USB_C_HRO_16": {
       "manufacturer": "HRO ELECTRONICS",
       "mpn": "TYPE-C-31-M-12",

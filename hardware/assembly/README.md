@@ -38,6 +38,8 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | JP5 | JST S3B-XH-A(LF)(SN) | [C157928](https://www.lcsc.com/product-detail/C157928.html) | 139.550 | 139.550 | Economic / Standard |
 | JP16 | JST S8B-XH-A(LF)(SN) | [C157914](https://www.lcsc.com/product-detail/C157914.html) | 17.350 | 17.350 | Economic / Standard |
 | JP22 | JST S3B-PH-K(LF)(SN) | [C545716](https://www.lcsc.com/product-detail/C545716.html) | 14.715 | 14.715 | Economic / Standard |
+| JP24, futuro | JST S2P-VH(LF)(SN), 2 vías/3,96 mm | [C160355](https://www.lcsc.com/product-detail/C160355.html) | 4.955 | No observado | Categoría JLC por verificar |
+| JP8/JP17, futuro | JST S3P-VH(LF)(SN), 3 vías/3,96 mm | [C264986](https://jlcpcb.com/partdetail/C264986) | 4.721 | 4.697 | Economic / Standard |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 35.363 | 35.210 | Economic / Standard |
 | Enlace principal–frontal, 2 unidades | IDC polarizado 2×8 2,54 mm | [C7501244](https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244) | 1.643 | 1.603 | Economic / Standard |
 
@@ -93,6 +95,12 @@ USB de servicio, el driver del motor del grupo, la etapa de válvula y el watchd
 con interlock hardware. **No incluye**
 fuentes AC/DC aisladas ni drivers de calentador, bomba o molino. El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
+
+Las referencias JST VH se incorporan al catálogo para reservar una opción
+fabricable, pero todavía no aparecen en el esquema ni en la BOM de la principal.
+Las fotos y las cotas encajan; falta una prueba física de acoplamiento. Además,
+JP8 y JP17 transportan tensión peligrosa, por lo que elegir la carcasa no libera
+la arquitectura eléctrica ni el layout de esos circuitos.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados
 por suministro. Cerrar temperatura y capacitancia efectiva bajo polarización

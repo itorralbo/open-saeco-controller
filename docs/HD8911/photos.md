@@ -62,7 +62,8 @@ la cara de acoplamiento coinciden con estas familias:
 | JP3 | JST XH, 5 vías, 2,50 mm | cuerpo ≈13,2 mm y cinco cavidades |
 | JP16 | JST XH, 8 vías, 2,50 mm | cuerpo ≈20,7 mm; rojo, azul, negro×2, verde×2, rojo×2 |
 | JP22 | JST PH, 3 vías, 2,00 mm | carcasa y conductores menores que JP5; tres cavidades |
-| JP8, JP17, JP24 | potencia de paso mayor, compatible visualmente con JST VH o equivalente | carcasa, terminal y separación mayores; huella todavía pendiente |
+| JP8, JP17 | JST VH, 3 vías, 3,96 mm, candidato | dos conductores en carcasa de tres vías; la anchura fotografiada encaja con VHR-3N (11,82 mm) |
+| JP24 | JST VH, 2 vías, 3,96 mm, candidato | dos conductores; la anchura fotografiada encaja con VHR-2N (7,86 mm) |
 
 La placa de trabajo usa cabeceras JST acodadas XH para JP13, JP14, JP5 y JP16,
 y PH para JP22. Las dimensiones se cotejaron con los catálogos oficiales
@@ -73,6 +74,14 @@ candidata hasta probar físicamente una muestra. Tras la identificación del
 Digmesa y el seguimiento visual aportado por el propietario, JP5 queda como
 1=señal, 2=GND, 3=VCC. En JP22 los conductores son rojo=VCC, blanco=señal y
 negro=GND; la huella se orientará para que correspondan a pines 1, 2 y 3.
+
+Para los tres conectores de potencia se cotejaron las fotos con el plano oficial
+de la serie [JST VH](https://www.jst-mfg.com/product/index.php?series=262):
+paso de 3,96 mm, VHR-2N de 7,86 mm y VHR-3N de 11,82 mm de ancho. Se reservan
+como referencias de compra S2P-VH(LF)(SN) y S3P-VH(LF)(SN), ambas acodadas. Esta
+coincidencia dimensional no demuestra el fabricante del arnés existente; hay que
+probar una muestra y verificar la retención antes de liberar la PCB. JP19, de
+cuatro posiciones con dos cableadas, sigue sin una identificación mecánica fiable.
 
 ## Frontal, 2026-09-18
 

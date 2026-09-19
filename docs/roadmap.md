@@ -36,6 +36,8 @@ capacitivo y las corrientes de marcha, arranque y bloqueo del grupo y del molino
 El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
 base mecánica de la Rev A; ya no bloquean la colocación de la principal.
 Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.
+JP8/JP17 y JP24 tienen ya candidatos JST VH de 3 y 2 vías, respectivamente,
+pendientes solo de una prueba física de acoplamiento antes de fijar sus huellas.
 Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
 
 ## Verificaciones

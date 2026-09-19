@@ -273,3 +273,15 @@ de cargas siguen pendientes en el esquema principal.
   287 conexiones sin rutear y 3 diferencias de paridad por MH1–MH3.
 - Falta implementar PB4 en firmware y comprobar con osciloscopio arranque,
   brownout, timeout, rearme y corte efectivo de ambas cargas.
+
+## Candidatos JST VH de potencia, 2026-09-19
+
+- Las fotos con calibre de JP24 encajan con JST VHR-2N: dos vías, paso 3,96 mm
+  y 7,86 mm de ancho según el plano oficial. Se reserva S2P-VH(LF)(SN), C160355;
+  se observaron 4.955 unidades en LCSC.
+- JP8 y JP17 usan dos conductores dentro de una carcasa de tres vías cuya anchura
+  encaja con VHR-3N: 11,82 mm. Se reserva S3P-VH(LF)(SN), C264986; JLCPCB mostraba
+  4.721 unidades en stock y 4.697 disponibles para pedido.
+- Las referencias están en el catálogo pero no en el esquema ni en la BOM. La
+  liberación exige probar el arnés real, confirmar retención y cerrar el diseño
+  de alta tensión. JP19 permanece sin identificar mecánicamente.
