@@ -25,6 +25,10 @@ quedan sin ensayar y faltan calentador, bomba y molino.
 El [watchdog e interlock hardware](../hardware/power/watchdog-interlock.md) ya
 reinicia el STM32 y bloquea motor/válvula ante timeout o reset; falta implementar
 el pulso periódico en PB4 y validar la temporización real.
+La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md)
+fija dos fuentes DC externas aisladas para el banco: 12 V para lógica y 24 V para
+grupo/válvula. Permite avanzar el layout de baja tensión mientras las etapas de
+red permanecen en un bloque de potencia separado y pendiente de revisión.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión

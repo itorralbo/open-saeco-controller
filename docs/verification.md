@@ -285,3 +285,18 @@ de cargas siguen pendientes en el esquema principal.
 - Las referencias están en el catálogo pero no en el esquema ni en la BOM. La
   liberación exige probar el arnés real, confirmar retención y cerrar el diseño
   de alta tensión. JP19 permanece sin identificar mecánicamente.
+
+## Arquitectura de alimentación Rev A, 2026-09-19
+
+- Se mantienen J101=12 V y J112=24 V como dos entradas DC externas aisladas y
+  limitadas para el banco; USB puede alimentar únicamente lógica mediante el
+  puente J111, abierto por defecto.
+- Motor y válvula suman 0,862 A/20,69 W según sus resistencias medidas. El límite
+  de 1 A del puente H eleva el peor caso provisional de ambas ramas a 1,423 A;
+  se especifica una fuente de banco de al menos 1,5 A, preferiblemente 2 A para
+  margen de medida, empezando siempre con un límite inferior.
+- La carga completa de 3,3 V equivale aproximadamente a 0,65 A desde 12 V si el
+  buck entrega 2 A con una eficiencia conservadora del 85 %. Falta medir ESP32,
+  frontal y retroiluminación para validar F301 y la térmica.
+- Red, bomba, calentador y molino quedan fuera de la principal de baja tensión
+  hasta definir aislamiento, cortes independientes, protección y mecánica.

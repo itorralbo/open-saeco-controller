@@ -7,6 +7,11 @@ con el pinout confirmado. Un [watchdog e interlock hardware](watchdog-interlock.
 bloquea ambas salidas durante reset o timeout. Molino, bomba y calentador siguen
 sin driver.
 
+La [arquitectura de alimentación de Rev A](power-architecture.md) conserva
+entradas externas aisladas de 12 V y 24 V para el banco y mantiene red, bomba,
+calentador y molino fuera del dominio de baja tensión. Incluye el presupuesto
+provisional y la secuencia de puesta en marcha.
+
 Faltan corrientes dinámicas, arranque, aislamiento y modos de fallo de cada carga.
 Un motor DC puede trabajar a tensión peligrosa. Fuente aislada y corte independiente
 requieren revisión. No se autoriza fabricación.

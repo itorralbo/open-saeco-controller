@@ -54,11 +54,12 @@ red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 (SMAJ18A) limita transitorios antes del regulador.
 
 La identificación posterior de cargas confirma que el motor del grupo y la
-electroválvula necesitan 24 V DC. J112 añade de forma provisional un segundo rail
-aislado de 24 V compartido en origen por ambas ramas protegidas; J101 continúa siendo exclusivamente de 12 V
-para lógica. Esta separación permite probar el puente H con una fuente de
-laboratorio limitada sin aplicar 24 V al AP63203. Antes de congelar Rev A hay que
-decidir si se conservan dos fuentes o se deriva la lógica de un único rail de 24 V.
+electroválvula necesitan 24 V DC. J112 añade un segundo rail aislado de 24 V
+compartido en origen por ambas ramas protegidas; J101 continúa siendo
+exclusivamente de 12 V para lógica. La [decisión de alimentación de Rev A](../power/power-architecture.md)
+mantiene ambas fuentes externas para poder probar con límites independientes sin
+aplicar 24 V al AP63203. La fuente final integrada se elegirá con las medidas del
+prototipo.
 
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
 la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 µF/10 V
@@ -126,7 +127,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
-| Fuente aislada | Unificar o conservar J101 12 V y J112 24 V; definir fuente final | Espacio, temperatura, aislamiento y potencia total |
+| Fuente aislada | Medir la arquitectura Rev A de dos entradas y definir la fuente final | Espacio, temperatura, aislamiento y potencia total |
 | Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
