@@ -10,6 +10,8 @@
     "height": 135.2,
     "uncertainty": 0.15
   },
+  "board_thickness_mm": {"value": 1.6, "source": "owner measurement of the original board, 2026-09-19"},
+  "component_height_mm": {"known_clear": 35.0, "source": "original heatsink, 40 mm wide and 35 mm above the board, fits the enclosure; owner, 2026-09-19"},
   "mounting_holes": [
     {"reference": "MH1", "x": 23.5, "y": 46.3, "diameter": 3.5},
     {"reference": "MH2", "x": 37.8, "y": 112.8, "diameter": 3.5},

@@ -44150,7 +44150,38 @@
 	)
 	(zone
 		(layers "F.Cu" "B.Cu")
-		(uuid "0b5cdcdd-ce5e-4711-8c37-2ac7dd000798")
+		(uuid "1b8c524d-2b04-43c4-b408-d27a90a15535")
+		(name "pending required power connector JP19")
+		(hatch edge 0.5)
+		(connect_pads
+			(clearance 0)
+		)
+		(min_thickness 0.25)
+		(keepout
+			(tracks not_allowed)
+			(vias not_allowed)
+			(pads not_allowed)
+			(copperpour not_allowed)
+			(footprints not_allowed)
+		)
+		(placement
+			(enabled no)
+			(sheetname "")
+		)
+		(fill
+			(thermal_gap 0.5)
+			(thermal_bridge_width 0.5)
+			(island_removal_mode 0)
+		)
+		(polygon
+			(pts
+				(xy 73 119) (xy 88 119) (xy 88 135) (xy 73 135)
+			)
+		)
+	)
+	(zone
+		(layers "F.Cu" "B.Cu")
+		(uuid "46de20bc-6b18-446e-a4e4-62ca5dfe258b")
 		(name "mains/SELV barrier")
 		(hatch edge 0.5)
 		(connect_pads
@@ -44182,38 +44213,7 @@
 	)
 	(zone
 		(layers "F.Cu" "B.Cu")
-		(uuid "6e1162a5-fd8e-493d-b625-2a97bb86ccc5")
-		(name "pending required power connector JP1")
-		(hatch edge 0.5)
-		(connect_pads
-			(clearance 0)
-		)
-		(min_thickness 0.25)
-		(keepout
-			(tracks not_allowed)
-			(vias not_allowed)
-			(pads not_allowed)
-			(copperpour not_allowed)
-			(footprints not_allowed)
-		)
-		(placement
-			(enabled no)
-			(sheetname "")
-		)
-		(fill
-			(thermal_gap 0.5)
-			(thermal_bridge_width 0.5)
-			(island_removal_mode 0)
-		)
-		(polygon
-			(pts
-				(xy 119 118) (xy 124 118) (xy 124 130) (xy 119 130)
-			)
-		)
-	)
-	(zone
-		(layers "F.Cu" "B.Cu")
-		(uuid "8864fdbe-e3de-41a9-8ff0-4a37b50c1828")
+		(uuid "754700c2-76c9-4034-8d9d-c933309f3a4d")
 		(name "pending required power connector JP9")
 		(hatch edge 0.5)
 		(connect_pads
@@ -44244,8 +44244,8 @@
 	)
 	(zone
 		(layers "F.Cu" "B.Cu")
-		(uuid "b596dbfe-476e-4ab8-8905-acdeb76c2e42")
-		(name "pending required power connector JP19")
+		(uuid "7b3b9a1e-0a20-45d8-95dd-362cb3dea33a")
+		(name "pending required power connector JP1")
 		(hatch edge 0.5)
 		(connect_pads
 			(clearance 0)
@@ -44269,7 +44269,7 @@
 		)
 		(polygon
 			(pts
-				(xy 73 119) (xy 88 119) (xy 88 135) (xy 73 135)
+				(xy 119 118) (xy 124 118) (xy 124 130) (xy 119 130)
 			)
 		)
 	)

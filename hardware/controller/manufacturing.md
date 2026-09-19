@@ -2,7 +2,8 @@
 
 Estado: objetivo de diseño para routing, aún no liberado para fabricar.
 
-La principal se configura inicialmente como FR-4 de dos capas y 1,6 mm. La placa
+La principal se configura como FR-4 de dos capas y 1,6 mm, el mismo espesor
+medido en la placa original. La placa
 es grande y USB funciona a Full Speed, por lo que dos capas siguen siendo la
 opción preferida por coste y plazo. La integración de red exige partición física,
 no más capas: se mantendrán dos si la colocación permite planos SELV continuos,
@@ -57,11 +58,13 @@ comprueba en el DRC y se revisará antes de fabricar.
 
 ## Antes de generar Gerbers
 
-- Confirmar 1,6 mm/1 oz en la cotización y recalcular la geometría USB.
+- Pedir 1,6 mm (espesor de la original) y 1 oz en la cotización y recalcular la
+  geometría USB.
 - Validar con JLCPCB material, acabado, ranuras y reglas reales de separación de
   la zona de red; aumentar a cuatro capas solo si el layout demuestra que hace falta.
 - Revisar capacidad de corriente y temperatura de las pistas de 24 V con cobre,
   longitud, vías y corriente medidas, incluida la corriente de bloqueo del motor.
 - Mantener B.Cu como plano de GND, añadir cosido y revisar cada cruce que lo corte.
-- Revisar en 3D alturas, orientación de conectores y acceso al USB.
+- Revisar en 3D alturas (≤ 35 mm, cota comprobada con el disipador original),
+  orientación de conectores y acceso al USB.
 - Ejecutar ERC, DRC, paridad esquema/PCB y una prueba mecánica 1:1.

@@ -51,9 +51,11 @@ y el desenfoque del canto determinan las incertidumbres indicadas.
 
 ## Lo que estas fotos no cierran
 
-- Espesor del laminado: la vista lateral es oblicua y carece de referencia en el
-  mismo plano vertical. 1,6 mm sería una elección industrial habitual, no una medida.
-- Altura máxima de componentes y disipadores.
+- Espesor del laminado: la vista lateral no permitía medirlo. El propietario lo
+  midió el 2026-09-19 en la placa original: 1,6 mm.
+- Altura máxima de componentes: el disipador original mide 40 mm de ancho y 35 mm
+  de alto sobre la placa, así que hasta 35 mm cabe con seguridad (propietario,
+  2026-09-19). No se conoce todavía el margen por encima de esa cota.
 - Huellas de conectores: se cuentan cavidades y se distinguen familias mecánicas,
   pero el paso y las dimensiones de retención no alcanzan tolerancia de huella.
 - Posición exacta de cada conector: una estimación fotográfica sirve para preparar

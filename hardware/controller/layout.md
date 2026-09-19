@@ -90,9 +90,12 @@ molinillo junto al buck de 12 V. La recolocación actual las elimina todas.
 
 Dentro del dominio de red quedan libres, para las etapas de calentador, bomba y
 molinillo, unos 26 × 13 mm sobre J115/JP19 (x = 55–77, y = 104–117) y unos
-14 × 20 mm a la derecha del relé (x = 87–101, y = 80–100). Es poco para el
-disipador del triac del calentador (≈12 W), cuyo tamaño decidirá si esta
-distribución basta.
+14 × 20 mm a la derecha del relé (x = 87–101, y = 80–100). No cabe un
+disipador como el original, de 40 mm de ancho y 35 mm de alto. La única franja de
+esa anchura en el dominio de red es la que hay sobre los conectores de potencia
+(x = 55–101, y = 104,5–118, unos 46 × 13 mm), hoy ocupada por F701, F702 y RV701.
+Si el fondo del disipador no supera unos 12 mm, irá ahí y los fusibles y el MOV
+tendrán que cambiar de sitio o de formato.
 
 ## Routing del STM32
 

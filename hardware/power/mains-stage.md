@@ -54,7 +54,8 @@ El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
 variantes y conservar margen ante cargas inductivas. Esa unificación no libera
 la térmica: para el calentador, una caída cercana a 1,5 V a 8,3 A implica del
 orden de 12 W en el semiconductor y exige un disipador similar al de la placa
-original. Para bomba y molinillo se calculará la pérdida con corriente medida.
+original, que mide 40 mm de ancho y 35 mm de alto sobre la placa. Falta su fondo,
+su fijación y qué semiconductores lleva. Para bomba y molinillo se calculará la pérdida con corriente medida.
 
 El MOC3083 de cruce por cero se reserva al calentador. La bomba y el molinillo
 mantienen optotriac de disparo aleatorio para no cerrar prematuramente la opción
