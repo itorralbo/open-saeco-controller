@@ -112,6 +112,8 @@ def main():
                if c.findtext('footprint')}
     existing = {fp.GetReference(): fp for fp in board.GetFootprints()
                 if not fp.GetReference().startswith('MH')}
+    before_placement = {ref: (fp.GetPosition(), fp.GetOrientationDegrees())
+                        for ref, fp in existing.items()}
     assert set(existing) <= set(desired), 'Unexpected electrical footprint; preserve manual work'
     new_refs = set(desired)-set(existing)
     assert new_refs <= set(NEW_POSITIONS), f'No reviewed placement for {sorted(new_refs-set(NEW_POSITIONS))}'
@@ -121,7 +123,8 @@ def main():
         footprint = component.findtext('footprint')
         lib, _ = footprint.split(':')
         libs.add(lib)
-        if ref in existing:
+        is_new = ref not in existing
+        if not is_new:
             fp = existing[ref]
             assert fp.GetFPIDAsString() == footprint, f'Footprint changed for {ref}'
         else:
@@ -131,13 +134,13 @@ def main():
             fp.Reference().SetTextSize(pcb.VECTOR2I(pcb.FromMM(.8), pcb.FromMM(.8)))
             fp.Reference().SetTextThickness(pcb.FromMM(.12))
             board.Add(fp)
-        if ref in NEW_POSITIONS:
+        if is_new and ref in NEW_POSITIONS:
             x, y = NEW_POSITIONS[ref]
             fp.SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y)))
             fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y-3)))
-        if ref in NEW_ORIENTATIONS:
+        if is_new and ref in NEW_ORIENTATIONS:
             fp.SetOrientationDegrees(NEW_ORIENTATIONS[ref])
-        if ref in REFERENCE_POSITIONS:
+        if is_new and ref in REFERENCE_POSITIONS:
             x, y = REFERENCE_POSITIONS[ref]
             fp.Reference().SetPosition(pcb.VECTOR2I(pcb.FromMM(x), pcb.FromMM(y)))
         # Library jumpers may be marked BOM-excluded. The schematic remains the
@@ -163,7 +166,8 @@ def main():
                 pad.SetNet(node_nets[(ref, pad.GetNumber())])
 
     for item in board.GetDrawings():
-        if isinstance(item, pcb.PCB_TEXT) and item.GetText().startswith('UNROUTED COMPONENT STAGING'):
+        if (new_refs and isinstance(item, pcb.PCB_TEXT)
+                and item.GetText().startswith('UNROUTED COMPONENT STAGING')):
             item.SetText('UNROUTED COMPONENT STAGING / NOT FOR FABRICATION\n'
                          'Rev A mechanics accepted; low-voltage connectors and power staged; routing pending')
             item.SetPosition(pcb.VECTOR2I(pcb.FromMM(75), pcb.FromMM(5.5)))
@@ -174,6 +178,9 @@ def main():
     after = {fp.GetReference(): fp for fp in check.GetFootprints()}
     for ref, position in before_holes.items():
         assert after[ref].GetPosition() == position, f'Mounting hole moved: {ref}'
+    for ref, (position, orientation) in before_placement.items():
+        assert after[ref].GetPosition() == position, f'Existing footprint moved: {ref}'
+        assert after[ref].GetOrientationDegrees() == orientation, f'Existing footprint rotated: {ref}'
     for ref, component in desired.items():
         fp = after[ref]
         for pad in fp.Pads():
@@ -187,20 +194,21 @@ def main():
     missing = sorted(c.attrib['ref'] for c in xml.findall('components/comp')
                      if not c.findtext('footprint'))
     (BASE/'validation/pcb-import.json').write_text(json.dumps({
-        'status': 'unrouted_staging_not_fabricable',
+        'status': ('new_footprints_staged_not_fabricable' if new_refs else
+                   'synchronized_preserving_existing_placement_not_fabricable'),
         'kicad_version': pcb.GetBuildVersion(),
         'imported': {ref: {'footprint': c.findtext('footprint'),
                           'numbered_pads': len({p.attrib['num'] for p in c.findall('units/unit/pins/pin')})}
                      for ref, c in desired.items()},
         'missing_footprints': missing,
-        'staged_footprints': sorted(set(NEW_POSITIONS) & set(desired)),
+        'newly_staged_footprints': sorted(new_refs),
         'tracks': len(list(check.GetTracks())),
         'outline': True,
         'mounting_holes_preserved': sorted(before_holes),
         'pad_nets_verified_after_reload': True,
     }, indent=2)+'\n')
     print(f'Controller PCB synchronized: {len(desired)} electrical footprints; '
-          f'{len(set(NEW_POSITIONS) & set(desired))} reviewed footprints staged; '
+          f'{len(new_refs)} new footprints staged; '
           f'{len(missing)} connector footprints pending.')
 
 

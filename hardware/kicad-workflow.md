@@ -26,12 +26,12 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 | Principal | 132 | 132 | — |
 | Frontal | 42 | 42 | — |
 
-Las coordenadas actuales son una distribución de trabajo para seleccionar y mover
-componentes. **No representan colocación eléctrica definitiva ni dimensiones de
-la máquina.** La principal incorpora un [contorno y tres taladros aceptados para
+Las coordenadas actuales forman una [colocación funcional completa](controller/layout.md),
+todavía sujeta a ajustes de routing y acoplamiento. **No es una colocación liberada
+para fabricación.** La principal incorpora un [contorno y tres taladros aceptados para
 la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
-sigue siendo de trabajo. Los desacoplos todavía deben situarse junto a sus pines y el módulo
-ESP32 requiere resolver borde y zona libre de antena. En la principal no hay pistas,
+sigue siendo de trabajo. Los desacoplos se han agrupado con sus circuitos y el módulo
+ESP32 está en el borde con su keepout libre. En la principal no hay pistas,
 zonas de cobre ni colocación final de los conectores de máquina. El **frontal está
 colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
 limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
@@ -98,6 +98,8 @@ hace lo mismo para nuevas huellas del frontal; `tools/apply_front_panel_mechanic
 aplica su contorno sin necesitar KiCad y `tools/layout_front_panel_pcb.py` coloca y
 rutea el frontal con Freerouting (el script es la fuente del layout). También se puede usar
 «Actualizar PCB desde esquema» en KiCad conservando las posiciones revisadas.
+`tools/layout_controller_pcb.py` es la fuente reproducible de la colocación de la
+principal; el sincronizador ya no mueve huellas existentes.
 
 Desde la raíz del repositorio:
 
@@ -107,6 +109,7 @@ python3 tools/check_controller_core.py
 python3 tools/validate_kicad.py
 python3 tools/apply_front_panel_mechanics.py
 <python de KiCad> tools/sync_controller_pcb.py
+<python de KiCad> tools/layout_controller_pcb.py
 <python de KiCad> tools/sync_front_panel_pcb.py
 <python de KiCad> tools/layout_front_panel_pcb.py
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb

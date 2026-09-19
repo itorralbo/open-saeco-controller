@@ -11,8 +11,9 @@ durante reset o timeout.
 132 posiciones; 131 con MPN y código JLC/LCSC, más el puente de cobre J111, y todas con huella importada a la PCB de
 trabajo. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
-Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno y
-taladros aceptados, sin rutas y con la primera etapa de carga aún sin ensayar. El DRC no
+Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
+taladros aceptados y [colocación funcional reproducible](layout.md), todavía sin
+rutas y con la primera etapa de carga sin ensayar. El DRC no
 presenta infracciones de reglas; quedan conexiones sin rutear, caracterizar la
 salida del nivel de agua y completar las demás etapas de potencia.
 Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita

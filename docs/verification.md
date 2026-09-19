@@ -310,3 +310,15 @@ de cargas siguen pendientes en el esquema principal.
   dejando margen de diagnóstico sin depender de los diodos internos del MCU.
 - J114 expone GND, 3,3 V, ambos rails y ambas señales ADC para comparar firmware
   y multímetro. Es una cabecera de medida, no de alimentación.
+
+## Colocación funcional de la principal, 2026-09-19
+
+- `tools/layout_controller_pcb.py` asigna posición y orientación a las 132 huellas
+  eléctricas y conserva MH1–MH3. Los conectores quedan en el borde y los bloques
+  USB, lógica, sensores y actuadores ocupan zonas diferenciadas.
+- U201 queda junto al borde superior y la zona de exclusión de su antena está
+  libre. El DRC detectó las invasiones de la primera iteración y la colocación
+  final registrada pasa con 0 infracciones.
+- La PCB continúa sin cobre: 307 conexiones pendientes y tres avisos de paridad
+  por los taladros mecánicos. La colocación habilita el routing; no libera
+  fabricación.

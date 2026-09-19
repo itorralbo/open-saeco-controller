@@ -1,0 +1,34 @@
+{
+  "status": "functional_placement_unrouted_not_fabricable",
+  "kicad_version": "10.0.6",
+  "electrical_footprints_placed": 132,
+  "mounting_holes_preserved": [
+    "MH1",
+    "MH2",
+    "MH3"
+  ],
+  "antenna_at_top_edge": {
+    "reference": "U201",
+    "position_mm": [
+      55,
+      31
+    ]
+  },
+  "connectors_on_edges": [
+    "J101",
+    "J102",
+    "J103",
+    "J104",
+    "J105",
+    "J106",
+    "J107",
+    "J108",
+    "J109",
+    "J110",
+    "J111",
+    "J112",
+    "J113",
+    "J114"
+  ],
+  "tracks": 0
+}

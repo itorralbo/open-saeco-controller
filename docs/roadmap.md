@@ -31,6 +31,8 @@ grupo/válvula. Permite avanzar el layout de baja tensión mientras las etapas d
 red permanecen en un bloque de potencia separado y pendiente de revisión.
 La principal ya mide ambos rails en PA4/PA5 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
+Las 132 huellas tienen ya una [colocación funcional](../hardware/controller/layout.md)
+reproducible y con DRC limpio; el siguiente trabajo de A3 es el routing por bloques.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión
