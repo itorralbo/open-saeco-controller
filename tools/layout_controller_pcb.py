@@ -138,7 +138,7 @@ def mains_barrier_keepout(board):
 # edge. New service/power connectors avoid the original connector envelopes.
 PLACE = {
     'U101': stm(0, 0, 0), 'U201': (54, 14.2, 0),
-    'J101': (96, 6, 0), 'J102': (120, 18, 0), 'J103': (116, 18, 0),
+    'J101': (96, 6, 0), 'J102': (74.5, 31, 90), 'J103': (75, 10, 90),
     **HARNESS_CONNECTORS,
     'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
     'J118': (106.04, 121.3, 0),
@@ -161,7 +161,7 @@ PLACE = {
 
     # Phase-cut relay straddles the vertical barrier: coil pins in SELV,
     # contacts in the mains domain. Drive and flyback diode sit by the coil.
-    'U603': (32, 73, 0), 'Q701': (32, 78.5, 0),
+    'U603': (32, 73, 180), 'Q701': (32, 78.5, 0),
     'R801': (26, 71, 180), 'R802': (26, 75, 0), 'D701': (43.5, 88, 90),
     'K701': (52, 77, 180),
 
@@ -230,10 +230,13 @@ PLACE = {
     'C507': (8, 97.5, 180), 'C508': (11.5, 97.5, 0),
 
     # Hardware watchdog/interlock on the SELV side, left of the barrier.
-    'U601': (36.85, 54, 180), 'U602': (36.85, 62, 0),
-    'R601': (32.5, 59, 0), 'R602': (32.5, 61, 0),
-    'R603': (32.5, 63, 180), 'R604': (32.5, 65.5, 180),
-    'C601': (36.5, 58.6, 0), 'C602': (36.4, 65.5, 180),
+    'U601': (38, 54, 0), 'U602': (38, 62, 0),
+    # R601/R602 tuck under U601 so the channel between the chips and the
+    # capacitor column stays free for the 3V3 spine. The 1.35 mm channel west
+    # of U601/U602 is reserved for STM_NRST and is not used by this block.
+    'R601': (38, 56.8, 0), 'R602': (38, 58.8, 0),
+    'R603': (33, 61.025, 180), 'R604': (42.5, 64.5, 0),
+    'C601': (42.5, 53.05, 0), 'C602': (42.5, 61.025, 0),
 
     # 12/24 V diagnostic dividers; high-side pairs remain near each input.
     'R701': (100, 19, 90), 'R702': (103, 19, 90),

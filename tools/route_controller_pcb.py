@@ -378,6 +378,74 @@ def route_h_bridge(board):
     track(board, '/3V3_CORE', (51.375, 31.475), (51.375, 32.125), width=0.3)
 
 
+def route_watchdog_interlock(board):
+    """Supervisor, interlock gates and the K701 coil driver.
+
+    U601 watches 3V3_CORE and drives STM_NRST; U602 gates the brew and valve
+    arm lines with it; U603 gates the mains arm line and drives Q701, whose
+    drain pulls the relay coil down to the D701 flyback diode. A 3V3 spine runs
+    in the channel between the chips and the capacitor column. The 1.35 mm
+    channel west of U601/U602, between them and C501, is left empty: STM_NRST
+    and the raw STM32 arm lines claim it in the signal pass, so this block
+    leaves those pins open rather than blocking their only approach.
+    """
+    gnd, v33 = '/GND_UI', '/3V3_CORE'
+
+    # 3V3 spine: U601 VDD and MR, C601, U602 VCC and C602.
+    polyline(board, v33, [(39.138, 53.05), (40.52, 53.05), (41.275, 53.05)],
+             width=PIN_WIDTH)
+    track(board, v33, (40.52, 53.05), (40.52, 61.025), width=RING_WIDTH)
+    polyline(board, v33, [(39.85, 61.025), (40.52, 61.025), (41.275, 61.025)],
+             width=PIN_WIDTH)
+    polyline(board, v33, [(36.862, 54.95), (36.1, 55.7), (36.1, 59.75),
+                          (40.52, 59.75)], width=PIN_WIDTH)
+
+    # Watchdog input: U601 WDI to the R601 series resistor and the R602
+    # pull-down that keeps the supervisor kicked if the GPIO floats.
+    polyline(board, '/WATCHDOG_KICK', [(39.138, 54.95), (39.138, 55.9),
+                                       (38.825, 56.3), (38.825, 56.8)],
+             width=PIN_WIDTH)
+    polyline(board, '/WATCHDOG_KICK', [(38.825, 56.8), (38.825, 57.6),
+                                       (37.175, 58.4), (37.175, 58.8)],
+             width=PIN_WIDTH)
+
+    # Valve arm input and its pull-down, both east of U602.
+    polyline(board, '/VALVE_EN_RAW', [(41.675, 64.5), (41.0, 63.8),
+                                      (40.4, 62.975)], width=PIN_WIDTH)
+
+    # Every ground pin drops into the B.Cu plane on its own via.
+    for start, point in (((36.862, 54.0), (38.4, 54.0)),
+                         ((43.275, 53.05), (44.4, 53.05)),
+                         ((38.825, 58.8), (39.8, 57.9)),
+                         ((43.275, 61.025), (44.4, 61.025)),
+                         ((43.325, 64.5), (44.4, 64.5)),
+                         ((32.175, 61.025), (31.1, 61.025)),
+                         ((36.3, 62.975), (36.3, 64.6)),
+                         ((33.7, 72.025), (35.0, 72.025)),
+                         ((30.3, 72.025), (30.3, 70.6)),
+                         ((26.825, 75.0), (28.0, 75.0)),
+                         ((31.062, 79.45), (31.062, 80.8))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+    # U603 2A/2B are strapped low so its spare gate cannot arm the relay.
+    track(board, gnd, (30.3, 72.675), (30.3, 72.025), width=PIN_WIDTH)
+
+    # Relay chain: U603 1Y through the gate resistor, the off pull-down and
+    # Q701 to the K701 coil and the D701 flyback diode.
+    polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (29.0, 73.325),
+                                        (27.25, 71.0)], width=PIN_WIDTH)
+    polyline(board, '/MAINS_RELAY_GATE', [(25.175, 71.0), (25.175, 77.55),
+                                          (31.062, 77.55)], width=PIN_WIDTH)
+    polyline(board, '/MAINS_RELAY_RETURN', [(32.938, 78.5), (34.5, 78.5),
+                                            (36.5, 76.5), (40.2, 76.5),
+                                            (42.0, 74.7), (42.0, 73.25)],
+             width=0.5)
+    # West of the coil pins: the 24 V feed to K701.1 owns the east corridor.
+    polyline(board, '/MAINS_RELAY_RETURN', [(42.0, 73.25), (39.5, 74.4),
+                                            (39.5, 84.0), (43.5, 86.0)],
+             width=0.5)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -412,6 +480,7 @@ def main():
     route_mains_input(board)
     route_24v_output(board)
     route_h_bridge(board)
+    route_watchdog_interlock(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -422,7 +491,8 @@ def main():
                           'provisional SELV GND_UI plane on B.Cu',
                           'mains input: J118, F701, F702, RV701, K701 and PS701',
                           '24 V: PS701, J121 and all 24V_ACT_RAW loads',
-                          'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows'],
+                          'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',
+                          'watchdog supply, interlock gates and the K701 coil driver'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
