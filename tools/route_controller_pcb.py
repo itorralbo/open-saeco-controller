@@ -512,6 +512,77 @@ def route_valve_stage(board):
     via(board, gnd, (21.062, 109.6))
 
 
+def route_sensors(board):
+    """Harness side of the NTC, flow, water, door and brew-unit contacts.
+
+    Each input keeps its pull-up, series resistor and filter capacitor as a
+    row, with the raw harness net brought up from the connector and the
+    filtered net stopping at the capacitor. The 3V3 pull-up ends and the
+    conditioned nets to the STM32 wait for the supply and signal passes.
+    """
+    gnd = '/GND_UI'
+
+    # JP16 pins 3 and 4 are strapped: the brew-unit contact common.
+    track(board, '/BU_BRIDGE', (3.0, 59.5), (3.0, 57.0), width=PIN_WIDTH)
+
+    # Brew-unit present and working contacts (JP16 pins 6 and 8).
+    polyline(board, '/BU_PRESENT_RAW', [(3.0, 52.0), (12.0, 52.0),
+                                        (14.5, 51.175), (19.0, 51.175)],
+             width=PIN_WIDTH)
+    track(board, '/BU_PRESENT_N', (19.0, 52.825), (22.0, 52.775), width=PIN_WIDTH)
+    # The working contact climbs east of MH1 and C501 so it never crosses the
+    # present-contact row on its way to the second divider.
+    polyline(board, '/BU_WORK_RAW', [(3.0, 47.0), (18.0, 47.0), (26.5, 50.5),
+                                     (26.5, 56.5), (14.5, 56.5), (15.5, 58.175),
+                                     (19.0, 58.175)], width=PIN_WIDTH)
+    track(board, '/BU_WORK_N', (19.0, 59.825), (22.0, 59.775), width=PIN_WIDTH)
+
+    # Door contact (JP14).
+    polyline(board, '/DOOR_RAW', [(3.0, 73.5), (6.0, 73.5), (13.5, 70.175),
+                                  (18.0, 70.175)], width=PIN_WIDTH)
+    track(board, '/DOOR_CLOSED_N', (18.0, 71.825), (21.0, 71.775), width=PIN_WIDTH)
+
+    # NTC (JP13): raw net up the gap between the pull-up and the series part.
+    polyline(board, '/NTC_RAW', [(29.0, 125.3), (29.5, 124.0), (29.5, 106.5),
+                                 (30.4, 105.9), (31.0, 105.825)], width=PIN_WIDTH)
+    polyline(board, '/NTC_RAW', [(29.5, 106.5), (29.5, 103.5), (28.0, 103.5),
+                                 (28.0, 103.9)], width=PIN_WIDTH)
+    polyline(board, '/NTC_ADC', [(31.0, 104.175), (32.5, 104.8), (33.6, 105.5)],
+             width=PIN_WIDTH)
+
+    # Flow meter (JP5): the raw net clears MH2 on the east side.
+    polyline(board, '/FLOW_RAW', [(38.5, 125.3), (38.5, 122.0), (46.0, 118.0),
+                                  (46.0, 101.5), (38.0, 101.5), (38.0, 102.9)],
+             width=PIN_WIDTH)
+    polyline(board, '/FLOW_RAW', [(46.0, 106.3), (41.8, 106.0), (41.0, 105.0)],
+             width=PIN_WIDTH)
+    polyline(board, '/FLOW_TIM', [(41.0, 103.175), (42.5, 103.9), (43.5, 104.775),
+                                  (44.0, 104.775)], width=PIN_WIDTH)
+
+    # Water level (JP22): east of the valve return pair, then west to R411.
+    # West of the valve pair: the return already owns y = 121 mm eastwards.
+    polyline(board, '/WATER_RAW', [(21.0, 128.2), (21.0, 126.8), (4.75, 126.8),
+                                   (4.75, 120.0), (19.0, 120.0), (19.0, 117.0)],
+             width=PIN_WIDTH)
+    polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (20.5, 115.9),
+                                     (22.0, 116.775)], width=PIN_WIDTH)
+
+    for start, point in (((31.5, 125.3), (33.2, 125.3)),
+                         ((34.0, 104.225), (35.4, 104.225)),
+                         ((41.0, 125.3), (40.2, 122.5)),
+                         ((44.0, 103.225), (45.2, 102.6)),
+                         ((23.0, 128.2), (24.6, 127.0)),
+                         ((22.0, 115.225), (23.4, 115.225)),
+                         ((21.0, 70.225), (22.4, 70.225)),
+                         ((3.0, 71.0), (4.8, 71.0)),
+                         ((22.0, 51.225), (23.4, 51.225)),
+                         ((22.0, 58.225), (23.4, 58.225)),
+                         ((3.0, 54.5), (4.8, 54.5)),
+                         ((3.0, 49.5), (4.8, 49.5))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -548,6 +619,7 @@ def main():
     route_h_bridge(board)
     route_watchdog_interlock(board)
     route_valve_stage(board)
+    route_sensors(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -560,7 +632,8 @@ def main():
                           '24 V: PS701, J121 and all 24V_ACT_RAW loads',
                           'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',
                           'watchdog supply, interlock gates and the K701 coil driver',
-                          'valve branch: F304, D305, D306, U502, Q501 and J113'],
+                          'valve branch: F304, D305, D306, U502, Q501 and J113',
+                          'sensor harness side: NTC, flow, water, door and contacts'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
