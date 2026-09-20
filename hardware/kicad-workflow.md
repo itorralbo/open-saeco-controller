@@ -31,8 +31,10 @@ todavía sujeta a ajustes de routing y acoplamiento. **No es una colocación lib
 para fabricación.** La principal incorpora un [contorno y tres taladros aceptados para
 la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
 sigue siendo de trabajo. Los desacoplos se han agrupado con sus circuitos y el módulo
-ESP32 está en el borde con su keepout libre. En la principal está ruteado el USB
-y JP8/JP24/JP17 ya están colocados; la potencia y los planos siguen pendientes. El **frontal está
+ESP32 está en el borde con su keepout libre. En la principal están ruteados el USB, la entrada de red, los 24 V, el puente H,
+el supervisor y el relé, la válvula, los sensores y el buck de 12 V, y
+JP8/JP24/JP17 ya están colocados; la distribución de 3V3 y 12 V, las señales del
+STM32 y las etapas de calentador, bomba y molinillo siguen pendientes. El **frontal está
 colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
 limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
 seleccionadas; J105–J109 y J112–J113 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
@@ -62,7 +64,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 307 | 0 |
+| Conexiones pendientes de rutear | 155 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |

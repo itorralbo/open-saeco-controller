@@ -11,10 +11,11 @@
     "DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows",
     "watchdog supply, interlock gates and the K701 coil driver",
     "valve branch: F304, D305, D306, U502, Q501 and J113",
-    "sensor harness side: NTC, flow, water, door and contacts"
+    "sensor harness side: NTC, flow, water, door and contacts",
+    "24 V to 12 V buck: switch node, output bank and feedback"
   ],
-  "track_segments": 377,
-  "vias": 70,
+  "track_segments": 403,
+  "vias": 75,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

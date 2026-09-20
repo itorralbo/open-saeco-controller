@@ -2,7 +2,9 @@
 
 Estado: colocación mecánica de conectores y colocación funcional con la
 distribución de la placa original, dominio de red contiguo, reserva del disipador
-y barrera red/SELV comprobada por DRC; aún no fabricable. La fuente de verdad mecánica es
+y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
+interlocks, la válvula, los sensores y el buck de 12 V ya están ruteados a mano;
+aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 155 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
@@ -180,30 +182,105 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- USB, alimentación y desacoplo del STM32, entrada de red, 24 V y plano GND:
-  152 segmentos y 23 vías. La impedancia USB se verificará con el stack-up real
-  antes de fabricar.
-- 273 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 403 segmentos y 75 vías. 1 428 mm de pista en F.Cu y 211 mm en B.Cu, casi
+  todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
+  La impedancia USB se verificará con el stack-up real antes de fabricar.
+- 155 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
+- Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
+  del puente H terminan donde entrarán las señales del STM32.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
 genere conflictos de serigrafía. Se añadirán identificadores legibles de
 conectores, polaridad, puntos de medida y seguridad después del routing.
 
+## Bloques ruteados a mano
+
+El plan acordado el 2026-09-19 se ha ejecutado y ampliado. Cada bloque está
+escrito en `route_controller_pcb.py` y se comprueba con DRC completo después de
+añadirlo.
+
+### Puente H del grupo
+
+U501 se ha girado 270° y llevado al hueco que dejó J102, encima de MH1 y junto a
+JP16 (centro 35/37 mm). Debajo quedan la bomba de carga (C503/C504), el bulk
+C501 y el desacoplo C502; F303 y D304 entran en el mismo bloque. Las seis
+señales de control salen en filas de 1,6 mm hacia el este, cada pareja
+serie/pull-down unida por un salto sobre el pad de masa. OUT1 y OUT2, de 0,8 mm,
+bajan por la izquierda a x = 28 y 29,2 mm y entran en J108 a y = 62 y 64,5 mm,
+entre las filas de filtros. El pad expuesto baja al plano por cuatro vías.
+
+J102 y J103 ya no están en el hueco del puente H ni en la esquina superior
+derecha: J102 queda justo encima del STM32 (74,5/31 mm), en la salida natural de
+los pines 49–61, y J103 al lado del ESP32 (75/10 mm), cerca de sus pines de
+depuración.
+
+### Supervisor, interlocks y mando del relé
+
+R601 y R602 se han metido debajo de U601 para dejar libre el canal entre los
+integrados y la columna de condensadores; por él sube la espina de 3V3 que
+alimenta U601, C601, U602 y C602. El canal de 1,35 mm que queda al oeste de
+U601/U602, entre ellos y C501, se deja vacío a propósito: es el único acceso a
+los pines de STM_NRST y a las órdenes en bruto, y se rutea en la pasada de
+señales. Por eso este bloque deja abiertos esos pines en lugar de taparlos.
+
+U603 se ha girado 180° para que su salida mire a las resistencias de puerta. La
+cadena del relé va de U603 a R801, R802 y Q701, y de ahí a la bobina de K701 y
+al diodo D701. El retorno de bobina pasa al oeste de los pines de bobina, porque
+el corredor este lo ocupa la alimentación de 24 V de K701.1.
+
+U603 no tiene condensador de desacoplo propio en el esquema. C601 es de U601 y
+C602 de U602. Conviene añadirle uno antes de fabricar.
+
+### Válvula
+
+F304, D305, D306, U502, Q501 y sus resistencias están ruteados. El par de 24 V y
+el retorno conmutado bajan por el borde izquierdo y por y = 121 mm hasta JP3,
+de modo que la cadena de puerta no tiene que cruzarlos. La rama de 24 V baja a
+B.Cu durante 2,6 mm para pasar por debajo de la troncal de 24 V de y = 93 mm;
+el plano pierde solo esa ranura.
+
+### Sensores
+
+NTC, caudalímetro, nivel de agua, puerta y los dos contactos del grupo llegan
+desde sus conectores a sus filas de pull-up, serie y filtro. Los pines 3 y 4 de
+JP16 quedan puenteados. El contacto de trabajo sube por el este de MH1 y C501
+para no cruzar la fila del contacto de presencia. Cada condensador de filtro
+baja al plano por su propia vía.
+
+### Buck de 24 V a 12 V
+
+Nodo de conmutación corto entre U303, C313 y L302; banco de salida al otro lado
+de la bobina. Los dos condensadores 1210 comparten la columna x = 139 mm con un
+pad de masa entre medias, así que el raíl los rodea por dentro, a x = 136 mm.
+
+La pata de realimentación entre U303.1 y R302 **no** está trazada. La troncal de
+24 V rodea C310 por y = 7,3 mm para llegar a los pines de entrada del
+conmutador, y el único hueco que queda es el canal de 0,95 mm por debajo del
+integrado, entre sus pads de entrada y el nodo de conmutación. Poner ahí la
+realimentación la dejaría pegada al nodo que conmuta. El divisor necesita una
+revisión de colocación antes de trazar esa pata.
+
+## Verificación de huellas
+
+Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
+2Y en el pin 3, GND en el 4, 2A en el 5 y 2B en el 6. No coincide con el DCU de
+ocho patillas, que sería 2A en el 3, 2B en el 5 y 2Y en el 6. El símbolo del
+generador usa la asignación DCT, que es la correcta para el SN74LVC2G08DCTR
+elegido. Si alguna vez se sustituye por la variante DCU, hay que cambiar también
+el símbolo.
+
 ## Siguiente paso
 
-Plan acordado con el propietario (2026-09-19), pendiente de ejecutar:
-
-1. Llevar el puente H junto a JP16: U501 girado 270° en el hueco de J102, encima
-   de MH1 (centro aproximado 35/37 mm). Bomba de carga C503/C504 y C501 debajo;
-   resistencias de control al este, hacia el STM32. OUT1 y OUT2, de 0,8 mm, bajan
-   por la izquierda y entran en J108 a y = 62 y 64,5 mm, entre las filas de
-   filtros de J108. J108 ya lleva OUT2 en V1 y OUT1 en V2 para que no se crucen.
-2. Mover J102 y J103 a la esquina superior derecha, al sitio que deja el
-   puente H.
-3. Rutear a mano, con geometría escrita en `route_controller_pcb.py` y DRC
-   tras cada bloque: puente H, mando del relé (U603/Q701/D701), bucks de 12 V y
-   3,3 V y, después, las señales del STM32 por sus canales.
+1. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
+   pull-up, integrados y conectores, y el raíl de 12 V desde el buck hasta J101
+   y F301. Esa última cruza la troncal de 24 V y necesita decidir por dónde.
+2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
+   órdenes en bruto que esperan en el canal oeste del supervisor.
+3. Buck de 3,3 V, corte del frontal y telemetría de raíles.
+4. Revisar la colocación del divisor de realimentación del buck de 12 V.
+5. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
+   a las huellas de JP19/JP1/JP9.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de

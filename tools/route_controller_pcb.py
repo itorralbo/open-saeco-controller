@@ -583,6 +583,52 @@ def route_sensors(board):
         via(board, gnd, point)
 
 
+def route_12v_buck(board):
+    """AP63200 24 V to 12 V stage in the top-right corner.
+
+    The switch node is kept short between U303, the bootstrap capacitor and
+    L302; the output capacitors sit past the inductor and the feedback divider
+    runs back under them. The rail leaving this cluster towards J101 and F301
+    waits for the supply pass, where it has to cross the 24 V lane.
+    """
+    gnd, sw = '/GND_UI', '/BUCK12_SW'
+    out, fb = '/12V_ISO_RAW', '/BUCK12_FB'
+
+    polyline(board, sw, [(123.638, 5.0), (125.7, 5.275), (129.275, 5.0)],
+             width=0.6)
+    polyline(board, '/BUCK12_BST', [(123.638, 4.05), (124.6, 3.725),
+                                    (125.7, 3.725)], width=PIN_WIDTH)
+
+    # Output bank: the two 1210 capacitors share the x = 139 mm column with a
+    # ground pad between them, so the rail hops round their east side.
+    polyline(board, out, [(134.725, 5.0), (137.0, 5.2), (139.0, 5.475)],
+             width=0.5)
+    polyline(board, out, [(139.0, 5.475), (136.0, 7.5), (136.0, 10.5),
+                          (139.0, 11.975)], width=0.5)
+    polyline(board, out, [(139.0, 11.975), (137.0, 13.5), (129.0, 13.5),
+                          (128.225, 11.5), (128.225, 10.2)], width=0.5)
+    polyline(board, out, [(129.0, 13.5), (121.5, 13.5), (120.175, 11.6),
+                          (120.175, 10.2)], width=0.5)
+
+    # Divider chain only. The leg from U303 pin 1 to R302 is deliberately
+    # absent: the 24 V lane wraps round C310 at y = 7.3 mm to reach the input
+    # pins, so the only gap left is the 0.95 mm channel under the switcher,
+    # between its input and switch-node pads. Routing feedback there would sit
+    # it next to the switch node, so the divider needs a placement revision
+    # before this leg is drawn.
+    track(board, fb, (121.825, 10.0), (124.175, 10.0), width=PIN_WIDTH)
+    polyline(board, fb, [(124.175, 10.0), (124.175, 8.4), (129.775, 8.4),
+                         (129.775, 9.6), (129.775, 10.0)], width=PIN_WIDTH)
+
+    for start, point in (((118.975, 5.0), (118.975, 3.0)),
+                         ((123.638, 5.95), (123.638, 8.0)),
+                         ((139.0, 2.525), (136.8, 2.525)),
+                         ((139.0, 9.025), (136.8, 9.025)),
+                         ((125.825, 10.0), (125.825, 11.6))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -620,6 +666,7 @@ def main():
     route_watchdog_interlock(board)
     route_valve_stage(board)
     route_sensors(board)
+    route_12v_buck(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -633,7 +680,8 @@ def main():
                           'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',
                           'watchdog supply, interlock gates and the K701 coil driver',
                           'valve branch: F304, D305, D306, U502, Q501 and J113',
-                          'sensor harness side: NTC, flow, water, door and contacts'],
+                          'sensor harness side: NTC, flow, water, door and contacts',
+                          '24 V to 12 V buck: switch node, output bank and feedback'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
