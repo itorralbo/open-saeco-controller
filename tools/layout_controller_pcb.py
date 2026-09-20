@@ -193,7 +193,10 @@ PLACE = {
 
     # 12 V input, 3.3 V buck and UI load switch.
     'F301': (88, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
-    'C301': (110, 27, 0), 'C302': (113, 31, 90), 'U301': (97, 36, 0),
+    'C301': (110, 27, 0), 'U301': (97, 36, 0),
+    # C302 is the switcher's input HF capacitor, so it sits under the package
+    # bridging the input pins to the ground pin instead of 8 mm away by C301.
+    'C302': (97, 39, 0),
     'C303': (102, 33, 0), 'L301': (104, 39, 0),
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
     'U302': (98.5, 51, 0), 'R301': (96, 48, 0), 'C307': (95.5, 44.5, 0),
@@ -244,7 +247,9 @@ PLACE = {
     'C601': (42.5, 53.05, 0), 'C602': (42.5, 61.025, 0),
 
     # 12/24 V diagnostic dividers; high-side pairs remain near each input.
-    'R701': (100, 19, 90), 'R702': (103, 19, 90),
+    # R702 turned so the divider's mid node faces R701 and the filtered node
+    # continues east in one straight line to R703 and C701.
+    'R701': (100, 19, 90), 'R702': (103, 19, 270),
     'R703': (106, 19, 90), 'C701': (109, 19, 90),
 }
 

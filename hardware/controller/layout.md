@@ -182,10 +182,10 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 403 segmentos y 75 vías. 1 428 mm de pista en F.Cu y 211 mm en B.Cu, casi
+- 453 segmentos y 84 vías. 1 571 mm de pista en F.Cu y 214 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 154 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 128 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -265,6 +265,32 @@ cruzarse con nada, porque la troncal se mantiene a y ≥ 5 mm en todo su rodeo a
 C310. El extremo alto del divisor vuelve al pad de la bobina por una línea de
 sensado, sin corriente, pegada al borde superior.
 
+### Buck de 12 V a 3,3 V
+
+C302, el condensador de entrada de alta frecuencia, estaba a 8 mm del
+conmutador, junto al bulk C301. Se ha llevado debajo del encapsulado, puenteando
+los pines de entrada con el de masa, que es donde cierra el lazo que conmuta. La
+masa del conmutador llega al plano a través del pad de ese condensador, así que
+el lazo se cierra en cobre antes de pasar por una vía.
+
+12V_FUSED cruza por encima de D301 y 12V_PROTECTED sale por debajo, de modo que
+sobre los pads de los diodos no pasa ninguna pista ajena. La línea de sensado de
+3,3 V vuelve al pin 1 por el norte del conmutador, a y = 31,5 mm, por encima del
+nodo de conmutación y del arranque.
+
+La troncal de 24 V subía a x = 107,85 mm, justo entre la bobina y la columna de
+condensadores de salida, así que todos los enlaces de 3,3 V la cruzaban. Se ha
+llevado a la columna vacía de x = 112,5 mm, al este de esos condensadores, y
+baja a J112 por un ramal corto. Los condensadores de salida se quedan junto a la
+bobina, que es donde deben estar.
+
+La telemetría de 12 V queda ruteada: R702 girado 270° para que el nodo medio
+mire a R701 y el nodo filtrado siga en línea recta hasta R703 y C701.
+
+El corte del frontal (U302 y sus pasivos) sigue pendiente. C307, el condensador
+que fija el tiempo de subida, está a 8 mm de su pin 4: conviene acercarlo cuando
+se rutee ese bloque.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -276,12 +302,13 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
+1. Corte del frontal: U302, R301, C307, C308 y C309, con C307 acercado a su
+   pin 4.
+2. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
    pull-up, integrados y conectores, y el raíl de 12 V desde el buck hasta J101
-   y F301. Esa última cruza la troncal de 24 V y necesita decidir por dónde.
-2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
+   y F301.
+3. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Buck de 3,3 V, corte del frontal y telemetría de raíles.
 4. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
    a las huellas de JP19/JP1/JP9.
 

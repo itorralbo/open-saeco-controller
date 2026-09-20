@@ -271,9 +271,15 @@ def route_24v_output(board):
     polyline(board, internal, [(115.30, 51.65), (115.30, 49.20), (111.00, 49.20),
                                (109.15, 47.35), (109.15, 45.20)], width=ACT_WIDTH)
 
-    track(board, act, (107.85, 45.20), (107.85, 6.00), width=ACT_LANE_WIDTH)
-    polyline(board, act, [(107.85, 9.50), (114.00, 9.50), (116.025, 7.475),
-                          (116.025, 5.00)], width=ACT_LANE_WIDTH)
+    # The lane runs up the empty column at x = 112.5 mm, east of the 3.3 V
+    # output capacitors. It used to climb at x = 107.85 mm, straight between
+    # the inductor and those capacitors, where every 3.3 V link crossed it.
+    polyline(board, act, [(107.85, 45.20), (107.85, 43.6), (109.0, 43.0),
+                          (112.5, 43.0), (112.5, 9.50), (114.00, 9.50),
+                          (116.025, 7.475), (116.025, 5.00)],
+             width=ACT_LANE_WIDTH)
+    polyline(board, act, [(112.5, 11.0), (109.8, 8.0), (108.3, 6.6)],
+             width=ACT_LANE_WIDTH)
     polyline(board, act, [(116.025, 7.30), (120.20, 7.30), (121.362, 6.14)],
              width=ACT_LANE_WIDTH)
     track(board, act, (121.362, 6.14), (121.362, 5.00), width=0.5)
@@ -635,6 +641,75 @@ def route_12v_buck(board):
         via(board, gnd, point)
 
 
+def route_3v3_buck(board):
+    """AP63203 12 V to 3.3 V stage, its 12 V input side and the rail telemetry.
+
+    12V_FUSED crosses over D301 on the north side and 12V_PROTECTED leaves on
+    the south, so the diode pair never has a track running across its own pads.
+    The 3.3 V sense line back to pin 1 runs north of the switcher at
+    y = 31.5 mm, clear of the bootstrap and switch nodes below it. The UI load
+    switch around U302 is left for the next pass.
+    """
+    gnd, v33 = '/GND_UI', '/3V3_CORE'
+    v12 = '/12V_PROTECTED'
+
+    polyline(board, '/12V_FUSED', [(89.4, 27.0), (90.5, 25.8), (90.5, 24.6),
+                                   (96.5, 24.6), (97.0, 25.6), (97.0, 27.0)],
+             width=0.5)
+
+    # Protected rail: one line south of the diodes, with stubs up into each
+    # pad, and a branch down the west side into the switcher input pins.
+    polyline(board, v12, [(93.0, 27.0), (92.8, 28.6), (92.8, 37.3),
+                          (95.4, 36.95)], width=0.5)
+    track(board, v12, (95.5, 36.95), (95.5, 36.0), width=0.5)
+    track(board, v12, (92.8, 29.0), (109.05, 29.0), width=0.5)
+    track(board, v12, (101.0, 29.0), (101.0, 27.9), width=0.5)
+    track(board, v12, (109.05, 29.0), (109.05, 27.7), width=0.5)
+    polyline(board, v12, [(99.0, 29.0), (99.0, 21.5), (100.0, 20.6),
+                          (100.0, 20.2)], width=PIN_WIDTH)
+    # Input HF capacitor: straight down from the second input pin.
+    polyline(board, v12, [(95.4, 36.95), (95.7, 38.0), (96.3, 38.7)], width=0.5)
+
+    # Switch and bootstrap nodes stay short and away from the sense line.
+    polyline(board, '/SW_NODE', [(98.798, 36.0), (99.8, 36.2), (101.0, 37.0)],
+             width=0.6)
+    polyline(board, '/SW_NODE', [(102.775, 33.0), (102.775, 35.0), (102.0, 36.4)],
+             width=0.6)
+    polyline(board, '/BST_NODE', [(98.798, 35.05), (99.8, 34.2), (100.9, 33.0)],
+             width=PIN_WIDTH)
+
+    # 3.3 V: inductor down to the output bank, the HF capacitor, and the sense
+    # line round the north of U301 back to pin 1. All of it west of the lane.
+    polyline(board, v33, [(107.15, 37.0), (108.6, 36.2)], width=0.5)
+    polyline(board, v33, [(107.15, 40.5), (108.6, 41.0)], width=0.5)
+    polyline(board, v33, [(106.0, 41.8), (104.5, 42.6), (104.2, 43.6)], width=0.5)
+    polyline(board, v33, [(105.5, 37.0), (105.0, 35.5), (105.0, 31.5),
+                          (94.3, 31.5), (94.3, 35.05), (95.3, 35.05)],
+             width=PIN_WIDTH)
+
+    # 12 V rail telemetry beside the input, filtered node in one straight line.
+    polyline(board, '/RAIL_12V_DIV', [(100.0, 18.175), (100.0, 17.3),
+                                      (103.0, 17.3), (103.0, 18.175)],
+             width=PIN_WIDTH)
+    track(board, '/RAIL_12V_ADC', (103.0, 19.825), (109.0, 19.8), width=PIN_WIDTH)
+
+    # The switcher's ground pin reaches the plane through the input capacitor's
+    # own pad, so the input loop closes in copper before it reaches a via.
+    track(board, gnd, (98.138, 36.95), (98.138, 38.7), width=0.5)
+    polyline(board, gnd, [(98.0, 39.0), (99.2, 39.6)], width=0.5)
+    via(board, gnd, (99.2, 39.6))
+
+    for start, point in (((110.95, 36.0), (110.95, 33.8)),
+                         ((110.95, 41.0), (110.95, 38.5)),
+                         ((105.775, 44.0), (106.5, 45.2)),
+                         ((110.95, 27.0), (110.95, 24.5)),
+                         ((105.0, 27.0), (107.3, 27.0)),
+                         ((106.0, 18.175), (106.0, 16.8)),
+                         ((109.0, 18.225), (109.0, 16.8))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -673,6 +748,7 @@ def main():
     route_valve_stage(board)
     route_sensors(board)
     route_12v_buck(board)
+    route_3v3_buck(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -687,7 +763,8 @@ def main():
                           'watchdog supply, interlock gates and the K701 coil driver',
                           'valve branch: F304, D305, D306, U502, Q501 and J113',
                           'sensor harness side: NTC, flow, water, door and contacts',
-                          '24 V to 12 V buck: switch node, output bank and feedback'],
+                          '24 V to 12 V buck: switch node, output bank and feedback',
+                          '12 V to 3.3 V buck, its input side and the 12 V telemetry'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
