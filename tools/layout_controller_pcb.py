@@ -185,7 +185,7 @@ PLACE = {
 
     # ESP32-S3-WROOM-1U beside the USB port; its U.FL lead leaves from the top.
     # EN/BOOT, module supply, USB data and service-power path around it.
-    'R201': (42.5, 13.0, 90), 'C201': (42.5, 16.4, 90), 'R202': (66, 22, 90),
+    'R201': (42.5, 13.0, 90), 'C201': (42.5, 16.4, 90), 'R202': (66, 22, 270),
     'C202': (42.5, 6.2, 90), 'C203': (42.5, 9.6, 90),
     'U203': (34, 16, 180), 'R221': (40, 22.1, 0), 'R222': (40, 20.2, 0),
     'R223': (44, 27, 0), 'R224': (48, 27, 0),

@@ -182,10 +182,10 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 547 segmentos y 119 vías. 1 884 mm de pista en F.Cu y 288 mm en B.Cu, casi
+- 579 segmentos y 121 vías. 1 976 mm de pista en F.Cu y 294 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 85 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 75 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -338,6 +338,15 @@ se puede alcanzar por el hueco de 0,87 mm al este del encapsulado, que ya usan
 la orden de la válvula y el ramal de 3,3 V. Y el pin de reset de la cabecera
 SWD, que tendría que cruzar el enlace de desacoplo que pasa por el norte del
 microcontrolador. Ninguno de los dos impide depurar ni arrancar.
+
+### Raíl del USB de servicio
+
+VBUS baja del conector al divisor de medida, al fusible rearmable y al puente de
+alimentación de banco. El pin de VBUS del protector ESD es el central de su lado
+oeste y el par protegido sale a ambos lados de él, así que se alcanza por B.Cu
+desde el conector en vez de intentar colarlo por su propio abanico. R202 se ha
+girado 270° para que su pad de 3,3 V mire al norte y la orden de arranque del
+ESP32 salga por debajo sin cruzarlo.
 
 ## Verificación de huellas
 

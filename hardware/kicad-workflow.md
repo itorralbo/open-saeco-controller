@@ -64,7 +64,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 85 | 0 |
+| Conexiones pendientes de rutear | 75 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |

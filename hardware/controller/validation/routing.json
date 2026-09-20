@@ -17,10 +17,11 @@
     "UI load switch and the 3.3 V feed into its pocket",
     "3.3 V spine to the logic, headers and pull-ups",
     "USB and ESP32 ground pins into the plane",
-    "reset tree: MCU, pull-up, filter, SWD header and the gates"
+    "reset tree: MCU, pull-up, filter, SWD header and the gates",
+    "service-USB rail, sense divider and bench jumper"
   ],
-  "track_segments": 547,
-  "vias": 119,
+  "track_segments": 579,
+  "vias": 121,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

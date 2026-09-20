@@ -766,7 +766,7 @@ def route_3v3_distribution(board):
     for y in (6.975, 10.375, 13.825):
         track(board, v33, (43.9, y), (42.9, y), width=PIN_WIDTH)
     track(board, v33, (43.9, 7.06), (44.8, 7.06), width=PIN_WIDTH)
-    polyline(board, v33, [(64.5, 2.5), (64.5, 22.35), (65.6, 22.825)],
+    polyline(board, v33, [(64.5, 2.5), (64.5, 20.7), (65.6, 21.175)],
              width=PIN_WIDTH)
     polyline(board, v33, [(75.0, 2.5), (75.0, 9.3)], width=PIN_WIDTH)
 
@@ -828,7 +828,7 @@ def route_3v3_distribution(board):
 def route_logic_grounds(board):
     """Drop the USB and ESP32 ground pins into the B.Cu plane."""
     gnd = '/GND_UI'
-    for start, point in (((23.775, 19.0), (24.9, 19.0)),
+    for start, point in (((23.775, 19.0), (24.9, 17.8)),
                          ((23.775, 22.0), (24.9, 22.0)),
                          ((27.0, 17.175), (27.0, 15.9)),
                          ((35.798, 16.0), (37.8, 16.5)),
@@ -887,6 +887,46 @@ def route_reset_tree(board):
     # link north of the MCU.
 
 
+def route_usb_power(board):
+    """Service-USB rail: VBUS from the connector to the ESD part, the sense
+    divider, the resettable fuse and the bench-power jumper.
+
+    U203 carries VBUS on the middle pin of its west side, with the protected
+    data pair leaving on either side of it, so that pin is reached on B.Cu
+    from the connector rather than through its own fanout.
+    """
+    vbus = '/USB_VBUS'
+    polyline(board, vbus, [(33.55, 8.495), (33.55, 9.8), (31.0, 11.0),
+                           (27.0, 11.6), (25.175, 12.4), (25.175, 12.6)],
+             width=0.5)
+    via(board, vbus, (31.0, 11.0))
+    track(board, vbus, (31.0, 11.0), (31.6, 16.0), pcb.B_Cu, width=0.5)
+    via(board, vbus, (31.6, 16.0))
+    track(board, vbus, (31.6, 16.0), (32.4, 16.0), width=0.5)
+    polyline(board, vbus, [(24.9, 13.3), (21.0, 16.0), (21.0, 21.6),
+                           (21.9, 22.0)], width=0.5)
+    polyline(board, vbus, [(21.9, 22.0), (20.0, 22.5), (17.0, 22.5),
+                           (16.6, 23.4)], width=0.5)
+
+    polyline(board, '/USB_VBUS_FUSED', [(19.4, 24.0), (19.4, 26.0),
+                                        (20.35, 26.8)], width=0.5)
+    # The bench jumper's far side reaches D303 round the south of the diode.
+    polyline(board, '/USB_BENCH_ENABLE', [(21.65, 27.25), (22.5, 28.5),
+                                          (23.0, 31.3), (32.0, 31.3),
+                                          (32.0, 29.8)], width=PIN_WIDTH)
+
+    sense = '/USB_VBUS_SENSE'
+    polyline(board, sense, [(26.825, 13.0), (28.2, 14.0), (28.2, 19.5),
+                            (27.3, 18.825)], width=PIN_WIDTH)
+    polyline(board, sense, [(26.7, 18.825), (25.6, 19.8), (25.0, 20.8),
+                            (22.225, 20.8), (22.225, 19.4)], width=PIN_WIDTH)
+    polyline(board, sense, [(28.2, 19.5), (29.0, 20.5), (29.0, 25.5),
+                            (56.0, 25.5), (57.175, 24.0)], width=PIN_WIDTH)
+
+    polyline(board, '/ESP_BOOT0', [(65.525, 22.825), (64.0, 22.6),
+                                   (63.3, 22.3)], width=PIN_WIDTH)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -930,6 +970,7 @@ def main():
     route_3v3_distribution(board)
     route_logic_grounds(board)
     route_reset_tree(board)
+    route_usb_power(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -949,7 +990,8 @@ def main():
                           'UI load switch and the 3.3 V feed into its pocket',
                           '3.3 V spine to the logic, headers and pull-ups',
                           'USB and ESP32 ground pins into the plane',
-                          'reset tree: MCU, pull-up, filter, SWD header and the gates'],
+                          'reset tree: MCU, pull-up, filter, SWD header and the gates',
+                          'service-USB rail, sense divider and bench jumper'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
