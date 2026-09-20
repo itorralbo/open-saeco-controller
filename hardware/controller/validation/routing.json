@@ -13,10 +13,11 @@
     "valve branch: F304, D305, D306, U502, Q501 and J113",
     "sensor harness side: NTC, flow, water, door and contacts",
     "24 V to 12 V buck: switch node, output bank and feedback",
-    "12 V to 3.3 V buck, its input side and the 12 V telemetry"
+    "12 V to 3.3 V buck, its input side and the 12 V telemetry",
+    "UI load switch and the 3.3 V feed into its pocket"
   ],
-  "track_segments": 453,
-  "vias": 84,
+  "track_segments": 473,
+  "vias": 88,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

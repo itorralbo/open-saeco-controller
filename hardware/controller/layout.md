@@ -182,10 +182,10 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 453 segmentos y 84 vías. 1 571 mm de pista en F.Cu y 214 mm en B.Cu, casi
+- 473 segmentos y 88 vías. 1 631 mm de pista en F.Cu y 214 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 128 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 117 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -287,9 +287,14 @@ bobina, que es donde deben estar.
 La telemetría de 12 V queda ruteada: R702 girado 270° para que el nodo medio
 mire a R701 y el nodo filtrado siga en línea recta hasta R703 y C701.
 
-El corte del frontal (U302 y sus pasivos) sigue pendiente. C307, el condensador
-que fija el tiempo de subida, está a 8 mm de su pin 4: conviene acercarlo cuando
-se rutee ese bloque.
+### Corte del frontal
+
+La huella de PS701 cierra este hueco por el este a x = 101,25 mm, así que todo
+lo que estaba al este de U302 se ha pasado al oeste o al norte. C307, que fija
+el tiempo de subida, estaba a 8 mm de su pin 4 y ahora está pegado a él; C308
+desacopla la entrada junto al pin 1 y C309 sostiene la salida conmutada. El raíl
+de 3,3 V entra al hueco por y = 43 mm y baja por la columna libre de
+x = 91,6 mm, al oeste de la pila de condensadores.
 
 ## Verificación de huellas
 
@@ -302,14 +307,12 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Corte del frontal: U302, R301, C307, C308 y C309, con C307 acercado a su
-   pin 4.
-2. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
+1. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
    pull-up, integrados y conectores, y el raíl de 12 V desde el buck hasta J101
    y F301.
-3. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
+2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-4. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
+3. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
    a las huellas de JP19/JP1/JP9.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no

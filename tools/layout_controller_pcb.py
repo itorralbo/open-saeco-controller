@@ -199,8 +199,12 @@ PLACE = {
     'C302': (97, 39, 0),
     'C303': (102, 33, 0), 'L301': (104, 39, 0),
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
-    'U302': (98.5, 51, 0), 'R301': (96, 48, 0), 'C307': (95.5, 44.5, 0),
-    'C308': (94.5, 53, 90), 'C309': (99.5, 46.5, 0),
+    # UI load switch. PS701's footprint walls this pocket off at x = 101.25 mm,
+    # so everything that used to sit east of U302 moves west or north of it.
+    # C307 sets the rise time and now sits at pin 4 instead of 8 mm away, C308
+    # decouples the input right at pin 1, and C309 holds the switched output.
+    'U302': (98.5, 51, 0), 'R301': (94.5, 53.6, 0), 'C307': (98.5, 53.7, 0),
+    'C308': (94.5, 50.05, 180), 'C309': (97.5, 45.5, 0),
 
     # Passive sensor interfaces follow the original harness connector zones.
     'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),

@@ -710,6 +710,38 @@ def route_3v3_buck(board):
         via(board, gnd, point)
 
 
+def route_ui_load_switch(board):
+    """TPS22918 that gates 3.3 V to the front panel, plus its 3.3 V feed.
+
+    PS701's footprint closes this pocket off at x = 101.25 mm, so the parts sit
+    west and north of the switch and the 3.3 V rail comes in along y = 43 mm
+    and down the free column at x = 91.6 mm, west of the capacitor stack.
+    """
+    gnd, v33 = '/GND_UI', '/3V3_CORE'
+
+    polyline(board, v33, [(104.225, 44.0), (103.0, 43.0), (92.5, 43.0),
+                          (91.6, 44.0), (91.6, 53.6), (93.275, 53.6)],
+             width=0.5)
+    polyline(board, v33, [(91.6, 51.5), (95.275, 51.5), (95.275, 50.4)],
+             width=0.5)
+    track(board, v33, (95.725, 50.05), (96.9, 50.05), width=0.5)
+
+    polyline(board, '/UI_PWR_EN', [(95.275, 53.6), (96.2, 52.8), (96.9, 52.2)],
+             width=PIN_WIDTH)
+    polyline(board, '/UI_RISE', [(99.638, 52.25), (98.4, 52.4), (97.725, 53.4)],
+             width=PIN_WIDTH)
+    track(board, '/3V3_UI', (99.638, 51.0), (99.638, 50.05), width=0.5)
+    polyline(board, '/3V3_UI', [(99.638, 49.9), (99.0, 48.5), (97.5, 46.8),
+                                (96.9, 45.9)], width=0.5)
+
+    for start, point in (((93.725, 50.05), (92.6, 50.05)),
+                         ((96.9, 51.0), (96.3, 51.2)),
+                         ((99.275, 53.7), (100.4, 53.7)),
+                         ((98.275, 45.5), (99.4, 45.5))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -749,6 +781,7 @@ def main():
     route_sensors(board)
     route_12v_buck(board)
     route_3v3_buck(board)
+    route_ui_load_switch(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -764,7 +797,8 @@ def main():
                           'valve branch: F304, D305, D306, U502, Q501 and J113',
                           'sensor harness side: NTC, flow, water, door and contacts',
                           '24 V to 12 V buck: switch node, output bank and feedback',
-                          '12 V to 3.3 V buck, its input side and the 12 V telemetry'],
+                          '12 V to 3.3 V buck, its input side and the 12 V telemetry',
+                          'UI load switch and the 3.3 V feed into its pocket'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
