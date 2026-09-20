@@ -173,7 +173,10 @@ PLACE = {
     # STM32 reset, analog supply and local decoupling. Each capacitor sits at
     # its VDD/VSS pair outside the signal escape channels planned in layout.md;
     # route_controller_pcb.py joins the VDD pins through a ring under the body.
-    'R101': stm(11, -4, 90), 'C101': stm(11, 0, 90), 'R102': stm(11, 4, 90),
+    # The reset pull-up and filter moved from east of the MCU, where its NRST
+    # pin does not face, to the reset net's own corridor beside the supervisor
+    # that drives it. R102 stays: BOOT0 is an east-side pin.
+    'R101': (41.0, 48.6, 0), 'C101': (44.2, 48.6, 0), 'R102': stm(11, 4, 90),
     'C102': stm(-9.7, 2.6, 90), 'C103': stm(3.5, 8.2, 180),
     'C104': stm(7.8, -4.9, 90), 'C105': stm(-4.1, -8.4, 90),
     'C106': stm(9.4, -4.9, 90), 'C107': stm(-4.1, 8.6, 180),

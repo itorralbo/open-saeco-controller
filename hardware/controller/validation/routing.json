@@ -16,10 +16,11 @@
     "12 V to 3.3 V buck, its input side and the 12 V telemetry",
     "UI load switch and the 3.3 V feed into its pocket",
     "3.3 V spine to the logic, headers and pull-ups",
-    "USB and ESP32 ground pins into the plane"
+    "USB and ESP32 ground pins into the plane",
+    "reset tree: MCU, pull-up, filter, SWD header and the gates"
   ],
-  "track_segments": 526,
-  "vias": 109,
+  "track_segments": 547,
+  "vias": 119,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

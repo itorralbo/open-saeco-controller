@@ -182,10 +182,10 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 526 segmentos y 109 vías. 1 816 mm de pista en F.Cu y 246 mm en B.Cu, casi
+- 547 segmentos y 119 vías. 1 884 mm de pista en F.Cu y 288 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 90 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 85 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -322,6 +322,22 @@ Siguen sin alimentar los pull-up de la fila inferior (NTC y caudalímetro), J109
 y las resistencias de fallo y VREF del puente H. Los primeros necesitan cruzar
 el ramal de 24 V de la válvula, que atraviesa la placa a y = 93 mm; las
 segundas están encerradas entre las envolventes de fallo y de corriente.
+
+### Árbol de reset
+
+R101 y C101 estaban al este del STM32, pero su pin de reset es el 7, del lado
+oeste, así que la pareja se ha llevado al propio carril del reset, junto al
+supervisor que lo gobierna. El pin sale en horizontal, porque los pads del oeste
+van a 0,5 mm de paso y cualquier diagonal toca el vecino, baja a y = 50,5 mm y
+cruza hacia el oeste por debajo de los dos ramales de 24 V hasta el canal de
+1,35 mm que se había dejado libre junto a C501. De ahí alimenta U601, U602 y
+U603.
+
+Quedan dos puntos de reset abiertos. El pin 6 de U602, su segunda entrada, solo
+se puede alcanzar por el hueco de 0,87 mm al este del encapsulado, que ya usan
+la orden de la válvula y el ramal de 3,3 V. Y el pin de reset de la cabecera
+SWD, que tendría que cruzar el enlace de desacoplo que pasa por el norte del
+microcontrolador. Ninguno de los dos impide depurar ni arrancar.
 
 ## Verificación de huellas
 

@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-20T15:13:59",
+    "date": "2026-09-20T15:26:38",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -101,12 +101,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.6250 mm",
+                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.3038 mm",
                     "pos": {
-                        "x": 31.0,
-                        "y": 104.175
+                        "x": 32.5,
+                        "y": 104.8
                     },
-                    "uuid": "8ee9d1bd-a308-4f5e-bf9c-de4d56396b83"
+                    "uuid": "c49026ac-3c32-4daa-a1c3-90cea19d063c"
                 },
                 {
                     "description": "Pad 14 [/NTC_ADC] de U101 en F.Cu",
@@ -115,6 +115,29 @@
                         "y": 42.75
                     },
                     "uuid": "2dedcb86-c81c-4a4b-aadc-a405bbc9bd26"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
+                {
+                    "description": "Vía [/GND_UI] en F.Cu - B.Cu",
+                    "pos": {
+                        "x": 44.4,
+                        "y": 53.05
+                    },
+                    "uuid": "6e5c5997-e421-414b-afbe-478ea73a42a4"
+                },
+                {
+                    "description": "Pad 2 [/GND_UI] de C101 en F.Cu",
+                    "pos": {
+                        "x": 44.975,
+                        "y": 48.6
+                    },
+                    "uuid": "aaee9cfc-5f8c-4209-81a4-60e669e7f53d"
                 }
             ],
             "severity": "error",
@@ -160,7 +183,7 @@
                         "x": 70.8,
                         "y": 53.0
                     },
-                    "uuid": "5b938a31-d59c-48af-ac57-5c17a6ef6421"
+                    "uuid": "020c308f-fcdc-4795-a329-b988862b1de0"
                 }
             ],
             "severity": "error",
@@ -169,14 +192,6 @@
         {
             "description": "Missing connection between items",
             "items": [
-                {
-                    "description": "Pad 2 [/GND_UI] de C101 en F.Cu",
-                    "pos": {
-                        "x": 87.0,
-                        "y": 39.225
-                    },
-                    "uuid": "aaee9cfc-5f8c-4209-81a4-60e669e7f53d"
-                },
                 {
                     "description": "Pad 2 [/GND_UI] de R102 en F.Cu",
                     "pos": {
@@ -184,29 +199,14 @@
                         "y": 43.175
                     },
                     "uuid": "f99f49b7-c7fd-41d3-81e0-257b39a84f5b"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 2 [/GND_UI] de C101 en F.Cu",
-                    "pos": {
-                        "x": 87.0,
-                        "y": 39.225
-                    },
-                    "uuid": "aaee9cfc-5f8c-4209-81a4-60e669e7f53d"
                 },
                 {
-                    "description": "Pista [/GND_UI] en (F.Cu), longitud 1.6000 mm",
+                    "description": "Pista [/GND_UI] en (F.Cu), longitud 0.7500 mm",
                     "pos": {
-                        "x": 83.8,
-                        "y": 34.325
+                        "x": 79.25,
+                        "y": 44.3
                     },
-                    "uuid": "fa282ab6-3a2b-4f01-9d5d-ce3c6cb4b1ba"
+                    "uuid": "c1969a90-aa47-4524-b6df-a575c388a961"
                 }
             ],
             "severity": "error",
@@ -215,6 +215,14 @@
         {
             "description": "Missing connection between items",
             "items": [
+                {
+                    "description": "Pad 1 [/3V3_CORE] de R401 en F.Cu",
+                    "pos": {
+                        "x": 28.0,
+                        "y": 105.825
+                    },
+                    "uuid": "899bb32f-5b37-47f0-8256-cea16d5ce6d1"
+                },
                 {
                     "description": "Pad PTH 1 [/3V3_CORE] de J109",
                     "pos": {
@@ -222,14 +230,6 @@
                         "y": 128.199999
                     },
                     "uuid": "7137478b-c46d-4d95-afea-bf928a9cbf4a"
-                },
-                {
-                    "description": "Pad 1 [/3V3_CORE] de R401 en F.Cu",
-                    "pos": {
-                        "x": 28.0,
-                        "y": 105.825
-                    },
-                    "uuid": "899bb32f-5b37-47f0-8256-cea16d5ce6d1"
                 }
             ],
             "severity": "error",
@@ -238,44 +238,21 @@
         {
             "description": "Missing connection between items",
             "items": [
-                {
-                    "description": "Pad 1 [/3V3_CORE] de R401 en F.Cu",
-                    "pos": {
-                        "x": 28.0,
-                        "y": 105.825
-                    },
-                    "uuid": "899bb32f-5b37-47f0-8256-cea16d5ce6d1"
-                },
-                {
-                    "description": "Pad 1 [/3V3_CORE] de R403 en F.Cu",
-                    "pos": {
-                        "x": 38.0,
-                        "y": 104.825
-                    },
-                    "uuid": "4c00533e-dabc-4f80-8586-4b29342591d7"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 1 [/3V3_CORE] de R403 en F.Cu",
-                    "pos": {
-                        "x": 38.0,
-                        "y": 104.825
-                    },
-                    "uuid": "4c00533e-dabc-4f80-8586-4b29342591d7"
-                },
                 {
                     "description": "Pista [/3V3_CORE] en (F.Cu), longitud 0.7353 mm",
                     "pos": {
                         "x": 30.3,
                         "y": 75.0
                     },
-                    "uuid": "71f21c7c-b510-43e5-9bf0-8ee91c0bf950"
+                    "uuid": "009ff173-8ebd-4311-9551-7ba83db21df5"
+                },
+                {
+                    "description": "Pad 1 [/3V3_CORE] de R403 en F.Cu",
+                    "pos": {
+                        "x": 38.0,
+                        "y": 104.825
+                    },
+                    "uuid": "4c00533e-dabc-4f80-8586-4b29342591d7"
                 }
             ],
             "severity": "error",
@@ -285,13 +262,28 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad PTH 2 [/3V3_CORE] de J114",
+                    "description": "Pad 1 [/3V3_CORE] de R403 en F.Cu",
                     "pos": {
-                        "x": 50.54,
-                        "y": 40.0
+                        "x": 38.0,
+                        "y": 104.825
                     },
-                    "uuid": "dd71823c-40f7-41c9-829d-8439660489f9"
+                    "uuid": "4c00533e-dabc-4f80-8586-4b29342591d7"
                 },
+                {
+                    "description": "Pad 1 [/3V3_CORE] de R401 en F.Cu",
+                    "pos": {
+                        "x": 28.0,
+                        "y": 105.825
+                    },
+                    "uuid": "899bb32f-5b37-47f0-8256-cea16d5ce6d1"
+                }
+            ],
+            "severity": "error",
+            "type": "unconnected_items"
+        },
+        {
+            "description": "Missing connection between items",
+            "items": [
                 {
                     "description": "Pad 1 [/3V3_CORE] de R507 en F.Cu",
                     "pos": {
@@ -299,6 +291,14 @@
                         "y": 32.6
                     },
                     "uuid": "65ddbd35-b0c2-40ab-9810-1ac1dbc726f9"
+                },
+                {
+                    "description": "Pad PTH 2 [/3V3_CORE] de J114",
+                    "pos": {
+                        "x": 50.54,
+                        "y": 40.0
+                    },
+                    "uuid": "dd71823c-40f7-41c9-829d-8439660489f9"
                 }
             ],
             "severity": "error",
@@ -308,12 +308,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/3V3_CORE] de R101 en F.Cu",
+                    "description": "Pista [/3V3_CORE] en (F.Cu), longitud 3.5500 mm",
                     "pos": {
-                        "x": 87.0,
-                        "y": 36.825
+                        "x": 94.3,
+                        "y": 31.5
                     },
-                    "uuid": "fd6ca0b5-3ca2-41b0-a6bc-fe56660cd8a7"
+                    "uuid": "f94ec6b4-ff8b-451c-9172-4a4148763178"
                 },
                 {
                     "description": "Pista [/3V3_CORE] en (F.Cu), longitud 1.6000 mm",
@@ -321,7 +321,7 @@
                         "x": 83.8,
                         "y": 35.875
                     },
-                    "uuid": "73cae06a-2022-4ff0-bc7a-66319569cc41"
+                    "uuid": "8f8da144-4c7f-490f-b40d-ec72ba9f2b42"
                 }
             ],
             "severity": "error",
@@ -837,75 +837,6 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 2 [/STM_NRST] de U602 en F.Cu",
-                    "pos": {
-                        "x": 36.3,
-                        "y": 61.675
-                    },
-                    "uuid": "2a15c6c2-6b55-44c0-8c86-fae57fc85276"
-                },
-                {
-                    "description": "Pad 2 [/STM_NRST] de U603 en F.Cu",
-                    "pos": {
-                        "x": 33.7,
-                        "y": 73.325
-                    },
-                    "uuid": "c9862120-cdf7-48c3-93fd-5a46310c9c27"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 1 [/STM_NRST] de U601 en F.Cu",
-                    "pos": {
-                        "x": 36.8625,
-                        "y": 53.05
-                    },
-                    "uuid": "857edd6e-2174-4065-a567-9de5a028e1f5"
-                },
-                {
-                    "description": "Pad 2 [/STM_NRST] de U602 en F.Cu",
-                    "pos": {
-                        "x": 36.3,
-                        "y": 61.675
-                    },
-                    "uuid": "2a15c6c2-6b55-44c0-8c86-fae57fc85276"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 1 [/STM_NRST] de U601 en F.Cu",
-                    "pos": {
-                        "x": 36.8625,
-                        "y": 53.05
-                    },
-                    "uuid": "857edd6e-2174-4065-a567-9de5a028e1f5"
-                },
-                {
-                    "description": "Pad 7 [/STM_NRST] de U101 en F.Cu",
-                    "pos": {
-                        "x": 70.325,
-                        "y": 39.25
-                    },
-                    "uuid": "89b47273-409d-4f58-9267-f81fa23291e3"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
                     "description": "Pad 6 [/STM_NRST] de U602 en F.Cu",
                     "pos": {
                         "x": 39.7,
@@ -929,66 +860,20 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 7 [/STM_NRST] de U101 en F.Cu",
+                    "description": "Pad PTH 5 [/STM_NRST] de J102",
+                    "pos": {
+                        "x": 84.66,
+                        "y": 31.0
+                    },
+                    "uuid": "c4a3f7af-374b-4ec2-8686-e1e83b306a7e"
+                },
+                {
+                    "description": "Pista [/STM_NRST] en (F.Cu), longitud 4.3250 mm",
                     "pos": {
                         "x": 70.325,
                         "y": 39.25
                     },
-                    "uuid": "89b47273-409d-4f58-9267-f81fa23291e3"
-                },
-                {
-                    "description": "Pad PTH 5 [/STM_NRST] de J102",
-                    "pos": {
-                        "x": 84.66,
-                        "y": 31.0
-                    },
-                    "uuid": "c4a3f7af-374b-4ec2-8686-e1e83b306a7e"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 2 [/STM_NRST] de R101 en F.Cu",
-                    "pos": {
-                        "x": 87.0,
-                        "y": 35.175
-                    },
-                    "uuid": "65cfbe00-6ff6-4526-b829-118cee0e5519"
-                },
-                {
-                    "description": "Pad PTH 5 [/STM_NRST] de J102",
-                    "pos": {
-                        "x": 84.66,
-                        "y": 31.0
-                    },
-                    "uuid": "c4a3f7af-374b-4ec2-8686-e1e83b306a7e"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 1 [/STM_NRST] de C101 en F.Cu",
-                    "pos": {
-                        "x": 87.0,
-                        "y": 40.775
-                    },
-                    "uuid": "b39d2839-8d43-48ea-8c79-93e6c6d0fe9d"
-                },
-                {
-                    "description": "Pad 2 [/STM_NRST] de R101 en F.Cu",
-                    "pos": {
-                        "x": 87.0,
-                        "y": 35.175
-                    },
-                    "uuid": "65cfbe00-6ff6-4526-b829-118cee0e5519"
+                    "uuid": "f590bee5-40a8-4c61-ba62-0724e8c53f89"
                 }
             ],
             "severity": "error",
@@ -1021,12 +906,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/WATER_LEVEL] de C406 en F.Cu",
+                    "description": "Pista [/WATER_LEVEL] en (F.Cu), longitud 1.7366 mm",
                     "pos": {
-                        "x": 22.0,
-                        "y": 116.775
+                        "x": 20.5,
+                        "y": 115.9
                     },
-                    "uuid": "1acfe251-bb41-4b5b-a5cd-92eaf3371a86"
+                    "uuid": "17e59c53-2f5a-453e-898c-df6fb8e7be09"
                 },
                 {
                     "description": "Pad 16 [/WATER_LEVEL] de U101 en F.Cu",
@@ -1057,7 +942,7 @@
                         "x": 112.175,
                         "y": 2.2
                     },
-                    "uuid": "327172c4-f5a1-4f0f-acad-2b420887b358"
+                    "uuid": "3e3e87f5-a563-44e1-bd46-6c122b2e6962"
                 }
             ],
             "severity": "error",
@@ -1103,7 +988,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "caed0f60-4a86-4244-b5e4-b30a9b13a87c"
+                    "uuid": "f5ed6a3c-521b-4941-893e-97c74205b620"
                 }
             ],
             "severity": "error",
@@ -1164,7 +1049,7 @@
                         "x": 13.6,
                         "y": 98.6
                     },
-                    "uuid": "3d050a5f-8dbe-4989-8b14-f0993cc4f0f8"
+                    "uuid": "0ebc0f0f-8b2d-4d19-a0b3-01fc28b6c12c"
                 },
                 {
                     "description": "Pad PTH 3 [/12V_PROTECTED] de J106",
@@ -1218,7 +1103,7 @@
                         "x": 13.6,
                         "y": 96.5
                     },
-                    "uuid": "2584138c-9ba2-4bbe-90dc-29531baaba79"
+                    "uuid": "8d9a4258-f08c-4be8-abcc-7316b8d1a901"
                 }
             ],
             "severity": "error",
@@ -1233,7 +1118,7 @@
                         "x": 92.8,
                         "y": 28.6
                     },
-                    "uuid": "71efb3fa-87db-4cc8-9b8f-db2fa65d7304"
+                    "uuid": "a5bf54d7-20ec-45e6-979e-4f06d7496bb6"
                 },
                 {
                     "description": "Pad PTH 3 [/12V_PROTECTED] de J114",
@@ -1264,7 +1149,7 @@
                         "x": 95.275,
                         "y": 53.6
                     },
-                    "uuid": "1942d159-a8fe-47c2-8b61-3f2466791b6e"
+                    "uuid": "f8ec9892-a512-4b85-bd35-9421c53cd754"
                 }
             ],
             "severity": "error",
@@ -1412,12 +1297,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/BU_WORK_N] de C405 en F.Cu",
+                    "description": "Pista [/BU_WORK_N] en (F.Cu), longitud 3.0004 mm",
                     "pos": {
-                        "x": 22.0,
-                        "y": 59.775
+                        "x": 19.0,
+                        "y": 59.825
                     },
-                    "uuid": "446eaeff-d079-4a0d-90d8-430a682a2106"
+                    "uuid": "e1e5be67-aa61-4d42-85a0-8733fa3f4e62"
                 },
                 {
                     "description": "Pad 10 [/BU_WORK_N] de U101 en F.Cu",
@@ -1540,7 +1425,7 @@
                         "x": 103.0,
                         "y": 19.825
                     },
-                    "uuid": "e7ae1646-661f-4845-8981-4ac78975d153"
+                    "uuid": "65104f02-f195-4d53-a6aa-5e6bdd9e317a"
                 }
             ],
             "severity": "error",
@@ -1624,7 +1509,7 @@
                         "x": 41.675,
                         "y": 64.5
                     },
-                    "uuid": "c6b1577c-231c-437b-8fc4-bfa8514b7d37"
+                    "uuid": "e4fd132f-8abf-4ef6-b30b-12b73c9751f7"
                 },
                 {
                     "description": "Pad 24 [/VALVE_EN_RAW] de U101 en F.Cu",
@@ -1670,7 +1555,7 @@
                         "x": 18.0,
                         "y": 71.825
                     },
-                    "uuid": "66498e6d-dbf4-4c09-b1fa-3751ccf5a2dc"
+                    "uuid": "f852d255-cfd0-4733-b108-d9022e2dfe5a"
                 },
                 {
                     "description": "Pad 8 [/DOOR_CLOSED_N] de U101 en F.Cu",
@@ -1693,7 +1578,7 @@
                         "x": 19.0,
                         "y": 52.825
                     },
-                    "uuid": "2c062494-128b-42dd-b20f-1337b73e38d5"
+                    "uuid": "86ef25f8-e59a-4fe4-8498-b158094c1654"
                 },
                 {
                     "description": "Pad 9 [/BU_PRESENT_N] de U101 en F.Cu",
@@ -1724,7 +1609,7 @@
                         "x": 41.0,
                         "y": 103.175
                     },
-                    "uuid": "ffcef627-8888-4aca-b4f8-dd8fd672c733"
+                    "uuid": "80788ec4-43e9-4c99-8978-9df4a7bcadfc"
                 }
             ],
             "severity": "error",
@@ -1885,7 +1770,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "ecc2b46f-38ef-4739-a652-32519810a610"
+                    "uuid": "0589f5c4-621c-4443-bce1-fdfe20ef22fe"
                 }
             ],
             "severity": "error",
@@ -1995,12 +1880,12 @@
                     "uuid": "defe0f0b-33cd-49eb-b972-fd9fe04ebfa7"
                 },
                 {
-                    "description": "Pad B4 [/USB_VBUS] de J110 en F.Cu",
+                    "description": "Pad A9 [/USB_VBUS] de J110 en F.Cu",
                     "pos": {
                         "x": 33.55,
                         "y": 8.495
                     },
-                    "uuid": "3382d866-d9f1-4cf6-b758-4bd50a81cef6"
+                    "uuid": "333bc611-805f-4725-a234-709eedd0e12d"
                 }
             ],
             "severity": "error",
@@ -2018,12 +1903,12 @@
                     "uuid": "b21c3c29-bd46-4427-852b-29599c4bbb4c"
                 },
                 {
-                    "description": "Pad B4 [/USB_VBUS] de J110 en F.Cu",
+                    "description": "Pad A9 [/USB_VBUS] de J110 en F.Cu",
                     "pos": {
                         "x": 33.55,
                         "y": 8.495
                     },
-                    "uuid": "3382d866-d9f1-4cf6-b758-4bd50a81cef6"
+                    "uuid": "333bc611-805f-4725-a234-709eedd0e12d"
                 }
             ],
             "severity": "error",
@@ -2178,7 +2063,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "caed0f60-4a86-4244-b5e4-b30a9b13a87c"
+                    "uuid": "f5ed6a3c-521b-4941-893e-97c74205b620"
                 }
             ],
             "severity": "warning",
@@ -2193,7 +2078,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "ecc2b46f-38ef-4739-a652-32519810a610"
+                    "uuid": "0589f5c4-621c-4443-bce1-fdfe20ef22fe"
                 }
             ],
             "severity": "warning",

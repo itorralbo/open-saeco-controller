@@ -427,7 +427,7 @@ def route_watchdog_interlock(board):
                          ((43.325, 64.5), (44.4, 64.5)),
                          ((32.175, 61.025), (31.1, 61.025)),
                          ((36.3, 62.975), (36.3, 64.6)),
-                         ((33.7, 72.025), (35.0, 72.025)),
+                         ((33.7, 72.025), (35.6, 72.025)),
                          ((30.3, 72.025), (30.3, 70.6)),
                          ((26.825, 75.0), (28.0, 75.0)),
                          ((31.062, 79.45), (31.062, 80.8))):
@@ -770,9 +770,9 @@ def route_3v3_distribution(board):
              width=PIN_WIDTH)
     polyline(board, v33, [(75.0, 2.5), (75.0, 9.3)], width=PIN_WIDTH)
 
-    # STM32 side: the reset pull-up and the SWD header.
-    polyline(board, v33, [(90.9, 41.5), (89.0, 39.5), (89.0, 36.825),
-                          (87.4, 36.825)], width=PIN_WIDTH)
+    # STM32 side: the reset pull-up is fed from the bulk capacitor at the
+    # corner of the supply ring, which leaves the column east of R101 free for
+    # the reset net itself. The SWD header hangs off the pin 1/64 feed.
     polyline(board, v33, [(71.9, 32.375), (72.5, 31.5), (73.9, 31.0)],
              width=PIN_WIDTH)
 
@@ -791,8 +791,20 @@ def route_3v3_distribution(board):
     track(board, v33, (61.1, 54.0), (47.8, 54.0), width=0.4)
     track(board, v33, (45.0, 54.0), (40.52, 54.0), width=0.4)
 
+    # Reset pull-up, under the reset corridor that shares this lane.
+    polyline(board, v33, [(40.52, 54.0), (40.0, 52.2), (39.4, 51.6)],
+             width=PIN_WIDTH)
+    via(board, v33, (39.4, 51.6))
+    track(board, v33, (39.4, 51.6), (39.4, 49.6), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, v33, (39.4, 49.6))
+    polyline(board, v33, [(39.4, 49.6), (39.9, 48.6)], width=PIN_WIDTH)
+
     # Measurement header, from the spine between the two hops.
-    polyline(board, v33, [(50.5, 54.0), (50.5, 41.5), (50.54, 40.85)],
+    track(board, v33, (50.25, 54.0), (50.25, 53.5), width=PIN_WIDTH)
+    via(board, v33, (50.25, 53.5))
+    track(board, v33, (50.25, 53.5), (50.25, 49.3), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, v33, (50.25, 49.3))
+    polyline(board, v33, [(50.25, 49.3), (50.5, 41.5), (50.54, 40.85)],
              width=PIN_WIDTH)
 
     # Far west: out of the supervisor block south of R604, then to the arm
@@ -831,6 +843,48 @@ def route_logic_grounds(board):
                          ((39.25, 8.495), (40.6, 9.6))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
+
+
+def route_reset_tree(board):
+    """STM_NRST from the MCU to its pull-up, filter, SWD header and the gates.
+
+    The MCU pin escapes west, drops south of the package and runs east at
+    y = 47 mm to the column at x = 88.8 mm, which serves R101, C101 and the
+    SWD header. A second leg goes west at y = 45 mm and down to y = 50.5 mm,
+    where it passes under the 24 V branch at x = 46.4 mm and enters the 1.35 mm
+    channel west of the supervisor that was left empty for it.
+    """
+    nrst = '/STM_NRST'
+
+    # The pin escapes west on its own row, because the west pads sit on a
+    # 0.5 mm pitch, then drops to y = 50.5 mm and runs west under two 24 V
+    # branches into the 1.35 mm channel left empty for it beside C501.
+    polyline(board, nrst, [(70.325, 39.25), (66.0, 39.25), (63.8, 40.8),
+                           (63.8, 50.5)], width=PIN_WIDTH)
+    via(board, nrst, (63.8, 50.5))
+    track(board, nrst, (63.8, 50.5), (61.2, 50.5), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, nrst, (61.2, 50.5))
+    polyline(board, nrst, [(61.2, 50.5), (47.6, 50.5)], width=PIN_WIDTH)
+    via(board, nrst, (47.6, 50.5))
+    track(board, nrst, (47.6, 50.5), (45.2, 50.5), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, nrst, (45.2, 50.5))
+    polyline(board, nrst, [(45.2, 50.5), (36.0, 50.5), (34.9, 51.8),
+                           (34.9, 65.9)], width=PIN_WIDTH)
+    track(board, nrst, (34.9, 61.675), (35.7, 61.675), width=PIN_WIDTH)
+    track(board, nrst, (34.9, 53.05), (36.3, 53.05), width=PIN_WIDTH)
+    # Pull-up and filter, both on this corridor.
+    track(board, nrst, (41.825, 50.5), (41.825, 49.1), width=PIN_WIDTH)
+    track(board, nrst, (43.375, 50.5), (43.375, 49.1), width=PIN_WIDTH)
+    # Under the 3.3 V branch that crosses west at y = 67 mm.
+    via(board, nrst, (34.9, 65.9))
+    track(board, nrst, (34.9, 65.9), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, nrst, (34.9, 68.2))
+    polyline(board, nrst, [(34.9, 68.2), (34.9, 71.0), (36.5, 71.0),
+                           (36.5, 73.325), (34.4, 73.325)], width=PIN_WIDTH)
+    # Two reset points stay open: U602 pin 6, whose only approach is the
+    # 0.87 mm gap east of the package that the valve arm net already uses, and
+    # the SWD header's reset pin, which would have to cross the decoupling
+    # link north of the MCU.
 
 
 def selv_ground_plane(board):
@@ -875,6 +929,7 @@ def main():
     route_ui_load_switch(board)
     route_3v3_distribution(board)
     route_logic_grounds(board)
+    route_reset_tree(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -893,7 +948,8 @@ def main():
                           '12 V to 3.3 V buck, its input side and the 12 V telemetry',
                           'UI load switch and the 3.3 V feed into its pocket',
                           '3.3 V spine to the logic, headers and pull-ups',
-                          'USB and ESP32 ground pins into the plane'],
+                          'USB and ESP32 ground pins into the plane',
+                          'reset tree: MCU, pull-up, filter, SWD header and the gates'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
