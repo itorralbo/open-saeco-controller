@@ -70,6 +70,59 @@ DNP, con selección que impida realimentar la fuente integrada.
 
 ## Estado seguro
 
+## Etapa del calentador — diseño propuesto, sin colocar
+
+Con la medida del propietario (2026-09-20) el consumo queda cerrado: 27,5 Ω a
+230 V son 8,36 A y 1 924 W, que coincide con los 1 900 W de placa. Ese es el
+peor caso de corriente de toda la máquina y es el que ya dimensiona el cobre de
+fase duplicado.
+
+Topología propuesta, con los dos medios de corte en serie que exige
+[safety.md](../../docs/safety.md):
+
+1. K701, el relé general, corta la fase de todas las cargas y solo se arma con
+   reset válido y orden explícita. Ya está en la placa y ruteado.
+2. Un triac en la pata de vivo del calentador, disparado por un optotriac de
+   paso por cero. El retorno va directo a neutro, ya ruteado hasta la lengüeta 3
+   de JP19.
+
+Candidatos, ambos ya en el catálogo con existencias comprobadas el 2026-09-19:
+
+| Pieza | Candidato | Por qué |
+|---|---|---|
+| Triac | BTA24-800BWRG (C15293) | 25 A y 800 V, TO-220 aislado, 3 cuadrantes |
+| Opto | MOC3083 (C10797) | Disparo en paso por cero, 800 V, DIP-6 de 10,16 mm |
+
+El DIP de 10,16 mm entre filas no es casual: con el opto centrado en la línea de
+barrera sus dos filas caen 1,08 mm fuera de la banda de 8 mm, así que el DRC lo
+acepta sin ranura.
+
+Números que hay que respetar:
+
+| Magnitud | Valor |
+|---|---:|
+| Corriente de carga | 8,36 A eficaces |
+| Disipación estimada del triac | ≈ 8 W |
+| Resistencia térmica máxima del disipador | ≈ 5 °C/W |
+| Corriente del LED del opto | 10,5 mA desde 12 V con 1 kΩ |
+| Pico por la puerta con 470 Ω | 0,69 A, por debajo del pico admisible del opto |
+
+El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde
+3,3 V con las resistencias del catálogo no se llega con margen. Se propone el
+mismo patrón que ya usan la válvula y el relé, un MOSFET SI2308A gobernado por
+la puerta AND libre de U603, cuyo segundo canal está hoy atado a masa y solo
+espera esta señal. La resistencia de puerta del triac, en cambio, ve hasta
+325 V de pico y ninguna de las resistencias 0603 del catálogo está calificada
+para esa tensión: hace falta una pieza específica antes de dibujar nada.
+
+**Falta una decisión mecánica antes de colocar.** La reserva del disipador
+(x = 55–95, y = 84,5–113 mm) es un área que prohíbe huellas, y tanto los TO-220
+como el opto tienen que ir justo ahí: los triacs atornillados al perfil y el
+opto cruzando la barrera a su lado. No se puede colocar ninguno sin saber dónde
+apoya el disipador elegido y cuánto ocupa su pie. Hasta entonces la etapa queda
+especificada pero sin geometría, que es la misma regla que se ha seguido con
+JP19 hasta hoy.
+
 El calentador debe tener dos medios de corte en serie que no dependan de un único
 semiconductor ni de un único GPIO. Se añade como candidato un relé general
 normalmente abierto Omron `G5RL-1A-E-TV8 DC24` de 16 A delante de las tres ramas

@@ -394,9 +394,12 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Etapas de calentador, bomba y molinillo. El calentador ya tiene su conector,
-   su retorno de neutro y su consumo medido: falta elegir el triac y el
-   disipador y cerrar el vivo conmutado.
+3. Etapa del calentador. El conector, el retorno de neutro y el consumo ya
+   están; la topología, los candidatos y los números están en
+   [power-architecture.md](../power/power-architecture.md). Falta elegir
+   disipador: los TO-220 y el opto tienen que ir dentro de la reserva que hoy
+   prohíbe huellas, y no se puede colocar ninguno sin saber cómo apoya.
+4. Etapas de bomba y molinillo, detrás de la del calentador.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
