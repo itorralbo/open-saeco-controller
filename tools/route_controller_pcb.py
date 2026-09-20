@@ -279,18 +279,103 @@ def route_24v_output(board):
     track(board, act, (121.362, 6.14), (121.362, 5.00), width=0.5)
 
     polyline(board, act, [(107.85, 45.20), (107.85, 46.60), (103.40, 46.60),
-                          (101.80, 48.20), (101.80, 55.10), (46.00, 55.10),
-                          (46.00, 79.50), (44.75, 80.75), (42.00, 80.75)],
+                          (101.80, 48.20), (101.80, 55.10), (46.40, 55.10),
+                          (46.40, 79.10), (44.75, 80.75), (42.00, 80.75)],
              width=ACT_WIDTH)
-    polyline(board, act, [(46.00, 55.10), (46.00, 45.60), (45.60, 45.00)],
-             width=ACT_WIDTH)
-    track(board, act, (46.00, 52.00), (47.175, 52.00), width=ACT_LANE_WIDTH)
-    polyline(board, act, [(62.30, 55.10), (62.30, 42.80), (57.20, 42.80),
+    polyline(board, act, [(46.40, 55.10), (46.40, 42.00), (44.80, 40.40),
+                          (41.90, 40.40)], width=ACT_WIDTH)
+    track(board, act, (46.40, 52.00), (47.725, 52.00), width=ACT_LANE_WIDTH)
+    polyline(board, act, [(62.50, 55.10), (62.50, 42.80), (57.20, 42.80),
                           (55.62, 41.22), (55.62, 40.00)], width=ACT_LANE_WIDTH)
-    polyline(board, act, [(42.00, 80.75), (43.20, 81.95), (43.20, 90.00),
-                          (45.50, 90.00)], width=ACT_WIDTH)
-    polyline(board, act, [(43.20, 90.00), (43.20, 93.50), (7.00, 93.50),
-                          (5.60, 92.10), (5.60, 91.00)], width=ACT_WIDTH)
+    # Below the relay coil the trunk continues down the SELV edge of the
+    # barrier band to the flyback diode and the valve fuse.
+    polyline(board, act, [(46.40, 79.10), (46.40, 92.00), (45.40, 93.00),
+                          (10.60, 93.00), (10.60, 94.50)], width=ACT_WIDTH)
+    track(board, act, (46.40, 90.00), (43.50, 90.00), width=ACT_LANE_WIDTH)
+
+
+def route_h_bridge(board):
+    """DRV8876 at (35, 37) rotated 270 deg beside JP16.
+
+    OUT1 leaves the top-left pin and OUT2 the bottom row; both drop down the
+    left of the driver and enter J108 between its filter rows. VM is fed from
+    D304 along y = 46.4 through C501/C502/C503 to pin 11. The control pins fan
+    north and east into six 1.6 mm rows of resistors; each pull-down/series
+    pair is joined by a wrap over the pull-down's ground pad.
+    """
+    gnd, vm = '/GND_UI', '/24V_BREW'
+    out1, out2 = '/BREW_OUT1', '/BREW_OUT2'
+    # Exposed pad and ground pins.
+    for point in [(34.4, 36.4), (35.6, 36.4), (34.4, 37.6), (35.6, 37.6)]:
+        via(board, gnd, point)
+    polyline(board, gnd, [(33.375, 33.35), (33.375, 32.9), (33.0, 32.5)])
+    via(board, gnd, (33.0, 32.5))
+    polyline(board, gnd, [(32.725, 40.65), (32.3, 40.9), (31.6, 40.9)])
+    via(board, gnd, (31.6, 40.9))
+    polyline(board, gnd, [(36.625, 40.65), (36.625, 41.2), (37.275, 41.2),
+                          (37.275, 40.65)])
+    track(board, gnd, (37.275, 41.2), (37.7, 41.6))
+    via(board, gnd, (37.7, 41.7))
+
+    # Motor outputs, 0.8 mm after a pad-width stub.
+    track(board, out1, (32.6, 34.125), (31.9, 34.125), width=0.4)
+    polyline(board, out1, [(31.9, 34.125), (28.0, 38.0), (28.0, 62.0), (3.0, 62.0)],
+             width=ACT_LANE_WIDTH)
+    polyline(board, out2, [(33.375, 40.65), (33.375, 41.1), (32.6, 41.9)], width=0.4)
+    polyline(board, out2, [(32.6, 41.9), (29.2, 45.3), (29.2, 64.5), (3.0, 64.5)],
+             width=ACT_LANE_WIDTH)
+
+    # Charge pump and VM: pins 11-14 drop straight into C503 and C504.
+    polyline(board, vm, [(34.025, 40.6), (34.1, 41.7), (33.4, 42.4), (32.975, 42.9),
+                         (32.975, 43.3)], width=0.3)
+    track(board, '/BREW_VCP', (34.675, 40.65), (34.675, 43.3))
+    polyline(board, '/BREW_CPH', [(35.325, 40.65), (35.325, 44.4), (34.875, 44.85),
+                                  (34.875, 45.2)])
+    polyline(board, '/BREW_CPL', [(35.975, 40.65), (35.975, 44.4), (36.425, 44.85),
+                                  (36.425, 45.2)])
+    polyline(board, vm, [(43.0, 44.3), (43.0, 45.6), (42.2, 46.4), (32.975, 46.4),
+                         (32.975, 43.775)], width=ACT_LANE_WIDTH)
+    polyline(board, vm, [(32.975, 46.4), (31.6, 47.8), (31.6, 48.5)], width=ACT_LANE_WIDTH)
+    track(board, vm, (35.525, 46.4), (35.525, 47.6), width=0.5)
+    track(board, gnd, (37.075, 48.0), (38.0, 48.0), width=0.5)
+    via(board, gnd, (38.2, 48.0))
+    polyline(board, gnd, [(31.1, 56.95), (30.4, 57.7), (30.4, 58.5)], width=0.5)
+    via(board, gnd, (30.4, 58.5))
+    track(board, '/24V_BREW_FUSED', (39.1, 41.0), (39.1, 43.0), width=ACT_LANE_WIDTH)
+
+    # Control fan: pins 1-2 leave to the right, 3-6 upwards, each to its row.
+    rows = {'/BREW_CURRENT_ADC': 29.4, '/BREW_VREF': 31.0, '/BREW_FAULT_N': 32.6,
+            '/BREW_SLEEP_DRV': 34.2, '/BREW_DIR_DRV': 35.8, '/BREW_EN_DRV': 37.4}
+    polyline(board, '/BREW_EN_DRV', [(37.275, 34.125), (38.1, 34.125), (38.1, 37.4),
+                                     (42.225, 37.4)])
+    polyline(board, '/BREW_DIR_DRV', [(36.625, 33.35), (36.625, 33.0), (38.55, 33.0),
+                                      (38.55, 35.8), (42.225, 35.8)])
+    polyline(board, '/BREW_SLEEP_DRV', [(35.975, 33.35), (35.975, 32.4), (39.0, 32.4),
+                                        (39.0, 34.2), (42.225, 34.2)])
+    polyline(board, '/BREW_FAULT_N', [(35.325, 33.35), (35.325, 31.9), (39.45, 31.9),
+                                      (39.45, 32.6), (49.825, 32.6)])
+    polyline(board, '/BREW_VREF', [(34.675, 33.35), (34.675, 31.0), (42.225, 31.0)])
+    polyline(board, '/BREW_CURRENT_ADC', [(34.025, 33.35), (34.025, 29.4), (42.225, 29.4)])
+
+    def wrap(netname, y, x0=42.225, x1=46.025):
+        """Hop over a ground pad and its via between two pads of one row."""
+        polyline(board, netname, [(x0, y), (x0+0.575, y-0.8), (x1-0.575, y-0.8), (x1, y)])
+
+    for netname in ('/BREW_EN_DRV', '/BREW_DIR_DRV', '/BREW_SLEEP_DRV',
+                    '/BREW_VREF', '/BREW_CURRENT_ADC'):
+        wrap(netname, rows[netname])
+    wrap('/BREW_VREF', 31.0, 46.025, 49.825)
+    polyline(board, '/BREW_CURRENT_ADC', [(46.025, 29.4), (46.6, 28.6), (49.4, 28.6),
+                                          (50.2, 29.7), (56.0, 29.7)])
+    polyline(board, '/BREW_FAULT_N', [(49.825, 32.6), (50.4, 33.4), (52.3, 33.4),
+                                      (52.9, 32.6), (56.0, 32.6)])
+    for y in (29.4, 31.0, 34.2, 35.8, 37.4):
+        track(board, gnd, (43.775, y), (44.9, y))
+        via(board, gnd, (44.9, y))
+    for y in (29.4, 31.0):
+        track(board, gnd, (47.575, y), (48.7, y))
+        via(board, gnd, (48.7, y))
+    track(board, '/3V3_CORE', (51.375, 31.475), (51.375, 32.125), width=0.3)
 
 
 def selv_ground_plane(board):
@@ -326,6 +411,7 @@ def main():
     route_stm32_supply(board)
     route_mains_input(board)
     route_24v_output(board)
+    route_h_bridge(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -335,7 +421,8 @@ def main():
                           'STM32 VDD ring, VSS vias and decoupling',
                           'provisional SELV GND_UI plane on B.Cu',
                           'mains input: J118, F701, F702, RV701, K701 and PS701',
-                          '24 V: PS701, J121 and all 24V_ACT_RAW loads'],
+                          '24 V: PS701, J121 and all 24V_ACT_RAW loads',
+                          'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
