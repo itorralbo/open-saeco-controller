@@ -182,10 +182,10 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 473 segmentos y 88 vías. 1 631 mm de pista en F.Cu y 214 mm en B.Cu, casi
+- 526 segmentos y 109 vías. 1 816 mm de pista en F.Cu y 246 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 117 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 90 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -296,6 +296,33 @@ desacopla la entrada junto al pin 1 y C309 sostiene la salida conmutada. El raí
 de 3,3 V entra al hueco por y = 43 mm y baja por la columna libre de
 x = 91,6 mm, al oeste de la pila de condensadores.
 
+### Distribución de 3,3 V
+
+Una sola línea sale del buck por y = 43 mm y se parte en dos.
+
+La rama norte sube por el hueco de 1,1 mm que queda entre F301 y D301, cruza por
+encima del ESP32 a y = 2,5 mm y baja a sus pines de alimentación, a sus dos
+resistencias de estado y a la cabecera de UART. Para dejarle ese hueco libre,
+F301 se ha movido 3 mm al oeste y el enlace de 12 V fusionado pasa por debajo
+del cuerpo de D301 en B.Cu en vez de rodearlo por arriba. De la misma rama
+cuelgan el pull-up de reset del STM32 y la cabecera SWD.
+
+La rama oeste corre por el hueco de 1,1 mm entre los condensadores del
+supervisor y la troncal de 24 V que pasa por debajo. Dos ramales de 24 V suben
+cruzando su camino, el de x = 46,4 mm hacia el fusible del grupo y el de
+x = 62,5 mm hacia la cabecera de medida, así que pasa por debajo de cada uno en
+B.Cu. De ella salen la cabecera de medida, el bloque del supervisor, la puerta
+que arma la red y, tras otro salto bajo las dos salidas del motor, los pull-up
+de los contactos y el de la puerta.
+
+R405 se ha girado 270° para que su pad de 3,3 V mire al norte: la red del mazo
+de la puerta ocupa el carril de y = 71,8 mm y no dejaba alimentarlo por abajo.
+
+Siguen sin alimentar los pull-up de la fila inferior (NTC y caudalímetro), J109
+y las resistencias de fallo y VREF del puente H. Los primeros necesitan cruzar
+el ramal de 24 V de la válvula, que atraviesa la placa a y = 93 mm; las
+segundas están encerradas entre las envolventes de fallo y de corriente.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -307,9 +334,9 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Distribución de 3V3 y de 12 V: espina desde el buck de 3,3 V a todos los
-   pull-up, integrados y conectores, y el raíl de 12 V desde el buck hasta J101
-   y F301.
+1. Cerrar la distribución de 3,3 V: fila inferior de sensores, J109 y las
+   resistencias de fallo y VREF del puente H. Y el raíl de 12 V desde el buck
+   hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
 3. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y

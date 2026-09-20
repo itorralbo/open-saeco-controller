@@ -192,7 +192,9 @@ PLACE = {
     'R211': (67, 9.6, 0), 'R212': (67, 11.5, 0),
 
     # 12 V input, 3.3 V buck and UI load switch.
-    'F301': (88, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
+    # F301 moved west to open the gap between it and D301: the 3.3 V spine
+    # climbs there, and the fused link needs room for its own via.
+    'F301': (85, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
     'C301': (110, 27, 0), 'U301': (97, 36, 0),
     # C302 is the switcher's input HF capacitor, so it sits under the package
     # bridging the input pins to the ground pin instead of 8 mm away by C301.
@@ -209,7 +211,9 @@ PLACE = {
     # Passive sensor interfaces follow the original harness connector zones.
     'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),
     'R403': (38, 104, 90), 'R404': (41, 104, 90), 'C402': (44, 104, 90),
-    'R405': (15, 71, 90), 'R406': (18, 71, 270), 'C403': (21, 71, 90),
+    # R405 turned so its 3.3 V pad faces north: the door harness net owns the
+    # y = 71.8 mm lane west of it, so the pull-up cannot be fed from below.
+    'R405': (15, 71, 270), 'R406': (18, 71, 270), 'C403': (21, 71, 90),
     'R411': (19, 116, 90), 'C406': (22, 116, 90),
     'R407': (16, 52, 90), 'R408': (19, 52, 270), 'C404': (22, 52, 90),
     'R409': (16, 59, 90), 'R410': (19, 59, 270), 'C405': (22, 59, 90),

@@ -551,8 +551,10 @@ def route_sensors(board):
     track(board, '/BU_WORK_N', (19.0, 59.825), (22.0, 59.775), width=PIN_WIDTH)
 
     # Door contact (JP14).
-    polyline(board, '/DOOR_RAW', [(3.0, 73.5), (6.0, 73.5), (13.5, 70.175),
-                                  (18.0, 70.175)], width=PIN_WIDTH)
+    polyline(board, '/DOOR_RAW', [(3.0, 73.5), (6.0, 73.5), (13.0, 71.825),
+                                  (15.0, 71.825)], width=PIN_WIDTH)
+    polyline(board, '/DOOR_RAW', [(15.475, 71.825), (16.5, 71.0),
+                                  (17.6, 70.175)], width=PIN_WIDTH)
     track(board, '/DOOR_CLOSED_N', (18.0, 71.825), (21.0, 71.775), width=PIN_WIDTH)
 
     # NTC (JP13): raw net up the gap between the pull-up and the series part.
@@ -653,9 +655,13 @@ def route_3v3_buck(board):
     gnd, v33 = '/GND_UI', '/3V3_CORE'
     v12 = '/12V_PROTECTED'
 
-    polyline(board, '/12V_FUSED', [(89.4, 27.0), (90.5, 25.8), (90.5, 24.6),
-                                   (96.5, 24.6), (97.0, 25.6), (97.0, 27.0)],
-             width=0.5)
+    # The fused link passes under D301's own body on B.Cu rather than round it:
+    # the gap north of the diode carries the 3.3 V spine.
+    track(board, '/12V_FUSED', (86.4, 27.0), (88.0, 27.0), width=0.5)
+    via(board, '/12V_FUSED', (88.0, 27.0), 0.8, 0.4)
+    track(board, '/12V_FUSED', (88.0, 27.0), (95.0, 27.0), pcb.B_Cu, width=0.5)
+    via(board, '/12V_FUSED', (95.0, 27.0), 0.8, 0.4)
+    track(board, '/12V_FUSED', (95.0, 27.0), (97.0, 27.0), width=0.5)
 
     # Protected rail: one line south of the diodes, with stubs up into each
     # pad, and a branch down the west side into the switcher input pins.
@@ -742,6 +748,91 @@ def route_ui_load_switch(board):
         via(board, gnd, point)
 
 
+def route_3v3_distribution(board):
+    """Spine from the 3.3 V buck to the logic, debug headers and pull-ups.
+
+    One line leaves the buck along y = 43 mm. A northern branch climbs the
+    1.1 mm gap between F301 and D301 at x = 90.9 mm, runs over the top of the
+    ESP32 at y = 2.5 mm and drops into its supply pins, and a western branch
+    runs under the 24 V trunk at y = 54.2 mm to the supervisor spine and on to
+    the sensor pull-ups. The bottom-row pull-ups and J109 still wait: the 24 V
+    valve branch crosses the board at y = 93 mm and needs a hop to reach them.
+    """
+    v33 = '/3V3_CORE'
+
+    # Northern branch: ESP32 supply pins, its straps and the UART header.
+    polyline(board, v33, [(95.5, 43.0), (90.9, 43.0), (90.9, 3.5), (89.0, 2.5),
+                          (44.6, 2.5), (43.9, 4.0), (43.9, 13.825)], width=0.5)
+    for y in (6.975, 10.375, 13.825):
+        track(board, v33, (43.9, y), (42.9, y), width=PIN_WIDTH)
+    track(board, v33, (43.9, 7.06), (44.8, 7.06), width=PIN_WIDTH)
+    polyline(board, v33, [(64.5, 2.5), (64.5, 22.35), (65.6, 22.825)],
+             width=PIN_WIDTH)
+    polyline(board, v33, [(75.0, 2.5), (75.0, 9.3)], width=PIN_WIDTH)
+
+    # STM32 side: the reset pull-up and the SWD header.
+    polyline(board, v33, [(90.9, 41.5), (89.0, 39.5), (89.0, 36.825),
+                          (87.4, 36.825)], width=PIN_WIDTH)
+    polyline(board, v33, [(71.9, 32.375), (72.5, 31.5), (73.9, 31.0)],
+             width=PIN_WIDTH)
+
+    # Western branch: it slips between the 24 V trunk at y = 55.1 mm and the
+    # capacitor column, joins the supervisor spine and carries on west.
+    # Western spine. Two 24 V branches climb across its path, at x = 46.4 mm to
+    # the brew fuse and at x = 62.5 mm to the measurement header, so it passes
+    # under each on B.Cu. It runs in the 1.1 mm gap between the supervisor
+    # capacitors and the 24 V trunk below them.
+    polyline(board, v33, [(91.6, 53.6), (91.6, 54.0), (63.9, 54.0)], width=0.4)
+    for east, west in (((63.9, 54.0), (61.1, 54.0)),
+                       ((47.8, 54.0), (45.0, 54.0))):
+        via(board, v33, east)
+        track(board, v33, east, west, pcb.B_Cu, width=0.4)
+        via(board, v33, west)
+    track(board, v33, (61.1, 54.0), (47.8, 54.0), width=0.4)
+    track(board, v33, (45.0, 54.0), (40.52, 54.0), width=0.4)
+
+    # Measurement header, from the spine between the two hops.
+    polyline(board, v33, [(50.5, 54.0), (50.5, 41.5), (50.54, 40.85)],
+             width=PIN_WIDTH)
+
+    # Far west: out of the supervisor block south of R604, then to the arm
+    # gate and the sensor pull-ups.
+    polyline(board, v33, [(41.725, 61.025), (41.725, 62.0), (42.5, 62.8),
+                          (42.5, 67.0), (32.0, 67.0), (32.0, 73.975),
+                          (31.2, 73.975)], width=PIN_WIDTH)
+    polyline(board, v33, [(32.0, 67.0), (16.0, 68.0), (15.0, 69.0),
+                          (15.0, 69.7)], width=PIN_WIDTH)
+    # The motor outputs run west to J108 at y = 62 and 64.5 mm, so the feed to
+    # the contact pull-ups passes under both on B.Cu in one hop.
+    polyline(board, v33, [(16.0, 68.0), (13.5, 67.0)], width=PIN_WIDTH)
+    via(board, v33, (13.5, 67.0))
+    track(board, v33, (13.5, 67.0), (13.5, 60.0), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, v33, (13.5, 60.0))
+    polyline(board, v33, [(13.5, 60.0), (13.5, 52.825), (15.6, 52.825)],
+             width=PIN_WIDTH)
+    track(board, v33, (13.5, 59.825), (15.6, 59.825), width=PIN_WIDTH)
+
+
+def route_logic_grounds(board):
+    """Drop the USB and ESP32 ground pins into the B.Cu plane."""
+    gnd = '/GND_UI'
+    for start, point in (((23.775, 19.0), (24.9, 19.0)),
+                         ((23.775, 22.0), (24.9, 22.0)),
+                         ((27.0, 17.175), (27.0, 15.9)),
+                         ((35.798, 16.0), (37.8, 16.5)),
+                         ((42.5, 15.625), (41.4, 15.0)),
+                         ((42.5, 5.425), (41.4, 4.8)),
+                         ((42.5, 8.825), (41.4, 9.4)),
+                         ((45.25, 5.79), (46.6, 4.8)),
+                         ((62.75, 5.79), (61.4, 4.8)),
+                         ((44.825, 27.0), (45.9, 27.6)),
+                         ((48.825, 27.0), (49.9, 27.6)),
+                         ((32.75, 8.495), (31.4, 9.6)),
+                         ((39.25, 8.495), (40.6, 9.6))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -782,6 +873,8 @@ def main():
     route_12v_buck(board)
     route_3v3_buck(board)
     route_ui_load_switch(board)
+    route_3v3_distribution(board)
+    route_logic_grounds(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -798,7 +891,9 @@ def main():
                           'sensor harness side: NTC, flow, water, door and contacts',
                           '24 V to 12 V buck: switch node, output bank and feedback',
                           '12 V to 3.3 V buck, its input side and the 12 V telemetry',
-                          'UI load switch and the 3.3 V feed into its pocket'],
+                          'UI load switch and the 3.3 V feed into its pocket',
+                          '3.3 V spine to the logic, headers and pull-ups',
+                          'USB and ESP32 ground pins into the plane'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
