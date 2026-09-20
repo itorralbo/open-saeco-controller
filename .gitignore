@@ -19,3 +19,6 @@ docs/fotos/
 
 # Freerouting intermediates of tools/layout_front_panel_pcb.py (regenerated each run).
 hardware/front-panel/validation/autoroute/
+
+# Editor local history folders.
+**/.history/

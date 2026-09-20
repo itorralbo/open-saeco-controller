@@ -250,7 +250,10 @@ def main():
         supply_pending = 0
         allowed_without_part = {
             'dnp_open_by_default', 'mechanical_and_pinout_tbd',
-            'faston_6.3mm_mechanical_tbd', 'rating_and_holder_tbd',
+            # The FASTON tabs have owner-measured tab size and pitch, but the
+            # solder-leg pattern still has to be checked against a sample, so
+            # they carry a drawn footprint and no supplier part yet.
+            'faston_provisional_leg_pattern', 'rating_and_holder_tbd',
             'mpn_and_energy_tbd', 'normally_closed_open_for_external_24V',
         }
         for ref, p in props.items():
