@@ -15,7 +15,7 @@
     "24 V to 12 V buck: switch node, output bank and feedback"
   ],
   "track_segments": 403,
-  "vias": 75,
+  "vias": 76,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

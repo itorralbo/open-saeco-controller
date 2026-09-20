@@ -8,8 +8,8 @@ DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentad
 desde una entrada aislada de 24 V con ramas protegidas por separado.
 Un TPS3828 externo supervisa el STM32; la lógica AND bloquea los actuadores y
 un segundo interlock gobierna el relé general de fase.
-158 posiciones; 150 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
-Hay 155 huellas importadas a la PCB; faltan las huellas mecánicas de JP19 y los
+159 posiciones; 151 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
+Hay 156 huellas importadas a la PCB; faltan las huellas mecánicas de JP19 y los
 dos FASTON de PE. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
@@ -18,7 +18,7 @@ el USB, la alimentación del STM32, la entrada de red, los 24 V, el puente H del
 grupo, el supervisor con sus interlocks y el relé, la válvula, el lado de mazo de
 los sensores y el buck de 12 V ya ruteados, y la primera etapa de carga sin
 ensayar. El DRC, con la barrera red/SELV de 8 mm como regla, no presenta
-infracciones; quedan 155 conexiones sin rutear, la distribución de 3V3 y 12 V,
+infracciones; quedan 154 conexiones sin rutear, la distribución de 3V3 y 12 V,
 las señales del STM32, caracterizar la salida del nivel
 de agua y completar las demás etapas de potencia.
 Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita

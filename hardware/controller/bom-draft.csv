@@ -153,6 +153,7 @@ R303,18k / 12V FB low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF
 C314,56pF / feed-forward,Capacitor_SMD:C_0603_1608Metric,candidate,AIDE CAPACITOR,0603C0G560J500NT,C49326334,Extended,Economic and Standard
 U603,SN74LVC2G08DCTR,Package_SO:SSOP-8_2.95x2.8mm_P0.65mm,candidate,Texas Instruments,SN74LVC2G08DCTR,C352973,TBD,TBD
 Q701,SI2308A / relay coil,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,TBD,TBD
+C603,100nF / arm gate local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R801,33 / relay gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R802,100k / relay off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 D701,SS34 / relay flyback,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard

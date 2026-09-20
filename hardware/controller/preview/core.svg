@@ -2205,6 +2205,13 @@
 <text x="739.71" y="712.77" font-size="0.9" text-anchor="end" fill="#213b50">D</text>
 <text x="742.35" y="711.97" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="745.89" y="711.97" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_RELAY_RETURN</text>
+<path d="M 797.5600000000001 660.4 H 799.465 M 800.735 660.4 H 802.64 M 799.465 658.9 V 661.9 M 800.735 658.9 V 661.9" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="800.1" y="653.9" font-size="1.05" text-anchor="middle" fill="#213b50">C603</text>
+<text x="800.1" y="656.4" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / arm gate local</text>
+<path d="M 797.5600000000001 660.4 H 792.48" stroke="#27856d" stroke-width=".22"/>
+<text x="792.08" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 802.64 660.4 H 807.72" stroke="#27856d" stroke-width=".22"/>
+<text x="808.12" y="659.9" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="676.9100000000001" y="702.58" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="679.45" y="697.58" font-size="1.05" text-anchor="middle" fill="#213b50">R801</text>
 <text x="679.45" y="700.08" font-size="1.05" text-anchor="middle" fill="#213b50">33 / relay gate</text>

@@ -430,6 +430,13 @@ def route_watchdog_interlock(board):
     # U603 2A/2B are strapped low so its spare gate cannot arm the relay.
     track(board, gnd, (30.3, 72.675), (30.3, 72.025), width=PIN_WIDTH)
 
+    # C603 decouples the gate that arms mains, like C601 and C602 do for the
+    # supervisor and the interlock gate.
+    polyline(board, v33, [(30.3, 73.975), (30.3, 75.0), (30.725, 75.6)],
+             width=PIN_WIDTH)
+    track(board, gnd, (32.275, 75.6), (33.6, 75.6), width=PIN_WIDTH)
+    via(board, gnd, (33.6, 75.6))
+
     # Relay chain: U603 1Y through the gate resistor, the off pull-down and
     # Q701 to the K701 coil and the D701 flyback diode.
     polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (29.0, 73.325),
@@ -605,26 +612,25 @@ def route_12v_buck(board):
              width=0.5)
     polyline(board, out, [(139.0, 5.475), (136.0, 7.5), (136.0, 10.5),
                           (139.0, 11.975)], width=0.5)
-    polyline(board, out, [(139.0, 11.975), (137.0, 13.5), (129.0, 13.5),
-                          (128.225, 11.5), (128.225, 10.2)], width=0.5)
-    polyline(board, out, [(129.0, 13.5), (121.5, 13.5), (120.175, 11.6),
-                          (120.175, 10.2)], width=0.5)
 
-    # Divider chain only. The leg from U303 pin 1 to R302 is deliberately
-    # absent: the 24 V lane wraps round C310 at y = 7.3 mm to reach the input
-    # pins, so the only gap left is the 0.95 mm channel under the switcher,
-    # between its input and switch-node pads. Routing feedback there would sit
-    # it next to the switch node, so the divider needs a placement revision
-    # before this leg is drawn.
-    track(board, fb, (121.825, 10.0), (124.175, 10.0), width=PIN_WIDTH)
-    polyline(board, fb, [(124.175, 10.0), (124.175, 8.4), (129.775, 8.4),
-                         (129.775, 9.6), (129.775, 10.0)], width=PIN_WIDTH)
+    # Feedback. The divider now sits north-west of the switcher, so one line at
+    # y = 3.4 mm collects R303, R302 and C314 and reaches pin 1 without meeting
+    # the 24 V lane, which stays at y >= 5 mm all the way round C310.
+    polyline(board, fb, [(120.702, 4.05), (120.2, 3.4), (108.825, 3.4)],
+             width=PIN_WIDTH)
+    for x in (108.825, 113.825, 117.825):
+        track(board, fb, (x, 3.4), (x, 2.675), width=PIN_WIDTH)
+    # Divider top end: a no-current sense line along the top edge back to the
+    # inductor pad, clear of the switcher and bootstrap pads below it.
+    polyline(board, out, [(112.175, 2.2), (112.175, 1.2), (134.725, 1.2),
+                          (134.725, 3.3)], width=PIN_WIDTH)
+    track(board, out, (116.175, 1.2), (116.175, 2.2), width=PIN_WIDTH)
 
-    for start, point in (((118.975, 5.0), (118.975, 3.0)),
+    for start, point in (((118.975, 5.0), (118.975, 6.35)),
                          ((123.638, 5.95), (123.638, 8.0)),
                          ((139.0, 2.525), (136.8, 2.525)),
                          ((139.0, 9.025), (136.8, 9.025)),
-                         ((125.825, 10.0), (125.825, 11.6))):
+                         ((107.175, 2.2), (105.8, 2.2))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 

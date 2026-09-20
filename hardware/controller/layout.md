@@ -6,7 +6,7 @@ y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
 interlocks, la válvula, los sensores y el buck de 12 V ya están ruteados a mano;
 aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
-coordenadas, coloca las 155 huellas actuales y comprueba que los tres taladros aceptados
+coordenadas, coloca las 156 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
 
 ![Vista superior de la colocación](preview/pcb-staging-top.png)
@@ -177,7 +177,7 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 
 ## Validación
 
-- 155/158 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
+- 156/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
   ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
@@ -185,7 +185,7 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 - 403 segmentos y 75 vías. 1 428 mm de pista en F.Cu y 211 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 155 conexiones sin rutear y seis diferencias de paridad: los tres taladros
+- 154 conexiones sin rutear y seis diferencias de paridad: los tres taladros
   mecánicos intencionales y los tres conectores aún sin huella.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -229,8 +229,9 @@ cadena del relé va de U603 a R801, R802 y Q701, y de ahí a la bobina de K701 y
 al diodo D701. El retorno de bobina pasa al oeste de los pines de bobina, porque
 el corredor este lo ocupa la alimentación de 24 V de K701.1.
 
-U603 no tiene condensador de desacoplo propio en el esquema. C601 es de U601 y
-C602 de U602. Conviene añadirle uno antes de fabricar.
+U603 no tenía condensador de desacoplo propio. Se ha añadido C603, un 100 nF
+igual que C601 y C602, entre U603 y Q701: la puerta que arma la red no debe
+tomar una caída de alimentación por un nivel alto válido.
 
 ### Válvula
 
@@ -254,12 +255,15 @@ Nodo de conmutación corto entre U303, C313 y L302; banco de salida al otro lado
 de la bobina. Los dos condensadores 1210 comparten la columna x = 139 mm con un
 pad de masa entre medias, así que el raíl los rodea por dentro, a x = 136 mm.
 
-La pata de realimentación entre U303.1 y R302 **no** está trazada. La troncal de
-24 V rodea C310 por y = 7,3 mm para llegar a los pines de entrada del
-conmutador, y el único hueco que queda es el canal de 0,95 mm por debajo del
-integrado, entre sus pads de entrada y el nodo de conmutación. Poner ahí la
-realimentación la dejaría pegada al nodo que conmuta. El divisor necesita una
-revisión de colocación antes de trazar esa pata.
+El divisor de realimentación estaba debajo del conmutador, a y = 10 mm, y desde
+ahí no tenía camino: la troncal de 24 V rodea C310 por y = 7,3 mm para llegar a
+los pines de entrada, y el único hueco que quedaba era el canal de 0,95 mm por
+debajo del integrado, entre sus pads de entrada y el nodo de conmutación. Se ha
+movido R302, R303 y C314 al borde superior, al noroeste del conmutador. Ahora
+una sola línea a y = 3,4 mm recoge las tres piezas y entra en el pin 1 sin
+cruzarse con nada, porque la troncal se mantiene a y ≥ 5 mm en todo su rodeo a
+C310. El extremo alto del divisor vuelve al pad de la bobina por una línea de
+sensado, sin corriente, pegada al borde superior.
 
 ## Verificación de huellas
 
@@ -278,8 +282,7 @@ el símbolo.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
 3. Buck de 3,3 V, corte del frontal y telemetría de raíles.
-4. Revisar la colocación del divisor de realimentación del buck de 12 V.
-5. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
+4. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
    a las huellas de JP19/JP1/JP9.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no

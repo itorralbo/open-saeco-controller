@@ -2520,6 +2520,21 @@
       }
     },
     {
+      "reference": "C603",
+      "value": "100nF / arm gate local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "R801",
       "value": "33 / relay gate",
       "footprint": "Resistor_SMD:R_0603_1608Metric",

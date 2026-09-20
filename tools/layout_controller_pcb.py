@@ -157,11 +157,16 @@ PLACE = {
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
     'C310': (117.5, 5, 0), 'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
     'L302': (132, 5, 0), 'C311': (139, 4, 90), 'C312': (139, 10.5, 90),
-    'R302': (121, 10, 0), 'R303': (125, 10, 0), 'C314': (129, 10, 0),
+    # Feedback divider on the top edge, north-west of the switcher. It used to
+    # sit below it at y = 10 mm, where the 24 V lane that wraps round C310 to
+    # reach the input pins left no path back to FB. Here the whole divider
+    # shares one quiet line at y = 3.4 mm that reaches pin 1 without crossing
+    # anything, and R303 faces its ground pad west into open copper.
+    'R302': (113, 2.2, 0), 'R303': (108, 2.2, 180), 'C314': (117, 2.2, 0),
 
     # Phase-cut relay straddles the vertical barrier: coil pins in SELV,
     # contacts in the mains domain. Drive and flyback diode sit by the coil.
-    'U603': (32, 73, 180), 'Q701': (32, 78.5, 0),
+    'U603': (32, 73, 180), 'C603': (31.5, 75.6, 0), 'Q701': (32, 78.5, 0),
     'R801': (26, 71, 180), 'R802': (26, 75, 0), 'D701': (43.5, 88, 90),
     'K701': (52, 77, 180),
 

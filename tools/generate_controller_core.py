@@ -522,12 +522,15 @@ def main():
 
     # Independent normally-open phase cut. U603 is a second known dual-AND;
     # its unused channel is tied low so the relay cannot arm on floating inputs.
+    # C603 gives it the same local decoupling U601 and U602 already have; the
+    # gate that arms mains must not see a supply dip as a valid high.
     d.add('U603','DUAL_AND','SN74LVC2G08DCTR',735,660,
           ['MAINS_ARM_RAW','STM_NRST',g,g,v,g,'MAINS_RELAY_EN',None],
           'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
     d.add('Q701','NMOS_SOT23','SI2308A / relay coil',735,716,
           ['MAINS_RELAY_GATE',g,'MAINS_RELAY_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('C603','C','100nF / arm gate local',800,660,v,g)
     d.passive('R801','R','33 / relay gate',680,704,'MAINS_RELAY_EN','MAINS_RELAY_GATE')
     d.passive('R802','R','100k / relay off',680,724,'MAINS_RELAY_GATE',g)
     d.add('D701','DIODE','SS34 / relay flyback',735,756,

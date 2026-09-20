@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 138 | 135 | J116/JP19 y J119–J120/PE |
+| Principal | 159 | 156 | J116/JP19 y J119–J120/PE |
 | Frontal | 42 | 42 | — |
 
 Las coordenadas actuales forman una [colocación funcional completa](controller/layout.md),
@@ -64,7 +64,7 @@ del texto de las etiquetas del lado izquierdo.
 | Resultado | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 155 | 0 |
+| Conexiones pendientes de rutear | 154 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
 | Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
