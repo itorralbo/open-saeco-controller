@@ -674,11 +674,19 @@
       },
       {
         "netclass": "Mains",
+        "pattern": "/HEATER_AC_SWITCHED"
+      },
+      {
+        "netclass": "Mains",
         "pattern": "/GRINDER_DC_PLUS"
       },
       {
         "netclass": "Mains",
         "pattern": "/GRINDER_DC_MINUS"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/PROTECTIVE_EARTH"
       },
       {
         "netclass": "USB",

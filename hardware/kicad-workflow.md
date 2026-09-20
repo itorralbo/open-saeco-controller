@@ -23,7 +23,7 @@ Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 159 | 156 | J116/JP19 y J119–J120/PE |
+| Principal | 159 | 159 | — |
 | Frontal | 42 | 42 | — |
 
 Las coordenadas actuales forman una [colocación funcional completa](controller/layout.md),

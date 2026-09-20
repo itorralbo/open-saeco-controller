@@ -66,7 +66,11 @@ CLASS_NETS = {
     'Mains': [
         '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED', '/MAINS_N',
         '/LOAD_L_ENABLED', '/PUMP_AC_A', '/PUMP_AC_B',
+        '/HEATER_AC_SWITCHED',
         '/GRINDER_DC_PLUS', '/GRINDER_DC_MINUS',
+        # The protective conductor belongs to the primary domain for spacing:
+        # it must keep the same 8 mm from anything SELV.
+        '/PROTECTIVE_EARTH',
     ],
     'USB': [
         '/USB_DP_PORT', '/USB_DM_PORT', '/USB_DP_RAW', '/USB_DM_RAW',

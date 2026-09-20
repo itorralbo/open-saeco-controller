@@ -2,7 +2,7 @@
   "status": "mechanical_connector_placement_unrouted_not_fabricable",
   "kicad_version": "10.0.6",
   "copper_layers": 2,
-  "electrical_footprints_placed": 156,
+  "electrical_footprints_placed": 159,
   "mounting_holes_preserved": [
     "MH1",
     "MH2",
@@ -24,11 +24,7 @@
     "J109",
     "J113"
   ],
-  "required_power_connectors_pending_footprints": [
-    "JP19",
-    "JP1",
-    "JP9"
-  ],
+  "required_power_connectors_pending_footprints": [],
   "connector_position_uncertainty_mm": 1.5,
   "mains_barrier_centre_line_mm": [
     [

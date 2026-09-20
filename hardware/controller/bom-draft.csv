@@ -132,11 +132,11 @@ R706,10k / 24V div low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WA
 C702,100nF / 24V ADC,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J114,POWER MONITOR / MEASURE ONLY,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
 J115,JP8 GRINDER / 320VDC,Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal,photo_candidate_owner_wiring,JST,S3P-VH(LF)(SN),C264986,Extended,Economic and Standard
-J116,JP19 HEATER / 4 POS 2 WIRED,,mechanical_and_pinout_tbd,,,,,
+J116,JP19 HEATER / 1900W 27R5,OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column,faston_provisional_leg_pattern,,,,,
 J117,JP24 PUMP / 230VAC,Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal,photo_candidate,JST,S2P-VH(LF)(SN),C160355,TBD,TBD
 J118,JP17 MAINS / L-N,Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal,photo_candidate_owner_wiring,JST,S3P-VH(LF)(SN),C264986,Extended,Economic and Standard
-J119,JP1 PE TO BOILER,,faston_6.3mm_mechanical_tbd,,,,,
-J120,JP9 PE INPUT,,faston_6.3mm_mechanical_tbd,,,,,
+J119,JP1 PE TO BOILER,OpenSaeco:FASTON_Tab_6.3x0.8mm_PE,faston_provisional_leg_pattern,,,,,
+J120,JP9 PE INPUT,OpenSaeco:FASTON_Tab_6.3x0.8mm_PE,faston_provisional_leg_pattern,,,,,
 F701,T10A / 250V MAIN / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,
 RV701,275VAC MOV / energy TBD,Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm,mpn_and_energy_tbd,,,,,
 F702,T1A / PSU / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,

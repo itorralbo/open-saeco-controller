@@ -142,6 +142,9 @@ PLACE = {
     **HARNESS_CONNECTORS,
     'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
     'J118': (106.04, 121.3, 0),
+    # Heater block and the two protective-earth tabs, in the envelopes that
+    # mechanical-source.json had been reserving for them.
+    'J116': (80.5, 124.2, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
     'J112': (108, 6, 0), 'J114': (48, 40, 90),
 

@@ -6,7 +6,7 @@ y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
 interlocks, la válvula, los sensores y el buck de 12 V ya están ruteados a mano;
 aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
-coordenadas, coloca las 156 huellas actuales y comprueba que los tres taladros aceptados
+coordenadas, coloca las 159 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
 
 ![Vista superior de la colocación](preview/pcb-staging-top.png)
@@ -35,9 +35,8 @@ nueva placa frontal. J110 queda inmediatamente a su derecha, accesible desde el
 mismo borde superior para las pruebas por ordenador.
 
 JP8, JP19, JP24, JP17 y los dos FASTON de tierra son conectores obligatorios de
-la principal completa. JP8, JP24 y JP17 ya tienen huella; las envolventes de
-JP19 y los FASTON se protegen mediante áreas de regla hasta cerrar su geometría.
-No son reservas para otra placa: forman parte de esta misma PCB de sustitución.
+la principal completa, y ya tienen huella los seis. No son reservas para otra
+placa: forman parte de esta misma PCB de sustitución.
 
 ## Zonas funcionales
 
@@ -177,16 +176,16 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 
 ## Validación
 
-- 156/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
+- 159/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
   ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 579 segmentos y 121 vías. 1 976 mm de pista en F.Cu y 294 mm en B.Cu, casi
+- 589 segmentos y 126 vías. 2 021 mm de pista en F.Cu y 339 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 75 conexiones sin rutear y seis diferencias de paridad: los tres taladros
-  mecánicos intencionales y los tres conectores aún sin huella.
+- 75 conexiones sin rutear y tres diferencias de paridad, los taladros
+  mecánicos MH1–MH3, que son intencionales.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
 
@@ -348,6 +347,37 @@ desde el conector en vez de intentar colarlo por su propio abanico. R202 se ha
 girado 270° para que su pad de 3,3 V mire al norte y la orden de arranque del
 ESP32 salga por debajo sin cruzarlo.
 
+### JP19, JP1 y JP9
+
+Datos del propietario (2026-09-20): de JP19 solo están cableadas las lengüetas 1
+y 3, que son los dos extremos del mismo resistor del boiler, así que da igual
+cuál es cuál. El elemento mide 27,5 Ω y declara 1900 W, o sea 8,4 A a 230 V, que
+es justo lo que ya soporta el cobre de fase duplicado. JP1 y JP9 son tomas de
+tierra, del cuerpo del boiler y de la entrada de red.
+
+Con eso ya tienen huella las tres. Se han dibujado dos nuevas en
+`OpenSaeco.pretty`: un bloque de cuatro lengüetas FASTON de 6,3 × 0,8 mm en
+columna a 5 mm de paso para JP19, y una lengüeta suelta para cada toma de
+tierra. Ambas son **provisionales en el patrón de patas**: las medidas del
+propietario dan la lengüeta y el paso, no cómo sueldan al circuito, así que se
+usan taladros redondos de 1,5 y 1,6 mm en su lugar. Hay que cotejarlas con una
+muestra antes de pedir la placa.
+
+La lengüeta 3 de JP19 es la más cercana al borde, así que toma el retorno de
+neutro, que ya está ruteado desde JP17 por debajo de la fila de conectores y
+duplicado en las dos caras. La lengüeta 1 espera el vivo conmutado que bajará
+del triac en el disipador.
+
+El puente de tierra entre JP1 y JP9 va duplicado en las dos caras como una fase
+de carga, porque tiene que llevar corriente de defecto hasta que abra la
+protección de aguas arriba. `PROTECTIVE_EARTH` se ha metido en la clase `Mains`:
+el conductor de protección pertenece al dominio primario a efectos de
+separación y mantiene los mismos 8 mm respecto de cualquier red SELV.
+
+Con las tres huellas puestas desaparecen las áreas temporales que las
+reservaban, y la paridad esquema/PCB baja de seis diferencias a tres: solo
+quedan los taladros mecánicos MH1–MH3, que son intencionales.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -364,8 +394,9 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Etapas de calentador, bomba y molinillo, que siguen esperando al disipador y
-   a las huellas de JP19/JP1/JP9.
+3. Etapas de calentador, bomba y molinillo. El calentador ya tiene su conector,
+   su retorno de neutro y su consumo medido: falta elegir el triac y el
+   disipador y cerrar el vivo conmutado.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de

@@ -927,6 +927,37 @@ def route_usb_power(board):
                                    (63.3, 22.3)], width=PIN_WIDTH)
 
 
+def route_earth_and_heater_return(board):
+    """Protective-earth bond and the heater's neutral return.
+
+    JP1 comes from the boiler body and JP9 from the mains inlet, so the board
+    is the junction between them: the bond is doubled on both layers like a
+    load phase, because it has to carry fault current until the upstream
+    protective device opens.
+
+    The boiler element measures 27.5 ohm, so it draws 8.4 A at 230 V. Its
+    return goes straight to neutral on tab 3, the tab nearest the board edge;
+    the switched live waits on tab 1 for the triac at the heatsink.
+    """
+    pe, neutral = '/PROTECTIVE_EARTH', '/MAINS_N'
+    for layer in (pcb.F_Cu, pcb.B_Cu):
+        track(board, pe, (121.5, 124.0), (128.0, 124.0), layer,
+              width=MAINS_PHASE_WIDTH)
+    via(board, pe, (124.75, 124.0), MAINS_VIA, MAINS_DRILL)
+
+    # Neutral leaves JP17 south of the connector row and runs west under it.
+    # The stub out of the pad is narrowed, like the phase, to hold 1.2 mm to
+    # the unused middle pin of the VH connector.
+    for layer in (pcb.F_Cu, pcb.B_Cu):
+        track(board, neutral, (113.96, 121.3), (113.96, 124.0), layer, width=2.2)
+        polyline(board, neutral, [(113.96, 124.0), (113.96, 127.5),
+                                  (82.0, 127.5), (80.5, 126.7)], layer,
+                 width=MAINS_PHASE_WIDTH)
+    for point in ((113.96, 126.0), (105.0, 127.5), (96.0, 127.5),
+                  (87.0, 127.5)):
+        via(board, neutral, point, MAINS_VIA, MAINS_DRILL)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -971,6 +1002,7 @@ def main():
     route_logic_grounds(board)
     route_reset_tree(board)
     route_usb_power(board)
+    route_earth_and_heater_return(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -991,7 +1023,8 @@ def main():
                           '3.3 V spine to the logic, headers and pull-ups',
                           'USB and ESP32 ground pins into the plane',
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',
-                          'service-USB rail, sense divider and bench jumper'],
+                          'service-USB rail, sense divider and bench jumper',
+                          'protective-earth bond and the heater neutral return'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),

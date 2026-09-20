@@ -459,8 +459,15 @@ def main():
           ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
           'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
           status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
-    d.add('J116','J4','JP19 HEATER / 4 POS 2 WIRED',1155,674,
-          [None,None,None,None], '', status='mechanical_and_pinout_tbd')
+    # Owner: only tabs 1 and 3 are wired, and they are the two ends of the
+    # same boiler element, so which is which does not matter. 1900 W element
+    # measured at 27.5 ohm, so 8.4 A at 230 V.
+    # Tab 3 sits nearest the board edge, so it takes the neutral return and
+    # tab 1 takes the switched live coming down from the heatsink.
+    d.add('J116','J4','JP19 HEATER / 1900W 27R5',1155,674,
+          ['HEATER_AC_SWITCHED',None,'MAINS_N',None],
+          'OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column',
+          status='faston_provisional_leg_pattern')
     d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
           ['PUMP_AC_A','PUMP_AC_B'],
           'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',
@@ -469,10 +476,14 @@ def main():
           ['MAINS_L_IN',None,'MAINS_N'],
           'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
           status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
-    d.add('J119','J1','JP1 PE TO BOILER',1100,768,['PROTECTIVE_EARTH'], '',
-          status='faston_6.3mm_mechanical_tbd')
-    d.add('J120','J1','JP9 PE INPUT',1155,768,['PROTECTIVE_EARTH'], '',
-          status='faston_6.3mm_mechanical_tbd')
+    # Owner: both are protective-earth tabs, JP1 to the boiler body and JP9 to
+    # the mains inlet. The board is the junction between them.
+    d.add('J119','J1','JP1 PE TO BOILER',1100,768,['PROTECTIVE_EARTH'],
+          'OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
+          status='faston_provisional_leg_pattern')
+    d.add('J120','J1','JP9 PE INPUT',1155,768,['PROTECTIVE_EARTH'],
+          'OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
+          status='faston_provisional_leg_pattern')
     # Main input protection and the isolated supply. Values for F701/F702/RV701
     # remain provisional until the complete inrush and fault-current budget exists.
     d.add('F701','FUSE','T10A / 250V MAIN / provisional',835,640,
@@ -548,6 +559,9 @@ def main():
     d.add('#FLG118','PWR_FLAG','Grinder DC minus endpoint pending bridge',1100,822,['GRINDER_DC_MINUS'])
     d.add('#FLG119','PWR_FLAG','Pump AC A endpoint pending triac',1160,810,['PUMP_AC_A'])
     d.add('#FLG120','PWR_FLAG','Pump AC B endpoint pending triac',1160,822,['PUMP_AC_B'])
+    d.add('#FLG121','PWR_FLAG','Heater switched live pending triac',1100,834,
+          ['HEATER_AC_SWITCHED'])
+    d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
     d.note('Siguiente: optotriacs, BTA24, puente del molino, filtro EMI y huellas JP19/PE.',12,804)

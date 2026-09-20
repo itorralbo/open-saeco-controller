@@ -310,6 +310,10 @@
       "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
       "numbered_pads": 3
     },
+    "J116": {
+      "footprint": "OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column",
+      "numbered_pads": 4
+    },
     "J117": {
       "footprint": "Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal",
       "numbered_pads": 2
@@ -317,6 +321,14 @@
     "J118": {
       "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
       "numbered_pads": 3
+    },
+    "J119": {
+      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "numbered_pads": 1
+    },
+    "J120": {
+      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "numbered_pads": 1
     },
     "J121": {
       "footprint": "Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm",
@@ -627,15 +639,13 @@
       "numbered_pads": 8
     }
   },
-  "missing_footprints": [
+  "missing_footprints": [],
+  "newly_staged_footprints": [
     "J116",
     "J119",
     "J120"
   ],
-  "newly_staged_footprints": [
-    "C603"
-  ],
-  "tracks": 478,
+  "tracks": 700,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

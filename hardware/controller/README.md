@@ -9,8 +9,8 @@ desde una entrada aislada de 24 V con ramas protegidas por separado.
 Un TPS3828 externo supervisa el STM32; la lógica AND bloquea los actuadores y
 un segundo interlock gobierna el relé general de fase.
 159 posiciones; 151 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
-Hay 156 huellas importadas a la PCB; faltan las huellas mecánicas de JP19 y los
-dos FASTON de PE. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
+Las 159 huellas están importadas a la PCB, incluidas JP19 y los dos FASTON de
+PE, con patrón de patas provisional. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
@@ -30,9 +30,9 @@ pendientes. La placa ya incluye JP17, fuente aislada y relé general; faltan los
 drivers de calentador, bomba y molino en las posiciones de la original. Su
 [arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
 misma PCB.
-JP8, JP24 y JP17 ya están en el esquema y en la PCB como JST VH candidatos, en
-sus posiciones originales. JP19, JP1 y JP9 están en el esquema sin huella para
-evitar fijar una geometría no confirmada.
+JP8, JP24 y JP17 están en el esquema y en la PCB como JST VH candidatos, en
+sus posiciones originales. JP19 lleva un bloque de cuatro lengüetas FASTON y
+JP1/JP9 una lengüeta cada uno, con el patrón de patas aún por cotejar.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
 El [perfil de fabricación y clases de red](manufacturing.md) configura dos
 capas y reglas conservadoras para lógica, USB, alimentación y actuadores.

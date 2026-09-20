@@ -18,10 +18,11 @@
     "3.3 V spine to the logic, headers and pull-ups",
     "USB and ESP32 ground pins into the plane",
     "reset tree: MCU, pull-up, filter, SWD header and the gates",
-    "service-USB rail, sense divider and bench jumper"
+    "service-USB rail, sense divider and bench jumper",
+    "protective-earth bond and the heater neutral return"
   ],
-  "track_segments": 579,
-  "vias": 121,
+  "track_segments": 589,
+  "vias": 126,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

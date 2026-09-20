@@ -2192,18 +2192,18 @@
     },
     {
       "reference": "J116",
-      "value": "JP19 HEATER / 4 POS 2 WIRED",
-      "footprint": "",
-      "status": "mechanical_and_pinout_tbd",
+      "value": "JP19 HEATER / 1900W 27R5",
+      "footprint": "OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column",
+      "status": "faston_provisional_leg_pattern",
       "manufacturer": "",
       "mpn": "",
       "lcsc": "",
       "jlc_class": "",
       "pcba_type": "",
       "pins": {
-        "1": null,
+        "1": "HEATER_AC_SWITCHED",
         "2": null,
-        "3": null,
+        "3": "MAINS_N",
         "4": null
       }
     },
@@ -2241,8 +2241,8 @@
     {
       "reference": "J119",
       "value": "JP1 PE TO BOILER",
-      "footprint": "",
-      "status": "faston_6.3mm_mechanical_tbd",
+      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "status": "faston_provisional_leg_pattern",
       "manufacturer": "",
       "mpn": "",
       "lcsc": "",
@@ -2255,8 +2255,8 @@
     {
       "reference": "J120",
       "value": "JP9 PE INPUT",
-      "footprint": "",
-      "status": "faston_6.3mm_mechanical_tbd",
+      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "status": "faston_provisional_leg_pattern",
       "manufacturer": "",
       "mpn": "",
       "lcsc": "",
