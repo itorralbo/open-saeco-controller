@@ -446,6 +446,72 @@ def route_watchdog_interlock(board):
              width=0.5)
 
 
+def route_valve_stage(board):
+    """Low-side valve driver: F304, D305, D306, U502, Q501 and J113.
+
+    The 24 V branch and the switched return run as a pair down the left edge
+    and along y = 121 mm, so the gate chain between U502, R513, Q501 and R514
+    keeps a clear corridor and no signal has to cross the power pair. The
+    interlocked enable arriving from U602 is left for the signal pass.
+    """
+    gnd = '/GND_UI'
+    v24, ret = '/24V_VALVE', '/VALVE_RETURN'
+
+    # Fused branch: the 24 V trunk already lands on F304.1.
+    track(board, '/24V_VALVE_FUSED', (13.4, 95.0), (16.0, 95.0), width=ACT_LANE_WIDTH)
+    # D305 anode, D306 cathode and the long run to JP3 pin 1 on the left edge,
+    # clear of the mains-free bottom band and of the sensor conditioning.
+    track(board, v24, (20.0, 95.0), (20.0, 99.0), width=ACT_LANE_WIDTH)
+    # The 24 V trunk to F304 runs along y = 93 mm, so the branch dips to B.Cu
+    # for 2.6 mm to pass under it rather than carve a detour around the whole
+    # sensor block; the plane loses only that slot.
+    track(board, v24, (20.0, 95.0), (22.5, 95.0), width=ACT_LANE_WIDTH)
+    via(board, v24, (22.5, 94.3), 1.0, 0.5)
+    track(board, v24, (22.5, 94.3), (22.5, 91.7), pcb.B_Cu, width=ACT_LANE_WIDTH)
+    via(board, v24, (22.5, 91.7), 1.0, 0.5)
+    polyline(board, v24, [(22.5, 91.7), (2.2, 91.7), (2.2, 122.0),
+                          (3.5, 124.0), (3.5, 125.3)], width=ACT_LANE_WIDTH)
+    # Switched return: flyback cathode, Q501 drain and JP3 pin 2.
+    polyline(board, ret, [(25.25, 99.0), (26.5, 100.3), (26.5, 121.0),
+                          (6.0, 121.0), (6.0, 125.3)], width=ACT_LANE_WIDTH)
+    track(board, ret, (23.678, 107.0), (26.5, 107.0), width=ACT_LANE_WIDTH)
+
+    # 12 V driver supply: U502 VDD north to its two local capacitors.
+    polyline(board, '/12V_PROTECTED', [(12.137, 100.05), (13.6, 98.6),
+                                       (13.6, 96.5), (10.725, 96.5),
+                                       (10.725, 97.1)], width=0.5)
+    track(board, '/12V_PROTECTED', (10.725, 97.5), (8.775, 97.5), width=0.5)
+
+    # Enable chain: R511 series and R512 pull-down into the driver input.
+    polyline(board, '/VALVE_EN_DRV', [(5.825, 99.0), (7.8, 99.0), (8.8, 100.05),
+                                      (9.4, 100.05)], width=PIN_WIDTH)
+    polyline(board, '/VALVE_EN_DRV', [(4.175, 104.0), (4.175, 102.5),
+                                      (6.9, 100.3), (6.9, 99.0), (6.25, 99.0)],
+             width=PIN_WIDTH)
+
+    # Gate chain: driver output, series resistor, MOSFET gate and pull-down.
+    polyline(board, '/VALVE_GATE_RAW', [(12.137, 101.95), (13.3, 103.2),
+                                        (13.3, 106.5), (14.75, 108.0)],
+             width=PIN_WIDTH)
+    polyline(board, '/VALVE_GATE', [(16.825, 108.0), (18.3, 106.8),
+                                    (19.6, 106.05), (20.5, 106.05)],
+             width=PIN_WIDTH)
+    polyline(board, '/VALVE_GATE', [(18.3, 106.8), (18.3, 111.5),
+                                    (19.9, 113.0)], width=PIN_WIDTH)
+
+    for start, point in (((7.225, 97.5), (6.0, 97.5)),
+                         ((12.275, 97.5), (12.275, 98.8)),
+                         ((5.825, 104.0), (7.2, 104.0)),
+                         ((21.825, 113.0), (23.2, 113.0))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+    polyline(board, gnd, [(9.4, 101.0), (8.5, 101.5), (9.4, 101.95)],
+             width=PIN_WIDTH)
+    via(board, gnd, (8.5, 101.5))
+    track(board, gnd, (21.062, 107.95), (21.062, 109.6), width=PIN_WIDTH)
+    via(board, gnd, (21.062, 109.6))
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -481,6 +547,7 @@ def main():
     route_24v_output(board)
     route_h_bridge(board)
     route_watchdog_interlock(board)
+    route_valve_stage(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -492,7 +559,8 @@ def main():
                           'mains input: J118, F701, F702, RV701, K701 and PS701',
                           '24 V: PS701, J121 and all 24V_ACT_RAW loads',
                           'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',
-                          'watchdog supply, interlock gates and the K701 coil driver'],
+                          'watchdog supply, interlock gates and the K701 coil driver',
+                          'valve branch: F304, D305, D306, U502, Q501 and J113'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),

@@ -9,10 +9,11 @@
     "mains input: J118, F701, F702, RV701, K701 and PS701",
     "24 V: PS701, J121 and all 24V_ACT_RAW loads",
     "DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows",
-    "watchdog supply, interlock gates and the K701 coil driver"
+    "watchdog supply, interlock gates and the K701 coil driver",
+    "valve branch: F304, D305, D306, U502, Q501 and J113"
   ],
-  "track_segments": 283,
-  "vias": 50,
+  "track_segments": 323,
+  "vias": 58,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",
