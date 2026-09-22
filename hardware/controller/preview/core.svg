@@ -123,7 +123,7 @@
 <path d="M 67.31 163.83 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="164.13000000000002" font-size="0.9" text-anchor="start" fill="#213b50">PB10</text>
 <text x="65.36999999999999" y="163.33" font-size="0.65" text-anchor="middle" fill="#213b50">30</text>
-<text x="62.23" y="164.13000000000002" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="163.33" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_EN_RAW</text>
 <path d="M 67.31 167.64 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="167.94" font-size="0.9" text-anchor="start" fill="#213b50">VSS</text>
 <text x="65.36999999999999" y="167.14" font-size="0.65" text-anchor="middle" fill="#213b50">31</text>
@@ -2169,11 +2169,11 @@
 <path d="M 730.25 660.4 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
 <text x="728.3100000000001" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
-<text x="724.77" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="724.77" y="659.9" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_EN_RAW</text>
 <path d="M 730.25 664.21 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
 <text x="728.3100000000001" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="724.77" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="724.77" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
 <path d="M 740.4100000000001 652.78 H 745.49" stroke="#27856d" stroke-width=".22"/>
 <text x="739.71" y="653.0799999999999" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
 <text x="742.35" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
@@ -2189,7 +2189,7 @@
 <path d="M 740.4100000000001 664.21 H 745.49" stroke="#27856d" stroke-width=".22"/>
 <text x="739.71" y="664.51" font-size="0.9" text-anchor="end" fill="#213b50">2Y</text>
 <text x="742.35" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="745.49" y="664.51" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="745.89" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_EN_INTERLOCK</text>
 <rect x="730.25" y="711.1999999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="735.33" y="706.1999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">Q701</text>
 <text x="735.33" y="708.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / relay coil</text>
@@ -2264,6 +2264,101 @@
 <text x="1047.0500000000002" y="724.1999999999999" font-size="0.9" text-anchor="end" fill="#213b50">NO_B</text>
 <text x="1049.69" y="723.4" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
 <text x="1053.23" y="723.4" font-size="0.9" text-anchor="start" fill="#23745f">LOAD_L_ENABLED</text>
+<text x="870" y="850" font-size="1.8" text-anchor="start" fill="#213b50">16 / Etapa del calentador — 1900 W, 27,5 ohm, 8,36 A</text>
+<rect x="877.57" y="871.49" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="880.11" y="866.49" font-size="1.05" text-anchor="middle" fill="#213b50">R711</text>
+<text x="880.11" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">10k / heater arm pull-down</text>
+<path d="M 877.57 872.49 H 872.49" stroke="#27856d" stroke-width=".22"/>
+<text x="872.09" y="871.99" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_EN_RAW</text>
+<path d="M 882.65 872.49 H 887.73" stroke="#27856d" stroke-width=".22"/>
+<text x="888.13" y="871.99" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="937.26" y="871.49" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="939.8" y="866.49" font-size="1.05" text-anchor="middle" fill="#213b50">R707</text>
+<text x="939.8" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">33 / opto LED gate</text>
+<path d="M 937.26 872.49 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="871.99" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_EN_INTERLOCK</text>
+<path d="M 942.3399999999999 872.49 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="871.99" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_LED_GATE</text>
+<rect x="937.26" y="890.54" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="939.8" y="885.54" font-size="1.05" text-anchor="middle" fill="#213b50">R708</text>
+<text x="939.8" y="888.04" font-size="1.05" text-anchor="middle" fill="#213b50">100k / opto LED off</text>
+<path d="M 937.26 891.54 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="891.04" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_LED_GATE</text>
+<path d="M 942.3399999999999 891.54 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="891.04" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="994.41" y="875.03" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="999.49" y="870.03" font-size="1.05" text-anchor="middle" fill="#213b50">Q705</text>
+<text x="999.49" y="872.53" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / heater opto LED</text>
+<path d="M 994.41 880.11 H 989.33" stroke="#27856d" stroke-width=".22"/>
+<text x="995.11" y="880.41" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
+<text x="992.47" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="988.9300000000001" y="879.61" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_LED_GATE</text>
+<path d="M 1004.57 883.92 H 1009.65" stroke="#27856d" stroke-width=".22"/>
+<text x="1003.87" y="884.2199999999999" font-size="0.9" text-anchor="end" fill="#213b50">S</text>
+<text x="1006.51" y="883.42" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1010.05" y="883.42" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1004.57 876.3 H 1009.65" stroke="#27856d" stroke-width=".22"/>
+<text x="1003.87" y="876.5999999999999" font-size="0.9" text-anchor="end" fill="#213b50">D</text>
+<text x="1006.51" y="875.8" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1010.05" y="875.8" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_LED_RETURN</text>
+<rect x="1057.91" y="871.49" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1060.45" y="866.49" font-size="1.05" text-anchor="middle" fill="#213b50">R709</text>
+<text x="1060.45" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">1k / opto LED series</text>
+<path d="M 1057.91 872.49 H 1052.83" stroke="#27856d" stroke-width=".22"/>
+<text x="1052.4299999999998" y="871.99" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 1062.99 872.49 H 1068.07" stroke="#27856d" stroke-width=".22"/>
+<text x="1068.47" y="871.99" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_LED_ANODE</text>
+<rect x="1115.0600000000002" y="872.49" width="10.16" height="15.24" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1120.14" y="867.49" font-size="1.05" text-anchor="middle" fill="#213b50">U701</text>
+<text x="1120.14" y="869.99" font-size="1.05" text-anchor="middle" fill="#213b50">MOC3083 / zero-cross</text>
+<path d="M 1115.0600000000002 875.03 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="875.3299999999999" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="1113.12" y="874.53" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1109.58" y="874.53" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_LED_ANODE</text>
+<path d="M 1115.0600000000002 880.11 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="880.41" font-size="0.9" text-anchor="start" fill="#213b50">K</text>
+<text x="1113.12" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1109.58" y="879.61" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_LED_RETURN</text>
+<path d="M 1115.0600000000002 885.19 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="885.49" font-size="0.9" text-anchor="start" fill="#213b50">NC1</text>
+<text x="1113.12" y="884.69" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1109.98" y="885.49" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1125.22 875.03 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="875.3299999999999" font-size="0.9" text-anchor="end" fill="#213b50">MT_IN</text>
+<text x="1127.16" y="874.53" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="1130.7" y="874.53" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_TRIAC_GATE</text>
+<path d="M 1125.22 880.11 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="880.41" font-size="0.9" text-anchor="end" fill="#213b50">NC2</text>
+<text x="1127.16" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="1130.3" y="880.41" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1125.22 885.19 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="885.49" font-size="0.9" text-anchor="end" fill="#213b50">MT_G</text>
+<text x="1127.16" y="884.69" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="1130.7" y="884.69" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_GATE_FEED</text>
+<rect x="1177.29" y="871.49" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1179.83" y="866.49" font-size="1.05" text-anchor="middle" fill="#213b50">R710</text>
+<text x="1179.83" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">470 / gate limit 325Vpk</text>
+<path d="M 1177.29 872.49 H 1172.21" stroke="#27856d" stroke-width=".22"/>
+<text x="1171.81" y="871.99" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1182.37 872.49 H 1187.45" stroke="#27856d" stroke-width=".22"/>
+<text x="1187.8500000000001" y="871.99" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_GATE_FEED</text>
+<rect x="1234.44" y="873.76" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1239.52" y="868.76" font-size="1.05" text-anchor="middle" fill="#213b50">Q703</text>
+<text x="1239.52" y="871.26" font-size="1.05" text-anchor="middle" fill="#213b50">BTA24-800BWRG / heater</text>
+<path d="M 1234.44 883.92 H 1229.36" stroke="#27856d" stroke-width=".22"/>
+<text x="1235.1399999999999" y="884.2199999999999" font-size="0.9" text-anchor="start" fill="#213b50">A1</text>
+<text x="1232.5" y="883.42" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1228.9599999999998" y="883.42" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_AC_SWITCHED</text>
+<path d="M 1234.44 876.3 H 1229.36" stroke="#27856d" stroke-width=".22"/>
+<text x="1235.1399999999999" y="876.5999999999999" font-size="0.9" text-anchor="start" fill="#213b50">A2</text>
+<text x="1232.5" y="875.8" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1228.9599999999998" y="875.8" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1244.6 880.11 H 1249.68" stroke="#27856d" stroke-width=".22"/>
+<text x="1243.9" y="880.41" font-size="0.9" text-anchor="end" fill="#213b50">G</text>
+<text x="1246.5400000000002" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1250.0800000000002" y="879.61" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_TRIAC_GATE</text>
+<text x="870" y="912" font-size="1.1" text-anchor="start" fill="#213b50">Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; lengueta aislada, asi que el perfil no es parte activa.</text>
+<text x="870" y="920" font-size="1.1" text-anchor="start" fill="#213b50">R710 ve 325 V de pico al disparar: pieza 1206 con tension de trabajo declarada, sin seleccionar todavia.</text>
 <rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
 <text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>
@@ -2306,13 +2401,6 @@
 <text x="1157.67" y="821.99" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
 <text x="1155.03" y="821.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
 <text x="1151.49" y="821.19" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
-<rect x="1097.28" y="833.12" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1099.82" y="828.12" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG121</text>
-<text x="1099.82" y="830.62" font-size="1.05" text-anchor="middle" fill="#213b50">Heater switched live pending triac</text>
-<path d="M 1097.28 834.39 H 1092.2" stroke="#27856d" stroke-width=".22"/>
-<text x="1097.98" y="834.6899999999999" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1095.34" y="833.89" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1091.8" y="833.89" font-size="0.9" text-anchor="end" fill="#23745f">HEATER_AC_SWITCHED</text>
 <rect x="1156.97" y="833.12" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1159.51" y="828.12" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG123</text>
 <text x="1159.51" y="830.62" font-size="1.05" text-anchor="middle" fill="#213b50">Protective earth bond</text>

@@ -41,7 +41,7 @@
         "27": "UI_PWR_EN",
         "28": null,
         "29": null,
-        "30": null,
+        "30": "HEATER_EN_RAW",
         "31": "GND_UI",
         "32": "3V3_CORE",
         "33": null,
@@ -2495,12 +2495,12 @@
       "pins": {
         "1": "MAINS_ARM_RAW",
         "2": "STM_NRST",
-        "5": "GND_UI",
-        "6": "GND_UI",
+        "5": "HEATER_EN_RAW",
+        "6": "STM_NRST",
         "8": "3V3_CORE",
         "4": "GND_UI",
         "7": "MAINS_RELAY_EN",
-        "3": null
+        "3": "HEATER_EN_INTERLOCK"
       }
     },
     {
@@ -2596,6 +2596,132 @@
         "6": "MAINS_L_FUSED",
         "4": "LOAD_L_ENABLED",
         "5": "LOAD_L_ENABLED"
+      }
+    },
+    {
+      "reference": "R711",
+      "value": "10k / heater arm pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HEATER_EN_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R707",
+      "value": "33 / opto LED gate",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HEATER_EN_INTERLOCK",
+        "2": "HEATER_LED_GATE"
+      }
+    },
+    {
+      "reference": "R708",
+      "value": "100k / opto LED off",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HEATER_LED_GATE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "Q705",
+      "value": "SI2308A / heater opto LED",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "status": "candidate",
+      "manufacturer": "UMW",
+      "mpn": "SI2308A",
+      "lcsc": "C347491",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "HEATER_LED_GATE",
+        "2": "GND_UI",
+        "3": "HEATER_LED_RETURN"
+      }
+    },
+    {
+      "reference": "R709",
+      "value": "1k / opto LED series",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "HEATER_LED_ANODE"
+      }
+    },
+    {
+      "reference": "U701",
+      "value": "MOC3083 / zero-cross",
+      "footprint": "Package_DIP:DIP-6_W10.16mm",
+      "status": "candidate",
+      "manufacturer": "Lite-On",
+      "mpn": "MOC3083",
+      "lcsc": "C10797",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HEATER_LED_ANODE",
+        "2": "HEATER_LED_RETURN",
+        "3": null,
+        "6": "HEATER_TRIAC_GATE",
+        "5": null,
+        "4": "HEATER_GATE_FEED"
+      }
+    },
+    {
+      "reference": "R710",
+      "value": "470 / gate limit 325Vpk",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "status": "rating_and_holder_tbd",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "LOAD_L_ENABLED",
+        "2": "HEATER_GATE_FEED"
+      }
+    },
+    {
+      "reference": "Q703",
+      "value": "BTA24-800BWRG / heater",
+      "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
+      "status": "candidate",
+      "manufacturer": "STMicroelectronics",
+      "mpn": "BTA24-800BWRG",
+      "lcsc": "C15293",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HEATER_AC_SWITCHED",
+        "2": "LOAD_L_ENABLED",
+        "3": "HEATER_TRIAC_GATE"
       }
     }
   ]

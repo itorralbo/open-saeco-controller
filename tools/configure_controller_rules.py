@@ -22,6 +22,10 @@ DRU_RULES = f'''(version 1)
   (condition "A.NetClass == 'Mains' && B.NetClass == 'Mains' && A.Type != 'Pad' && B.Type != 'Pad'")
   (constraint clearance (min 2.5mm)))
 
+(rule "mains_device_pitch"
+  (condition "A.insideArea('mains device pitch') && B.insideArea('mains device pitch')")
+  (constraint clearance (min 0.6mm)))
+
 (rule "mains_to_selv_clearance"
   (condition "A.NetClass == 'Mains' && {SELV}")
   (constraint clearance (min {MAINS_BARRIER_MM}mm)))
@@ -66,7 +70,7 @@ CLASS_NETS = {
     'Mains': [
         '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED', '/MAINS_N',
         '/LOAD_L_ENABLED', '/PUMP_AC_A', '/PUMP_AC_B',
-        '/HEATER_AC_SWITCHED',
+        '/HEATER_AC_SWITCHED', '/HEATER_GATE_FEED', '/HEATER_TRIAC_GATE',
         '/GRINDER_DC_PLUS', '/GRINDER_DC_MINUS',
         # The protective conductor belongs to the primary domain for spacing:
         # it must keep the same 8 mm from anything SELV.

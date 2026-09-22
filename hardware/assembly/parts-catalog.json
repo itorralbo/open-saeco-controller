@@ -786,7 +786,7 @@
       "mpn": "MOC3083",
       "lcsc": "C10797",
       "specification": "Zero-cross phototriac driver, 800V, DIP-6; heater branch",
-      "footprint": "Package_DIP:DIP-6_W10.16mm_LongPads",
+      "footprint": "Package_DIP:DIP-6_W10.16mm",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "stock_observed": 11916,
@@ -794,7 +794,8 @@
       "stock_checked_on": "2026-09-19",
       "stock_evidence": "JLCPCB rendered product page, read-only web observation",
       "url": "https://jlcpcb.com/partdetail/liteon-MOC3083/C10797",
-      "selection": "candidate_not_released"
+      "selection": "candidate_not_released",
+      "footprint_note": "Standard DIP land pattern, not the LongPads variant: with 2.4 mm pads the two rows leave only 7.76 mm of bare laminate between them, which does not clear the 8 mm primary-to-SELV barrier. The 1.6 mm pads leave 8.56 mm."
     },
     "OPTO:VOT8125AG": {
       "manufacturer": "Vishay",

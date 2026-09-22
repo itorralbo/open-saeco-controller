@@ -1,5 +1,5 @@
 {
-  "status": "new_footprints_staged_not_fabricable",
+  "status": "synchronized_preserving_existing_placement_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "C101": {
@@ -358,6 +358,14 @@
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "numbered_pads": 3
     },
+    "Q703": {
+      "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
+      "numbered_pads": 3
+    },
+    "Q705": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
+    },
     "R101": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -582,6 +590,26 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R707": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R708": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R709": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R710": {
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "R711": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -637,15 +665,15 @@
     "U603": {
       "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
       "numbered_pads": 8
+    },
+    "U701": {
+      "footprint": "Package_DIP:DIP-6_W10.16mm",
+      "numbered_pads": 6
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [
-    "J116",
-    "J119",
-    "J120"
-  ],
-  "tracks": 700,
+  "newly_staged_footprints": [],
+  "tracks": 743,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

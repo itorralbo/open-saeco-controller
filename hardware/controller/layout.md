@@ -378,6 +378,38 @@ Con las tres huellas puestas desaparecen las áreas temporales que las
 reservaban, y la paridad esquema/PCB baja de seis diferencias a tres: solo
 quedan los taladros mecánicos MH1–MH3, que son intencionales.
 
+### Etapa del calentador y disipador
+
+Disipador elegido: perfil extruido estándar de 33 × 21 mm de pie y 35 mm de
+alto, aletas verticales, en x = 62–95, y = 84,5–105,5 mm. Se queda en 33 mm y no
+en 40 porque la fase conmutada tiene que bajar de K701 a los triacs y el único
+paso es un carril de 5 mm al oeste del perfil: al este sube la fase de entrada
+junto a PS701. El pie prohíbe ahora cobre además de huellas, porque la base del
+perfil apoya en la placa. Los taladros de sujeción se añadirán con la pieza
+concreta. Con ese volumen se espera del orden de 6–8 °C/W: suficiente para el
+ciclo real del termobloque, justo para calentamiento continuo. Hay que medirlo en
+una descalcificación.
+
+Colocados: el triac del calentador Q703 contra la cara sur del perfil, el opto
+U701 cruzando la barrera y R710, la resistencia de puerta, en el carril. El opto
+usa la huella DIP estándar, no la de pads largos: con pads de 2,4 mm quedan
+7,76 mm entre filas y no cumple los 8 mm; con 1,6 mm quedan 8,56 mm.
+
+Ruteado: bucle del LED desde 12 V con Q705, la fase conmutada de 3 mm por el
+carril, la puerta y la alimentación de puerta por B.Cu (en el dominio de red no
+hay plano), y la salida del triac hasta la lengüeta 1 de JP19. Los pines 4 y 6
+del opto son intercambiables y se han repartido para que no se crucen. La puerta
+AND libre de U603 hace ahora de enclavamiento del calentador con el reset.
+
+Dos áreas con nombre, `mains device pitch`, bajan la separación entre redes de
+red a 0,6 mm solo sobre los pines del lado de red del opto y del triac, cuyo
+paso de 2,54 mm lo impone el encapsulado. El hueco entre las dos filas del opto
+conserva los 8 mm.
+
+Pendiente: la señal de habilitación del STM32 (PB10) y el enclavamiento hasta
+R707, la pieza de R710 con tensión de trabajo declarada, y el triac y opto de la
+bomba, que irán en el hueco este del mismo perfil.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -394,12 +426,8 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Etapa del calentador. El conector, el retorno de neutro y el consumo ya
-   están; la topología, los candidatos y los números están en
-   [power-architecture.md](../power/power-architecture.md). Falta elegir
-   disipador: los TO-220 y el opto tienen que ir dentro de la reserva que hoy
-   prohíbe huellas, y no se puede colocar ninguno sin saber cómo apoya.
-4. Etapas de bomba y molinillo, detrás de la del calentador.
+3. Cerrar el calentador (PB10 y enclavamiento, pieza de R710) y añadir la
+   etapa de la bomba en el mismo disipador; después el molinillo.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de

@@ -115,7 +115,7 @@ espera esta señal. La resistencia de puerta del triac, en cambio, ve hasta
 325 V de pico y ninguna de las resistencias 0603 del catálogo está calificada
 para esa tensión: hace falta una pieza específica antes de dibujar nada.
 
-**Falta una decisión mecánica antes de colocar.** La reserva del disipador
+**Actualización 2026-09-22: colocada y ruteada** con un perfil de 33 × 21 × 35 mm; detalle en [layout.md](../controller/layout.md). Texto original: La reserva del disipador
 (x = 55–95, y = 84,5–113 mm) es un área que prohíbe huellas, y tanto los TO-220
 como el opto tienen que ir justo ahí: los triacs atornillados al perfil y el
 opto cruzando la barrera a su lado. No se puede colocar ninguno sin saber dónde

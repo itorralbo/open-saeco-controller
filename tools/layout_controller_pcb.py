@@ -77,27 +77,32 @@ MAINS_BARRIER_MM = 8.0
 BARRIER_ZONE_NAME = 'mains/SELV barrier'
 
 
-# Original heatsink profile (IMG_1098/1100): 40 mm wide, 35 mm tall, heater
-# and pump triacs in its two channels, sitting right behind JP19 as on the
-# original board. Its base depth is taken as 28.5 mm, from the relay/MOV row to
-# the 22 mm JP19 housing; the 33 mm read on the top photo includes splayed fins.
-# Only footprints are excluded until its part is selected.
-HEATSINK_AREA = (55.0, 84.5, 95.0, 113.0)
-HEATSINK_ZONE_NAME = 'reserved heatsink: heater and pump triacs'
+# Chosen heatsink: a standard 33 x 21 mm extruded profile, 35 mm tall, fins
+# vertical, with the two TO-220 triacs bolted to its south face. The original
+# was 40 mm wide, but 40 mm leaves no lane between the profile and the phase
+# that climbs beside PS701, and the switched live has to get from K701 down to
+# the triacs somehow. 33 mm leaves a 7 mm lane at x = 55-62 that carries both
+# the optocoupler's primary pads and the switched live.
+#
+# The area now forbids copper as well as other footprints: the profile's base
+# sits on the board, so nothing may run underneath it.
+HEATSINK_AREA = (62.0, 84.5, 95.0, 105.5)
+HEATSINK_ZONE_NAME = 'heatsink foot: 33 x 21 x 35 mm extruded profile'
 
 
 def heatsink_reservation(board):
+    stale = (HEATSINK_ZONE_NAME, 'reserved heatsink: heater and pump triacs')
     for zone in list(board.Zones()):
-        if zone.GetZoneName() == HEATSINK_ZONE_NAME:
+        if zone.GetZoneName() in stale:
             board.Delete(zone)
     x1, y1, x2, y2 = HEATSINK_AREA
     zone = pcb.ZONE(board)
     zone.SetIsRuleArea(True)
     zone.SetLayerSet(pcb.LSET.AllCuMask())
-    zone.SetDoNotAllowTracks(False)
-    zone.SetDoNotAllowVias(False)
-    zone.SetDoNotAllowZoneFills(False)
-    zone.SetDoNotAllowPads(False)
+    zone.SetDoNotAllowTracks(True)
+    zone.SetDoNotAllowVias(True)
+    zone.SetDoNotAllowZoneFills(True)
+    zone.SetDoNotAllowPads(True)
     zone.SetDoNotAllowFootprints(True)
     zone.SetZoneName(HEATSINK_ZONE_NAME)
     poly = zone.Outline()
@@ -105,6 +110,36 @@ def heatsink_reservation(board):
     for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):
         poly.Append(MM(x), MM(y))
     board.Add(zone)
+
+
+# Two devices carry mains on pins of their own fixed pitch: the optocoupler's
+# secondary row at 2.54 mm and the triac's three terminals at 2.54 mm. The
+# 2.5 mm the rules ask between primary tracks cannot apply there, so each gets
+# a named area where mains-to-mains drops to the pitch the package imposes.
+# The areas cover only the mains side of the optocoupler: the gap between its
+# two rows is the isolation barrier and keeps the full 8 mm.
+DEVICE_PITCH_AREAS = ((54.8, 96.0, 57.4, 104.0), (55.3, 105.6, 78.0, 113.5))
+DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
+
+
+def mains_device_pitch_areas(board):
+    for zone in list(board.Zones()):
+        if zone.GetZoneName() == DEVICE_PITCH_ZONE_NAME:
+            board.Delete(zone)
+    for x1, y1, x2, y2 in DEVICE_PITCH_AREAS:
+        zone = pcb.ZONE(board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayerSet(pcb.LSET.AllCuMask())
+        for setter in ('SetDoNotAllowTracks', 'SetDoNotAllowVias',
+                       'SetDoNotAllowZoneFills', 'SetDoNotAllowPads',
+                       'SetDoNotAllowFootprints'):
+            getattr(zone, setter)(False)
+        zone.SetZoneName(DEVICE_PITCH_ZONE_NAME)
+        poly = zone.Outline()
+        poly.NewOutline()
+        for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):
+            poly.Append(MM(x), MM(y))
+        board.Add(zone)
 
 
 def mains_barrier_keepout(board):
@@ -145,6 +180,16 @@ PLACE = {
     # Heater block and the two protective-earth tabs, in the envelopes that
     # mechanical-source.json had been reserving for them.
     'J116': (80.5, 124.2, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
+
+    # Heater switching stage. U701 straddles the barrier: its rows are
+    # 10.16 mm apart and its pads 1.6 mm, so 8.56 mm of bare laminate sits
+    # between them, just over the 8 mm the rule asks for. Q703 stands against
+    # the south face of the heatsink, and R710 lives in the lane beside it
+    # because it carries mains and cannot cross to the SELV side.
+    'U701': (45.92, 97.46, 0), 'Q703': (68.46, 109.5, 0),
+    'R710': (58, 108.5, 180),
+    'R707': (31, 99, 0), 'R708': (31, 96, 180), 'Q705': (38, 99.5, 0),
+    'R709': (36, 96, 0), 'R711': (28, 66, 180),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
     'J112': (108, 6, 0), 'J114': (48, 40, 90),
 
@@ -216,7 +261,9 @@ PLACE = {
 
     # Passive sensor interfaces follow the original harness connector zones.
     'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),
-    'R403': (38, 104, 90), 'R404': (41, 104, 90), 'C402': (44, 104, 90),
+    # R404 turned so the raw flow net lands on the same row as R403's, which
+    # removes the crossing the filter link used to make.
+    'R403': (38, 104, 90), 'R404': (41, 104, 270), 'C402': (44, 104, 90),
     # R405 turned so its 3.3 V pad faces north: the door harness net owns the
     # y = 71.8 mm lane west of it, so the pull-up cannot be fed from below.
     'R405': (15, 71, 270), 'R406': (18, 71, 270), 'C403': (21, 71, 90),
@@ -298,6 +345,7 @@ def main():
 
     pending_power_connector_keepouts(board)
     mains_barrier_keepout(board)
+    mains_device_pitch_areas(board)
     heatsink_reservation(board)
 
     pcb.SaveBoard(str(BOARD_PATH), board)

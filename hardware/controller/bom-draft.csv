@@ -158,3 +158,11 @@ R801,33 / relay gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF3
 R802,100k / relay off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 D701,SS34 / relay flyback,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 K701,G5RL-1A-E-TV8 DC24,OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8,candidate_not_released,Omron Electronics,G5RL-1A-E-TV8 DC24,C2896748,Extended,Economic and Standard
+R711,10k / heater arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R707,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R708,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+Q705,SI2308A / heater opto LED,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,TBD,TBD
+R709,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+U701,MOC3083 / zero-cross,Package_DIP:DIP-6_W10.16mm,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
+R710,470 / gate limit 325Vpk,Resistor_SMD:R_1206_3216Metric,rating_and_holder_tbd,,,,,
+Q703,BTA24-800BWRG / heater,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard

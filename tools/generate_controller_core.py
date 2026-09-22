@@ -131,6 +131,21 @@ def power_symbols():
         ('5', 'VDD', 'power_in', 7.62, 3.81, 180),
         ('4', 'OUT', 'output', 7.62, -3.81, 180),
     ], 5.08, 6.35)
+    # Zero-cross phototriac driver. Pins 3 and 5 are not connected inside.
+    d.DEFS['OPTO_TRIAC'] = ([
+        ('1', 'A', 'passive', -7.62, 5.08, 0),
+        ('2', 'K', 'passive', -7.62, 0, 0),
+        ('3', 'NC1', 'passive', -7.62, -5.08, 0),
+        ('6', 'MT_IN', 'passive', 7.62, 5.08, 180),
+        ('5', 'NC2', 'passive', 7.62, 0, 180),
+        ('4', 'MT_G', 'passive', 7.62, -5.08, 180),
+    ], 5.08, 7.62)
+    # TRIAC in TO-220AB: A1 and A2 are the main terminals, G the gate.
+    d.DEFS['TRIAC_TO220'] = ([
+        ('1', 'A1', 'passive', -7.62, -3.81, 0),
+        ('2', 'A2', 'passive', -7.62, 3.81, 0),
+        ('3', 'G', 'input', 7.62, 0, 180),
+    ], 5.08, 6.35)
     d.DEFS['NMOS_SOT23'] = ([
         ('1', 'G', 'input', -7.62, 0, 0),
         ('2', 'S', 'power_in', 7.62, -3.81, 180),
@@ -176,7 +191,7 @@ def main():
            'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
-           'PB7': 'MAINS_ARM_RAW'}
+           'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -535,8 +550,11 @@ def main():
     # its unused channel is tied low so the relay cannot arm on floating inputs.
     # C603 gives it the same local decoupling U601 and U602 already have; the
     # gate that arms mains must not see a supply dip as a valid high.
+    # The second gate was strapped low while it had no job. It now gates the
+    # heater enable with reset, exactly as gate 1 does for the mains arm.
     d.add('U603','DUAL_AND','SN74LVC2G08DCTR',735,660,
-          ['MAINS_ARM_RAW','STM_NRST',g,g,v,g,'MAINS_RELAY_EN',None],
+          ['MAINS_ARM_RAW','STM_NRST','HEATER_EN_RAW','STM_NRST',v,g,
+           'MAINS_RELAY_EN','HEATER_EN_INTERLOCK'],
           'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
     d.add('Q701','NMOS_SOT23','SI2308A / relay coil',735,716,
           ['MAINS_RELAY_GATE',g,'MAINS_RELAY_RETURN'],
@@ -551,6 +569,32 @@ def main():
            'LOAD_L_ENABLED','LOAD_L_ENABLED'],
           'OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8',
           status='candidate_not_released',part_key='RELAY:G5RL-1A-E-TV8_24V')
+    d.note('16 / Etapa del calentador — 1900 W, 27,5 ohm, 8,36 A',870,850,1.8)
+    d.passive('R711','R','10k / heater arm pull-down',880,872,'HEATER_EN_RAW',g)
+    d.passive('R707','R','33 / opto LED gate',940,872,'HEATER_EN_INTERLOCK','HEATER_LED_GATE')
+    d.passive('R708','R','100k / opto LED off',940,892,'HEATER_LED_GATE',g)
+    d.add('Q705','NMOS_SOT23','SI2308A / heater opto LED',1000,880,
+          ['HEATER_LED_GATE',g,'HEATER_LED_RETURN'],
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('R709','R','1k / opto LED series',1060,872,'12V_PROTECTED','HEATER_LED_ANODE')
+    d.add('U701','OPTO_TRIAC','MOC3083 / zero-cross',1120,880,
+          # Pins 4 and 6 are the two ends of the same output triac, so they
+          # are interchangeable: the feed takes pin 4, nearest R710.
+          ['HEATER_LED_ANODE','HEATER_LED_RETURN',None,'HEATER_TRIAC_GATE',
+           None,'HEATER_GATE_FEED'],
+          'Package_DIP:DIP-6_W10.16mm',part_key='OPTO:MOC3083')
+    d.add('R710','R','470 / gate limit 325Vpk',1180,872,
+          ['LOAD_L_ENABLED','HEATER_GATE_FEED'],
+          'Resistor_SMD:R_1206_3216Metric', status='rating_and_holder_tbd',
+          part_key='R:470_MAINS_TBD')
+    d.add('Q703','TRIAC_TO220','BTA24-800BWRG / heater',1240,880,
+          ['HEATER_AC_SWITCHED','LOAD_L_ENABLED','HEATER_TRIAC_GATE'],
+          'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
+    d.note('Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; '
+           'lengueta aislada, asi que el perfil no es parte activa.',870,912,1.1)
+    d.note('R710 ve 325 V de pico al disparar: pieza 1206 con tension de trabajo '
+           'declarada, sin seleccionar todavia.',870,920,1.1)
+
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])
     # Temporary endpoint markers until the grinder bridge and pump triac are
@@ -559,8 +603,6 @@ def main():
     d.add('#FLG118','PWR_FLAG','Grinder DC minus endpoint pending bridge',1100,822,['GRINDER_DC_MINUS'])
     d.add('#FLG119','PWR_FLAG','Pump AC A endpoint pending triac',1160,810,['PUMP_AC_A'])
     d.add('#FLG120','PWR_FLAG','Pump AC B endpoint pending triac',1160,822,['PUMP_AC_B'])
-    d.add('#FLG121','PWR_FLAG','Heater switched live pending triac',1100,834,
-          ['HEATER_AC_SWITCHED'])
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
