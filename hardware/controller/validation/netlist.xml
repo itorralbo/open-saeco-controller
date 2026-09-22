@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-22T16:30:33</date>
+    <date>2026-09-22T16:29:43</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2340,23 +2340,23 @@
     </comp>
     <comp ref="J110">
       <value>USB-C SERVICE / USB 2.0</value>
-      <footprint>Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12</footprint>
+      <footprint>OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical</footprint>
       <fields>
         <field name="manufacturer">HRO ELECTRONICS</field>
-        <field name="mpn">TYPE-C-31-M-12</field>
-        <field name="lcsc">C165948</field>
+        <field name="mpn">TYPE-C-31-D-06</field>
+        <field name="lcsc">C2689964</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="USB_C_16" description=""/>
       <property name="manufacturer" value="HRO ELECTRONICS"/>
-      <property name="mpn" value="TYPE-C-31-M-12"/>
-      <property name="lcsc" value="C165948"/>
+      <property name="mpn" value="TYPE-C-31-D-06"/>
+      <property name="lcsc" value="C2689964"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

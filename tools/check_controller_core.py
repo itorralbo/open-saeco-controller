@@ -212,7 +212,7 @@ def main():
     assert nets['J114'] == {'1':g,'2':v,'3':'12V_PROTECTED','4':'24V_ACT_RAW',
                             '5':'RAIL_12V_ADC','6':'RAIL_24V_ADC'}
     for ref, footprint, lcsc in [
-            ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
+            ('J110','OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical','C2689964'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
             ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
             ('J112','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),

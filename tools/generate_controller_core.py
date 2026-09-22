@@ -301,8 +301,8 @@ def main():
           [g,'USB_VBUS','USB_CC1','USB_DP_PORT','USB_DM_PORT',None,
            'USB_VBUS',g,g,g,'USB_VBUS','USB_CC2','USB_DP_PORT',
            'USB_DM_PORT',None,'USB_VBUS',g],
-          'Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12',
-          status='candidate', part_key='CONN:USB_C_HRO_16')
+          'OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical',
+          status='candidate', part_key='CONN:USB_C_HRO_16_V')
     d.add('U203','USBLC6','USBLC6-2SC6',742,326,
           ['USB_DP_PORT',g,'USB_DM_PORT','USB_DP_DEVICE','USB_VBUS','USB_DM_DEVICE'],
           'Package_TO_SOT_SMD:SOT-23-6', part_key='USBLC6-2SC6')

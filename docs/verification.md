@@ -415,5 +415,18 @@ de cargas siguen pendientes en el esquema principal.
   infracciones, los dos avisos intencionales de extremo suelto, 77 conexiones
   abiertas y tres diferencias de paridad (MH1–MH3), como antes. DRC del frontal
   con todas las severidades, tras rellenar zonas: 0 infracciones.
-- Pendiente: comprobar en la máquina la altura libre sobre cada conector y el
-  radio de doblado de los mazos, que en la placa original entraban de lado.
+- El propietario confirma que no hay problema de altura y pide también J110
+  vertical. Se elige HRO TYPE-C-31-D-06 (`C2689964`, 3.265 en stock), USB 2.0,
+  16 contactos. La huella (`OpenSaeco.pretty`) partió del footprint LCSC/EasyEDA
+  y se cotejó con el layout recomendado del plano HRO (rev. A, 2020-11-02).
+  Coinciden paso, filas, patas de carcasa y tetones. Se corrigieron dos cosas:
+  los pads de señal miden 0,87 mm (de 0,43 a 1,30 mm del eje), no 0,90 mm, y el
+  tetón este es un coliso de 0,72 × 0,52 mm, no un taladro redondo de 0,72 mm.
+- El plano recomienda PCB de 0,8 ± 0,1 mm y las patas de carcasa miden 0,95 mm;
+  en la placa de 1,6 mm no asoman por la cara inferior. Hay que confirmar con
+  JLCPCB o con una muestra que la soldadura por reflujo de las patas basta.
+- Se rehízo el fanout de J110 con cruce del par por B.Cu bajo el conector, y se
+  acercaron R223/R224. El puerto queda completo: VBUS en las cuatro patas,
+  CC1/CC2 hasta sus 5,1 kΩ y las masas a la carcasa. DRC: 0 infracciones, los
+  dos avisos intencionales, 74 conexiones abiertas (antes 77) y las mismas tres
+  diferencias de paridad.

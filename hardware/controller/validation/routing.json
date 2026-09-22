@@ -25,8 +25,8 @@
     "pump stage: optocoupler, triac, gate, LED loop and JP24",
     "pump enable: PB11, U604 first gate, R713 pull-down and R714"
   ],
-  "track_segments": 739,
-  "vias": 149,
+  "track_segments": 762,
+  "vias": 151,
   "remaining_blocks": [
     "grinder stage",
     "3V3 trunk and remaining decoupling",

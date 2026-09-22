@@ -47,7 +47,7 @@ R301,100k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C258
 C307,1nF / CT,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10B102KB8NNNC,C1588,Basic,Economic and Standard
 C308,1uF / switch input,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
 C309,10uF / switch output,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A106MA8NRNC,C96446,Basic,Economic and Standard
-J110,USB-C SERVICE / USB 2.0,Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12,candidate,HRO ELECTRONICS,TYPE-C-31-M-12,C165948,Extended,Economic and Standard
+J110,USB-C SERVICE / USB 2.0,OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical,candidate,HRO ELECTRONICS,TYPE-C-31-D-06,C2689964,Extended,TBD
 U203,USBLC6-2SC6,Package_TO_SOT_SMD:SOT-23-6,candidate,STMicroelectronics,USBLC6-2SC6,C7519,Extended,Economic and Standard
 R221,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R222,33,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard

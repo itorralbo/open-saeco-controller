@@ -117,8 +117,8 @@ Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 
 ## USB de servicio y control en banco
 
-J110 es un HRO TYPE-C-31-M-12 (`C165948`) USB 2.0 colocado provisionalmente en
-el borde superior, junto a la zona del conector rojo JP21 original. GPIO19 y
+J110 es un HRO TYPE-C-31-D-06 (`C2689964`) USB 2.0 de entrada vertical,
+junto a la zona del conector rojo JP21 original. GPIO19 y
 GPIO20 del ESP32-S3 implementan D− y D+ a través de R221/R222 de 33 Ω. U203
 (USBLC6-2SC6, `C7519`) protege ambas líneas y R223/R224 de 5,1 kΩ anuncian un
 dispositivo USB en CC1/CC2. GPIO21 recibe `USB_VBUS_SENSE` mediante 100 kΩ/100 kΩ

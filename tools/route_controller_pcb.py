@@ -78,29 +78,53 @@ def via(board, netname, point, diameter=USB_VIA, drill=USB_DRILL):
 
 
 def route_usb_port(board):
-    """Fan out the reversible Type-C pins on F.Cu, then combine each net inside."""
-    # Ordered fanout avoids crossing the alternating B6/A7/A6/B7 contact row.
-    dp_fanout = [((35.25, 8.495), (35.25, 10.20), (33.50, 12.00)),
-                 ((36.25, 8.495), (36.25, 11.00), (37.00, 13.00))]
-    for path in dp_fanout:
-        polyline(board, '/USB_DP_PORT', path)
-        via(board, '/USB_DP_PORT', path[-1])
+    """Join the two contact rows of the top-entry Type-C and fan them out.
 
-    # DP combines on B.Cu. DM stays on F.Cu after the DP fanout drops away.
-    dp_join = (36.20, 16.95)
-    polyline(board, '/USB_DP_PORT', [(33.50, 12.00), (33.50, 15.00),
-                                     (35.50, 17.00), dp_join], pcb.B_Cu)
-    polyline(board, '/USB_DP_PORT', [(37.00, 13.00), (37.00, 15.50), dp_join], pcb.B_Cu)
-    via(board, '/USB_DP_PORT', dp_join)
-    track(board, '/USB_DP_PORT', dp_join, (35.138, 16.95))
+    The north row (A) faces the south row (B) mirrored, so each data net has
+    one pad in each row and the pair swaps order between them. The receptacle
+    is SMD, so B.Cu under its body is free: A6 and A7 drop through vias just
+    north of the row and run south underneath. DP joins its south pad on B.Cu
+    at the via below B6; DM crosses back to F.Cu below B7 and continues there.
+    """
+    dp, dm = '/USB_DP_PORT', '/USB_DM_PORT'
+    track(board, dp, (35.75, 4.15), (35.75, 2.95))
+    via(board, dp, (35.75, 2.95))
+    polyline(board, dp, [(35.75, 2.95), (35.75, 7.10), (36.10, 7.45)], pcb.B_Cu)
+    track(board, dp, (36.25, 5.85), (36.10, 7.45))
+    via(board, dp, (36.10, 7.45))
 
-    dm_join = (36.20, 15.05)
-    polyline(board, '/USB_DM_PORT', [(35.75, 8.495), (35.75, 11.00),
-                                     (35.00, 13.00), (34.50, 14.00), dm_join])
-    polyline(board, '/USB_DM_PORT', [(36.75, 8.495), (36.75, 10.20),
-                                     (38.50, 12.00), (38.50, 13.50),
-                                     (37.50, 14.50), dm_join])
-    track(board, '/USB_DM_PORT', dm_join, (35.138, 15.05))
+    polyline(board, dm, [(36.25, 4.15), (36.25, 3.30), (36.60, 2.95),
+                         (36.60, 2.60)])
+    via(board, dm, (36.60, 2.60))
+    polyline(board, dm, [(36.60, 2.60), (36.80, 2.80), (36.80, 7.90),
+                         (36.20, 8.50), (35.30, 8.50)], pcb.B_Cu)
+    via(board, dm, (35.30, 8.50))
+    polyline(board, dm, [(35.75, 5.85), (35.75, 6.60), (35.30, 7.05),
+                         (35.30, 14.90), (35.138, 15.05)])
+
+    # DP runs south on F.Cu and hops under U203's ground stub on B.Cu.
+    polyline(board, dp, [(36.10, 7.45), (36.30, 7.65), (36.30, 11.60),
+                         (36.70, 12.00)])
+    via(board, dp, (36.70, 12.00))
+    polyline(board, dp, [(36.70, 12.00), (36.70, 16.45), (36.20, 16.95)], pcb.B_Cu)
+    via(board, dp, (36.20, 16.95))
+    track(board, dp, (36.20, 16.95), (35.138, 16.95))
+
+    # CC1 leaves north over the shell leg to R223; CC2 leaves the south row
+    # east of the pair to R224.
+    polyline(board, '/USB_CC1', [(35.25, 4.15), (35.25, 3.45), (35.10, 3.30),
+                                 (35.10, 1.80),
+                                 (34.70, 1.40), (31.20, 1.40), (30.45, 2.15),
+                                 (30.45, 3.375)], width=PIN_WIDTH)
+    polyline(board, '/USB_CC2', [(36.75, 5.85), (36.75, 6.70), (37.35, 7.30),
+                                 (37.35, 11.80), (38.05, 12.50), (38.675, 12.50)],
+             width=PIN_WIDTH)
+
+    # Each ground pin goes to the shell leg beside it, which is on the plane.
+    gnd = '/GND_UI'
+    for pin, leg in (((33.25, 4.15), (33.60, 2.85)), ((33.25, 5.85), (33.60, 7.15)),
+                     ((38.75, 4.15), (38.40, 2.85)), ((38.75, 5.85), (38.40, 7.15))):
+        track(board, gnd, pin, leg, width=PIN_WIDTH)
 
 
 def route_usb_device(board):
@@ -840,10 +864,8 @@ def route_logic_grounds(board):
                          ((42.5, 8.825), (41.4, 9.4)),
                          ((45.25, 5.79), (46.6, 4.8)),
                          ((62.75, 5.79), (61.4, 4.8)),
-                         ((44.825, 27.0), (45.9, 27.6)),
-                         ((48.825, 27.0), (49.9, 27.6)),
-                         ((32.75, 8.495), (31.4, 9.6)),
-                         ((39.25, 8.495), (40.6, 9.6))):
+                         ((30.45, 5.025), (30.45, 6.0)),
+                         ((40.325, 12.5), (41.3, 12.5))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
@@ -906,9 +928,20 @@ def route_usb_power(board):
     from the connector rather than through its own fanout.
     """
     vbus = '/USB_VBUS'
-    polyline(board, vbus, [(33.55, 8.495), (33.55, 9.8), (31.0, 11.0),
-                           (27.0, 11.6), (25.175, 12.4), (25.175, 12.6)],
-             width=0.5)
+    # Each VBUS column joins its two rows across the gap between them. The
+    # east column climbs to a via and crosses to the west on B.Cu, north of
+    # the connector and down its west side, clear of the data pair.
+    for x in (34.75, 37.25):
+        track(board, vbus, (x, 4.15), (x, 5.85), width=0.3)
+    track(board, vbus, (37.25, 4.15), (37.25, 1.70), width=0.3)
+    via(board, vbus, (37.25, 1.70))
+    polyline(board, vbus, [(37.25, 1.70), (31.40, 1.70), (31.40, 10.60),
+                           (31.0, 11.0)], pcb.B_Cu, width=0.5)
+    track(board, vbus, (34.75, 5.85), (34.75, 6.60), width=0.3)
+    polyline(board, vbus, [(34.75, 6.60), (34.75, 7.80), (33.55, 9.0),
+                           (31.0, 11.0)], width=0.4)
+    polyline(board, vbus, [(31.0, 11.0), (27.0, 11.6), (25.175, 12.4),
+                           (25.175, 12.6)], width=0.5)
     via(board, vbus, (31.0, 11.0))
     track(board, vbus, (31.0, 11.0), (31.6, 16.0), pcb.B_Cu, width=0.5)
     via(board, vbus, (31.6, 16.0))

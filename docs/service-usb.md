@@ -7,7 +7,7 @@ la autoridad sobre estados, interlocks y actuadores.
 
 ## Hardware Rev A
 
-- J110: USB-C USB 2.0 HRO TYPE-C-31-M-12, junto a la posición del JP21 rojo.
+- J110: USB-C USB 2.0 vertical HRO TYPE-C-31-D-06, junto a la posición del JP21 rojo.
 - GPIO19 = D− y GPIO20 = D+, con 33 Ω junto al módulo.
 - USBLC6-2SC6 junto al conector para ESD; 5,1 kΩ a masa en CC1 y CC2.
 - GPIO21 detecta VBUS con divisor 100 kΩ/100 kΩ y filtro de 10 nF.

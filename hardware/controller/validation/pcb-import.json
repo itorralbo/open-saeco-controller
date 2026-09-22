@@ -291,7 +291,7 @@
       "numbered_pads": 3
     },
     "J110": {
-      "footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "footprint": "OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical",
       "numbered_pads": 17
     },
     "J111": {
@@ -713,7 +713,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 888,
+  "tracks": 913,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

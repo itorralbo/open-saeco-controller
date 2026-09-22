@@ -855,13 +855,13 @@
     {
       "reference": "J110",
       "value": "USB-C SERVICE / USB 2.0",
-      "footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "footprint": "OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical",
       "status": "candidate",
       "manufacturer": "HRO ELECTRONICS",
-      "mpn": "TYPE-C-31-M-12",
-      "lcsc": "C165948",
+      "mpn": "TYPE-C-31-D-06",
+      "lcsc": "C2689964",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
+      "pcba_type": "TBD",
       "pins": {
         "A1": "GND_UI",
         "A4": "USB_VBUS",

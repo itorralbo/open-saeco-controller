@@ -691,19 +691,19 @@
       "url": "https://www.lcsc.com/product-detail/C2149727.html",
       "selection": "owner_identified"
     },
-    "CONN:USB_C_HRO_16": {
+    "CONN:USB_C_HRO_16_V": {
       "manufacturer": "HRO ELECTRONICS",
-      "mpn": "TYPE-C-31-M-12",
-      "lcsc": "C165948",
-      "specification": "USB Type-C receptacle, USB 2.0, 16 signal contacts, mid-mount/edge-facing",
-      "footprint": "Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12",
+      "mpn": "TYPE-C-31-D-06",
+      "lcsc": "C2689964",
+      "specification": "USB Type-C receptacle, USB 2.0, 16 signal contacts, vertical (top-entry) SMD, 6.4 mm tall",
+      "footprint": "OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
-      "stock_observed": 219670,
-      "available_order_qty_observed": null,
-      "stock_checked_on": "2026-09-18",
-      "stock_evidence": "LCSC rendered product page, read-only web observation",
-      "url": "https://jlcpcb.com/partdetail/C165948",
+      "pcba_type": "TBD",
+      "stock_observed": 3265,
+      "available_order_qty_observed": 3203,
+      "stock_checked_on": "2026-09-22",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); land pattern checked against the HRO drawing TYPE-C-31-D-06 rev A (recommended PCB layout, 0.8 mm board recommended)",
+      "url": "https://jlcpcb.com/partdetail/C2689964",
       "selection": "candidate_not_released"
     },
     "USBLC6-2SC6": {

@@ -42,9 +42,9 @@ Solo J118 baja 0,8 mm, a y = 122,1 mm, dentro de la tolerancia de ±1,5 mm: la
 carcasa VH vertical sobresale 4,2 mm al norte de los pines y chocaba 0,6 mm con
 el courtyard de PS701. Los courtyards liberan unos 750 mm². La franja útil está
 en x = 7–12,7 mm junto a J107/J108 y en y = 10–15,7 mm bajo J101/J112. En la fila
-inferior se libera y ≈ 129–135 mm junto al borde. J110 (USB-C) sigue siendo de
-montaje lateral para poder conectarlo desde el borde superior. J102–J104, J114,
-J116 y los FASTON ya eran verticales.
+inferior se libera y ≈ 129–135 mm junto al borde. J110 (USB-C) también pasa a
+vertical, con el HRO TYPE-C-31-D-06 (ver «USB»). J102–J104, J114, J116 y los
+FASTON ya eran verticales.
 
 JP8, JP19, JP24, JP17 y los dos FASTON de tierra son conectores obligatorios de
 la principal completa, y ya tienen huella los seis. No son reservas para otra
@@ -157,7 +157,18 @@ barrera; además, el filler lo aparta 8 mm de todo cobre de red.
 
 ## USB
 
-El puerto (J110 → U203) conserva su fanout. Del lado del dispositivo, la pareja
+J110 es el receptáculo vertical HRO TYPE-C-31-D-06, centrado en (36; 5) con la
+fila A al norte. Es SMD, así que B.Cu queda libre bajo el cuerpo. A6 y A7 bajan
+por vías justo al norte de la fila y cruzan por debajo. D+ se une a B6 en la vía
+bajo ese pad; D− vuelve a F.Cu bajo B7 y sigue por esa cara hasta U203. D+ salta
+por B.Cu el tramo de masa de U203, como antes. Cada columna de VBUS une sus dos
+filas por el hueco entre ellas. La columna este sube a una vía y cruza por B.Cu
+al norte y por el oeste del conector hasta la vía de VBUS de (31; 11). Las masas
+van cada una a su pata de carcasa, que está en el plano. R223 y R224 se acercan
+al puerto: CC1 sale hacia el norte por encima de la pata de carcasa, y CC2 por la
+fila sur, al este del par. El puerto queda completo.
+
+Del lado del dispositivo, la pareja
 rodea U203 por la izquierda hasta R221/R222 y llega a los pads 13/14 del ESP32,
 a unos 15 mm. Como sale de U203 en sentido opuesto al módulo, DM cruza una vez a
 DP por B.Cu justo antes de los pads.
@@ -206,7 +217,7 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 - 589 segmentos y 126 vías. 2 021 mm de pista en F.Cu y 339 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 77 conexiones sin rutear y tres diferencias de paridad, los taladros
+- 74 conexiones sin rutear y tres diferencias de paridad, los taladros
   mecánicos MH1–MH3, que son intencionales.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.

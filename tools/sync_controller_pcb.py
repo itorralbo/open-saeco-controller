@@ -116,6 +116,12 @@ for ref, (side, top) in {
         'J118': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
         }.items():
     FOOTPRINT_REPLACEMENTS[ref] = (_JST+side, _JST+top)
+# The service USB-C enters from the top too: HRO's vertical TYPE-C-31-D-06.
+# Its pads differ, so layout_controller_pcb.py moves it and the USB routing
+# is rebuilt around it.
+FOOTPRINT_REPLACEMENTS['J110'] = (
+    'Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12',
+    'OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical')
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {
     'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),
