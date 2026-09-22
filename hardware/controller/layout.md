@@ -214,13 +214,14 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 589 segmentos y 126 vías. 2 021 mm de pista en F.Cu y 339 mm en B.Cu, casi
-  todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
+- 843 segmentos y 170 vías. 2 559 mm de pista en F.Cu y 588 mm en B.Cu: el
+  cruce del par USB, los saltos cortos bajo troncales de potencia y los carriles
+  de escape del STM32.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 74 conexiones sin rutear y tres diferencias de paridad, los taladros
+- 66 conexiones sin rutear y tres diferencias de paridad, los taladros
   mecánicos MH1–MH3, que son intencionales.
-- Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
-  del puente H terminan donde entrarán las señales del STM32.
+- Un aviso de extremo suelto, intencional: la fila de corriente del puente H
+  termina donde entrará PA3.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
 genere conflictos de serigrafía. Se añadirán identificadores legibles de
@@ -534,6 +535,32 @@ Enclavamiento ruteado:
 
 No hay snubber RC en el triac; ver la nota de la etapa.
 
+### Cabecera SWD
+
+PA13 (SWDIO) y PA14 (SWCLK) son los dos pines más al este de la fila norte, pero
+llegan a J102 cruzados. SWCLK sigue en F.Cu por y = 32,3 mm, bajo J102.3, y
+SWDIO baja a B.Cu justo al este de su pad y vuelve hacia el oeste por debajo.
+SWO (PB3) sube entre J102.1 y J102.2 y llega al pin 6 por encima de la
+cabecera. El pin de reset de J102 sigue abierto.
+
+### Órdenes al supervisor
+
+PB4 (watchdog), PB5 (sleep), PB6 (fallo) y PB7 (armado de red) salen de la fila
+norte hacia el oeste, pero la alimentación del pin 64 cierra en F.Cu la esquina
+noroeste. Por eso salen por B.Cu:
+
+- PB6 sube, pasa a B.Cu entre la fila y J102 y cruza bajo J102.1 hasta
+  x = 70,8 mm, donde vuelve a F.Cu y se une a la fila de fallo del puente H.
+- PB7, PB5 y PB4 bajan a vías en la banda que queda entre las puntas de los pads
+  y el anillo de 3,3 V, y vuelven hacia el oeste bajo la fila norte en carriles
+  a 0,62 mm. De sur a norte van en el mismo orden que sus destinos, así que no
+  se vuelven a cruzar. Cada carril sube a F.Cu en una vía escalonada al oeste
+  del encapsulado.
+- Los tramos largos se buscaron con un A* en rejilla de 0,05 mm que prima F.Cu
+  y se fijaron en `route_supervisor_orders`. Pasan entre los pines de J114 y
+  saltan por B.Cu bajo los ramales de 24 V. PB5 termina en R603 y cruza el
+  corredor del reset una sola vez hasta U602.1.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -548,8 +575,9 @@ el símbolo.
 1. Cerrar la distribución de 3,3 V: fila inferior de sensores, J109 y las
    resistencias de fallo y VREF del puente H. Y el raíl de 12 V desde el buck
    hasta J101 y F301.
-2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
-   órdenes en bruto que esperan en el canal oeste del supervisor.
+2. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
+   PA8), UART con el ESP32, BOOT0, telemetría de raíles, PA7 hasta U602 y
+   PB0 hasta el corte del frontal.
 3. PB10 hasta U603 por el mismo pasillo que PB11; después, la etapa del
    molinillo.
 

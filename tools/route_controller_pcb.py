@@ -25,6 +25,9 @@ USB_DRILL = 0.30
 # the Power class default; the ring and cap links carry only MCU current.
 PIN_WIDTH = 0.25
 RING_WIDTH = 0.30
+# Logic signals between the MCU and its peripherals; 0.2 mm is the Default
+# class width and lets a track pass between two 2.54 mm-pitch THT pads.
+SIGNAL_WIDTH = 0.20
 
 # Primary copper stays on 1 oz (cheapest JLCPCB option). Phase tracks carrying
 # the load current (~10 A) are 3 mm on both layers, joined by stitching vias,
@@ -1266,6 +1269,115 @@ def route_pump_enable(board):
                             (42.475, 108.2)], width=PIN_WIDTH)
 
 
+def route_debug_header(board):
+    """SWDIO, SWCLK and SWO from the north pad row to J102.
+
+    PA13 and PA14 are the two east-most pins of the row but reach J102 in
+    crossed order, so SWCLK keeps F.Cu along y = 32.3 mm, under J102.3, and
+    SWDIO drops to B.Cu just east of its pad and runs back west under it. SWO
+    climbs between J102.1 and J102.2 and runs above the header to pin 6.
+    """
+    polyline(board, '/STM_SWCLK', [(79.25, 34.33), (79.25, 32.6), (79.55, 32.3),
+                                   (81.4, 32.3), (82.12, 31.58), (82.12, 31.0)],
+             width=SIGNAL_WIDTH)
+    polyline(board, '/STM_SWDIO', [(79.75, 34.33), (79.75, 33.6), (80.4, 33.0)],
+             width=SIGNAL_WIDTH)
+    via(board, '/STM_SWDIO', (80.4, 33.0))
+    polyline(board, '/STM_SWDIO', [(80.4, 33.0), (78.6, 33.0), (77.04, 31.44),
+                                   (77.04, 31.0)], pcb.B_Cu, width=SIGNAL_WIDTH)
+    polyline(board, '/STM_SWO', [(76.25, 34.33), (76.25, 33.1), (75.8, 32.65),
+                                 (75.8, 30.5), (76.5, 29.8), (86.0, 29.8),
+                                 (87.2, 31.0)], width=SIGNAL_WIDTH)
+
+
+def route_supervisor_orders(board):
+    """PB4, PB5, PB6 and PB7 from the north pad row to the supervisor side.
+
+    The north-west corner is closed on F.Cu by the pin 64 supply, so the four
+    pins leave on B.Cu. PB6 (fault) goes north and west under J102.1; PB7,
+    PB5 and PB4 drop into the band inside the pad ring and run west under the
+    north row in lanes 0.62 mm apart, south to north in the same order as
+    their destinations, so they never cross again. Each lane surfaces west of
+    the package on a staggered via. The long legs were searched on a 0.05 mm
+    grid that favours F.Cu and fixed here; they pass between the J114 pins and
+    under the 24 V branches on short B.Cu hops.
+    """
+    w = SIGNAL_WIDTH
+    arm, sleep = '/MAINS_ARM_RAW', '/BREW_SLEEP_RAW'
+    kick, fault = '/WATCHDOG_KICK_RAW', '/BREW_FAULT_N'
+
+    # Escapes.
+    polyline(board, arm, [(74.25, 34.33), (74.25, 35.85)], width=w)
+    via(board, arm, (74.25, 35.85))
+    polyline(board, arm, [(74.25, 35.85), (73.75, 35.35), (71.55, 35.35)],
+             pcb.B_Cu, width=w)
+    via(board, arm, (71.55, 35.35))
+    polyline(board, sleep, [(75.25, 34.33), (75.25, 35.85)], width=w)
+    via(board, sleep, (75.25, 35.85))
+    polyline(board, sleep, [(75.25, 35.85), (74.13, 34.73), (70.85, 34.73)],
+             pcb.B_Cu, width=w)
+    via(board, sleep, (70.85, 34.73))
+    polyline(board, kick, [(75.75, 34.33), (75.75, 35.5), (76.05, 35.8),
+                           (76.05, 36.7)], width=w)
+    via(board, kick, (76.05, 36.7))
+    polyline(board, kick, [(76.05, 36.7), (76.05, 34.7), (75.46, 34.11),
+                           (70.15, 34.11)], pcb.B_Cu, width=w)
+    via(board, kick, (70.15, 34.11))
+    polyline(board, fault, [(74.75, 34.33), (74.75, 32.8)], width=w)
+    via(board, fault, (74.75, 32.8))
+    track(board, fault, (74.75, 32.8), (70.8, 32.8), pcb.B_Cu, width=w)
+    via(board, fault, (70.8, 32.8))
+
+    # PB6 joins the fault row left by the H-bridge block.
+    polyline(board, fault, [(70.8, 32.8), (56.2, 32.8), (56.0, 32.6)], width=w)
+
+    # PB7 to U603 pin 1, the mains arm gate.
+    polyline(board, arm, [(71.55, 35.35), (71.5, 35.4), (55.95, 35.4),
+                          (51.85, 39.5), (51.85, 49.2), (52.45, 49.8)], width=w)
+    via(board, arm, (52.45, 49.8))
+    track(board, arm, (52.45, 49.8), (52.45, 51.2), pcb.B_Cu, width=w)
+    via(board, arm, (52.45, 51.2))
+    polyline(board, arm, [(52.45, 51.2), (52.4, 51.15), (51.2, 51.15),
+                          (50.15, 52.2), (50.15, 52.5), (49.4, 53.25),
+                          (48.5, 53.25)], width=w)
+    via(board, arm, (48.5, 53.25))
+    polyline(board, arm, [(48.5, 53.25), (48.5, 54.25), (47.9, 54.85),
+                          (45.25, 54.85)], pcb.B_Cu, width=w)
+    via(board, arm, (45.25, 54.85))
+    polyline(board, arm, [(45.25, 54.85), (45.25, 64.6), (43.05, 66.8),
+                          (43.05, 67.15), (37.75, 72.45), (37.75, 73.5),
+                          (37.3, 73.95), (33.7, 73.975)], width=w)
+
+    # PB5 to R603 and, under the reset corridor, to U602 pin 1.
+    polyline(board, sleep, [(70.85, 34.73), (54.05, 34.75), (49.25, 39.55),
+                            (49.25, 42.85), (47.55, 44.55)], width=w)
+    via(board, sleep, (47.55, 44.55))
+    track(board, sleep, (47.55, 44.55), (45.25, 44.55), pcb.B_Cu, width=w)
+    via(board, sleep, (45.25, 44.55))
+    polyline(board, sleep, [(45.25, 44.55), (42.05, 47.75), (39.7, 47.75),
+                            (38.0, 49.45), (36.35, 49.45), (34.15, 51.65),
+                            (34.15, 60.05)], width=w)
+    polyline(board, sleep, [(34.15, 60.05), (33.825, 60.4), (33.825, 61.025)],
+             width=w)
+    via(board, sleep, (34.15, 60.05))
+    polyline(board, sleep, [(34.15, 60.05), (34.4, 60.3), (35.65, 60.3)],
+             pcb.B_Cu, width=w)
+    via(board, sleep, (35.65, 60.3))
+    polyline(board, sleep, [(35.65, 60.3), (36.3, 60.95), (36.3, 61.025)],
+             width=w)
+
+    # PB4 to R601, the watchdog input.
+    polyline(board, kick, [(70.15, 34.11), (54.0, 34.1), (49.3, 38.8),
+                           (41.55, 38.8), (40.45, 39.9), (40.45, 45.05),
+                           (40.1, 45.4)], width=w)
+    via(board, kick, (40.1, 45.4))
+    polyline(board, kick, [(40.1, 45.4), (40.1, 53.4), (38.0, 55.5)],
+             pcb.B_Cu, width=w)
+    via(board, kick, (38.0, 55.5))
+    polyline(board, kick, [(38.0, 55.5), (37.15, 56.35), (37.175, 56.8)],
+             width=w)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -1315,6 +1427,8 @@ def main():
     route_heater_stage(board)
     route_pump_stage(board)
     route_pump_enable(board)
+    route_debug_header(board)
+    route_supervisor_orders(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -1340,7 +1454,9 @@ def main():
                           'heater stage: optocoupler, triac, gate and switched phase',
                           'heater enable: U603 second gate, R711 pull-down and R707',
                           'pump stage: optocoupler, triac, gate, LED loop and JP24',
-                          'pump enable: PB11, U604 first gate, R713 pull-down and R714'],
+                          'pump enable: PB11, U604 first gate, R713 pull-down and R714',
+                          'SWD header: SWDIO, SWCLK and SWO to J102',
+                          'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),

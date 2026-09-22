@@ -23,10 +23,12 @@
     "heater stage: optocoupler, triac, gate and switched phase",
     "heater enable: U603 second gate, R711 pull-down and R707",
     "pump stage: optocoupler, triac, gate, LED loop and JP24",
-    "pump enable: PB11, U604 first gate, R713 pull-down and R714"
+    "pump enable: PB11, U604 first gate, R713 pull-down and R714",
+    "SWD header: SWDIO, SWCLK and SWO to J102",
+    "supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm"
   ],
-  "track_segments": 762,
-  "vias": 151,
+  "track_segments": 843,
+  "vias": 170,
   "remaining_blocks": [
     "grinder stage",
     "3V3 trunk and remaining decoupling",
