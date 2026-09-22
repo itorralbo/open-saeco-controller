@@ -468,8 +468,9 @@ Colocación:
   Q703.
 - R712 va en el carril, bajo R710, y toma la fase conmutada de su mismo pad.
 - El driver del LED (R714–R716 y Q706) ocupa la franja entre U702 y MH2.
-- U604, la puerta de reset de la bomba, va con C604 y la bajada R713 en la
-  columna libre al oeste de MH2, entre NTC_RAW y FLOW_RAW.
+- U604, la puerta de reset de la bomba, va bajo Q701 con C604 y la bajada R713,
+  en la misma orientación que U603. Así tiene cerca `STM_NRST` y 3,3 V, y solo
+  su salida baja hasta R714, como hace el calentador.
 
 Ruteado:
 
@@ -485,9 +486,30 @@ Ruteado:
   respetar esos 2,5 mm con el neutro.
 - Q704 tiene su propia área `mains device pitch`, igual que Q703.
 
-Pendiente: U604 sin rutear (3,3 V, masa, `STM_NRST`, PB11 y su salida hasta
-R714), como se hizo con el calentador. Tampoco hay snubber RC en el triac; ver
-la nota de la etapa.
+Enclavamiento ruteado:
+
+- Los pines de U604 salen a mano:
+  - la orden en bruto, al oeste hasta R713;
+  - el reset, al norte por entre las dos filas de pads;
+  - 3,3 V, al este hasta C604;
+  - la salida, al este y luego al sur;
+  - las masas, cada una a su vía.
+- Los tramos largos se buscaron con un A* en rejilla de 0,25 mm que prima F.Cu
+  y se fijaron después en `route_pump_enable`.
+- PB11 es el primer pin del lado este de U101:
+  - baja junto a los desacoplos de la esquina inferior derecha;
+  - pasa a B.Cu bajo el codo de los 24 V y va hacia el oeste por el borde sur
+    del plano de masa, que casi no recorta;
+  - sube junto a U602 hasta Q701, en paralelo a la pista del enclavamiento del
+    calentador.
+- 3,3 V llega desde C603 y el reset desde la vía junto a U603, los dos saltando
+  por B.Cu bajo Q701.
+- La salida cruza bajo la rama de 24 V de y = 93 mm por B.Cu y llega a R714 por
+  el norte.
+- El paso hacia U603 queda libre para PB10: la misma búsqueda encuentra camino
+  de 64 mm con todo esto ya ruteado.
+
+No hay snubber RC en el triac; ver la nota de la etapa.
 
 ## Verificación de huellas
 
@@ -505,7 +527,7 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Rutear U604 con el resto de señales del STM32; después, la etapa del
+3. PB10 hasta U603 por el mismo pasillo que PB11; después, la etapa del
    molinillo.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no

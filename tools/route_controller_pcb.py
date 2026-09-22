@@ -1152,6 +1152,87 @@ def route_pump_stage(board):
     track(board, '/MAINS_N', (94.98, 120.8), (94.98, 127.5), width=1.2)
 
 
+def route_pump_enable(board):
+    """PB11 into U604's first gate, and its output down to R714.
+
+    U604 sits under Q701, the heater gate's twin, where reset and 3.3 V are
+    close. Its pins leave by hand: the raw order west to the R713 pull-down,
+    reset north between the pad rows, 3.3 V east to C604, the gated output
+    east and south, and the grounds to their own vias. The long legs were
+    searched on a 0.25 mm grid that favours F.Cu, then fixed here.
+
+    PB11 is the first pin of U101's east side. It leaves south past the
+    bottom-right decoupling and crosses to B.Cu under the 24 V bend, running
+    west along the southern edge of the ground plane, so the cut barely
+    touches it, before climbing past U602 to Q701. The output hops under the
+    24 V branch at y = 93 mm on B.Cu, as the heater's does, and meets R714
+    from the north. The corridor to U603 stays open for PB10.
+    """
+    raw, nrst, v33 = '/PUMP_EN_RAW', '/STM_NRST', '/3V3_CORE'
+    gated, gnd = '/PUMP_EN_INTERLOCK', '/GND_UI'
+
+    # Pin escapes.
+    polyline(board, raw, [(30.8, 85.025), (29.75, 85.025), (29.25, 84.5),
+                          (28.25, 84.5), (28.25, 85.075)], width=PIN_WIDTH)
+    polyline(board, nrst, [(30.8, 85.675), (32.0, 85.675), (32.0, 84.25)],
+             width=PIN_WIDTH)
+    polyline(board, v33, [(34.2, 85.025), (35.25, 85.025), (36.9, 85.425),
+                          (37.0, 84.5)], width=PIN_WIDTH)
+    polyline(board, gated, [(34.2, 85.675), (35.4, 85.675), (36.0, 86.275),
+                            (36.0, 88.5)], width=PIN_WIDTH)
+    # Pins 5 and 6 share a via; pin 4, R713 and C604 get one each.
+    polyline(board, gnd, [(34.2, 86.325), (34.6, 86.325), (34.6, 87.9)],
+             width=PIN_WIDTH)
+    track(board, gnd, (34.2, 86.975), (34.6, 86.975), width=PIN_WIDTH)
+    for start, point in (((34.6, 87.9), None), ((30.8, 86.975), (29.5, 87.5)),
+                         ((28.25, 86.725), (28.25, 87.75)),
+                         # East of the heater gate's B.Cu run at x = 36.5.
+                         ((36.9, 86.975), (37.9, 87.2))):
+        if point:
+            track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point or start)
+
+    # PB11 from U101 pin 33.
+    polyline(board, raw, [(29.25, 84.5), (34.5, 79.25), (34.75, 79.25),
+                          (36.5, 77.5), (37.25, 77.5)], width=PIN_WIDTH)
+    via(board, raw, (37.25, 77.5))
+    polyline(board, raw, [(37.25, 77.5), (37.25, 67.75), (43.75, 61.25),
+                          (43.75, 60.75), (46.0, 58.5), (46.0, 55.75),
+                          (46.25, 55.5), (51.5, 55.5), (51.75, 55.25),
+                          (67.25, 55.25), (67.75, 54.75), (68.0, 54.75),
+                          (69.0, 53.75), (71.0, 53.75), (71.5, 53.25),
+                          (71.75, 53.25)], pcb.B_Cu, width=PIN_WIDTH)
+    via(board, raw, (71.75, 53.25))
+    polyline(board, raw, [(71.75, 53.25), (72.25, 52.75), (73.25, 52.75),
+                          (74.25, 51.75), (79.0, 51.75), (80.0, 50.75),
+                          (80.75, 50.75), (81.25, 50.25), (81.25, 44.75),
+                          (81.75, 44.25), (81.75, 43.75)], width=PIN_WIDTH)
+
+    # 3.3 V from C603, reset from the via beside U603, both hopping under
+    # Q701's area on B.Cu.
+    polyline(board, v33, [(37.0, 84.5), (36.25, 83.75), (36.25, 83.0),
+                          (34.75, 81.5), (34.75, 80.0)], width=PIN_WIDTH)
+    via(board, v33, (34.75, 80.0))
+    polyline(board, v33, [(34.75, 80.0), (32.75, 78.0), (32.75, 77.5)],
+             pcb.B_Cu, width=PIN_WIDTH)
+    via(board, v33, (32.75, 77.5))
+    track(board, v33, (32.75, 77.5), (30.75, 75.5), width=PIN_WIDTH)
+    track(board, nrst, (32.0, 84.25), (32.0, 82.75), width=PIN_WIDTH)
+    via(board, nrst, (32.0, 82.75))
+    polyline(board, nrst, [(32.0, 82.75), (30.25, 81.0), (30.25, 79.25),
+                           (29.0, 78.0), (29.0, 72.5)], pcb.B_Cu,
+             width=PIN_WIDTH)
+
+    # Gated output down to R714.
+    track(board, gated, (36.0, 88.5), (39.25, 91.75), width=PIN_WIDTH)
+    via(board, gated, (39.25, 91.75))
+    track(board, gated, (39.25, 91.75), (39.25, 104.0), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, gated, (39.25, 104.0))
+    polyline(board, gated, [(39.25, 104.0), (40.0, 104.75), (40.0, 105.25),
+                            (40.75, 106.0), (40.75, 106.75), (42.25, 108.25),
+                            (42.475, 108.2)], width=PIN_WIDTH)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -1200,6 +1281,7 @@ def main():
     route_heater_enable(board)
     route_heater_stage(board)
     route_pump_stage(board)
+    route_pump_enable(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -1224,11 +1306,12 @@ def main():
                           'protective-earth bond and the heater neutral return',
                           'heater stage: optocoupler, triac, gate and switched phase',
                           'heater enable: U603 second gate, R711 pull-down and R707',
-                          'pump stage: optocoupler, triac, gate, LED loop and JP24'],
+                          'pump stage: optocoupler, triac, gate, LED loop and JP24',
+                          'pump enable: PB11, U604 first gate, R713 pull-down and R714'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['pump interlock gate U604 and PB11', 'grinder stage',
+        'remaining_blocks': ['grinder stage',
                              '3V3 trunk and remaining decoupling', 'logic', 'sensors',
                              '24 V actuators', 'final domain copper fills'],
     }

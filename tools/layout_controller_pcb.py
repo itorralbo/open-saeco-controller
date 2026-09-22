@@ -224,14 +224,14 @@ PLACE = {
     # of U701, low enough that its courtyard clears R710 and high enough to
     # clear J115. Q704 takes the east half of the heatsink's south
     # face, and R712 sits in the lane under R710, both fed from the same
-    # switched phase. The LED driver fills the strip between U702 and MH2;
-    # U604, the pump's reset gate, goes in the column west of MH2 with its
-    # decoupling and pull-down.
+    # switched phase. The LED driver fills the strip between U702 and MH2.
+    # U604, the pump's reset gate, sits under Q701 like U603's twin, where
+    # reset and 3.3 V are at hand; only its output runs south to R714.
     'U702': (47.19, 113.46, 0), 'Q704': (86.46, 109.5, 0),
     'R712': (58.3, 113.0, 180),
     'R716': (45.3, 110.6, 270), 'Q706': (43.8, 116.0, 0),
     'R714': (43.3, 108.2, 0), 'R715': (43.3, 106.6, 180),
-    'U604': (31.9, 111.5, 90), 'C604': (31.9, 115.6, 0), 'R713': (31.9, 117.8, 0),
+    'U604': (32.5, 86.0, 0), 'C604': (36.9, 86.2, 270), 'R713': (28.25, 85.9, 270),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
     'J112': (108, 6, 0), 'J114': (48, 40, 90),
 

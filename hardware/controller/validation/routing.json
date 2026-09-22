@@ -22,12 +22,12 @@
     "protective-earth bond and the heater neutral return",
     "heater stage: optocoupler, triac, gate and switched phase",
     "heater enable: U603 second gate, R711 pull-down and R707",
-    "pump stage: optocoupler, triac, gate, LED loop and JP24"
+    "pump stage: optocoupler, triac, gate, LED loop and JP24",
+    "pump enable: PB11, U604 first gate, R713 pull-down and R714"
   ],
-  "track_segments": 672,
-  "vias": 138,
+  "track_segments": 739,
+  "vias": 149,
   "remaining_blocks": [
-    "pump interlock gate U604 and PB11",
     "grinder stage",
     "3V3 trunk and remaining decoupling",
     "logic",
