@@ -1004,15 +1004,33 @@ def route_heater_enable(board):
     track(board, gated, (29.4, 100.0), (30.175, 99.0), width=PIN_WIDTH)
 
 
+# A barrier optocoupler sits on x = 51 with its rows at 47.19 and 54.81 mm.
+# Tracks reach its pads through short stubs that stay wholly inside the
+# 'optocoupler barrier slot' area, the only place where the rules accept less
+# than 8 mm between the rows; everything beyond the stub ends is 8 mm clear.
+OPTO_SELV_STUB = (45.85, 46.6)
+OPTO_MAINS_STUB = (55.3, 56.3)
+OPTO_SELV_STUB_END, OPTO_MAINS_STUB_END = OPTO_SELV_STUB[0], OPTO_MAINS_STUB[1]
+
+
+def opto_stubs(board, ref, pins, layer=pcb.F_Cu):
+    """Stub each listed optocoupler pin to the edge of its slot area."""
+    pads = {int(pad.GetNumber()): pad for pad in board.FindFootprintByReference(ref).Pads()}
+    for number, netname in pins.items():
+        y = pcb.ToMM(pads[number].GetPosition().y)
+        x0, x1 = OPTO_SELV_STUB if number <= 3 else OPTO_MAINS_STUB
+        track(board, netname, (x0, y), (x1, y), layer, width=PIN_WIDTH)
+
+
 def route_heater_stage(board):
     """Zero-cross optocoupler and triac for the 1900 W boiler element.
 
-    The optocoupler straddles the barrier on its own: 10.16 mm between rows and
-    1.6 mm pads leave 8.56 mm of bare laminate, just over the 8 mm the rule
-    asks. Its secondary pins are through-hole, so the gate and the feed leave
-    on B.Cu, where the mains domain has no plane and there is room to keep
-    2.5 mm between them. That frees the 5 mm lane west of the heatsink for the
-    switched phase, which is the only heavy net that has to get past.
+    The optocoupler is a 300 mil DIP straddling the barrier over the slot its
+    footprint mills between the rows. Its secondary pins are through-hole, so
+    the gate and the feed leave on B.Cu, where the mains domain has no plane
+    and there is room to keep 2.5 mm between them. That frees the 5 mm lane
+    west of the heatsink for the switched phase, which is the only heavy net
+    that has to get past.
     """
     gnd = '/GND_UI'
 
@@ -1027,10 +1045,13 @@ def route_heater_stage(board):
                                        (28.0, 94.2), (34.5, 94.2),
                                        (35.175, 95.5)], width=0.5)
     polyline(board, '/HEATER_LED_ANODE', [(36.825, 96.0), (39.5, 96.3),
-                                          (44.5, 97.46), (45.5, 97.46)],
+                                          (44.5, 97.46),
+                                          (OPTO_SELV_STUB_END, 97.46)],
              width=PIN_WIDTH)
     polyline(board, '/HEATER_LED_RETURN', [(38.938, 99.5), (41.0, 99.8),
-                                           (45.5, 100.0)], width=PIN_WIDTH)
+                                           (OPTO_SELV_STUB_END, 100.0)],
+             width=PIN_WIDTH)
+    opto_stubs(board, 'U701', {1: '/HEATER_LED_ANODE', 2: '/HEATER_LED_RETURN'})
     track(board, '/HEATER_LED_GATE', (31.825, 99.0), (31.825, 96.0), width=PIN_WIDTH)
     polyline(board, '/HEATER_LED_GATE', [(31.825, 99.0), (34.0, 98.8),
                                          (36.5, 98.55)], width=PIN_WIDTH)
@@ -1048,12 +1069,14 @@ def route_heater_stage(board):
                                         (71.0, 108.8)], width=0.9)
 
     # Gate feed and gate, both on the back layer past the optocoupler.
-    polyline(board, '/HEATER_GATE_FEED', [(56.08, 102.54), (56.6, 104.0),
-                                          (56.6, 106.2)], pcb.B_Cu,
-             width=PIN_WIDTH)
+    opto_stubs(board, 'U701', {4: '/HEATER_GATE_FEED', 6: '/HEATER_TRIAC_GATE'},
+               pcb.B_Cu)
+    polyline(board, '/HEATER_GATE_FEED', [(OPTO_MAINS_STUB_END, 102.54),
+                                          (56.6, 104.0), (56.6, 106.2)],
+             pcb.B_Cu, width=PIN_WIDTH)
     via(board, '/HEATER_GATE_FEED', (56.6, 106.2))
     track(board, '/HEATER_GATE_FEED', (56.6, 106.2), (56.6, 108.0), width=PIN_WIDTH)
-    polyline(board, '/HEATER_TRIAC_GATE', [(56.08, 97.46), (60.8, 98.8),
+    polyline(board, '/HEATER_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 97.46), (60.8, 98.8),
                                            (60.8, 112.0), (73.54, 112.0),
                                            (73.54, 110.2)], pcb.B_Cu,
              width=PIN_WIDTH)

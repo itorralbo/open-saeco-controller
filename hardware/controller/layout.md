@@ -81,11 +81,21 @@ pines sin uso de conectores de red y los taladros sin red no cuentan como SELV.
 `layout_controller_pcb.py` fija además la línea central de la barrera
 (`MAINS_BARRIER`), que es una L: sube desde el borde inferior en x = 51 mm, entre
 J106 y J115, hasta y = 60 mm, y cruza hacia el borde derecho por encima de
-PS701. Alrededor de ella hay una banda de 8 mm en ambas capas sin pistas, vías,
-pads ni rellenos. K701, PS701 y los futuros optoacopladores pueden atravesarla
-porque su propio aislamiento cubre ese tramo. Un opto DIP-6 estándar tiene las
-filas a 7,62 mm y el DRC lo rechazará: hará falta una versión de patillas anchas
-o una ranura.
+PS701. Alrededor de ella hay una banda de 8 mm en ambas capas sin pistas, vías
+ni rellenos. K701, PS701 y los optoacopladores pueden atravesarla porque su
+propio aislamiento cubre ese tramo. La banda admite pads porque los optos, DIP-6
+estándar de 7,62 mm, meten los suyos 0,8 mm dentro. La regla de 8 mm del DRC los
+sigue cubriendo.
+
+Los optos se montan sobre una ranura fresada de 2 mm entre filas, que sobresale
+3,5 mm de los pines extremos y va dibujada en la propia huella
+(`OpenSaeco:DIP-6_W7.62mm_BarrierSlot`). Entre pads quedan 6,02 mm de aire. El
+camino por la superficie rodea la ranura y supera los 8 mm: sin ella el DRC de
+creepage da 6,02 mm y lo rechaza. Solo el aire se relaja, con la regla
+`optocoupler_barrier_slot` (6 mm), y únicamente entre objetos contenidos por
+completo en el área `optocoupler barrier slot` de cada opto: los pads y los
+tramos de 0,75–1 mm que entran en ellos. Todo lo que sale de esas áreas
+mantiene 8 mm.
 
 La primera versión de la regla detectó 95 infracciones en la colocación inicial:
 fusibles junto al puente H, contactos de K701 entre la lógica y el bus del
@@ -410,9 +420,10 @@ ciclo real del termobloque, justo para calentamiento continuo. Hay que medirlo e
 una descalcificación.
 
 Colocados: el triac del calentador Q703 contra la cara sur del perfil, el opto
-U701 cruzando la barrera y R710, la resistencia de puerta, en el carril. El opto
-usa la huella DIP estándar, no la de pads largos: con pads de 2,4 mm quedan
-7,76 mm entre filas y no cumple los 8 mm; con 1,6 mm quedan 8,56 mm.
+U701 cruzando la barrera y R710, la resistencia de puerta, en el carril.
+**Corregido el 2026-09-22:** el MOC3083 de Lite-On del catálogo (C10797) es el
+DIP de 7,62 mm; el de 10,16 mm es el MOC3083M y JLC solo tenía 3 unidades. U701
+pasa a la huella con ranura descrita en la barrera, centrada en x = 51 mm.
 
 Ruteado: bucle del LED desde 12 V con Q705, la fase conmutada de 3 mm por el
 carril, la puerta y la alimentación de puerta por B.Cu (en el dominio de red no

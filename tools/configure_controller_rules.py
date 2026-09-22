@@ -14,6 +14,11 @@ DRU = KICAD / 'controller-core-reva.kicad_dru'
 # Provisional primary-SELV barrier from hardware/power/mains-stage.md. It is a
 # design margin to be rechecked against the appliance standard before release.
 MAINS_BARRIER_MM = 8.0
+# Optocouplers in 300 mil DIP cross the barrier over a milled slot. The slot
+# keeps the surface path above 8 mm, so only the air gap between the two rows
+# (6.02 mm pad to pad) is relaxed, and only for items wholly inside the named
+# area around each device.
+OPTO_SLOT_CLEARANCE_MM = 6.0
 # Unused pins of mains connectors and netless mechanical holes are not SELV.
 SELV = "B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'"
 DRU_RULES = f'''(version 1)
@@ -33,6 +38,10 @@ DRU_RULES = f'''(version 1)
 (rule "mains_to_selv_creepage"
   (condition "A.NetClass == 'Mains' && {SELV}")
   (constraint creepage (min {MAINS_BARRIER_MM}mm)))
+
+(rule "optocoupler_barrier_slot"
+  (condition "A.NetClass == 'Mains' && {SELV} && A.enclosedByArea('optocoupler barrier slot') && B.enclosedByArea('optocoupler barrier slot')")
+  (constraint clearance (min {OPTO_SLOT_CLEARANCE_MM}mm)))
 '''
 
 CLASS_RULES = {

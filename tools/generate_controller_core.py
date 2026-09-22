@@ -582,7 +582,9 @@ def main():
           # are interchangeable: the feed takes pin 4, nearest R710.
           ['HEATER_LED_ANODE','HEATER_LED_RETURN',None,'HEATER_TRIAC_GATE',
            None,'HEATER_GATE_FEED'],
-          'Package_DIP:DIP-6_W10.16mm',part_key='OPTO:MOC3083')
+          # C10797 is the plain 300 mil DIP; the footprint carries the milled
+          # slot that lets it straddle the barrier.
+          'OpenSaeco:DIP-6_W7.62mm_BarrierSlot',part_key='OPTO:MOC3083')
     # Anti-surge 1206 with a 500 V limiting element voltage: the gate
     # resistor sees up to 325 V peak if the opto ever fires off the zero.
     # 390 ohm keeps that worst case at 0.83 A, under the 1 A opto surge.

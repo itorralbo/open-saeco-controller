@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-22T10:52:20",
+    "date": "2026-09-22T13:17:21",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -87,7 +87,7 @@
                         "x": 31.0,
                         "y": 104.175
                     },
-                    "uuid": "6f7cb352-ef8d-42ae-82db-716683faf35a"
+                    "uuid": "bf6cb4f3-7fb7-4ecb-a7ef-a02d7638aa9f"
                 },
                 {
                     "description": "Pad 14 [/NTC_ADC] de U101 en F.Cu",
@@ -118,7 +118,7 @@
                         "x": 31.1,
                         "y": 61.025
                     },
-                    "uuid": "0fc18b2c-84a7-4961-9d30-d9dcedd4b3ba"
+                    "uuid": "1b69e73c-51aa-410c-b1b0-2b5be82cf400"
                 }
             ],
             "severity": "error",
@@ -133,7 +133,7 @@
                         "x": 44.4,
                         "y": 53.05
                     },
-                    "uuid": "45c4102a-685b-48bf-8fbe-c72f3a0e65b2"
+                    "uuid": "8eda139b-106e-4c14-9e86-aafa7ef257af"
                 },
                 {
                     "description": "Pad 2 [/GND_UI] de C101 en F.Cu",
@@ -187,7 +187,7 @@
                         "x": 70.8,
                         "y": 53.0
                     },
-                    "uuid": "5e1f79f7-e42f-42fe-b4ea-389cf13f6747"
+                    "uuid": "f1bb8ef2-a5c2-45b2-9da6-b80be40af8bd"
                 }
             ],
             "severity": "error",
@@ -210,7 +210,7 @@
                         "x": 79.25,
                         "y": 44.3
                     },
-                    "uuid": "ccf25ed9-eed1-43ab-b3e6-077ca56c22bb"
+                    "uuid": "f5a10053-9b27-48fa-bafa-427145ba3d31"
                 }
             ],
             "severity": "error",
@@ -279,7 +279,7 @@
                         "x": 30.3,
                         "y": 75.0
                     },
-                    "uuid": "69f2ea71-9f1f-42e0-aa7c-94f09de0e77c"
+                    "uuid": "33d5f1de-5c3f-4681-845c-0ace82023e56"
                 }
             ],
             "severity": "error",
@@ -317,7 +317,7 @@
                         "x": 94.3,
                         "y": 31.5
                     },
-                    "uuid": "53a0dee8-f4b7-43e8-b6c9-54ba6ff38326"
+                    "uuid": "e3693b8e-a257-4a64-bb3b-eb21539d26e8"
                 },
                 {
                     "description": "Pista [/3V3_CORE] en (F.Cu), longitud 1.6000 mm",
@@ -325,7 +325,7 @@
                         "x": 83.8,
                         "y": 35.875
                     },
-                    "uuid": "d5fc2346-4480-4baa-bcc7-42aa3acc7e93"
+                    "uuid": "e64a4a4f-b0aa-4aeb-83a8-1306629a9207"
                 }
             ],
             "severity": "error",
@@ -785,7 +785,7 @@
                         "x": 70.325,
                         "y": 39.25
                     },
-                    "uuid": "3d81952a-7c8e-4258-bc34-6d19022db243"
+                    "uuid": "0e4fbc7f-7ec9-4d97-8a3c-652a9d1c0880"
                 }
             ],
             "severity": "error",
@@ -800,7 +800,7 @@
                         "x": 29.7,
                         "y": 69.0
                     },
-                    "uuid": "42249e5c-f52e-4d06-b0b5-e17958285bc6"
+                    "uuid": "25439a63-4846-402e-953d-f9f80b0f08c5"
                 },
                 {
                     "description": "Pad 30 [/HEATER_EN_RAW] de U101 en F.Cu",
@@ -846,7 +846,7 @@
                         "x": 20.5,
                         "y": 115.9
                     },
-                    "uuid": "0d5adfb9-f777-4bad-b09e-062700677260"
+                    "uuid": "a879bac9-b11c-4080-b3f3-4f16b2a9b533"
                 },
                 {
                     "description": "Pad 16 [/WATER_LEVEL] de U101 en F.Cu",
@@ -877,7 +877,7 @@
                         "x": 112.175,
                         "y": 2.2
                     },
-                    "uuid": "390402d1-127c-4a09-a840-9ca51e8b7f31"
+                    "uuid": "981eb9b8-a620-4482-a1f2-604e0a37c829"
                 }
             ],
             "severity": "error",
@@ -923,7 +923,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "c7b0eea6-dd68-47fc-991d-2583b7f14aec"
+                    "uuid": "8a02997c-5a93-47b7-86ee-e54366403972"
                 }
             ],
             "severity": "error",
@@ -933,12 +933,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/12V_PROTECTED] en (B.Cu), longitud 2.4000 mm",
+                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 0.4243 mm",
                     "pos": {
-                        "x": 25.3,
+                        "x": 27.7,
                         "y": 101.6
                     },
-                    "uuid": "68b18d6a-c83d-4706-a4c6-173a806c094c"
+                    "uuid": "2adfd87f-1e48-4806-8bc4-b8d05efe6648"
                 },
                 {
                     "description": "Pad PTH 3 [/12V_PROTECTED] de J106",
@@ -984,7 +984,7 @@
                         "x": 28.0,
                         "y": 94.2
                     },
-                    "uuid": "8d70b74d-f352-4d3b-bd14-37f3828b4796"
+                    "uuid": "4da2e6f5-c2a9-428c-9452-01a477d48453"
                 },
                 {
                     "description": "Pad PTH 3 [/12V_PROTECTED] de J114",
@@ -1010,12 +1010,12 @@
                     "uuid": "569fdd53-2f39-4e7c-a5d8-6b7a5aa1d491"
                 },
                 {
-                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 8.7000 mm",
+                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 2.6235 mm",
                     "pos": {
                         "x": 92.8,
-                        "y": 28.6
+                        "y": 37.3
                     },
-                    "uuid": "fb86b357-a118-4199-ba9e-78bbdcfeb9db"
+                    "uuid": "0e4c8337-fba3-43bc-bdef-4dfe7795dfeb"
                 }
             ],
             "severity": "error",
@@ -1038,7 +1038,7 @@
                         "x": 95.275,
                         "y": 53.6
                     },
-                    "uuid": "cd5a8e7b-7524-454d-9ef7-7b1db106f33d"
+                    "uuid": "e32a7dc4-c3bf-41a2-935e-4dbecb319761"
                 }
             ],
             "severity": "error",
@@ -1191,7 +1191,7 @@
                         "x": 19.0,
                         "y": 59.825
                     },
-                    "uuid": "0dd9ab5c-a8a1-4b07-ba1d-a84519ef693e"
+                    "uuid": "67dddd38-ab5f-40eb-b5c7-af4ab14d03d0"
                 },
                 {
                     "description": "Pad 10 [/BU_WORK_N] de U101 en F.Cu",
@@ -1314,7 +1314,7 @@
                         "x": 103.0,
                         "y": 19.825
                     },
-                    "uuid": "282f3bcd-7b74-4f20-8bea-b0fd2a54e0e8"
+                    "uuid": "cf8a9869-8a5f-44cd-9212-61497f580e6b"
                 }
             ],
             "severity": "error",
@@ -1398,7 +1398,7 @@
                         "x": 41.675,
                         "y": 64.5
                     },
-                    "uuid": "bf562f5e-6180-47c2-9dee-192c31d65fc9"
+                    "uuid": "91a45db9-e32c-4016-b82a-11698e07bd15"
                 },
                 {
                     "description": "Pad 24 [/VALVE_EN_RAW] de U101 en F.Cu",
@@ -1444,7 +1444,7 @@
                         "x": 18.0,
                         "y": 71.825
                     },
-                    "uuid": "a56f394e-c8ac-45a0-9734-e7a27fb5efe8"
+                    "uuid": "ba279984-9e5d-47c6-b4b5-2832a7bda276"
                 },
                 {
                     "description": "Pad 8 [/DOOR_CLOSED_N] de U101 en F.Cu",
@@ -1467,7 +1467,7 @@
                         "x": 19.0,
                         "y": 52.825
                     },
-                    "uuid": "93ba66c7-1946-47db-a0e5-7a00ddb3711d"
+                    "uuid": "eabb7962-67c9-4278-9696-0efebffe2411"
                 },
                 {
                     "description": "Pad 9 [/BU_PRESENT_N] de U101 en F.Cu",
@@ -1490,7 +1490,7 @@
                         "x": 41.0,
                         "y": 104.825
                     },
-                    "uuid": "81773c47-016b-4113-9ec1-45720397450f"
+                    "uuid": "0b6935c3-53b8-4049-a1a6-091d6f980e5b"
                 },
                 {
                     "description": "Pad 15 [/FLOW_TIM] de U101 en F.Cu",
@@ -1659,7 +1659,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "353592bf-12a0-46aa-97ef-ccb4a50070ff"
+                    "uuid": "f7036e44-3e17-4277-90c0-b894cdc525cf"
                 }
             ],
             "severity": "error",
@@ -1860,7 +1860,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "c7b0eea6-dd68-47fc-991d-2583b7f14aec"
+                    "uuid": "8a02997c-5a93-47b7-86ee-e54366403972"
                 }
             ],
             "severity": "warning",
@@ -1875,7 +1875,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "353592bf-12a0-46aa-97ef-ccb4a50070ff"
+                    "uuid": "f7036e44-3e17-4277-90c0-b894cdc525cf"
                 }
             ],
             "severity": "warning",

@@ -800,17 +800,17 @@
       "manufacturer": "Lite-On",
       "mpn": "MOC3083",
       "lcsc": "C10797",
-      "specification": "Zero-cross phototriac driver, 800V, DIP-6; heater branch",
-      "footprint": "Package_DIP:DIP-6_W10.16mm",
+      "specification": "Zero-cross phototriac driver, 800V, standard 300 mil DIP-6; heater branch",
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
-      "stock_observed": 11916,
+      "stock_observed": 19008,
       "available_order_qty_observed": null,
-      "stock_checked_on": "2026-09-19",
-      "stock_evidence": "JLCPCB rendered product page, read-only web observation",
+      "stock_checked_on": "2026-09-22",
+      "stock_evidence": "JLCPCB parts search API, read-only; package from Lite-On MOC308X datasheet (MOC3083 dual-in-line, MOC3083M wide lead spacing)",
       "url": "https://jlcpcb.com/partdetail/liteon-MOC3083/C10797",
       "selection": "candidate_not_released",
-      "footprint_note": "Standard DIP land pattern, not the LongPads variant: with 2.4 mm pads the two rows leave only 7.76 mm of bare laminate between them, which does not clear the 8 mm primary-to-SELV barrier. The 1.6 mm pads leave 8.56 mm."
+      "footprint_note": "C10797 is Lite-On's plain MOC3083, the 7.62 mm (300 mil) DIP; the 10.16 mm package is the MOC3083M, of which JLC listed only 3 pieces (MOC3083M-V, C5124525) on 2026-09-22. The part crosses the 8 mm barrier over a 2 mm slot milled between its rows: 6.02 mm of air between the pads, about 9 mm of surface path around the slot."
     },
     "R:390_1206_500V": {
       "manufacturer": "PANASONIC",

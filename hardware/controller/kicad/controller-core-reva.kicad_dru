@@ -15,3 +15,7 @@
 (rule "mains_to_selv_creepage"
   (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'")
   (constraint creepage (min 8.0mm)))
+
+(rule "optocoupler_barrier_slot"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*' && A.enclosedByArea('optocoupler barrier slot') && B.enclosedByArea('optocoupler barrier slot')")
+  (constraint clearance (min 6.0mm)))

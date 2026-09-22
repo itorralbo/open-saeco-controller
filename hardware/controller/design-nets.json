@@ -2677,7 +2677,7 @@
     {
       "reference": "U701",
       "value": "MOC3083 / zero-cross",
-      "footprint": "Package_DIP:DIP-6_W10.16mm",
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "status": "candidate",
       "manufacturer": "Lite-On",
       "mpn": "MOC3083",

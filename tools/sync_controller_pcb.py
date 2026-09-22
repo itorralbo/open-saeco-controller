@@ -76,7 +76,7 @@ NEW_POSITIONS = {
     'C314': (66, 108),
     'U603': (50, 79), 'C603': (54, 79), 'Q701': (48, 84),
     'J116': (80.5, 124.05), 'J119': (121.5, 124.0), 'J120': (128.0, 124.0),
-    'U701': (45.92, 97.46), 'Q703': (68.46, 109.5), 'R710': (58, 108.5),
+    'U701': (47.19, 97.46), 'Q703': (68.46, 109.5), 'R710': (58, 108.5),
     'R707': (31, 99), 'R708': (31, 96), 'Q705': (38, 99.5),
     'R709': (36, 96), 'R711': (28, 66),
     'R801': (44, 80), 'R802': (44, 84), 'D701': (57, 84),
@@ -90,6 +90,9 @@ FOOTPRINT_REPLACEMENTS = {
     # provisional round-hole pattern.
     'J116': ('OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column',
              'OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical'),
+    # The stocked Lite-On MOC3083 is the 300 mil DIP, not the 400 mil M
+    # variant; it crosses the barrier over a milled slot instead.
+    'U701': ('Package_DIP:DIP-6_W10.16mm', 'OpenSaeco:DIP-6_W7.62mm_BarrierSlot'),
 }
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {

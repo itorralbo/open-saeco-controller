@@ -23,7 +23,7 @@
     "heater stage: optocoupler, triac, gate and switched phase",
     "heater enable: U603 second gate, R711 pull-down and R707"
   ],
-  "track_segments": 639,
+  "track_segments": 643,
   "vias": 135,
   "remaining_blocks": [
     "heater, pump and grinder stages",

@@ -70,8 +70,10 @@ def pending_power_connector_keepouts(board):
 
 # Centre line of the primary/SELV barrier: up from the bottom edge between J106
 # and J115, then across K701 and PS701 to the right edge. A
-# band MAINS_BARRIER_MM wide around it holds no copper, vias or pads; parts
-# certified across it (K701, PS701 and future optocouplers) may span it.
+# band MAINS_BARRIER_MM wide around it holds no tracks, vias or fills; parts
+# certified across it (K701, PS701 and the optocouplers) may span it. Pads are
+# allowed in the band because the 300 mil optocouplers put theirs 0.8 mm into
+# it; the 8 mm mains-to-SELV DRC rule still covers every pad.
 MAINS_BARRIER = [(51.0, 135.2), (51.0, 60.0), (141.6, 60.0)]
 MAINS_BARRIER_MM = 8.0
 BARRIER_ZONE_NAME = 'mains/SELV barrier'
@@ -118,7 +120,7 @@ def heatsink_reservation(board):
 # a named area where mains-to-mains drops to the pitch the package imposes.
 # The areas cover only the mains side of the optocoupler: the gap between its
 # two rows is the isolation barrier and keeps the full 8 mm.
-DEVICE_PITCH_AREAS = ((54.8, 96.0, 57.4, 104.0), (55.3, 105.6, 78.0, 113.5))
+DEVICE_PITCH_AREAS = ((53.9, 96.2, 57.4, 103.8), (55.3, 105.6, 78.0, 113.5))
 DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
 
 
@@ -142,6 +144,33 @@ def mains_device_pitch_areas(board):
         board.Add(zone)
 
 
+# One area per barrier optocoupler, covering both pad rows and the short stubs
+# that enter them. Inside it the rules accept the 6.02 mm air gap between the
+# rows; the slot in the footprint keeps the surface path over 8 mm.
+OPTO_SLOT_AREAS = ((45.7, 96.0, 56.6, 104.0),)
+OPTO_SLOT_ZONE_NAME = 'optocoupler barrier slot'
+
+
+def optocoupler_slot_areas(board):
+    for zone in list(board.Zones()):
+        if zone.GetZoneName() == OPTO_SLOT_ZONE_NAME:
+            board.Delete(zone)
+    for x1, y1, x2, y2 in OPTO_SLOT_AREAS:
+        zone = pcb.ZONE(board)
+        zone.SetIsRuleArea(True)
+        zone.SetLayerSet(pcb.LSET.AllCuMask())
+        for setter in ('SetDoNotAllowTracks', 'SetDoNotAllowVias',
+                       'SetDoNotAllowZoneFills', 'SetDoNotAllowPads',
+                       'SetDoNotAllowFootprints'):
+            getattr(zone, setter)(False)
+        zone.SetZoneName(OPTO_SLOT_ZONE_NAME)
+        poly = zone.Outline()
+        poly.NewOutline()
+        for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):
+            poly.Append(MM(x), MM(y))
+        board.Add(zone)
+
+
 def mains_barrier_keepout(board):
     for zone in list(board.Zones()):
         if zone.GetZoneName() == BARRIER_ZONE_NAME:
@@ -157,7 +186,7 @@ def mains_barrier_keepout(board):
     zone.SetDoNotAllowTracks(True)
     zone.SetDoNotAllowVias(True)
     zone.SetDoNotAllowZoneFills(True)
-    zone.SetDoNotAllowPads(True)
+    zone.SetDoNotAllowPads(False)
     zone.SetDoNotAllowFootprints(False)
     zone.SetZoneName(BARRIER_ZONE_NAME)
     poly = zone.Outline()
@@ -181,12 +210,11 @@ PLACE = {
     # mechanical-source.json had been reserving for them.
     'J116': (80.5, 124.05, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
 
-    # Heater switching stage. U701 straddles the barrier: its rows are
-    # 10.16 mm apart and its pads 1.6 mm, so 8.56 mm of bare laminate sits
-    # between them, just over the 8 mm the rule asks for. Q703 stands against
-    # the south face of the heatsink, and R710 lives in the lane beside it
-    # because it carries mains and cannot cross to the SELV side.
-    'U701': (45.92, 97.46, 0), 'Q703': (68.46, 109.5, 0),
+    # Heater switching stage. U701 straddles the barrier centred on x = 51:
+    # a 300 mil DIP whose footprint mills a 2 mm slot between the rows. Q703
+    # stands against the south face of the heatsink, and R710 lives in the lane
+    # beside it because it carries mains and cannot cross to the SELV side.
+    'U701': (47.19, 97.46, 0), 'Q703': (68.46, 109.5, 0),
     'R710': (58, 108.5, 180),
     'R707': (31, 99, 0), 'R708': (31, 96, 180), 'Q705': (38, 99.5, 0),
     'R709': (36, 96, 0), 'R711': (28, 66, 180),
@@ -346,6 +374,7 @@ def main():
     pending_power_connector_keepouts(board)
     mains_barrier_keepout(board)
     mains_device_pitch_areas(board)
+    optocoupler_slot_areas(board)
     heatsink_reservation(board)
 
     pcb.SaveBoard(str(BOARD_PATH), board)

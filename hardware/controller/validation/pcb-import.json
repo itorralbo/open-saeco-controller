@@ -667,7 +667,7 @@
       "numbered_pads": 8
     },
     "U701": {
-      "footprint": "Package_DIP:DIP-6_W10.16mm",
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "numbered_pads": 6
     }
   },

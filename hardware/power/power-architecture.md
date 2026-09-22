@@ -91,11 +91,13 @@ Candidatos, ambos ya en el catálogo con existencias comprobadas el 2026-09-19:
 | Pieza | Candidato | Por qué |
 |---|---|---|
 | Triac | BTA24-800BWRG (C15293) | 25 A y 800 V, TO-220 aislado, 3 cuadrantes |
-| Opto | MOC3083 (C10797) | Disparo en paso por cero, 800 V, DIP-6 de 10,16 mm |
+| Opto | MOC3083 (C10797) | Disparo en paso por cero, 800 V, DIP-6 de 7,62 mm |
 
-El DIP de 10,16 mm entre filas no es casual: con el opto centrado en la línea de
-barrera sus dos filas caen 1,08 mm fuera de la banda de 8 mm, así que el DRC lo
-acepta sin ranura.
+**Corregido el 2026-09-22.** Se había supuesto un DIP de 10,16 mm entre filas,
+pero C10797 es el MOC3083 normal de Lite-On, de 7,62 mm. La versión ancha es el
+MOC3083M, sin existencias en JLC. El opto cruza la barrera sobre una ranura
+fresada entre filas: 6,02 mm de aire y unos 9 mm de superficie; ver
+[layout.md](../controller/layout.md#barrera-redselv-verificable).
 
 Números que hay que respetar:
 
