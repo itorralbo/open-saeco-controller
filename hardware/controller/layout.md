@@ -184,7 +184,7 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 - 589 segmentos y 126 vías. 2 021 mm de pista en F.Cu y 339 mm en B.Cu, casi
   todo el cruce del par USB y los dos saltos cortos bajo troncales de potencia.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 75 conexiones sin rutear y tres diferencias de paridad, los taladros
+- 77 conexiones sin rutear y tres diferencias de paridad, los taladros
   mecánicos MH1–MH3, que son intencionales.
 - Dos avisos de extremo suelto, intencionales: las filas de fallo y de corriente
   del puente H terminan donde entrarán las señales del STM32.
@@ -425,9 +425,18 @@ red a 0,6 mm solo sobre los pines del lado de red del opto y del triac, cuyo
 paso de 2,54 mm lo impone el encapsulado. El hueco entre las dos filas del opto
 conserva los 8 mm.
 
-Pendiente: la señal de habilitación del STM32 (PB10) y el enclavamiento hasta
-R707, la pieza de R710 con tensión de trabajo declarada, y el triac y opto de la
-bomba, que irán en el hueco este del mismo perfil.
+Enclavamiento ruteado: HEATER_EN_RAW entra en el pin 5 de U603 y llega a la
+bajada R711 saltando a B.Cu bajo el ramal de 3,3 V. La salida, en el pin 3,
+queda cercada por el ramal de tierra del pin 4 y el lazo de reset del pin 2;
+el lazo se ha desplazado a x = 37,2 mm para que quepa una vía dentro, y desde
+ella HEATER_EN_INTERLOCK baja por B.Cu, bajo el retorno del relé y los 12 V,
+hasta R707. La entrada de reset del pin 6 sale al oeste a un hueco que deja
+libre la orden del relé, ahora recta hacia el oeste antes de subir a R801, y
+llega por B.Cu a la vía de reset al norte del encapsulado.
+
+Pendiente: el tramo desde el STM32 (PB10) con el resto de señales del
+microcontrolador, la pieza de R710 con tensión de trabajo declarada, y el triac
+y opto de la bomba, que irán en el hueco este del mismo perfil.
 
 ## Verificación de huellas
 
@@ -445,8 +454,8 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Cerrar el calentador (PB10 y enclavamiento, pieza de R710) y añadir la
-   etapa de la bomba en el mismo disipador; después el molinillo.
+3. Elegir la pieza de R710 y añadir la etapa de la bomba en el mismo
+   disipador; después el molinillo.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de

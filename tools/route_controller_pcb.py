@@ -443,8 +443,11 @@ def route_watchdog_interlock(board):
 
     # Relay chain: U603 1Y through the gate resistor, the off pull-down and
     # Q701 to the K701 coil and the D701 flyback diode.
-    polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (29.0, 73.325),
-                                        (27.25, 71.0)], width=PIN_WIDTH)
+    # Straight west before turning north, so that the pocket beside pin 6
+    # stays free for its reset via.
+    polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (27.6, 73.325),
+                                        (27.6, 71.6), (27.1, 71.0)],
+             width=PIN_WIDTH)
     polyline(board, '/MAINS_RELAY_GATE', [(25.175, 71.0), (25.175, 77.55),
                                           (31.062, 77.55)], width=PIN_WIDTH)
     polyline(board, '/MAINS_RELAY_RETURN', [(32.938, 78.5), (34.5, 78.5),
@@ -879,8 +882,15 @@ def route_reset_tree(board):
     via(board, nrst, (34.9, 65.9))
     track(board, nrst, (34.9, 65.9), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
     via(board, nrst, (34.9, 68.2))
-    polyline(board, nrst, [(34.9, 68.2), (34.9, 71.0), (36.5, 71.0),
-                           (36.5, 73.325), (34.4, 73.325)], width=PIN_WIDTH)
+    # U603 pin 2 is reached from the east. The loop keeps 0.7 mm clear of
+    # pin 3 so that the heater interlock can drop to B.Cu inside it.
+    polyline(board, nrst, [(34.9, 68.2), (34.9, 71.0), (37.2, 71.0),
+                           (37.2, 73.325), (34.4, 73.325)], width=PIN_WIDTH)
+    # U603 pin 6, the heater gate's reset input: out west into the pocket
+    # between pins 5 and 7, then under the package on B.Cu to the same via.
+    track(board, nrst, (29.5, 72.675), (28.85, 72.6), width=PIN_WIDTH)
+    via(board, nrst, (28.85, 72.6))
+    track(board, nrst, (28.85, 72.6), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
     # Two reset points stay open: U602 pin 6, whose only approach is the
     # 0.87 mm gap east of the package that the valve arm net already uses, and
     # the SWD header's reset pin, which would have to cross the decoupling
@@ -966,6 +976,32 @@ def route_earth_and_heater_return(board):
     for tab, y in (('2', 121.55), ('4', 131.55)):
         track(board, f'unconnected-(J116-Pad{tab})', (76.75, y), (81.75, y),
               width=MAINS_LIGHT_WIDTH)
+
+
+def route_heater_enable(board):
+    """HEATER_EN_RAW into U603's second gate and its output down to R707.
+
+    Pin 5 climbs to a B.Cu hop under the 3.3 V branch and reaches the R711
+    pull-down from the east. Pin 3 is fenced in by the ground stub of pin 4
+    and the reset loop of pin 2, so it drops to B.Cu inside the loop and runs
+    south under the relay-return and 12 V branches to the LED driver's gate
+    resistor. The MCU side of HEATER_EN_RAW (PB10) waits with the other STM32
+    signals.
+    """
+    raw, gated = '/HEATER_EN_RAW', '/HEATER_EN_INTERLOCK'
+    polyline(board, raw, [(29.5, 72.025), (29.7, 71.8), (29.7, 69.0)],
+             width=PIN_WIDTH)
+    via(board, raw, (29.7, 69.0))
+    track(board, raw, (29.7, 69.0), (30.0, 66.0), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, raw, (30.0, 66.0))
+    track(board, raw, (30.0, 66.0), (28.825, 66.0), width=PIN_WIDTH)
+
+    track(board, gated, (33.7, 72.675), (36.5, 72.675), width=PIN_WIDTH)
+    via(board, gated, (36.5, 72.675))
+    polyline(board, gated, [(36.5, 72.675), (36.5, 90.0), (29.4, 97.1),
+                            (29.4, 100.0)], pcb.B_Cu, width=PIN_WIDTH)
+    via(board, gated, (29.4, 100.0))
+    track(board, gated, (29.4, 100.0), (30.175, 99.0), width=PIN_WIDTH)
 
 
 def route_heater_stage(board):
@@ -1077,6 +1113,7 @@ def main():
     route_reset_tree(board)
     route_usb_power(board)
     route_earth_and_heater_return(board)
+    route_heater_enable(board)
     route_heater_stage(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
@@ -1100,7 +1137,8 @@ def main():
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',
                           'service-USB rail, sense divider and bench jumper',
                           'protective-earth bond and the heater neutral return',
-                          'heater stage: optocoupler, triac, gate and switched phase'],
+                          'heater stage: optocoupler, triac, gate and switched phase',
+                          'heater enable: U603 second gate, R711 pull-down and R707'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),

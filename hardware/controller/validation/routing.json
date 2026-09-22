@@ -20,10 +20,11 @@
     "reset tree: MCU, pull-up, filter, SWD header and the gates",
     "service-USB rail, sense divider and bench jumper",
     "protective-earth bond and the heater neutral return",
-    "heater stage: optocoupler, triac, gate and switched phase"
+    "heater stage: optocoupler, triac, gate and switched phase",
+    "heater enable: U603 second gate, R711 pull-down and R707"
   ],
-  "track_segments": 627,
-  "vias": 130,
+  "track_segments": 639,
+  "vias": 135,
   "remaining_blocks": [
     "heater, pump and grinder stages",
     "3V3 trunk and remaining decoupling",

@@ -112,7 +112,7 @@ def main():
                   'DRC de esta etapa tiene 0 infracciones y dos avisos intencionales de extremo '
                   'suelto, donde las filas de fallo y de corriente del puente H esperan las '
                   'señales del STM32. '
-                  'Quedan 75 conexiones abiertas y tres diferencias de paridad, los taladros '
+                  'Quedan 77 conexiones abiertas y tres diferencias de paridad, los taladros '
                   'mecánicos MH1–MH3.\n\n'
                   'La principal usa dos capas y clases explícitas para red, USB, alimentación, '
                   'conmutación y actuadores. La geometría USB sigue pendiente de verificar '

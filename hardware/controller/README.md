@@ -18,7 +18,7 @@ el USB, la alimentación del STM32, la entrada de red, los 24 V, el puente H del
 grupo, el supervisor con sus interlocks y el relé, la válvula, el lado de mazo de
 los sensores y los dos bucks ya ruteados, y la primera etapa de carga sin
 ensayar. El DRC, con la barrera red/SELV de 8 mm como regla, no presenta
-infracciones; quedan 75 conexiones sin rutear, la distribución de 3V3 y 12 V,
+infracciones; quedan 77 conexiones sin rutear, la distribución de 3V3 y 12 V,
 las señales del STM32, caracterizar la salida del nivel
 de agua y completar las demás etapas de potencia.
 Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita
