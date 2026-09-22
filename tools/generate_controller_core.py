@@ -481,8 +481,8 @@ def main():
     # tab 1 takes the switched live coming down from the heatsink.
     d.add('J116','J4','JP19 HEATER / 1900W 27R5',1155,674,
           ['HEATER_AC_SWITCHED',None,'MAINS_N',None],
-          'OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column',
-          status='faston_provisional_leg_pattern')
+          'OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical',
+          status='owner_identified', part_key='CONN:TE_RAST5_1971845-4')
     d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
           ['PUMP_AC_A','PUMP_AC_B'],
           'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',

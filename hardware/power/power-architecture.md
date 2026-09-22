@@ -139,8 +139,9 @@ un ensamblador equivalente.
 
 ## Orden de diseño
 
-1. Cerrar las huellas aún pendientes de JP19, JP1 y JP9; JP17, JP24 y JP8 ya
-   están colocados en sus posiciones originales estimadas.
+1. Cotejar con una muestra el patrón de patas de JP1 y JP9. JP19 ya usa la
+   huella del TE 1971845-4; JP17, JP24 y JP8 están en sus posiciones originales
+   estimadas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la fuente candidata IRM-30-24 ya incorporada al esquema y PCB.
 3. Cerrar los valores de fusibles/MOV/filtro y diseñar conmutación del calentador y bomba y

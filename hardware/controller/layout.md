@@ -62,8 +62,8 @@ encima de JP8/JP19/JP24.
   vertical en el borde derecho, con las salidas de 24 V arriba (SELV) y los pines
   AC abajo, junto a J118. El paso de 6 mm entre el disipador y PS701 lleva L y
   PSU_L entre J118, los fusibles y PS701.
-- Borde inferior central y derecho: conectores originales de potencia y las
-  envolventes aún pendientes de JP19 y de los dos FASTON de protección.
+- Borde inferior central y derecho: conectores originales de potencia, JP19
+  (TE 1971845-4) y los dos FASTON de protección.
 
 USB, frontal, sensores, STM32, ESP32 y depuración permanecen íntegramente en
 SELV. Las órdenes hacia las cargas de red cruzarán la frontera únicamente por
@@ -99,9 +99,8 @@ de AC_LOADS (JP19). Se reserva el mismo sitio: `HEATSINK_AREA` (x = 55–95,
 y = 84,5–113 mm), como un área de regla que solo prohíbe huellas. Se toma un
 fondo de 28,5 mm, el espacio entre la fila de K701/RV701 y la carcasa de JP19;
 los 33 mm leídos en la foto cenital incluyen las aletas abiertas de arriba.
-JP19 mide 22 × 15 × 13 mm, con 4 lengüetas FASTON 6,3 × 0,8 mm a 5 mm de paso
-(medidas del propietario). Su envolvente pendiente es de 15 × 22 mm, a ras del
-borde inferior, hasta conocer cuánto sobresale y el patrón de patas. Por eso se
+JP19 es un TE 1971845-4 de 22,3 × 14,9 × 12,8 mm, con 4 lengüetas FASTON
+6,3 × 0,8 mm a 5 mm de paso, a ras del borde inferior. Por eso se
 cambió el ESP32 por la variante 1U de antena externa: la zona de exclusión de
 la antena impresa ocupaba unos 1 990 mm², el 10 % de la placa, y sin ese espacio
 no cabían a la vez el disipador, los fusibles, el MOV y K701.
@@ -177,7 +176,8 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 ## Validación
 
 - 159/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
-  ya sus zonas originales. Faltan las huellas de JP19, JP1 y JP9. Contorno
+  ya sus zonas originales. JP19 es el TE 1971845-4; JP1 y JP9, lengüetas con
+  patrón de patas provisional. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
@@ -355,18 +355,37 @@ cuál es cuál. El elemento mide 27,5 Ω y declara 1900 W, o sea 8,4 A a 230 V, 
 es justo lo que ya soporta el cobre de fase duplicado. JP1 y JP9 son tomas de
 tierra, del cuerpo del boiler y de la entrada de red.
 
-Con eso ya tienen huella las tres. Se han dibujado dos nuevas en
-`OpenSaeco.pretty`: un bloque de cuatro lengüetas FASTON de 6,3 × 0,8 mm en
-columna a 5 mm de paso para JP19, y una lengüeta suelta para cada toma de
-tierra. Ambas son **provisionales en el patrón de patas**: las medidas del
-propietario dan la lengüeta y el paso, no cómo sueldan al circuito, así que se
-usan taladros redondos de 1,5 y 1,6 mm en su lugar. Hay que cotejarlas con una
-muestra antes de pedir la placa.
+Con eso ya tienen huella las tres. Las tomas de tierra usan una lengüeta
+suelta dibujada en `OpenSaeco.pretty`, **provisional en el patrón de patas**:
+las medidas dan la lengüeta, no cómo suelda, así que lleva un taladro redondo
+de 1,6 mm. Hay que cotejarla con una muestra antes de pedir la placa.
 
-La lengüeta 3 de JP19 es la más cercana al borde, así que toma el retorno de
-neutro, que ya está ruteado desde JP17 por debajo de la fila de conectores y
-duplicado en las dos caras. La lengüeta 1 espera el vivo conmutado que bajará
-del triac en el disipador.
+El propietario identificó JP19 el 2026-09-22: es el **TE 1971845-4** (LCSC
+C2149727, Extended en JLCPCB, soldadura por ola), un RAST 5 de cuatro
+lengüetas con 16 A y 250 V. Su huella,
+`TE_RAST5_1971845-4_1x04_P5.00mm_Vertical`, sigue la disposición recomendada
+del plano de TE C-1971845 (rev. A25), redibujada desde la cara de componentes y
+girada para que las lengüetas queden en columna:
+
+- cada lengüeta suelda con **dos patas a 5 mm**, en taladros de 1,30 +0,10 mm
+  (se usan 1,35 mm con pads de 2,4 mm);
+- las patas se escalonan: las lengüetas impares a −1,25 y +3,75 mm del eje y
+  las pares a −3,75 y +1,25 mm;
+- un taladro sin metalizar de 2,5 mm recibe el poste de polarización, a +6,4 mm
+  del eje y entre las lengüetas 3 y 4.
+
+La carcasa se centra en (80,5; 124,05) para quedar a ras del borde inferior.
+La lengüeta 3 es la de uso más cercana al borde y toma el retorno de neutro,
+ruteado desde JP17 por debajo de la fila de conectores y duplicado en las dos
+caras; sube a la fila de patas antes de llegar al taladro del poste y une las
+dos patas. La lengüeta 1 recibe el vivo conmutado del triac en sus dos patas.
+Las lengüetas 2 y 4 no se usan, pero cada una une sus dos patas para que la
+pieza metálica flotante sea un solo nodo.
+
+Queda por comprobar en la máquina que el poste y el cierre del conector aéreo
+casan con esta orientación. Si no, se gira J116 180° y se rehacen las dos
+entradas: las lengüetas 1 y 3 son los dos extremos del mismo elemento y el
+orden no importa.
 
 El puente de tierra entre JP1 y JP9 va duplicado en las dos caras como una fase
 de carga, porque tiene que llevar corriente de defecto hasta que abra la

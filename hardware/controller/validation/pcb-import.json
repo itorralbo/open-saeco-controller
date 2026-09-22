@@ -311,7 +311,7 @@
       "numbered_pads": 3
     },
     "J116": {
-      "footprint": "OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column",
+      "footprint": "OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical",
       "numbered_pads": 4
     },
     "J117": {
@@ -673,7 +673,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 743,
+  "tracks": 748,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

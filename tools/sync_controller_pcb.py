@@ -75,7 +75,7 @@ NEW_POSITIONS = {
     'C313': (57, 99), 'R302': (66, 100), 'R303': (66, 104),
     'C314': (66, 108),
     'U603': (50, 79), 'C603': (54, 79), 'Q701': (48, 84),
-    'J116': (80.5, 124.2), 'J119': (121.5, 124.0), 'J120': (128.0, 124.0),
+    'J116': (80.5, 124.05), 'J119': (121.5, 124.0), 'J120': (128.0, 124.0),
     'U701': (45.92, 97.46), 'Q703': (68.46, 109.5), 'R710': (58, 108.5),
     'R707': (31, 99), 'R708': (31, 96), 'Q705': (38, 99.5),
     'R709': (36, 96), 'R711': (28, 66),
@@ -86,6 +86,10 @@ NEW_POSITIONS = {
 # layout_controller_pcb.py then places it. Pads are re-netted below as usual.
 FOOTPRINT_REPLACEMENTS = {
     'U201': ('RF_Module:ESP32-S3-WROOM-1', 'RF_Module:ESP32-S3-WROOM-1U'),
+    # JP19 identified by the owner as TE 1971845-4; its drawing replaces the
+    # provisional round-hole pattern.
+    'J116': ('OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column',
+             'OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical'),
 }
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {

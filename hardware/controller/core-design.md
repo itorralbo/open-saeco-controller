@@ -51,8 +51,8 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   señales ADC para medida en banco; no es una entrada de alimentación.
 
 JP8, JP24 y JP17 ya aparecen como J115, J117 y J118 con huellas JST VH candidatas.
-JP19 y los dos FASTON de PE aparecen como J116/J119/J120, pero se mantienen sin
-huella hasta cerrar su geometría. Los drivers de red todavía no están dibujados.
+JP19 es J116, un TE 1971845-4 con huella según el plano del fabricante. Los dos
+FASTON de PE son J119/J120, con patrón de patas provisional. Los drivers de red todavía no están dibujados.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
 conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale

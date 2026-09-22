@@ -98,8 +98,9 @@ def main():
                      'taladros Ø8,4 desde mechanical-source.json.')
         extra = (('\nLa colocación alinea J104, J108, J107, J113, J109, J105 y J106 con '
                   'JP21, JP16, JP14, JP3, JP22, JP13 y JP5. JP8, JP19, JP24, JP17, '
-                  'JP1 y JP9 son conectores obligatorios y ya tienen huella, con patrón de '
-                  'patas provisional en los FASTON. El routing reproducible cubre USB, la alimentación '
+                  'JP1 y JP9 son conectores obligatorios y ya tienen huella: JP19 es el TE '
+                  '1971845-4 identificado por el propietario, y los FASTON de PE mantienen '
+                  'patrón de patas provisional. El routing reproducible cubre USB, la alimentación '
                   'y el desacoplo del STM32, la entrada de red hasta PS701, K701 y RV701, la '
                   'salida de 24 V, el puente H del grupo, el supervisor con sus interlocks y el '
                   'mando del relé, la etapa de válvula, el lado de mazo de los sensores, el buck '

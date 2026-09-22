@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-22T08:14:35</date>
+    <date>2026-09-22T10:42:32</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2513,13 +2513,23 @@
     </comp>
     <comp ref="J116">
       <value>JP19 HEATER / 1900W 27R5</value>
-      <footprint>OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column</footprint>
+      <footprint>OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical</footprint>
       <fields>
-        <field name="Footprint">OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column</field>
+        <field name="manufacturer">TE Connectivity</field>
+        <field name="mpn">1971845-4</field>
+        <field name="lcsc">C2149727</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Standard</field>
+        <field name="Footprint">OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J4" description=""/>
+      <property name="manufacturer" value="TE Connectivity"/>
+      <property name="mpn" value="1971845-4"/>
+      <property name="lcsc" value="C2149727"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

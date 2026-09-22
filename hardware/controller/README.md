@@ -9,8 +9,8 @@ desde una entrada aislada de 24 V con ramas protegidas por separado.
 Un TPS3828 externo supervisa el STM32; la lógica AND bloquea los actuadores y
 un segundo interlock gobierna el relé general de fase.
 159 posiciones; 151 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
-Las 159 huellas están importadas a la PCB, incluidas JP19 y los dos FASTON de
-PE, con patrón de patas provisional. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
+Las huellas están importadas a la PCB. JP19 es el TE 1971845-4 identificado por
+el propietario; los dos FASTON de PE siguen con patrón de patas provisional. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
 calibre; falta comprobar el acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
@@ -31,8 +31,9 @@ drivers de calentador, bomba y molino en las posiciones de la original. Su
 [arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
 misma PCB.
 JP8, JP24 y JP17 están en el esquema y en la PCB como JST VH candidatos, en
-sus posiciones originales. JP19 lleva un bloque de cuatro lengüetas FASTON y
-JP1/JP9 una lengüeta cada uno, con el patrón de patas aún por cotejar.
+sus posiciones originales. JP19 es un TE 1971845-4 (RAST 5, cuatro lengüetas
+FASTON, LCSC C2149727) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
+patas aún por cotejar.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
 El [perfil de fabricación y clases de red](manufacturing.md) configura dos
 capas y reglas conservadoras para lógica, USB, alimentación y actuadores.

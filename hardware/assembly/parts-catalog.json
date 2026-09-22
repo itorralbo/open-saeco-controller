@@ -676,6 +676,21 @@
       "url": "https://jlcpcb.com/partdetail/C264986",
       "selection": "candidate_not_released"
     },
+    "CONN:TE_RAST5_1971845-4": {
+      "manufacturer": "TE Connectivity",
+      "mpn": "1971845-4",
+      "lcsc": "C2149727",
+      "specification": "RAST 5 tab header, 4 x 6.3 x 0.8 mm tabs, 5 mm pitch, vertical THT, 16 A 250 V, PA UL94V-0; JP19 heater, identified by the owner",
+      "footprint": "OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "Standard",
+      "stock_observed": 1962,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-22",
+      "stock_evidence": "LCSC product page, read-only web observation; JLCPCB part page lists Extended, wave soldering, Standard PCBA only",
+      "url": "https://www.lcsc.com/product-detail/C2149727.html",
+      "selection": "owner_identified"
+    },
     "CONN:USB_C_HRO_16": {
       "manufacturer": "HRO ELECTRONICS",
       "mpn": "TYPE-C-31-M-12",

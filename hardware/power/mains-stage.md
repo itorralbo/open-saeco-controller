@@ -95,10 +95,10 @@ rediseñará esa interfaz; no se bajará silenciosamente a 400 V.
 2. Corriente del motor de grupo en movimiento y bloqueo, solo y con válvula.
 3. Temperatura ambiente dentro de la máquina y temperatura de triac/disipador.
 4. Continuidad de la placa original desde L/N a F1/F2, relé/triacs y cargas.
-5. Pinout mecánico de JP19 y de los Faston JP1/JP9. De JP19 se conocen ya la
-   carcasa (22 × 15 × 13 mm) y las 4 lengüetas FASTON 6,3 × 0,8 mm a 5 mm de paso
-   (propietario, 2026-09-19); faltan el patrón de patas de soldadura y cuánto
-   sobresale del borde.
+5. Patrón de patas de los Faston JP1/JP9. JP19 queda cerrado: el propietario lo
+   identificó el 2026-09-22 como TE 1971845-4 (LCSC C2149727), un RAST 5 de
+   cuatro lengüetas 6,3 × 0,8 mm a 5 mm, 16 A 250 V, y su huella sigue el plano
+   de TE.
 
 Hasta obtenerlos, el esquema puede avanzar con valores conservadores, pero los
 Gerbers de la zona de red seguirán marcados como no fabricables.

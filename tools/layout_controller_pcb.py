@@ -179,7 +179,7 @@ PLACE = {
     'J118': (106.04, 121.3, 0),
     # Heater block and the two protective-earth tabs, in the envelopes that
     # mechanical-source.json had been reserving for them.
-    'J116': (80.5, 124.2, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
+    'J116': (80.5, 124.05, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
 
     # Heater switching stage. U701 straddles the barrier: its rows are
     # 10.16 mm apart and its pads 1.6 mm, so 8.56 mm of bare laminate sits

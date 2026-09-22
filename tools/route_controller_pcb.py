@@ -948,14 +948,24 @@ def route_earth_and_heater_return(board):
     # Neutral leaves JP17 south of the connector row and runs west under it.
     # The stub out of the pad is narrowed, like the phase, to hold 1.2 mm to
     # the unused middle pin of the VH connector.
+    # Every tab of the TE 1971845-4 solders through two tails, 5 mm apart.
+    # Tab 3 has them at 79.25 and 84.25 mm, y = 126.55. The run climbs over
+    # the polarizing-post hole at (86.9, 129.05) and drops onto the east tail.
     for layer in (pcb.F_Cu, pcb.B_Cu):
         track(board, neutral, (113.96, 121.3), (113.96, 124.0), layer, width=2.2)
         polyline(board, neutral, [(113.96, 124.0), (113.96, 127.5),
-                                  (82.0, 127.5), (80.5, 126.7)], layer,
+                                  (92.0, 127.5), (89.5, 125.0), (86.5, 125.0),
+                                  (84.25, 126.55), (79.25, 126.55)], layer,
                  width=MAINS_PHASE_WIDTH)
     for point in ((113.96, 126.0), (105.0, 127.5), (96.0, 127.5),
-                  (87.0, 127.5)):
+                  (88.0, 125.0)):
         via(board, neutral, point, MAINS_VIA, MAINS_DRILL)
+
+    # Tabs 2 and 4 are not wired, but each one is a single piece of metal on
+    # two tails, so their pads are joined to keep the floating tab whole.
+    for tab, y in (('2', 121.55), ('4', 131.55)):
+        track(board, f'unconnected-(J116-Pad{tab})', (76.75, y), (81.75, y),
+              width=MAINS_LIGHT_WIDTH)
 
 
 def route_heater_stage(board):
@@ -1014,9 +1024,12 @@ def route_heater_stage(board):
 
     # Element side: out of the first terminal and down to JP19 tab 1.
     track(board, '/HEATER_AC_SWITCHED', (68.46, 110.2), (68.46, 112.0), width=1.5)
+    # Into both tails of JP19 tab 1, at 79.25 and 84.25 mm.
     polyline(board, '/HEATER_AC_SWITCHED', [(68.46, 112.0), (70.5, 114.5),
-                                            (77.0, 115.8), (80.5, 116.7)],
+                                            (77.0, 116.55), (84.25, 116.55)],
              width=2.5)
+    track(board, '/HEATER_AC_SWITCHED', (79.25, 116.55), (84.25, 116.55),
+          pcb.B_Cu, width=2.5)
 
 
 def selv_ground_plane(board):
