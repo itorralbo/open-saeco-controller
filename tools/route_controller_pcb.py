@@ -1091,6 +1091,67 @@ def route_heater_stage(board):
           pcb.B_Cu, width=2.5)
 
 
+def route_pump_stage(board):
+    """Zero-cross optocoupler and triac for the ULKA pump, the heater's twin.
+
+    U702 crosses the barrier one step south of U701 and Q704 stands on the
+    east half of the heatsink. The switched phase reaches Q704 along the
+    strip under the heatsink foot that already feeds Q703, and R712 takes it
+    from R710's pad in the lane. The gate is the only net that runs the
+    35 mm to the triac: on B.Cu, south of the heater gate and north of JP19's
+    tab 1, holding 2.5 mm to both. The pump current is 0.4 A, so its own
+    tracks stay at 1.2 mm, narrow enough to keep 2.5 mm between the two JP24
+    pads.
+    """
+    gnd = '/GND_UI'
+
+    # LED loop on the SELV side. 12 V comes from JP5 pin 3 on B.Cu along the
+    # plane edge; the gate network sits north of Q706, clear of MH2.
+    polyline(board, '/12V_PROTECTED', [(43.5, 125.3), (45.3, 123.5),
+                                       (45.3, 108.4)], pcb.B_Cu, width=0.5)
+    via(board, '/12V_PROTECTED', (45.3, 108.4))
+    track(board, '/12V_PROTECTED', (45.3, 108.4), (45.3, 109.775), width=0.5)
+    polyline(board, '/PUMP_LED_ANODE', [(45.3, 111.425), (45.85, 111.975),
+                                        (OPTO_SELV_STUB_END, 113.46)],
+             width=PIN_WIDTH)
+    track(board, '/PUMP_LED_RETURN', (44.737, 116.0), (OPTO_SELV_STUB_END, 116.0),
+          width=PIN_WIDTH)
+    opto_stubs(board, 'U702', {1: '/PUMP_LED_ANODE', 2: '/PUMP_LED_RETURN'})
+    track(board, '/PUMP_LED_GATE', (44.125, 106.6), (44.125, 108.2), width=PIN_WIDTH)
+    polyline(board, '/PUMP_LED_GATE', [(44.125, 108.2), (43.5, 108.9),
+                                       (43.5, 114.3), (42.862, 115.05)],
+             width=PIN_WIDTH)
+    for start, point in (((42.475, 106.6), (41.6, 106.6)),
+                         ((42.862, 116.95), (42.862, 118.2))):
+        track(board, gnd, start, point, width=PIN_WIDTH)
+        via(board, gnd, point)
+
+    # Mains side: the feed from R710's phase pad down to R712 and into pin 6.
+    track(board, '/LOAD_L_ENABLED', (59.6, 108.8), (59.763, 113.0), width=0.6)
+    opto_stubs(board, 'U702', {6: '/PUMP_GATE_FEED'})
+    track(board, '/PUMP_GATE_FEED', (OPTO_MAINS_STUB_END, 113.46), (56.837, 113.0),
+          width=PIN_WIDTH)
+
+    # Gate from pin 4 to Q704 on the back layer.
+    opto_stubs(board, 'U702', {4: '/PUMP_TRIAC_GATE'}, pcb.B_Cu)
+    polyline(board, '/PUMP_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 118.54),
+                                         (58.84, 116.0), (74.0, 116.0),
+                                         (77.4, 112.6), (91.54, 112.6),
+                                         (91.54, 110.3)], pcb.B_Cu,
+             width=PIN_WIDTH)
+
+    # Switched phase along the strip under the heatsink into the middle
+    # terminal, then the pump side down to JP24 pin 1 and neutral to pin 2.
+    # The pump side stops at the top of its pad to keep 2.5 mm from the
+    # neutral run to JP19.
+    polyline(board, '/LOAD_L_ENABLED', [(71.0, 106.5), (89.0, 106.5),
+                                        (89.0, 108.8)], width=0.9)
+    polyline(board, '/PUMP_AC_SWITCHED', [(86.46, 110.3), (86.46, 112.0),
+                                          (91.02, 116.5), (91.02, 119.8)],
+             width=1.2)
+    track(board, '/MAINS_N', (94.98, 120.8), (94.98, 127.5), width=1.2)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -1138,6 +1199,7 @@ def main():
     route_earth_and_heater_return(board)
     route_heater_enable(board)
     route_heater_stage(board)
+    route_pump_stage(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -1161,11 +1223,12 @@ def main():
                           'service-USB rail, sense divider and bench jumper',
                           'protective-earth bond and the heater neutral return',
                           'heater stage: optocoupler, triac, gate and switched phase',
-                          'heater enable: U603 second gate, R711 pull-down and R707'],
+                          'heater enable: U603 second gate, R711 pull-down and R707',
+                          'pump stage: optocoupler, triac, gate, LED loop and JP24'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['heater, pump and grinder stages',
+        'remaining_blocks': ['pump interlock gate U604 and PB11', 'grinder stage',
                              '3V3 trunk and remaining decoupling', 'logic', 'sensors',
                              '24 V actuators', 'final domain copper fills'],
     }

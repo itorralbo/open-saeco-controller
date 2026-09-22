@@ -666,11 +666,15 @@
       },
       {
         "netclass": "Mains",
-        "pattern": "/PUMP_AC_A"
+        "pattern": "/PUMP_AC_SWITCHED"
       },
       {
         "netclass": "Mains",
-        "pattern": "/PUMP_AC_B"
+        "pattern": "/PUMP_GATE_FEED"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/PUMP_TRIAC_GATE"
       },
       {
         "netclass": "Mains",

@@ -128,6 +128,44 @@ apoya el disipador elegido y cuánto ocupa su pie. Hasta entonces la etapa queda
 especificada pero sin geometría, que es la misma regla que se ha seguido con
 JP19 hasta hoy.
 
+## Etapa de la bomba
+
+**Colocada y ruteada el 2026-09-22**, sobre la mitad este del mismo perfil;
+detalle en [layout.md](../controller/layout.md#etapa-de-la-bomba-jp24).
+
+Se había previsto un optotriac de disparo aleatorio (VOT8125AG) para no descartar
+el control de fase. En JLC no queda ninguno de 800 V en DIP de 400 mil: todas las
+variantes VOT8125 y VOT8123 estaban a cero el 2026-09-22, y el C6925370 que
+figuraba en el catálogo era un VOT8125AB-T2 SMD. Bajar a 600 V (MOC3052/3053)
+contradice la regla de no rebajar el opto. Por decisión del propietario, la
+bomba usa el mismo MOC3083 de cruce por cero que el calentador.
+
+Con esta bomba, el cruce por cero no quita nada:
+
+- La ULKA EP5 lleva un diodo en serie con la bobina y solo conduce en un
+  semiciclo. Hay que confirmarlo midiendo la muestra.
+- La corriente, retrasada respecto a la tensión, se apaga en el diodo. En el
+  siguiente semiciclo útil el opto vuelve a disparar en el cero de tensión.
+- El caudal se regula saltando semiciclos enteros (PSM), el método habitual con
+  estas bombas. La regulación de fase solo sería posible con otro opto.
+
+| Magnitud | Valor |
+|---|---:|
+| Potencia nominal | 48 W, servicio 2 min ON / 1 min OFF |
+| Corriente estimada | ≈ 0,4 A eficaces en semionda, pendiente de medir |
+| Disipación del triac | < 0,5 W; el perfil sobra |
+| Corriente del LED | 10,5 mA desde 12 V con 1 kΩ (R716), como el calentador |
+| Pico por la puerta con 390 Ω (R712) | 0,83 A en el peor caso |
+
+La orden `PUMP_EN_RAW` sale de PB11 y pasa por U604, un tercer SN74LVC2G08, que
+la anula mientras `STM_NRST` esté bajo. Su segunda puerta queda atada a masa y
+reservada para el molinillo. R713 mantiene la orden a cero en el arranque.
+
+No se pone snubber RC. El BTA24-800BW no lo necesita y, con el diodo en serie,
+la corriente llega a cero antes de que el triac tenga que bloquear. Hay que
+medir el dV/dt en el apagado con la bomba real antes de liberar la placa. Si
+hiciera falta, el snubber va entre A1 y A2 de Q704.
+
 El calentador debe tener dos medios de corte en serie que no dependan de un único
 semiconductor ni de un único GPIO. Se añade como candidato un relé general
 normalmente abierto Omron `G5RL-1A-E-TV8 DC24` de 16 A delante de las tres ramas

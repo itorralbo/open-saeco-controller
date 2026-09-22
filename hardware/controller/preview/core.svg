@@ -135,7 +135,7 @@
 <path d="M 97.78999999999999 53.34 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="53.64" font-size="0.9" text-anchor="end" fill="#213b50">PB11</text>
 <text x="99.73" y="52.84" font-size="0.65" text-anchor="middle" fill="#213b50">33</text>
-<text x="102.87" y="53.64" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="103.27000000000001" y="52.84" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_EN_RAW</text>
 <path d="M 97.78999999999999 57.15 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="57.449999999999996" font-size="0.9" text-anchor="end" fill="#213b50">PB12</text>
 <text x="99.73" y="56.65" font-size="0.65" text-anchor="middle" fill="#213b50">34</text>
@@ -1964,11 +1964,11 @@
 <path d="M 1094.74 699.77 H 1089.66" stroke="#27856d" stroke-width=".22"/>
 <text x="1095.4399999999998" y="700.0699999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="1092.8" y="699.27" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1089.26" y="699.27" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
+<text x="1089.26" y="699.27" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_SWITCHED</text>
 <path d="M 1094.74 703.58 H 1089.66" stroke="#27856d" stroke-width=".22"/>
 <text x="1095.4399999999998" y="703.88" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="1092.8" y="703.08" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="1089.26" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
+<text x="1089.26" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_N</text>
 <rect x="1149.3500000000001" y="730.885" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1154.43" y="725.885" font-size="1.05" text-anchor="middle" fill="#213b50">J118</text>
 <text x="1154.43" y="728.385" font-size="1.05" text-anchor="middle" fill="#213b50">JP17 MAINS / L-N</text>
@@ -2357,8 +2357,144 @@
 <text x="1243.9" y="880.41" font-size="0.9" text-anchor="end" fill="#213b50">G</text>
 <text x="1246.5400000000002" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="1250.0800000000002" y="879.61" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_TRIAC_GATE</text>
-<text x="870" y="912" font-size="1.1" text-anchor="start" fill="#213b50">Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; lengueta aislada, asi que el perfil no es parte activa.</text>
+<text x="870" y="912" font-size="1.1" text-anchor="start" fill="#213b50">Disipador de perfil extruido 33 x 21 x 35 mm compartido con la bomba; lengueta aislada, asi que el perfil no es parte activa.</text>
 <text x="870" y="920" font-size="1.1" text-anchor="start" fill="#213b50">R710 ve 325 V de pico al disparar: ERJ-P08 antisobretension, 500 V de tension limite, 390 ohm.</text>
+<text x="870" y="940" font-size="1.8" text-anchor="start" fill="#213b50">17 / Etapa de la bomba — ULKA EP5/S GW, 48 W, semionda</text>
+<rect x="877.57" y="960.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="880.11" y="955.39" font-size="1.05" text-anchor="middle" fill="#213b50">R713</text>
+<text x="880.11" y="957.89" font-size="1.05" text-anchor="middle" fill="#213b50">10k / pump arm pull-down</text>
+<path d="M 877.57 961.39 H 872.49" stroke="#27856d" stroke-width=".22"/>
+<text x="872.09" y="960.89" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_EN_RAW</text>
+<path d="M 882.65 961.39 H 887.73" stroke="#27856d" stroke-width=".22"/>
+<text x="888.13" y="960.89" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="875.03" y="990.6" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="880.11" y="985.6" font-size="1.05" text-anchor="middle" fill="#213b50">U604</text>
+<text x="880.11" y="988.1" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC2G08DCTR</text>
+<path d="M 875.03 991.87 H 869.95" stroke="#27856d" stroke-width=".22"/>
+<text x="875.73" y="992.17" font-size="0.9" text-anchor="start" fill="#213b50">1A</text>
+<text x="873.09" y="991.37" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="869.5500000000001" y="991.37" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_EN_RAW</text>
+<path d="M 875.03 995.68 H 869.95" stroke="#27856d" stroke-width=".22"/>
+<text x="875.73" y="995.9799999999999" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
+<text x="873.09" y="995.18" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="869.5500000000001" y="995.18" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 875.03 999.49 H 869.95" stroke="#27856d" stroke-width=".22"/>
+<text x="875.73" y="999.79" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
+<text x="873.09" y="998.99" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="869.5500000000001" y="998.99" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 875.03 1003.3 H 869.95" stroke="#27856d" stroke-width=".22"/>
+<text x="875.73" y="1003.5999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
+<text x="873.09" y="1002.8" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="869.5500000000001" y="1002.8" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 885.19 991.87 H 890.27" stroke="#27856d" stroke-width=".22"/>
+<text x="884.49" y="992.17" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
+<text x="887.13" y="991.37" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="890.67" y="991.37" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 885.19 995.68 H 890.27" stroke="#27856d" stroke-width=".22"/>
+<text x="884.49" y="995.9799999999999" font-size="0.9" text-anchor="end" fill="#213b50">GND</text>
+<text x="887.13" y="995.18" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="890.67" y="995.18" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 885.19 999.49 H 890.27" stroke="#27856d" stroke-width=".22"/>
+<text x="884.49" y="999.79" font-size="0.9" text-anchor="end" fill="#213b50">1Y</text>
+<text x="887.13" y="998.99" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="890.67" y="998.99" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_EN_INTERLOCK</text>
+<path d="M 885.19 1003.3 H 890.27" stroke="#27856d" stroke-width=".22"/>
+<text x="884.49" y="1003.5999999999999" font-size="0.9" text-anchor="end" fill="#213b50">2Y</text>
+<text x="887.13" y="1002.8" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="890.27" y="1003.5999999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 937.26 1009.65 H 939.165 M 940.435 1009.65 H 942.3399999999999 M 939.165 1008.15 V 1011.15 M 940.435 1008.15 V 1011.15" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="939.8" y="1003.15" font-size="1.05" text-anchor="middle" fill="#213b50">C604</text>
+<text x="939.8" y="1005.65" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / pump gate local</text>
+<path d="M 937.26 1009.65 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="1009.15" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 942.3399999999999 1009.65 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="1009.15" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="937.26" y="960.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="939.8" y="955.39" font-size="1.05" text-anchor="middle" fill="#213b50">R714</text>
+<text x="939.8" y="957.89" font-size="1.05" text-anchor="middle" fill="#213b50">33 / opto LED gate</text>
+<path d="M 937.26 961.39 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="960.89" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_EN_INTERLOCK</text>
+<path d="M 942.3399999999999 961.39 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="960.89" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_LED_GATE</text>
+<rect x="937.26" y="980.71" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="939.8" y="975.71" font-size="1.05" text-anchor="middle" fill="#213b50">R715</text>
+<text x="939.8" y="978.21" font-size="1.05" text-anchor="middle" fill="#213b50">100k / opto LED off</text>
+<path d="M 937.26 981.71 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="931.78" y="981.21" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_LED_GATE</text>
+<path d="M 942.3399999999999 981.71 H 947.42" stroke="#27856d" stroke-width=".22"/>
+<text x="947.8199999999999" y="981.21" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="994.41" y="965.1999999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="999.49" y="960.1999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">Q706</text>
+<text x="999.49" y="962.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / pump opto LED</text>
+<path d="M 994.41 970.28 H 989.33" stroke="#27856d" stroke-width=".22"/>
+<text x="995.11" y="970.5799999999999" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
+<text x="992.47" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="988.9300000000001" y="969.78" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_LED_GATE</text>
+<path d="M 1004.57 974.09 H 1009.65" stroke="#27856d" stroke-width=".22"/>
+<text x="1003.87" y="974.39" font-size="0.9" text-anchor="end" fill="#213b50">S</text>
+<text x="1006.51" y="973.59" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1010.05" y="973.59" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1004.57 966.47 H 1009.65" stroke="#27856d" stroke-width=".22"/>
+<text x="1003.87" y="966.77" font-size="0.9" text-anchor="end" fill="#213b50">D</text>
+<text x="1006.51" y="965.97" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1010.05" y="965.97" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_LED_RETURN</text>
+<rect x="1057.91" y="960.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1060.45" y="955.39" font-size="1.05" text-anchor="middle" fill="#213b50">R716</text>
+<text x="1060.45" y="957.89" font-size="1.05" text-anchor="middle" fill="#213b50">1k / opto LED series</text>
+<path d="M 1057.91 961.39 H 1052.83" stroke="#27856d" stroke-width=".22"/>
+<text x="1052.4299999999998" y="960.89" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 1062.99 961.39 H 1068.07" stroke="#27856d" stroke-width=".22"/>
+<text x="1068.47" y="960.89" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_LED_ANODE</text>
+<rect x="1115.0600000000002" y="962.66" width="10.16" height="15.24" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1120.14" y="957.66" font-size="1.05" text-anchor="middle" fill="#213b50">U702</text>
+<text x="1120.14" y="960.16" font-size="1.05" text-anchor="middle" fill="#213b50">MOC3083 / zero-cross</text>
+<path d="M 1115.0600000000002 965.2 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="965.5" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="1113.12" y="964.7" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1109.58" y="964.7" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_LED_ANODE</text>
+<path d="M 1115.0600000000002 970.28 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="970.5799999999999" font-size="0.9" text-anchor="start" fill="#213b50">K</text>
+<text x="1113.12" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1109.58" y="969.78" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_LED_RETURN</text>
+<path d="M 1115.0600000000002 975.36 H 1109.98" stroke="#27856d" stroke-width=".22"/>
+<text x="1115.76" y="975.66" font-size="0.9" text-anchor="start" fill="#213b50">NC1</text>
+<text x="1113.12" y="974.86" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1109.98" y="975.66" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1125.22 965.2 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="965.5" font-size="0.9" text-anchor="end" fill="#213b50">MT_IN</text>
+<text x="1127.16" y="964.7" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="1130.7" y="964.7" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_GATE_FEED</text>
+<path d="M 1125.22 970.28 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="970.5799999999999" font-size="0.9" text-anchor="end" fill="#213b50">NC2</text>
+<text x="1127.16" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="1130.3" y="970.5799999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1125.22 975.36 H 1130.3" stroke="#27856d" stroke-width=".22"/>
+<text x="1124.5200000000002" y="975.66" font-size="0.9" text-anchor="end" fill="#213b50">MT_G</text>
+<text x="1127.16" y="974.86" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="1130.7" y="974.86" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_TRIAC_GATE</text>
+<rect x="1177.29" y="960.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1179.83" y="955.39" font-size="1.05" text-anchor="middle" fill="#213b50">R712</text>
+<text x="1179.83" y="957.89" font-size="1.05" text-anchor="middle" fill="#213b50">390 / gate limit 500V</text>
+<path d="M 1177.29 961.39 H 1172.21" stroke="#27856d" stroke-width=".22"/>
+<text x="1171.81" y="960.89" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1182.37 961.39 H 1187.45" stroke="#27856d" stroke-width=".22"/>
+<text x="1187.8500000000001" y="960.89" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_GATE_FEED</text>
+<rect x="1234.44" y="963.93" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1239.52" y="958.93" font-size="1.05" text-anchor="middle" fill="#213b50">Q704</text>
+<text x="1239.52" y="961.43" font-size="1.05" text-anchor="middle" fill="#213b50">BTA24-800BWRG / pump</text>
+<path d="M 1234.44 974.09 H 1229.36" stroke="#27856d" stroke-width=".22"/>
+<text x="1235.1399999999999" y="974.39" font-size="0.9" text-anchor="start" fill="#213b50">A1</text>
+<text x="1232.5" y="973.59" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1228.9599999999998" y="973.59" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_SWITCHED</text>
+<path d="M 1234.44 966.47 H 1229.36" stroke="#27856d" stroke-width=".22"/>
+<text x="1235.1399999999999" y="966.77" font-size="0.9" text-anchor="start" fill="#213b50">A2</text>
+<text x="1232.5" y="965.97" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1228.9599999999998" y="965.97" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1244.6 970.28 H 1249.68" stroke="#27856d" stroke-width=".22"/>
+<text x="1243.9" y="970.5799999999999" font-size="0.9" text-anchor="end" fill="#213b50">G</text>
+<text x="1246.5400000000002" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1250.0800000000002" y="969.78" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_TRIAC_GATE</text>
+<text x="870" y="1010" font-size="1.1" text-anchor="start" fill="#213b50">Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir dV/dt en el apagado antes de liberar.</text>
 <rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
 <text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>
@@ -2387,20 +2523,6 @@
 <text x="1097.98" y="821.99" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
 <text x="1095.34" y="821.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
 <text x="1091.8" y="821.19" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
-<rect x="1156.97" y="808.99" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1159.51" y="803.99" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG119</text>
-<text x="1159.51" y="806.49" font-size="1.05" text-anchor="middle" fill="#213b50">Pump AC A endpoint pending triac</text>
-<path d="M 1156.97 810.26 H 1151.89" stroke="#27856d" stroke-width=".22"/>
-<text x="1157.67" y="810.56" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1155.03" y="809.76" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1151.49" y="809.76" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_A</text>
-<rect x="1156.97" y="820.4200000000001" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="1159.51" y="815.4200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG120</text>
-<text x="1159.51" y="817.9200000000001" font-size="1.05" text-anchor="middle" fill="#213b50">Pump AC B endpoint pending triac</text>
-<path d="M 1156.97 821.69 H 1151.89" stroke="#27856d" stroke-width=".22"/>
-<text x="1157.67" y="821.99" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
-<text x="1155.03" y="821.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1151.49" y="821.19" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_AC_B</text>
 <rect x="1156.97" y="833.12" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1159.51" y="828.12" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG123</text>
 <text x="1159.51" y="830.62" font-size="1.05" text-anchor="middle" fill="#213b50">Protective earth bond</text>

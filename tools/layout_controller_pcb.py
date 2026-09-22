@@ -120,7 +120,8 @@ def heatsink_reservation(board):
 # a named area where mains-to-mains drops to the pitch the package imposes.
 # The areas cover only the mains side of the optocoupler: the gap between its
 # two rows is the isolation barrier and keeps the full 8 mm.
-DEVICE_PITCH_AREAS = ((53.9, 96.2, 57.4, 103.8), (55.3, 105.6, 78.0, 113.5))
+DEVICE_PITCH_AREAS = ((53.9, 96.2, 57.4, 103.8), (55.3, 105.6, 78.0, 113.5),
+                      (53.9, 112.2, 57.4, 119.8), (85.2, 108.2, 92.8, 110.8))
 DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
 
 
@@ -147,7 +148,7 @@ def mains_device_pitch_areas(board):
 # One area per barrier optocoupler, covering both pad rows and the short stubs
 # that enter them. Inside it the rules accept the 6.02 mm air gap between the
 # rows; the slot in the footprint keeps the surface path over 8 mm.
-OPTO_SLOT_AREAS = ((45.7, 96.0, 56.6, 104.0),)
+OPTO_SLOT_AREAS = ((45.7, 96.0, 56.6, 104.0), (45.7, 112.0, 56.6, 120.0))
 OPTO_SLOT_ZONE_NAME = 'optocoupler barrier slot'
 
 
@@ -218,6 +219,19 @@ PLACE = {
     'R710': (58, 108.5, 180),
     'R707': (31, 99, 0), 'R708': (31, 96, 180), 'Q705': (38, 99.5, 0),
     'R709': (36, 96, 0), 'R711': (28, 66, 180),
+
+    # Pump stage, the heater's twin. U702 crosses the barrier one step south
+    # of U701, low enough that its courtyard clears R710 and high enough to
+    # clear J115. Q704 takes the east half of the heatsink's south
+    # face, and R712 sits in the lane under R710, both fed from the same
+    # switched phase. The LED driver fills the strip between U702 and MH2;
+    # U604, the pump's reset gate, goes in the column west of MH2 with its
+    # decoupling and pull-down.
+    'U702': (47.19, 113.46, 0), 'Q704': (86.46, 109.5, 0),
+    'R712': (58.3, 113.0, 180),
+    'R716': (45.3, 110.6, 270), 'Q706': (43.8, 116.0, 0),
+    'R714': (43.3, 108.2, 0), 'R715': (43.3, 106.6, 180),
+    'U604': (31.9, 111.5, 90), 'C604': (31.9, 115.6, 0), 'R713': (31.9, 117.8, 0),
     'J110': (36, 4.45, 180), 'J111': (21, 27, 0),
     'J112': (108, 6, 0), 'J114': (48, 40, 90),
 

@@ -31,8 +31,9 @@ GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las carga
 
 ## Límites y pruebas pendientes
 
-- El interlock cubre el motor del grupo y la válvula. Las futuras etapas de
-  calentador, bomba y molino deben pasar por una habilitación equivalente.
+- El interlock cubre el motor del grupo y la válvula. El calentador pasa por la
+  segunda puerta de U603 y la bomba por la primera de U604, cuya segunda puerta
+  queda reservada al molinillo. U604 está colocada pero todavía sin rutear.
 - Un MOSFET o puente H puede fallar en corto; este circuito no aporta aislamiento
   galvánico ni sustituye fusibles, corte térmico o desconexión de red.
 - Medir el tiempo hasta reset, la secuencia de recuperación y los niveles de

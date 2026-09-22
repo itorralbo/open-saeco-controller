@@ -44,7 +44,7 @@
         "30": "HEATER_EN_RAW",
         "31": "GND_UI",
         "32": "3V3_CORE",
-        "33": null,
+        "33": "PUMP_EN_RAW",
         "34": null,
         "35": null,
         "36": null,
@@ -2218,8 +2218,8 @@
       "jlc_class": "TBD",
       "pcba_type": "TBD",
       "pins": {
-        "1": "PUMP_AC_A",
-        "2": "PUMP_AC_B"
+        "1": "PUMP_AC_SWITCHED",
+        "2": "MAINS_N"
       }
     },
     {
@@ -2722,6 +2722,168 @@
         "1": "HEATER_AC_SWITCHED",
         "2": "LOAD_L_ENABLED",
         "3": "HEATER_TRIAC_GATE"
+      }
+    },
+    {
+      "reference": "R713",
+      "value": "10k / pump arm pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PUMP_EN_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U604",
+      "value": "SN74LVC2G08DCTR",
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC2G08DCTR",
+      "lcsc": "C352973",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "PUMP_EN_RAW",
+        "2": "STM_NRST",
+        "5": "GND_UI",
+        "6": "GND_UI",
+        "8": "3V3_CORE",
+        "4": "GND_UI",
+        "7": "PUMP_EN_INTERLOCK",
+        "3": null
+      }
+    },
+    {
+      "reference": "C604",
+      "value": "100nF / pump gate local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R714",
+      "value": "33 / opto LED gate",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF330JT5E",
+      "lcsc": "C23140",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PUMP_EN_INTERLOCK",
+        "2": "PUMP_LED_GATE"
+      }
+    },
+    {
+      "reference": "R715",
+      "value": "100k / opto LED off",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PUMP_LED_GATE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "Q706",
+      "value": "SI2308A / pump opto LED",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "status": "candidate",
+      "manufacturer": "UMW",
+      "mpn": "SI2308A",
+      "lcsc": "C347491",
+      "jlc_class": "TBD",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "PUMP_LED_GATE",
+        "2": "GND_UI",
+        "3": "PUMP_LED_RETURN"
+      }
+    },
+    {
+      "reference": "R716",
+      "value": "1k / opto LED series",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "PUMP_LED_ANODE"
+      }
+    },
+    {
+      "reference": "U702",
+      "value": "MOC3083 / zero-cross",
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
+      "status": "candidate",
+      "manufacturer": "Lite-On",
+      "mpn": "MOC3083",
+      "lcsc": "C10797",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PUMP_LED_ANODE",
+        "2": "PUMP_LED_RETURN",
+        "3": null,
+        "6": "PUMP_GATE_FEED",
+        "5": null,
+        "4": "PUMP_TRIAC_GATE"
+      }
+    },
+    {
+      "reference": "R712",
+      "value": "390 / gate limit 500V",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "PANASONIC",
+      "mpn": "ERJ-P08J391V",
+      "lcsc": "C2086379",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "LOAD_L_ENABLED",
+        "2": "PUMP_GATE_FEED"
+      }
+    },
+    {
+      "reference": "Q704",
+      "value": "BTA24-800BWRG / pump",
+      "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
+      "status": "candidate",
+      "manufacturer": "STMicroelectronics",
+      "mpn": "BTA24-800BWRG",
+      "lcsc": "C15293",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "PUMP_AC_SWITCHED",
+        "2": "LOAD_L_ENABLED",
+        "3": "PUMP_TRIAC_GATE"
       }
     }
   ]

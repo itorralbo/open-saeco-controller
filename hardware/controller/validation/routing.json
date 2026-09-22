@@ -21,12 +21,14 @@
     "service-USB rail, sense divider and bench jumper",
     "protective-earth bond and the heater neutral return",
     "heater stage: optocoupler, triac, gate and switched phase",
-    "heater enable: U603 second gate, R711 pull-down and R707"
+    "heater enable: U603 second gate, R711 pull-down and R707",
+    "pump stage: optocoupler, triac, gate, LED loop and JP24"
   ],
-  "track_segments": 643,
-  "vias": 135,
+  "track_segments": 672,
+  "vias": 138,
   "remaining_blocks": [
-    "heater, pump and grinder stages",
+    "pump interlock gate U604 and PB11",
+    "grinder stage",
     "3V3 trunk and remaining decoupling",
     "logic",
     "sensors",

@@ -78,7 +78,8 @@ CLASS_RULES = {
 CLASS_NETS = {
     'Mains': [
         '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED', '/MAINS_N',
-        '/LOAD_L_ENABLED', '/PUMP_AC_A', '/PUMP_AC_B',
+        '/LOAD_L_ENABLED', '/PUMP_AC_SWITCHED', '/PUMP_GATE_FEED',
+        '/PUMP_TRIAC_GATE',
         '/HEATER_AC_SWITCHED', '/HEATER_GATE_FEED', '/HEATER_TRIAC_GATE',
         '/GRINDER_DC_PLUS', '/GRINDER_DC_MINUS',
         # The protective conductor belongs to the primary domain for spacing:

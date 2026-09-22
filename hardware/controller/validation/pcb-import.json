@@ -190,6 +190,10 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C604": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "C701": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
@@ -362,7 +366,15 @@
       "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
       "numbered_pads": 3
     },
+    "Q704": {
+      "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
+      "numbered_pads": 3
+    },
     "Q705": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
+    },
+    "Q706": {
       "footprint": "Package_TO_SOT_SMD:SOT-23",
       "numbered_pads": 3
     },
@@ -610,6 +622,26 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R712": {
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "R713": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R714": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R715": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R716": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -666,14 +698,22 @@
       "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
       "numbered_pads": 8
     },
+    "U604": {
+      "footprint": "Package_SO:SSOP-8_2.95x2.8mm_P0.65mm",
+      "numbered_pads": 8
+    },
     "U701": {
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
+      "numbered_pads": 6
+    },
+    "U702": {
       "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "numbered_pads": 6
     }
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 774,
+  "tracks": 810,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

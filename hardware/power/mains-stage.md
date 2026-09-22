@@ -46,8 +46,8 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Fuente 24 V | Mean Well IRM-30-24 | C6280124 | 85–264 VAC, 24 V/1,3 A, 31 W, encapsulada y aislada; montaje por ola disponible |
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
-| Optotriac calentador | Lite-On MOC3083 | C10797 | cruce por cero, 800 V; adecuado para conmutación completa del calentador |
-| Optotriac motor | Vishay VOT8125AG | C6925370 | disparo aleatorio, 800 V, separación ancha; suministro/montaje por confirmar |
+| Optotriac calentador y bomba | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
+| Optotriac molinillo | Vishay VOT8125AG-V | C6349884 | disparo aleatorio, 800 V, 400 mil; sin existencias en JLC el 2026-09-22 |
 | Puente molino | Vishay GBU8K o equivalente de marca | por cerrar | 8 A, 1000 V; validar corriente de arranque y stock antes de fijar MPN |
 
 El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
@@ -68,10 +68,11 @@ equivalente y molinillo en TO-220 al aire, tras comprobar su pérdida. La PCB
 reserva ya ese hueco de 40 × 33 mm encima de JP8/JP19/JP24; ver
 [colocación](../controller/layout.md). Para bomba y molinillo se calculará la pérdida con corriente medida.
 
-El MOC3083 de cruce por cero se reserva al calentador. La bomba y el molinillo
-mantienen optotriac de disparo aleatorio para no cerrar prematuramente la opción
-de control de fase. Si `VOT8125AG` no puede suministrarse para el lote, se
-rediseñará esa interfaz; no se bajará silenciosamente a 400 V.
+El MOC3083 de cruce por cero sirve al calentador y, desde el 2026-09-22, también
+a la bomba: no había en JLC ningún optotriac aleatorio de 800 V en DIP de 400 mil
+(ver [etapa de la bomba](power-architecture.md#etapa-de-la-bomba)). El molinillo
+mantiene de momento `VOT8125AG` como candidato, con el suministro sin resolver;
+no se bajará silenciosamente a 600 o 400 V.
 
 ## Protección y reglas pendientes de cerrar
 

@@ -191,7 +191,8 @@ def main():
            'PA7': 'VALVE_EN_RAW',
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
-           'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW'}
+           'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
+           'PB11': 'PUMP_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -484,7 +485,7 @@ def main():
           'OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical',
           status='owner_identified', part_key='CONN:TE_RAST5_1971845-4')
     d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
-          ['PUMP_AC_A','PUMP_AC_B'],
+          ['PUMP_AC_SWITCHED','MAINS_N'],
           'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',
           status='photo_candidate', part_key='CONN:JST_VH_2_RA')
     d.add('J118','J3','JP17 MAINS / L-N',1155,738,
@@ -594,19 +595,47 @@ def main():
     d.add('Q703','TRIAC_TO220','BTA24-800BWRG / heater',1240,880,
           ['HEATER_AC_SWITCHED','LOAD_L_ENABLED','HEATER_TRIAC_GATE'],
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
-    d.note('Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; '
+    d.note('Disipador de perfil extruido 33 x 21 x 35 mm compartido con la bomba; '
            'lengueta aislada, asi que el perfil no es parte activa.',870,912,1.1)
     d.note('R710 ve 325 V de pico al disparar: ERJ-P08 antisobretension, 500 V '
            'de tension limite, 390 ohm.',870,920,1.1)
 
+    # Pump: ULKA EP5/S GW, 48 W. The pump carries its own series diode, so it
+    # draws current on one half-cycle only and a zero-cross driver restarts it
+    # at every voltage zero; flow is set by skipping half-cycles. Same opto,
+    # triac and gate resistor as the heater. U604 is a third dual-AND: gate 1
+    # holds the pump off in reset, gate 2 is kept for the grinder.
+    d.note('17 / Etapa de la bomba — ULKA EP5/S GW, 48 W, semionda',870,940,1.8)
+    d.passive('R713','R','10k / pump arm pull-down',880,962,'PUMP_EN_RAW',g)
+    d.add('U604','DUAL_AND','SN74LVC2G08DCTR',880,1000,
+          ['PUMP_EN_RAW','STM_NRST',g,g,v,g,'PUMP_EN_INTERLOCK',None],
+          'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
+    d.passive('C604','C','100nF / pump gate local',940,1010,v,g)
+    d.passive('R714','R','33 / opto LED gate',940,962,'PUMP_EN_INTERLOCK','PUMP_LED_GATE')
+    d.passive('R715','R','100k / opto LED off',940,982,'PUMP_LED_GATE',g)
+    d.add('Q706','NMOS_SOT23','SI2308A / pump opto LED',1000,970,
+          ['PUMP_LED_GATE',g,'PUMP_LED_RETURN'],
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('R716','R','1k / opto LED series',1060,962,'12V_PROTECTED','PUMP_LED_ANODE')
+    d.add('U702','OPTO_TRIAC','MOC3083 / zero-cross',1120,970,
+          # Here the feed takes pin 6, nearest R712, and the gate pin 4.
+          ['PUMP_LED_ANODE','PUMP_LED_RETURN',None,'PUMP_GATE_FEED',
+           None,'PUMP_TRIAC_GATE'],
+          'OpenSaeco:DIP-6_W7.62mm_BarrierSlot',part_key='OPTO:MOC3083')
+    d.add('R712','R','390 / gate limit 500V',1180,962,
+          ['LOAD_L_ENABLED','PUMP_GATE_FEED'],
+          'Resistor_SMD:R_1206_3216Metric', part_key='R:390_1206_500V')
+    d.add('Q704','TRIAC_TO220','BTA24-800BWRG / pump',1240,970,
+          ['PUMP_AC_SWITCHED','LOAD_L_ENABLED','PUMP_TRIAC_GATE'],
+          'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
+    d.note('Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir '
+           'dV/dt en el apagado antes de liberar.',870,1010,1.1)
+
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])
-    # Temporary endpoint markers until the grinder bridge and pump triac are
-    # inserted in the next power-stage pass.
+    # Temporary endpoint markers until the grinder bridge is inserted.
     d.add('#FLG117','PWR_FLAG','Grinder DC plus endpoint pending bridge',1100,810,['GRINDER_DC_PLUS'])
     d.add('#FLG118','PWR_FLAG','Grinder DC minus endpoint pending bridge',1100,822,['GRINDER_DC_MINUS'])
-    d.add('#FLG119','PWR_FLAG','Pump AC A endpoint pending triac',1160,810,['PUMP_AC_A'])
-    d.add('#FLG120','PWR_FLAG','Pump AC B endpoint pending triac',1160,822,['PUMP_AC_B'])
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)

@@ -449,8 +449,45 @@ R710 es ya una ERJ-P08J391V (390 Ω, 1206, 500 V de tensión límite), en la
 misma huella 1206.
 
 Pendiente: el tramo desde el STM32 (PB10) con el resto de señales del
-microcontrolador, y el triac y opto de la bomba, que irán en el hueco este del
-mismo perfil.
+microcontrolador.
+
+### Etapa de la bomba (JP24)
+
+Es gemela de la del calentador y usa las mismas piezas: MOC3083 (U702), BTA24
+(Q704), una ERJ-P08 de 390 Ω como resistencia de puerta (R712) y un SI2308A
+(Q706) para el LED desde 12 V. Por qué el mismo opto de cruce por cero, y no uno
+de disparo aleatorio, se explica en
+[power-architecture.md](../power/power-architecture.md#etapa-de-la-bomba).
+
+Colocación:
+
+- U702 cruza la barrera un paso al sur de U701, en y = 113,46 mm, sobre su
+  propia ranura. Queda lo bastante bajo para que su courtyard no pise el de R710
+  y lo bastante alto para no tocar J115.
+- Q704 ocupa la mitad este de la cara sur del perfil (x = 86,46 mm), a 18 mm de
+  Q703.
+- R712 va en el carril, bajo R710, y toma la fase conmutada de su mismo pad.
+- El driver del LED (R714–R716 y Q706) ocupa la franja entre U702 y MH2.
+- U604, la puerta de reset de la bomba, va con C604 y la bajada R713 en la
+  columna libre al oeste de MH2, entre NTC_RAW y FLOW_RAW.
+
+Ruteado:
+
+- El 12 V llega de JP5.3 por B.Cu pegado al borde del plano.
+- La fase conmutada sigue por la franja bajo el pie del disipador hasta el
+  terminal central de Q704, a 0,9 mm.
+- La puerta es la única red que hace los 35 mm hasta el triac. Va por B.Cu, al
+  sur de la puerta del calentador y al norte de la lengüeta 1 de JP19, con
+  2,5 mm a las dos.
+- La salida de la bomba y su neutro, 0,4 A, van a 1,2 mm hasta JP24.1 y desde
+  JP24.2 hasta el neutro de JP19. Con 1,2 mm quedan 2,5 mm entre las dos pistas
+  en los pads de 3,96 mm, y la salida termina en el borde norte de su pad para
+  respetar esos 2,5 mm con el neutro.
+- Q704 tiene su propia área `mains device pitch`, igual que Q703.
+
+Pendiente: U604 sin rutear (3,3 V, masa, `STM_NRST`, PB11 y su salida hasta
+R714), como se hizo con el calentador. Tampoco hay snubber RC en el triac; ver
+la nota de la etapa.
 
 ## Verificación de huellas
 
@@ -468,7 +505,8 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Añadir la etapa de la bomba en el mismo disipador; después el molinillo.
+3. Rutear U604 con el resto de señales del STM32; después, la etapa del
+   molinillo.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
