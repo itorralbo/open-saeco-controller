@@ -105,7 +105,7 @@ Números que hay que respetar:
 | Disipación estimada del triac | ≈ 8 W |
 | Resistencia térmica máxima del disipador | ≈ 5 °C/W |
 | Corriente del LED del opto | 10,5 mA desde 12 V con 1 kΩ |
-| Pico por la puerta con 470 Ω | 0,69 A, por debajo del pico admisible del opto |
+| Pico por la puerta con 390 Ω (R710) | 0,83 A, por debajo del 1 A admisible del opto |
 
 El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde
 3,3 V con las resistencias del catálogo no se llega con margen. Se propone el
@@ -113,7 +113,10 @@ mismo patrón que ya usan la válvula y el relé, un MOSFET SI2308A gobernado po
 la puerta AND libre de U603, cuyo segundo canal está hoy atado a masa y solo
 espera esta señal. La resistencia de puerta del triac, en cambio, ve hasta
 325 V de pico y ninguna de las resistencias 0603 del catálogo está calificada
-para esa tensión: hace falta una pieza específica antes de dibujar nada.
+para esa tensión. **Resuelto 2026-09-22:** R710 es una Panasonic ERJ-P08J391V
+(LCSC C2086379), 1206 antisobretensión de 0,66 W con 500 V de tensión límite de
+elemento. Se baja a 390 Ω porque es el valor de la serie con existencias; el
+pico de puerta en el peor caso sube a 0,83 A, aún bajo el 1 A del MOC3083.
 
 **Actualización 2026-09-22: colocada y ruteada** con un perfil de 33 × 21 × 35 mm; detalle en [layout.md](../controller/layout.md). Texto original: La reserva del disipador
 (x = 55–95, y = 84,5–113 mm) es un área que prohíbe huellas, y tanto los TO-220

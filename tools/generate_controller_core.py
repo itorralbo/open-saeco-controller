@@ -583,17 +583,19 @@ def main():
           ['HEATER_LED_ANODE','HEATER_LED_RETURN',None,'HEATER_TRIAC_GATE',
            None,'HEATER_GATE_FEED'],
           'Package_DIP:DIP-6_W10.16mm',part_key='OPTO:MOC3083')
-    d.add('R710','R','470 / gate limit 325Vpk',1180,872,
+    # Anti-surge 1206 with a 500 V limiting element voltage: the gate
+    # resistor sees up to 325 V peak if the opto ever fires off the zero.
+    # 390 ohm keeps that worst case at 0.83 A, under the 1 A opto surge.
+    d.add('R710','R','390 / gate limit 500V',1180,872,
           ['LOAD_L_ENABLED','HEATER_GATE_FEED'],
-          'Resistor_SMD:R_1206_3216Metric', status='rating_and_holder_tbd',
-          part_key='R:470_MAINS_TBD')
+          'Resistor_SMD:R_1206_3216Metric', part_key='R:390_1206_500V')
     d.add('Q703','TRIAC_TO220','BTA24-800BWRG / heater',1240,880,
           ['HEATER_AC_SWITCHED','LOAD_L_ENABLED','HEATER_TRIAC_GATE'],
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
     d.note('Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; '
            'lengueta aislada, asi que el perfil no es parte activa.',870,912,1.1)
-    d.note('R710 ve 325 V de pico al disparar: pieza 1206 con tension de trabajo '
-           'declarada, sin seleccionar todavia.',870,920,1.1)
+    d.note('R710 ve 325 V de pico al disparar: ERJ-P08 antisobretension, 500 V '
+           'de tension limite, 390 ohm.',870,920,1.1)
 
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])

@@ -812,6 +812,21 @@
       "selection": "candidate_not_released",
       "footprint_note": "Standard DIP land pattern, not the LongPads variant: with 2.4 mm pads the two rows leave only 7.76 mm of bare laminate between them, which does not clear the 8 mm primary-to-SELV barrier. The 1.6 mm pads leave 8.56 mm."
     },
+    "R:390_1206_500V": {
+      "manufacturer": "PANASONIC",
+      "mpn": "ERJ-P08J391V",
+      "lcsc": "C2086379",
+      "specification": "390R 5% 1206 anti-surge thick film, 0.66 W, 500 V limiting element voltage (1 kV overload); R710 heater triac gate on the mains side",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 3433,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-22",
+      "stock_evidence": "JLCPCB parts search and part page, read-only web observation; voltage from Panasonic ERJ-P series datasheet",
+      "url": "https://jlcpcb.com/partdetail/C2086379",
+      "selection": "candidate_not_released"
+    },
     "OPTO:VOT8125AG": {
       "manufacturer": "Vishay",
       "mpn": "VOT8125AG-V",

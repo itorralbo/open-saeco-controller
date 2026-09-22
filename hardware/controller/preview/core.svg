@@ -2337,7 +2337,7 @@
 <text x="1130.7" y="884.69" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_GATE_FEED</text>
 <rect x="1177.29" y="871.49" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1179.83" y="866.49" font-size="1.05" text-anchor="middle" fill="#213b50">R710</text>
-<text x="1179.83" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">470 / gate limit 325Vpk</text>
+<text x="1179.83" y="868.99" font-size="1.05" text-anchor="middle" fill="#213b50">390 / gate limit 500V</text>
 <path d="M 1177.29 872.49 H 1172.21" stroke="#27856d" stroke-width=".22"/>
 <text x="1171.81" y="871.99" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
 <path d="M 1182.37 872.49 H 1187.45" stroke="#27856d" stroke-width=".22"/>
@@ -2358,7 +2358,7 @@
 <text x="1246.5400000000002" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="1250.0800000000002" y="879.61" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_TRIAC_GATE</text>
 <text x="870" y="912" font-size="1.1" text-anchor="start" fill="#213b50">Disipador de perfil extruido 40 x 25 x 35 mm compartido con la bomba; lengueta aislada, asi que el perfil no es parte activa.</text>
-<text x="870" y="920" font-size="1.1" text-anchor="start" fill="#213b50">R710 ve 325 V de pico al disparar: pieza 1206 con tension de trabajo declarada, sin seleccionar todavia.</text>
+<text x="870" y="920" font-size="1.1" text-anchor="start" fill="#213b50">R710 ve 325 V de pico al disparar: ERJ-P08 antisobretension, 500 V de tension limite, 390 ohm.</text>
 <rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
 <text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>

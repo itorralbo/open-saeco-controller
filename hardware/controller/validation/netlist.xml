@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-22T10:42:32</date>
+    <date>2026-09-22T10:52:13</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -4829,14 +4829,24 @@
       </units>
     </comp>
     <comp ref="R710">
-      <value>470 / gate limit 325Vpk</value>
+      <value>390 / gate limit 500V</value>
       <footprint>Resistor_SMD:R_1206_3216Metric</footprint>
       <fields>
+        <field name="manufacturer">PANASONIC</field>
+        <field name="mpn">ERJ-P08J391V</field>
+        <field name="lcsc">C2086379</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Resistor_SMD:R_1206_3216Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="PANASONIC"/>
+      <property name="mpn" value="ERJ-P08J391V"/>
+      <property name="lcsc" value="C2086379"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

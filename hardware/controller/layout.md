@@ -434,9 +434,12 @@ hasta R707. La entrada de reset del pin 6 sale al oeste a un hueco que deja
 libre la orden del relé, ahora recta hacia el oeste antes de subir a R801, y
 llega por B.Cu a la vía de reset al norte del encapsulado.
 
+R710 es ya una ERJ-P08J391V (390 Ω, 1206, 500 V de tensión límite), en la
+misma huella 1206.
+
 Pendiente: el tramo desde el STM32 (PB10) con el resto de señales del
-microcontrolador, la pieza de R710 con tensión de trabajo declarada, y el triac
-y opto de la bomba, que irán en el hueco este del mismo perfil.
+microcontrolador, y el triac y opto de la bomba, que irán en el hueco este del
+mismo perfil.
 
 ## Verificación de huellas
 
@@ -454,8 +457,7 @@ el símbolo.
    hasta J101 y F301.
 2. Señales del STM32 por los canales reservados, empezando por STM_NRST y las
    órdenes en bruto que esperan en el canal oeste del supervisor.
-3. Elegir la pieza de R710 y añadir la etapa de la bomba en el mismo
-   disipador; después el molinillo.
+3. Añadir la etapa de la bomba en el mismo disipador; después el molinillo.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de

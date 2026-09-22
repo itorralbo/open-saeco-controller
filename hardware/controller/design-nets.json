@@ -2695,14 +2695,14 @@
     },
     {
       "reference": "R710",
-      "value": "470 / gate limit 325Vpk",
+      "value": "390 / gate limit 500V",
       "footprint": "Resistor_SMD:R_1206_3216Metric",
-      "status": "rating_and_holder_tbd",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "status": "candidate",
+      "manufacturer": "PANASONIC",
+      "mpn": "ERJ-P08J391V",
+      "lcsc": "C2086379",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "LOAD_L_ENABLED",
         "2": "HEATER_GATE_FEED"

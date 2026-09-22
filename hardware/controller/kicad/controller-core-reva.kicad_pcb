@@ -8466,7 +8466,7 @@
 				)
 			)
 		)
-		(property "Value" "470 / gate limit 325Vpk"
+		(property "Value" "390 / gate limit 500V"
 			(at 0 1.83 180)
 			(layer "F.Fab")
 			(hide yes)
@@ -8509,6 +8509,61 @@
 				(font
 					(size 1 1)
 					(thickness 0.15)
+				)
+			)
+		)
+		(property "manufacturer" "PANASONIC"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "17955b91-465a-4007-aa64-14f394aeac06")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "mpn" "ERJ-P08J391V"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "0109b5e1-a68c-46ce-99ef-986723aac86e")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "lcsc" "C2086379"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "d7f0c932-3b6a-4b9c-93af-fc65d2f0d387")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "jlc_class" "Extended"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "44e71f3d-85bf-4b50-9616-a7613097658b")
+			(effects
+				(font
+					(size 1.27 1.27)
+				)
+			)
+		)
+		(property "pcba_type" "Economic and Standard"
+			(at 0 0 0)
+			(layer "F.SilkS")
+			(hide yes)
+			(uuid "26c0c169-3e4e-421b-a9de-37a93627832a")
+			(effects
+				(font
+					(size 1.27 1.27)
 				)
 			)
 		)
