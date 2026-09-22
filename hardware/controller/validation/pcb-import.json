@@ -255,7 +255,7 @@
       "numbered_pads": 2
     },
     "J101": {
-      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
     },
     "J102": {
@@ -271,23 +271,23 @@
       "numbered_pads": 16
     },
     "J105": {
-      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
     },
     "J106": {
-      "footprint": "Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical",
       "numbered_pads": 3
     },
     "J107": {
-      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
     },
     "J108": {
-      "footprint": "Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
       "numbered_pads": 8
     },
     "J109": {
-      "footprint": "Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal",
+      "footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
       "numbered_pads": 3
     },
     "J110": {
@@ -299,11 +299,11 @@
       "numbered_pads": 2
     },
     "J112": {
-      "footprint": "Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
     },
     "J113": {
-      "footprint": "Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal",
+      "footprint": "Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical",
       "numbered_pads": 5
     },
     "J114": {
@@ -311,7 +311,7 @@
       "numbered_pads": 6
     },
     "J115": {
-      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "footprint": "Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical",
       "numbered_pads": 3
     },
     "J116": {
@@ -319,11 +319,11 @@
       "numbered_pads": 4
     },
     "J117": {
-      "footprint": "Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal",
+      "footprint": "Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical",
       "numbered_pads": 2
     },
     "J118": {
-      "footprint": "Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal",
+      "footprint": "Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical",
       "numbered_pads": 3
     },
     "J119": {
@@ -713,7 +713,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 810,
+  "tracks": 888,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

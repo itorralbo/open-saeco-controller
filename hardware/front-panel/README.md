@@ -66,7 +66,7 @@ J2 lleva alimentación, masa, MOSI, reloj, CS, DC, RESET y BL. CS y RESET
 tienen pull-up; BL tiene pull-down para solicitar retroiluminación apagada al
 arranque. **BL es una señal lógica**, prevista para un módulo con driver de LED.
 No alimentar directamente una retroiluminación desde ese GPIO. J2 es un JST PH de
-8 vías lateral (S8B-PH-K-S, JLC C157915) con el orden del cable PH del módulo
+8 vías vertical (B8B-PH-K-S, JLC C157974) con el orden del cable PH del módulo
 Waveshare 2" (VCC GND DIN CLK CS DC RST BL), útil para el banco. El adaptador
 definitivo deberá respetar ese orden y añadir driver si lo necesita la pantalla.
 

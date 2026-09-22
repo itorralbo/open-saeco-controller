@@ -225,7 +225,7 @@ def route_mains_input(board):
     # B.Cu doubles the phase up to y = 77: N crosses on B.Cu above that, so
     # the last 3 mm bend and the F701 clip link stay on F.Cu only.
     for layer in (pcb.F_Cu, pcb.B_Cu):
-        track(board, l_in, (106.04, 121.30), (104.50, 118.00), layer, width=2.2)
+        track(board, l_in, (106.04, 122.10), (104.50, 118.00), layer, width=2.2)
     polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
                            (96.50, 74.00), (87.00, 74.00)], width=MAINS_PHASE_WIDTH)
     polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
@@ -252,7 +252,7 @@ def route_mains_input(board):
     via(board, l_fused, (64.50, 67.50), MAINS_VIA, MAINS_DRILL)
     track(board, l_fused, (57.00, 73.25), (57.00, 80.75), pcb.B_Cu, width=2.5)
 
-    polyline(board, neutral, [(113.96, 121.30), (113.96, 116.50),
+    polyline(board, neutral, [(113.96, 122.10), (113.96, 116.50),
                               (111.80, 114.34), (111.80, 113.15)], width=2.5)
     polyline(board, neutral, [(111.80, 113.15), (111.80, 70.50), (82.00, 70.50),
                               (82.00, 79.70), (79.50, 82.20)], pcb.B_Cu,
@@ -962,7 +962,7 @@ def route_earth_and_heater_return(board):
     # Tab 3 has them at 79.25 and 84.25 mm, y = 126.55. The run climbs over
     # the polarizing-post hole at (86.9, 129.05) and drops onto the east tail.
     for layer in (pcb.F_Cu, pcb.B_Cu):
-        track(board, neutral, (113.96, 121.3), (113.96, 124.0), layer, width=2.2)
+        track(board, neutral, (113.96, 122.1), (113.96, 124.0), layer, width=2.2)
         polyline(board, neutral, [(113.96, 124.0), (113.96, 127.5),
                                   (92.0, 127.5), (89.5, 125.0), (86.5, 125.0),
                                   (84.25, 126.55), (79.25, 126.55)], layer,

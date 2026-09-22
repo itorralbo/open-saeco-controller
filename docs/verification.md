@@ -398,3 +398,22 @@ de cargas siguen pendientes en el esquema principal.
   B.Cu. Resultado descartado y no incorporado a la placa.
 - JP16/J108: V1 pasa a `BREW_OUT2` y V2 a `BREW_OUT1` para rutear el motor sin
   cruces. ERC 0, netlist coincidente y comprobador del núcleo correcto.
+
+## Conectores de entrada vertical, 2026-09-22
+
+- Decisión del propietario: todos los conectores de mazo, de entrada vertical.
+  Las JST laterales S-series pasan a B-series: B2B-XH-A (`C158012`) en J101,
+  J105, J107 y J112; B3B-XH-A (`C144394`) en J106; B5B-XH-A (`C157991`) en J113;
+  B8B-XH-A (`C157972`) en J108; B3B-PH-K-S (`C131339`) en J109; B2P-VH
+  (`C160315`) en J117; B3P-VH (`C160316`) en J115 y J118; B8B-PH-K-S
+  (`C157974`) en J2 del frontal. Existencias leídas de la API de JLCPCB; queda
+  por confirmar el tipo de montaje.
+- Las huellas KiCad de ambas series tienen pads, paso y taladro idénticos, así que
+  el cobre no cambia. J118 baja 0,8 mm para despejar PS701, y se ajustan sus
+  tres arranques de pista.
+- ERC 0 en las dos placas y netlist coincidente. DRC de la principal: 0
+  infracciones, los dos avisos intencionales de extremo suelto, 77 conexiones
+  abiertas y tres diferencias de paridad (MH1–MH3), como antes. DRC del frontal
+  con todas las severidades, tras rellenar zonas: 0 infracciones.
+- Pendiente: comprobar en la máquina la altura libre sobre cada conector y el
+  radio de doblado de los mazos, que en la placa original entraban de lado.

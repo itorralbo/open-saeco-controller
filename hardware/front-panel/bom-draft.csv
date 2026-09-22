@@ -3,7 +3,7 @@ J1,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candi
 U1,TCA9534PWR,Package_SO:TSSOP-16_4.4x5mm_P0.65mm,candidate,Texas Instruments,TCA9534PWR,C783615,Extended,Economic and Standard
 C1,100nF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C2,1uF,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
-J2,LCD_ADAPTER / JST PH 8,Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal,candidate,JST,S8B-PH-K-S(LF)(SN),C157915,Extended,Economic and Standard
+J2,LCD_ADAPTER / JST PH 8,Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical,candidate,JST,B8B-PH-K-S(LF)(SN),C157974,Extended,TBD
 R1,4.7k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R2,4.7k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R3,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard

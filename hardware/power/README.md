@@ -19,7 +19,7 @@ Faltan corrientes dinámicas, arranque, aislamiento y modos de fallo de cada car
 Un motor DC puede trabajar a tensión peligrosa. Fuente aislada y corte independiente
 requieren revisión. No se autoriza fabricación.
 
-Las fotos dimensionales permiten usar JST VH acodado de 3,96 mm como familia
-candidata: S3P-VH para JP8/JP17 y S2P-VH para JP24. Se añadirán al esquema junto
+Las fotos dimensionales permiten usar JST VH de 3,96 mm como familia
+candidata, en versión vertical: B3P-VH para JP8/JP17 y B2P-VH para JP24. Se añadirán al esquema junto
 con la separación de red, el corte de seguridad y los drivers de molino y bomba.
 JP19 continúa sin huella identificada.

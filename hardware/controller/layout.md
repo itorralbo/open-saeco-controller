@@ -34,6 +34,18 @@ pero no reproduce su interfaz: el IDC 2×8 nuevo es algo más ancho y enlaza con
 nueva placa frontal. J110 queda inmediatamente a su derecha, accesible desde el
 mismo borde superior para las pruebas por ordenador.
 
+Todos los conectores de mazo entran en vertical (decisión del propietario,
+2026-09-22). J101, J105–J109, J112–J113, J115, J117 y J118 pasan de las JST
+S-series laterales a las B-series verticales. Los pads, el paso y el taladro son
+los mismos, así que las huellas conservan origen y giro y el cobre no cambia.
+Solo J118 baja 0,8 mm, a y = 122,1 mm, dentro de la tolerancia de ±1,5 mm: la
+carcasa VH vertical sobresale 4,2 mm al norte de los pines y chocaba 0,6 mm con
+el courtyard de PS701. Los courtyards liberan unos 750 mm². La franja útil está
+en x = 7–12,7 mm junto a J107/J108 y en y = 10–15,7 mm bajo J101/J112. En la fila
+inferior se libera y ≈ 129–135 mm junto al borde. J110 (USB-C) sigue siendo de
+montaje lateral para poder conectarlo desde el borde superior. J102–J104, J114,
+J116 y los FASTON ya eran verticales.
+
 JP8, JP19, JP24, JP17 y los dos FASTON de tierra son conectores obligatorios de
 la principal completa, y ya tienen huella los seis. No son reservas para otra
 placa: forman parte de esta misma PCB de sustitución.

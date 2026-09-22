@@ -210,7 +210,7 @@ def main():
     passive('C2', 'C', '1uF', 195, 98, VCC, GND)
     note('03 / Adaptador LCD SPI, lógica 3V3', 230, 30)
     add('J2', 'J8', 'LCD_ADAPTER / JST PH 8', 280, 63, DISPLAY,
-        'Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal', part_key='CONN:JST_PH_8_RA')
+        'Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical', part_key='CONN:JST_PH_8_V')
     note('Orden del cable PH 2,0 del módulo Waveshare 2": VCC GND DIN CLK CS DC RST BL.', 228, 97, 1.2)
     note('BL: entrada lógica de módulo; no LED desnudo.', 228, 92, 1.2)
     note('04 / Polarización y reserva de desacoplo', 322, 30)

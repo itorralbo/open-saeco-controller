@@ -62,7 +62,7 @@ aún no tienen driver.
 
 ## Alimentación y arranque
 
-J101 usa un JST XH lateral de dos contactos: `12V_ISO_RAW` y `GND_UI`. Debe
+J101 usa un JST XH vertical de dos contactos (B2B-XH-A, `C158012`): `12V_ISO_RAW` y `GND_UI`. Debe
 recibir 12 V DC de una fuente AC/DC aislada y certificada; no admite conexión a
 red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 (SMAJ18A) limita transitorios antes del regulador.
@@ -214,7 +214,7 @@ de 12 V conduce Q501 (SI2308A, 60 V) a través de R513=33 Ω, con R514=100 kΩ e
 puerta y source. C507=100 nF y C508=1 µF desacoplan el driver. D306 (SS34) queda
 en paralelo con la bobina, cátodo a `24V_VALVE` y ánodo a `VALVE_RETURN`.
 
-J113 usa JST S5B-XH-A(LF)(SN), LCSC `C263757`, con pin 1 a +24 V y pin 2 al
+J113 usa JST B5B-XH-A(LF)(SN) vertical, LCSC `C157991`, con pin 1 a +24 V y pin 2 al
 retorno conmutado; 3–5 quedan NC. La etapa se ha dibujado para probar la bobina
 OLAB 6000BH/B0DN. Antes de liberarla deben medirse corriente en caliente, tiempo
 de liberación, tensión de drenador y temperatura del MOSFET.

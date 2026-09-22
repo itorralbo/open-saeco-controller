@@ -92,13 +92,13 @@
     {
       "reference": "J2",
       "value": "LCD_ADAPTER / JST PH 8",
-      "footprint": "Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal",
+      "footprint": "Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical",
       "status": "candidate",
       "manufacturer": "JST",
-      "mpn": "S8B-PH-K-S(LF)(SN)",
-      "lcsc": "C157915",
+      "mpn": "B8B-PH-K-S(LF)(SN)",
+      "lcsc": "C157974",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
+      "pcba_type": "TBD",
       "pins": {
         "1": "3V3_UI",
         "2": "GND_UI",

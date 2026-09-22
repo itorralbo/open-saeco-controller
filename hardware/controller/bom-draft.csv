@@ -1,7 +1,7 @@
 reference,value,footprint,status,manufacturer,mpn,lcsc,jlc_class,pcba_type
 U101,STM32G431RBT6,Package_QFP:LQFP-64_10x10mm_P0.5mm,candidate,STMicroelectronics,STM32G431RBT6,C431633,Extended,Economic and Standard
 U201,ESP32-S3-WROOM-1U-N8R8,RF_Module:ESP32-S3-WROOM-1U,candidate,Espressif Systems,ESP32-S3-WROOM-1U-N8R8,C2980300,Extended,Standard Only
-J101,12V_ISOLATED_INPUT / JST XH,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J101,12V_ISOLATED_INPUT / JST XH,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 J102,STM_SWD / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
 J103,ESP_UART / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
 J104,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candidate,Megastar,ZX-IDC2.54-2-8PZZ,C7501244,Extended,Economic and Standard
@@ -60,29 +60,29 @@ C205,1uF / USB VBUS,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Me
 F302,500mA resettable PTC,Fuse:Fuse_1206_3216Metric,candidate,Littelfuse,1206L050YR,C163512,TBD,TBD
 J111,USB BENCH POWER / OPEN,Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,dnp_open_by_default,,,,,
 D303,SS34 / USB power OR,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
-J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,photo_candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,photo_candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 R401,4.7k / NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R402,1k / NTC serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C401,100nF / NTC filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal,photo_candidate_owner_pinout,JST,S3B-XH-A(LF)(SN),C157928,Extended,Economic and Standard
+J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,photo_candidate_owner_pinout,JST,B3B-XH-A(LF)(SN),C144394,Extended,TBD
 R403,4.7k / FLOW pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R404,1k / FLOW serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C402,10nF / FLOW filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J107,JP14 DOOR / contacto seco,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,photo_candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J107,JP14 DOOR / contacto seco,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,photo_candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 R405,10k / DOOR pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R406,1k / DOOR serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C403,100nF / DOOR filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J108,JP16 VISUAL V1..V8 / XH-8,Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal,photo_candidate,JST,S8B-XH-A(LF)(SN),C157914,Extended,Economic and Standard
+J108,JP16 VISUAL V1..V8 / XH-8,Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical,photo_candidate,JST,B8B-XH-A(LF)(SN),C157972,Extended,TBD
 R407,10k / PRES pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R408,1k / PRES serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C404,100nF / PRES filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R409,10k / WORK pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R410,1k / WORK serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C405,100nF / WORK filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal,photo_candidate_owner_pinout,JST,S3B-PH-K(LF)(SN),C545716,Extended,Economic and Standard
+J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,photo_candidate_owner_pinout,JST,B3B-PH-K-S(LF)(SN),C131339,Extended,TBD
 R411,1k / WATER serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J112,24V_ACTUATOR_INPUT / JST XH,Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal,candidate,JST,S2B-XH-A-1(LF)(SN),C163035,Extended,Economic and Standard
+J112,24V_ACTUATOR_INPUT / JST XH,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 F303,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D304,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 C501,100uF / 35V motor bulk,Capacitor_SMD:CP_Elec_6.3x7.7,candidate,Lelon,VZH101M1VTR-0607,C176683,Extended,Economic and Standard
@@ -102,7 +102,7 @@ R509,49.9k / VREF bottom,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603
 C505,100nF / VREF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R510,2.49k / IPROPI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2491T5E,C22908,Basic,Economic and Standard
 C506,10nF / IPROPI,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J113,JP3 VALVE / JST XH,Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal,owner_pinout_candidate,JST,S5B-XH-A(LF)(SN),C263757,Extended,Economic and Standard
+J113,JP3 VALVE / JST XH,Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,owner_pinout_candidate,JST,B5B-XH-A(LF)(SN),C157991,Extended,TBD
 F304,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D305,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 D306,SS34 / flyback,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
@@ -131,10 +131,10 @@ R705,100k / 24V div B,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF
 R706,10k / 24V div low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C702,100nF / 24V ADC,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J114,POWER MONITOR / MEASURE ONLY,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
-J115,JP8 GRINDER / 320VDC,Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal,photo_candidate_owner_wiring,JST,S3P-VH(LF)(SN),C264986,Extended,Economic and Standard
+J115,JP8 GRINDER / 320VDC,Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical,photo_candidate_owner_wiring,JST,B3P-VH(LF)(SN),C160316,Extended,TBD
 J116,JP19 HEATER / 1900W 27R5,OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-4,C2149727,Extended,Standard
-J117,JP24 PUMP / 230VAC,Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal,photo_candidate,JST,S2P-VH(LF)(SN),C160355,TBD,TBD
-J118,JP17 MAINS / L-N,Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal,photo_candidate_owner_wiring,JST,S3P-VH(LF)(SN),C264986,Extended,Economic and Standard
+J117,JP24 PUMP / 230VAC,Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical,photo_candidate,JST,B2P-VH(LF)(SN),C160315,Extended,TBD
+J118,JP17 MAINS / L-N,Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical,photo_candidate_owner_wiring,JST,B3P-VH(LF)(SN),C160316,Extended,TBD
 J119,JP1 PE TO BOILER,OpenSaeco:FASTON_Tab_6.3x0.8mm_PE,faston_provisional_leg_pattern,,,,,
 J120,JP9 PE INPUT,OpenSaeco:FASTON_Tab_6.3x0.8mm_PE,faston_provisional_leg_pattern,,,,,
 F701,T10A / 250V MAIN / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,

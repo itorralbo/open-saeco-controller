@@ -46,8 +46,8 @@ Secuencia para el firmware (sustituye la configuración anterior de ocho entrada
   miran hacia U1 y los de masa hacia fuera, cada uno con su vía.
 - J1 (IDC 2 × 8) en la pestaña del JP3 original, cara de componentes, pin 1 abajo
   a la izquierda. El propietario confirmó ≥16 mm libres delante de la pestaña.
-- J2 (JST PH 8 lateral) arriba al centro, donde estaban JP1/JP2, con la boca hacia
-  el borde superior. Orden del cable PH del módulo Waveshare 2": VCC GND DIN CLK CS DC RST BL.
+- J2 (JST PH 8 vertical, entrada desde arriba) arriba al centro, donde estaban
+  JP1/JP2; mismos pads que el lateral anterior. Orden del cable PH del módulo Waveshare 2": VCC GND DIN CLK CS DC RST BL.
 - U1 en el centro (112; 30) con C1/C2 junto a VCC y dos peines RC: P0–P3 a la
   izquierda y P4–P6 a la derecha; R1–R3 (pull-ups I²C/INT) bajo el peine derecho;
   R4–R6 bajo J2; C3 junto al pin 1 de J1.

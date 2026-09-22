@@ -39,7 +39,7 @@
       "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical"
     },
     "J2": {
-      "footprint": "Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal"
+      "footprint": "Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical"
     },
     "R1": {
       "footprint": "Resistor_SMD:R_0603_1608Metric"
@@ -132,7 +132,7 @@
   "missing_footprints": [],
   "new_footprints_staged": [],
   "removed_footprints": [],
-  "tracks": 0,
+  "tracks": 472,
   "outline": true,
   "edge_cuts_items": 14,
   "outline_source": "hardware/front-panel/mechanical-source.json",

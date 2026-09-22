@@ -81,8 +81,9 @@ centros de carcasa:
 | JP5 | J106 | 38,5 | 125,3 | 0° | borde inferior |
 
 La incertidumbre asignada es ±1,5 mm, suficiente para congelar el placement de
-Rev A y preparar una verificación física 1:1. Los conectores laterales de KiCad
-se orientan con la abertura hacia fuera de la placa. El mapa reproducible está en
+Rev A y preparar una verificación física 1:1. Desde el 2026-09-22 todos los
+conectores de mazo de la Rev A son de entrada vertical, con los pads en las
+mismas coordenadas que las versiones laterales a las que sustituyen. El mapa reproducible está en
 `hardware/controller/validation/main-connector-map.svg` y las coordenadas
 estructuradas en `hardware/controller/mechanical-source.json`.
 
@@ -118,6 +119,6 @@ candidatos. La huella se cerrará con una foto ortogonal de soldaduras o una med
 directa entre pines; la disponibilidad JLCPCB se evaluará después de fijar la serie.
 
 Los conectores nuevos J101–J104 no intentan copiar estas piezas de la Saeco.
-La Rev A usa JST XH lateral para la entrada aislada de 12 V, cabezales 1×6 para
+La Rev A usa JST XH vertical para la entrada aislada de 12 V, cabezales 1×6 para
 servicio y un IDC polarizado 2×8 para el frontal nuevo. JP21 conserva valor como
 referencia de posición y para documentar la placa original, no como contrato eléctrico.

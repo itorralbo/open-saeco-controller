@@ -23,6 +23,12 @@ NEW_POSITIONS = {'J1': (130, 100), 'J2': (150, 100), 'R7': (50, 112), 'D1': (60,
                  **{f'SW{i}': (18+12*i, 126) for i in range(1, 8)}}
 # Channel 8 became the standby LED on 2026-09-18; only these may be deleted.
 REMOVED = {'R18', 'R28', 'C18'}
+# Reviewed package swaps: same pads, so the new footprint keeps the old
+# position, orientation and routing. J2 enters from the top like every header.
+FOOTPRINT_REPLACEMENTS = {
+    'J2': ('Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal',
+           'Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical'),
+}
 MECHANICS = json.loads((BASE/'mechanical-source.json').read_text(encoding='utf-8'))
 EDGE_ITEMS = len(MECHANICS['outline_mm']['vertices'])+len(MECHANICS['holes'])
 
@@ -75,7 +81,18 @@ def main():
         libs.add(lib)
         if ref in existing:
             fp = existing[ref]
-            assert fp.GetFPIDAsString() == footprint, f'Footprint changed for {ref}'
+            if fp.GetFPIDAsString() != footprint:
+                assert FOOTPRINT_REPLACEMENTS.get(ref) == (fp.GetFPIDAsString(), footprint), \
+                    f'Footprint changed for {ref}'
+                old = fp
+                fp = pcb.FootprintLoad(str(PROJECT_LIBS.get(lib, fp_root/(lib+'.pretty'))), name)
+                fp.SetPosition(old.GetPosition())
+                fp.SetOrientationDegrees(old.GetOrientationDegrees())
+                fp.Reference().SetTextSize(old.Reference().GetTextSize())
+                fp.Reference().SetTextThickness(old.Reference().GetTextThickness())
+                fp.Reference().SetPosition(old.Reference().GetPosition())
+                board.Remove(old)
+                board.Add(fp)
         else:
             fp = pcb.FootprintLoad(str(PROJECT_LIBS.get(lib, fp_root/(lib+'.pretty'))), name)
             if not fp:

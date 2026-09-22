@@ -65,8 +65,8 @@ la cara de acoplamiento coinciden con estas familias:
 | JP8, JP17 | JST VH, 3 vías, 3,96 mm, candidato | dos conductores en carcasa de tres vías; la anchura fotografiada encaja con VHR-3N (11,82 mm) |
 | JP24 | JST VH, 2 vías, 3,96 mm, candidato | dos conductores; la anchura fotografiada encaja con VHR-2N (7,86 mm) |
 
-La placa de trabajo usa cabeceras JST acodadas XH para JP13, JP14, JP5 y JP16,
-y PH para JP22. Las dimensiones se cotejaron con los catálogos oficiales
+La placa de trabajo usa cabeceras JST XH verticales para JP13, JP14, JP5 y JP16,
+y PH vertical para JP22. Las dimensiones se cotejaron con los catálogos oficiales
 [JST XH](https://www.jst-mfg.com/product/index.php?lang=2&series=277) y
 [JST PH](https://www.jst-mfg.com/product/index.php?lang=2&series=199).
 La marca del fabricante no se ve en las carcasas; la selección sigue siendo
@@ -91,7 +91,8 @@ se mantiene en `hardware/controller/mechanical-source.json` y se renderiza como
 Para los tres conectores de potencia se cotejaron las fotos con el plano oficial
 de la serie [JST VH](https://www.jst-mfg.com/product/index.php?series=262):
 paso de 3,96 mm, VHR-2N de 7,86 mm y VHR-3N de 11,82 mm de ancho. Se reservan
-como referencias de compra S2P-VH(LF)(SN) y S3P-VH(LF)(SN), ambas acodadas. Esta
+como referencias de compra B2P-VH(LF)(SN) y B3P-VH(LF)(SN), ambas verticales
+(el 2026-09-22 sustituyen a las acodadas S2P-VH/S3P-VH). Esta
 coincidencia dimensional no demuestra el fabricante del arnés existente; hay que
 probar una muestra y verificar la retención antes de liberar la PCB. JP19, de
 cuatro posiciones con dos cableadas, sigue sin una identificación mecánica fiable.

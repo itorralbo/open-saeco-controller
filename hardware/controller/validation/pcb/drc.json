@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-22T13:57:43",
+    "date": "2026-09-22T16:30:47",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -82,12 +82,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.6250 mm",
+                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.3038 mm",
                     "pos": {
-                        "x": 31.0,
-                        "y": 104.175
+                        "x": 32.5,
+                        "y": 104.8
                     },
-                    "uuid": "1b74406b-62cc-435b-98d4-d2a19e175856"
+                    "uuid": "3b338970-c1c7-4f94-ad77-8d9a88603bd7"
                 },
                 {
                     "description": "Pad 14 [/NTC_ADC] de U101 en F.Cu",
@@ -110,7 +110,7 @@
                         "x": 31.1,
                         "y": 61.025
                     },
-                    "uuid": "c52a87db-6fb9-4078-8c1e-0c5456f29f8c"
+                    "uuid": "be44403d-4051-435d-9d21-9a792363b3ea"
                 },
                 {
                     "description": "Pad 2 [/GND_UI] de R711 en F.Cu",
@@ -133,7 +133,7 @@
                         "x": 44.4,
                         "y": 53.05
                     },
-                    "uuid": "f2bd6efd-ef7e-41f5-bd44-c75efa6dfb0c"
+                    "uuid": "6cc5cada-c4c5-4499-9167-7631af8f3a9e"
                 },
                 {
                     "description": "Pad 2 [/GND_UI] de C101 en F.Cu",
@@ -179,7 +179,7 @@
                         "x": 70.8,
                         "y": 53.0
                     },
-                    "uuid": "548efb98-e197-434f-832a-b51537dcd01f"
+                    "uuid": "b001a771-f24f-4865-8df6-0a27fbb5e048"
                 },
                 {
                     "description": "Pad 2 [/GND_UI] de C702 en F.Cu",
@@ -210,7 +210,7 @@
                         "x": 79.25,
                         "y": 44.3
                     },
-                    "uuid": "17f9bb5d-8dbb-4821-ae5b-93f8b438d457"
+                    "uuid": "1631a260-370f-48a3-a06d-f8a9375f3b80"
                 }
             ],
             "severity": "error",
@@ -233,7 +233,7 @@
                         "x": 19.0,
                         "y": 128.199999
                     },
-                    "uuid": "7137478b-c46d-4d95-afea-bf928a9cbf4a"
+                    "uuid": "ae7e9488-79b5-4bc8-acb1-ec5c327a3560"
                 }
             ],
             "severity": "error",
@@ -248,7 +248,7 @@
                         "x": 36.9,
                         "y": 85.425
                     },
-                    "uuid": "a5879582-3389-4b79-9a1a-f5b9a6a0ea3a"
+                    "uuid": "d496ac28-464b-4755-bffe-c85a9d6df856"
                 },
                 {
                     "description": "Pad 1 [/3V3_CORE] de R403 en F.Cu",
@@ -317,7 +317,7 @@
                         "x": 94.3,
                         "y": 31.5
                     },
-                    "uuid": "ec49b72d-3cbc-45b9-afbc-d80626a7038d"
+                    "uuid": "87425aa3-229c-4073-a2a8-bf401a9c1722"
                 },
                 {
                     "description": "Pista [/3V3_CORE] en (F.Cu), longitud 1.6000 mm",
@@ -325,7 +325,7 @@
                         "x": 83.8,
                         "y": 35.875
                     },
-                    "uuid": "f4235315-f04e-4b20-928c-fc108e9ad122"
+                    "uuid": "789c1a3e-151b-40d6-b428-13fa4ef7940c"
                 }
             ],
             "severity": "error",
@@ -785,7 +785,7 @@
                         "x": 70.325,
                         "y": 39.25
                     },
-                    "uuid": "9b47047a-6d6e-49be-9379-9f90ea480bb9"
+                    "uuid": "11f6ab2a-d645-4a21-a13e-7d74dc40e155"
                 }
             ],
             "severity": "error",
@@ -800,7 +800,7 @@
                         "x": 30.0,
                         "y": 66.0
                     },
-                    "uuid": "fe089c2b-d82e-45f0-9638-8117cf28d801"
+                    "uuid": "26ea4387-1e1e-4740-9e39-0f26ecd7156e"
                 },
                 {
                     "description": "Pad 30 [/HEATER_EN_RAW] de U101 en F.Cu",
@@ -841,12 +841,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/WATER_LEVEL] de C406 en F.Cu",
+                    "description": "Pista [/WATER_LEVEL] en (F.Cu), longitud 1.7366 mm",
                     "pos": {
-                        "x": 22.0,
-                        "y": 116.775
+                        "x": 20.5,
+                        "y": 115.9
                     },
-                    "uuid": "1acfe251-bb41-4b5b-a5cd-92eaf3371a86"
+                    "uuid": "22a916fa-5192-4605-8de9-d7955969b7e5"
                 },
                 {
                     "description": "Pad 16 [/WATER_LEVEL] de U101 en F.Cu",
@@ -869,7 +869,7 @@
                         "x": 96.0,
                         "y": 6.0
                     },
-                    "uuid": "4e10f450-f5f4-4791-8fa4-dc42123fa59b"
+                    "uuid": "98002b19-865c-4441-9ad1-92314abd79af"
                 },
                 {
                     "description": "Pista [/12V_ISO_RAW] en (F.Cu), longitud 1.0000 mm",
@@ -877,7 +877,7 @@
                         "x": 112.175,
                         "y": 2.2
                     },
-                    "uuid": "cfd2d462-88f0-47a5-93e0-39f2fb808ed2"
+                    "uuid": "ed4abc18-47fb-4916-abc4-4f28cd7b9e2f"
                 }
             ],
             "severity": "error",
@@ -892,7 +892,7 @@
                         "x": 96.0,
                         "y": 6.0
                     },
-                    "uuid": "4e10f450-f5f4-4791-8fa4-dc42123fa59b"
+                    "uuid": "98002b19-865c-4441-9ad1-92314abd79af"
                 },
                 {
                     "description": "Pad 1 [/12V_ISO_RAW] de F301 en F.Cu",
@@ -923,7 +923,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "97c98bef-3e72-41e9-9989-7b833a70ba4e"
+                    "uuid": "2bd3a346-6735-4f9f-9cec-171cb7485058"
                 }
             ],
             "severity": "error",
@@ -933,12 +933,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/12V_PROTECTED] en (B.Cu), longitud 15.1000 mm",
+                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 1.3750 mm",
                     "pos": {
                         "x": 45.3,
-                        "y": 123.5
+                        "y": 108.4
                     },
-                    "uuid": "7c43d306-fdab-4d4c-96eb-35fa6747242e"
+                    "uuid": "790ddddf-8b6c-4206-8ea3-9a532d9836ec"
                 },
                 {
                     "description": "Pad 1 [/12V_PROTECTED] de R709 en F.Cu",
@@ -987,12 +987,12 @@
                     "uuid": "569fdd53-2f39-4e7c-a5d8-6b7a5aa1d491"
                 },
                 {
-                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 8.7000 mm",
+                    "description": "Pista [/12V_PROTECTED] en (F.Cu), longitud 2.6235 mm",
                     "pos": {
                         "x": 92.8,
-                        "y": 28.6
+                        "y": 37.3
                     },
-                    "uuid": "8aea1dd6-ae92-4175-a6ef-66715b58f1f6"
+                    "uuid": "818dc684-4c4f-42db-8504-7a8eb3272251"
                 }
             ],
             "severity": "error",
@@ -1015,7 +1015,7 @@
                         "x": 28.0,
                         "y": 94.2
                     },
-                    "uuid": "b37cd347-90ab-4071-9be8-c96078f455cb"
+                    "uuid": "ce73ccca-b2f4-449b-9dc2-96329fe499c0"
                 }
             ],
             "severity": "error",
@@ -1038,7 +1038,7 @@
                         "x": 95.275,
                         "y": 53.6
                     },
-                    "uuid": "43b4fe1f-8181-46ea-9c2d-fa4abf9bc23f"
+                    "uuid": "ecc59025-d679-4a56-a066-3a2b70f0a8bd"
                 }
             ],
             "severity": "error",
@@ -1186,12 +1186,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/BU_WORK_N] de C405 en F.Cu",
+                    "description": "Pista [/BU_WORK_N] en (F.Cu), longitud 3.0004 mm",
                     "pos": {
-                        "x": 22.0,
-                        "y": 59.775
+                        "x": 19.0,
+                        "y": 59.825
                     },
-                    "uuid": "446eaeff-d079-4a0d-90d8-430a682a2106"
+                    "uuid": "698e15b4-16a7-4198-8c42-c00fe9ee37b5"
                 },
                 {
                     "description": "Pad 10 [/BU_WORK_N] de U101 en F.Cu",
@@ -1309,12 +1309,12 @@
                     "uuid": "f4a45a89-9050-46fa-8547-2ff51da5d5af"
                 },
                 {
-                    "description": "Pad 2 [/RAIL_12V_ADC] de R702 en F.Cu",
+                    "description": "Pista [/RAIL_12V_ADC] en (F.Cu), longitud 6.0001 mm",
                     "pos": {
                         "x": 103.0,
                         "y": 19.825
                     },
-                    "uuid": "21593cf1-6e05-4ecf-a3f4-4724140b31f5"
+                    "uuid": "b343730a-53d6-4c64-8a81-3b1f59ec9e40"
                 }
             ],
             "severity": "error",
@@ -1398,7 +1398,7 @@
                         "x": 41.675,
                         "y": 64.5
                     },
-                    "uuid": "2ab9dc07-8a2c-4167-9040-f1b5af5a5af2"
+                    "uuid": "47b8caf0-57e4-4fc6-ace6-003da1fc36a1"
                 },
                 {
                     "description": "Pad 24 [/VALVE_EN_RAW] de U101 en F.Cu",
@@ -1444,7 +1444,7 @@
                         "x": 18.0,
                         "y": 71.825
                     },
-                    "uuid": "4195cb84-7dff-4c65-a845-04afac3a7461"
+                    "uuid": "1924b0b2-f823-430b-8aeb-2351ba36b1b9"
                 },
                 {
                     "description": "Pad 8 [/DOOR_CLOSED_N] de U101 en F.Cu",
@@ -1462,12 +1462,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/BU_PRESENT_N] de C404 en F.Cu",
+                    "description": "Pista [/BU_PRESENT_N] en (F.Cu), longitud 3.0004 mm",
                     "pos": {
-                        "x": 22.0,
-                        "y": 52.775
+                        "x": 19.0,
+                        "y": 52.825
                     },
-                    "uuid": "b38dceee-1bdf-4e94-973e-6a9d6a2400e7"
+                    "uuid": "825de952-b3c6-4258-8241-bb17379b588a"
                 },
                 {
                     "description": "Pad 9 [/BU_PRESENT_N] de U101 en F.Cu",
@@ -1485,12 +1485,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/FLOW_TIM] de C402 en F.Cu",
+                    "description": "Pista [/FLOW_TIM] en (F.Cu), longitud 3.0004 mm",
                     "pos": {
-                        "x": 44.0,
-                        "y": 104.775
+                        "x": 41.0,
+                        "y": 104.825
                     },
-                    "uuid": "12978dd2-ec9b-44b1-9b60-ac941b77532a"
+                    "uuid": "98f231aa-30c7-4283-9e97-e32d70102ab3"
                 },
                 {
                     "description": "Pad 15 [/FLOW_TIM] de U101 en F.Cu",
@@ -1659,7 +1659,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "17578133-d3dd-472a-9c41-373516d2ff0e"
+                    "uuid": "ed8d3443-f28c-4361-9395-2a77f8ccae7a"
                 }
             ],
             "severity": "error",
@@ -1860,7 +1860,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "97c98bef-3e72-41e9-9989-7b833a70ba4e"
+                    "uuid": "2bd3a346-6735-4f9f-9cec-171cb7485058"
                 }
             ],
             "severity": "warning",
@@ -1875,7 +1875,7 @@
                         "x": 52.9,
                         "y": 32.6
                     },
-                    "uuid": "17578133-d3dd-472a-9c41-373516d2ff0e"
+                    "uuid": "ed8d3443-f28c-4361-9395-2a77f8ccae7a"
                 }
             ],
             "severity": "warning",

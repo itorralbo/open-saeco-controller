@@ -213,8 +213,8 @@ def main():
     d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO21 detecta VBUS.',195,163)
     d.note('03 / Conexiones internas y programación',390,36,1.8)
     d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_ISO_RAW',g],
-          'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
-          status='candidate', part_key='CONN:JST_XH_2_RA')
+          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+          status='candidate', part_key='CONN:JST_XH_2_V')
     d.add('#FLG101', 'PWR_FLAG', 'Isolated 12V source / J101', 540, 48, ['12V_ISO_RAW'])
     d.add('#FLG102', 'PWR_FLAG', 'Isolated return / J101', 540, 61, [g])
     d.add('#FLG103', 'PWR_FLAG', 'Regulated output / U301', 540, 74, [v])
@@ -327,8 +327,8 @@ def main():
     d.note('J111 se fabrica ABIERTO. Cerrarlo solo en banco: USB limitado a 500mA alimenta el buck; no cargas.',610,408,1.1)
     d.note('10 / Entradas pasivas — huellas candidatas según fotos con calibre', 12, 406, 1.8)
     d.add('J105','J2','JP13 NTC / 2 vías',62,445,['NTC_RAW',g],
-          'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
-          status='photo_candidate', part_key='CONN:JST_XH_2_RA')
+          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+          status='photo_candidate', part_key='CONN:JST_XH_2_V')
     d.passive('R401','R','4.7k / NTC pull-up',145,430,v,'NTC_RAW')
     d.passive('R402','R','1k / NTC serie',145,447,'NTC_RAW','NTC_ADC')
     d.passive('C401','C','100nF / NTC filtro',145,464,'NTC_ADC',g)
@@ -336,8 +336,8 @@ def main():
 
     d.add('J106','J3','JP5 FLOW ADAPTER / VCC-GND-OC',292,445,
           ['FLOW_RAW',g,'12V_PROTECTED'],
-          'Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal',
-          status='photo_candidate_owner_pinout', part_key='CONN:JST_XH_3_RA')
+          'Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical',
+          status='photo_candidate_owner_pinout', part_key='CONN:JST_XH_3_V')
     d.passive('R403','R','4.7k / FLOW pull-up',385,430,v,'FLOW_RAW')
     d.passive('R404','R','1k / FLOW serie',385,447,'FLOW_RAW','FLOW_TIM')
     d.passive('C402','C','10nF / FLOW filtro',385,464,'FLOW_TIM',g)
@@ -345,8 +345,8 @@ def main():
     d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V_PROTECTED; pull-up separado a 3V3.',245,493,1.2)
 
     d.add('J107','J2','JP14 DOOR / contacto seco',520,445,['DOOR_RAW',g],
-          'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
-          status='photo_candidate', part_key='CONN:JST_XH_2_RA')
+          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+          status='photo_candidate', part_key='CONN:JST_XH_2_V')
     d.passive('R405','R','10k / DOOR pull-up',605,430,v,'DOOR_RAW')
     d.passive('R406','R','1k / DOOR serie',605,447,'DOOR_RAW','DOOR_CLOSED_N')
     d.passive('C403','C','100nF / DOOR filtro',605,464,'DOOR_CLOSED_N',g)
@@ -355,8 +355,8 @@ def main():
     d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
           # OUT2 on V1 and OUT1 on V2 keep both motor leads uncrossed on the PCB.
           ['BREW_OUT2','BREW_OUT1','BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
-          'Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal',
-          status='photo_candidate', part_key='CONN:JST_XH_8_RA')
+          'Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical',
+          status='photo_candidate', part_key='CONN:JST_XH_8_V')
     d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
     d.passive('R408','R','1k / PRES serie',805,438,'BU_PRESENT_RAW','BU_PRESENT_N')
     d.passive('C404','C','100nF / PRES filtro',805,455,'BU_PRESENT_N',g)
@@ -368,15 +368,15 @@ def main():
 
     d.add('J109','J3','JP22 WATER / RED-WHITE-BLACK',520,536,
           [v,'WATER_RAW',g],
-          'Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal',
-          status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_RA')
+          'Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical',
+          status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
     d.note('PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
     d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
     d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_ACT_RAW',g],
-          'Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal',
-          status='candidate', part_key='CONN:JST_XH_2_RA')
+          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+          status='candidate', part_key='CONN:JST_XH_2_V')
     d.add('#FLG105','PWR_FLAG','Isolated 24V motor source / J112',1000,62,['24V_BREW'])
     d.add('F303','FUSE','1A / 72VDC',970,82,['24V_ACT_RAW','24V_BREW_FUSED'],
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
@@ -414,8 +414,8 @@ def main():
     d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
     d.add('J113','J5','JP3 VALVE / JST XH',905,354,
           ['24V_VALVE','VALVE_RETURN',None,None,None],
-          'Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal',
-          status='owner_pinout_candidate', part_key='CONN:JST_XH_5_RA')
+          'Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical',
+          status='owner_pinout_candidate', part_key='CONN:JST_XH_5_V')
     d.add('F304','FUSE','1A / 72VDC',970,354,['24V_ACT_RAW','24V_VALVE_FUSED'],
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
     d.add('D305','DIODE','SS34',1040,354,['24V_VALVE_FUSED','24V_VALVE'],
@@ -473,8 +473,8 @@ def main():
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
     d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,
           ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
-          'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
-          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
+          'Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical',
+          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_V')
     # Owner: only tabs 1 and 3 are wired, and they are the two ends of the
     # same boiler element, so which is which does not matter. 1900 W element
     # measured at 27.5 ohm, so 8.4 A at 230 V.
@@ -486,12 +486,12 @@ def main():
           status='owner_identified', part_key='CONN:TE_RAST5_1971845-4')
     d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
           ['PUMP_AC_SWITCHED','MAINS_N'],
-          'Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal',
-          status='photo_candidate', part_key='CONN:JST_VH_2_RA')
+          'Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical',
+          status='photo_candidate', part_key='CONN:JST_VH_2_V')
     d.add('J118','J3','JP17 MAINS / L-N',1155,738,
           ['MAINS_L_IN',None,'MAINS_N'],
-          'Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal',
-          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_RA')
+          'Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical',
+          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_V')
     # Owner: both are protective-earth tabs, JP1 to the boiler body and JP9 to
     # the mains inlet. The board is the junction between them.
     d.add('J119','J1','JP1 PE TO BOILER',1100,768,['PROTECTIVE_EARTH'],

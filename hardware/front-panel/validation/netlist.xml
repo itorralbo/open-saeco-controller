@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>C:\Developer\open-saeco-controller\hardware\front-panel\kicad\front-panel-reva.kicad_sch</source>
-    <date>2026-09-18T22:02:27</date>
+    <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/front-panel/kicad/front-panel-reva.kicad_sch</source>
+    <date>2026-09-22T16:30:35</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -424,23 +424,23 @@
     </comp>
     <comp ref="J2">
       <value>LCD_ADAPTER / JST PH 8</value>
-      <footprint>Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S8B-PH-K-S(LF)(SN)</field>
-        <field name="lcsc">C157915</field>
+        <field name="mpn">B8B-PH-K-S(LF)(SN)</field>
+        <field name="lcsc">C157974</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J8" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S8B-PH-K-S(LF)(SN)"/>
-      <property name="lcsc" value="C157915"/>
+      <property name="mpn" value="B8B-PH-K-S(LF)(SN)"/>
+      <property name="lcsc" value="C157974"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="front-panel-reva"/>
       <property name="Sheetfile" value="front-panel-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

@@ -67,7 +67,7 @@ NEW_POSITIONS = {
     'R704': (105, 7), 'R705': (111, 7), 'R706': (117, 7), 'C702': (123, 7),
     'J114': (106, 101),
     'J115': (59.04, 120.8), 'J117': (91.02, 120.8),
-    'J118': (106.04, 121.3),
+    'J118': (106.04, 122.1),
     'F701': (128, 52), 'RV701': (119, 55), 'F702': (128, 27),
     'PS701': (105, 89), 'J121': (66, 104),
     'U303': (53, 103), 'L302': (61, 103),
@@ -98,6 +98,24 @@ FOOTPRINT_REPLACEMENTS = {
     # variant; it crosses the barrier over a milled slot instead.
     'U701': ('Package_DIP:DIP-6_W10.16mm', 'OpenSaeco:DIP-6_W7.62mm_BarrierSlot'),
 }
+# Every wire-to-board header enters from the top. The vertical JST B-series
+# parts share pad position, pitch and drill with the side-entry S-series they
+# replace, so the routing is untouched and only the courtyard shrinks.
+_JST = 'Connector_JST:JST_'
+for ref, (side, top) in {
+        'J101': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
+        'J105': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
+        'J106': ('XH_S3B-XH-A_1x03_P2.50mm_Horizontal', 'XH_B3B-XH-A_1x03_P2.50mm_Vertical'),
+        'J107': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
+        'J108': ('XH_S8B-XH-A_1x08_P2.50mm_Horizontal', 'XH_B8B-XH-A_1x08_P2.50mm_Vertical'),
+        'J109': ('PH_S3B-PH-K_1x03_P2.00mm_Horizontal', 'PH_B3B-PH-K_1x03_P2.00mm_Vertical'),
+        'J112': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
+        'J113': ('XH_S5B-XH-A_1x05_P2.50mm_Horizontal', 'XH_B5B-XH-A_1x05_P2.50mm_Vertical'),
+        'J115': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
+        'J117': ('VH_S2P-VH_1x02_P3.96mm_Horizontal', 'VH_B2P-VH_1x02_P3.96mm_Vertical'),
+        'J118': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
+        }.items():
+    FOOTPRINT_REPLACEMENTS[ref] = (_JST+side, _JST+top)
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {
     'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),

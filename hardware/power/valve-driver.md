@@ -20,8 +20,9 @@ en paralelo. No se ha detectado supresión interna accesible desde los terminale
 la rueda libre externa forma parte necesaria del driver.
 
 JP3 parece JST XH de cinco vías y 2,50 mm. La huella compatible de trabajo es
-`JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal`; se selecciona
-`S5B-XH-A(LF)(SN)` (`C263757`), con 8.885 unidades LCSC observadas el 2026-09-19.
+`JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical`; se selecciona
+`B5B-XH-A(LF)(SN)` (`C157991`), de entrada vertical como el resto de conectores,
+con 63.729 unidades JLCPCB observadas el 2026-09-22.
 La referencia continúa siendo candidata hasta probar el acoplamiento físico.
 
 ## Topología propuesta

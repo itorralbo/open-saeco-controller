@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-22T13:19:23</date>
+    <date>2026-09-22T16:30:33</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2022,23 +2022,23 @@
     </comp>
     <comp ref="J101">
       <value>12V_ISOLATED_INPUT / JST XH</value>
-      <footprint>Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S2B-XH-A-1(LF)(SN)</field>
-        <field name="lcsc">C163035</field>
+        <field name="mpn">B2B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C158012</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S2B-XH-A-1(LF)(SN)"/>
-      <property name="lcsc" value="C163035"/>
+      <property name="mpn" value="B2B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C158012"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2172,23 +2172,23 @@
     </comp>
     <comp ref="J105">
       <value>JP13 NTC / 2 vías</value>
-      <footprint>Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S2B-XH-A-1(LF)(SN)</field>
-        <field name="lcsc">C163035</field>
+        <field name="mpn">B2B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C158012</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S2B-XH-A-1(LF)(SN)"/>
-      <property name="lcsc" value="C163035"/>
+      <property name="mpn" value="B2B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C158012"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2204,23 +2204,23 @@
     </comp>
     <comp ref="J106">
       <value>JP5 FLOW ADAPTER / VCC-GND-OC</value>
-      <footprint>Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S3B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C157928</field>
+        <field name="mpn">B3B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C144394</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S3B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C157928"/>
+      <property name="mpn" value="B3B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C144394"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2237,23 +2237,23 @@
     </comp>
     <comp ref="J107">
       <value>JP14 DOOR / contacto seco</value>
-      <footprint>Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S2B-XH-A-1(LF)(SN)</field>
-        <field name="lcsc">C163035</field>
+        <field name="mpn">B2B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C158012</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S2B-XH-A-1(LF)(SN)"/>
-      <property name="lcsc" value="C163035"/>
+      <property name="mpn" value="B2B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C158012"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2269,23 +2269,23 @@
     </comp>
     <comp ref="J108">
       <value>JP16 VISUAL V1..V8 / XH-8</value>
-      <footprint>Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S8B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C157914</field>
+        <field name="mpn">B8B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C157972</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J8" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S8B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C157914"/>
+      <property name="mpn" value="B8B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C157972"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2307,23 +2307,23 @@
     </comp>
     <comp ref="J109">
       <value>JP22 WATER / RED-WHITE-BLACK</value>
-      <footprint>Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S3B-PH-K(LF)(SN)</field>
-        <field name="lcsc">C545716</field>
+        <field name="mpn">B3B-PH-K-S(LF)(SN)</field>
+        <field name="lcsc">C131339</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S3B-PH-K(LF)(SN)"/>
-      <property name="lcsc" value="C545716"/>
+      <property name="mpn" value="B3B-PH-K-S(LF)(SN)"/>
+      <property name="lcsc" value="C131339"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2409,23 +2409,23 @@
     </comp>
     <comp ref="J112">
       <value>24V_ACTUATOR_INPUT / JST XH</value>
-      <footprint>Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S2B-XH-A-1(LF)(SN)</field>
-        <field name="lcsc">C163035</field>
+        <field name="mpn">B2B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C158012</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S2B-XH-A-1(LF)(SN)"/>
-      <property name="lcsc" value="C163035"/>
+      <property name="mpn" value="B2B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C158012"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2441,23 +2441,23 @@
     </comp>
     <comp ref="J113">
       <value>JP3 VALVE / JST XH</value>
-      <footprint>Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S5B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C263757</field>
+        <field name="mpn">B5B-XH-A(LF)(SN)</field>
+        <field name="lcsc">C157991</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J5" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S5B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C263757"/>
+      <property name="mpn" value="B5B-XH-A(LF)(SN)"/>
+      <property name="lcsc" value="C157991"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2512,23 +2512,23 @@
     </comp>
     <comp ref="J115">
       <value>JP8 GRINDER / 320VDC</value>
-      <footprint>Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S3P-VH(LF)(SN)</field>
-        <field name="lcsc">C264986</field>
+        <field name="mpn">B3P-VH(LF)(SN)</field>
+        <field name="lcsc">C160316</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S3P-VH(LF)(SN)"/>
-      <property name="lcsc" value="C264986"/>
+      <property name="mpn" value="B3P-VH(LF)(SN)"/>
+      <property name="lcsc" value="C160316"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2579,22 +2579,22 @@
     </comp>
     <comp ref="J117">
       <value>JP24 PUMP / 230VAC</value>
-      <footprint>Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S2P-VH(LF)(SN)</field>
-        <field name="lcsc">C160355</field>
-        <field name="jlc_class">TBD</field>
+        <field name="mpn">B2P-VH(LF)(SN)</field>
+        <field name="lcsc">C160315</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_VH_S2P-VH_1x02_P3.96mm_Horizontal</field>
+        <field name="Footprint">Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S2P-VH(LF)(SN)"/>
-      <property name="lcsc" value="C160355"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="mpn" value="B2P-VH(LF)(SN)"/>
+      <property name="lcsc" value="C160315"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -2611,23 +2611,23 @@
     </comp>
     <comp ref="J118">
       <value>JP17 MAINS / L-N</value>
-      <footprint>Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal</footprint>
+      <footprint>Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</footprint>
       <fields>
         <field name="manufacturer">JST</field>
-        <field name="mpn">S3P-VH(LF)(SN)</field>
-        <field name="lcsc">C264986</field>
+        <field name="mpn">B3P-VH(LF)(SN)</field>
+        <field name="lcsc">C160316</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_JST:JST_VH_S3P-VH_1x03_P3.96mm_Horizontal</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
       <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="S3P-VH(LF)(SN)"/>
-      <property name="lcsc" value="C264986"/>
+      <property name="mpn" value="B3P-VH(LF)(SN)"/>
+      <property name="lcsc" value="C160316"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -7007,7 +7007,7 @@
       <node ref="F702" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="PS701" pin="1" pinfunction="AC/L_1" pintype="passive"/>
     </net>
-    <net code="82" name="/PUMP_AC_SWITCHED" class="Default">
+    <net code="82" name="/PUMP_AC_SWITCHED" class="Mains">
       <node ref="J117" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="Q704" pin="1" pinfunction="A1_1" pintype="passive"/>
     </net>
@@ -7020,7 +7020,7 @@
       <node ref="U101" pin="33" pinfunction="PB11_33" pintype="bidirectional"/>
       <node ref="U604" pin="1" pinfunction="1A_1" pintype="input"/>
     </net>
-    <net code="85" name="/PUMP_GATE_FEED" class="Default">
+    <net code="85" name="/PUMP_GATE_FEED" class="Mains">
       <node ref="R712" pin="2" pintype="passive"/>
       <node ref="U702" pin="6" pinfunction="MT_IN_6" pintype="passive"/>
     </net>
@@ -7037,7 +7037,7 @@
       <node ref="Q706" pin="3" pinfunction="D_3" pintype="power_out"/>
       <node ref="U702" pin="2" pinfunction="K_2" pintype="passive"/>
     </net>
-    <net code="89" name="/PUMP_TRIAC_GATE" class="Default">
+    <net code="89" name="/PUMP_TRIAC_GATE" class="Mains">
       <node ref="Q704" pin="3" pinfunction="G_3" pintype="input"/>
       <node ref="U702" pin="4" pinfunction="MT_G_4" pintype="passive"/>
     </net>

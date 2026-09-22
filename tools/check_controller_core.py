@@ -215,9 +215,9 @@ def main():
             ('J110','Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12','C165948'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
             ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
-            ('J112','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
+            ('J112','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
             ('U501','Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm','C575551'),
-            ('J113','Connector_JST:JST_XH_S5B-XH-A_1x05_P2.50mm_Horizontal','C263757'),
+            ('J113','Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical','C157991'),
             ('U502','Package_TO_SOT_SMD:SOT-23-5','C99395'),
             ('Q501','Package_TO_SOT_SMD:SOT-23','C347491'),
             ('U601','Package_TO_SOT_SMD:SOT-23-5','C20032'),
@@ -227,11 +227,11 @@ def main():
             ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     for ref, footprint, lcsc in [
-            ('J105','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
-            ('J106','Connector_JST:JST_XH_S3B-XH-A_1x03_P2.50mm_Horizontal','C157928'),
-            ('J107','Connector_JST:JST_XH_S2B-XH-A_1x02_P2.50mm_Horizontal','C163035'),
-            ('J108','Connector_JST:JST_XH_S8B-XH-A_1x08_P2.50mm_Horizontal','C157914'),
-            ('J109','Connector_JST:JST_PH_S3B-PH-K_1x03_P2.00mm_Horizontal','C545716')]:
+            ('J105','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
+            ('J106','Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical','C144394'),
+            ('J107','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
+            ('J108','Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical','C157972'),
+            ('J109','Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical','C131339')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     exported = json.loads((base/'design-nets.json').read_text())
     assert nets == {c['reference']:c['pins'] for c in exported['components']}

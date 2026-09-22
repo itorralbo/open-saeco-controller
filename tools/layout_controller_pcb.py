@@ -206,7 +206,9 @@ PLACE = {
     'J101': (96, 6, 0), 'J102': (74.5, 31, 90), 'J103': (75, 10, 90),
     **HARNESS_CONNECTORS,
     'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
-    'J118': (106.04, 121.3, 0),
+    # The top-entry VH housing reaches 4.2 mm north of its pins; J118 sits
+    # 1.3 mm lower than its neighbours so the housing clears PS701.
+    'J118': (106.04, 122.1, 0),
     # Heater block and the two protective-earth tabs, in the envelopes that
     # mechanical-source.json had been reserving for them.
     'J116': (80.5, 124.05, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
