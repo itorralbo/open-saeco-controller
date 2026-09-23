@@ -934,8 +934,6 @@ def route_usb_power(board):
                             (27.3, 18.825)], width=PIN_WIDTH)
     polyline(board, sense, [(26.7, 18.825), (25.6, 19.8), (25.0, 20.8),
                             (22.225, 20.8), (22.225, 19.4)], width=PIN_WIDTH)
-    polyline(board, sense, [(28.2, 19.5), (29.0, 20.5), (29.0, 25.5),
-                            (56.0, 25.5), (57.175, 24.0)], width=PIN_WIDTH)
 
     polyline(board, '/ESP_BOOT0', [(65.525, 22.825), (64.0, 22.6),
                                    (63.3, 22.3)], width=PIN_WIDTH)
@@ -1902,6 +1900,160 @@ def route_sensor_bus(board):
     via(board, ntc, (32.5, 104.8))
 
 
+def route_esp_and_front(board):
+    """ESP32 signals: LCD bus, keypad, UART, debug header, EN and VBUS sense.
+
+    - LCD: R213-R218 now sit in one row under J104, at the cable entry. The
+      four SPI lines leave the south pins on staggered vias and run west on
+      B.Cu at y = 25.1-27.3 mm; BL and RST leave the west pins. They reach
+      the row in its own order, SCLK, MOSI, CS, DC, RST, BL, with no
+      crossings. DC and BL climb to J104's far row between the pads; CS
+      reaches its pin on B.Cu.
+    - UART: ESP TX moved from IO17 to IO42 and STM-to-ESP from IO18 to IO2,
+      east-side pins beside R212 and R211, so neither crosses the module.
+    - VBUS sense moved from IO21 to IO15, on the west side next to its
+      divider; the 30 mm line under the south row is gone.
+    - Keypad lines leave the west pins on vias at x = 43.75 mm and cross the
+      USB connector's B.Cu walls (VBUS and D+) through short F.Cu hops.
+    - EN runs east on B.Cu to J103.5 and west to R201; debug TX/RX and BOOT0
+      reach J103 on B.Cu. No track runs on F.Cu under the module.
+    """
+    w = SIGNAL_WIDTH
+
+    polyline(board, '/LCD_SCLK', [(8.0, 11.175), (8.74, 10.435), (8.74, 6.5)],
+             width=w)
+    polyline(board, '/LCD_MOSI', [(9.6, 11.175), (11.28, 9.495), (11.28, 6.5)],
+             width=w)
+    polyline(board, '/LCD_CS_N', [(11.2, 11.175), (11.5, 10.3)], width=w)
+    polyline(board, '/LCD_CS_N', [(11.5, 10.3), (13.82, 6.5)],
+             pcb.B_Cu, width=w)
+    via(board, '/LCD_CS_N', (11.5, 10.3))
+    polyline(board, '/LCD_DC', [(12.8, 11.175), (12.55, 10.925),
+                                (12.55, 4.35), (13.82, 3.96)], width=w)
+    polyline(board, '/LCD_RST_N', [(14.4, 11.175), (16.36, 9.215),
+                                   (16.36, 6.5)], width=w)
+    polyline(board, '/LCD_BL_PWM', [(16.0, 11.175), (17.63, 9.545),
+                                    (17.63, 4.35), (16.36, 3.96)], width=w)
+    polyline(board, '/SCLK_RAW', [(8.0, 12.825), (8.0, 13.75)], width=w)
+    via(board, '/SCLK_RAW', (8.0, 13.75))
+    polyline(board, '/SCLK_RAW', [(53.365, 23.55), (53.365, 26.1)], width=w)
+    via(board, '/SCLK_RAW', (53.365, 26.1))
+    polyline(board, '/SCLK_RAW', [(53.365, 26.1), (52.75, 26.75),
+                                  (21.0, 26.75), (8.0, 13.75)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/MOSI_RAW', [(9.6, 12.825), (9.6, 13.75)], width=w)
+    via(board, '/MOSI_RAW', (9.6, 13.75))
+    polyline(board, '/MOSI_RAW', [(52.095, 23.55), (52.095, 25.1)], width=w)
+    via(board, '/MOSI_RAW', (52.095, 25.1))
+    polyline(board, '/MOSI_RAW', [(52.095, 25.1), (51.25, 24.375),
+                                  (28.25, 24.375), (16.875, 13.0),
+                                  (10.375, 13.0), (9.6, 13.75)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/CS_RAW', [(11.2, 12.825), (11.2, 13.75)], width=w)
+    via(board, '/CS_RAW', (11.2, 13.75))
+    polyline(board, '/CS_RAW', [(50.825, 23.55), (50.825, 26.1)], width=w)
+    via(board, '/CS_RAW', (50.825, 26.1))
+    polyline(board, '/CS_RAW', [(50.825, 26.1), (23.625, 26.125),
+                                (11.2, 13.75)], pcb.B_Cu, width=w)
+    polyline(board, '/DC_RAW', [(12.8, 12.825), (12.8, 13.75)], width=w)
+    via(board, '/DC_RAW', (12.8, 13.75))
+    polyline(board, '/DC_RAW', [(49.555, 23.55), (49.555, 25.1)], width=w)
+    via(board, '/DC_RAW', (49.555, 25.1))
+    polyline(board, '/DC_RAW', [(49.555, 25.1), (24.25, 25.125),
+                                (12.8, 13.75)], pcb.B_Cu, width=w)
+    polyline(board, '/RST_RAW', [(14.4, 12.825), (14.4, 13.75)], width=w)
+    via(board, '/RST_RAW', (14.4, 13.75))
+    polyline(board, '/RST_RAW', [(45.25, 19.76), (43.75, 19.76)], width=w)
+    via(board, '/RST_RAW', (43.75, 19.76))
+    polyline(board, '/RST_RAW', [(43.75, 19.76), (24.625, 19.75),
+                                 (19.375, 14.5)], pcb.B_Cu, width=w)
+    polyline(board, '/RST_RAW', [(19.375, 14.5), (15.125, 14.5)], width=w)
+    polyline(board, '/RST_RAW', [(15.125, 14.5), (14.4, 13.75)],
+             pcb.B_Cu, width=w)
+    via(board, '/RST_RAW', (19.375, 14.5))
+    via(board, '/RST_RAW', (15.125, 14.5))
+    polyline(board, '/BL_RAW', [(16.0, 12.825), (16.0, 13.75)], width=w)
+    polyline(board, '/BL_RAW', [(45.25, 13.41), (43.75, 13.41)], width=w)
+    via(board, '/BL_RAW', (43.75, 13.41))
+    polyline(board, '/BL_RAW', [(43.75, 13.41), (43.75, 13.625),
+                                (39.75, 17.625), (25.625, 17.625),
+                                (21.75, 13.75)], pcb.B_Cu, width=w)
+    polyline(board, '/BL_RAW', [(21.75, 13.75), (16.0, 13.75)], width=w)
+    via(board, '/BL_RAW', (21.75, 13.75))
+    polyline(board, '/KEY_SDA', [(45.25, 9.6), (43.75, 9.6)], width=w)
+    via(board, '/KEY_SDA', (43.75, 9.6))
+    polyline(board, '/KEY_SDA', [(43.75, 9.6), (43.25, 10.125),
+                                 (33.375, 10.125), (32.25, 9.0)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/KEY_SDA', [(32.25, 9.0), (28.5, 5.25), (20.625, 5.25),
+                                 (19.625, 4.25)], width=w)
+    via(board, '/KEY_SDA', (32.25, 9.0))
+    polyline(board, '/KEY_SCL', [(45.25, 10.87), (43.75, 10.87)], width=w)
+    via(board, '/KEY_SCL', (43.75, 10.87))
+    polyline(board, '/KEY_SCL', [(43.75, 10.87), (42.625, 12.0),
+                                 (41.75, 12.0), (41.0, 11.25),
+                                 (31.875, 11.25)], pcb.B_Cu, width=w)
+    polyline(board, '/KEY_SCL', [(31.875, 11.25), (31.125, 12.0),
+                                 (29.625, 12.0)], width=w)
+    polyline(board, '/KEY_SCL', [(29.625, 12.0), (24.75, 12.0),
+                                 (19.625, 6.875)], pcb.B_Cu, width=w)
+    via(board, '/KEY_SCL', (31.875, 11.25))
+    via(board, '/KEY_SCL', (29.625, 12.0))
+    polyline(board, '/KEY_INT_N', [(45.25, 12.14), (43.75, 12.14)], width=w)
+    via(board, '/KEY_INT_N', (43.75, 12.14))
+    polyline(board, '/KEY_INT_N', [(43.75, 12.14), (43.75, 12.25),
+                                   (41.875, 14.125), (37.375, 14.125)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/KEY_INT_N', [(37.375, 14.125), (36.0, 12.75)], width=w)
+    polyline(board, '/KEY_INT_N', [(36.0, 12.75), (32.0, 12.75)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/KEY_INT_N', [(32.0, 12.75), (30.375, 12.75)], width=w)
+    polyline(board, '/KEY_INT_N', [(30.375, 12.75), (30.375, 11.75),
+                                   (26.375, 7.75), (23.375, 7.75),
+                                   (22.25, 6.625)], pcb.B_Cu, width=w)
+    via(board, '/KEY_INT_N', (37.375, 14.125))
+    via(board, '/KEY_INT_N', (36.0, 12.75))
+    via(board, '/KEY_INT_N', (32.0, 12.75))
+    via(board, '/KEY_INT_N', (30.375, 12.75))
+    polyline(board, '/ESP_TX_RAW', [(63.375, 11.75), (65.875, 11.75)], width=w)
+    polyline(board, '/STM_TO_ESP', [(63.375, 8.75), (67.0, 8.75),
+                                    (67.5, 9.25)], width=w)
+    polyline(board, '/ESP_DEBUG_TX', [(63.375, 9.5), (65.125, 9.5)], width=w)
+    polyline(board, '/ESP_DEBUG_TX', [(65.125, 9.5), (65.875, 8.75),
+                                      (78.5, 8.75), (79.375, 9.625)],
+             pcb.B_Cu, width=w)
+    via(board, '/ESP_DEBUG_TX', (65.125, 9.5))
+    polyline(board, '/ESP_DEBUG_RX', [(63.375, 11.0), (65.25, 11.0)], width=w)
+    polyline(board, '/ESP_DEBUG_RX', [(65.25, 11.0), (65.5, 11.25),
+                                      (80.875, 11.25), (81.875, 10.25)],
+             pcb.B_Cu, width=w)
+    via(board, '/ESP_DEBUG_RX', (65.25, 11.0))
+    polyline(board, '/ESP_BOOT0', [(66.375, 22.5), (74.875, 22.5)], width=w)
+    polyline(board, '/ESP_BOOT0', [(74.875, 22.5), (87.0, 10.375)],
+             pcb.B_Cu, width=w)
+    via(board, '/ESP_BOOT0', (74.875, 22.5))
+    polyline(board, '/USB_VBUS_SENSE', [(44.625, 15.0), (43.5, 15.0)], width=w)
+    polyline(board, '/USB_VBUS_SENSE', [(43.5, 15.0), (40.0, 18.5),
+                                        (27.875, 18.5)], pcb.B_Cu, width=w)
+    polyline(board, '/USB_VBUS_SENSE', [(27.875, 18.5), (27.375, 18.5)],
+             width=w)
+    via(board, '/USB_VBUS_SENSE', (43.5, 15.0))
+    via(board, '/USB_VBUS_SENSE', (27.875, 18.5))
+    polyline(board, '/ESP_EN', [(42.125, 11.875), (41.875, 11.625),
+                                (39.875, 11.625), (39.5, 12.0), (39.5, 14.0),
+                                (42.25, 16.75)], width=w)
+    polyline(board, '/ESP_EN', [(45.25, 8.33), (43.75, 8.33)], width=w)
+    polyline(board, '/ESP_EN', [(43.75, 8.33), (43.33, 8.75), (40.75, 8.75)],
+             pcb.B_Cu, width=w)
+    polyline(board, '/ESP_EN', [(40.75, 8.75), (40.75, 10.5),
+                                (42.125, 11.875), (42.5, 12.175)], width=w)
+    polyline(board, '/ESP_EN', [(43.75, 8.33), (43.83, 8.25), (82.875, 8.25),
+                                (84.375, 9.75), (85.16, 10.0)],
+             pcb.B_Cu, width=w)
+    via(board, '/ESP_EN', (43.75, 8.33))
+    via(board, '/ESP_EN', (40.75, 8.75))
+
+
 def selv_planes(board):
     """Rebuild the provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu."""
     for zone in list(board.Zones()):
@@ -1961,6 +2113,7 @@ def main():
     route_mcu_east(board)
     route_rails_and_bridge(board)
     route_sensor_bus(board)
+    route_esp_and_front(board)
     route_12v_rail(board)
     route_ui_supply(board)
     route_3v3_plane_drops(board)
@@ -1968,7 +2121,7 @@ def main():
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
     result = {
-        'status': 'critical_routing_in_progress_not_fabricable',
+        'status': 'all_nets_routed_review_pending_not_fabricable',
         'routed_blocks': ['USB-C reversible fanout', 'USB ESD-to-series-pair', 'USB series-to-ESP32',
                           'STM32 VDD ring, VSS vias and decoupling',
                           'provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu',
@@ -2000,12 +2153,13 @@ def main():
                           'load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes',
                           'U602: reset input, brew sleep output to R505 and valve output to R511',
                           'MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch',
-                          'H-bridge orders, bridge current, rail telemetry and the dividers under J114'],
+                          'H-bridge orders, bridge current, rail telemetry and the dividers under J114',
+                          'sensor bus: PC2, PC3, PA0-PA3 to the filters and PC1 to J114.6 on B.Cu',
+                          'ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['STM32 sensor inputs', 'ESP32 and front-panel signals',
-                             'final domain copper fills'],
+        'remaining_blocks': ['final domain copper fills'],
     }
     REPORT.write_text(json.dumps(result, indent=2) + '\n')
     print(result)

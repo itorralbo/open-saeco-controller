@@ -201,12 +201,12 @@ def main():
            'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
            'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
-           'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
+           'IO42': 'ESP_TX_RAW', 'IO2': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
            'IO6': 'KEY_INT_N', 'IO7': 'BL_RAW', 'IO8': 'RST_RAW', 'IO9': 'DC_RAW',
            'IO10': 'CS_RAW', 'IO11': 'MOSI_RAW', 'IO12': 'SCLK_RAW',
            'IO19': 'USB_DM_RAW', 'IO20': 'USB_DP_RAW',
-           'IO21': 'USB_VBUS_SENSE'}
+           'IO15': 'USB_VBUS_SENSE'}
     d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
     d.note('BORRADOR PARCIAL: lógica, USB, sensores y dos cargas de 24V. La principal final integra red.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
@@ -217,7 +217,7 @@ def main():
     d.note('02 / ESP32 de interfaz, antena externa U.FL — C2980300', 195, 36, 1.8)
     d.add('U201','ESP32S3WROOM1','ESP32-S3-WROOM-1U-N8R8',263,112,
           [esp.get(n) for n in ESP_PINS], 'RF_Module:ESP32-S3-WROOM-1U')
-    d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO21 detecta VBUS.',195,163)
+    d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO15 detecta VBUS.',195,163)
     d.note('03 / Conexiones internas y programación',390,36,1.8)
     d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_ISO_RAW',g],
           'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',

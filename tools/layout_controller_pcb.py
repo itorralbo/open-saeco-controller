@@ -308,7 +308,9 @@ PLACE = {
     'R223': (30.45, 4.2, 270), 'R224': (39.5, 12.5, 0),
     'R225': (26, 13, 0), 'R226': (27, 18, 90), 'C204': (23, 19, 0),
     'C205': (23, 22, 0), 'F302': (18, 24, 0), 'D303': (30, 29, 0),
-    **row(['R213','R214','R215','R216','R217','R218'], 51, 28, 3.3, 90),
+    # LCD series resistors in one row under J104, at the cable entry, in the
+    # order the bus arrives from the ESP32: SCLK, MOSI, CS, DC, RST, BL.
+    **row(['R213','R214','R215','R216','R217','R218'], 8.0, 12.0, 1.6, 90),
     'R211': (67, 9.6, 0), 'R212': (67, 11.5, 0),
 
     # 12 V input, 3.3 V buck and UI load switch.

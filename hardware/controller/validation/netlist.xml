@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-23T15:17:41</date>
+    <date>2026-09-23T15:34:32</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -7076,7 +7076,7 @@
     </net>
     <net code="46" name="/ESP_TX_RAW" class="Default">
       <node ref="R212" pin="1" pintype="passive"/>
-      <node ref="U201" pin="10" pinfunction="IO17_10" pintype="bidirectional"/>
+      <node ref="U201" pin="35" pinfunction="IO42_35" pintype="bidirectional"/>
     </net>
     <net code="47" name="/FLOW_RAW" class="Default">
       <node ref="J106" pin="1" pinfunction="1_1" pintype="passive"/>
@@ -7490,7 +7490,7 @@
     </net>
     <net code="110" name="/STM_TO_ESP" class="Default">
       <node ref="R211" pin="2" pintype="passive"/>
-      <node ref="U201" pin="11" pinfunction="IO18_11" pintype="bidirectional"/>
+      <node ref="U201" pin="38" pinfunction="IO2_38" pintype="bidirectional"/>
     </net>
     <net code="111" name="/STM_TX_RAW" class="Default">
       <node ref="R211" pin="1" pintype="passive"/>
@@ -7566,7 +7566,7 @@
       <node ref="C204" pin="1" pintype="passive"/>
       <node ref="R225" pin="2" pintype="passive"/>
       <node ref="R226" pin="1" pintype="passive"/>
-      <node ref="U201" pin="23" pinfunction="IO21_23" pintype="bidirectional"/>
+      <node ref="U201" pin="8" pinfunction="IO15_8" pintype="bidirectional"/>
     </net>
     <net code="127" name="/VALVE_EN_DRV" class="Default">
       <node ref="R511" pin="2" pintype="passive"/>
@@ -7722,47 +7722,47 @@
     <net code="172" name="unconnected-(U201-IO1-Pad39)" class="Default">
       <node ref="U201" pin="39" pinfunction="IO1_39" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="173" name="unconnected-(U201-IO2-Pad38)" class="Default">
-      <node ref="U201" pin="38" pinfunction="IO2_38" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="174" name="unconnected-(U201-IO3-Pad15)" class="Default">
+    <net code="173" name="unconnected-(U201-IO3-Pad15)" class="Default">
       <node ref="U201" pin="15" pinfunction="IO3_15" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="175" name="unconnected-(U201-IO13-Pad21)" class="Default">
+    <net code="174" name="unconnected-(U201-IO13-Pad21)" class="Default">
       <node ref="U201" pin="21" pinfunction="IO13_21" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="176" name="unconnected-(U201-IO14-Pad22)" class="Default">
+    <net code="175" name="unconnected-(U201-IO14-Pad22)" class="Default">
       <node ref="U201" pin="22" pinfunction="IO14_22" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="177" name="unconnected-(U201-IO15-Pad8)" class="Default">
-      <node ref="U201" pin="8" pinfunction="IO15_8" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="178" name="unconnected-(U201-IO16-Pad9)" class="Default">
+    <net code="176" name="unconnected-(U201-IO16-Pad9)" class="Default">
       <node ref="U201" pin="9" pinfunction="IO16_9" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="179" name="unconnected-(U201-IO35-Pad28)" class="Default">
+    <net code="177" name="unconnected-(U201-IO17-Pad10)" class="Default">
+      <node ref="U201" pin="10" pinfunction="IO17_10" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="178" name="unconnected-(U201-IO18-Pad11)" class="Default">
+      <node ref="U201" pin="11" pinfunction="IO18_11" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="179" name="unconnected-(U201-IO21-Pad23)" class="Default">
+      <node ref="U201" pin="23" pinfunction="IO21_23" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="180" name="unconnected-(U201-IO35-Pad28)" class="Default">
       <node ref="U201" pin="28" pinfunction="IO35_28" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="180" name="unconnected-(U201-IO36-Pad29)" class="Default">
+    <net code="181" name="unconnected-(U201-IO36-Pad29)" class="Default">
       <node ref="U201" pin="29" pinfunction="IO36_29" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="181" name="unconnected-(U201-IO37-Pad30)" class="Default">
+    <net code="182" name="unconnected-(U201-IO37-Pad30)" class="Default">
       <node ref="U201" pin="30" pinfunction="IO37_30" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="182" name="unconnected-(U201-IO38-Pad31)" class="Default">
+    <net code="183" name="unconnected-(U201-IO38-Pad31)" class="Default">
       <node ref="U201" pin="31" pinfunction="IO38_31" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="183" name="unconnected-(U201-IO39-Pad32)" class="Default">
+    <net code="184" name="unconnected-(U201-IO39-Pad32)" class="Default">
       <node ref="U201" pin="32" pinfunction="IO39_32" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="184" name="unconnected-(U201-IO40-Pad33)" class="Default">
+    <net code="185" name="unconnected-(U201-IO40-Pad33)" class="Default">
       <node ref="U201" pin="33" pinfunction="IO40_33" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="185" name="unconnected-(U201-IO41-Pad34)" class="Default">
+    <net code="186" name="unconnected-(U201-IO41-Pad34)" class="Default">
       <node ref="U201" pin="34" pinfunction="IO41_34" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="186" name="unconnected-(U201-IO42-Pad35)" class="Default">
-      <node ref="U201" pin="35" pinfunction="IO42_35" pintype="bidirectional+no_connect"/>
     </net>
     <net code="187" name="unconnected-(U201-IO45-Pad26)" class="Default">
       <node ref="U201" pin="26" pinfunction="IO45_26" pintype="bidirectional+no_connect"/>
