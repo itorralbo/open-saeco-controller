@@ -39,7 +39,7 @@
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense"
   ],
   "track_segments": 1244,
-  "vias": 284,
+  "vias": 274,
   "remaining_blocks": [
     "final domain copper fills"
   ]

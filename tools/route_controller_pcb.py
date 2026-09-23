@@ -983,8 +983,8 @@ def route_earth_and_heater_return(board):
 def route_heater_enable(board):
     """HEATER_EN_RAW into U603's second gate and its output down to R707.
 
-    Pin 5 climbs to a B.Cu hop under the 3.3 V branch and reaches the R711
-    pull-down from the east. Pin 3 is fenced in by the ground stub of pin 4
+    Pin 5 climbs on F.Cu and reaches the R711 pull-down from the east; the
+    3.3 V branch it once hopped under is now the In2.Cu plane. Pin 3 is fenced in by the ground stub of pin 4
     and the reset loop of pin 2, so it drops to B.Cu inside the loop and runs
     south under the relay-return and 12 V branches to the LED driver's gate
     resistor. The MCU side of HEATER_EN_RAW (PB10) arrives on B.Cu through
@@ -993,9 +993,7 @@ def route_heater_enable(board):
     raw, gated = '/HEATER_EN_RAW', '/HEATER_EN_INTERLOCK'
     polyline(board, raw, [(29.5, 72.025), (29.7, 71.8), (29.7, 69.0)],
              width=PIN_WIDTH)
-    via(board, raw, (29.7, 69.0))
-    track(board, raw, (29.7, 69.0), (30.0, 66.0), pcb.B_Cu, width=PIN_WIDTH)
-    via(board, raw, (30.0, 66.0))
+    track(board, raw, (29.7, 69.0), (30.0, 66.0), width=PIN_WIDTH)
     track(board, raw, (30.0, 66.0), (28.825, 66.0), width=PIN_WIDTH)
 
     track(board, gated, (33.7, 72.675), (36.5, 72.675), width=PIN_WIDTH)
@@ -1434,26 +1432,21 @@ def route_12v_rail(board):
 def route_ui_supply(board):
     """Switched 3.3 V from the UI load switch to J104.1, along the top edge.
 
-    U302 sits in the pocket east of the 3.3 V trunk and J104 at the far
-    top-left corner, so the only free run is the board's top edge, y = 0.8 mm,
-    north of the 3.3 V branch and of the USB CC1 line. The feed hops under
-    the trunk out of the pocket and climbs its west side at x = 90 mm, clear
-    of the UART channel. It hops under the northern branch at x = 83.25 mm
-    and runs west to J104. It passes west of J104.2 to reach pin 1 from
-    below.
+    U302 sits in the pocket beside PS701 and J104 at the far top-left
+    corner, so the feed runs along the board's top edge, y = 0.8 mm, north
+    of the USB CC1 line. It leaves the pocket west and climbs x = 90 mm,
+    clear of the UART channel, then runs west to J104 and passes west of
+    J104.2 to reach pin 1 from below. The two B.Cu hops it needed under the
+    old 3.3 V spine are gone with the In2.Cu plane.
     """
     ui = '/3V3_UI'
     polyline(board, ui, [(96.72, 45.5), (95.0, 45.5), (93.75, 44.25),
                          (92.5, 44.25)], width=0.3)
-    via(board, ui, (92.5, 44.25))
-    track(board, ui, (92.5, 44.25), (90.75, 44.25), pcb.B_Cu, width=0.3)
-    via(board, ui, (90.75, 44.25))
+    track(board, ui, (92.5, 44.25), (90.75, 44.25), width=0.3)
     polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.25, 43.25),
                          (90.25, 36.25), (90.0, 36.0), (90.0, 10.0),
                          (86.0, 6.0), (85.75, 6.0), (83.25, 3.5)], width=0.3)
-    via(board, ui, (83.25, 3.5))
-    track(board, ui, (83.25, 3.5), (83.25, 1.5), pcb.B_Cu, width=0.3)
-    via(board, ui, (83.25, 1.5))
+    track(board, ui, (83.25, 3.5), (83.25, 1.5), width=0.3)
     polyline(board, ui, [(83.25, 1.5), (82.45, 0.8), (5.2, 0.8), (4.4, 1.6),
                          (4.4, 6.5), (6.2, 6.5)], width=0.4)
 
@@ -1680,7 +1673,8 @@ def route_mcu_east(board):
     back under U101's north-east corner on B.Cu, and comes up between the
     two UART lines to reach R102.1 from the north-west. The reset pin gets
     its second branch through the package outline to J102.5. PB12 runs
-    south-east to U302's enable and hops the 3.3 V spine at x = 91.6 mm.
+    south-east to U302's enable, all on F.Cu now that the 3.3 V spine it
+    hopped at x = 91.6 mm is gone.
     """
     w = SIGNAL_WIDTH
     polyline(board, '/ESP_TO_STM', [(81.675, 38.25), (85.125, 38.25),
@@ -1718,9 +1712,7 @@ def route_mcu_east(board):
     ui = '/UI_PWR_EN'
     polyline(board, ui, [(81.675, 43.25), (82.75, 43.25), (90.8, 51.3),
                          (90.8, 52.3)], width=w)
-    via(board, ui, (90.8, 52.3))
-    track(board, ui, (90.8, 52.3), (92.4, 52.3), pcb.B_Cu, width=w)
-    via(board, ui, (92.4, 52.3))
+    track(board, ui, (90.8, 52.3), (92.4, 52.3), width=w)
     polyline(board, ui, [(92.4, 52.3), (93.975, 52.3), (95.275, 53.6)],
              width=w)
 
@@ -1962,16 +1954,13 @@ def route_esp_and_front(board):
     polyline(board, '/DC_RAW', [(49.555, 25.1), (24.25, 25.125),
                                 (12.8, 13.75)], pcb.B_Cu, width=w)
     polyline(board, '/RST_RAW', [(14.4, 12.825), (14.4, 13.75)], width=w)
-    via(board, '/RST_RAW', (14.4, 13.75))
     polyline(board, '/RST_RAW', [(45.25, 19.76), (43.75, 19.76)], width=w)
     via(board, '/RST_RAW', (43.75, 19.76))
     polyline(board, '/RST_RAW', [(43.75, 19.76), (24.625, 19.75),
                                  (19.375, 14.5)], pcb.B_Cu, width=w)
-    polyline(board, '/RST_RAW', [(19.375, 14.5), (15.125, 14.5)], width=w)
-    polyline(board, '/RST_RAW', [(15.125, 14.5), (14.4, 13.75)],
-             pcb.B_Cu, width=w)
+    polyline(board, '/RST_RAW', [(19.375, 14.5), (15.125, 14.5),
+                                 (14.4, 13.75)], width=w)
     via(board, '/RST_RAW', (19.375, 14.5))
-    via(board, '/RST_RAW', (15.125, 14.5))
     polyline(board, '/BL_RAW', [(16.0, 12.825), (16.0, 13.75)], width=w)
     polyline(board, '/BL_RAW', [(45.25, 13.41), (43.75, 13.41)], width=w)
     via(board, '/BL_RAW', (43.75, 13.41))
