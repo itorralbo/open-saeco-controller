@@ -208,10 +208,11 @@ def route_stm32_supply(board):
     tr(gnd, (45.825, 61.25), (44.60, 61.25), width=PIN_WIDTH)
     vi(gnd, (44.60, 61.25))
 
-    # C102 at VDD13/VSS12, left of the pin 14-16 escape.
+    # C102 at VDD13/VSS12, left of the pin 14-16 escape. Pin 12 reaches the
+    # In1.Cu plane through its inner via and C102's ground pad through its
+    # own, so no track joins them: the gap is where pin 11 escapes west.
     pl(v33, [(49.00, 67.25), (46.10, 67.25), (46.10, 68.375),
                           (45.40, 68.375)], width=PIN_WIDTH)
-    tr(gnd, (49.00, 66.75), (45.50, 66.75), width=PIN_WIDTH)
     tr(gnd, (45.30, 66.825), (43.90, 66.825), width=PIN_WIDTH)
     vi(gnd, (43.90, 66.825))
 
@@ -1542,8 +1543,10 @@ def route_supervisor_orders(board):
                            (41.55, 38.8), (40.45, 39.9), (40.45, 45.05),
                            (40.1, 45.4)], width=w)
     via(board, kick, (40.1, 45.4))
+    # On In2.Cu, like the brew sleep output beside it, so the sensor bus
+    # can cross the supervisor column on B.Cu.
     polyline(board, kick, [(40.1, 45.4), (40.1, 53.4), (38.0, 55.5)],
-             pcb.B_Cu, width=w)
+             pcb.In2_Cu, width=w)
     via(board, kick, (38.0, 55.5))
     polyline(board, kick, [(38.0, 55.5), (37.15, 56.35), (37.175, 56.8)],
              width=w)
@@ -1636,8 +1639,10 @@ def route_supervisor_outputs(board):
     polyline(board, sleep, [(39.7, 61.675), (38.8, 61.675), (38.25, 61.125),
                             (38.25, 60.375)], width=w)
     via(board, sleep, (38.25, 60.375))
+    # The climb runs on In2.Cu, a 0.2 mm slot in the 3.3 V plane, so that
+    # B.Cu stays open for the sensor bus that crosses it westwards.
     polyline(board, sleep, [(38.25, 60.375), (38.25, 56.25), (40.75, 53.75),
-                            (40.75, 39.75), (40.25, 39.25)], pcb.B_Cu, width=w)
+                            (40.75, 39.75), (40.25, 39.25)], pcb.In2_Cu, width=w)
     via(board, sleep, (40.25, 39.25))
     polyline(board, sleep, [(40.25, 39.25), (41.25, 38.25), (46.625, 38.25),
                             (46.875, 38.0), (46.875, 35.0), (47.625, 34.2)],
@@ -1738,9 +1743,8 @@ def route_rails_and_bridge(board):
     the supervisor diagonals and come up inside the triangle they fence off,
     east of R503 and R501. PC0 (bridge current) drops to B.Cu below the reset
     stub, climbs under the band and the supervisor rows at x = 66.4 mm and
-    joins the IPROPI line that waits at y = 29.7 mm. PA5 (24 V telemetry)
-    drops into the pocket under U101's south row and runs west on B.Cu
-    along y = 44.55 mm to J114.6's via.
+    joins the IPROPI line that waits at y = 29.7 mm. The 24 V telemetry
+    moved from PA5 to PC1 and is routed with the sensor bus.
     """
     w = SIGNAL_WIDTH
     v12, act, gnd = '/12V_PROTECTED', '/24V_ACT_RAW', '/GND_UI'
@@ -1775,12 +1779,6 @@ def route_rails_and_bridge(board):
         track(board, gnd, pad, (57.1, 47.7), width=PIN_WIDTH)
     via(board, gnd, (57.1, 47.7))
 
-    # PA5, pin 22.
-    track(board, adc24, (74.75, 45.675), (74.75, 47.0), width=w)
-    via(board, adc24, (74.75, 47.0))
-    polyline(board, adc24, [(74.75, 47.0), (72.3, 44.55), (62.2, 44.55),
-                            (61.4, 43.75), (61.0, 43.75)], pcb.B_Cu, width=w)
-
     # PF1, pin 6.
     polyline(board, adc12, [(70.325, 38.75), (58.16, 38.75), (58.16, 40.0)],
              width=w)
@@ -1811,6 +1809,97 @@ def route_rails_and_bridge(board):
     via(board, cur, (66.4, 31.0))
     polyline(board, cur, [(66.4, 31.0), (65.8, 30.4), (56.7, 30.4),
                           (56.0, 29.7)], width=w)
+
+
+def route_sensor_bus(board):
+    """The six sensor inputs and the 24 V telemetry, as one B.Cu bus.
+
+    Pins were reassigned so the bus needs no crossings: the lanes leave U101
+    in the order of their filters, north to south, and every net uses two
+    vias, one beside the MCU and one at its filter.
+
+    - PC1 (pin 9.0) now carries RAIL_24V_ADC; PA5 is free. It is the only
+      west-side pin north of the escape pocket that can reach J114.6.
+    - PC3, PC2, PA0, PA1, PA2 and PA3 carry water, group present, group at
+      work, door, flow (TIM2_CH3) and NTC (ADC1_IN4).
+    - PC2 drops under the package body, PC3 west of its pad, and PA0-PA2 fan
+      south-west past C102 into the free pocket under the west row; PA3
+      leaves its pad corner on the south row.
+    - West of U101 the lanes run at y = 46.1-54.0 mm, around the reset and
+      arm hops, and cross the supervisor column on B.Cu: the brew sleep and
+      watchdog climbs there moved to In2.Cu.
+    - They turn south in the same order, water outermost down x = 19.4 mm,
+      flow and NTC down x = 24.1-24.6 mm to the south-west filters.
+    """
+    w = SIGNAL_WIDTH
+    adc24, water = '/RAIL_24V_ADC', '/WATER_LEVEL'
+    present, work = '/BU_PRESENT_N', '/BU_WORK_N'
+    door, flow, ntc = '/DOOR_CLOSED_N', '/FLOW_TIM', '/NTC_ADC'
+
+    # PC1, pin 9: 24 V telemetry, west on B.Cu to the J114.6 link.
+    polyline(board, adc24, [(70.325, 40.25), (67.6, 40.25), (67.1, 40.75)],
+             width=w)
+    via(board, adc24, (67.1, 40.75))
+    polyline(board, adc24, [(67.1, 40.75), (61.0, 40.75)], pcb.B_Cu, width=w)
+
+    # PC3, pin 11: water level, the outer lane. It runs down x = 19.4 mm
+    # between the resistor and capacitor columns, west of the valve's 24 V hop.
+    polyline(board, water, [(70.325, 41.25), (68.65, 41.2)], width=w)
+    via(board, water, (68.65, 41.2))
+    polyline(board, water, [(68.65, 41.2), (63.725, 46.125), (27.5, 46.125),
+                            (19.375, 54.25), (19.375, 113.0), (20.5, 114.125),
+                            (20.5, 115.9)], pcb.B_Cu, width=w)
+    via(board, water, (20.5, 115.9))
+
+    # PC2, pin 10: group present, from a via under the package body.
+    polyline(board, present, [(70.325, 40.75), (71.75, 40.75)], width=w)
+    via(board, present, (71.75, 40.75))
+    polyline(board, present, [(71.75, 40.75), (65.875, 46.625), (29.0, 46.625),
+                              (23.125, 52.5)], pcb.B_Cu, width=w)
+    via(board, present, (23.125, 52.5))
+    polyline(board, present, [(23.125, 52.5), (22.0, 52.775)], width=w)
+
+    # PA0, pin 14: group at work.
+    polyline(board, work, [(70.325, 42.75), (69.2, 42.75), (68.1, 43.85),
+                           (68.1, 46.3)], width=w)
+    via(board, work, (68.1, 46.3))
+    polyline(board, work, [(68.1, 46.3), (66.025, 48.375), (38.75, 48.375),
+                           (27.325, 59.8), (20.5, 59.8)], pcb.B_Cu, width=w)
+    via(board, work, (20.5, 59.8))
+
+    # PA1, pin 15: door. Its via sits south-west of C403, clear of the
+    # water lane and of the valve interlock line.
+    polyline(board, door, [(70.325, 43.25), (69.35, 43.25), (68.85, 43.75),
+                           (68.85, 45.5)], width=w)
+    via(board, door, (68.85, 45.5))
+    polyline(board, door, [(68.85, 45.5), (68.85, 46.9), (66.875, 48.875),
+                           (42.125, 48.875), (20.0, 71.0), (20.0, 72.9)],
+             pcb.B_Cu, width=w)
+    via(board, door, (20.0, 72.9))
+    polyline(board, door, [(20.0, 72.9), (20.0, 71.8)], width=w)
+
+    # PA2, pin 16: flow meter, TIM2_CH3.
+    polyline(board, flow, [(70.325, 43.75), (69.6, 43.75), (69.6, 46.3)],
+             width=w)
+    via(board, flow, (69.6, 46.3))
+    polyline(board, flow, [(69.6, 46.3), (69.6, 47.55), (65.275, 51.875),
+                           (42.875, 51.875), (35.375, 59.375),
+                           (33.875, 59.375), (24.125, 69.125), (24.125, 104.0),
+                           (31.075, 110.95), (31.075, 111.9)],
+             pcb.B_Cu, width=w)
+    via(board, flow, (31.075, 111.9))
+
+    # PA3, pin 17: NTC, the inner lane, from a via off the pad corner.
+    polyline(board, ntc, [(72.25, 45.675), (72.25, 45.2), (71.75, 44.7)],
+             width=w)
+    via(board, ntc, (71.75, 44.7))
+    polyline(board, ntc, [(71.75, 44.7), (71.75, 46.3), (64.05, 54.0),
+                          (44.75, 54.0), (39.0, 59.75), (39.0, 63.5),
+                          (37.25, 65.25), (34.625, 65.25), (24.625, 75.25),
+                          (24.625, 101.875),
+                          (26.625, 103.875), (31.575, 103.875), (32.5, 104.8)],
+             pcb.B_Cu, width=w)
+    via(board, ntc, (32.5, 104.8))
 
 
 def selv_planes(board):
@@ -1871,6 +1960,7 @@ def main():
     route_supervisor_outputs(board)
     route_mcu_east(board)
     route_rails_and_bridge(board)
+    route_sensor_bus(board)
     route_12v_rail(board)
     route_ui_supply(board)
     route_3v3_plane_drops(board)

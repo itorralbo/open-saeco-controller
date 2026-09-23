@@ -39,15 +39,15 @@
 <path d="M 67.31 83.82 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="84.11999999999999" font-size="0.9" text-anchor="start" fill="#213b50">PC1</text>
 <text x="65.36999999999999" y="83.32" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
-<text x="61.83" y="83.32" font-size="0.9" text-anchor="end" fill="#23745f">BU_PRESENT_N</text>
+<text x="61.83" y="83.32" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
 <path d="M 67.31 87.63 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="87.92999999999999" font-size="0.9" text-anchor="start" fill="#213b50">PC2</text>
 <text x="65.36999999999999" y="87.13" font-size="0.65" text-anchor="middle" fill="#213b50">10</text>
-<text x="61.83" y="87.13" font-size="0.9" text-anchor="end" fill="#23745f">BU_WORK_N</text>
+<text x="61.83" y="87.13" font-size="0.9" text-anchor="end" fill="#23745f">BU_PRESENT_N</text>
 <path d="M 67.31 91.44 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="91.74" font-size="0.9" text-anchor="start" fill="#213b50">PC3</text>
 <text x="65.36999999999999" y="90.94" font-size="0.65" text-anchor="middle" fill="#213b50">11</text>
-<text x="61.83" y="90.94" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
+<text x="61.83" y="90.94" font-size="0.9" text-anchor="end" fill="#23745f">WATER_LEVEL</text>
 <path d="M 67.31 95.25 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="95.55" font-size="0.9" text-anchor="start" fill="#213b50">VSS</text>
 <text x="65.36999999999999" y="94.75" font-size="0.65" text-anchor="middle" fill="#213b50">12</text>
@@ -59,19 +59,19 @@
 <path d="M 67.31 102.87 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="103.17" font-size="0.9" text-anchor="start" fill="#213b50">PA0</text>
 <text x="65.36999999999999" y="102.37" font-size="0.65" text-anchor="middle" fill="#213b50">14</text>
-<text x="61.83" y="102.37" font-size="0.9" text-anchor="end" fill="#23745f">NTC_ADC</text>
+<text x="61.83" y="102.37" font-size="0.9" text-anchor="end" fill="#23745f">BU_WORK_N</text>
 <path d="M 67.31 106.68 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="106.98" font-size="0.9" text-anchor="start" fill="#213b50">PA1</text>
 <text x="65.36999999999999" y="106.18" font-size="0.65" text-anchor="middle" fill="#213b50">15</text>
-<text x="61.83" y="106.18" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_TIM</text>
+<text x="61.83" y="106.18" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 67.31 110.49 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="110.78999999999999" font-size="0.9" text-anchor="start" fill="#213b50">PA2</text>
 <text x="65.36999999999999" y="109.99" font-size="0.65" text-anchor="middle" fill="#213b50">16</text>
-<text x="61.83" y="109.99" font-size="0.9" text-anchor="end" fill="#23745f">WATER_LEVEL</text>
+<text x="61.83" y="109.99" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_TIM</text>
 <path d="M 67.31 114.3 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="114.6" font-size="0.9" text-anchor="start" fill="#213b50">PA3</text>
 <text x="65.36999999999999" y="113.8" font-size="0.65" text-anchor="middle" fill="#213b50">17</text>
-<text x="62.23" y="114.6" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="113.8" font-size="0.9" text-anchor="end" fill="#23745f">NTC_ADC</text>
 <path d="M 67.31 118.11 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="118.41" font-size="0.9" text-anchor="start" fill="#213b50">VSSA</text>
 <text x="65.36999999999999" y="117.61" font-size="0.65" text-anchor="middle" fill="#213b50">18</text>
@@ -91,7 +91,7 @@
 <path d="M 67.31 133.35 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="133.65" font-size="0.9" text-anchor="start" fill="#213b50">PA5</text>
 <text x="65.36999999999999" y="132.85" font-size="0.65" text-anchor="middle" fill="#213b50">22</text>
-<text x="61.83" y="132.85" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
+<text x="62.23" y="133.65" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 67.31 137.16 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="137.46" font-size="0.9" text-anchor="start" fill="#213b50">PA6</text>
 <text x="65.36999999999999" y="136.66" font-size="0.65" text-anchor="middle" fill="#213b50">23</text>
@@ -1178,7 +1178,7 @@
 <text x="136.76" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">NTC_ADC</text>
 <path d="M 147.32 463.55 H 152.4" stroke="#27856d" stroke-width=".22"/>
 <text x="152.8" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="20" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA0 ADC1_IN1. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.</text>
+<text x="20" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA3 ADC1_IN4. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.</text>
 <rect x="287.02000000000004" y="437.515" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="292.1" y="432.515" font-size="1.05" text-anchor="middle" fill="#213b50">J106</text>
 <text x="292.1" y="435.015" font-size="1.05" text-anchor="middle" fill="#213b50">JP5 FLOW ADAPTER / VCC-GND-OC</text>
@@ -1215,7 +1215,7 @@
 <text x="376.79" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_TIM</text>
 <path d="M 387.35 463.55 H 392.43" stroke="#27856d" stroke-width=".22"/>
 <text x="392.83" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="245" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA1 TIM2_CH2. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.</text>
+<text x="245" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA2 TIM2_CH3. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.</text>
 <text x="245" y="493" font-size="1.2" text-anchor="start" fill="#213b50">Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V_PROTECTED; pull-up separado a 3V3.</text>
 <rect x="514.3499999999999" y="440.055" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="519.43" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J107</text>
@@ -1249,7 +1249,7 @@
 <text x="596.5" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 607.06 463.55 H 612.14" stroke="#27856d" stroke-width=".22"/>
 <text x="612.54" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PC3: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.</text>
+<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA1: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.</text>
 <rect x="699.77" y="440.055" width="10.16" height="33.02" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="704.85" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J108</text>
 <text x="704.85" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP16 VISUAL V1..V8 / XH-8</text>
@@ -1327,7 +1327,7 @@
 <text x="797.16" y="504.96" font-size="0.9" text-anchor="end" fill="#23745f">BU_WORK_N</text>
 <path d="M 807.7199999999999 505.46 H 812.8" stroke="#27856d" stroke-width=".22"/>
 <text x="813.1999999999999" y="504.96" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="660" y="530" font-size="1.1" text-anchor="start" fill="#213b50">PC1/PC2 activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,</text>
+<text x="660" y="530" font-size="1.1" text-anchor="start" fill="#213b50">PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,</text>
 <text x="660" y="536" font-size="1.1" text-anchor="start" fill="#213b50">V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.</text>
 <rect x="514.3499999999999" y="528.955" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="519.43" y="523.955" font-size="1.05" text-anchor="middle" fill="#213b50">J109</text>
@@ -1358,7 +1358,7 @@
 <text x="671.4300000000001" y="543.06" font-size="0.9" text-anchor="end" fill="#23745f">WATER_LEVEL</text>
 <path d="M 681.99 543.56 H 687.07" stroke="#27856d" stroke-width=".22"/>
 <text x="687.47" y="543.06" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="470" y="562" font-size="1.2" text-anchor="start" fill="#213b50">PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.</text>
+<text x="470" y="562" font-size="1.2" text-anchor="start" fill="#213b50">PC3 ADC12_IN9/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.</text>
 <text x="870" y="36" font-size="1.8" text-anchor="start" fill="#213b50">11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A</text>
 <rect x="900.43" y="56.515" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="905.51" y="51.515" font-size="1.05" text-anchor="middle" fill="#213b50">J112</text>
@@ -1921,7 +1921,7 @@
 <text x="800.8" y="682.29" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
 <text x="798.16" y="681.49" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
 <text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
-<text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PF1=ADC2_IN10, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
+<text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
 <text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
 <text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Red, fuente aislada y conectores de potencia — misma PCB</text>
 <rect x="1094.74" y="634.365" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>

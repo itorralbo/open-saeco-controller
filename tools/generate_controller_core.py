@@ -191,10 +191,10 @@ def main():
            'NRST': 'STM_NRST', 'PB8': 'STM_BOOT0', 'PA13': 'STM_SWDIO',
            'PA14': 'STM_SWCLK', 'PB3': 'STM_SWO',
            'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB12': 'UI_PWR_EN',
-           'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC3': 'DOOR_CLOSED_N',
-           'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N',
+           'PA3': 'NTC_ADC', 'PA2': 'FLOW_TIM', 'PA1': 'DOOR_CLOSED_N',
+           'PC3': 'WATER_LEVEL', 'PC2': 'BU_PRESENT_N', 'PA0': 'BU_WORK_N',
            'PC0': 'BREW_CURRENT_ADC', 'PF1': 'RAIL_12V_ADC',
-           'PA5': 'RAIL_24V_ADC', 'PC14': 'BREW_DIR_RAW',
+           'PC1': 'RAIL_24V_ADC', 'PC14': 'BREW_DIR_RAW',
            'PA7': 'VALVE_EN_RAW',
            'PF0': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
@@ -339,7 +339,7 @@ def main():
     d.passive('R401','R','4.7k / NTC pull-up',145,430,v,'NTC_RAW')
     d.passive('R402','R','1k / NTC serie',145,447,'NTC_RAW','NTC_ADC')
     d.passive('C401','C','100nF / NTC filtro',145,464,'NTC_ADC',g)
-    d.note('PA0 ADC1_IN1. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.',20,486,1.2)
+    d.note('PA3 ADC1_IN4. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.',20,486,1.2)
 
     d.add('J106','J3','JP5 FLOW ADAPTER / VCC-GND-OC',292,445,
           ['FLOW_RAW',g,'12V_PROTECTED'],
@@ -348,7 +348,7 @@ def main():
     d.passive('R403','R','4.7k / FLOW pull-up',385,430,v,'FLOW_RAW')
     d.passive('R404','R','1k / FLOW serie',385,447,'FLOW_RAW','FLOW_TIM')
     d.passive('C402','C','10nF / FLOW filtro',385,464,'FLOW_TIM',g)
-    d.note('PA1 TIM2_CH2. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.',245,486,1.2)
+    d.note('PA2 TIM2_CH3. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.',245,486,1.2)
     d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V_PROTECTED; pull-up separado a 3V3.',245,493,1.2)
 
     d.add('J107','J2','JP14 DOOR / contacto seco',520,445,['DOOR_RAW',g],
@@ -357,7 +357,7 @@ def main():
     d.passive('R405','R','10k / DOOR pull-up',605,430,v,'DOOR_RAW')
     d.passive('R406','R','1k / DOOR serie',605,447,'DOOR_RAW','DOOR_CLOSED_N')
     d.passive('C403','C','100nF / DOOR filtro',605,464,'DOOR_CLOSED_N',g)
-    d.note('PC3: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
+    d.note('PA1: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
     d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
           # OUT2 on V1 and OUT1 on V2 keep both motor leads uncrossed on the PCB.
@@ -370,7 +370,7 @@ def main():
     d.passive('R409','R','10k / WORK pull-up',805,472,v,'BU_WORK_RAW')
     d.passive('R410','R','1k / WORK serie',805,489,'BU_WORK_RAW','BU_WORK_N')
     d.passive('C405','C','100nF / WORK filtro',805,506,'BU_WORK_N',g)
-    d.note('PC1/PC2 activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
+    d.note('PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
     d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.',660,536,1.1)
 
     d.add('J109','J3','JP22 WATER / RED-WHITE-BLACK',520,536,
@@ -379,7 +379,7 @@ def main():
           status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
-    d.note('PA2 ADC1_IN3/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
+    d.note('PC3 ADC12_IN9/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
     d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
     d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_ACT_RAW',g],
           'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
@@ -475,7 +475,7 @@ def main():
           [g,v,'12V_PROTECTED','24V_ACT_RAW','RAIL_12V_ADC','RAIL_24V_ADC'],
           'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
           status='candidate', part_key='CONN:HDR_1X6_2.54')
-    d.note('PF1=ADC2_IN10, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
+    d.note('PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
     d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,
