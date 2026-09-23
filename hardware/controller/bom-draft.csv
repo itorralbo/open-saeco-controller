@@ -176,3 +176,12 @@ R716,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,060
 U702,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R712,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
 Q704,BTA24-800BWRG / pump,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
+R717,10k / grinder arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+R718,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
+R719,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+Q707,SI2308A / grinder opto LED,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,TBD,TBD
+R720,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+U703,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
+R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
+Q708,BTA24-800BWRG / grinder,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
+BR701,KBP410 / grinder bridge,Diode_THT:Diode_Bridge_Vishay_KBPM,candidate,MDD(Microdiode Semiconductor),KBP410,C840747,Extended,Economic and Standard

@@ -46,9 +46,8 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Fuente 24 V | Mean Well IRM-30-24 | C6280124 | 85–264 VAC, 24 V/1,3 A, 31 W, encapsulada y aislada; montaje por ola disponible |
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
-| Optotriac calentador y bomba | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
-| Optotriac molinillo | Vishay VOT8125AG-V | C6349884 | disparo aleatorio, 800 V, 400 mil; sin existencias en JLC el 2026-09-22 |
-| Puente molino | Vishay GBU8K o equivalente de marca | por cerrar | 8 A, 1000 V; validar corriente de arranque y stock antes de fijar MPN |
+| Optotriac calentador, bomba y molinillo | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
+| Puente molino | MDD KBP410 | C840747 | 4 A, 1000 V, 90 A de pico; sobra para el 1 A supuesto y aguanta los 3,4 A de bloqueo unos segundos. Sustituye al GBU8K |
 
 El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
 variantes y conservar margen ante cargas inductivas. Esa unificación no libera
@@ -70,9 +69,10 @@ reserva ya ese hueco de 40 × 33 mm encima de JP8/JP19/JP24; ver
 
 El MOC3083 de cruce por cero sirve al calentador y, desde el 2026-09-22, también
 a la bomba: no había en JLC ningún optotriac aleatorio de 800 V en DIP de 400 mil
-(ver [etapa de la bomba](power-architecture.md#etapa-de-la-bomba)). El molinillo
-mantiene de momento `VOT8125AG` como candidato, con el suministro sin resolver;
-no se bajará silenciosamente a 600 o 400 V.
+(ver [etapa de la bomba](power-architecture.md#etapa-de-la-bomba)). Desde el
+2026-09-23 también al molinillo, que solo se enciende y apaga; ver
+[etapa del molinillo](power-architecture.md#etapa-del-molinillo). No se bajó a
+un opto de 600 o 400 V.
 
 ## Protección y reglas pendientes de cerrar
 
@@ -92,7 +92,8 @@ no se bajará silenciosamente a 600 o 400 V.
 
 ## Datos que decidirán la liberación
 
-1. Corriente RMS y pico de arranque/bloqueo del molinillo.
+1. Corriente RMS y pico de arranque/bloqueo del molinillo. Rev A supone 1 A de
+   marcha y 3,4 A de bloqueo, limitados por los 68 Ω del bobinado.
 2. Corriente del motor de grupo en movimiento y bloqueo, solo y con válvula.
 3. Temperatura ambiente dentro de la máquina y temperatura de triac/disipador.
 4. Continuidad de la placa original desde L/N a F1/F2, relé/triacs y cargas.
@@ -110,4 +111,4 @@ Gerbers de la zona de red seguirán marcados como no fabricables.
 - [Omron G5RL](https://components.omron.com/sites/default/files/datasheet_pdf/K132-E1.pdf)
 - [ST BTA24](https://www.st.com/resource/en/datasheet/bta24.pdf)
 - [Vishay VOT8125](https://www.vishay.com/en/product/84923/)
-- [Vishay GBU8](https://www.vishay.com/en/product/88616/)
+- [MDD KBP4005–KBP410](https://www.lcsc.com/datasheet/lcsc_datasheet_2407101109_MDD-Microdiode-Semiconductor-KBP410_C840747.pdf)

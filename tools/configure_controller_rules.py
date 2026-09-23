@@ -81,6 +81,7 @@ CLASS_NETS = {
         '/LOAD_L_ENABLED', '/PUMP_AC_SWITCHED', '/PUMP_GATE_FEED',
         '/PUMP_TRIAC_GATE',
         '/HEATER_AC_SWITCHED', '/HEATER_GATE_FEED', '/HEATER_TRIAC_GATE',
+        '/GRINDER_AC_SWITCHED', '/GRINDER_GATE_FEED', '/GRINDER_TRIAC_GATE',
         '/GRINDER_DC_PLUS', '/GRINDER_DC_MINUS',
         # The protective conductor belongs to the primary domain for spacing:
         # it must keep the same 8 mm from anything SELV.

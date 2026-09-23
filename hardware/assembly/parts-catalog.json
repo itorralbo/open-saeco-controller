@@ -841,7 +841,23 @@
       "stock_evidence": "JLCPCB parts search API, read-only: every VOT8125/VOT8123 DIP variant at 0; C6925370, recorded earlier, is the SMD VOT8125AB-T2",
       "url": "https://jlcpcb.com/partdetail/C6349884",
       "selection": "not_selected_no_stock",
-      "selection_note": "Dropped for the pump on 2026-09-22: no 800 V random-phase 400 mil DIP was in stock at JLC. The pump uses the heater's MOC3083 and half-cycle skipping instead."
+      "selection_note": "Dropped for the pump on 2026-09-22: no 800 V random-phase 400 mil DIP was in stock at JLC. The pump uses the heater's MOC3083 and half-cycle skipping instead. The grinder follows on 2026-09-23 for the same reason: it is only switched on and off, so zero-cross costs nothing there."
+    },
+    "BRIDGE:KBP410": {
+      "manufacturer": "MDD(Microdiode Semiconductor)",
+      "mpn": "KBP410",
+      "lcsc": "C840747",
+      "specification": "Single-phase glass-passivated bridge, 4 A, 1000 V, IFSM 90 A, KBP SIP-4 (+ ~ ~ -), RthJA 55 C/W; grinder JP8 bridge",
+      "footprint": "Diode_THT:Diode_Bridge_Vishay_KBPM",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 17603,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-23",
+      "stock_evidence": "JLCPCB parts search API, read-only; ratings and outline from the MDD KBP4005-KBP410 datasheet (lead pitch 0.14-0.16 in, body 14.2 x 3.4 mm)",
+      "url": "https://jlcpcb.com/partdetail/C840747",
+      "selection": "candidate_pending_grinder_current",
+      "selection_note": "Sized on an assumed 1 A running current, to be measured on the first prototype. 4 A covers the 3.4 A RMS a stalled 68 ohm winding would draw at 230 V for the seconds the firmware takes to stop it. Replaces the earlier GBU8K placeholder, which is larger than a 1 A load needs. The KiCad KBPM footprint has a 3.85 mm pitch, inside the datasheet's 3.56-4.06 mm."
     },
     "AP63200WU-7": {
       "manufacturer": "Diodes Incorporated",

@@ -146,6 +146,13 @@ def power_symbols():
         ('2', 'A2', 'passive', -7.62, 3.81, 0),
         ('3', 'G', 'input', 7.62, 0, 180),
     ], 5.08, 6.35)
+    # Single-phase bridge in the KBP SIP-4 package: + ~ ~ - from pin 1.
+    d.DEFS['BRIDGE_KBP'] = ([
+        ('2', 'AC1', 'passive', -7.62, 2.54, 0),
+        ('3', 'AC2', 'passive', -7.62, -2.54, 0),
+        ('1', '+', 'passive', 7.62, 2.54, 180),
+        ('4', '-', 'passive', 7.62, -2.54, 180),
+    ], 5.08, 5.08)
     d.DEFS['NMOS_SOT23'] = ([
         ('1', 'G', 'input', -7.62, 0, 0),
         ('2', 'S', 'power_in', 7.62, -3.81, 180),
@@ -192,7 +199,7 @@ def main():
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
            'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
-           'PB11': 'PUMP_EN_RAW'}
+           'PB11': 'PUMP_EN_RAW', 'PB12': 'GRINDER_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -604,11 +611,12 @@ def main():
     # draws current on one half-cycle only and a zero-cross driver restarts it
     # at every voltage zero; flow is set by skipping half-cycles. Same opto,
     # triac and gate resistor as the heater. U604 is a third dual-AND: gate 1
-    # holds the pump off in reset, gate 2 is kept for the grinder.
+    # holds the pump off in reset, gate 2 does the same for the grinder.
     d.note('17 / Etapa de la bomba — ULKA EP5/S GW, 48 W, semionda',870,940,1.8)
     d.passive('R713','R','10k / pump arm pull-down',880,962,'PUMP_EN_RAW',g)
     d.add('U604','DUAL_AND','SN74LVC2G08DCTR',880,1000,
-          ['PUMP_EN_RAW','STM_NRST',g,g,v,g,'PUMP_EN_INTERLOCK',None],
+          ['PUMP_EN_RAW','STM_NRST','GRINDER_EN_RAW','STM_NRST',v,g,
+           'PUMP_EN_INTERLOCK','GRINDER_EN_INTERLOCK'],
           'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
     d.passive('C604','C','100nF / pump gate local',940,1010,v,g)
     d.passive('R714','R','33 / opto LED gate',940,962,'PUMP_EN_INTERLOCK','PUMP_LED_GATE')
@@ -631,15 +639,44 @@ def main():
     d.note('Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir '
            'dV/dt en el apagado antes de liberar.',870,1010,1.1)
 
+    # Grinder: V3.2 motor fed with rectified mains, 68 ohm winding. Its running
+    # current has not been measured; Rev A assumes 1 A and the first prototype
+    # measures it (docs/HD8911/characterization-plan.md). A triac switches the
+    # AC side and a bridge after it gives JP8 fixed polarity, so the motor sees
+    # nothing once the triac drops out. No bus capacitor, so no bleed resistor.
+    # Same zero-cross opto as heater and pump: the grinder is on/off only.
+    d.note('18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; 1 A supuesto',870,1030,1.8)
+    d.passive('R717','R','10k / grinder arm pull-down',880,1052,'GRINDER_EN_RAW',g)
+    d.passive('R718','R','33 / opto LED gate',940,1052,'GRINDER_EN_INTERLOCK','GRINDER_LED_GATE')
+    d.passive('R719','R','100k / opto LED off',940,1072,'GRINDER_LED_GATE',g)
+    d.add('Q707','NMOS_SOT23','SI2308A / grinder opto LED',1000,1060,
+          ['GRINDER_LED_GATE',g,'GRINDER_LED_RETURN'],
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+    d.passive('R720','R','1k / opto LED series',1060,1052,'12V_PROTECTED','GRINDER_LED_ANODE')
+    d.add('U703','OPTO_TRIAC','MOC3083 / zero-cross',1120,1060,
+          ['GRINDER_LED_ANODE','GRINDER_LED_RETURN',None,'GRINDER_GATE_FEED',
+           None,'GRINDER_TRIAC_GATE'],
+          'OpenSaeco:DIP-6_W7.62mm_BarrierSlot',part_key='OPTO:MOC3083')
+    d.add('R721','R','390 / gate limit 500V',1180,1052,
+          ['LOAD_L_ENABLED','GRINDER_GATE_FEED'],
+          'Resistor_SMD:R_1206_3216Metric', part_key='R:390_1206_500V')
+    d.add('Q708','TRIAC_TO220','BTA24-800BWRG / grinder',1240,1060,
+          ['GRINDER_AC_SWITCHED','LOAD_L_ENABLED','GRINDER_TRIAC_GATE'],
+          'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
+    d.add('BR701','BRIDGE_KBP','KBP410 / grinder bridge',1300,1060,
+          ['GRINDER_AC_SWITCHED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
+          'Diode_THT:Diode_Bridge_Vishay_KBPM', part_key='BRIDGE:KBP410')
+    d.note('Q708 al aire, sin disipador, como el BTA208 de la original: ~0,8 W a 1 A. '
+           'Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware por tiempo.',870,1092,1.1)
+    d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~1,7 W y +95 K a 1 A continuo; '
+           'el molido es intermitente. Medir en el prototipo.',870,1100,1.1)
+
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])
-    # Temporary endpoint markers until the grinder bridge is inserted.
-    d.add('#FLG117','PWR_FLAG','Grinder DC plus endpoint pending bridge',1100,810,['GRINDER_DC_PLUS'])
-    d.add('#FLG118','PWR_FLAG','Grinder DC minus endpoint pending bridge',1100,822,['GRINDER_DC_MINUS'])
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
-    d.note('Siguiente: optotriacs, BTA24, puente del molino, filtro EMI y huellas JP19/PE.',12,804)
+    d.note('Siguiente: filtro EMI, huellas PE y medidas de caracterización del molino.',12,804)
     d.note('Contorno/taladros aceptados; conectores incompletos y rutas pendientes. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 
