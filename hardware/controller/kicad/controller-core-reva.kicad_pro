@@ -690,6 +690,22 @@
       },
       {
         "netclass": "Mains",
+        "pattern": "/GRINDER_AC_SWITCHED"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/GRINDER_AC_FUSED"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/GRINDER_GATE_FEED"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/GRINDER_TRIAC_GATE"
+      },
+      {
+        "netclass": "Mains",
         "pattern": "/GRINDER_DC_PLUS"
       },
       {

@@ -430,3 +430,20 @@ de cargas siguen pendientes en el esquema principal.
   CC1/CC2 hasta sus 5,1 kΩ y las masas a la carcasa. DRC: 0 infracciones, los
   dos avisos intencionales, 74 conexiones abiertas (antes 77) y las mismas tres
   diferencias de paridad.
+
+## Etapa del molinillo en la PCB, 2026-09-23
+
+- Decisiones del propietario: 1 A de marcha supuesto hasta medir, fusible T2A
+  propio y permiso para mover piezas ya ruteadas. F703 es un JDT
+  JFC2410-1200TS (`C136382`, 18 992 en stock), de acción retardada, en una
+  huella 2410 nueva hecha con el patrón recomendado de su hoja.
+- Los tres optos comparten la barrera vertical: U701 sube a y = 88 mm, U703
+  entra en y = 100,72 mm y U702 no se mueve. Los tres triacs van en la cara sur
+  del perfil, molinillo, calentador y bomba de oeste a este. Para hacer sitio se
+  movieron D701, la troncal de 24 V bajo la bobina de K701, el filtro del
+  caudalímetro y la vía de masa de C401. BR701 queda entre J115 y el borde.
+- KiCad 10.0.6: ERC 0; netlist nativa 187 componentes / 612 pines
+  coincidente. DRC con todas las severidades: 0 infracciones, el mismo aviso
+  de extremo suelto de antes, 67 conexiones abiertas (66 antes, más PB12 hasta
+  U604) y las tres diferencias de paridad de MH1–MH3. No libera fabricación ni
+  conexión a red.

@@ -2688,9 +2688,9 @@
         "1": "HEATER_LED_ANODE",
         "2": "HEATER_LED_RETURN",
         "3": null,
-        "6": "HEATER_TRIAC_GATE",
+        "6": "HEATER_GATE_FEED",
         "5": null,
-        "4": "HEATER_GATE_FEED"
+        "4": "HEATER_TRIAC_GATE"
       }
     },
     {
@@ -3013,6 +3013,21 @@
       }
     },
     {
+      "reference": "F703",
+      "value": "T2A / 250V grinder",
+      "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
+      "status": "candidate",
+      "manufacturer": "Shenzhen JDT Fuse",
+      "mpn": "JFC2410-1200TS",
+      "lcsc": "C136382",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "GRINDER_AC_SWITCHED",
+        "2": "GRINDER_AC_FUSED"
+      }
+    },
+    {
       "reference": "BR701",
       "value": "KBP410 / grinder bridge",
       "footprint": "Diode_THT:Diode_Bridge_Vishay_KBPM",
@@ -3023,7 +3038,7 @@
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "2": "GRINDER_AC_SWITCHED",
+        "2": "GRINDER_AC_FUSED",
         "3": "MAINS_N",
         "1": "GRINDER_DC_PLUS",
         "4": "GRINDER_DC_MINUS"

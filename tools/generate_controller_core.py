@@ -587,9 +587,10 @@ def main():
     d.passive('R709','R','1k / opto LED series',1060,872,'12V_PROTECTED','HEATER_LED_ANODE')
     d.add('U701','OPTO_TRIAC','MOC3083 / zero-cross',1120,880,
           # Pins 4 and 6 are the two ends of the same output triac, so they
-          # are interchangeable: the feed takes pin 4, nearest R710.
-          ['HEATER_LED_ANODE','HEATER_LED_RETURN',None,'HEATER_TRIAC_GATE',
-           None,'HEATER_GATE_FEED'],
+          # are interchangeable. U701 sits at the top of the optocoupler stack
+          # with R710 above it: the feed takes pin 6 and the gate pin 4.
+          ['HEATER_LED_ANODE','HEATER_LED_RETURN',None,'HEATER_GATE_FEED',
+           None,'HEATER_TRIAC_GATE'],
           # C10797 is the plain 300 mil DIP; the footprint carries the milled
           # slot that lets it straddle the barrier.
           'OpenSaeco:DIP-6_W7.62mm_BarrierSlot',part_key='OPTO:MOC3083')
@@ -663,11 +664,17 @@ def main():
     d.add('Q708','TRIAC_TO220','BTA24-800BWRG / grinder',1240,1060,
           ['GRINDER_AC_SWITCHED','LOAD_L_ENABLED','GRINDER_TRIAC_GATE'],
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
+    # F703 is the grinder's own fuse, owner's decision on 2026-09-23. A 2 A
+    # time-lag part rides through the 3.4 A start; a shorted bridge or winding
+    # blows it without taking F701 and the whole machine with it.
+    d.add('F703','FUSE','T2A / 250V grinder',1270,1030,
+          ['GRINDER_AC_SWITCHED','GRINDER_AC_FUSED'],
+          'OpenSaeco:Fuse_2410_JDT_JFC2410', part_key='FUSE:JFC2410-1200TS')
     d.add('BR701','BRIDGE_KBP','KBP410 / grinder bridge',1300,1060,
-          ['GRINDER_AC_SWITCHED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
+          ['GRINDER_AC_FUSED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
           'Diode_THT:Diode_Bridge_Vishay_KBPM', part_key='BRIDGE:KBP410')
-    d.note('Q708 al aire, sin disipador, como el BTA208 de la original: ~0,8 W a 1 A. '
-           'Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware por tiempo.',870,1092,1.1)
+    d.note('Q708 en el perfil del calentador y la bomba: ~0,8 W a 1 A. Bloqueo = '
+           '230/68 = 3,4 A ef.: lo corta el firmware; F703 T2A cubre cortos.',870,1092,1.1)
     d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~1,7 W y +95 K a 1 A continuo; '
            'el molido es intermitente. Medir en el prototipo.',870,1100,1.1)
 

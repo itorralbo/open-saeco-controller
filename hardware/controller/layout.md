@@ -113,7 +113,7 @@ La primera versión de la regla detectó 95 infracciones en la colocación inici
 fusibles junto al puente H, contactos de K701 entre la lógica y el bus del
 molinillo junto al buck de 12 V. La colocación actual no tiene ninguna.
 
-## Disipador de calentador y bomba
+## Disipador de calentador, bomba y molinillo
 
 El disipador original (IMG_1098, IMG_1100 e IMG_1101) es un perfil de pie de
 40 mm de ancho y 35 mm de alto, con un TO-220 en cada canal, pegado justo detrás
@@ -127,10 +127,13 @@ cambió el ESP32 por la variante 1U de antena externa: la zona de exclusión de
 la antena impresa ocupaba unos 1 990 mm², el 10 % de la placa, y sin ese espacio
 no cabían a la vez el disipador, los fusibles, el MOV y K701.
 
-El triac del molinillo irá en TO-220 de pie sin disipador, como el BTA208 de la
-original, tras comprobar su pérdida. Su puente rectificador, los optos y los
-snubbers ocuparán el hueco entre K701/RV701 y el disipador y el paso junto a
-PS701.
+Desde el 2026-09-23 el triac del molinillo también va en el perfil. Se había
+previsto al aire, como el BTA208 de la original, pero no quedaba en la zona de
+red ningún hueco para un TO-220 de pie con su puente, y en el perfil gana margen
+térmico ante un bloqueo. Los tres TO-220 ocupan la cara sur: molinillo,
+calentador y bomba, de oeste a este, con 0,6 mm entre courtyards. Hay que
+comprobar con el perfil real que caben tres tornillos y tres láminas aislantes.
+Ver la [etapa del molinillo](#etapa-del-molinillo-jp8).
 
 ## Routing del STM32
 
@@ -201,9 +204,12 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   - un carril de 0,8 mm en x = 107,85 mm, entre el buck de 3,3 V y las
     resistencias del DRV8876, hasta J112 y el buck de 12 V;
   - una troncal de 1 mm por el borde SELV de la banda de barrera (y = 55,1 mm)
-    que baja por x = 46 mm, a la izquierda de la banda. De ella salen F303
-    (rama del grupo), el divisor R704, J114.4, la bobina de K701, D701 y la
-    rama de la válvula (F304).
+    que baja por x = 46 mm, a la izquierda de la banda, hasta la bobina de
+    K701. De ella salen F303 (rama del grupo), el divisor R704, J114.4 y la
+    bobina. Desde el pin 1 de la bobina sigue por x = 43 mm, pasa por D701 y
+    gira al oeste en y = 93 mm hacia la rama de la válvula (F304). Hasta el
+    2026-09-23 bajaba por x = 46 mm, justo donde ahora está el opto del
+    calentador.
 - Para esos recorridos se giró J121 y se movieron C307 y Q701.
 
 ## Validación
@@ -260,7 +266,9 @@ señales. Por eso este bloque deja abiertos esos pines en lugar de taparlos.
 U603 se ha girado 180° para que su salida mire a las resistencias de puerta. La
 cadena del relé va de U603 a R801, R802 y Q701, y de ahí a la bobina de K701 y
 al diodo D701. El retorno de bobina pasa al oeste de los pines de bobina, porque
-el corredor este lo ocupa la alimentación de 24 V de K701.1.
+el corredor este lo ocupa la alimentación de 24 V de K701.1. D701 se movió el
+2026-09-23 a x = 40,6 mm, entre ese retorno y la troncal, para dejar sitio al
+opto del calentador.
 
 U603 no tenía condensador de desacoplo propio. Se ha añadido C603, un 100 nF
 igual que C601 y C602, entre U603 y Q701: la puerta que arma la red no debe
@@ -277,7 +285,10 @@ el plano pierde solo esa ranura.
 ### Sensores
 
 NTC, caudalímetro, nivel de agua, puerta y los dos contactos del grupo llegan
-desde sus conectores a sus filas de pull-up, serie y filtro. Los pines 3 y 4 de
+desde sus conectores a sus filas de pull-up, serie y filtro. El filtro del
+caudalímetro (R403, R404 y C402) bajó el 2026-09-23 a la columna al oeste de
+MH2, para dejar su sitio junto a U703 al driver del molinillo; la señal en bruto
+sube desde JP5 por el oeste de MH2. Los pines 3 y 4 de
 JP16 quedan puenteados. El contacto de trabajo sube por el este de MH1 y C501
 para no cruzar la fila del contacto de presencia. Cada condensador de filtro
 baja al plano por su propia vía.
@@ -445,15 +456,32 @@ una descalcificación.
 
 Colocados: el triac del calentador Q703 contra la cara sur del perfil, el opto
 U701 cruzando la barrera y R710, la resistencia de puerta, en el carril.
+**Recolocado el 2026-09-23** para hacer sitio al molinillo: U701 sube a
+y = 88 mm, justo bajo K701, y es el primero de la pila de tres optos. R710
+queda encima, en el carril, con un pad sobre la fase. Q703 pasa al centro de la
+cara sur (x = 75,26 mm).
 **Corregido el 2026-09-22:** el MOC3083 de Lite-On del catálogo (C10797) es el
 DIP de 7,62 mm; el de 10,16 mm es el MOC3083M y JLC solo tenía 3 unidades. U701
 pasa a la huella con ranura descrita en la barrera, centrada en x = 51 mm.
 
-Ruteado: bucle del LED desde 12 V con Q705, la fase conmutada de 3 mm por el
-carril, la puerta y la alimentación de puerta por B.Cu (en el dominio de red no
-hay plano), y la salida del triac hasta la lengüeta 1 de JP19. Los pines 4 y 6
-del opto son intercambiables y se han repartido para que no se crucen. La puerta
-AND libre de U603 hace ahora de enclavamiento del calentador con el reset.
+Ruteado: bucle del LED desde 12 V con Q705, la fase conmutada por el carril, la
+puerta por B.Cu (en el dominio de red no hay plano) y la salida del triac hasta
+la lengüeta 1 de JP19. Los pines 4 y 6 del opto son intercambiables: la
+alimentación de puerta sale por el 6, al norte hacia R710, y la puerta por el 4.
+La puerta AND libre de U603 hace de enclavamiento del calentador con el reset.
+
+Desde el 2026-09-23:
+
+- Ánodo y retorno del LED pasan bajo la troncal de 24 V y D701 por B.Cu, en dos
+  diagonales paralelas, y suben junto a los stubs del opto.
+- La fase baja por el carril a 2,6 mm, en x = 60,6 mm, para dejar 1,2 mm con
+  los pads de alimentación de R710 y R721. Al pie del perfil gira por una
+  franja de 1,5 mm (antes 0,9 mm) de la que bajan los tres terminales
+  centrales.
+- La puerta baja por B.Cu en x = 59,3 mm, bajo la fase y a 2,5 mm de los stubs
+  del opto del molinillo, y va por y = 107,1 mm hasta Q703. Pasa por encima
+  de los pines de Q708, así que no cruza la puerta del molinillo, que va por
+  debajo de ellos.
 
 Dos áreas con nombre, `mains device pitch`, bajan la separación entre redes de
 red a 0,6 mm solo sobre los pines del lado de red del opto y del triac, cuyo
@@ -485,12 +513,10 @@ de disparo aleatorio, se explica en
 
 Colocación:
 
-- U702 cruza la barrera un paso al sur de U701, en y = 113,46 mm, sobre su
-  propia ranura. Queda lo bastante bajo para que su courtyard no pise el de R710
-  y lo bastante alto para no tocar J115.
-- Q704 ocupa la mitad este de la cara sur del perfil (x = 86,46 mm), a 18 mm de
-  Q703.
-- R712 va en el carril, bajo R710, y toma la fase conmutada de su mismo pad.
+- U702 cruza la barrera en y = 113,46 mm, sobre su propia ranura, al pie de la
+  pila de tres optos. Queda lo bastante alto para no tocar J115.
+- Q704 ocupa el extremo este de la cara sur del perfil (x = 86,46 mm).
+- R712 va al pie del carril y toma la fase conmutada de su final.
 - El driver del LED (R714–R716 y Q706) ocupa la franja entre U702 y MH2.
 - U604, la puerta de reset de la bomba, va bajo Q701 con C604 y la bajada R713,
   en la misma orientación que U603. Así tiene cerca `STM_NRST` y 3,3 V, y solo
@@ -528,8 +554,9 @@ Enclavamiento ruteado:
     calentador.
 - 3,3 V llega desde C603 y el reset desde la vía junto a U603, los dos saltando
   por B.Cu bajo Q701.
-- La salida cruza bajo la rama de 24 V de y = 93 mm por B.Cu y llega a R714 por
-  el norte.
+- La salida cruza bajo la rama de 24 V de y = 93 mm por B.Cu y, desde el
+  2026-09-23, sigue por B.Cu junto al driver del molinillo y llega a R714 por
+  el oeste.
 - El paso hacia U603 queda libre para PB10: la misma búsqueda encuentra camino
   de 64 mm con todo esto ya ruteado.
 
@@ -561,6 +588,50 @@ noroeste. Por eso salen por B.Cu:
   saltan por B.Cu bajo los ramales de 24 V. PB5 termina en R603 y cruza el
   corredor del reset una sola vez hasta U602.1.
 
+### Etapa del molinillo (JP8)
+
+Colocada y ruteada el 2026-09-23, sobre 1 A de marcha supuesto; ver
+[power-architecture.md](../power/power-architecture.md#etapa-del-molinillo).
+Las piezas son las del calentador y la bomba: MOC3083 (U703), BTA24 (Q708), una
+ERJ-P08 de 390 Ω (R721) y un SI2308A (Q707). Además lleva el puente KBP410
+(BR701) y el fusible T2A (F703).
+
+Colocación:
+
+- Tres optos en la barrera vertical, de K701 a J106: calentador, molinillo y
+  bomba. Sobran 0,7 mm. U703 queda en medio, en y = 100,72 mm, con R721 en el
+  carril a su altura.
+- Q708 en el extremo oeste de la cara sur del perfil. La salida baja a F703,
+  justo debajo, y la salida del fusible rodea J115 por el este hasta el puente.
+- BR701 entre J115 y el borde inferior. El + (pin 1) sube a JP8.1 y el −
+  (pin 4) a JP8.3. Son los dos pines exteriores, así que el cableado conserva la
+  polaridad: blanco +, negro −.
+- El driver del LED ocupa el sitio del filtro del caudalímetro, al oeste de
+  U703: R720 junto al ánodo, Q707 debajo y R718/R719 a su oeste.
+- R717, la bajada de la orden en bruto, va junto al pin 5 de U604.
+
+Ruteado:
+
+- Puerta por B.Cu en x = 56,5 mm, pegada a la barrera, y bajo la fila de
+  triacs en y = 111,85 mm hasta el pin 3 de Q708. Queda a 2,5 mm de la puerta
+  del calentador, que baja por el otro lado del carril.
+- La fase con fusible baja por el pasillo entre J115 y JP19 y entra al pin 2
+  del puente por encima. El neutro sale de la cola oeste de la lengüeta 3 de
+  JP19 y entra al pin 3. El − sube por B.Cu bajo los dos.
+- Anchuras: 1 mm hasta el fusible y 0,8 mm después. Con 3,4 A de bloqueo durante
+  segundos sobra en 1 oz.
+- 12 V para R720 desde la alimentación B.Cu de la bomba, junto a R716.
+- La salida de la segunda puerta de U604 (pin 3) mira al oeste. Baja a B.Cu
+  junto al pin, rodea las vías de masa y la pata B.Cu del enclavamiento del
+  calentador por el oeste, sube junto a R401 y va por y = 103 mm, encima de la
+  fila del NTC, hasta R718. La vía de masa de C401 pasó al este para dejarle
+  sitio.
+- El reset entra al pin 6 por debajo del encapsulado. PB12, la orden desde
+  el STM32, espera con el resto de señales del microcontrolador, como PB10.
+
+Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
+triac. Tampoco hay snubber en Q708.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -578,14 +649,13 @@ el símbolo.
 2. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
    PA8), UART con el ESP32, BOOT0, telemetría de raíles, PA7 hasta U602 y
    PB0 hasta el corte del frontal.
-3. PB10 hasta U603 por el mismo pasillo que PB11; después, la etapa del
-   molinillo.
+3. PB10 hasta U603 y PB12 hasta U604 por el mismo pasillo que PB11.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
 pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y no
 consiguió rutear el puente H. Se descartó a favor del ruteo manual.
 
-Las etapas de calentador, bomba y molinillo esperan a elegir el disipador y a
-las huellas de JP19/JP1/JP9. No se generarán Gerbers mientras queden conexiones
-abiertas o la revisión de aislamiento pendiente.
+Las etapas de calentador, bomba y molinillo están colocadas y ruteadas; faltan
+las huellas de JP1/JP9 y los taladros del perfil. No se generarán Gerbers
+mientras queden conexiones abiertas o la revisión de aislamiento pendiente.

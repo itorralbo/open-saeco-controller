@@ -320,11 +320,13 @@ def route_24v_output(board):
     track(board, act, (46.40, 52.00), (47.725, 52.00), width=ACT_LANE_WIDTH)
     polyline(board, act, [(62.50, 55.10), (62.50, 42.80), (57.20, 42.80),
                           (55.62, 41.22), (55.62, 40.00)], width=ACT_LANE_WIDTH)
-    # Below the relay coil the trunk continues down the SELV edge of the
-    # barrier band to the flyback diode and the valve fuse.
-    polyline(board, act, [(46.40, 79.10), (46.40, 92.00), (45.40, 93.00),
-                          (10.60, 93.00), (10.60, 94.50)], width=ACT_WIDTH)
-    track(board, act, (46.40, 90.00), (43.50, 90.00), width=ACT_LANE_WIDTH)
+    # Below the relay coil the trunk drops at x = 43 mm, east of the flyback
+    # diode and clear of the heater optocoupler's primary pads, and turns west
+    # at y = 93 mm to the valve fuse. The heater LED pair hops under it.
+    polyline(board, act, [(44.00, 80.75), (43.00, 81.75), (43.00, 92.00),
+                          (42.00, 93.00), (10.60, 93.00), (10.60, 94.50)],
+             width=ACT_WIDTH)
+    track(board, act, (43.00, 89.50), (40.60, 89.50), width=ACT_LANE_WIDTH)
 
 
 def route_h_bridge(board):
@@ -483,7 +485,7 @@ def route_watchdog_interlock(board):
              width=0.5)
     # West of the coil pins: the 24 V feed to K701.1 owns the east corridor.
     polyline(board, '/MAINS_RELAY_RETURN', [(42.0, 73.25), (39.5, 74.4),
-                                            (39.5, 84.0), (43.5, 86.0)],
+                                            (39.5, 84.0), (40.6, 85.1)],
              width=0.5)
 
 
@@ -593,16 +595,15 @@ def route_sensors(board):
     polyline(board, '/NTC_ADC', [(31.0, 104.175), (32.5, 104.8), (33.6, 105.5)],
              width=PIN_WIDTH)
 
-    # Flow meter (JP5): the raw net clears MH2 on the east side.
-    # The lane at x = 43.5 mm keeps clear of MH2 to the west and of the heater
-    # optocoupler's primary pads to the east.
-    # The lane sits between MH2 and the heater optocoupler's primary pads, and
-    # both flow pull-up and series resistor now present their raw pad on the
-    # same row, so the filtered net leaves straight east underneath.
-    polyline(board, '/FLOW_RAW', [(38.5, 125.3), (38.5, 122.0), (35.3, 118.0),
-                                  (35.3, 102.0), (36.5, 103.175),
-                                  (41.0, 103.175)], width=PIN_WIDTH)
-    track(board, '/FLOW_TIM', (41.0, 104.825), (44.0, 104.775), width=PIN_WIDTH)
+    # Flow meter (JP5): the raw net climbs west of MH2 to the filter column,
+    # where the pull-up and the series resistor both face it with their raw
+    # pad. The filtered net drops straight to C402.
+    polyline(board, '/FLOW_RAW', [(38.5, 125.3), (38.5, 122.0), (35.3, 118.8),
+                                  (35.3, 112.0), (33.6, 110.3), (33.6, 109.2),
+                                  (32.725, 109.2)], width=PIN_WIDTH)
+    polyline(board, '/FLOW_RAW', [(33.6, 110.3), (33.6, 111.0), (32.725, 111.0)],
+             width=PIN_WIDTH)
+    track(board, '/FLOW_TIM', (31.075, 111.0), (31.075, 112.8), width=PIN_WIDTH)
 
     # Water level (JP22): east of the valve return pair, then west to R411.
     # West of the valve pair: the return already owns y = 121 mm eastwards.
@@ -613,9 +614,11 @@ def route_sensors(board):
                                      (22.0, 116.775)], width=PIN_WIDTH)
 
     for start, point in (((31.5, 125.3), (33.2, 125.3)),
-                         ((34.0, 104.225), (34.0, 102.3)),
+                         # East, not north: the grinder's gate order runs
+                         # above the NTC row at y = 103 mm.
+                         ((34.0, 104.225), (34.9, 104.225)),
                          ((41.0, 125.3), (40.2, 122.5)),
-                         ((44.0, 103.225), (44.0, 101.3)),
+                         ((32.725, 112.8), (33.7, 113.7)),
                          ((23.0, 128.2), (24.6, 127.0)),
                          ((22.0, 115.225), (23.4, 115.225)),
                          ((21.0, 70.225), (22.4, 70.225)),
@@ -1061,12 +1064,15 @@ def opto_stubs(board, ref, pins, layer=pcb.F_Cu):
 def route_heater_stage(board):
     """Zero-cross optocoupler and triac for the 1900 W boiler element.
 
-    The optocoupler is a 300 mil DIP straddling the barrier over the slot its
-    footprint mills between the rows. Its secondary pins are through-hole, so
-    the gate and the feed leave on B.Cu, where the mains domain has no plane
-    and there is room to keep 2.5 mm between them. That frees the 5 mm lane
-    west of the heatsink for the switched phase, which is the only heavy net
-    that has to get past.
+    U701 sits at the top of the optocoupler stack, just under K701. The
+    flyback diode and the 24 V trunk run between it and its LED driver, so
+    both LED nets hop under the trunk on B.Cu and come up beside the stubs.
+
+    On the mains side the feed leaves pin 6 north to R710, whose other pad
+    sits on the switched phase in the lane. The gate leaves pin 4 on B.Cu,
+    runs down the lane under the phase, clear of the grinder's optocoupler,
+    and along the strip south of the heatsink foot to Q703, now in the
+    middle of the heatsink's south face.
     """
     gnd = '/GND_UI'
 
@@ -1080,13 +1086,22 @@ def route_heater_stage(board):
     polyline(board, '/12V_PROTECTED', [(27.7, 101.6), (28.0, 101.3),
                                        (28.0, 94.2), (34.5, 94.2),
                                        (35.175, 95.5)], width=0.5)
-    polyline(board, '/HEATER_LED_ANODE', [(36.825, 96.0), (39.5, 96.3),
-                                          (44.5, 97.46),
-                                          (OPTO_SELV_STUB_END, 97.46)],
-             width=PIN_WIDTH)
-    polyline(board, '/HEATER_LED_RETURN', [(38.938, 99.5), (41.0, 99.8),
-                                           (OPTO_SELV_STUB_END, 100.0)],
-             width=PIN_WIDTH)
+    # Anode and return climb under the trunk on parallel B.Cu diagonals.
+    track(board, '/HEATER_LED_ANODE', (36.825, 96.0), (40.0, 96.0), width=PIN_WIDTH)
+    via(board, '/HEATER_LED_ANODE', (40.0, 96.0))
+    polyline(board, '/HEATER_LED_ANODE', [(40.0, 96.0), (44.6, 91.4), (44.6, 88.9)],
+             pcb.B_Cu, width=PIN_WIDTH)
+    via(board, '/HEATER_LED_ANODE', (44.6, 88.9))
+    polyline(board, '/HEATER_LED_ANODE', [(44.6, 88.9), (45.5, 88.0),
+                                          (OPTO_SELV_STUB_END, 88.0)], width=PIN_WIDTH)
+    polyline(board, '/HEATER_LED_RETURN', [(38.938, 99.5), (39.9, 99.5),
+                                           (40.5, 99.0)], width=PIN_WIDTH)
+    via(board, '/HEATER_LED_RETURN', (40.5, 99.0))
+    polyline(board, '/HEATER_LED_RETURN', [(40.5, 99.0), (45.35, 94.15),
+                                           (45.35, 91.4)], pcb.B_Cu, width=PIN_WIDTH)
+    via(board, '/HEATER_LED_RETURN', (45.35, 91.4))
+    track(board, '/HEATER_LED_RETURN', (45.35, 91.4), (OPTO_SELV_STUB_END, 90.54),
+          width=PIN_WIDTH)
     opto_stubs(board, 'U701', {1: '/HEATER_LED_ANODE', 2: '/HEATER_LED_RETURN'})
     track(board, '/HEATER_LED_GATE', (31.825, 99.0), (31.825, 96.0), width=PIN_WIDTH)
     polyline(board, '/HEATER_LED_GATE', [(31.825, 99.0), (34.0, 98.8),
@@ -1096,33 +1111,33 @@ def route_heater_stage(board):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
-    # Switched phase: K701 down the lane, then into the middle terminal from
-    # the 3 mm strip between the heatsink foot and the device row.
+    # Switched phase: K701 down the lane, clear of the gate resistors' feed
+    # pads, then east along the strip south of the heatsink foot. Each triac
+    # takes its middle terminal straight down from the strip.
     polyline(board, '/LOAD_L_ENABLED', [(62.0, 80.75), (62.0, 82.2),
-                                        (59.6, 84.6), (59.6, 106.5)], width=3.0)
-    track(board, '/LOAD_L_ENABLED', (59.6, 106.5), (59.6, 108.8), width=2.0)
-    polyline(board, '/LOAD_L_ENABLED', [(59.6, 106.5), (71.0, 106.5),
-                                        (71.0, 108.8)], width=0.9)
+                                        (60.6, 83.6), (60.6, 106.45)], width=2.6)
+    track(board, '/LOAD_L_ENABLED', (60.6, 106.45), (89.0, 106.45), width=1.5)
+    for x in (66.6, 77.8):
+        track(board, '/LOAD_L_ENABLED', (x, 106.45), (x, 108.8), width=0.9)
 
-    # Gate feed and gate, both on the back layer past the optocoupler.
-    opto_stubs(board, 'U701', {4: '/HEATER_GATE_FEED', 6: '/HEATER_TRIAC_GATE'},
-               pcb.B_Cu)
-    polyline(board, '/HEATER_GATE_FEED', [(OPTO_MAINS_STUB_END, 102.54),
-                                          (56.6, 104.0), (56.6, 106.2)],
-             pcb.B_Cu, width=PIN_WIDTH)
-    via(board, '/HEATER_GATE_FEED', (56.6, 106.2))
-    track(board, '/HEATER_GATE_FEED', (56.6, 106.2), (56.6, 108.0), width=PIN_WIDTH)
-    polyline(board, '/HEATER_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 97.46), (60.8, 98.8),
-                                           (60.8, 112.0), (73.54, 112.0),
-                                           (73.54, 110.2)], pcb.B_Cu,
+    # Feed from pin 6 north to R710; gate from pin 4 down the lane on B.Cu.
+    opto_stubs(board, 'U701', {6: '/HEATER_GATE_FEED'})
+    track(board, '/HEATER_GATE_FEED', (OPTO_MAINS_STUB_END, 88.0), (57.2, 87.1),
+          width=PIN_WIDTH)
+    opto_stubs(board, 'U701', {4: '/HEATER_TRIAC_GATE'}, pcb.B_Cu)
+    polyline(board, '/HEATER_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 93.08),
+                                           (57.5, 94.28), (59.3, 96.08),
+                                           (59.3, 107.1), (80.34, 107.1),
+                                           (80.34, 108.5)], pcb.B_Cu,
              width=PIN_WIDTH)
 
-    # Element side: out of the first terminal and down to JP19 tab 1.
-    track(board, '/HEATER_AC_SWITCHED', (68.46, 110.2), (68.46, 112.0), width=1.5)
-    # Into both tails of JP19 tab 1, at 79.25 and 84.25 mm.
-    polyline(board, '/HEATER_AC_SWITCHED', [(68.46, 112.0), (70.5, 114.5),
-                                            (77.0, 116.55), (84.25, 116.55)],
-             width=2.5)
+    # Element side: out of the first terminal and down to JP19 tab 1, into
+    # both of its tails at 79.25 and 84.25 mm.
+    # The stub starts at the bottom of the pad so its end keeps 2.5 mm from
+    # the phase strip above the triac row.
+    track(board, '/HEATER_AC_SWITCHED', (75.26, 110.5), (75.26, 112.2), width=1.5)
+    polyline(board, '/HEATER_AC_SWITCHED', [(75.26, 112.2), (79.61, 116.55),
+                                            (84.25, 116.55)], width=2.5)
     track(board, '/HEATER_AC_SWITCHED', (79.25, 116.55), (84.25, 116.55),
           pcb.B_Cu, width=2.5)
 
@@ -1130,10 +1145,10 @@ def route_heater_stage(board):
 def route_pump_stage(board):
     """Zero-cross optocoupler and triac for the ULKA pump, the heater's twin.
 
-    U702 crosses the barrier one step south of U701 and Q704 stands on the
-    east half of the heatsink. The switched phase reaches Q704 along the
-    strip under the heatsink foot that already feeds Q703, and R712 takes it
-    from R710's pad in the lane. The gate is the only net that runs the
+    U702 is the bottom of the optocoupler stack and Q704 stands on the east
+    end of the heatsink. The switched phase reaches Q704 along the strip
+    under the heatsink foot that also feeds Q708 and Q703, and R712 takes it
+    from the foot of the lane. The gate is the only net that runs the
     35 mm to the triac: on B.Cu, south of the heater gate and north of JP19's
     tab 1, holding 2.5 mm to both. The pump current is 0.4 A, so its own
     tracks stay at 1.2 mm, narrow enough to keep 2.5 mm between the two JP24
@@ -1162,8 +1177,10 @@ def route_pump_stage(board):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
-    # Mains side: the feed from R710's phase pad down to R712 and into pin 6.
-    track(board, '/LOAD_L_ENABLED', (59.6, 108.8), (59.763, 113.0), width=0.6)
+    # Mains side: the phase from the foot of the lane down to R712, and the
+    # feed into pin 6.
+    polyline(board, '/LOAD_L_ENABLED', [(60.6, 106.45), (60.6, 108.8),
+                                        (59.763, 113.0)], width=0.6)
     opto_stubs(board, 'U702', {6: '/PUMP_GATE_FEED'})
     track(board, '/PUMP_GATE_FEED', (OPTO_MAINS_STUB_END, 113.46), (56.837, 113.0),
           width=PIN_WIDTH)
@@ -1180,8 +1197,7 @@ def route_pump_stage(board):
     # terminal, then the pump side down to JP24 pin 1 and neutral to pin 2.
     # The pump side stops at the top of its pad to keep 2.5 mm from the
     # neutral run to JP19.
-    polyline(board, '/LOAD_L_ENABLED', [(71.0, 106.5), (89.0, 106.5),
-                                        (89.0, 108.8)], width=0.9)
+    track(board, '/LOAD_L_ENABLED', (89.0, 106.45), (89.0, 108.8), width=0.9)
     polyline(board, '/PUMP_AC_SWITCHED', [(86.46, 110.3), (86.46, 112.0),
                                           (91.02, 116.5), (91.02, 119.8)],
              width=1.2)
@@ -1202,7 +1218,7 @@ def route_pump_enable(board):
     west along the southern edge of the ground plane, so the cut barely
     touches it, before climbing past U602 to Q701. The output hops under the
     24 V branch at y = 93 mm on B.Cu, as the heater's does, and meets R714
-    from the north. The corridor to U603 stays open for PB10.
+    from the west. The corridor to U603 stays open for PB10.
     """
     raw, nrst, v33 = '/PUMP_EN_RAW', '/STM_NRST', '/3V3_CORE'
     gated, gnd = '/PUMP_EN_INTERLOCK', '/GND_UI'
@@ -1216,11 +1232,9 @@ def route_pump_enable(board):
                           (37.0, 84.5)], width=PIN_WIDTH)
     polyline(board, gated, [(34.2, 85.675), (35.4, 85.675), (36.0, 86.275),
                             (36.0, 88.5)], width=PIN_WIDTH)
-    # Pins 5 and 6 share a via; pin 4, R713 and C604 get one each.
-    polyline(board, gnd, [(34.2, 86.325), (34.6, 86.325), (34.6, 87.9)],
-             width=PIN_WIDTH)
-    track(board, gnd, (34.2, 86.975), (34.6, 86.975), width=PIN_WIDTH)
-    for start, point in (((34.6, 87.9), None), ((30.8, 86.975), (29.5, 87.5)),
+    # Pin 4, R713 and C604 get a ground via each. Pins 3, 5 and 6 belong to
+    # the grinder's gate, routed in route_grinder_enable.
+    for start, point in (((30.8, 86.975), (29.5, 87.5)),
                          ((28.25, 86.725), (28.25, 87.75)),
                          # East of the heater gate's B.Cu run at x = 36.5.
                          ((36.9, 86.975), (37.9, 87.2))):
@@ -1259,14 +1273,112 @@ def route_pump_enable(board):
                            (29.0, 78.0), (29.0, 72.5)], pcb.B_Cu,
              width=PIN_WIDTH)
 
-    # Gated output down to R714.
+    # Gated output down to R714. It stays on B.Cu past the grinder's LED
+    # driver and comes up just west of R714.
     track(board, gated, (36.0, 88.5), (39.25, 91.75), width=PIN_WIDTH)
     via(board, gated, (39.25, 91.75))
-    track(board, gated, (39.25, 91.75), (39.25, 104.0), pcb.B_Cu, width=PIN_WIDTH)
-    via(board, gated, (39.25, 104.0))
-    polyline(board, gated, [(39.25, 104.0), (40.0, 104.75), (40.0, 105.25),
-                            (40.75, 106.0), (40.75, 106.75), (42.25, 108.25),
-                            (42.475, 108.2)], width=PIN_WIDTH)
+    track(board, gated, (39.25, 91.75), (39.25, 107.3), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, gated, (39.25, 107.3))
+    polyline(board, gated, [(39.25, 107.3), (40.15, 108.2), (42.475, 108.2)],
+             width=PIN_WIDTH)
+
+
+def route_grinder_stage(board):
+    """Zero-cross optocoupler, triac, fuse and bridge for the grinder.
+
+    U703 sits in the middle of the optocoupler stack. Its LED driver takes
+    the place the flow filter left beside it: the anode resistor R720 by
+    pin 1 and Q707 below, whose drain returns straight east to pin 2. R720
+    draws 12 V from the pump's B.Cu feed.
+
+    On the mains side the feed goes to R721 in the lane and the gate leaves
+    pin 4 on B.Cu, straight down the barrier side of the lane and east under
+    the triac row to Q708, the west device on the heatsink. Q708 switches
+    the phase into F703, the fuse into the bridge under J115, and the bridge
+    gives JP8 its polarity: + on pin 1, - on pin 3. The minus run climbs on
+    B.Cu under the fused phase and the neutral, which come in from the east.
+    """
+    gnd, v12 = '/GND_UI', '/12V_PROTECTED'
+
+    # LED loop on the SELV side.
+    polyline(board, '/GRINDER_LED_ANODE', [(43.425, 101.6), (44.2, 101.6),
+                                           (45.08, 100.72),
+                                           (OPTO_SELV_STUB_END, 100.72)],
+             width=PIN_WIDTH)
+    polyline(board, '/GRINDER_LED_RETURN', [(40.54, 104.2), (41.48, 103.26),
+                                            (OPTO_SELV_STUB_END, 103.26)],
+             width=PIN_WIDTH)
+    opto_stubs(board, 'U703', {1: '/GRINDER_LED_ANODE', 2: '/GRINDER_LED_RETURN'})
+    polyline(board, v12, [(45.3, 108.4), (44.0, 107.1), (41.0, 104.1),
+                          (41.0, 100.8)], pcb.B_Cu, width=0.5)
+    via(board, v12, (41.0, 100.8))
+    track(board, v12, (41.0, 100.8), (41.775, 101.6), width=0.5)
+    polyline(board, '/GRINDER_LED_GATE', [(36.6, 104.725), (37.35, 103.975),
+                                          (38.0, 103.325), (38.66, 103.25)],
+             width=PIN_WIDTH)
+    polyline(board, '/GRINDER_LED_GATE', [(36.6, 104.725), (35.975, 105.35),
+                                          (35.975, 106.8)], width=PIN_WIDTH)
+    polyline(board, gnd, [(38.66, 105.15), (38.3, 106.1), (37.625, 106.8)],
+             width=PIN_WIDTH)
+    via(board, gnd, (38.3, 106.1))
+
+    # Feed from pin 6 to R721; gate from pin 4 to Q708 on B.Cu.
+    opto_stubs(board, 'U703', {6: '/GRINDER_GATE_FEED'})
+    track(board, '/GRINDER_GATE_FEED', (OPTO_MAINS_STUB_END, 100.72), (57.1, 99.9),
+          width=PIN_WIDTH)
+    opto_stubs(board, 'U703', {4: '/GRINDER_TRIAC_GATE'}, pcb.B_Cu)
+    polyline(board, '/GRINDER_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 105.8),
+                                            (56.5, 106.0), (56.5, 111.85),
+                                            (69.14, 111.85), (69.14, 110.3)],
+             pcb.B_Cu, width=PIN_WIDTH)
+
+    # Switched phase into the fuse, fused phase round J115's east side to
+    # the bridge, neutral from JP19's tab 3 to the other AC pin.
+    polyline(board, '/GRINDER_AC_SWITCHED', [(64.06, 110.4), (64.06, 112.8),
+                                             (63.75, 113.1)], width=1.0)
+    polyline(board, '/GRINDER_AC_FUSED', [(69.25, 113.8), (71.0, 115.55),
+                                          (71.0, 124.3), (61.85, 124.3),
+                                          (61.85, 129.7)], width=0.8)
+    polyline(board, '/MAINS_N', [(79.25, 126.55), (78.0, 127.8), (66.9, 127.8),
+                                 (65.7, 129.0), (65.7, 130.8)], width=0.8)
+
+    # Bridge to JP8: + on F.Cu west of the fused phase, - on B.Cu.
+    polyline(board, '/GRINDER_DC_PLUS', [(58.0, 130.8), (58.0, 123.0),
+                                         (59.04, 121.96), (59.04, 120.8)],
+             width=0.8)
+    polyline(board, '/GRINDER_DC_MINUS', [(69.55, 130.8), (69.55, 124.0),
+                                          (66.96, 121.41), (66.96, 120.8)],
+             pcb.B_Cu, width=0.8)
+
+
+def route_grinder_enable(board):
+    """U604's second gate: raw order, reset, pull-down and the gated output.
+
+    Pin 5 takes the raw order and drops to the R717 pull-down; pin 6 takes
+    reset through the gap under the package. The output, pin 3, faces west:
+    it goes down to B.Cu beside the pin, runs south west of the ground vias
+    and of the heater gate's B.Cu leg, surfaces next to R401 and runs east
+    above the NTC row to R718. PB12, the MCU side of the raw order, waits
+    with the other STM32 signals, as PB10 does.
+    """
+    gnd = '/GND_UI'
+    raw, gated = '/GRINDER_EN_RAW', '/GRINDER_EN_INTERLOCK'
+    polyline(board, raw, [(34.2, 86.975), (34.7, 87.475), (35.0, 87.775),
+                          (35.0, 88.475)], width=PIN_WIDTH)
+    polyline(board, '/STM_NRST', [(32.0, 85.675), (32.6, 86.325), (34.2, 86.325)],
+             width=PIN_WIDTH)
+    polyline(board, gnd, [(35.0, 90.125), (34.3, 90.4), (34.0, 90.4)],
+             width=PIN_WIDTH)
+    via(board, gnd, (34.0, 90.4))
+
+    track(board, gated, (30.8, 86.33), (29.55, 86.33), width=PIN_WIDTH)
+    via(board, gated, (29.55, 86.33))
+    polyline(board, gated, [(29.55, 86.33), (27.4, 86.33), (27.4, 98.0),
+                            (28.5, 99.1), (28.5, 102.2)], pcb.B_Cu,
+             width=PIN_WIDTH)
+    via(board, gated, (28.5, 102.2))
+    polyline(board, gated, [(28.5, 102.2), (29.3, 103.0), (36.6, 103.0),
+                            (36.6, 103.075)], width=PIN_WIDTH)
 
 
 def route_debug_header(board):
@@ -1427,6 +1539,8 @@ def main():
     route_heater_stage(board)
     route_pump_stage(board)
     route_pump_enable(board)
+    route_grinder_stage(board)
+    route_grinder_enable(board)
     route_debug_header(board)
     route_supervisor_orders(board)
     selv_ground_plane(board)
@@ -1455,13 +1569,14 @@ def main():
                           'heater enable: U603 second gate, R711 pull-down and R707',
                           'pump stage: optocoupler, triac, gate, LED loop and JP24',
                           'pump enable: PB11, U604 first gate, R713 pull-down and R714',
+                          'grinder stage: optocoupler, triac, fuse, bridge, LED loop and JP8',
+                          'grinder enable: U604 second gate, R717 pull-down and R718',
                           'SWD header: SWDIO, SWCLK and SWO to J102',
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['grinder stage',
-                             '3V3 trunk and remaining decoupling', 'logic', 'sensors',
+        'remaining_blocks': ['3V3 trunk and remaining decoupling', 'logic', 'sensors',
                              '24 V actuators', 'final domain copper fills'],
     }
     REPORT.write_text(json.dumps(result, indent=2) + '\n')

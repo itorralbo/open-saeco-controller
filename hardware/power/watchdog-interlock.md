@@ -33,9 +33,9 @@ GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las carga
 
 - El interlock cubre el motor del grupo y la válvula. El calentador pasa por la
   segunda puerta de U603, la bomba por la primera de U604 y el molinillo, desde
-  PB12, por la segunda. U604 está ruteada desde PB11 hasta R714; la segunda
-  puerta está en el esquema pero no en la PCB, y PB10 sigue pendiente hasta
-  U603.
+  PB12, por la segunda. U604 está ruteada desde PB11 hasta R714 y, en la
+  segunda puerta, desde R717 hasta R718. Siguen pendientes PB10 hasta U603 y
+  PB12 hasta U604.
 - Un MOSFET o puente H puede fallar en corto; este circuito no aporta aislamiento
   galvánico ni sustituye fusibles, corte térmico o desconexión de red.
 - Medir el tiempo hasta reset, la secuencia de recuperación y los niveles de

@@ -47,6 +47,7 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
 | Optotriac calentador, bomba y molinillo | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
+| Fusible molino | JDT JFC2410-1200TS | C136382 | T2A, 250 V, 2410; entre Q708 y el puente, decisión del propietario del 2026-09-23 |
 | Puente molino | MDD KBP410 | C840747 | 4 A, 1000 V, 90 A de pico; sobra para el 1 A supuesto y aguanta los 3,4 A de bloqueo unos segundos. Sustituye al GBU8K |
 
 El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
@@ -63,7 +64,8 @@ dos anclajes soldados. Está centrado en x ≈ 72 mm e y ≈ 97 mm de la placa
 original, justo encima de JP8 y AC_LOADS/JP19. El tercer semiconductor, un
 BTA208-800B, está de pie y sin disipador junto a un relé beige, en el centro-
 izquierda. Rev A seguirá el mismo esquema: calentador y bomba en un disipador
-equivalente y molinillo en TO-220 al aire, tras comprobar su pérdida. La PCB
+equivalente. El molinillo iba a ir al aire, pero desde el 2026-09-23 comparte el
+perfil: no quedaba sitio para otro TO-220 de pie. La PCB
 reserva ya ese hueco de 40 × 33 mm encima de JP8/JP19/JP24; ver
 [colocación](../controller/layout.md). Para bomba y molinillo se calculará la pérdida con corriente medida.
 

@@ -1,7 +1,11 @@
 {
-  "status": "synchronized_preserving_existing_placement_not_fabricable",
+  "status": "new_footprints_staged_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
+    "BR701": {
+      "footprint": "Diode_THT:Diode_Bridge_Vishay_KBPM",
+      "numbered_pads": 4
+    },
     "C101": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
@@ -254,6 +258,10 @@
       "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
       "numbered_pads": 2
     },
+    "F703": {
+      "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
+      "numbered_pads": 2
+    },
     "J101": {
       "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
@@ -376,6 +384,14 @@
     },
     "Q706": {
       "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
+    },
+    "Q707": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "numbered_pads": 3
+    },
+    "Q708": {
+      "footprint": "Package_TO_SOT_THT:TO-220-3_Vertical",
       "numbered_pads": 3
     },
     "R101": {
@@ -642,6 +658,26 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R717": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R718": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R719": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R720": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R721": {
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -709,11 +745,26 @@
     "U702": {
       "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "numbered_pads": 6
+    },
+    "U703": {
+      "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
+      "numbered_pads": 6
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [],
-  "tracks": 913,
+  "newly_staged_footprints": [
+    "BR701",
+    "F703",
+    "Q707",
+    "Q708",
+    "R717",
+    "R718",
+    "R719",
+    "R720",
+    "R721",
+    "U703"
+  ],
+  "tracks": 1013,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

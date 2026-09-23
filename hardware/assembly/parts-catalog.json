@@ -859,6 +859,22 @@
       "selection": "candidate_pending_grinder_current",
       "selection_note": "Sized on an assumed 1 A running current, to be measured on the first prototype. 4 A covers the 3.4 A RMS a stalled 68 ohm winding would draw at 230 V for the seconds the firmware takes to stop it. Replaces the earlier GBU8K placeholder, which is larger than a 1 A load needs. The KiCad KBPM footprint has a 3.85 mm pitch, inside the datasheet's 3.56-4.06 mm."
     },
+    "FUSE:JFC2410-1200TS": {
+      "manufacturer": "Shenzhen JDT Fuse",
+      "mpn": "JFC2410-1200TS",
+      "lcsc": "C136382",
+      "specification": "2 A time-lag surface-mount fuse, 2410 ceramic tube, 250 V, 50 A at 250 V breaking; grinder branch F703",
+      "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 18992,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-23",
+      "stock_evidence": "JLCPCB parts search API, read-only; ratings, pre-arcing times and pad layout from the JDT JFC2410TS datasheet (rev. 01/17/22)",
+      "url": "https://jlcpcb.com/partdetail/C136382",
+      "selection": "candidate_not_released",
+      "selection_note": "Owner's decision on 2026-09-23: a T2A fuse for the grinder. Time-lag: at 200 % it opens within 60 s and at 1000 % not before 10 ms, so it rides through the 3.4 A start and clears a short, but a 3.4 A stall (170 %) takes longer than the triac should carry it; the stall is still the firmware's to cut. Breaking capacity is 50 A at 250 V, low for a mains branch; F701 upstream remains the main protection."
+    },
     "AP63200WU-7": {
       "manufacturer": "Diodes Incorporated",
       "mpn": "AP63200WU-7",

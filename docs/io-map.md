@@ -9,7 +9,7 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 |---|---|---|---|
 | Bomba | JP24 | 37, 59 | ULKA EP5/S GW, 220–230 V AC, 48 W; JST VH 2 vías candidato; BTA24 + MOC3083 (Q704/U702), orden PB11 vía U604; dV/dt por medir |
 | Electroválvula de vapor | JP3 | 37, 59 | OLAB 6000BH/B0DN 24 V DC/10 W; JP3.1 cuadrado=+24 V, JP3.2=retorno; 56,7 Ω y 0,073 V en modo diodo en ambos sentidos; [low-side experimental incorporado](../hardware/power/valve-driver.md) |
-| Molino | JP8 | 37, 59 | Motor V3.2, 68 Ω medidos; servicio a 320 V DC; JST VH 3 vías candidato; BTA24 + MOC3083 + KBP410 (Q708/U703/BR701), orden PB12 vía U604; 1 A de marcha supuesto, por medir |
+| Molino | JP8 | 37, 59 | Motor V3.2, 68 Ω medidos; servicio a 320 V DC; JST VH 3 vías candidato; BTA24 + MOC3083 + T2A + KBP410 (Q708/U703/F703/BR701), orden PB12 vía U604; 1 A de marcha supuesto, por medir |
 | Temperatura | JP13 | 37, 59 | NTC `996530073428`; tabla disponible, R25≈49,9 kΩ/B≈4037 K derivados |
 | Caudalímetro | JP5 | 37, 59 | Digmesa 932-9521-B, 3,8–20 V, NPN OC, ≈1925 pulsos/l; vista cenital: 1 señal, 2 GND, 3 VCC |
 | Presencia/posición grupo | JP16 | 35–36, 59 | 8 posiciones: motor, puente y dos micros; orden físico y lógica exacta TBD |

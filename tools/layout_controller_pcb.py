@@ -120,8 +120,16 @@ def heatsink_reservation(board):
 # a named area where mains-to-mains drops to the pitch the package imposes.
 # The areas cover only the mains side of the optocoupler: the gap between its
 # two rows is the isolation barrier and keeps the full 8 mm.
-DEVICE_PITCH_AREAS = ((53.9, 96.2, 57.4, 103.8), (55.3, 105.6, 78.0, 113.5),
-                      (53.9, 112.2, 57.4, 119.8), (85.2, 108.2, 92.8, 110.8))
+DEVICE_PITCH_AREAS = (
+    # Mains side of the three optocouplers: heater, grinder, pump.
+    (53.9, 86.74, 57.4, 94.34), (53.9, 99.46, 57.4, 107.06),
+    (53.9, 112.2, 57.4, 119.8),
+    # Gate resistors in the lane, where the feed meets the switched phase.
+    (56.0, 84.9, 61.95, 88.3), (56.0, 97.6, 61.95, 101.2),
+    (55.3, 110.8, 61.2, 114.5),
+    # Triac rows: grinder, heater, pump.
+    (62.5, 108.2, 70.7, 110.8), (73.7, 108.2, 81.9, 110.8),
+    (85.2, 108.2, 92.8, 110.8))
 DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
 
 
@@ -148,7 +156,8 @@ def mains_device_pitch_areas(board):
 # One area per barrier optocoupler, covering both pad rows and the short stubs
 # that enter them. Inside it the rules accept the 6.02 mm air gap between the
 # rows; the slot in the footprint keeps the surface path over 8 mm.
-OPTO_SLOT_AREAS = ((45.7, 96.0, 56.6, 104.0), (45.7, 112.0, 56.6, 120.0))
+OPTO_SLOT_AREAS = ((45.7, 86.54, 56.6, 94.54), (45.7, 99.26, 56.6, 107.26),
+                   (45.7, 112.0, 56.6, 120.0))
 OPTO_SLOT_ZONE_NAME = 'optocoupler barrier slot'
 
 
@@ -213,26 +222,39 @@ PLACE = {
     # mechanical-source.json had been reserving for them.
     'J116': (80.5, 124.05, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),
 
-    # Heater switching stage. U701 straddles the barrier centred on x = 51:
-    # a 300 mil DIP whose footprint mills a 2 mm slot between the rows. Q703
-    # stands against the south face of the heatsink, and R710 lives in the lane
-    # beside it because it carries mains and cannot cross to the SELV side.
-    'U701': (47.19, 97.46, 0), 'Q703': (68.46, 109.5, 0),
-    'R710': (58, 108.5, 180),
+    # Three barrier optocouplers share the vertical barrier on x = 51, each a
+    # 300 mil DIP over the slot its footprint mills between the rows. From
+    # K701 down to J106 there is room for three courtyards and 0.7 mm to
+    # spare: heater at the top, grinder in the middle, pump at the bottom.
+    # Their triacs share the heatsink's south face, grinder, heater and pump
+    # from west to east, so that no gate run has to cross another. Each
+    # gate resistor sits in the lane with one pad on the switched phase.
+    'U701': (47.19, 88.0, 0), 'Q703': (75.26, 109.5, 0),
+    'R710': (58.86, 86.3, 180),
     'R707': (31, 99, 0), 'R708': (31, 96, 180), 'Q705': (38, 99.5, 0),
     'R709': (36, 96, 0), 'R711': (28, 66, 180),
 
-    # Pump stage, the heater's twin. U702 crosses the barrier one step south
-    # of U701, low enough that its courtyard clears R710 and high enough to
-    # clear J115. Q704 takes the east half of the heatsink's south
-    # face, and R712 sits in the lane under R710, both fed from the same
-    # switched phase. The LED driver fills the strip between U702 and MH2.
-    # U604, the pump's reset gate, sits under Q701 like U603's twin, where
-    # reset and 3.3 V are at hand; only its output runs south to R714.
+    # Pump stage, the heater's twin, at the bottom of the stack. Q704 takes
+    # the east end of the heatsink's south face, and R712 sits in the lane
+    # under the grinder's optocoupler. The LED driver fills the strip between
+    # U702 and MH2. U604, the pump's reset gate, sits under Q701 like U603's
+    # twin, where reset and 3.3 V are at hand; only its output runs south.
     'U702': (47.19, 113.46, 0), 'Q704': (86.46, 109.5, 0),
     'R712': (58.3, 113.0, 180),
     'R716': (45.3, 110.6, 270), 'Q706': (43.8, 116.0, 0),
     'R714': (43.3, 108.2, 0), 'R715': (43.3, 106.6, 180),
+
+    # Grinder stage. U703 in the middle of the stack, Q708 on the west end
+    # of the heatsink's south face, F703 under it and the bridge between
+    # J115 and the bottom edge, where both DC pins reach JP8 directly. The
+    # LED driver takes the flow filter's old place beside U703; R717 holds
+    # the raw order low next to U604, whose second gate the grinder uses.
+    'U703': (47.19, 100.72, 0), 'Q708': (64.06, 109.5, 0),
+    'R721': (58.86, 99.0, 180), 'F703': (66.5, 113.8, 0),
+    'BR701': (58.0, 130.8, 0),
+    'Q707': (39.6, 104.2, 0), 'R718': (36.6, 103.9, 270),
+    'R719': (36.8, 106.8, 0), 'R720': (42.6, 101.6, 0),
+    'R717': (35.0, 89.3, 270),
     'U604': (32.5, 86.0, 0), 'C604': (36.9, 86.2, 270), 'R713': (28.25, 85.9, 270),
     # Top-entry USB-C, pulled 5 mm in from the edge so the B.Cu link between
     # its two VBUS columns can pass north of it.
@@ -261,7 +283,7 @@ PLACE = {
     # Phase-cut relay straddles the vertical barrier: coil pins in SELV,
     # contacts in the mains domain. Drive and flyback diode sit by the coil.
     'U603': (32, 73, 180), 'C603': (31.5, 75.6, 0), 'Q701': (32, 78.5, 0),
-    'R801': (26, 71, 180), 'R802': (26, 75, 0), 'D701': (43.5, 88, 90),
+    'R801': (26, 71, 180), 'R802': (26, 75, 0), 'D701': (40.6, 87.5, 90),
     'K701': (52, 77, 180),
 
     # STM32 reset, analog supply and local decoupling. Each capacitor sits at
@@ -308,9 +330,10 @@ PLACE = {
 
     # Passive sensor interfaces follow the original harness connector zones.
     'R401': (28, 105, 90), 'R402': (31, 105, 90), 'C401': (34, 105, 90),
-    # R404 turned so the raw flow net lands on the same row as R403's, which
-    # removes the crossing the filter link used to make.
-    'R403': (38, 104, 90), 'R404': (41, 104, 270), 'C402': (44, 104, 90),
+    # The flow filter moved down into the column west of MH2 to leave its
+    # place beside U703 to the grinder's LED driver. The raw pads of R403 and
+    # R404 face east, towards the lane the raw net climbs from JP5.
+    'R403': (31.9, 109.2, 0), 'R404': (31.9, 111.0, 180), 'C402': (31.9, 112.8, 0),
     # R405 turned so its 3.3 V pad faces north: the door harness net owns the
     # y = 71.8 mm lane west of it, so the pull-up cannot be fed from below.
     'R405': (15, 71, 270), 'R406': (18, 71, 270), 'C403': (21, 71, 90),

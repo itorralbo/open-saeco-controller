@@ -168,7 +168,9 @@ hiciera falta, el snubber va entre A1 y A2 de Q704.
 
 ## Etapa del molinillo
 
-**Especificada el 2026-09-23 en el esquema; sin colocar en la PCB.**
+**Especificada el 2026-09-23; colocada y ruteada el mismo día**, con Q708 en el
+disipador y un fusible propio; detalle en
+[layout.md](../controller/layout.md#etapa-del-molinillo-jp8).
 
 La corriente de marcha del motor V3.2 no se ha medido. Por decisión del
 propietario, la Rev A supone **1 A de corriente máxima de marcha** y la medirá
@@ -181,44 +183,50 @@ resistencia, 230/68 = 3,4 A eficaces (4,8 A de pico).
 Topología, la de la original con dos cambios de pieza:
 
 1. Q708, un BTA24-800BW, corta la fase ya armada por K701 (`LOAD_L_ENABLED`).
-2. BR701, un puente KBP410, rectifica después del triac. JP8 recibe polaridad
+   Va en el mismo perfil que calentador y bomba, en el extremo oeste.
+2. F703, un fusible T2A de acción retardada (JDT JFC2410-1200TS, 2410, 250 V),
+   entre el triac y el puente. Es decisión del propietario.
+3. BR701, un puente KBP410, rectifica después del fusible. JP8 recibe polaridad
    fija (blanco = +, negro = −) y queda sin tensión en cuanto el triac se abre.
    No hay condensador de bus, así que no hace falta resistencia de descarga.
-3. U703, el mismo MOC3083 de cruce por cero que calentador y bomba. El
+4. U703, el mismo MOC3083 de cruce por cero que calentador y bomba. El
    molinillo solo se enciende y se apaga, así que el cruce por cero no cuesta
    nada y además arranca el motor con tensión mínima. El VOT8125AG de disparo
    aleatorio sigue sin existencias.
-4. R721, la misma ERJ-P08 de 390 Ω en la puerta, y el mismo driver de LED desde
+5. R721, la misma ERJ-P08 de 390 Ω en la puerta, y el mismo driver de LED desde
    12 V: Q707 (SI2308A), R718 33 Ω, R719 100 kΩ y R720 1 kΩ.
-5. PB12 da la orden `GRINDER_EN_RAW` a la segunda puerta de U604, que la anula
+6. PB12 da la orden `GRINDER_EN_RAW` a la segunda puerta de U604, que la anula
    mientras `STM_NRST` esté bajo. R717 la mantiene a cero en el arranque.
 
 | Magnitud | Valor |
 |---|---:|
 | Corriente de marcha supuesta | 1 A, pendiente de medir |
 | Arranque y bloqueo | 3,4 A eficaces, limitados por los 68 Ω |
-| Disipación del triac a 1 A | ≈ 0,8 W; al aire, ≈ +50 K con 60 °C/W |
+| Disipación del triac a 1 A | ≈ 0,8 W, en el perfil compartido |
 | Disipación del puente a 1 A | ≈ 1,7 W; +95 K con los 55 °C/W del KBP |
-| Disipación del triac en bloqueo | ≈ 2,8 W; aguanta segundos, no minutos |
+| Disipación del triac en bloqueo | ≈ 2,8 W, que el perfil absorbe |
+| F703 a 3,4 A (170 %) | abre en más de 60 s; a 200 % abre en menos de 60 s |
 | Corriente del LED | 10,5 mA desde 12 V con 1 kΩ (R720) |
 | Pico por la puerta con 390 Ω (R721) | 0,83 A en el peor caso |
 
-Con 1 A, el triac puede ir al aire, sin disipador, como el BTA208 de la original,
-y el disipador compartido se queda para calentador y bomba. El puente aguanta
+Con 1 A el triac podría ir al aire, como el BTA208 de la original, pero en la
+zona de red no quedaba sitio para un TO-220 de pie y su puente. En el perfil
+cabe con 0,6 mm entre courtyards y, a cambio, aguanta un bloqueo sin
+calentarse. El puente aguanta
 +95 K solo porque el molido es intermitente, de 3 a 10 s por taza según el
 manual. Si la medida supera 1,5 A, o si el ensayo térmico GR-06 da más de 100 °C
 en la cápsula del puente, habrá que pasar a un GBU con más superficie o a cuatro
 diodos discretos, como la original.
 
-El bloqueo lo tiene que cortar el firmware: 3,4 A no funden F701 (T10A) y el
-triac solo lo aguanta unos segundos. Hasta tener medida de corriente, la única
-protección es un tiempo máximo de molido y el watchdog. Dos decisiones quedan
-abiertas para el propietario:
+El bloqueo lo sigue cortando el firmware. Con 3,4 A, F701 (T10A) no funde. F703
+aguanta el arranque sin fundir, pero con un bloqueo del 170 % tarda más de un
+minuto. Protege ante un puente o un bobinado en corto sin llevarse por delante
+la máquina entera, pero no sustituye al tiempo máximo de molido ni al
+watchdog. Su poder de corte es de 50 A a 250 V, bajo para una rama de red:
+F701 sigue siendo la protección principal. Si la medida confirma 1 A o menos,
+un T1,25A de la misma serie cortaría antes un bloqueo. Queda abierta una
+decisión para el propietario:
 
-- **Fusible propio del molinillo.** Un T2A en la rama protegería el puente y el
-  triac en bloqueo sin depender del firmware. La zona de red no tiene sitio libre
-  para otro portafusibles de 5 × 20, así que habría que usar uno SMD o de
-  radial pequeño.
 - **Medida de corriente.** El manual la usa para detectar falta de grano
   (corriente baja) y muelas bloqueadas (alta); ver
   [components.md](../../docs/HD8911/components.md#grupo-de-infusión-y-autodosis).
