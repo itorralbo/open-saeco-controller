@@ -106,7 +106,10 @@ un opto de 600 o 400 V.
 2. Corriente del motor de grupo en movimiento y bloqueo, solo y con válvula.
 3. Temperatura ambiente dentro de la máquina y temperatura de triac/disipador.
 4. Continuidad de la placa original desde L/N a F1/F2, relé/triacs y cargas.
-5. Patrón de patas de los Faston JP1/JP9. JP19 queda cerrado: el propietario lo
+5. Patrón de patas de los Faston JP1/JP9: cerrado el 2026-09-23 con la foto del
+   propietario. Son lengüetas verticales de dos patas en fila, casadas con el
+   TE 63824-1 (LCSC C575074): dos taladros de 1,40 mm a 5,08 mm, según el plano
+   de TE. Se comprueba con la impresión 1:1. JP19 queda cerrado: el propietario lo
    identificó el 2026-09-22 como TE 1971845-4 (LCSC C2149727), un RAST 5 de
    cuatro lengüetas 6,3 × 0,8 mm a 5 mm, 16 A 250 V, y su huella sigue el plano
    de TE.

@@ -102,7 +102,12 @@ aplica su contorno sin necesitar KiCad y `tools/layout_front_panel_pcb.py` coloc
 rutea el frontal con Freerouting (el script es la fuente del layout). También se puede usar
 «Actualizar PCB desde esquema» en KiCad conservando las posiciones revisadas.
 `tools/layout_controller_pcb.py` es la fuente reproducible de la colocación de la
-principal; el sincronizador ya no mueve huellas existentes.
+principal; el sincronizador ya no mueve huellas existentes. Tras el ruteo,
+`tools/silkscreen_controller_pcb.py` dibuja la serigrafía (logo, título y
+nombre de cada conector) y `tools/export_controller_print.py` saca la copia
+1:1 en PDF para comprobar en papel. El logo se vectoriza una vez con
+`tools/trace_silkscreen_logo.py`, que necesita Pillow, NumPy, scikit-image y
+Shapely fuera del Python de KiCad.
 
 Desde la raíz del repositorio:
 
@@ -113,8 +118,11 @@ python3 tools/validate_kicad.py
 python3 tools/apply_front_panel_mechanics.py
 <python de KiCad> tools/sync_controller_pcb.py
 <python de KiCad> tools/layout_controller_pcb.py
+<python de KiCad> tools/configure_controller_stackup.py
 python3 tools/configure_controller_rules.py
 <python de KiCad> tools/route_controller_pcb.py
+<python de KiCad> tools/silkscreen_controller_pcb.py
+<python de KiCad> tools/export_controller_print.py
 <python de KiCad> tools/sync_front_panel_pcb.py
 <python de KiCad> tools/layout_front_panel_pcb.py
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb

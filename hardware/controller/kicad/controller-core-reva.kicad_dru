@@ -4,9 +4,6 @@
   (condition "A.NetClass == 'Mains' && B.NetClass == 'Mains' && A.Type != 'Pad' && B.Type != 'Pad'")
   (constraint clearance (min 2.5mm)))
 
-(rule "mains_device_pitch"
-  (condition "A.insideArea('mains device pitch') && B.insideArea('mains device pitch')")
-  (constraint clearance (min 0.6mm)))
 
 (rule "mains_to_selv_clearance"
   (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'")
@@ -16,6 +13,55 @@
   (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'")
   (constraint creepage (min 8.0mm)))
 
-(rule "optocoupler_barrier_slot"
-  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*' && A.enclosedByArea('optocoupler barrier slot') && B.enclosedByArea('optocoupler barrier slot')")
+
+(rule "mains_device_pitch_U701"
+  (condition "A.insideArea('mains device pitch U701') && B.insideArea('mains device pitch U701')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_U703"
+  (condition "A.insideArea('mains device pitch U703') && B.insideArea('mains device pitch U703')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_U702"
+  (condition "A.insideArea('mains device pitch U702') && B.insideArea('mains device pitch U702')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_R710"
+  (condition "A.insideArea('mains device pitch R710') && B.insideArea('mains device pitch R710')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_R721"
+  (condition "A.insideArea('mains device pitch R721') && B.insideArea('mains device pitch R721')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_R712"
+  (condition "A.insideArea('mains device pitch R712') && B.insideArea('mains device pitch R712')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_Q708"
+  (condition "A.insideArea('mains device pitch Q708') && B.insideArea('mains device pitch Q708')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_Q703"
+  (condition "A.insideArea('mains device pitch Q703') && B.insideArea('mains device pitch Q703')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "mains_device_pitch_Q704"
+  (condition "A.insideArea('mains device pitch Q704') && B.insideArea('mains device pitch Q704')")
+  (constraint clearance (min 0.6mm)))
+
+(rule "ground_fill_spokes"
+  (condition "A.Type == 'Pad' && A.NetName == '/GND_UI'")
+  (constraint min_resolved_spokes 1))
+
+(rule "optocoupler_barrier_slot_U701"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*' && A.enclosedByArea('optocoupler barrier slot U701') && B.enclosedByArea('optocoupler barrier slot U701')")
+  (constraint clearance (min 6.0mm)))
+
+(rule "optocoupler_barrier_slot_U703"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*' && A.enclosedByArea('optocoupler barrier slot U703') && B.enclosedByArea('optocoupler barrier slot U703')")
+  (constraint clearance (min 6.0mm)))
+
+(rule "optocoupler_barrier_slot_U702"
+  (condition "A.NetClass == 'Mains' && B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*' && A.enclosedByArea('optocoupler barrier slot U702') && B.enclosedByArea('optocoupler barrier slot U702')")
   (constraint clearance (min 6.0mm)))

@@ -448,6 +448,29 @@ de cargas siguen pendientes en el esquema principal.
   U604) y las tres diferencias de paridad de MH1–MH3. No libera fabricación ni
   conexión a red.
 
+## Rellenos, serigrafía, optos, USB y FASTON, 2026-09-23
+
+- Rellenos: masa `GND_UI` en F.Cu y B.Cu en el lado SELV, cosida al plano de
+  In1.Cu con 156 vías de 0,6 mm; sin relleno en el lado de red (decisión
+  delegada por el propietario).
+- Serigrafía: logo del propietario, título, nombre de los 21 conectores con su
+  JP original, polaridad de JP8 y JP17 y aviso de red. Copia 1:1 en
+  `hardware/controller/preview/controller-top-1to1.pdf`, con regla de 100 mm.
+- Optos: las áreas de paso y de ranura se nombran por pieza y cada una tiene su
+  regla; la regla compartida dejaba pasar pares de piezas distintas. Se corrigió
+  el único caso real (bajada de B.Cu a Q708). Ranura: ≈ 9 mm de camino
+  superficial, 6,02 mm de aire entre filas.
+- USB: calculadora de JLCPCB para JLC04161H-7628: 90 Ω diferenciales con
+  0,29 / 0,20 mm (0,20 / 0,20 daba ≈ 104 Ω). Tramo U203–R221/R222 acoplado así;
+  el ESP32-S3 es Full Speed y el par mide unos 30 mm.
+- JP1/JP9: la foto del propietario muestra lengüetas verticales de dos patas;
+  se toma el TE 63824-1 (C575074, 11 205 en stock), con dos taladros de 1,40 mm a
+  5,08 mm según el plano de TE. Pendiente de comprobar en papel 1:1.
+- KiCad 10.0.6: ERC 0; netlist nativa 187 componentes / 612 pines coincidente.
+  DRC con todas las severidades: 0 infracciones, 0 conexiones abiertas y las
+  tres diferencias de paridad de MH1–MH3. No libera fabricación ni conexión a
+  red.
+
 ## Molinillo a 3 A y fase de cargas duplicada, 2026-09-23
 
 - Decisión del propietario: la etapa del molinillo se dimensiona a 3 A en vez

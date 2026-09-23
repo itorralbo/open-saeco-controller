@@ -23,7 +23,8 @@ estándar de JLCPCB, JLC04161H-7628, según su
 
 `tools/configure_controller_stackup.py` escribe este apilado en la placa y
 `layout_controller_pcb.py` fija las cuatro capas de cobre; las áreas de regla
-(barrera, disipador, paso de red y ranuras de optos) cubren las cuatro.
+(barrera, paso de red y ranuras de optos) cubren las cuatro, y la del pie del
+disipador todas menos B.Cu.
 
 - Ninguna capa interna lleva cobre en el dominio de red: los dos planos acaban
   en el borde SELV de la banda de barrera y el DRC los mantiene a 8 mm de todo
@@ -38,10 +39,19 @@ estándar de JLCPCB, JLC04161H-7628, según su
 El cobre exterior es de 1 oz. Las pistas de red que llevan la corriente de
 carga se duplican en las dos caras con vías de cosido en lugar de pasar a 2 oz,
 que sale más caro en JLCPCB. La pareja USB va en F.Cu sobre el plano de masa de
-In1.Cu, a 0,21 mm; tiene por ahora 0,20 mm de ancho y 0,20 mm de separación
-como regla de routing y no se declara todavía como 90 Ω controlados. Hay que
-recalcularla con este apilado y el calculador del fabricante antes de pedir la
-placa.
+In1.Cu, a 0,21 mm. Con la calculadora de JLCPCB para este apilado
+(2026-09-23), 90 Ω diferenciales piden 0,29 mm de ancho y 0,20 mm de
+separación; es la regla de la clase USB y el ancho del tramo acoplado. No se
+pide impedancia controlada: el USB es Full Speed y el par es corto (ver
+[service-usb.md](../../docs/service-usb.md)).
+
+Rellenos exteriores (2026-09-23): en el lado SELV, F.Cu y B.Cu llevan masa
+`GND_UI`, cosida al plano de In1.Cu con vías de 0,6 mm en una rejilla de 5 mm
+donde caben. Ayudan a disipar bajo los reguladores y el puente H, apantallan y
+equilibran el cobre. Los pads SMD se unen macizos y los de agujero pasante con
+alivios. Separación de 0,5 mm alrededor, para no bajar la impedancia del par
+USB. En el lado de red no hay relleno: no queda cobre flotante en el dominio
+primario, y las reglas de 8 mm mantienen la masa lejos de todo cobre `Mains`.
 
 ## Reglas de KiCad
 
@@ -51,7 +61,7 @@ placa.
 |---|---:|---:|---:|---|
 | Mains | 2,50 mm | 1,20 mm* | 1,60 / 0,80 mm | L, N, fases de carga y bus del molinillo |
 | Default | 0,20 mm | 0,20 mm | 0,60 / 0,30 mm | lógica y analógicas |
-| USB | 0,20 mm | 0,20 mm | 0,60 / 0,30 mm | D+/D− de puerto, protección y dispositivo |
+| USB | 0,20 mm (par 0,29 / 0,20) | 0,20 mm | 0,60 / 0,30 mm | D+/D− de puerto, protección y dispositivo |
 | Power | 0,50 mm | 0,20 mm | 0,80 / 0,40 mm | 3,3 V, 12 V y VBUS |
 | Switching | 0,60 mm | 0,25 mm | 0,80 / 0,40 mm | nodos del buck y charge pump |
 | Actuator | 1,00 mm | 0,25 mm | 1,00 / 0,50 mm | 24 V, motor y electroválvula |
@@ -73,22 +83,22 @@ cotización real depende de cantidad, acabado, montaje, promociones y envío. El
 sobrecoste se acepta a cambio de planos continuos y de un ruteo cerrado sin
 trocear la masa.
 
-JP8, JP24 y JP17 ya tienen huellas JST VH candidatas. Las áreas temporales de
-JP19, JP1 y JP9 bloquean todas las capas hasta identificar sus huellas. Después se
-sustituirán por conectores reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
-relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
+JP8, JP24 y JP17 ya tienen huellas JST VH candidatas; JP19 es el TE 1971845-4 y
+JP1/JP9 son TE 63824-1. La zona de red y bus rectificado no comparte relleno,
+vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
 comprueba en el DRC y se revisará antes de fabricar.
 
 ## Antes de generar Gerbers
 
-- Pedir JLC04161H-7628 (1,6 mm, 1 oz exterior y 0,5 oz interior) y recalcular
-  la geometría USB con ese apilado.
+- Pedir JLC04161H-7628 (1,6 mm, 1 oz exterior y 0,5 oz interior). La
+  geometría USB ya está calculada con ese apilado.
 - Validar con JLCPCB material, acabado, ranuras y reglas reales de separación de
   la zona de red, también entre capas internas y externas.
 - Revisar capacidad de corriente y temperatura de las pistas de 24 V con cobre,
   longitud, vías y corriente medidas, incluida la corriente de bloqueo del motor.
-- Decidir los rellenos de F.Cu y B.Cu (masa cosida al plano de In1.Cu o sin
-  relleno) y revisar las dos ranuras de In2.Cu bajo el supervisor.
+- Revisar las dos ranuras de In2.Cu bajo el supervisor (los rellenos
+  exteriores ya están decididos).
 - Revisar en 3D alturas (≤ 35 mm, cota comprobada con el disipador original),
   orientación de conectores y acceso al USB.
-- Ejecutar ERC, DRC, paridad esquema/PCB y una prueba mecánica 1:1.
+- Ejecutar ERC, DRC, paridad esquema/PCB y la prueba mecánica 1:1 con
+  `preview/controller-top-1to1.pdf` impreso al 100 %.

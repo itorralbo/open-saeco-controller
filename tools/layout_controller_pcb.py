@@ -126,24 +126,28 @@ def heatsink_reservation(board):
 # a named area where mains-to-mains drops to the pitch the package imposes.
 # The areas cover only the mains side of the optocoupler: the gap between its
 # two rows is the isolation barrier and keeps the full 8 mm.
-DEVICE_PITCH_AREAS = (
+# Each area is named after its device ('mains device pitch U701', ...) and the
+# rules only relax a pair of items inside the same area. With one shared name
+# a track touching a resistor's area and a pad in a triac's area also dropped
+# to 0.6 mm; configure_controller_rules.py writes one rule per name.
+DEVICE_PITCH_AREAS = {
     # Mains side of the three optocouplers: heater, grinder, pump.
-    (53.9, 86.74, 57.4, 94.34), (53.9, 99.46, 57.4, 107.06),
-    (53.9, 112.2, 57.4, 119.8),
+    'U701': (53.9, 86.74, 57.4, 94.34), 'U703': (53.9, 99.46, 57.4, 107.06),
+    'U702': (53.9, 112.2, 57.4, 119.8),
     # Gate resistors in the lane, where the feed meets the switched phase.
-    (56.0, 84.9, 61.95, 88.3), (56.0, 97.6, 61.95, 101.2),
-    (55.3, 110.8, 61.2, 114.5),
+    'R710': (56.0, 84.9, 61.95, 88.3), 'R721': (56.0, 97.6, 61.95, 101.2),
+    'R712': (55.3, 110.8, 61.2, 114.5),
     # Triac rows: grinder, heater, pump.
-    (62.5, 108.2, 70.7, 110.8), (73.7, 108.2, 81.9, 110.8),
-    (85.2, 108.2, 92.8, 110.8))
+    'Q708': (62.5, 108.2, 70.7, 110.8), 'Q703': (73.7, 108.2, 81.9, 110.8),
+    'Q704': (85.2, 108.2, 92.8, 110.8)}
 DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
 
 
 def mains_device_pitch_areas(board):
     for zone in list(board.Zones()):
-        if zone.GetZoneName() == DEVICE_PITCH_ZONE_NAME:
+        if zone.GetZoneName().startswith(DEVICE_PITCH_ZONE_NAME):
             board.Delete(zone)
-    for x1, y1, x2, y2 in DEVICE_PITCH_AREAS:
+    for ref, (x1, y1, x2, y2) in DEVICE_PITCH_AREAS.items():
         zone = pcb.ZONE(board)
         zone.SetIsRuleArea(True)
         zone.SetLayerSet(pcb.LSET.AllCuMask())
@@ -151,7 +155,7 @@ def mains_device_pitch_areas(board):
                        'SetDoNotAllowZoneFills', 'SetDoNotAllowPads',
                        'SetDoNotAllowFootprints'):
             getattr(zone, setter)(False)
-        zone.SetZoneName(DEVICE_PITCH_ZONE_NAME)
+        zone.SetZoneName(f'{DEVICE_PITCH_ZONE_NAME} {ref}')
         poly = zone.Outline()
         poly.NewOutline()
         for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):
@@ -162,16 +166,17 @@ def mains_device_pitch_areas(board):
 # One area per barrier optocoupler, covering both pad rows and the short stubs
 # that enter them. Inside it the rules accept the 6.02 mm air gap between the
 # rows; the slot in the footprint keeps the surface path over 8 mm.
-OPTO_SLOT_AREAS = ((45.7, 86.54, 56.6, 94.54), (45.7, 99.26, 56.6, 107.26),
-                   (45.7, 112.0, 56.6, 120.0))
+OPTO_SLOT_AREAS = {'U701': (45.7, 86.54, 56.6, 94.54),
+                   'U703': (45.7, 99.26, 56.6, 107.26),
+                   'U702': (45.7, 112.0, 56.6, 120.0)}
 OPTO_SLOT_ZONE_NAME = 'optocoupler barrier slot'
 
 
 def optocoupler_slot_areas(board):
     for zone in list(board.Zones()):
-        if zone.GetZoneName() == OPTO_SLOT_ZONE_NAME:
+        if zone.GetZoneName().startswith(OPTO_SLOT_ZONE_NAME):
             board.Delete(zone)
-    for x1, y1, x2, y2 in OPTO_SLOT_AREAS:
+    for ref, (x1, y1, x2, y2) in OPTO_SLOT_AREAS.items():
         zone = pcb.ZONE(board)
         zone.SetIsRuleArea(True)
         zone.SetLayerSet(pcb.LSET.AllCuMask())
@@ -179,7 +184,7 @@ def optocoupler_slot_areas(board):
                        'SetDoNotAllowZoneFills', 'SetDoNotAllowPads',
                        'SetDoNotAllowFootprints'):
             getattr(zone, setter)(False)
-        zone.SetZoneName(OPTO_SLOT_ZONE_NAME)
+        zone.SetZoneName(f'{OPTO_SLOT_ZONE_NAME} {ref}')
         poly = zone.Outline()
         poly.NewOutline()
         for x, y in ((x1, y1), (x2, y1), (x2, y2), (x1, y2)):

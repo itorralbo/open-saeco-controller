@@ -335,11 +335,11 @@
       "numbered_pads": 3
     },
     "J119": {
-      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "footprint": "OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical",
       "numbered_pads": 1
     },
     "J120": {
-      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
+      "footprint": "OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical",
       "numbered_pads": 1
     },
     "J121": {
@@ -753,7 +753,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 1518,
+  "tracks": 1699,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

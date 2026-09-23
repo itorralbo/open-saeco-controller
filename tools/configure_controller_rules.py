@@ -21,15 +21,16 @@ MAINS_BARRIER_MM = 8.0
 OPTO_SLOT_CLEARANCE_MM = 6.0
 # Unused pins of mains connectors and netless mechanical holes are not SELV.
 SELV = "B.NetClass != 'Mains' && B.NetName != '' && B.NetName != 'unconnected-*'"
+# ground_fill_spokes: ground through-hole pads also meet the GND_UI plane on
+# In1.Cu, so one spoke into an outer ground fill is enough where neighbours
+# block the others. Keep the rule syntax exact: KiCad 10 silently drops every
+# rule after one it cannot parse, and the device-pitch rules sit after it.
 DRU_RULES = f'''(version 1)
 
 (rule "mains_functional_copper"
   (condition "A.NetClass == 'Mains' && B.NetClass == 'Mains' && A.Type != 'Pad' && B.Type != 'Pad'")
   (constraint clearance (min 2.5mm)))
 
-(rule "mains_device_pitch"
-  (condition "A.insideArea('mains device pitch') && B.insideArea('mains device pitch')")
-  (constraint clearance (min 0.6mm)))
 
 (rule "mains_to_selv_clearance"
   (condition "A.NetClass == 'Mains' && {SELV}")
@@ -39,8 +40,29 @@ DRU_RULES = f'''(version 1)
   (condition "A.NetClass == 'Mains' && {SELV}")
   (constraint creepage (min {MAINS_BARRIER_MM}mm)))
 
-(rule "optocoupler_barrier_slot"
-  (condition "A.NetClass == 'Mains' && {SELV} && A.enclosedByArea('optocoupler barrier slot') && B.enclosedByArea('optocoupler barrier slot')")
+'''
+# One rule per device area drawn by layout_controller_pcb.py, so that only
+# two items inside the same device's area are relaxed.
+DEVICE_PITCH_REFS = ('U701', 'U703', 'U702', 'R710', 'R721', 'R712',
+                     'Q708', 'Q703', 'Q704')
+OPTO_SLOT_REFS = ('U701', 'U703', 'U702')
+for _ref in DEVICE_PITCH_REFS:
+    _area = f'mains device pitch {_ref}'
+    DRU_RULES += f'''
+(rule "mains_device_pitch_{_ref}"
+  (condition "A.insideArea('{_area}') && B.insideArea('{_area}')")
+  (constraint clearance (min 0.6mm)))
+'''
+DRU_RULES += '''
+(rule "ground_fill_spokes"
+  (condition "A.Type == 'Pad' && A.NetName == '/GND_UI'")
+  (constraint min_resolved_spokes 1))
+'''
+for _ref in OPTO_SLOT_REFS:
+    _area = f'optocoupler barrier slot {_ref}'
+    DRU_RULES += f'''
+(rule "optocoupler_barrier_slot_{_ref}"
+  (condition "A.NetClass == 'Mains' && {SELV} && A.enclosedByArea('{_area}') && B.enclosedByArea('{_area}')")
   (constraint clearance (min {OPTO_SLOT_CLEARANCE_MM}mm)))
 '''
 
@@ -68,9 +90,11 @@ CLASS_RULES = {
         'via_drill': 0.40, 'diff_pair_width': 0.20, 'diff_pair_gap': 0.25,
         'diff_pair_via_gap': 0.25,
     },
+    # 90 ohm differential on JLC04161H-7628 per the JLCPCB calculator
+    # (2026-09-23): 0.29 mm tracks 0.20 mm apart. Pad stubs stay at 0.20 mm.
     'USB': {
         'clearance': 0.20, 'track_width': 0.20, 'via_diameter': 0.60,
-        'via_drill': 0.30, 'diff_pair_width': 0.20, 'diff_pair_gap': 0.20,
+        'via_drill': 0.30, 'diff_pair_width': 0.29, 'diff_pair_gap': 0.20,
         'diff_pair_via_gap': 0.25,
     },
 }
@@ -138,6 +162,10 @@ def main():
     ]
 
     board_nets = set(re.findall(r'\(net\s+"([^"]+)"\)', BOARD.read_text()))
+    board_zones = set(re.findall(r'\(name\s+"([^"]+)"\)', BOARD.read_text()))
+    areas = ({f'mains device pitch {ref}' for ref in DEVICE_PITCH_REFS} |
+             {f'optocoupler barrier slot {ref}' for ref in OPTO_SLOT_REFS})
+    assert areas <= board_zones, f'Rule areas missing on the board: {sorted(areas - board_zones)}'
     assigned = {net for nets in CLASS_NETS.values() for net in nets}
     missing = assigned - board_nets
     assert not missing, f'Net-class assignment refers to missing nets: {sorted(missing)}'
@@ -151,7 +179,7 @@ def main():
         {'diameter': 1.60, 'drill': 0.80},
     ]
     design['diff_pair_dimensions'] = [
-        {'gap': 0.20, 'via_gap': 0.25, 'width': 0.20},
+        {'gap': 0.20, 'via_gap': 0.25, 'width': 0.29},
     ]
     PROJECT.write_text(json.dumps(project, indent=2, ensure_ascii=False) + '\n')
     DRU.write_text(DRU_RULES)

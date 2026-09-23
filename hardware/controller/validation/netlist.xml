@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-23T20:57:09</date>
+    <date>2026-09-23T21:46:29</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2710,13 +2710,23 @@
     </comp>
     <comp ref="J119">
       <value>JP1 PE TO BOILER</value>
-      <footprint>OpenSaeco:FASTON_Tab_6.3x0.8mm_PE</footprint>
+      <footprint>OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical</footprint>
       <fields>
-        <field name="Footprint">OpenSaeco:FASTON_Tab_6.3x0.8mm_PE</field>
+        <field name="manufacturer">TE Connectivity</field>
+        <field name="mpn">63824-1</field>
+        <field name="lcsc">C575074</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J1" description=""/>
+      <property name="manufacturer" value="TE Connectivity"/>
+      <property name="mpn" value="63824-1"/>
+      <property name="lcsc" value="C575074"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2731,13 +2741,23 @@
     </comp>
     <comp ref="J120">
       <value>JP9 PE INPUT</value>
-      <footprint>OpenSaeco:FASTON_Tab_6.3x0.8mm_PE</footprint>
+      <footprint>OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical</footprint>
       <fields>
-        <field name="Footprint">OpenSaeco:FASTON_Tab_6.3x0.8mm_PE</field>
+        <field name="manufacturer">TE Connectivity</field>
+        <field name="mpn">63824-1</field>
+        <field name="lcsc">C575074</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J1" description=""/>
+      <property name="manufacturer" value="TE Connectivity"/>
+      <property name="mpn" value="63824-1"/>
+      <property name="lcsc" value="C575074"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

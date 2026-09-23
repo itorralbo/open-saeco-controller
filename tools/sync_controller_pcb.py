@@ -102,6 +102,12 @@ FOOTPRINT_REPLACEMENTS = {
     # The stocked Lite-On MOC3083 is the 300 mil DIP, not the 400 mil M
     # variant; it crosses the barrier over a milled slot instead.
     'U701': ('Package_DIP:DIP-6_W10.16mm', 'OpenSaeco:DIP-6_W7.62mm_BarrierSlot'),
+    # JP1/JP9 identified from the owner's photo as two-leg vertical tabs,
+    # TE 63824-1; its drawn hole pattern replaces the provisional round hole.
+    'J119': ('OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
+             'OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical'),
+    'J120': ('OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
+             'OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical'),
 }
 # Every wire-to-board header enters from the top. The vertical JST B-series
 # parts share pad position, pitch and drill with the side-entry S-series they

@@ -31,13 +31,16 @@ mantiene dos fuentes DC externas aisladas para el banco, pero la principal final
 integra en la misma PCB la entrada de red, la fuente aislada, calentador, bomba y
 molino. El interlock hardware cubre ya todas las cargas, y sus órdenes están
 ruteadas desde el STM32. Desde el 2026-09-23 la PCB es de cuatro capas y todas
-sus redes están conectadas (DRC sin infracciones); faltan los rellenos
-exteriores, la serigrafía y la revisión de aislamiento antes de fabricar.
+sus redes están conectadas (DRC sin infracciones). Desde el mismo día tiene
+rellenos de masa exteriores en el lado SELV, serigrafía con el nombre de cada
+conector y el par USB calculado a 90 Ω; falta la comprobación en papel 1:1
+antes de fabricar.
 La principal ya mide ambos rails en PF1/PC1 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
 Las 135 huellas actuales tienen ya una [colocación funcional](../hardware/controller/layout.md)
 reproducible y con DRC limpio; JP8, JP24 y JP17 ya ocupan sus posiciones originales.
-JP19 usa ya la pieza identificada, TE 1971845-4; los FASTON de PE esperan una muestra.
+JP19 usa ya la pieza identificada, TE 1971845-4; los FASTON de PE son TE 63824-1,
+casados con la foto del propietario.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
 ya está incorporada al esquema y a la PCB de trabajo. JP3.1=+24 V y JP3.2=retorno están
 confirmados; 0,073 V en modo diodo en ambos sentidos descarta una supresión

@@ -18,6 +18,10 @@ REPORT = BASE / 'validation/routing.json'
 MM = pcb.FromMM
 
 USB_WIDTH = 0.20
+# 90 ohm differential on JLC04161H-7628 with a 0.20 mm gap (JLCPCB calculator,
+# 2026-09-23); 0.20/0.20 would give about 104 ohm.
+USB_PAIR_WIDTH = 0.29
+USB_PAIR_GAP = 0.20
 USB_VIA = 0.60
 USB_DRILL = 0.30
 
@@ -137,10 +141,23 @@ def route_usb_device(board):
     The pair leaves U203 facing away from the module, so DM crosses DP once on
     B.Cu just before the ESP32 pins.
     """
+    # The long run from U203 to R221/R222 is a coupled pair: 0.29 mm tracks,
+    # 0.20 mm apart, 90 ohm differential over In1.Cu per the JLCPCB
+    # calculator for JLC04161H-7628 (2026-09-23). Only the stubs into the
+    # pads stay at 0.20 mm.
+    w = USB_PAIR_WIDTH
+    # DM keeps west of U203's VBUS via until the pair closes up below it.
     polyline(board, '/USB_DM_DEVICE', [(32.862, 15.05), (30.60, 15.05),
-                                       (30.60, 22.10), (39.175, 22.10)])
-    polyline(board, '/USB_DP_DEVICE', [(32.862, 16.95), (31.50, 16.95),
-                                       (31.50, 20.20), (39.175, 20.20)])
+                                       (30.60, 17.20), (31.01, 17.61)])
+    polyline(board, '/USB_DM_DEVICE', [(31.01, 17.61), (31.01, 21.39),
+                                       (38.20, 21.39)], width=w)
+    polyline(board, '/USB_DM_DEVICE', [(38.20, 21.39), (38.91, 22.10),
+                                       (39.175, 22.10)])
+    track(board, '/USB_DP_DEVICE', (32.862, 16.95), (31.50, 16.95))
+    polyline(board, '/USB_DP_DEVICE', [(31.50, 16.95), (31.50, 20.90),
+                                       (38.20, 20.90)], width=w)
+    polyline(board, '/USB_DP_DEVICE', [(38.20, 20.90), (38.90, 20.20),
+                                       (39.175, 20.20)])
     polyline(board, '/USB_DP_RAW', [(40.825, 20.20), (42.20, 20.20),
                                     (44.30, 22.30), (45.25, 22.30)])
     track(board, '/USB_DM_RAW', (40.825, 22.10), (41.80, 22.10))
@@ -952,10 +969,17 @@ def route_earth_and_heater_return(board):
     the switched live waits on tab 1 for the triac at the heatsink.
     """
     pe, neutral = '/PROTECTIVE_EARTH', '/MAINS_N'
+    # Each TE 63824-1 tab solders through two legs 5.08 mm apart; the bond
+    # joins both leg pairs on both layers, four 3 mm runs in parallel, and
+    # the plated legs tie the layers together. KiCad does not join two pads
+    # of one footprint on its own, so each tab's legs are also linked.
     for layer in (pcb.F_Cu, pcb.B_Cu):
-        track(board, pe, (121.5, 124.0), (128.0, 124.0), layer,
-              width=MAINS_PHASE_WIDTH)
-    via(board, pe, (124.75, 124.0), MAINS_VIA, MAINS_DRILL)
+        for y in (121.46, 126.54):
+            track(board, pe, (121.5, y), (128.0, y), layer,
+                  width=MAINS_PHASE_WIDTH)
+        for x in (121.5, 128.0):
+            track(board, pe, (x, 121.46), (x, 126.54), layer,
+                  width=MAINS_PHASE_WIDTH)
 
     # Neutral leaves JP17 south of the connector row and runs west under it.
     # The stub out of the pad is narrowed, like the phase, to hold 1.2 mm to
@@ -1098,10 +1122,11 @@ def route_heater_stage(board):
         track(board, '/LOAD_L_ENABLED', (x, 106.45), (x, end), width=1.9)
     # B.Cu block under the foot, x = 59.2-77.6 and y = 88.3-107.25 mm: 2.5 mm
     # below and west of the heater gate, 1.2 mm above the triac pads. Q708
-    # also takes its middle terminal from it.
+    # also takes its middle terminal from it; the drop stops in the top of
+    # the pad, 2.5 mm from the grinder gate under the row.
     for y in (90.3, 94.05, 97.8, 101.55, 105.25):
         track(board, '/LOAD_L_ENABLED', (61.2, y), (75.6, y), pcb.B_Cu, width=4.0)
-    track(board, '/LOAD_L_ENABLED', (66.6, 105.25), (66.6, 109.5), pcb.B_Cu,
+    track(board, '/LOAD_L_ENABLED', (66.6, 105.25), (66.6, 108.2), pcb.B_Cu,
           width=1.9)
     for point in [(60.25, 89.6), (60.25, 91.7), (60.25, 93.8), (60.25, 95.9),
                   (60.25, 101.9), (60.25, 104.0), (63.0, 106.45),
@@ -2101,6 +2126,131 @@ def selv_planes(board):
     pcb.ZONE_FILLER(board).Fill(board.Zones())
 
 
+FILL_NAMES = {pcb.F_Cu: 'GND_UI F.Cu fill (SELV)', pcb.B_Cu: 'GND_UI B.Cu fill (SELV)'}
+FILL_CLEARANCE = 0.50
+STITCH_PITCH = 5.0
+STITCH_VIA, STITCH_DRILL = 0.60, 0.30
+
+
+def copper_items(board):
+    """Every track, via and pad with its bounding box in mm and its gap."""
+    result = []
+    items = list(board.GetTracks()) + [pad for fp in board.GetFootprints() for pad in fp.Pads()]
+    for item in items:
+        mains = item.GetNetClassName() == 'Mains'
+        gap = STITCH_VIA/2 + (8.2 if mains else FILL_CLEARANCE)
+        box = item.GetBoundingBox()
+        result.append((pcb.ToMM(box.GetLeft()) - gap, pcb.ToMM(box.GetTop()) - gap,
+                       pcb.ToMM(box.GetRight()) + gap, pcb.ToMM(box.GetBottom()) + gap,
+                       item, MM(gap)))
+    return result
+
+
+def stitch_point_free(board, point, courtyards, keepouts, copper):
+    """True where a ground via fits: clear of copper, courtyards and keepouts."""
+    x, y = point
+    pos = pcb.VECTOR2I(MM(x), MM(y))
+    radius = STITCH_VIA/2
+    if any(box.Contains(pos) for box in courtyards):
+        return False
+    if any(zone.Outline().Contains(pos) for zone in keepouts):
+        return False
+    edges = board.GetBoardEdgesBoundingBox()
+    if (min(x - pcb.ToMM(edges.GetLeft()), pcb.ToMM(edges.GetRight()) - x,
+            y - pcb.ToMM(edges.GetTop()), pcb.ToMM(edges.GetBottom()) - y)
+            < radius + 1.0):
+        return False
+    for x0, y0, x1, y1, item, gap in copper:
+        if not (x0 <= x <= x1 and y0 <= y <= y1):
+            continue
+        for layer in (pcb.F_Cu, pcb.In1_Cu, pcb.In2_Cu, pcb.B_Cu):
+            if not item.IsOnLayer(layer):
+                continue
+            if item.GetEffectiveShape(layer).Collide(pos, gap):
+                return False
+    return True
+
+
+def selv_outer_fills(board):
+    """Ground fills on F.Cu and B.Cu over the SELV side, stitched to In1.Cu.
+
+    Decision of 2026-09-23 (left to the router by the owner): the SELV side
+    gets GND_UI on both outer layers, for heat spreading under the bucks and
+    the H-bridge, shielding and copper balance; the mains side gets no fill,
+    so no floating copper sits in the primary domain. The outline is the
+    inner planes' one, which already stops at the SELV edge of the barrier
+    band; the 8 mm rules hold every fill away from primary copper. 0.5 mm of
+    fill clearance keeps the USB pair near its 90 ohm. Stitching vias on a
+    5 mm grid go wherever a 0.6 mm via is clear of copper, courtyards and
+    keepouts; the ones that end up touching no outer fill are dropped.
+    """
+    for zone in list(board.Zones()):
+        if zone.GetZoneName() in FILL_NAMES.values():
+            board.Delete(zone)
+    gnd = net(board, '/GND_UI')
+    fills = []
+    for layer, name in FILL_NAMES.items():
+        zone = pcb.ZONE(board)
+        zone.SetLayer(layer)
+        zone.SetNet(gnd)
+        zone.SetZoneName(name)
+        zone.SetLocalClearance(MM(FILL_CLEARANCE))
+        zone.SetMinThickness(MM(0.30))
+        # SMD pads join the fill solid; through-hole pads keep thermal spokes
+        # for soldering.
+        zone.SetPadConnection(pcb.ZONE_CONNECTION_THT_THERMAL)
+        zone.SetThermalReliefGap(MM(0.40))
+        zone.SetThermalReliefSpokeWidth(MM(0.40))
+        zone.SetIslandRemovalMode(pcb.ISLAND_REMOVAL_MODE_ALWAYS)
+        zone.SetAssignedPriority(0)
+        poly = zone.Outline()
+        poly.NewOutline()
+        for x, y in PLANE_OUTLINE:
+            poly.Append(MM(x), MM(y))
+        board.Add(zone)
+        fills.append((layer, zone))
+
+    courtyards = []
+    for fp in board.GetFootprints():
+        for layer in (pcb.F_CrtYd, pcb.B_CrtYd):
+            shape = fp.GetCourtyard(layer)
+            if shape.OutlineCount():
+                box = shape.BBox()
+                box.Inflate(MM(0.3))
+                courtyards.append(box)
+    keepouts = [zone for zone in board.Zones()
+                if zone.GetIsRuleArea() and zone.GetDoNotAllowVias()]
+    outline = fills[0][1].Outline()
+    copper = copper_items(board)
+    stitches = []
+    y = 2.5
+    while y < 135.0:
+        x = 2.5
+        while x < 141.0:
+            pos = pcb.VECTOR2I(MM(x), MM(y))
+            if outline.Contains(pos) and stitch_point_free(board, (x, y), courtyards, keepouts, copper):
+                via(board, '/GND_UI', (x, y), STITCH_VIA, STITCH_DRILL)
+                stitches.append((x, y))
+            x += STITCH_PITCH
+        y += STITCH_PITCH
+
+    filler = pcb.ZONE_FILLER(board)
+    filler.Fill(board.Zones())
+    keep = []
+    for item in list(board.GetTracks()):
+        if not isinstance(item, pcb.PCB_VIA):
+            continue
+        point = (round(pcb.ToMM(item.GetPosition().x), 3), round(pcb.ToMM(item.GetPosition().y), 3))
+        if point not in stitches:
+            continue
+        if any(zone.HitTestFilledArea(layer, item.GetPosition()) for layer, zone in fills):
+            keep.append(point)
+        else:
+            board.Delete(item)
+    filler.Fill(board.Zones())
+    return len(keep)
+
+
 def main():
     board = pcb.LoadBoard(str(BOARD_PATH))
     assert board.GetCopperLayerCount() == 4
@@ -2140,6 +2290,7 @@ def main():
     route_ui_supply(board)
     route_3v3_plane_drops(board)
     selv_planes(board)
+    stitches = selv_outer_fills(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
     result = {
@@ -2176,11 +2327,13 @@ def main():
                           'MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch',
                           'H-bridge orders, bridge current, rail telemetry and the dividers under J114',
                           'sensor bus: PC2, PC3, PA0-PA3 to the filters and PC1 to J114.6 on B.Cu',
-                          'ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense'],
+                          'ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense',
+                          'SELV ground fills on F.Cu and B.Cu, stitched to In1.Cu; no fill on the mains side'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['final domain copper fills'],
+        'stitching_vias': stitches,
+        'remaining_blocks': [],
     }
     REPORT.write_text(json.dumps(result, indent=2) + '\n')
     print(result)

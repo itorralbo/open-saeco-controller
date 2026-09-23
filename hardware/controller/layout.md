@@ -497,10 +497,12 @@ Desde el 2026-09-23:
 - La fase y la puerta se rehicieron el mismo día; ver
   [fase de cargas bajo el perfil](#fase-de-cargas-bajo-el-perfil).
 
-Dos áreas con nombre, `mains device pitch`, bajan la separación entre redes de
+Áreas con nombre, `mains device pitch <ref>`, bajan la separación entre redes de
 red a 0,6 mm solo sobre los pines del lado de red del opto y del triac, cuyo
 paso de 2,54 mm lo impone el encapsulado. El hueco entre las dos filas del opto
-conserva los 8 mm.
+conserva los 8 mm. Desde el 2026-09-23 cada área lleva el nombre de su pieza y
+la regla solo relaja dos objetos dentro de la misma área (ver
+[optos y áreas por pieza](#optos-y-áreas-por-pieza)).
 
 Enclavamiento ruteado: HEATER_EN_RAW entra en el pin 5 de U603 y llega a la
 bajada R711 saltando a B.Cu bajo el ramal de 3,3 V. La salida, en el pin 3,
@@ -934,20 +936,93 @@ generador usa la asignación DCT, que es la correcta para el SN74LVC2G08DCTR
 elegido. Si alguna vez se sustituye por la variante DCU, hay que cambiar también
 el símbolo.
 
+### Optos y áreas por pieza
+
+Revisado el 2026-09-23.
+
+- **Regla.** Todas las áreas de paso compartían el nombre `mains device pitch`,
+  y la regla relajaba a 0,6 mm dos objetos que tocasen *cualquier* área con ese
+  nombre, aunque fuesen de piezas distintas: una pista en el área de R712 y
+  otra en la de Q708 quedaban a 1,275 mm sin aviso. Lo mismo con las ranuras
+  de los optos. Ahora cada área se llama `mains device pitch U701`,
+  `optocoupler barrier slot U703`, etc., y `configure_controller_rules.py`
+  escribe una regla por área. La primera pasada destapó un caso real, ya
+  corregido: la bajada de B.Cu a Q708, que ahora termina en la parte alta del
+  pad, a 2,5 mm de la puerta del molinillo.
+- **Ranura.** 2 mm de ancho y 3,5 mm más allá de los pines extremos. El camino
+  por la superficie de una fila a la otra la rodea y mide unos 9 mm; el DRC de
+  creepage (8 mm) lo confirma. El aire entre pads es de 6,02 mm. Los planos
+  internos acaban en x = 47 mm y el DRC los mantiene a 8 mm de los pads de red.
+- **Encapsulado.** El MOC3083 en DIP de 7,62 mm declara ≥ 7 mm de distancias
+  externas y 5 kV de aislamiento. Para aislamiento reforzado a 250 V, grado de
+  contaminación 2 y material IIIb, IEC 60664-1 pide unos 5 mm de línea de fuga
+  y 3 mm de distancia en el aire: el opto, la ranura y la barrera de 8 mm los
+  superan. Queda para la revisión final del aislamiento con la norma del
+  aparato (IEC 60335-1).
+- **Aviso.** Una regla con sintaxis incorrecta en `.kicad_dru` hace que KiCad
+  descarte en silencio todas las que van detrás. Se vio al añadir la de los
+  radios térmicos: las áreas por pieza dejaron de aplicarse y aparecieron 58
+  falsas infracciones.
+
+### Rellenos exteriores
+
+Decisión del 2026-09-23, delegada por el propietario: masa `GND_UI` en F.Cu y
+B.Cu sobre todo el lado SELV, con el mismo contorno que los planos internos, y
+nada en el lado de red. `selv_outer_fills()` en `route_controller_pcb.py`:
+
+- separación de 0,5 mm, espesor mínimo 0,3 mm e islas eliminadas;
+- pads SMD macizos y de agujero pasante con alivio; la regla
+  `ground_fill_spokes` acepta un solo radio en pads de masa, que también bajan
+  al plano de In1.Cu (caso de J102.3);
+- vías de cosido de 0,6 / 0,3 mm en una rejilla de 5 mm, solo donde quedan
+  libres de cobre, courtyards y áreas prohibidas, y a más de 8,2 mm de cobre de
+  red; se quitan las que no tocan ningún relleno exterior.
+
+### Serigrafía
+
+`tools/silkscreen_controller_pcb.py`, en un grupo que se rehace en cada pasada:
+
+- el logo del propietario (`silkscreen/bicho.png`, vectorizado en
+  `bicho-outline.json`), de 20 × 12,3 mm, con el título «OPEN SAECO
+  CONTROLLER / HD8911 · Rev A · 2026», en la esquina SELV libre sobre PS701;
+- cada conector de mazo y de servicio con su nombre en la placa original y su
+  función (JP17 RED 230 V, JP19 CALENTADOR, JP8 MOLINILLO, JP16 GRUPO, USB
+  SERVICIO, SWD STM32…). Se colocan solos en el primer hueco libre alrededor
+  del conector, salvo JP8, JP19, JP17 y JP21, fijados a mano para que no
+  queden ambiguos;
+- polaridad: + y − en JP8, L y N en JP17;
+- un triángulo de peligro con «PELIGRO 230 V~ / ZONA DE RED» en la banda de
+  barrera, que no lleva cobre.
+
+Las vías van tapadas con máscara, así que la serigrafía puede pasar por encima.
+`validation/silkscreen.json` guarda dónde quedó cada texto.
+
+### Par USB
+
+Ver [service-usb.md](../../docs/service-usb.md): 0,29 / 0,20 mm para 90 Ω en el
+tramo acoplado de U203 a R221/R222. D− pasa al oeste de la vía de VBUS de U203
+y se junta con D+ debajo de ella.
+
+### JP1 y JP9
+
+La foto del propietario (2026-09-23) muestra lengüetas verticales con dos patas
+en fila en la base y aletas de posicionado. Se toma el TE 63824-1 (LCSC
+C575074): dos taladros de 1,40 mm a 5,08 mm según el plano de TE, con pads de
+3 mm. La unión de tierra entre JP1 y JP9 pasa a cuatro pistas de 3 mm, dos por
+cara, y cada lengüeta une sus dos patas.
+
 ## Siguiente paso
 
-1. Rellenos de F.Cu y B.Cu: decidir si llevan masa cosida al plano de In1.Cu.
-2. Serigrafía: referencias legibles de conectores, polaridad, puntos de medida
-   y marcas de seguridad.
-3. Revisión de aislamiento de la barrera y de las ranuras de los optos, y
-   cálculo de la pareja USB con el apilado.
+1. Imprimir `preview/controller-top-1to1.pdf` al 100 % (la regla de 100 mm de la
+   hoja lo comprueba) y comparar conectores, relé, fuente y lengüetas reales.
+2. Revisión final de aislamiento con la norma del aparato.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
 pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y no
 consiguió rutear el puente H. Se descartó a favor del ruteo manual.
 
-Las etapas de calentador, bomba y molinillo están colocadas y ruteadas; faltan
-los taladros y anclajes del perfil, que ahora tienen que convivir con el bloque
-de B.Cu de la fase bajo el pie. No se generarán Gerbers mientras quede pendiente la
+Las etapas de calentador, bomba y molinillo están colocadas y ruteadas. Los
+taladros y anclajes del perfil los resuelve el propietario; tienen que convivir
+con el bloque de B.Cu de la fase bajo el pie. No se generarán Gerbers mientras quede pendiente la
 revisión de aislamiento.

@@ -290,8 +290,8 @@ un ensamblador equivalente.
 
 ## Orden de diseño
 
-1. Cotejar con una muestra el patrón de patas de JP1 y JP9. JP19 ya usa la
-   huella del TE 1971845-4; JP17, JP24 y JP8 están en sus posiciones originales
+1. Comprobar en la impresión 1:1 la huella de JP1 y JP9, ya TE 63824-1 por la
+   foto del propietario. JP19 ya usa la huella del TE 1971845-4; JP17, JP24 y JP8 están en sus posiciones originales
    estimadas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la fuente candidata IRM-30-24 ya incorporada al esquema y PCB.

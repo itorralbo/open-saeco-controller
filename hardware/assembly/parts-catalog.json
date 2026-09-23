@@ -676,6 +676,22 @@
       "url": "https://jlcpcb.com/partdetail/C160316",
       "selection": "candidate_not_released"
     },
+    "CONN:TE_FASTON_63824-1": {
+      "manufacturer": "TE Connectivity",
+      "mpn": "63824-1",
+      "lcsc": "C575074",
+      "specification": "FASTON .250 PCB tab, 6.35 x 0.81 mm blade, vertical, two solder legs at 5.08 mm, 1.40 mm holes, tin-plated brass; protective-earth tabs JP1 and JP9",
+      "footprint": "OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 11205,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-23",
+      "stock_evidence": "JLCPCB parts search API, read-only; hole pattern from the TE customer drawing C-63824 linked on the LCSC product page",
+      "url": "https://www.lcsc.com/product-detail/C575074.html",
+      "selection": "candidate_not_released",
+      "selection_note": "Matched on 2026-09-23 to the owner's photo of JP1 and JP9 on the original board: vertical 6.3 mm tabs with two legs in a row at their base, about 5 mm apart, and positioning barbs. The 1:1 paper print of the board is the check against the real part before ordering."
+    },
     "CONN:TE_RAST5_1971845-4": {
       "manufacturer": "TE Connectivity",
       "mpn": "1971845-4",

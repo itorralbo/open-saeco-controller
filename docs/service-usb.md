@@ -20,7 +20,15 @@ de la pantalla del conector a `GND_UI` y el dominio aislado deben revisarse ante
 de exponer el puerto en una máquina conectada a red.
 
 El par D+/D− se rutará a 90 Ω diferencial ±10 %, sobre referencia de masa continua,
-con longitudes igualadas y pocas vías. La protección se coloca junto al conector
+con longitudes igualadas y pocas vías. Recalculado el 2026-09-23 con la
+calculadora de JLCPCB para el apilado JLC04161H-7628 (F.Cu sobre el plano de
+In1.Cu a 0,2104 mm de 7628): 90 Ω piden **0,29 mm de ancho con 0,20 mm de
+separación**; los 0,20/0,20 anteriores daban unos 104 Ω. El tramo largo de U203
+a R221/R222 va ya acoplado a 0,29/0,20; los accesos a los pads del USB-C, de U203,
+de las resistencias y del ESP32 siguen a 0,20 mm, con unos 30 mm de par en total.
+El ESP32-S3 solo hace Full Speed (12 Mbit/s): con flancos de varios
+nanosegundos y 0,2 ns de recorrido, el par se comporta como un circuito corto, y
+la impedancia se ajusta para seguir la guía, no porque la velocidad lo exija. La protección se coloca junto al conector
 y las resistencias serie junto al ESP32, siguiendo la
 [guía de esquema](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/schematic-checklist.html)
 y la [guía de layout](https://docs.espressif.com/projects/esp-hardware-design-guidelines/en/latest/esp32s3/pcb-layout-design.html)

@@ -2241,13 +2241,13 @@
     {
       "reference": "J119",
       "value": "JP1 PE TO BOILER",
-      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
-      "status": "faston_provisional_leg_pattern",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "TE Connectivity",
+      "mpn": "63824-1",
+      "lcsc": "C575074",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
       "pins": {
         "1": "PROTECTIVE_EARTH"
       }
@@ -2255,13 +2255,13 @@
     {
       "reference": "J120",
       "value": "JP9 PE INPUT",
-      "footprint": "OpenSaeco:FASTON_Tab_6.3x0.8mm_PE",
-      "status": "faston_provisional_leg_pattern",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "footprint": "OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical",
+      "status": "candidate",
+      "manufacturer": "TE Connectivity",
+      "mpn": "63824-1",
+      "lcsc": "C575074",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
       "pins": {
         "1": "PROTECTIVE_EARTH"
       }

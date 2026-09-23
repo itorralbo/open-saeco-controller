@@ -501,12 +501,14 @@ def main():
           status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_V')
     # Owner: both are protective-earth tabs, JP1 to the boiler body and JP9 to
     # the mains inlet. The board is the junction between them.
+    # JP1/JP9 are vertical two-leg FASTON tabs (owner's photo, 2026-09-23),
+    # matched to TE 63824-1: two 1.40 mm holes at 5.08 mm.
     d.add('J119','J1','JP1 PE TO BOILER',1100,768,['PROTECTIVE_EARTH'],
-          'OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
-          status='faston_provisional_leg_pattern')
+          'OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical',
+          status='candidate', part_key='CONN:TE_FASTON_63824-1')
     d.add('J120','J1','JP9 PE INPUT',1155,768,['PROTECTIVE_EARTH'],
-          'OpenSaeco:FASTON_Tab_6.3x0.8mm_PE',
-          status='faston_provisional_leg_pattern')
+          'OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical',
+          status='candidate', part_key='CONN:TE_FASTON_63824-1')
     # Main input protection and the isolated supply. Values for F701/F702/RV701
     # remain provisional until the complete inrush and fault-current budget exists.
     d.add('F701','FUSE','T10A / 250V MAIN / provisional',835,640,
