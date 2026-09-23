@@ -27,15 +27,16 @@
     "grinder stage: optocoupler, triac, fuse, bridge, LED loop and JP8",
     "grinder enable: U604 second gate, R717 pull-down and R718",
     "SWD header: SWDIO, SWCLK and SWO to J102",
-    "supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm"
+    "supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm",
+    "12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers",
+    "3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109",
+    "UI supply: U302 to J104.1 along the top edge"
   ],
-  "track_segments": 899,
-  "vias": 177,
+  "track_segments": 1010,
+  "vias": 209,
   "remaining_blocks": [
-    "3V3 trunk and remaining decoupling",
-    "logic",
-    "sensors",
-    "24 V actuators",
+    "STM32 signals",
+    "ESP32 and front-panel signals",
     "final domain copper fills"
   ]
 }

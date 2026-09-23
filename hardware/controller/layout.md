@@ -3,8 +3,8 @@
 Estado: colocación mecánica de conectores y colocación funcional con la
 distribución de la placa original, dominio de red contiguo, reserva del disipador
 y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
-interlocks, la válvula, los sensores y el buck de 12 V ya están ruteados a mano;
-aún no fabricable. La fuente de verdad mecánica es
+interlocks, la válvula, los sensores, las etapas de red y todos los raíles de
+alimentación ya están ruteados a mano; faltan las señales. Aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 159 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
@@ -220,12 +220,12 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 843 segmentos y 170 vías. 2 559 mm de pista en F.Cu y 588 mm en B.Cu: el
-  cruce del par USB, los saltos cortos bajo troncales de potencia y los carriles
-  de escape del STM32.
+- 1 010 segmentos y 209 vías. 3 025 mm de pista en F.Cu y 734 mm en B.Cu: el
+  cruce del par USB, los saltos cortos bajo troncales de potencia, los carriles
+  de escape del STM32 y los saltos de los raíles de 12 V y 3,3 V.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 66 conexiones sin rutear y tres diferencias de paridad, los taladros
-  mecánicos MH1–MH3, que son intencionales.
+- 50 conexiones sin rutear, todas de señal, y tres diferencias de paridad, los
+  taladros mecánicos MH1–MH3, que son intencionales.
 - Un aviso de extremo suelto, intencional: la fila de corriente del puente H
   termina donde entrará PA3.
 
@@ -362,10 +362,9 @@ de los contactos y el de la puerta.
 R405 se ha girado 270° para que su pad de 3,3 V mire al norte: la red del mazo
 de la puerta ocupa el carril de y = 71,8 mm y no dejaba alimentarlo por abajo.
 
-Siguen sin alimentar los pull-up de la fila inferior (NTC y caudalímetro), J109
-y las resistencias de fallo y VREF del puente H. Los primeros necesitan cruzar
-el ramal de 24 V de la válvula, que atraviesa la placa a y = 93 mm; las
-segundas están encerradas entre las envolventes de fallo y de corriente.
+Los pull-up de la fila inferior, J109 y las resistencias de fallo y VREF del
+puente H se alimentaron después; ver
+[raíles de 12 V, 3,3 V y del frontal](#raíles-de-12-v-33-v-y-del-frontal).
 
 ### Árbol de reset
 
@@ -632,6 +631,65 @@ Ruteado:
 Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
 triac. Tampoco hay snubber en Q708.
 
+### Raíles de 12 V, 3,3 V y del frontal
+
+Cerrados el 2026-09-23 en `route_12v_rail`, `route_3v3_closure` y
+`route_ui_supply`. La primera pasada de esta sesión halló siete islas de
+alimentación y cinco pads de masa sin vía. Dos eran fallos funcionales: el anillo
+de VDD del STM32 no llegaba al buck, y la isla de 12 V de los LED de los optos,
+el caudalímetro y la puerta de la válvula no tenía fuente.
+
+**12 V.** La salida del AP63200 sale del banco por el sur de C312 y va hacia
+el oeste por y = 14 mm hasta J101.1, con un salto por B.Cu bajo el carril de
+24 V. Desde J101 baja junto al tronco de 3,3 V y lo cruza por debajo, junto
+con el canal de la UART, hasta F301.1. El raíl protegido une cuatro islas:
+
+- Del lado del buck sale por debajo del tronco de 3,3 V y sigue por
+  y = 28,5 mm entre F301 y la cabecera SWD. Después pasa por y = 32 mm bajo
+  la fila de series del LCD y salta las filas del puente H en x = 61,25 mm
+  hasta J114.3.
+- De J114.3 a D303 va por B.Cu en diagonal bajo las filas de serie y
+  pull-down del puente H, para que sus pads de orden en bruto sigan abiertos
+  hacia el este. Sale en la franja libre al norte de las filas (y = 28,75 mm).
+- De D303 salta la pista de habilitación del USB de banco y baja por el borde
+  izquierdo en x = 1 mm, por detrás de los pines de J108 y J107. Deja 0,85 mm
+  al canto (mínimo 0,5) y 0,875 mm a los pads, y no lo cruza ninguna red de
+  mazo. Salta los dos ramales de 24 V en x = 8,5 mm y llega a C507.
+- Un último tramo une la alimentación del LED del calentador (R709) con la
+  del molinillo y la bomba (R720) rodeando Q705.
+
+Todo va a 0,3 mm. Las cargas consumen decenas de mA. Por el camino de D303
+pasa la alimentación de banco del buck de 3,3 V, unos cientos de mA como
+máximo.
+
+**3,3 V.**
+
+- El anillo del STM32 se une al tronco de x = 90,9 mm desde C106 con un
+  salto por B.Cu. Así la UART y BOOT0 pueden seguir bajando en F.Cu entre U101
+  y el tronco.
+- R507/R508 llegan a J114.2 con un salto bajo las filas de fallo y sleep.
+- La fila inferior se alimenta desde C604. Salta los dos ramales de 24 V y
+  las patas B.Cu del LED del calentador, baja por x = 31 mm hasta R401 y salta
+  la línea de mazo del NTC hasta R403.
+- J109.1 cuelga de R401 por x = 27,3 mm, junto al retorno de la válvula, y
+  entra en el pin por debajo del conector, entre J109.2 y J109.3.
+
+**3V3_UI.** U302 está en el bolsillo al este del tronco de 3,3 V y J104 en la
+esquina superior izquierda, así que el único recorrido libre es el borde
+superior: y = 0,8 mm, 0,4 mm de ancho, al norte del ramal de 3,3 V y de CC1
+del USB. El raíl sale del bolsillo bajo el tronco y sube por su lado oeste en
+x = 90 mm. Salta el ramal norte en x = 83,25 mm y entra en J104.1 por el oeste
+de J104.2.
+
+Pasillos que se han dejado libres para las señales:
+
+- F.Cu en x = 87,3–89,9 mm, entre U101 y el tronco, para la UART y BOOT0.
+- La franja y = 26–28,4 mm al oeste de x = 44 mm, al norte del 12 V, para el
+  bus del LCD hacia J104.
+- Los pads de orden en bruto de R501, R503 y R505, abiertos hacia el este.
+
+Masas: C101, R706, C702, R102 y R711 tienen ya su vía al plano.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -643,13 +701,14 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Cerrar la distribución de 3,3 V: fila inferior de sensores, J109 y las
-   resistencias de fallo y VREF del puente H. Y el raíl de 12 V desde el buck
-   hasta J101 y F301.
+1. Órdenes del STM32 a las cargas y salidas del supervisor: PB10 hasta U603
+   y PB12 hasta U604 por el pasillo de PB11, la orden de la válvula y
+   `BREW_SLEEP_INTERLOCK`/`VALVE_EN_INTERLOCK` desde U602.
 2. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
-   PA8), UART con el ESP32, BOOT0, telemetría de raíles, PA7 hasta U602 y
+   PA8), UART con el ESP32, BOOT0, telemetría de raíles, NRST hasta J102 y
    PB0 hasta el corte del frontal.
-3. PB10 hasta U603 y PB12 hasta U604 por el mismo pasillo que PB11.
+3. ESP32 y frontal: bus del LCD por sus series hasta J104, I²C e interrupción
+   del teclado, cabecera J103 y la red de `ESP_EN`.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
@@ -657,5 +716,5 @@ pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y
 consiguió rutear el puente H. Se descartó a favor del ruteo manual.
 
 Las etapas de calentador, bomba y molinillo están colocadas y ruteadas; faltan
-las huellas de JP1/JP9 y los taladros del perfil. No se generarán Gerbers
+los taladros del perfil. No se generarán Gerbers
 mientras queden conexiones abiertas o la revisión de aislamiento pendiente.

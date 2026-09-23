@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-23T08:48:46</date>
+    <date>2026-09-23T09:20:47</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -7210,11 +7210,11 @@
       <node ref="U603" pin="4" pinfunction="GND_4" pintype="power_in"/>
       <node ref="U604" pin="4" pinfunction="GND_4" pintype="power_in"/>
     </net>
-    <net code="50" name="/GRINDER_AC_FUSED" class="Default">
+    <net code="50" name="/GRINDER_AC_FUSED" class="Mains">
       <node ref="BR701" pin="2" pinfunction="AC1_2" pintype="passive"/>
       <node ref="F703" pin="2" pinfunction="2_2" pintype="passive"/>
     </net>
-    <net code="51" name="/GRINDER_AC_SWITCHED" class="Default">
+    <net code="51" name="/GRINDER_AC_SWITCHED" class="Mains">
       <node ref="F703" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="Q708" pin="1" pinfunction="A1_1" pintype="passive"/>
     </net>
@@ -7235,7 +7235,7 @@
       <node ref="U101" pin="34" pinfunction="PB12_34" pintype="bidirectional"/>
       <node ref="U604" pin="5" pinfunction="2A_5" pintype="input"/>
     </net>
-    <net code="56" name="/GRINDER_GATE_FEED" class="Default">
+    <net code="56" name="/GRINDER_GATE_FEED" class="Mains">
       <node ref="R721" pin="2" pintype="passive"/>
       <node ref="U703" pin="6" pinfunction="MT_IN_6" pintype="passive"/>
     </net>
@@ -7252,7 +7252,7 @@
       <node ref="Q707" pin="3" pinfunction="D_3" pintype="power_out"/>
       <node ref="U703" pin="2" pinfunction="K_2" pintype="passive"/>
     </net>
-    <net code="60" name="/GRINDER_TRIAC_GATE" class="Default">
+    <net code="60" name="/GRINDER_TRIAC_GATE" class="Mains">
       <node ref="Q708" pin="3" pinfunction="G_3" pintype="input"/>
       <node ref="U703" pin="4" pinfunction="MT_G_4" pintype="passive"/>
     </net>

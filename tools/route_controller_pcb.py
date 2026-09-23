@@ -636,8 +636,7 @@ def route_12v_buck(board):
 
     The switch node is kept short between U303, the bootstrap capacitor and
     L302; the output capacitors sit past the inductor and the feedback divider
-    runs back under them. The rail leaving this cluster towards J101 and F301
-    waits for the supply pass, where it has to cross the 24 V lane.
+    runs back under them. route_12v_rail carries the rail on to J101 and F301.
     """
     gnd, sw = '/GND_UI', '/BUCK12_SW'
     out, fb = '/12V_ISO_RAW', '/BUCK12_FB'
@@ -788,8 +787,7 @@ def route_3v3_distribution(board):
     1.1 mm gap between F301 and D301 at x = 90.9 mm, runs over the top of the
     ESP32 at y = 2.5 mm and drops into its supply pins, and a western branch
     runs under the 24 V trunk at y = 54.2 mm to the supervisor spine and on to
-    the sensor pull-ups. The bottom-row pull-ups and J109 still wait: the 24 V
-    valve branch crosses the board at y = 93 mm and needs a hop to reach them.
+    the sensor pull-ups. route_3v3_closure reaches the bottom row and J109.
     """
     v33 = '/3V3_CORE'
 
@@ -859,7 +857,11 @@ def route_3v3_distribution(board):
 
 
 def route_logic_grounds(board):
-    """Drop the USB and ESP32 ground pins into the B.Cu plane."""
+    """Drop the USB, ESP32 and stray logic ground pins into the B.Cu plane.
+
+    The last five are C101, R706, C702, R102 and R711, whose ground pads had
+    no via of their own.
+    """
     gnd = '/GND_UI'
     for start, point in (((23.775, 19.0), (24.9, 17.8)),
                          ((23.775, 22.0), (24.9, 22.0)),
@@ -871,7 +873,12 @@ def route_logic_grounds(board):
                          ((45.25, 5.79), (46.6, 4.8)),
                          ((62.75, 5.79), (61.4, 4.8)),
                          ((30.45, 5.025), (30.45, 6.0)),
-                         ((40.325, 12.5), (41.3, 12.5))):
+                         ((40.325, 12.5), (41.3, 12.5)),
+                         ((44.975, 48.6), (44.975, 47.35)),
+                         ((57.325, 52.0), (57.325, 53.1)),
+                         ((61.275, 52.0), (61.275, 53.1)),
+                         ((87.0, 43.175), (87.0, 42.1)),
+                         ((27.175, 66.0), (25.9, 66.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
@@ -1402,6 +1409,161 @@ def route_debug_header(board):
                                  (87.2, 31.0)], width=SIGNAL_WIDTH)
 
 
+def route_12v_rail(board):
+    """12 V from the AP63200 bank to J101, F301 and every 12 V_PROTECTED load.
+
+    The buck output leaves the bank south of C312 and runs west along
+    y = 14 mm, hopping under the 24 V lane, to J101.1. From there it drops
+    beside the 3.3 V trunk and crosses under it and the UART channel west of
+    it to F301.1.
+
+    The protected rail has four islands to join: the buck side, J114.3, D303
+    (the USB bench feed) and the load drivers in the south-west. From D301 it
+    hops under the 3.3 V trunk, runs west along y = 28.5 mm between F301 and
+    the SWD header and then along y = 32 mm under the LCD series row. It hops
+    under the H-bridge rows at x = 61.25 mm to reach J114.3. From J114.3 a
+    B.Cu diagonal passes under the H-bridge series and pull-down rows, so
+    their raw pads stay open to the east. It surfaces in the free band north
+    of the rows and runs along it to D303. The west leg hops the USB bench
+    enable and follows the left edge at x = 1 mm, behind the J108/J107 pins,
+    where no harness net crosses. It hops under both 24 V branches at
+    x = 8.5 mm and lands on C507. A last link joins the heater LED feed at
+    R709 to the grinder and pump LED feed at R720, round Q705.
+
+    The loads draw tens of milliamps, but the D303 path carries the whole
+    bench supply into the 3.3 V buck, a few hundred milliamps at most: 0.3 mm
+    is enough for both.
+    """
+    iso, v12 = '/12V_ISO_RAW', '/12V_PROTECTED'
+    w = 0.3
+
+    def hop(netname, a, b, width):
+        via(board, netname, a)
+        track(board, netname, a, b, pcb.B_Cu, width=width)
+        via(board, netname, b)
+
+    # Buck bank to J101 and on to the fuse.
+    polyline(board, iso, [(139.0, 11.975), (139.0, 14.0), (114.3, 14.0)],
+             width=0.5)
+    hop(iso, (114.3, 14.0), (110.7, 14.0), 0.5)
+    polyline(board, iso, [(110.7, 14.0), (97.5, 14.0), (96.0, 12.5),
+                          (96.0, 6.0)], width=0.5)
+    polyline(board, iso, [(96.0, 12.5), (93.5, 15.0), (93.5, 23.1),
+                          (92.1, 24.5)], width=0.5)
+    hop(iso, (92.1, 24.5), (86.6, 24.5), 0.5)
+    polyline(board, iso, [(86.6, 24.5), (84.6, 24.5), (83.6, 25.5),
+                          (83.6, 27.0)], width=0.5)
+
+    # Buck side to J114.3.
+    polyline(board, v12, [(93.0, 27.0), (91.75, 28.25), (91.75, 28.5)],
+             width=w)
+    hop(v12, (91.75, 28.5), (87.25, 28.5), w)
+    polyline(board, v12, [(87.25, 28.5), (78.25, 28.5), (78.0, 28.75),
+                          (71.75, 28.75), (68.5, 32.0), (61.25, 32.0)],
+             width=w)
+    hop(v12, (61.25, 32.0), (61.25, 36.25), w)
+    polyline(board, v12, [(61.25, 36.25), (60.75, 36.75), (56.25, 38.75),
+                          (54.5, 38.75), (53.08, 40.0)], width=w)
+
+    # J114.3 to D303, under the H-bridge rows.
+    polyline(board, v12, [(53.08, 40.0), (50.0, 37.0), (49.5, 37.0),
+                          (41.25, 28.75)], pcb.B_Cu, width=w)
+    via(board, v12, (41.25, 28.75))
+    polyline(board, v12, [(41.25, 28.75), (34.5, 28.75), (33.25, 27.5),
+                          (30.75, 27.5), (29.25, 29.0), (28.0, 29.0)],
+             width=w)
+
+    # D303 down the left edge to the valve driver's supply.
+    track(board, v12, (28.0, 29.0), (23.25, 29.0), width=w)
+    hop(v12, (23.25, 29.0), (22.0, 29.5), w)
+    polyline(board, v12, [(22.0, 29.5), (7.5, 44.0), (1.5, 44.0), (1.0, 44.5),
+                          (1.0, 74.5), (8.5, 82.0), (8.5, 90.6)], width=w)
+    hop(v12, (8.5, 90.6), (8.5, 94.4), w)
+    polyline(board, v12, [(8.5, 94.4), (8.775, 94.7), (8.775, 97.5)],
+             width=w)
+
+    # Heater LED feed to the grinder/pump LED feed.
+    polyline(board, v12, [(35.17, 96.0), (36.9, 97.75), (38.0, 97.75),
+                          (38.5, 98.25), (40.75, 98.25), (41.5, 99.0),
+                          (41.5, 101.25), (41.77, 101.6)], width=w)
+
+
+def route_3v3_closure(board):
+    """Close the 3.3 V islands left by the distribution pass.
+
+    - The STM32 supply ring was fed only through its own capacitors. It now
+      reaches the trunk from C106 by a B.Cu hop, so UART and BOOT0 can still
+      run north-south on F.Cu between U101 and the trunk.
+    - R507/R508 (H-bridge fault pull-up and VREF) reach J114.2 by a hop under
+      the fault and sleep rows.
+    - The bottom row: from C604 the feed hops under both 24 V branches and the
+      heater LED legs, drops down x = 31 mm to R401 and hops the NTC harness
+      line to R403. J109.1 hangs off R401 down x = 27.3 mm, beside the valve
+      return, and reaches the pin from below the connector.
+    """
+    v33 = '/3V3_CORE'
+
+    def hop(points):
+        via(board, v33, points[0])
+        polyline(board, v33, points, pcb.B_Cu, width=PIN_WIDTH)
+        via(board, v33, points[-1])
+
+    track(board, v33, (85.4, 35.88), (86.5, 35.88), width=0.4)
+    via(board, v33, (86.5, 35.88))
+    track(board, v33, (86.5, 35.88), (90.9, 35.88), pcb.B_Cu, width=0.4)
+    via(board, v33, (90.9, 35.88))
+
+    polyline(board, v33, [(51.42, 32.6), (51.5, 32.7), (52.0, 32.7)],
+             width=PIN_WIDTH)
+    hop([(52.0, 32.7), (52.0, 32.8), (53.6, 34.4), (53.6, 34.7), (54.3, 35.4)])
+    polyline(board, v33, [(54.3, 35.4), (51.5, 38.2), (51.5, 39.0),
+                          (50.54, 40.0)], width=PIN_WIDTH)
+
+    polyline(board, v33, [(36.9, 85.42), (38.0, 86.5), (38.25, 86.5),
+                          (38.75, 87.0), (38.75, 90.25)], width=PIN_WIDTH)
+    hop([(38.75, 90.25), (34.0, 95.0)])
+    polyline(board, v33, [(34.0, 95.0), (31.25, 95.0), (31.0, 95.25),
+                          (31.0, 100.75), (29.5, 102.25)], width=PIN_WIDTH)
+    hop([(29.5, 102.25), (29.5, 104.5), (28.75, 105.25)])
+    track(board, v33, (28.75, 105.25), (28.0, 105.82), width=PIN_WIDTH)
+    polyline(board, v33, [(28.0, 105.82), (28.75, 106.5), (28.75, 107.5)],
+             width=PIN_WIDTH)
+    hop([(28.75, 107.5), (30.25, 107.5)])
+    polyline(board, v33, [(30.25, 107.5), (31.0, 108.25), (31.08, 109.2)],
+             width=PIN_WIDTH)
+    polyline(board, v33, [(28.0, 105.82), (28.0, 108.5), (27.3, 109.2),
+                          (27.3, 121.5), (22.0, 126.8), (22.0, 129.25),
+                          (21.75, 129.5), (20.25, 129.5), (19.0, 128.25)],
+             width=PIN_WIDTH)
+
+
+def route_ui_supply(board):
+    """Switched 3.3 V from the UI load switch to J104.1, along the top edge.
+
+    U302 sits in the pocket east of the 3.3 V trunk and J104 at the far
+    top-left corner, so the only free run is the board's top edge, y = 0.8 mm,
+    north of the 3.3 V branch and of the USB CC1 line. The feed hops under
+    the trunk out of the pocket and climbs its west side at x = 90 mm, clear
+    of the UART channel. It hops under the northern branch at x = 83.25 mm
+    and runs west to J104. It passes west of J104.2 to reach pin 1 from
+    below.
+    """
+    ui = '/3V3_UI'
+    polyline(board, ui, [(96.72, 45.5), (95.0, 45.5), (93.75, 44.25),
+                         (92.5, 44.25)], width=0.3)
+    via(board, ui, (92.5, 44.25))
+    track(board, ui, (92.5, 44.25), (90.75, 44.25), pcb.B_Cu, width=0.3)
+    via(board, ui, (90.75, 44.25))
+    polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.25, 43.25),
+                         (90.25, 36.25), (90.0, 36.0), (90.0, 10.0),
+                         (86.0, 6.0), (85.75, 6.0), (83.25, 3.5)], width=0.3)
+    via(board, ui, (83.25, 3.5))
+    track(board, ui, (83.25, 3.5), (83.25, 1.5), pcb.B_Cu, width=0.3)
+    via(board, ui, (83.25, 1.5))
+    polyline(board, ui, [(83.25, 1.5), (82.45, 0.8), (5.2, 0.8), (4.4, 1.6),
+                         (4.4, 6.5), (6.2, 6.5)], width=0.4)
+
+
 def route_supervisor_orders(board):
     """PB4, PB5, PB6 and PB7 from the north pad row to the supervisor side.
 
@@ -1543,6 +1705,9 @@ def main():
     route_grinder_enable(board)
     route_debug_header(board)
     route_supervisor_orders(board)
+    route_12v_rail(board)
+    route_3v3_closure(board)
+    route_ui_supply(board)
     selv_ground_plane(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
@@ -1572,12 +1737,15 @@ def main():
                           'grinder stage: optocoupler, triac, fuse, bridge, LED loop and JP8',
                           'grinder enable: U604 second gate, R717 pull-down and R718',
                           'SWD header: SWDIO, SWCLK and SWO to J102',
-                          'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm'],
+                          'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
+                          '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',
+                          '3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109',
+                          'UI supply: U302 to J104.1 along the top edge'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['3V3 trunk and remaining decoupling', 'logic', 'sensors',
-                             '24 V actuators', 'final domain copper fills'],
+        'remaining_blocks': ['STM32 signals', 'ESP32 and front-panel signals',
+                             'final domain copper fills'],
     }
     REPORT.write_text(json.dumps(result, indent=2) + '\n')
     print(result)
