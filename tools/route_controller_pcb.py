@@ -1902,12 +1902,12 @@ def route_rails_and_bridge(board):
 
 
 def selv_ground_plane(board):
-    """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
+    """Rebuild the provisional In1.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
         if zone.GetZoneName() == GND_PLANE_NAME:
             board.Delete(zone)
     zone = pcb.ZONE(board)
-    zone.SetLayer(pcb.B_Cu)
+    zone.SetLayer(pcb.In1_Cu)
     zone.SetNet(net(board, '/GND_UI'))
     zone.SetZoneName(GND_PLANE_NAME)
     zone.SetLocalClearance(MM(0.30))
@@ -1926,7 +1926,7 @@ def selv_ground_plane(board):
 
 def main():
     board = pcb.LoadBoard(str(BOARD_PATH))
-    assert board.GetCopperLayerCount() == 2
+    assert board.GetCopperLayerCount() == 4
     for item in list(board.GetTracks()):
         board.Delete(item)
     route_usb_port(board)
@@ -1968,7 +1968,7 @@ def main():
         'status': 'critical_routing_in_progress_not_fabricable',
         'routed_blocks': ['USB-C reversible fanout', 'USB ESD-to-series-pair', 'USB series-to-ESP32',
                           'STM32 VDD ring, VSS vias and decoupling',
-                          'provisional SELV GND_UI plane on B.Cu',
+                          'provisional SELV GND_UI plane on In1.Cu',
                           'mains input: J118, F701, F702, RV701, K701 and PS701',
                           '24 V: PS701, J121 and all 24V_ACT_RAW loads',
                           'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',

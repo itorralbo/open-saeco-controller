@@ -5,7 +5,7 @@
     "USB ESD-to-series-pair",
     "USB series-to-ESP32",
     "STM32 VDD ring, VSS vias and decoupling",
-    "provisional SELV GND_UI plane on B.Cu",
+    "provisional SELV GND_UI plane on In1.Cu",
     "mains input: J118, F701, F702, RV701, K701 and PS701",
     "24 V: PS701, J121 and all 24V_ACT_RAW loads",
     "DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows",

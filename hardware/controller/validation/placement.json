@@ -1,7 +1,7 @@
 {
   "status": "mechanical_connector_placement_unrouted_not_fabricable",
   "kicad_version": "10.0.6",
-  "copper_layers": 2,
+  "copper_layers": 4,
   "electrical_footprints_placed": 187,
   "mounting_holes_preserved": [
     "MH1",

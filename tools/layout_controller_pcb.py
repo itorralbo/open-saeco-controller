@@ -388,7 +388,9 @@ PLACE = {
 
 def main():
     board = pcb.LoadBoard(str(BOARD_PATH))
-    board.SetCopperLayerCount(2)
+    # Four layers: In1.Cu GND and In2.Cu 3.3 V planes, see
+    # configure_controller_stackup.py, which must run after this script.
+    board.SetCopperLayerCount(4)
     footprints = {fp.GetReference(): fp for fp in board.GetFootprints()}
     # Keep the library's all-copper antenna exclusion intact.
     for zone in footprints['U201'].Zones():
