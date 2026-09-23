@@ -1032,9 +1032,20 @@ def route_heater_stage(board):
 
     On the mains side the feed leaves pin 6 north to R710, whose other pad
     sits on the switched phase in the lane. The gate leaves pin 4 on B.Cu,
-    runs down the lane under the phase, clear of the grinder's optocoupler,
-    and along the strip south of the heatsink foot to Q703, now in the
+    climbs the barrier side of the lane, crosses under the phase just below
+    K701 and runs east under the heatsink foot, then drops to Q703 in the
     middle of the heatsink's south face.
+
+    The switched phase carries the heater's 8.4 A plus up to 3 A of grinder,
+    so it is doubled wherever the gate lets it (reworked 2026-09-23; it had
+    been a single F.Cu run, 1.5 mm along the strip and 0.9 mm into Q703).
+    F.Cu: the lane at 3.3 mm and the strip south of the foot at 1.7 mm, the
+    most the gap between the foot and the triac pads allows. B.Cu: a block
+    under the foot, from below the gate crossing down to the strip, stitched
+    to F.Cu along the lane and the strip. The profile sits on F.Cu, so B.Cu
+    under it stays 1.6 mm of FR-4 away and no via lands inside the foot.
+    Q703's pin 2 takes its current from F.Cu only: its own gate drops on
+    B.Cu 2.54 mm east, too close for a B.Cu drop beside it.
     """
     gnd = '/GND_UI'
 
@@ -1073,33 +1084,52 @@ def route_heater_stage(board):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
-    # Switched phase: K701 down the lane, clear of the gate resistors' feed
-    # pads, then east along the strip south of the heatsink foot. Each triac
-    # takes its middle terminal straight down from the strip.
+    # Switched phase on F.Cu: out of K701 at 2.6 mm to clear its COM pad,
+    # then the lane at 3.3 mm, 0.6 mm from the gate resistors' feed pads,
+    # and east along the strip between the heatsink foot (y = 105.5 mm) and
+    # the triac pads. Each triac takes its middle terminal straight down.
     polyline(board, '/LOAD_L_ENABLED', [(62.0, 80.75), (62.0, 82.2),
-                                        (60.6, 83.6), (60.6, 106.45)], width=2.6)
-    track(board, '/LOAD_L_ENABLED', (60.6, 106.45), (89.0, 106.45), width=1.5)
-    for x in (66.6, 77.8):
-        track(board, '/LOAD_L_ENABLED', (x, 106.45), (x, 108.8), width=0.9)
+                                        (60.6, 83.6), (60.25, 84.4)], width=2.6)
+    track(board, '/LOAD_L_ENABLED', (60.25, 84.4), (60.25, 106.45), width=3.3)
+    track(board, '/LOAD_L_ENABLED', (60.25, 106.45), (89.0, 106.45), width=1.7)
+    # Q703's drop stops at the top of its pad, 2.5 mm from the element's
+    # diagonal below.
+    for x, end in ((66.6, 108.8), (77.8, 108.6)):
+        track(board, '/LOAD_L_ENABLED', (x, 106.45), (x, end), width=1.9)
+    # B.Cu block under the foot, x = 59.2-77.6 and y = 88.3-107.25 mm: 2.5 mm
+    # below and west of the heater gate, 1.2 mm above the triac pads. Q708
+    # also takes its middle terminal from it.
+    for y in (90.3, 94.05, 97.8, 101.55, 105.25):
+        track(board, '/LOAD_L_ENABLED', (61.2, y), (75.6, y), pcb.B_Cu, width=4.0)
+    track(board, '/LOAD_L_ENABLED', (66.6, 105.25), (66.6, 109.5), pcb.B_Cu,
+          width=1.9)
+    for point in [(60.25, 89.6), (60.25, 91.7), (60.25, 93.8), (60.25, 95.9),
+                  (60.25, 101.9), (60.25, 104.0), (63.0, 106.45),
+                  (64.9, 106.45), (68.4, 106.45), (71.2, 106.45),
+                  (73.0, 106.45), (74.8, 106.45), (76.6, 106.45)]:
+        via(board, '/LOAD_L_ENABLED', point, MAINS_VIA, MAINS_DRILL)
 
     # Feed from pin 6 north to R710; gate from pin 4 down the lane on B.Cu.
     opto_stubs(board, 'U701', {6: '/HEATER_GATE_FEED'})
     track(board, '/HEATER_GATE_FEED', (OPTO_MAINS_STUB_END, 88.0), (57.2, 87.1),
           width=PIN_WIDTH)
+    # The gate crosses the phase at y = 85.6 mm, 2.5 mm below the neutral's
+    # B.Cu end at RV701, and drops to Q703 east of the B.Cu block.
     opto_stubs(board, 'U701', {4: '/HEATER_TRIAC_GATE'}, pcb.B_Cu)
     polyline(board, '/HEATER_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 93.08),
-                                           (57.5, 94.28), (59.3, 96.08),
-                                           (59.3, 107.1), (80.34, 107.1),
-                                           (80.34, 108.5)], pcb.B_Cu,
-             width=PIN_WIDTH)
+                                           (56.5, 92.88), (56.5, 86.0),
+                                           (56.9, 85.6), (79.94, 85.6),
+                                           (80.34, 86.0), (80.34, 108.5)],
+             pcb.B_Cu, width=PIN_WIDTH)
 
     # Element side: out of the first terminal and down to JP19 tab 1, into
     # both of its tails at 79.25 and 84.25 mm.
-    # The stub starts at the bottom of the pad so its end keeps 2.5 mm from
-    # the phase strip above the triac row.
-    track(board, '/HEATER_AC_SWITCHED', (75.26, 110.5), (75.26, 112.2), width=1.5)
-    polyline(board, '/HEATER_AC_SWITCHED', [(75.26, 112.2), (79.61, 116.55),
-                                            (84.25, 116.55)], width=2.5)
+    # The stub starts below the pad so its end keeps 2.5 mm from the phase
+    # strip above the triac row; its cap still overlaps the pad. The 3 mm
+    # diagonal starts low enough to keep 1.2 mm from Q703's phase pad.
+    track(board, '/HEATER_AC_SWITCHED', (75.26, 110.8), (75.26, 113.0), width=1.9)
+    track(board, '/HEATER_AC_SWITCHED', (75.26, 113.0), (78.81, 116.55), width=3.0)
+    track(board, '/HEATER_AC_SWITCHED', (78.81, 116.55), (84.25, 116.55), width=2.5)
     track(board, '/HEATER_AC_SWITCHED', (79.25, 116.55), (84.25, 116.55),
           pcb.B_Cu, width=2.5)
 
@@ -1160,7 +1190,7 @@ def route_pump_stage(board):
     # The pump side stops at the top of its pad to keep 2.5 mm from the
     # neutral run to JP19.
     track(board, '/LOAD_L_ENABLED', (89.0, 106.45), (89.0, 108.8), width=0.9)
-    polyline(board, '/PUMP_AC_SWITCHED', [(86.46, 110.3), (86.46, 112.0),
+    polyline(board, '/PUMP_AC_SWITCHED', [(86.46, 110.5), (86.46, 112.0),
                                           (91.02, 116.5), (91.02, 119.8)],
              width=1.2)
     track(board, '/MAINS_N', (94.98, 120.8), (94.98, 127.5), width=1.2)
@@ -1281,22 +1311,23 @@ def route_grinder_stage(board):
              pcb.B_Cu, width=PIN_WIDTH)
 
     # Switched phase into the fuse, fused phase round J115's east side to
-    # the bridge, neutral from JP19's tab 3 to the other AC pin.
-    polyline(board, '/GRINDER_AC_SWITCHED', [(64.06, 110.4), (64.06, 112.8),
-                                             (63.75, 113.1)], width=1.0)
+    # the bridge, neutral from JP19's tab 3 to the other AC pin. Widths are
+    # for the 3 A the stage is sized for since 2026-09-23: 1.9 mm into the
+    # fuse, 1.2 mm after it, all within about 12 K on 1 oz.
+    polyline(board, '/GRINDER_AC_SWITCHED', [(64.06, 110.8), (64.06, 112.8),
+                                             (63.75, 113.1)], width=1.9)
     polyline(board, '/GRINDER_AC_FUSED', [(69.25, 113.8), (71.0, 115.55),
-                                          (71.0, 124.3), (61.85, 124.3),
-                                          (61.85, 129.7)], width=0.8)
-    polyline(board, '/MAINS_N', [(79.25, 126.55), (78.0, 127.8), (66.9, 127.8),
-                                 (65.7, 129.0), (65.7, 130.8)], width=0.8)
+                                          (71.0, 124.1), (61.85, 124.1),
+                                          (61.85, 129.7)], width=1.2)
+    polyline(board, '/MAINS_N', [(79.25, 126.55), (77.95, 127.85), (66.9, 127.85),
+                                 (65.7, 129.05), (65.7, 130.8)], width=1.2)
 
-    # Bridge to JP8: + on F.Cu west of the fused phase, - on B.Cu.
-    polyline(board, '/GRINDER_DC_PLUS', [(58.0, 130.8), (58.0, 123.0),
-                                         (59.04, 121.96), (59.04, 120.8)],
-             width=0.8)
+    # Bridge to JP8: + on F.Cu west of the fused phase, straight up into
+    # J115.1; - on B.Cu.
+    track(board, '/GRINDER_DC_PLUS', (58.0, 130.8), (58.0, 121.5), width=1.2)
     polyline(board, '/GRINDER_DC_MINUS', [(69.55, 130.8), (69.55, 124.0),
                                           (66.96, 121.41), (66.96, 120.8)],
-             pcb.B_Cu, width=0.8)
+             pcb.B_Cu, width=1.2)
 
 
 def route_grinder_enable(board):

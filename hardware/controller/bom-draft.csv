@@ -184,5 +184,5 @@ R720,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,060
 U703,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
 Q708,BTA24-800BWRG / grinder,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
-F703,T2A / 250V grinder,OpenSaeco:Fuse_2410_JDT_JFC2410,candidate,Shenzhen JDT Fuse,JFC2410-1200TS,C136382,Extended,Economic and Standard
+F703,T4A / 250V grinder,OpenSaeco:Fuse_2410_JDT_JFC2410,candidate,Shenzhen JDT Fuse,JFC2410-1400TS,C136386,Extended,Economic and Standard
 BR701,KBP410 / grinder bridge,Diode_THT:Diode_Bridge_Vishay_KBPM,candidate,MDD(Microdiode Semiconductor),KBP410,C840747,Extended,Economic and Standard

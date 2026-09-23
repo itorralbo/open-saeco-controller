@@ -12,7 +12,7 @@ derivadas se identifican como tales; no sustituyen los marcados de la unidad.
 | Bomba | `996530007753`, ULKA EP5/S GW | 220–230 V AC, 50 Hz, 48 W, 15 bar, servicio 2 min conectado / 1 min desconectado | Corriente nominal ideal derivada: 0,21 A a 230 V; la conmutación debe admitir la carga inductiva y sus transitorios |
 | Electroválvula | `421944029371`; bobina OLAB `6000BH/B0DN` | 24 V DC/10 W; JP3.1 cuadrado a solenoide.1/+24 V, JP3.2 a solenoide.2/retorno; bobina 56,7 Ω; GND separado sin conectar; 0,073 V en modo diodo en ambos sentidos | Driver low-side con rueda libre externa. Derivación resistiva: 0,423 A y 10,16 W a 24 V, coherente con la especificación OLAB |
 | Motor del grupo | `996530002796` / `11005214` | 24 V DC, reversible; devanado medido 54,7 Ω | Puente H con medida de corriente, frenado/estado seguro y margen para bloqueo. Límite resistivo derivado ≈0,439 A a 24 V; falta medir transitorio y variación con rotor/temperatura |
-| Motor del molino V3.2 | `421944049151` | Conjunto 220–230 V; modo de servicio a 320 V DC; devanado medido 68 Ω | Continua rectificada de red. El límite resistivo parado sería ≈4,71 A a 320 V de pico (3,4 A eficaces), no corriente nominal. Rev A supone 1 A de marcha hasta medirla en el prototipo |
+| Motor del molino V3.2 | `421944049151` | Conjunto 220–230 V; modo de servicio a 320 V DC; devanado medido 68 Ω | Continua rectificada de red. El límite resistivo parado sería ≈4,71 A a 320 V de pico (3,4 A eficaces), no corriente nominal. Rev A dimensiona la etapa a 3 A, casi el bloqueo; la marcha se mide en el prototipo |
 
 El modo de servicio del manual separa expresamente las cargas: motor de grupo a
 24 V DC; bomba a 230 V AC; electroválvula a 24 V DC; calentador a 230 V AC y

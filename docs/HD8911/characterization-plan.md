@@ -5,7 +5,8 @@ registran en el [registro de medidas](measurements.md) con el ID de este plan.
 
 La Rev A se diseña hoy con valores supuestos o derivados, y la primera tanda de
 prototipos tiene que convertirlos en medidas. El caso más claro es el molinillo:
-se supone **1 A de marcha** (ver
+la etapa se dimensiona a **3 A**, casi la corriente de bloqueo, en vez de
+suponer una corriente de marcha (ver
 [etapa del molinillo](../../hardware/power/power-architecture.md#etapa-del-molinillo)).
 Este plan reúne los ensayos iniciales que caracterizan la cafetera, qué decisión
 desbloquea cada uno y con qué criterio se da por bueno el valor supuesto.
@@ -42,16 +43,17 @@ desbloquea cada uno y con qué criterio se da por bueno el valor supuesto.
 
 ## Molinillo (JP8)
 
-Supuesto de diseño: 1 A de marcha. Bloqueo y arranque derivados: 3,4 A
-eficaces con 68 Ω. El supuesto se acepta si GR-03 no pasa de 1,0 A en ningún
-ajuste de molido. Entre 1,0 y 1,5 A se revisa la térmica del puente. Por encima
-de 1,5 A se cambia de puente.
+Dimensionado de diseño: 3 A. Bloqueo y arranque derivados: 3,4 A eficaces con
+68 Ω. Fusible, triac, pistas y reparto con el calentador valen para cualquier
+marcha medida. Solo el puente depende de la medida: si GR-03 no pasa de 1,5 A en
+ningún ajuste de molido y GR-06 deja el puente por debajo de 100 °C, el KBP410
+se queda. Si no, se cambia a cuatro diodos discretos.
 
 | ID | Nivel | Qué se mide | Condiciones | Instrumento | Decide |
 |---|---|---|---|---|---|
 | GR-01 | N0 | Resistencia e inductancia del motor | Desconectado, en frío y justo tras moler; LCR a 100 Hz y 1 kHz | Multímetro 4 hilos, LCR | Corriente de bloqueo real; di/dt en conmutación |
 | GR-02 | N2 | Corriente de marcha sin grano | Tolva vacía, placa original, 5 s; media y eficaz en el cable de JP8 | Pinza DC/AC de efecto Hall | Umbral de «falta de grano» |
-| GR-03 | N2 | Corriente de marcha moliendo | Grano, ajustes de molido fino, medio y grueso; 3 repeticiones | Pinza Hall con salida a osciloscopio | Acepta o rechaza el 1 A supuesto |
+| GR-03 | N2 | Corriente de marcha moliendo | Grano, ajustes de molido fino, medio y grueso; 3 repeticiones | Pinza Hall con salida a osciloscopio | Puente KBP410 (umbral 1,5 A) y tiempo máximo de molido |
 | GR-04 | N2 | Pico de arranque | Primeros 200 ms, 10 arranques; con la original y con el prototipo (cruce por cero) | Pinza Hall + osciloscopio | Pico real frente a los 4,8 A calculados; puente y triac |
 | GR-05 | N2 | Tensión en JP8 y dV/dt en el triac al apagar | Prototipo; captura de apagado | Sonda diferencial de alta tensión | Si Q708 necesita snubber RC |
 | GR-06 | N2 | Temperatura de cápsula de Q708 y BR701 | Prototipo; 5 moliendas de 10 s cada 30 s, y luego 10 moliendas seguidas | Termopar tipo K fijado con cinta de Kapton | Térmica del puente al aire y del perfil compartido; criterio: puente < 100 °C |
@@ -152,4 +154,4 @@ Copiar al [registro de medidas](measurements.md) una fila por medida:
 
 | ID | Fecha/operador | Instrumento | Condiciones | Resultado/unidad | Evidencia | Decisión |
 |---|---|---|---|---|---|---|
-| GR-03 | | | ajuste medio, grano | | | 1 A supuesto: aceptado / revisar |
+| GR-03 | | | ajuste medio, grano | | | KBP410: se queda / diodos discretos |

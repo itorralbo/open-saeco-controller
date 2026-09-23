@@ -3014,12 +3014,12 @@
     },
     {
       "reference": "F703",
-      "value": "T2A / 250V grinder",
+      "value": "T4A / 250V grinder",
       "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
       "status": "candidate",
       "manufacturer": "Shenzhen JDT Fuse",
-      "mpn": "JFC2410-1200TS",
-      "lcsc": "C136382",
+      "mpn": "JFC2410-1400TS",
+      "lcsc": "C136386",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {

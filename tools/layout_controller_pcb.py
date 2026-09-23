@@ -86,8 +86,12 @@ BARRIER_ZONE_NAME = 'mains/SELV barrier'
 # the triacs somehow. 33 mm leaves a 7 mm lane at x = 55-62 that carries both
 # the optocoupler's primary pads and the switched live.
 #
-# The area now forbids copper as well as other footprints: the profile's base
-# sits on the board, so nothing may run underneath it.
+# The area forbids copper as well as other footprints on F.Cu and the inner
+# layers: the profile's base sits on the front, so nothing may run on top
+# under it, and no via may bring a pad up there. B.Cu stays open: 1.6 mm of
+# FR-4 separate it from the base, and since 2026-09-23 it carries the
+# switched phase and the heater gate under the profile (see route_heater_stage
+# in route_controller_pcb.py).
 HEATSINK_AREA = (62.0, 84.5, 95.0, 105.5)
 HEATSINK_ZONE_NAME = 'heatsink foot: 33 x 21 x 35 mm extruded profile'
 
@@ -100,7 +104,9 @@ def heatsink_reservation(board):
     x1, y1, x2, y2 = HEATSINK_AREA
     zone = pcb.ZONE(board)
     zone.SetIsRuleArea(True)
-    zone.SetLayerSet(pcb.LSET.AllCuMask())
+    layers = pcb.LSET.AllCuMask()
+    layers.RemoveLayer(pcb.B_Cu)
+    zone.SetLayerSet(layers)
     zone.SetDoNotAllowTracks(True)
     zone.SetDoNotAllowVias(True)
     zone.SetDoNotAllowZoneFills(True)

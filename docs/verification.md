@@ -448,6 +448,26 @@ de cargas siguen pendientes en el esquema principal.
   U604) y las tres diferencias de paridad de MH1–MH3. No libera fabricación ni
   conexión a red.
 
+## Molinillo a 3 A y fase de cargas duplicada, 2026-09-23
+
+- Decisión del propietario: la etapa del molinillo se dimensiona a 3 A en vez
+  del 1 A de marcha supuesto. F703 pasa a JDT JFC2410-1400TS, T4A
+  (`C136386`, 19 798 en stock), en la misma huella. BR701 se queda en KBP410,
+  solo para molidos de hasta 10 s.
+- La fase de cargas era una sola pista de F.Cu del carril al triac del
+  calentador (1,5 mm en la franja, 0,9 mm en la bajada). Ahora el carril va a
+  3,3 mm, la franja a 1,7 mm y las bajadas a 1,9 mm, con un bloque de B.Cu bajo
+  el pie del disipador unido por 13 vías. El área del pie ya no incluye B.Cu. La
+  puerta del calentador cruza bajo el carril en y = 85,6 mm y baja a Q703 por el
+  este del bloque. Las pistas del molinillo pasan a 1,9 y 1,2 mm.
+- Regla de reparto en el núcleo C: con el molinillo encendido, el calentador
+  conduce 3 de cada 5 ciclos; molido de 10 s como máximo.
+  `osc_heater_cycles_allowed()` tiene su prueba en CTest.
+- KiCad 10.0.6: ERC 0; netlist nativa 187 componentes / 612 pines coincidente.
+  DRC con todas las severidades: 0 infracciones, 0 conexiones abiertas y las
+  tres diferencias de paridad de MH1–MH3. CTest: 1/1. No libera fabricación ni
+  conexión a red.
+
 ## Órdenes a las cargas y salidas de U602, 2026-09-23
 
 - Cambio de pin: `GRINDER_EN_RAW` pasa de PB12 (pin 34) a PC4 (pin 25), junto

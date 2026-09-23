@@ -23,5 +23,8 @@ int main(void) {
     osc_init(&c);
     osc_tick(&c, true, false);
     CHECK(c.state == OSC_FAULT && off(&c));
+    CHECK(osc_heater_cycles_allowed(false) == OSC_HEATER_WINDOW_CYCLES);
+    CHECK(osc_heater_cycles_allowed(true) == 3u);
+    CHECK(osc_heater_cycles_allowed(true) < OSC_HEATER_WINDOW_CYCLES);
     return 0;
 }

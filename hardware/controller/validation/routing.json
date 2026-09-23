@@ -37,8 +37,8 @@
     "sensor bus: PC2, PC3, PA0-PA3 to the filters and PC1 to J114.6 on B.Cu",
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense"
   ],
-  "track_segments": 1244,
-  "vias": 274,
+  "track_segments": 1250,
+  "vias": 287,
   "remaining_blocks": [
     "final domain copper fills"
   ]

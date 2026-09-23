@@ -47,8 +47,8 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
 | Optotriac calentador, bomba y molinillo | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
-| Fusible molino | JDT JFC2410-1200TS | C136382 | T2A, 250 V, 2410; entre Q708 y el puente, decisión del propietario del 2026-09-23 |
-| Puente molino | MDD KBP410 | C840747 | 4 A, 1000 V, 90 A de pico; sobra para el 1 A supuesto y aguanta los 3,4 A de bloqueo unos segundos. Sustituye al GBU8K |
+| Fusible molino | JDT JFC2410-1400TS | C136386 | T4A, 250 V, 2410; entre Q708 y el puente. Fusible propio por decisión del propietario del 2026-09-23; T4A desde que la etapa se dimensiona a 3 A |
+| Puente molino | MDD KBP410 | C840747 | 4 A, 1000 V, 90 A de pico; a 3 A disipa ≈ 5 W y solo vale para molidos de hasta 10 s con pausa. Un GBU no cabe. Sustituye al GBU8K |
 
 El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
 variantes y conservar margen ante cargas inductivas. Esa unificación no libera
@@ -79,7 +79,10 @@ un opto de 600 o 400 V.
 ## Protección y reglas pendientes de cerrar
 
 - F1 será un fusible retardado reemplazable, inicialmente 10 A/250 V, ajustado
-  después de medir calentador, bomba y molinillo en el peor caso permitido.
+  después de medir calentador, bomba y molinillo en el peor caso permitido. Con
+  el molinillo a 3 A la suma llegaría a 11,6 A; el firmware limita el
+  calentador al 60 % mientras se muele y el total queda en ≈ 9,7 A (ver
+  [reparto de corriente](power-architecture.md#reparto-de-corriente-en-la-fase-de-cargas)).
 - F2 protegerá solo la rama de fuente/electrónica y se dimensionará con el pico de
   entrada del IRM-30 y su recomendación de fabricante.
 - El MOV será de 275 VAC y se coordinará con F1; falta seleccionar MPN, energía y
@@ -88,14 +91,18 @@ un opto de 600 o 400 V.
   L5/L7 o elegir un choque certificado con corriente suficiente.
 - Cobre de 1 oz. Las pistas del calentador y de la fase general se duplican en
   las dos caras con vías de cosido, la opción más barata en JLCPCB (decisión del
-  2026-09-19). La entrada de red ya sigue ese criterio.
+  2026-09-19). La entrada de red ya sigue ese criterio. La fase de cargas no lo
+  seguía: del carril al triac del calentador era una sola pista de F.Cu, de
+  1,5 mm en la tira y 0,9 mm en la bajada. Desde el 2026-09-23 la acompaña un
+  bloque de B.Cu bajo el perfil (ver [layout](../controller/layout.md#fase-de-cargas-bajo-el-perfil)).
 - Se mantiene una barrera inicial de 8 mm entre red y SELV en todas las capas, con
   ranuras bajo optos o fuente si hacen falta para conservar creepage real.
 
 ## Datos que decidirán la liberación
 
-1. Corriente RMS y pico de arranque/bloqueo del molinillo. Rev A supone 1 A de
-   marcha y 3,4 A de bloqueo, limitados por los 68 Ω del bobinado.
+1. Corriente RMS y pico de arranque/bloqueo del molinillo. Rev A se dimensiona
+   a 3 A, cerca de los 3,4 A de bloqueo que limitan los 68 Ω del bobinado; la
+   medida decide el puente y la detección de bloqueo.
 2. Corriente del motor de grupo en movimiento y bloqueo, solo y con válvula.
 3. Temperatura ambiente dentro de la máquina y temperatura de triac/disipador.
 4. Continuidad de la placa original desde L/N a F1/F2, relé/triacs y cargas.

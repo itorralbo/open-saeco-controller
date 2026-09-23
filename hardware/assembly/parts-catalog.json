@@ -857,23 +857,23 @@
       "stock_evidence": "JLCPCB parts search API, read-only; ratings and outline from the MDD KBP4005-KBP410 datasheet (lead pitch 0.14-0.16 in, body 14.2 x 3.4 mm)",
       "url": "https://jlcpcb.com/partdetail/C840747",
       "selection": "candidate_pending_grinder_current",
-      "selection_note": "Sized on an assumed 1 A running current, to be measured on the first prototype. 4 A covers the 3.4 A RMS a stalled 68 ohm winding would draw at 230 V for the seconds the firmware takes to stop it. Replaces the earlier GBU8K placeholder, which is larger than a 1 A load needs. The KiCad KBPM footprint has a 3.85 mm pitch, inside the datasheet's 3.56-4.06 mm."
+      "selection_note": "Since 2026-09-23 the grinder stage is sized for 3 A, close to the 3.4 A RMS a stalled 68 ohm winding draws at 230 V. 4 A covers that current, but at 3 A the bridge dissipates about 5 W against 55 C/W to ambient, so it is rated for intermittent grinding only (one grind of up to 10 s, then a pause); a larger GBU does not fit between the barrier and JP19. If the measured running current exceeds 1.5 A, or GR-06 shows more than 100 C on the case, it moves to four discrete diodes. Replaces the earlier GBU8K placeholder. The KiCad KBPM footprint has a 3.85 mm pitch, inside the datasheet's 3.56-4.06 mm."
     },
-    "FUSE:JFC2410-1200TS": {
+    "FUSE:JFC2410-1400TS": {
       "manufacturer": "Shenzhen JDT Fuse",
-      "mpn": "JFC2410-1200TS",
-      "lcsc": "C136382",
-      "specification": "2 A time-lag surface-mount fuse, 2410 ceramic tube, 250 V, 50 A at 250 V breaking; grinder branch F703",
+      "mpn": "JFC2410-1400TS",
+      "lcsc": "C136386",
+      "specification": "4 A time-lag surface-mount fuse, 2410 ceramic tube, 250 V, 50 A at 250 V breaking; grinder branch F703",
       "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
-      "stock_observed": 18992,
+      "stock_observed": 19798,
       "available_order_qty_observed": null,
       "stock_checked_on": "2026-09-23",
-      "stock_evidence": "JLCPCB parts search API, read-only; ratings, pre-arcing times and pad layout from the JDT JFC2410TS datasheet (rev. 01/17/22)",
-      "url": "https://jlcpcb.com/partdetail/C136382",
+      "stock_evidence": "JLCPCB parts search API, read-only; same JFC2410TS series and 2410 outline as the T2A it replaces",
+      "url": "https://jlcpcb.com/partdetail/C136386",
       "selection": "candidate_not_released",
-      "selection_note": "Owner's decision on 2026-09-23: a T2A fuse for the grinder. Time-lag: at 200 % it opens within 60 s and at 1000 % not before 10 ms, so it rides through the 3.4 A start and clears a short, but a 3.4 A stall (170 %) takes longer than the triac should carry it; the stall is still the firmware's to cut. Breaking capacity is 50 A at 250 V, low for a mains branch; F701 upstream remains the main protection."
+      "selection_note": "Owner's fuse for the grinder (2026-09-23), resized to T4A when the stage moved from an assumed 1 A to 3 A: a 3 A run loads it to 75 %, where a T2A would sit at 150 %. It rides through the 3.4 A start and clears a shorted bridge or winding, but a 3.4 A stall is only 85 % of its rating and never blows it; the stall is the firmware's to cut. Breaking capacity is 50 A at 250 V, low for a mains branch; F701 upstream remains the main protection. Same footprint as the T2A (JFC2410-1200TS, C136382) it replaces."
     },
     "AP63200WU-7": {
       "manufacturer": "Diodes Incorporated",

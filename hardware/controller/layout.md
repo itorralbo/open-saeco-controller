@@ -136,6 +136,15 @@ calentador y bomba, de oeste a este, con 0,6 mm entre courtyards. Hay que
 comprobar con el perfil real que caben tres tornillos y tres láminas aislantes.
 Ver la [etapa del molinillo](#etapa-del-molinillo-jp8).
 
+Desde el 2026-09-23 el área del pie (x = 62–95, y = 84,5–105,5 mm) prohíbe
+pistas, vías, rellenos y huellas en F.Cu y en las capas internas, pero no en
+B.Cu. La base del perfil apoya en la cara superior; B.Cu queda a 1,6 mm de
+FR-4 y ninguna vía puede sacar cobre a F.Cu bajo el pie. B.Cu lleva ahí la
+fase de cargas y la puerta del calentador (ver
+[fase de cargas bajo el perfil](#fase-de-cargas-bajo-el-perfil)). Los anclajes
+soldados del perfil, aún sin posición, tendrán que respetar ese bloque o
+recortarlo.
+
 ## Routing del STM32
 
 Todo el bloque del STM32 se desplaza junto con U101: la colocación lo define
@@ -459,8 +468,8 @@ Disipador elegido: perfil extruido estándar de 33 × 21 mm de pie y 35 mm de
 alto, aletas verticales, en x = 62–95, y = 84,5–105,5 mm. Se queda en 33 mm y no
 en 40 porque la fase conmutada tiene que bajar de K701 a los triacs y el único
 paso es un carril de 5 mm al oeste del perfil: al este sube la fase de entrada
-junto a PS701. El pie prohíbe ahora cobre además de huellas, porque la base del
-perfil apoya en la placa. Los taladros de sujeción se añadirán con la pieza
+junto a PS701. El pie prohíbe cobre además de huellas en F.Cu y en las capas
+internas, porque la base del perfil apoya en la placa; B.Cu queda libre. Los taladros de sujeción se añadirán con la pieza
 concreta. Con ese volumen se espera del orden de 6–8 °C/W: suficiente para el
 ciclo real del termobloque, justo para calentamiento continuo. Hay que medirlo en
 una descalcificación.
@@ -485,14 +494,8 @@ Desde el 2026-09-23:
 
 - Ánodo y retorno del LED pasan bajo la troncal de 24 V y D701 por B.Cu, en dos
   diagonales paralelas, y suben junto a los stubs del opto.
-- La fase baja por el carril a 2,6 mm, en x = 60,6 mm, para dejar 1,2 mm con
-  los pads de alimentación de R710 y R721. Al pie del perfil gira por una
-  franja de 1,5 mm (antes 0,9 mm) de la que bajan los tres terminales
-  centrales.
-- La puerta baja por B.Cu en x = 59,3 mm, bajo la fase y a 2,5 mm de los stubs
-  del opto del molinillo, y va por y = 107,1 mm hasta Q703. Pasa por encima
-  de los pines de Q708, así que no cruza la puerta del molinillo, que va por
-  debajo de ellos.
+- La fase y la puerta se rehicieron el mismo día; ver
+  [fase de cargas bajo el perfil](#fase-de-cargas-bajo-el-perfil).
 
 Dos áreas con nombre, `mains device pitch`, bajan la separación entre redes de
 red a 0,6 mm solo sobre los pines del lado de red del opto y del triac, cuyo
@@ -539,8 +542,8 @@ Ruteado:
 - La fase conmutada sigue por la franja bajo el pie del disipador hasta el
   terminal central de Q704, a 0,9 mm.
 - La puerta es la única red que hace los 35 mm hasta el triac. Va por B.Cu, al
-  sur de la puerta del calentador y al norte de la lengüeta 1 de JP19, con
-  2,5 mm a las dos.
+  sur de la fila de triacs y al norte de la lengüeta 1 de JP19, con 2,5 mm a
+  las dos.
 - La salida de la bomba y su neutro, 0,4 A, van a 1,2 mm hasta JP24.1 y desde
   JP24.2 hasta el neutro de JP19. Con 1,2 mm quedan 2,5 mm entre las dos pistas
   en los pads de 3,96 mm, y la salida termina en el borde norte de su pad para
@@ -625,8 +628,11 @@ Ruteado:
 - La fase con fusible baja por el pasillo entre J115 y JP19 y entra al pin 2
   del puente por encima. El neutro sale de la cola oeste de la lengüeta 3 de
   JP19 y entra al pin 3. El − sube por B.Cu bajo los dos.
-- Anchuras: 1 mm hasta el fusible y 0,8 mm después. Con 3,4 A de bloqueo durante
-  segundos sobra en 1 oz.
+- Anchuras, desde el cambio a 3 A del 2026-09-23: 1,9 mm hasta el fusible y
+  1,2 mm después, en la fase con fusible, el neutro del puente y las dos
+  salidas de continua. Son unos 12 K a 3 A en 1 oz (IPC-2221). Para ganar
+  sitio, el + sube recto a JP8.1 en x = 58 mm, la fase con fusible rodea J115
+  por y = 124,1 mm y el neutro por y = 127,85 mm.
 - 12 V para R720 desde la alimentación B.Cu de la bomba, junto a R716.
 - La salida de la segunda puerta de U604 (pin 3) mira al oeste. Baja a B.Cu
   junto al pin, rodea las vías de masa y la pata B.Cu del enclavamiento del
@@ -638,6 +644,43 @@ Ruteado:
 
 Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
 triac. Tampoco hay snubber en Q708.
+
+### Fase de cargas bajo el perfil
+
+Rehecha el 2026-09-23. `LOAD_L_ENABLED` lleva los 8,4 A del calentador, hasta
+3 A del molinillo y la bomba, pero del carril al triac del calentador era una
+sola pista de F.Cu: 2,6 mm en el carril, 1,5 mm en la franja al pie del perfil
+y 0,9 mm en la bajada a Q703. Con 8,4 A, IPC-2221 daba unos 90 K en la franja
+y más de 150 K en la bajada. No se podía duplicar en B.Cu porque la puerta del
+calentador iba justo debajo, por el carril y por y = 107,1 mm.
+
+Ahora:
+
+- **F.Cu.** El carril pasa a 3,3 mm (x = 58,6–61,9 mm), a 0,6 mm de los pads
+  de alimentación de R710 y R721 dentro de sus áreas de paso. La franja al pie
+  del perfil pasa a 1,7 mm, lo máximo entre el pie (y = 105,5 mm) y los 1,2 mm
+  que piden los pads de los triacs. Las bajadas a Q708 y Q703 pasan a 1,9 mm.
+- **B.Cu.** Un bloque de cobre bajo el pie, x = 59,2–77,6 mm e
+  y = 88,3–107,25 mm, trazado con cinco pistas de 4 mm. Está unido a F.Cu por
+  seis vías en el carril y siete en la franja, y baja a Q708 con 1,9 mm.
+- **Puerta del calentador.** Sale del pin 4 de U701 por B.Cu, sube pegada a la
+  barrera en x = 56,5 mm, cruza bajo el carril en y = 85,6 mm (a 2,5 mm del
+  neutro de RV701), va al este bajo el pie y baja a Q703 en x = 80,34 mm, al
+  este del bloque.
+- **Q703** toma la fase solo de F.Cu: su puerta baja por B.Cu 2,54 mm al este
+  del terminal central, y no cabe una bajada de B.Cu a su lado. La salida al
+  elemento pasa a 1,9 mm en el stub y 3 mm en la diagonal hasta JP19.
+- Las salidas de los tres triacs empiezan 0,3 mm por debajo del pad, para
+  mantener 2,5 mm con la franja más ancha.
+
+Estimación IPC-2221 en 1 oz, que es conservadora en tramos cortos entre cobre
+ancho: con el calentador solo (8,6 A), unos 38 K en los 4 mm de 2,6 mm que
+salen de K701, unos 26 K en los 5 mm de carril a 3,3 mm antes de la primera
+vía y unos 28 K en la diagonal de 3 mm de la salida. Desde la primera vía la
+corriente se reparte con el bloque de B.Cu. Con el reparto calentador/molinillo
+([power-architecture.md](../power/power-architecture.md#reparto-de-corriente-en-la-fase-de-cargas))
+el total no pasa de unos 9,7 A. Estos valores hay que confirmarlos con
+termografía en el primer ensayo con carga.
 
 ### Raíles de 12 V, 3,3 V y del frontal
 
@@ -905,5 +948,6 @@ pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y
 consiguió rutear el puente H. Se descartó a favor del ruteo manual.
 
 Las etapas de calentador, bomba y molinillo están colocadas y ruteadas; faltan
-los taladros del perfil. No se generarán Gerbers mientras quede pendiente la
+los taladros y anclajes del perfil, que ahora tienen que convivir con el bloque
+de B.Cu de la fase bajo el pie. No se generarán Gerbers mientras quede pendiente la
 revisión de aislamiento.

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-23T15:48:10</date>
+    <date>2026-09-23T20:57:09</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2055,12 +2055,12 @@
       </units>
     </comp>
     <comp ref="F703">
-      <value>T2A / 250V grinder</value>
+      <value>T4A / 250V grinder</value>
       <footprint>OpenSaeco:Fuse_2410_JDT_JFC2410</footprint>
       <fields>
         <field name="manufacturer">Shenzhen JDT Fuse</field>
-        <field name="mpn">JFC2410-1200TS</field>
-        <field name="lcsc">C136382</field>
+        <field name="mpn">JFC2410-1400TS</field>
+        <field name="lcsc">C136386</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">OpenSaeco:Fuse_2410_JDT_JFC2410</field>
@@ -2069,8 +2069,8 @@
       </fields>
       <libsource lib="OpenSaeco" part="FUSE" description=""/>
       <property name="manufacturer" value="Shenzhen JDT Fuse"/>
-      <property name="mpn" value="JFC2410-1200TS"/>
-      <property name="lcsc" value="C136382"/>
+      <property name="mpn" value="JFC2410-1400TS"/>
+      <property name="lcsc" value="C136386"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>

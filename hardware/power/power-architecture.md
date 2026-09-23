@@ -64,7 +64,7 @@ DNP, con selección que impida realimentar la fuente integrada.
 |---|---|---|
 | Calentador JP19 | 220–230 V AC, 1900 W; resistencia medida 27,5 Ω, 8,4 A a 230 V | conectores, contactos, cobre y corte redundante dimensionados con margen; mantener los dos termostatos externos de 190 °C |
 | Bomba JP24 | ULKA EP5/S GW, 220–230 V AC, 48 W, inductiva | conmutador y supresión compatibles con carga inductiva y ciclo 2 min ON / 1 min OFF |
-| Molino JP8 | servicio a 320 V DC; bobinado 68 Ω; 1 A de marcha supuesto | BTA24 + KBP410 tras K701, dimensionados para 1 A de marcha y 3,4 A de bloqueo; medir en el prototipo |
+| Molino JP8 | servicio a 320 V DC; bobinado 68 Ω; marcha sin medir | BTA24 + T4A + KBP410 tras K701, dimensionados para 3 A (casi los 3,4 A de bloqueo); medir en el prototipo |
 | Grupo | 24 V DC; 54,7 Ω medidos | DRV8876 y límite de corriente ya dibujados; alimentar desde 24 V aislados integrados |
 | Electroválvula JP3 | OLAB 6000BH/B0DN, 24 V DC; 56,7 Ω | etapa low-side y rueda libre ya dibujadas; alimentar desde 24 V aislados integrados |
 
@@ -170,22 +170,30 @@ hiciera falta, el snubber va entre A1 y A2 de Q704.
 
 **Especificada el 2026-09-23; colocada y ruteada el mismo día**, con Q708 en el
 disipador y un fusible propio; detalle en
-[layout.md](../controller/layout.md#etapa-del-molinillo-jp8).
+[layout.md](../controller/layout.md#etapa-del-molinillo-jp8). **Redimensionada a
+3 A el mismo día**, a propuesta del propietario.
 
-La corriente de marcha del motor V3.2 no se ha medido. Por decisión del
-propietario, la Rev A supone **1 A de corriente máxima de marcha** y la medirá
-en el primer prototipo con los ensayos GR-01 a GR-06 del
+La corriente de marcha del motor V3.2 no se ha medido; se medirá en el primer
+prototipo con los ensayos GR-01 a GR-06 del
 [plan de caracterización](../../docs/HD8911/characterization-plan.md). El
-bobinado de 68 Ω fija los otros dos casos sin necesidad de medir: en arranque y
+bobinado de 68 Ω fija el caso peor sin necesidad de medir: en arranque y
 bloqueo el motor no genera fuerza contraelectromotriz y la corriente la limita la
 resistencia, 230/68 = 3,4 A eficaces (4,8 A de pico).
+
+La etapa se dimensiona para **3 A**. No es una corriente de marcha creíble: con
+68 Ω, 3 A disiparían unos 610 W en el cobre del bobinado, y la marcha real
+quedará muy por debajo. Es una envolvente que casi coincide con el bloqueo, de
+modo que ningún componente depende ya de la medida: fusible, triac, pistas y
+reparto con el calentador valen para cualquier corriente de marcha posible. La
+única pieza que no aguanta 3 A en continuo es el puente (ver abajo).
 
 Topología, la de la original con dos cambios de pieza:
 
 1. Q708, un BTA24-800BW, corta la fase ya armada por K701 (`LOAD_L_ENABLED`).
    Va en el mismo perfil que calentador y bomba, en el extremo oeste.
-2. F703, un fusible T2A de acción retardada (JDT JFC2410-1200TS, 2410, 250 V),
-   entre el triac y el puente. Es decisión del propietario.
+2. F703, un fusible T4A de acción retardada (JDT JFC2410-1400TS, C136386,
+   2410, 250 V), entre el triac y el puente. El fusible propio es decisión del
+   propietario; pasó de T2A a T4A con el cambio a 3 A, en la misma huella.
 3. BR701, un puente KBP410, rectifica después del fusible. JP8 recibe polaridad
    fija (blanco = +, negro = −) y queda sin tensión en cuanto el triac se abre.
    No hay condensador de bus, así que no hace falta resistencia de descarga.
@@ -200,42 +208,71 @@ Topología, la de la original con dos cambios de pieza:
 
 | Magnitud | Valor |
 |---|---:|
-| Corriente de marcha supuesta | 1 A, pendiente de medir |
+| Corriente de diseño | 3 A; la marcha real está pendiente de medir |
 | Arranque y bloqueo | 3,4 A eficaces, limitados por los 68 Ω |
-| Disipación del triac a 1 A | ≈ 0,8 W, en el perfil compartido |
-| Disipación del puente a 1 A | ≈ 1,7 W; +95 K con los 55 °C/W del KBP |
-| Disipación del triac en bloqueo | ≈ 2,8 W, que el perfil absorbe |
-| F703 a 3,4 A (170 %) | abre en más de 60 s; a 200 % abre en menos de 60 s |
+| Disipación del triac a 3 A | ≈ 2,5 W, en el perfil compartido |
+| Disipación del puente a 3 A | ≈ 5 W; con 55 °C/W no vale en continuo |
+| F703 a 3 A | 75 % de su valor; no funde |
+| F703 a 3,4 A (bloqueo) | 85 %; no funde nunca |
+| Pistas del molinillo | 1,9 mm hasta F703 y 1,2 mm después: ≈ 12 K a 3 A (IPC-2221, 1 oz) |
 | Corriente del LED | 10,5 mA desde 12 V con 1 kΩ (R720) |
 | Pico por la puerta con 390 Ω (R721) | 0,83 A en el peor caso |
 
-Con 1 A el triac podría ir al aire, como el BTA208 de la original, pero en la
-zona de red no quedaba sitio para un TO-220 de pie y su puente. En el perfil
-cabe con 0,6 mm entre courtyards y, a cambio, aguanta un bloqueo sin
-calentarse. El puente aguanta
-+95 K solo porque el molido es intermitente, de 3 a 10 s por taza según el
-manual. Si la medida supera 1,5 A, o si el ensayo térmico GR-06 da más de 100 °C
-en la cápsula del puente, habrá que pasar a un GBU con más superficie o a cuatro
-diodos discretos, como la original.
+Con poca corriente el triac podría ir al aire, como el BTA208 de la original,
+pero en la zona de red no quedaba sitio para un TO-220 de pie y su puente. En
+el perfil cabe con 0,6 mm entre courtyards y aguanta 3 A o un bloqueo sin
+problema.
 
-El bloqueo lo sigue cortando el firmware. Con 3,4 A, F701 (T10A) no funde. F703
-aguanta el arranque sin fundir, pero con un bloqueo del 170 % tarda más de un
-minuto. Protege ante un puente o un bobinado en corto sin llevarse por delante
-la máquina entera, pero no sustituye al tiempo máximo de molido ni al
-watchdog. Su poder de corte es de 50 A a 250 V, bajo para una rama de red:
-F701 sigue siendo la protección principal. Si la medida confirma 1 A o menos,
-un T1,25A de la misma serie cortaría antes un bloqueo. Queda abierta una
-decisión para el propietario:
+El puente es el límite. A 3 A disipa unos 5 W y con los 55 °C/W del KBP410 no
+aguanta en continuo; por su masa térmica (≈ 1 J/K, estimación) sube unos
+30–50 K en un molido de 10 s y necesita una pausa antes del siguiente. Por eso
+el firmware limita cada molido a `OSC_GRINDER_MAX_ON_MS` (10 s). Un GBU no
+cabe: pide unos 22 mm de largo y entre la banda de barrera y JP19 hay unos
+16,7 mm. Si la marcha medida supera 1,5 A, o si el ensayo térmico GR-06 da más
+de 100 °C en la cápsula, el puente pasa a cuatro diodos discretos, como en la
+original.
+
+El bloqueo lo sigue cortando el firmware. Con 3,4 A no funden ni F701 (T10A) ni
+F703 (T4A); F703 solo protege ante un puente o un bobinado en corto, sin
+llevarse por delante la máquina entera. Su poder de corte es de 50 A a 250 V,
+bajo para una rama de red: F701 sigue siendo la protección principal. Queda
+abierta una decisión para el propietario:
 
 - **Medida de corriente.** El manual la usa para detectar falta de grano
   (corriente baja) y muelas bloqueadas (alta); ver
   [components.md](../../docs/HD8911/components.md#grupo-de-infusión-y-autodosis).
-  Exige un sensor con aislamiento reforzado porque el bus está en el lado de red.
-  Con 1 A supuestos y 4,8 A de pico en bloqueo, el rango útil es de ±5 A. No se
-  añade hasta medir el motor real y ver cuánto se separan las dos corrientes.
+  Con F703 a 4 A, es la única forma de detectar un bloqueo antes del tiempo
+  máximo de molido. Exige un sensor con aislamiento reforzado porque el bus
+  está en el lado de red. Con 4,8 A de pico en bloqueo, el rango útil es de
+  ±5 A. No se añade hasta medir el motor real y ver cuánto se separan las dos
+  corrientes.
 
 No hay snubber RC en Q708 por la misma razón que en la bomba: hay que medir el
 dV/dt en el apagado con el motor real (GR-05).
+
+## Reparto de corriente en la fase de cargas
+
+Todas las cargas de red pasan por F701 (T10A), K701 y JP17, cuyo JST VH admite
+10 A por contacto. En el peor caso suman 8,4 A del calentador, 3 A del
+molinillo y unos 0,2 A de la bomba: 11,6 A. Por eso, desde el 2026-09-23 el
+firmware aplica una regla de reparto:
+
+- Mientras el molinillo está encendido, el calentador conduce como máximo
+  **3 ciclos completos de red de cada 5** (60 %). Su corriente eficaz baja a
+  8,4 × √0,6 ≈ 6,5 A, y el total queda en unos 9,7 A, por debajo de F701 y del
+  conector.
+- Se cuentan ciclos completos, no semiciclos, para no meter componente continua
+  en la red. Los MOC3083 de cruce por cero ya conmutan así.
+- Un molido dura como máximo 10 s, así que el calentador pierde como mucho 4 s
+  de potencia plena por taza. La inercia de la caldera lo absorbe.
+
+Las constantes están en `firmware/stm32/include/controller.h`
+(`OSC_HEATER_CYCLES_WHILE_GRINDING`, `OSC_HEATER_WINDOW_CYCLES`,
+`OSC_GRINDER_MAX_ON_MS`) y `osc_heater_cycles_allowed()` tiene su prueba en
+CTest. El núcleo todavía no conmuta cargas: la regla queda fijada para cuando
+exista el control del calentador. No sustituye a F701: es una regla de
+dimensionado, y un fallo del firmware que la incumpla solo sobrecarga F701 un
+110–120 % durante los segundos de un molido.
 
 El calentador debe tener dos medios de corte en serie que no dependan de un único
 semiconductor ni de un único GPIO. Se añade como candidato un relé general

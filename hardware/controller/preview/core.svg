@@ -2495,7 +2495,7 @@
 <text x="1246.5400000000002" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="1250.0800000000002" y="969.78" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_TRIAC_GATE</text>
 <text x="870" y="1010" font-size="1.1" text-anchor="start" fill="#213b50">Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir dV/dt en el apagado antes de liberar.</text>
-<text x="870" y="1030" font-size="1.8" text-anchor="start" fill="#213b50">18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; 1 A supuesto</text>
+<text x="870" y="1030" font-size="1.8" text-anchor="start" fill="#213b50">18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; dimensionada a 3 A</text>
 <rect x="877.57" y="1050.56" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="880.11" y="1045.56" font-size="1.05" text-anchor="middle" fill="#213b50">R717</text>
 <text x="880.11" y="1048.06" font-size="1.05" text-anchor="middle" fill="#213b50">10k / grinder arm pull-down</text>
@@ -2590,7 +2590,7 @@
 <text x="1250.0800000000002" y="1059.95" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_TRIAC_GATE</text>
 <rect x="1267.46" y="1028.47" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1270.0" y="1023.47" font-size="1.05" text-anchor="middle" fill="#213b50">F703</text>
-<text x="1270.0" y="1025.97" font-size="1.05" text-anchor="middle" fill="#213b50">T2A / 250V grinder</text>
+<text x="1270.0" y="1025.97" font-size="1.05" text-anchor="middle" fill="#213b50">T4A / 250V grinder</text>
 <path d="M 1267.46 1029.97 H 1262.38" stroke="#27856d" stroke-width=".22"/>
 <text x="1268.16" y="1030.27" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="1265.52" y="1029.47" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2618,8 +2618,8 @@
 <text x="1304.8600000000001" y="1063.29" font-size="0.9" text-anchor="end" fill="#213b50">-</text>
 <text x="1307.5" y="1062.49" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
 <text x="1311.0400000000002" y="1062.49" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_DC_MINUS</text>
-<text x="870" y="1092" font-size="1.1" text-anchor="start" fill="#213b50">Q708 en el perfil del calentador y la bomba: ~0,8 W a 1 A. Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware; F703 T2A cubre cortos.</text>
-<text x="870" y="1100" font-size="1.1" text-anchor="start" fill="#213b50">BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~1,7 W y +95 K a 1 A continuo; el molido es intermitente. Medir en el prototipo.</text>
+<text x="870" y="1092" font-size="1.1" text-anchor="start" fill="#213b50">Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware; F703 T4A cubre cortos.</text>
+<text x="870" y="1100" font-size="1.1" text-anchor="start" fill="#213b50">BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido intermitente (&lt;=10 s y pausa). Medir en el prototipo.</text>
 <rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
 <text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>

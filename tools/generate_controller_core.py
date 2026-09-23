@@ -641,12 +641,13 @@ def main():
            'dV/dt en el apagado antes de liberar.',870,1010,1.1)
 
     # Grinder: V3.2 motor fed with rectified mains, 68 ohm winding. Its running
-    # current has not been measured; Rev A assumes 1 A and the first prototype
-    # measures it (docs/HD8911/characterization-plan.md). A triac switches the
+    # current has not been measured; since 2026-09-23 Rev A is sized for 3 A,
+    # close to the 3.4 A the winding draws stalled, so no stage depends on the
+    # measurement (docs/HD8911/characterization-plan.md). A triac switches the
     # AC side and a bridge after it gives JP8 fixed polarity, so the motor sees
     # nothing once the triac drops out. No bus capacitor, so no bleed resistor.
     # Same zero-cross opto as heater and pump: the grinder is on/off only.
-    d.note('18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; 1 A supuesto',870,1030,1.8)
+    d.note('18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; dimensionada a 3 A',870,1030,1.8)
     d.passive('R717','R','10k / grinder arm pull-down',880,1052,'GRINDER_EN_RAW',g)
     d.passive('R718','R','33 / opto LED gate',940,1052,'GRINDER_EN_INTERLOCK','GRINDER_LED_GATE')
     d.passive('R719','R','100k / opto LED off',940,1072,'GRINDER_LED_GATE',g)
@@ -664,19 +665,20 @@ def main():
     d.add('Q708','TRIAC_TO220','BTA24-800BWRG / grinder',1240,1060,
           ['GRINDER_AC_SWITCHED','LOAD_L_ENABLED','GRINDER_TRIAC_GATE'],
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
-    # F703 is the grinder's own fuse, owner's decision on 2026-09-23. A 2 A
-    # time-lag part rides through the 3.4 A start; a shorted bridge or winding
-    # blows it without taking F701 and the whole machine with it.
-    d.add('F703','FUSE','T2A / 250V grinder',1270,1030,
+    # F703 is the grinder's own fuse, owner's decision on 2026-09-23. With the
+    # stage sized for 3 A it is a 4 A time-lag part, 75 % loaded: it carries a
+    # 3 A run and the 3.4 A start, and a shorted bridge or winding blows it
+    # without taking F701 and the whole machine with it. A stall does not.
+    d.add('F703','FUSE','T4A / 250V grinder',1270,1030,
           ['GRINDER_AC_SWITCHED','GRINDER_AC_FUSED'],
-          'OpenSaeco:Fuse_2410_JDT_JFC2410', part_key='FUSE:JFC2410-1200TS')
+          'OpenSaeco:Fuse_2410_JDT_JFC2410', part_key='FUSE:JFC2410-1400TS')
     d.add('BR701','BRIDGE_KBP','KBP410 / grinder bridge',1300,1060,
           ['GRINDER_AC_FUSED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
           'Diode_THT:Diode_Bridge_Vishay_KBPM', part_key='BRIDGE:KBP410')
-    d.note('Q708 en el perfil del calentador y la bomba: ~0,8 W a 1 A. Bloqueo = '
-           '230/68 = 3,4 A ef.: lo corta el firmware; F703 T2A cubre cortos.',870,1092,1.1)
-    d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~1,7 W y +95 K a 1 A continuo; '
-           'el molido es intermitente. Medir en el prototipo.',870,1100,1.1)
+    d.note('Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = '
+           '230/68 = 3,4 A ef.: lo corta el firmware; F703 T4A cubre cortos.',870,1092,1.1)
+    d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido '
+           'intermitente (<=10 s y pausa). Medir en el prototipo.',870,1100,1.1)
 
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])

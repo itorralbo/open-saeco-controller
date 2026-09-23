@@ -20,3 +20,6 @@ osc_result osc_start(osc_controller *c) {
     disable(c);
     return OSC_REJECTED_NOT_IMPLEMENTED;
 }
+unsigned osc_heater_cycles_allowed(bool grinder_on) {
+    return grinder_on ? OSC_HEATER_CYCLES_WHILE_GRINDING : OSC_HEATER_WINDOW_CYCLES;
+}
