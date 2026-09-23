@@ -464,3 +464,21 @@ de cargas siguen pendientes en el esquema principal.
   extremo suelto en PA3, 44 conexiones abiertas (50 antes) y las tres
   diferencias de paridad de MH1–MH3. El relleno de GND_UI queda en las mismas
   seis piezas que antes. No libera fabricación ni conexión a red.
+
+## Lado este del STM32, puente H y telemetría, 2026-09-23
+
+- Cambios de pin, comprobados contra las funciones alternativas del
+  STM32G431RBTx en la librería de KiCad 10: `UI_PWR_EN` PB0→PB12,
+  `BREW_DIR_RAW` PA6→PC14, `BREW_PWM_RAW` PA8→PF0 (TIM1_CH3N), `RAIL_12V_ADC`
+  PA4→PF1 (ADC2_IN10), `BREW_CURRENT_ADC` PA3→PC0 (ADC12_IN6) y
+  `DOOR_CLOSED_N` PC0→PC3. ERC 0; netlist nativa 187 componentes / 612 pines
+  coincidente; `check_controller_core.py` actualizado.
+- R701–R706, C701 y C702 pasan al hueco bajo J114, con entradas desde J114.3 y
+  la rama de 24 V y salidas a J114.5/J114.6.
+- Ruteados la UART, BOOT0, el reset hasta J102.5, el corte del frontal, la
+  dirección y el PWM del puente H, su corriente, las dos telemetrías y los
+  divisores.
+- DRC con todas las severidades: 0 infracciones y ningún aviso (desaparece el
+  extremo suelto de PA3), 29 conexiones abiertas (44 antes) y las tres
+  diferencias de paridad de MH1–MH3. El relleno de GND_UI queda en las mismas
+  seis piezas. No libera fabricación ni conexión a red.

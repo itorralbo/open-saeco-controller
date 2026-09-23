@@ -147,13 +147,16 @@ junto al par: C105/C111 arriba a la izquierda, C102 a la izquierda, C104 con el
 bulk C106 arriba a la derecha, C103/C110 abajo a la derecha y la columna
 C107/C109/C108 de VDDA/VREF+ bajo los pines 18–20.
 
-Canales reservados para las señales:
+Salidas de las señales, desde el 2026-09-23:
 
-- pines 7–10 (NRST y contactos): salida horizontal a la izquierda;
-- pines 14–17 (NTC, caudal, nivel, corriente del grupo): en L escalonadas hacia
-  abajo, a 6,3–7,8 mm a la izquierda del centro de U101;
-- pines 21–24 y 27: hacia abajo, a la derecha de la columna de VDDA;
-- pines 42–44: a la derecha;
+- pines 3, 5 y 6 (dirección y PWM del puente H, telemetría de 12 V): a la
+  izquierda, por encima del reset;
+- pin 7 (NRST): a la izquierda y, por dentro del encapsulado, hasta J102;
+- pines 8–16 (corriente del puente H y sensores): a la izquierda, bajo el
+  reset;
+- pines 22, 24, 25 y 30 (telemetría de 24 V y órdenes a las cargas): hacia
+  abajo, a vías en el bolsillo bajo la fila sur;
+- pines 33, 34, 43 y 44 (bomba, corte del frontal y UART): a la derecha;
 - pines 49–61 (SWD, watchdog, armado y BOOT0): hacia arriba.
 
 El plano GND_UI de B.Cu cubre el lado SELV hasta el borde de la banda de
@@ -206,8 +209,8 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
     resistencias del DRV8876, hasta J112 y el buck de 12 V;
   - una troncal de 1 mm por el borde SELV de la banda de barrera (y = 55,1 mm)
     que baja por x = 46 mm, a la izquierda de la banda, hasta la bobina de
-    K701. De ella salen F303 (rama del grupo), el divisor R704, J114.4 y la
-    bobina. Desde el pin 1 de la bobina sigue por x = 43 mm, pasa por D701 y
+    K701. De ella salen F303 (rama del grupo), J114.4 y la bobina; el divisor
+    R704 toma los 24 V de la rama de x = 62,5 mm. Desde el pin 1 de la bobina sigue por x = 43 mm, pasa por D701 y
     gira al oeste en y = 93 mm hacia la rama de la válvula (F304). Hasta el
     2026-09-23 bajaba por x = 46 mm, justo donde ahora está el opto del
     calentador.
@@ -221,14 +224,13 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 1 010 segmentos y 209 vías. 3 025 mm de pista en F.Cu y 734 mm en B.Cu: el
-  cruce del par USB, los saltos cortos bajo troncales de potencia, los carriles
-  de escape del STM32 y los saltos de los raíles de 12 V y 3,3 V.
+- 1 156 segmentos y 232 vías. 3 306 mm de pista en F.Cu y 1 018 mm en B.Cu.
+  En B.Cu van el cruce del par USB, los saltos cortos bajo troncales de
+  potencia, los carriles de escape del STM32, los saltos de los raíles de 12 V
+  y 3,3 V y el bus de órdenes a las cargas, que suma unos 280 mm.
   La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 50 conexiones sin rutear, todas de señal, y tres diferencias de paridad, los
+- 29 conexiones sin rutear, todas de señal, y tres diferencias de paridad, los
   taladros mecánicos MH1–MH3, que son intencionales.
-- Un aviso de extremo suelto, intencional: la fila de corriente del puente H
-  termina donde entrará PA3.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
 genere conflictos de serigrafía. Se añadirán identificadores legibles de
@@ -739,6 +741,61 @@ Salidas de U602:
   Después cruza la alimentación de 3,3 V de la fila inferior y va en diagonal
   hasta R511, saltando la rama de 24 V de y = 91,5 mm.
 
+### Lado este y norte del STM32
+
+- **Cambio de pin**: `UI_PWR_EN` pasa de PB0 (pin 27), encerrado en la fila sur
+  entre dos órdenes de carga, a PB12 (pin 34), que PC4 dejó libre en el lado
+  este. R301 sigue manteniendo el frontal encendido durante el reset.
+- **UART**: PA9 y PA10 salen por el este y suben por el pasillo que quedaba
+  libre entre J102 y la alimentación del frontal (x = 88,75–89,25 mm). Cruzan
+  en diagonal la zona libre al norte del STM32. PA10 llega a R212.2 por debajo;
+  PA9 pasa al este de R212 y entra entre las dos resistencias hasta R211.1. Así
+  los pads del lado del ESP32, R211.2 y R212.1, quedan libres hacia el módulo.
+- **BOOT0**: PB8 queda encerrado en F.Cu por el SWD y las órdenes al
+  supervisor. Baja a B.Cu junto a J102.1, rodea su pad por el norte, pasa bajo
+  la esquina noreste de U101 y sube entre las dos líneas de la UART para
+  llegar a R102.1.
+- **Reset**: la segunda rama de NRST cruza el contorno del encapsulado hasta
+  J102.5, con sus dos vías dentro del contorno y fuera del anillo de 3,3 V.
+- **Corte del frontal**: PB12 baja en diagonal hasta el enable de U302 y salta
+  la espina de 3,3 V de x = 91,6 mm.
+
+### Puente H, telemetría y divisores
+
+- **Cambio de pines**, comprobado contra las funciones alternativas de la
+  librería de KiCad para el STM32G431RBTx:
+  - `BREW_DIR_RAW` pasa de PA6 a PC14.
+  - `BREW_PWM_RAW` pasa de PA8 a PF0 (TIM1_CH3N).
+  - `RAIL_12V_ADC` pasa de PA4 a PF1 (ADC2_IN10).
+  - `BREW_CURRENT_ADC` pasa de PA3 a PC0 (ADC12_IN6).
+  - `DOOR_CLOSED_N` pasa de PC0 a PC3.
+
+  PC14, PF0 y PF1 están en la parte alta de la fila oeste, por encima del
+  reset, y salen directos a la franja libre entre las órdenes al supervisor
+  y J114.
+- **Divisores**: R701–R706, C701 y C702 pasan al hueco bajo J114, entre la
+  rama de 24 V y la línea de reset:
+  - el de 12 V toma la entrada de J114.3, y su nodo filtrado llega a J114.5
+    por un salto corto en B.Cu bajo la rama de 24 V, que cierra el borde
+    inferior de la cabecera;
+  - el de 24 V toma la entrada de la rama de x = 62,5 mm, y su nodo queda bajo
+    J114.6, unido a él por B.Cu;
+  - las cuatro masas comparten una vía.
+
+  Antes, el de 12 V estaba en la esquina noreste, lejos de J114.5. En el de
+  24 V, `RAIL_24V_DIV` no podía unir R704 con R705, separados en las dos caras
+  por la bajada de 3,3 V a J114.2 y por la orden de armado de red.
+- **Dirección y PWM**: bajan a B.Cu antes de que la alimentación de 12 V de
+  J114.3 cruce la franja, pasan bajo las diagonales del supervisor y suben
+  dentro del triángulo que estas cierran, al este de R503 y R501.
+- **Corriente del puente H**: PC0 baja a B.Cu bajo el ramal de reset, sube por
+  x = 66,4 mm bajo la franja y las filas del supervisor, y enlaza en
+  y = 30,4 mm con la línea de `IPROPI` que esperaba en y = 29,7 mm. Con eso
+  desaparece el extremo suelto intencional.
+- **Telemetría**: PF1 baja por la franja directo a J114.5. PA5 baja a su vía
+  en el bolsillo bajo U101 y va por B.Cu, en y = 44,55 mm, hasta la vía de
+  J114.6.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -750,13 +807,9 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
-   PA8), UART con el ESP32, BOOT0, telemetría de raíles, NRST hasta J102 y
-   PB0 hasta el corte del frontal. Conviene revisar antes la asignación de
-   pines, como se hizo con PC4. PB0 (pin 27) queda encerrado entre PC4 y
-   PB10 y va hacia el este, así que puede pasar a un pin libre del lado este
-   (PB13–PC9). PA4, PA5 y PA6, en la fila sur, necesitarán también vía en el
-   bolsillo bajo U101.
+1. Sensores: puerta, grupo (dos), NTC, caudalímetro y nivel de agua, desde
+   los seis pines libres de la fila oeste bajo el reset (PC1–PC3 y PA0–PA2)
+   hasta sus filtros, junto a los conectores del oeste y el suroeste.
 2. ESP32 y frontal: bus del LCD por sus series hasta J104, I²C e interrupción
    del teclado, cabecera J103 y la red de `ESP_EN`.
 

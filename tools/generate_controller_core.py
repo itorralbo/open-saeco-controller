@@ -190,13 +190,13 @@ def main():
     stm = {'VBAT': v, 'VDD': v, 'VSS': g, 'VSSA': g, 'VDDA': v, 'VREF+': v,
            'NRST': 'STM_NRST', 'PB8': 'STM_BOOT0', 'PA13': 'STM_SWDIO',
            'PA14': 'STM_SWCLK', 'PB3': 'STM_SWO',
-           'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB0': 'UI_PWR_EN',
-           'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC0': 'DOOR_CLOSED_N',
+           'PA9': 'STM_TX_RAW', 'PA10': 'ESP_TO_STM', 'PB12': 'UI_PWR_EN',
+           'PA0': 'NTC_ADC', 'PA1': 'FLOW_TIM', 'PC3': 'DOOR_CLOSED_N',
            'PA2': 'WATER_LEVEL', 'PC1': 'BU_PRESENT_N', 'PC2': 'BU_WORK_N',
-           'PA3': 'BREW_CURRENT_ADC', 'PA4': 'RAIL_12V_ADC',
-           'PA5': 'RAIL_24V_ADC', 'PA6': 'BREW_DIR_RAW',
+           'PC0': 'BREW_CURRENT_ADC', 'PF1': 'RAIL_12V_ADC',
+           'PA5': 'RAIL_24V_ADC', 'PC14': 'BREW_DIR_RAW',
            'PA7': 'VALVE_EN_RAW',
-           'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
+           'PF0': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
            'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
            'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW'}
@@ -300,7 +300,7 @@ def main():
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:1nF')
     d.passive('C308','C','1uF / switch input',625,196,v,g)
     d.passive('C309','C','10uF / switch output',795,196,'3V3_UI',g)
-    d.note('PB0 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.',610,244,1.2)
+    d.note('PB12 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.',610,244,1.2)
     d.note('QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.',610,250,1.2)
 
     d.note('09 / USB-C de servicio — datos ESP32 y alimentación de banco opcional',610,276,1.8)
@@ -357,7 +357,7 @@ def main():
     d.passive('R405','R','10k / DOOR pull-up',605,430,v,'DOOR_RAW')
     d.passive('R406','R','1k / DOOR serie',605,447,'DOOR_RAW','DOOR_CLOSED_N')
     d.passive('C403','C','100nF / DOOR filtro',605,464,'DOOR_CLOSED_N',g)
-    d.note('PC0: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
+    d.note('PC3: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
     d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
           # OUT2 on V1 and OUT1 on V2 keep both motor leads uncrossed on the PCB.
@@ -415,7 +415,7 @@ def main():
     d.passive('C505','C','100nF / VREF',1110,235,'BREW_VREF',g)
     d.passive('R510','R','2.49k / IPROPI',970,255,'BREW_CURRENT_ADC',g)
     d.passive('C506','C','10nF / IPROPI',1040,255,'BREW_CURRENT_ADC',g)
-    d.note('PA8 PWM, PA6 dirección, PB5 nSLEEP, PB6 nFAULT, PA3 ADC. PMODE/IMODE a GND.',870,280,1.1)
+    d.note('PF0 PWM (TIM1_CH3N), PC14 dirección, PB5 nSLEEP, PB6 nFAULT, PC0 ADC. PMODE/IMODE a GND.',870,280,1.1)
     d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
     d.note('J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.',870,294,1.1)
     d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
@@ -475,7 +475,7 @@ def main():
           [g,v,'12V_PROTECTED','24V_ACT_RAW','RAIL_12V_ADC','RAIL_24V_ADC'],
           'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
           status='candidate', part_key='CONN:HDR_1X6_2.54')
-    d.note('PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
+    d.note('PF1=ADC2_IN10, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
     d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,

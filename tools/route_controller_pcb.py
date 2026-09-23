@@ -317,7 +317,6 @@ def route_24v_output(board):
              width=ACT_WIDTH)
     polyline(board, act, [(46.40, 55.10), (46.40, 42.00), (44.80, 40.40),
                           (41.90, 40.40)], width=ACT_WIDTH)
-    track(board, act, (46.40, 52.00), (47.725, 52.00), width=ACT_LANE_WIDTH)
     polyline(board, act, [(62.50, 55.10), (62.50, 42.80), (57.20, 42.80),
                           (55.62, 41.22), (55.62, 40.00)], width=ACT_LANE_WIDTH)
     # Below the relay coil the trunk drops at x = 43 mm, east of the flyback
@@ -705,8 +704,6 @@ def route_3v3_buck(board):
     track(board, v12, (92.8, 29.0), (109.05, 29.0), width=0.5)
     track(board, v12, (101.0, 29.0), (101.0, 27.9), width=0.5)
     track(board, v12, (109.05, 29.0), (109.05, 27.7), width=0.5)
-    polyline(board, v12, [(99.0, 29.0), (99.0, 21.5), (100.0, 20.6),
-                          (100.0, 20.2)], width=PIN_WIDTH)
     # Input HF capacitor: straight down from the second input pin.
     polyline(board, v12, [(95.4, 36.95), (95.7, 38.0), (96.3, 38.7)], width=0.5)
 
@@ -727,12 +724,6 @@ def route_3v3_buck(board):
                           (94.3, 31.5), (94.3, 35.05), (95.3, 35.05)],
              width=PIN_WIDTH)
 
-    # 12 V rail telemetry beside the input, filtered node in one straight line.
-    polyline(board, '/RAIL_12V_DIV', [(100.0, 18.175), (100.0, 17.3),
-                                      (103.0, 17.3), (103.0, 18.175)],
-             width=PIN_WIDTH)
-    track(board, '/RAIL_12V_ADC', (103.0, 19.825), (109.0, 19.8), width=PIN_WIDTH)
-
     # The switcher's ground pin reaches the plane through the input capacitor's
     # own pad, so the input loop closes in copper before it reaches a via.
     track(board, gnd, (98.138, 36.95), (98.138, 38.7), width=0.5)
@@ -743,9 +734,7 @@ def route_3v3_buck(board):
                          ((110.95, 41.0), (110.95, 38.5)),
                          ((105.775, 44.0), (106.5, 45.2)),
                          ((110.95, 27.0), (110.95, 24.5)),
-                         ((105.0, 27.0), (107.3, 27.0)),
-                         ((106.0, 18.175), (106.0, 16.8)),
-                         ((109.0, 18.225), (109.0, 16.8))):
+                         ((105.0, 27.0), (107.3, 27.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
@@ -877,8 +866,6 @@ def route_logic_grounds(board):
                          ((30.45, 5.025), (30.45, 6.0)),
                          ((40.325, 12.5), (41.3, 12.5)),
                          ((44.975, 48.6), (44.975, 47.35)),
-                         ((57.325, 52.0), (57.325, 53.1)),
-                         ((61.275, 52.0), (61.275, 53.1)),
                          ((87.0, 43.175), (87.0, 42.1)),
                          ((27.175, 66.0), (25.9, 66.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
@@ -1764,6 +1751,156 @@ def route_supervisor_outputs(board):
                             (4.175, 99.0)], width=w)
 
 
+def route_mcu_east(board):
+    """UART to the ESP32, BOOT0, reset to the SWD header and the UI switch.
+
+    PA9 and PA10 leave the east side, climb the lane left free between J102
+    and the UI supply at x = 88.75-89.25 mm and cross the open area north of
+    the MCU on the diagonal. PA10 reaches R212.2 from below; PA9 passes east
+    of R212 and runs west between the two resistors to R211.1, so the ESP32
+    sides of both, R211.2 and R212.1, stay free towards the module.
+
+    PB8 is boxed in on F.Cu by the SWD lines and the supervisor orders, so it
+    goes down beside J102.1, round the north of the header's first pad and
+    back under U101's north-east corner on B.Cu, and comes up between the
+    two UART lines to reach R102.1 from the north-west. The reset pin gets
+    its second branch through the package outline to J102.5. PB12 runs
+    south-east to U302's enable and hops the 3.3 V spine at x = 91.6 mm.
+    """
+    w = SIGNAL_WIDTH
+    polyline(board, '/ESP_TO_STM', [(81.675, 38.25), (85.125, 38.25),
+                                    (88.75, 34.625), (88.75, 25.625),
+                                    (75.525, 12.4), (67.825, 12.4),
+                                    (67.825, 11.5)], width=w)
+    polyline(board, '/STM_TX_RAW', [(81.675, 38.75), (85.375, 38.75),
+                                    (89.25, 34.875), (89.25, 25.25),
+                                    (75.35, 11.35), (68.7, 11.35),
+                                    (68.7, 10.55), (66.175, 10.55),
+                                    (66.175, 9.6)], width=w)
+
+    boot0 = '/STM_BOOT0'
+    polyline(board, boot0, [(73.75, 34.325), (73.75, 32.625), (73.125, 32.0)],
+             width=w)
+    via(board, boot0, (73.125, 32.0))
+    polyline(board, boot0, [(73.125, 32.0), (73.125, 30.0), (73.375, 29.75),
+                            (75.625, 29.75), (75.75, 29.875), (75.75, 32.0),
+                            (83.0, 39.25), (83.0, 39.375)], pcb.B_Cu, width=w)
+    via(board, boot0, (83.0, 39.375))
+    polyline(board, boot0, [(83.0, 39.375), (83.0, 40.875), (87.0, 44.875),
+                            (87.0, 44.825)], width=w)
+
+    nrst = '/STM_NRST'
+    # Both vias sit inside the package outline, clear of the supply ring.
+    polyline(board, nrst, [(70.325, 39.25), (71.875, 39.25), (73.0, 38.125),
+                           (73.0, 38.1)], width=PIN_WIDTH)
+    via(board, nrst, (73.0, 38.1))
+    polyline(board, nrst, [(73.0, 38.1), (75.625, 38.1), (76.875, 36.85)],
+             pcb.B_Cu, width=PIN_WIDTH)
+    via(board, nrst, (76.875, 36.85))
+    polyline(board, nrst, [(76.875, 36.85), (78.225, 35.5), (80.125, 35.5),
+                           (84.66, 30.965)], width=PIN_WIDTH)
+
+    ui = '/UI_PWR_EN'
+    polyline(board, ui, [(81.675, 43.25), (82.75, 43.25), (90.8, 51.3),
+                         (90.8, 52.3)], width=w)
+    via(board, ui, (90.8, 52.3))
+    track(board, ui, (90.8, 52.3), (92.4, 52.3), pcb.B_Cu, width=w)
+    via(board, ui, (92.4, 52.3))
+    polyline(board, ui, [(92.4, 52.3), (93.975, 52.3), (95.275, 53.6)],
+             width=w)
+
+
+def route_rails_and_bridge(board):
+    """Telemetry dividers under J114, their ADC inputs and the H-bridge orders.
+
+    The dividers fill the pocket between J114 and the reset line. The 12 V
+    chain takes its input straight down from J114.3; its filtered node
+    reaches J114.5 by a short B.Cu hop under the 24 V branch that fences the
+    header's bottom edge. The 24 V chain takes its input from that branch at
+    x = 62.5 mm and its node sits under J114.6, joined to it on B.Cu.
+
+    PC14 (direction), PF0 (PWM) and PF1 (12 V telemetry) leave the top of
+    the west row above the reset stub and run west in the band between the
+    supervisor orders and J114. PF1 drops into J114.5. The two H-bridge
+    orders go down to B.Cu before the 12 V feed crosses the band, pass under
+    the supervisor diagonals and come up inside the triangle they fence off,
+    east of R503 and R501. PC0 (bridge current) drops to B.Cu below the reset
+    stub, climbs under the band and the supervisor rows at x = 66.4 mm and
+    joins the IPROPI line that waits at y = 29.7 mm. PA5 (24 V telemetry)
+    drops into the pocket under U101's south row and runs west on B.Cu
+    along y = 44.55 mm to J114.6's via.
+    """
+    w = SIGNAL_WIDTH
+    v12, act, gnd = '/12V_PROTECTED', '/24V_ACT_RAW', '/GND_UI'
+    div12, adc12 = '/RAIL_12V_DIV', '/RAIL_12V_ADC'
+    div24, adc24 = '/RAIL_24V_DIV', '/RAIL_24V_ADC'
+
+    # 12 V divider.
+    track(board, v12, (53.08, 40.0), (53.08, 42.575), width=0.3)
+    track(board, div12, (53.08, 44.225), (53.08, 45.575), width=w)
+    polyline(board, adc12, [(53.08, 47.225), (53.8, 47.0), (54.575, 47.0)],
+             width=w)
+    track(board, adc12, (54.575, 47.0), (54.625, 48.9), width=w)
+    polyline(board, adc12, [(54.575, 47.0), (54.575, 45.225), (55.6, 44.2)],
+             width=w)
+    via(board, adc12, (55.6, 44.2))
+    polyline(board, adc12, [(55.6, 44.2), (58.16, 41.64), (58.16, 40.0)],
+             pcb.B_Cu, width=w)
+
+    # 24 V divider.
+    track(board, act, (61.0, 49.225), (62.5, 49.225), width=0.3)
+    track(board, div24, (61.0, 47.575), (61.0, 46.225), width=w)
+    track(board, adc24, (61.0, 44.575), (59.575, 44.6), width=w)
+    track(board, adc24, (59.575, 44.6), (59.525, 46.4), width=w)
+    track(board, adc24, (61.0, 44.575), (61.0, 43.75), width=w)
+    via(board, adc24, (61.0, 43.75))
+    polyline(board, adc24, [(60.7, 40.0), (61.0, 40.3), (61.0, 43.75)],
+             pcb.B_Cu, width=w)
+
+    # The four low-side pads share one ground via.
+    track(board, gnd, (57.925, 44.6), (57.975, 46.4), width=PIN_WIDTH)
+    for pad in ((56.225, 47.0), (56.175, 48.9), (57.975, 46.4)):
+        track(board, gnd, pad, (57.1, 47.7), width=PIN_WIDTH)
+    via(board, gnd, (57.1, 47.7))
+
+    # PA5, pin 22.
+    track(board, adc24, (74.75, 45.675), (74.75, 47.0), width=w)
+    via(board, adc24, (74.75, 47.0))
+    polyline(board, adc24, [(74.75, 47.0), (72.3, 44.55), (62.2, 44.55),
+                            (61.4, 43.75), (61.0, 43.75)], pcb.B_Cu, width=w)
+
+    # PF1, pin 6.
+    polyline(board, adc12, [(70.325, 38.75), (58.16, 38.75), (58.16, 40.0)],
+             width=w)
+
+    # PC14, pin 3, and PF0, pin 5.
+    dir_, pwm = '/BREW_DIR_RAW', '/BREW_PWM_RAW'
+    track(board, dir_, (70.325, 37.25), (62.6, 37.25), width=w)
+    via(board, dir_, (62.6, 37.25))
+    polyline(board, dir_, [(62.6, 37.25), (56.0, 37.25), (54.75, 36.0),
+                           (51.45, 36.0), (51.25, 35.8)], pcb.B_Cu, width=w)
+    via(board, dir_, (51.25, 35.8))
+    polyline(board, dir_, [(51.25, 35.8), (50.95, 35.5), (47.625, 35.5),
+                           (47.625, 35.8)], width=w)
+    polyline(board, pwm, [(70.325, 38.25), (62.2, 38.25), (62.0, 38.05)],
+             width=w)
+    via(board, pwm, (62.0, 38.05))
+    polyline(board, pwm, [(62.0, 38.05), (56.2, 38.05), (54.6, 36.45),
+                          (50.45, 36.45), (50.4, 36.4)], pcb.B_Cu, width=w)
+    via(board, pwm, (50.4, 36.4))
+    polyline(board, pwm, [(50.4, 36.4), (49.4, 37.4), (47.625, 37.4)], width=w)
+
+    # PC0, pin 8.
+    cur = '/BREW_CURRENT_ADC'
+    polyline(board, cur, [(70.325, 39.75), (66.65, 39.75), (66.4, 40.0)],
+             width=w)
+    via(board, cur, (66.4, 40.0))
+    track(board, cur, (66.4, 40.0), (66.4, 31.0), pcb.B_Cu, width=w)
+    via(board, cur, (66.4, 31.0))
+    polyline(board, cur, [(66.4, 31.0), (65.8, 30.4), (56.7, 30.4),
+                          (56.0, 29.7)], width=w)
+
+
 def selv_ground_plane(board):
     """Rebuild the provisional B.Cu GND_UI plane on the SELV side."""
     for zone in list(board.Zones()):
@@ -1819,6 +1956,8 @@ def main():
     route_supervisor_orders(board)
     route_load_bus(board)
     route_supervisor_outputs(board)
+    route_mcu_east(board)
+    route_rails_and_bridge(board)
     route_12v_rail(board)
     route_3v3_closure(board)
     route_ui_supply(board)
@@ -1856,11 +1995,13 @@ def main():
                           '3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109',
                           'UI supply: U302 to J104.1 along the top edge',
                           'load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes',
-                          'U602: reset input, brew sleep output to R505 and valve output to R511'],
+                          'U602: reset input, brew sleep output to R505 and valve output to R511',
+                          'MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch',
+                          'H-bridge orders, bridge current, rail telemetry and the dividers under J114'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),
-        'remaining_blocks': ['STM32 signals', 'ESP32 and front-panel signals',
+        'remaining_blocks': ['STM32 sensor inputs', 'ESP32 and front-panel signals',
                              'final domain copper fills'],
     }
     REPORT.write_text(json.dumps(result, indent=2) + '\n')

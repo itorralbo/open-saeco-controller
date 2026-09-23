@@ -46,7 +46,7 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
 - U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
   `STM_NRST`; U602 solo permite activar `nSLEEP` y la válvula mientras reset esté
   inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
-- PA4/ADC2_IN17 y PA5/ADC2_IN13 miden las entradas de 12 V y 24 V mediante
+- PF1/ADC2_IN10 y PA5/ADC2_IN13 miden las entradas de 12 V y 24 V mediante
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
 
@@ -81,7 +81,7 @@ la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 
 y C303=100 nF entre BST y SW. C302 y C306 añaden desacoplo de alta frecuencia.
 `3V3_CORE` alimenta ambos procesadores.
 
-U302 (TPS22918DBVR) genera `3V3_UI` desde `3V3_CORE`. PB0 del STM32 controla
+U302 (TPS22918DBVR) genera `3V3_UI` desde `3V3_CORE`. PB12 del STM32 controla
 `UI_PWR_EN`; R301=100 kΩ lo mantiene activo durante reset. C307=1 nF controla la
 rampa y QOD queda unido a VOUT para descargar el frontal al apagarlo. Esta rama
 permite cortar el frontal y reduce su corriente de arranque. La rampa, descarga y
@@ -176,8 +176,10 @@ mantiene `nSLEEP` a cero durante reset mediante R506; el firmware deberá retira
 `nSLEEP` inmediatamente al detectar `nFAULT`, ya que el modo elegido reintenta
 automáticamente tras una sobrecorriente.
 
-PA8 gobierna EN/PWM, PA6 la dirección, PB5 `nSLEEP`, PB6 lee `nFAULT` y PA3 mide
-`IPROPI`. V1/V2 de JP16 son `OUT2/OUT1`. Ese orden, con el DRV8876 girado 270°,
+PF0 gobierna EN/PWM con TIM1_CH3N, la salida complementaria usada sola.
+PC14 da la dirección, PB5 `nSLEEP`, PB6 lee `nFAULT` y PC0 (ADC12_IN6) mide
+`IPROPI`. PC14 está en el dominio de respaldo: salida lenta (2 MHz como máximo) y
+nunca como fuente de corriente; basta para una entrada lógica. V1/V2 de JP16 son `OUT2/OUT1`. Ese orden, con el DRV8876 girado 270°,
 evita que se crucen las pistas del motor; el motor es de continua y el signo de
 DIR para cada sentido se fijará en el ensayo del grupo. La numeración física del
 conector sigue siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF

@@ -341,9 +341,7 @@ PLACE = {
     'R407': (16, 52, 90), 'R408': (19, 52, 270), 'C404': (22, 52, 90),
     'R409': (16, 59, 90), 'R410': (19, 59, 270), 'C405': (22, 59, 90),
 
-    # 24 V divider, brew-branch fuse and diode on the SELV side of the barrier.
-    'R704': (48.5, 52, 0), 'R705': (52.5, 52, 0),
-    'R706': (56.5, 52, 0), 'C702': (60.5, 52, 0),
+    # Brew-branch fuse and diode on the SELV side of the barrier.
     'F303': (40.5, 40.4, 180), 'D304': (40.75, 43.6, 180),
     # DRV8876 beside JP16 (J108), above MH1, in the space J102 left. Rotated
     # 270 deg: control pins 1-6 face north, the charge pump and OUT2 face
@@ -377,11 +375,14 @@ PLACE = {
     'R603': (33, 61.025, 180), 'R604': (42.5, 64.5, 0),
     'C601': (42.5, 53.05, 0), 'C602': (42.5, 61.025, 0),
 
-    # 12/24 V diagnostic dividers; high-side pairs remain near each input.
-    # R702 turned so the divider's mid node faces R701 and the filtered node
-    # continues east in one straight line to R703 and C701.
-    'R701': (100, 19, 90), 'R702': (103, 19, 270),
-    'R703': (106, 19, 90), 'C701': (109, 19, 90),
+    # 12/24 V diagnostic dividers in the pocket under the measurement header
+    # J114, which gives them both inputs and takes both outputs. The 12 V
+    # chain hangs under J114.3; the 24 V one sits on the 24 V branch at
+    # x = 62.5 mm with its filtered node under J114.6.
+    'R701': (53.08, 43.4, 270), 'R702': (53.08, 46.4, 270),
+    'R703': (55.4, 47.0, 0), 'C701': (55.4, 48.9, 0),
+    'R704': (61.0, 48.4, 90), 'R705': (61.0, 45.4, 90),
+    'R706': (58.75, 44.6, 180), 'C702': (58.75, 46.4, 180),
 }
 
 

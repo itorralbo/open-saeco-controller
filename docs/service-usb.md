@@ -52,7 +52,7 @@ El primer ensayo se hará únicamente con cargas desconectadas y entradas simula
 
 `STATUS` y `STREAM` incluirán como mínimo `rail_12v_mv`, `rail_24v_mv`,
 `brew_current_ma`, `brew_fault_n`, estado de puerta/grupo y bits de interlock.
-Las tensiones proceden de PA4/ADC2_IN17 y PA5/ADC2_IN13 con factor nominal 21;
+Las tensiones proceden de PF1/ADC2_IN10 y PA5/ADC2_IN13 con factor nominal 21;
 el firmware aplicará calibración y límites plausibles antes de usarlas para
 diagnóstico. La cabecera J114 permite contrastar los valores sin interrumpir la
 sesión USB.

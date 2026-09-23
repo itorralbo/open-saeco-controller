@@ -15,7 +15,7 @@
 <path d="M 67.31 60.96 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="61.26" font-size="0.9" text-anchor="start" fill="#213b50">PC14</text>
 <text x="65.36999999999999" y="60.46" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="62.23" y="61.26" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="60.46" font-size="0.9" text-anchor="end" fill="#23745f">BREW_DIR_RAW</text>
 <path d="M 67.31 64.77 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="65.07" font-size="0.9" text-anchor="start" fill="#213b50">PC15</text>
 <text x="65.36999999999999" y="64.27" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
@@ -23,11 +23,11 @@
 <path d="M 67.31 68.58 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="68.88" font-size="0.9" text-anchor="start" fill="#213b50">PF0</text>
 <text x="65.36999999999999" y="68.08" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
-<text x="62.23" y="68.88" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="68.08" font-size="0.9" text-anchor="end" fill="#23745f">BREW_PWM_RAW</text>
 <path d="M 67.31 72.39 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="72.69" font-size="0.9" text-anchor="start" fill="#213b50">PF1</text>
 <text x="65.36999999999999" y="71.89" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="62.23" y="72.69" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="71.89" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
 <path d="M 67.31 76.2 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="76.5" font-size="0.9" text-anchor="start" fill="#213b50">NRST</text>
 <text x="65.36999999999999" y="75.7" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
@@ -35,7 +35,7 @@
 <path d="M 67.31 80.01 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="80.31" font-size="0.9" text-anchor="start" fill="#213b50">PC0</text>
 <text x="65.36999999999999" y="79.51" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
-<text x="61.83" y="79.51" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
+<text x="61.83" y="79.51" font-size="0.9" text-anchor="end" fill="#23745f">BREW_CURRENT_ADC</text>
 <path d="M 67.31 83.82 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="84.11999999999999" font-size="0.9" text-anchor="start" fill="#213b50">PC1</text>
 <text x="65.36999999999999" y="83.32" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
@@ -47,7 +47,7 @@
 <path d="M 67.31 91.44 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="91.74" font-size="0.9" text-anchor="start" fill="#213b50">PC3</text>
 <text x="65.36999999999999" y="90.94" font-size="0.65" text-anchor="middle" fill="#213b50">11</text>
-<text x="62.23" y="91.74" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="90.94" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 67.31 95.25 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="95.55" font-size="0.9" text-anchor="start" fill="#213b50">VSS</text>
 <text x="65.36999999999999" y="94.75" font-size="0.65" text-anchor="middle" fill="#213b50">12</text>
@@ -71,7 +71,7 @@
 <path d="M 67.31 114.3 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="114.6" font-size="0.9" text-anchor="start" fill="#213b50">PA3</text>
 <text x="65.36999999999999" y="113.8" font-size="0.65" text-anchor="middle" fill="#213b50">17</text>
-<text x="61.83" y="113.8" font-size="0.9" text-anchor="end" fill="#23745f">BREW_CURRENT_ADC</text>
+<text x="62.23" y="114.6" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 67.31 118.11 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="118.41" font-size="0.9" text-anchor="start" fill="#213b50">VSSA</text>
 <text x="65.36999999999999" y="117.61" font-size="0.65" text-anchor="middle" fill="#213b50">18</text>
@@ -87,7 +87,7 @@
 <path d="M 67.31 129.54 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="129.84" font-size="0.9" text-anchor="start" fill="#213b50">PA4</text>
 <text x="65.36999999999999" y="129.04" font-size="0.65" text-anchor="middle" fill="#213b50">21</text>
-<text x="61.83" y="129.04" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
+<text x="62.23" y="129.84" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 67.31 133.35 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="133.65" font-size="0.9" text-anchor="start" fill="#213b50">PA5</text>
 <text x="65.36999999999999" y="132.85" font-size="0.65" text-anchor="middle" fill="#213b50">22</text>
@@ -95,7 +95,7 @@
 <path d="M 67.31 137.16 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="137.46" font-size="0.9" text-anchor="start" fill="#213b50">PA6</text>
 <text x="65.36999999999999" y="136.66" font-size="0.65" text-anchor="middle" fill="#213b50">23</text>
-<text x="61.83" y="136.66" font-size="0.9" text-anchor="end" fill="#23745f">BREW_DIR_RAW</text>
+<text x="62.23" y="137.46" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 67.31 140.97 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="141.27" font-size="0.9" text-anchor="start" fill="#213b50">PA7</text>
 <text x="65.36999999999999" y="140.47" font-size="0.65" text-anchor="middle" fill="#213b50">24</text>
@@ -111,7 +111,7 @@
 <path d="M 67.31 152.4 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="152.70000000000002" font-size="0.9" text-anchor="start" fill="#213b50">PB0</text>
 <text x="65.36999999999999" y="151.9" font-size="0.65" text-anchor="middle" fill="#213b50">27</text>
-<text x="61.83" y="151.9" font-size="0.9" text-anchor="end" fill="#23745f">UI_PWR_EN</text>
+<text x="62.23" y="152.70000000000002" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 67.31 156.21 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="156.51000000000002" font-size="0.9" text-anchor="start" fill="#213b50">PB1</text>
 <text x="65.36999999999999" y="155.71" font-size="0.65" text-anchor="middle" fill="#213b50">28</text>
@@ -139,7 +139,7 @@
 <path d="M 97.78999999999999 57.15 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="57.449999999999996" font-size="0.9" text-anchor="end" fill="#213b50">PB12</text>
 <text x="99.73" y="56.65" font-size="0.65" text-anchor="middle" fill="#213b50">34</text>
-<text x="102.87" y="57.449999999999996" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="103.27000000000001" y="56.65" font-size="0.9" text-anchor="start" fill="#23745f">UI_PWR_EN</text>
 <path d="M 97.78999999999999 60.96 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="61.26" font-size="0.9" text-anchor="end" fill="#213b50">PB13</text>
 <text x="99.73" y="60.46" font-size="0.65" text-anchor="middle" fill="#213b50">35</text>
@@ -171,7 +171,7 @@
 <path d="M 97.78999999999999 87.63 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="87.92999999999999" font-size="0.9" text-anchor="end" fill="#213b50">PA8</text>
 <text x="99.73" y="87.13" font-size="0.65" text-anchor="middle" fill="#213b50">42</text>
-<text x="103.27000000000001" y="87.13" font-size="0.9" text-anchor="start" fill="#23745f">BREW_PWM_RAW</text>
+<text x="102.87" y="87.92999999999999" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 97.78999999999999 91.44 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="91.74" font-size="0.9" text-anchor="end" fill="#213b50">PA9</text>
 <text x="99.73" y="90.94" font-size="0.65" text-anchor="middle" fill="#213b50">43</text>
@@ -953,7 +953,7 @@
 <text x="787.0" y="195.08" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
 <path d="M 797.56 195.58 H 802.64" stroke="#27856d" stroke-width=".22"/>
 <text x="803.04" y="195.08" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="610" y="244" font-size="1.2" text-anchor="start" fill="#213b50">PB0 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.</text>
+<text x="610" y="244" font-size="1.2" text-anchor="start" fill="#213b50">PB12 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.</text>
 <text x="610" y="250" font-size="1.2" text-anchor="start" fill="#213b50">QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.</text>
 <text x="610" y="276" font-size="1.8" text-anchor="start" fill="#213b50">09 / USB-C de servicio — datos ESP32 y alimentación de banco opcional</text>
 <rect x="640.08" y="308.61" width="20.32" height="35.56" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
@@ -1249,7 +1249,7 @@
 <text x="596.5" y="463.05" font-size="0.9" text-anchor="end" fill="#23745f">DOOR_CLOSED_N</text>
 <path d="M 607.06 463.55 H 612.14" stroke="#27856d" stroke-width=".22"/>
 <text x="612.54" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PC0: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.</text>
+<text x="490" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PC3: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.</text>
 <rect x="699.77" y="440.055" width="10.16" height="33.02" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="704.85" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J108</text>
 <text x="704.85" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP16 VISUAL V1..V8 / XH-8</text>
@@ -1583,7 +1583,7 @@
 <text x="1032.11" y="254.77" font-size="0.9" text-anchor="end" fill="#23745f">BREW_CURRENT_ADC</text>
 <path d="M 1042.67 255.27 H 1047.75" stroke="#27856d" stroke-width=".22"/>
 <text x="1048.15" y="254.77" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="870" y="280" font-size="1.1" text-anchor="start" fill="#213b50">PA8 PWM, PA6 dirección, PB5 nSLEEP, PB6 nFAULT, PA3 ADC. PMODE/IMODE a GND.</text>
+<text x="870" y="280" font-size="1.1" text-anchor="start" fill="#213b50">PF0 PWM (TIM1_CH3N), PC14 dirección, PB5 nSLEEP, PB6 nFAULT, PC0 ADC. PMODE/IMODE a GND.</text>
 <text x="870" y="287" font-size="1.1" text-anchor="start" fill="#213b50">R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.</text>
 <text x="870" y="294" font-size="1.1" text-anchor="start" fill="#213b50">J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.</text>
 <text x="870" y="326" font-size="1.8" text-anchor="start" fill="#213b50">12 / Electroválvula 24V — low-side, fusible propio y rueda libre</text>
@@ -1921,7 +1921,7 @@
 <text x="800.8" y="682.29" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
 <text x="798.16" y="681.49" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
 <text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
-<text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PA4=ADC2_IN17, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
+<text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PF1=ADC2_IN10, PA5=ADC2_IN13. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
 <text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
 <text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Red, fuente aislada y conectores de potencia — misma PCB</text>
 <rect x="1094.74" y="634.365" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>

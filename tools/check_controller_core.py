@@ -71,11 +71,11 @@ def main():
     for pin in (12,18,31,47,63):
         assert nets['U101'][str(pin)] == g, f'STM ground pad {pin}'
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
-                     50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',27:'UI_PWR_EN',
-                     14:'NTC_ADC',15:'FLOW_TIM',8:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
-                     16:'WATER_LEVEL',10:'BU_WORK_N',17:'BREW_CURRENT_ADC',
-                     21:'RAIL_12V_ADC',22:'RAIL_24V_ADC',
-                     23:'BREW_DIR_RAW',24:'VALVE_EN_RAW',42:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
+                     50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',34:'UI_PWR_EN',
+                     14:'NTC_ADC',15:'FLOW_TIM',11:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
+                     16:'WATER_LEVEL',10:'BU_WORK_N',8:'BREW_CURRENT_ADC',
+                     6:'RAIL_12V_ADC',22:'RAIL_24V_ADC',
+                     3:'BREW_DIR_RAW',24:'VALVE_EN_RAW',5:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
