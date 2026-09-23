@@ -15,6 +15,7 @@ STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
 ## Documentación
 - [Arquitectura](docs/architecture.md)
 - [Reverse engineering HD8911](docs/HD8911/README.md)
+- [Plan de caracterización de la cafetera](docs/HD8911/characterization-plan.md)
 - [Mapa I/O preliminar](docs/io-map.md)
 - [Diseño preliminar del frontal y pantalla](hardware/front-panel/README.md)
 - [Subsistema display y UI (ST7789 + LVGL)](docs/display-ui.md)

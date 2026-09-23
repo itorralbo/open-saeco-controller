@@ -43,6 +43,9 @@ El manual ya permite dibujar las envolventes de
 conectores y separar sensores de cargas. Ya están documentadas las tensiones
 principales, la curva NTC y el caudalímetro; siguen pendientes la salida del nivel
 capacitivo y las corrientes de marcha, arranque y bloqueo del grupo y del molino.
+El molinillo se diseña con 1 A de marcha supuesto; esas medidas y el resto de la
+caracterización están en el [plan de caracterización](HD8911/characterization-plan.md),
+priorizadas por lo que desbloquean.
 El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
 base mecánica de la Rev A; ya no bloquean la colocación de la principal.
 Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.

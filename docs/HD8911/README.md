@@ -35,7 +35,9 @@ se incluyen en este paquete y conservan sus derechos originales.
 6. Revisar el mapa antes de elegir fuentes, drivers y pines MCU.
 
 Las comprobaciones físicas que desbloquean el siguiente esquema están preparadas
-en el [registro y paquete de medidas](measurements.md).
+en el [registro y paquete de medidas](measurements.md). Los ensayos iniciales
+para caracterizar la cafetera en marcha, con la placa original y con el primer
+prototipo, están en el [plan de caracterización](characterization-plan.md).
 
 Ensayos de red requieren procedimiento separado revisado y personal cualificado.
 Este documento no proporciona instrucciones de trabajo bajo tensión.

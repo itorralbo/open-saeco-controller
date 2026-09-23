@@ -18,6 +18,10 @@ o incertidumbre, se conserva expresamente como dato pendiente.
 | JP3-PINOUT | 2026-09-19 / propietario | electroválvula | vista cenital, pad cuadrado=pin 1 | seguimiento de continuidad y polaridad | arnés desconectado | JP3.1→solenoide.1=+24 V; JP3.2→solenoide.2=retorno 0 V; JP3.3–5 sin uso; terminal GND del solenoide sin conectar | comunicación del propietario | Pinout adoptado Rev A; supresión caracterizada en JP3-DIODE |
 | JP3-DIODE | 2026-09-19 / propietario | OLAB 6000BH/B0DN | terminales 1–2, ambas polaridades | multímetro en modo diodo/modelo TBD | bobina desconectada | 0,073 V en ambos sentidos | comunicación del propietario | No se detecta diodo interno polarizado; rueda libre externa requerida |
 
+Los ensayos con la máquina en marcha y con el prototipo están definidos en el
+[plan de caracterización](characterization-plan.md); sus resultados se añaden a
+esta tabla con el ID del plan.
+
 Clasificar cada entrada como documento, observación, hipótesis o medida. Conservar
 datos contradictorios y bloquear decisiones dependientes hasta resolverlos.
 
