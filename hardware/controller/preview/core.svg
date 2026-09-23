@@ -103,7 +103,7 @@
 <path d="M 67.31 144.78 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="145.08" font-size="0.9" text-anchor="start" fill="#213b50">PC4</text>
 <text x="65.36999999999999" y="144.28" font-size="0.65" text-anchor="middle" fill="#213b50">25</text>
-<text x="62.23" y="145.08" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="144.28" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_EN_RAW</text>
 <path d="M 67.31 148.59 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="148.89000000000001" font-size="0.9" text-anchor="start" fill="#213b50">PC5</text>
 <text x="65.36999999999999" y="148.09" font-size="0.65" text-anchor="middle" fill="#213b50">26</text>
@@ -139,7 +139,7 @@
 <path d="M 97.78999999999999 57.15 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="57.449999999999996" font-size="0.9" text-anchor="end" fill="#213b50">PB12</text>
 <text x="99.73" y="56.65" font-size="0.65" text-anchor="middle" fill="#213b50">34</text>
-<text x="103.27000000000001" y="56.65" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_EN_RAW</text>
+<text x="102.87" y="57.449999999999996" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 97.78999999999999 60.96 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="61.26" font-size="0.9" text-anchor="end" fill="#213b50">PB13</text>
 <text x="99.73" y="60.46" font-size="0.65" text-anchor="middle" fill="#213b50">35</text>

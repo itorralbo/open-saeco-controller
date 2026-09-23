@@ -1,7 +1,7 @@
 {
     "$schema": "https://schemas.kicad.org/drc.v1.json",
     "coordinate_units": "mm",
-    "date": "2026-09-23T09:20:00",
+    "date": "2026-09-23T12:36:45",
     "ignored_checks": [
         {
             "description": "Footprint has no courtyard defined",
@@ -82,12 +82,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.6250 mm",
+                    "description": "Pista [/NTC_ADC] en (F.Cu), longitud 1.3038 mm",
                     "pos": {
-                        "x": 31.0,
-                        "y": 104.175
+                        "x": 32.5,
+                        "y": 104.8
                     },
-                    "uuid": "cd3dc5c9-7b14-4e11-bda5-79445b6b1c09"
+                    "uuid": "9971edb6-33f1-4275-bd6a-5884027716c7"
                 },
                 {
                     "description": "Pad 14 [/NTC_ADC] de U101 en F.Cu",
@@ -496,29 +496,6 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 6 [/STM_NRST] de U602 en F.Cu",
-                    "pos": {
-                        "x": 39.7,
-                        "y": 62.325
-                    },
-                    "uuid": "bb22a333-f65a-4dcc-af73-d1bb68ddb10c"
-                },
-                {
-                    "description": "Pad 2 [/STM_NRST] de U602 en F.Cu",
-                    "pos": {
-                        "x": 36.3,
-                        "y": 61.675
-                    },
-                    "uuid": "2a15c6c2-6b55-44c0-8c86-fae57fc85276"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
                     "description": "Pad PTH 5 [/STM_NRST] de J102",
                     "pos": {
                         "x": 84.66,
@@ -532,7 +509,7 @@
                         "x": 70.325,
                         "y": 39.25
                     },
-                    "uuid": "5309351b-987f-4deb-a1cc-0372bf7b8098"
+                    "uuid": "0c0b8fac-237a-47bc-8a90-de1efc68f2a7"
                 }
             ],
             "severity": "error",
@@ -542,58 +519,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/HEATER_EN_RAW] en (B.Cu), longitud 3.0150 mm",
+                    "description": "Pad 1 [/WATER_LEVEL] de C406 en F.Cu",
                     "pos": {
-                        "x": 29.7,
-                        "y": 69.0
+                        "x": 22.0,
+                        "y": 116.775
                     },
-                    "uuid": "4681b2d3-a1cb-4d7f-8faa-940d80e00b99"
-                },
-                {
-                    "description": "Pad 30 [/HEATER_EN_RAW] de U101 en F.Cu",
-                    "pos": {
-                        "x": 78.75,
-                        "y": 45.675
-                    },
-                    "uuid": "0038dd40-9503-4a8e-8a59-c5efeda85ed3"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 7 [/BREW_SLEEP_INTERLOCK] de U602 en F.Cu",
-                    "pos": {
-                        "x": 39.7,
-                        "y": 61.675
-                    },
-                    "uuid": "87c73b84-44a3-4989-b6b0-5f35ec3e1364"
-                },
-                {
-                    "description": "Pad 1 [/BREW_SLEEP_INTERLOCK] de R505 en F.Cu",
-                    "pos": {
-                        "x": 47.625,
-                        "y": 34.2
-                    },
-                    "uuid": "d9d4c6d7-61ee-4b93-9c8a-5fce11b70577"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pista [/WATER_LEVEL] en (F.Cu), longitud 1.7366 mm",
-                    "pos": {
-                        "x": 20.5,
-                        "y": 115.9
-                    },
-                    "uuid": "013aeb3a-4dcc-4cc6-9114-764db8dacc15"
+                    "uuid": "1acfe251-bb41-4b5b-a5cd-92eaf3371a86"
                 },
                 {
                     "description": "Pad 16 [/WATER_LEVEL] de U101 en F.Cu",
@@ -624,7 +555,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "20fd81ec-5c3e-4a6d-af59-2a62537f1e9d"
+                    "uuid": "81e7246a-d580-4fe3-bae0-bfba6281cb55"
                 }
             ],
             "severity": "error",
@@ -647,30 +578,7 @@
                         "x": 95.275,
                         "y": 53.6
                     },
-                    "uuid": "c6878d4c-1ebb-4ad7-91d5-8d300179a283"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pad 34 [/GRINDER_EN_RAW] de U101 en F.Cu",
-                    "pos": {
-                        "x": 81.675,
-                        "y": 43.25
-                    },
-                    "uuid": "2306c756-c4f6-43f5-a096-2d823e11b7a2"
-                },
-                {
-                    "description": "Pista [/GRINDER_EN_RAW] en (F.Cu), longitud 0.7000 mm",
-                    "pos": {
-                        "x": 35.0,
-                        "y": 87.775
-                    },
-                    "uuid": "0455fb6a-4b0a-4785-982f-4e210a3e7b05"
+                    "uuid": "fbd8dd9f-532b-4afb-a76f-6b89f1216f64"
                 }
             ],
             "severity": "error",
@@ -818,12 +726,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/BU_WORK_N] en (F.Cu), longitud 3.0004 mm",
+                    "description": "Pad 1 [/BU_WORK_N] de C405 en F.Cu",
                     "pos": {
-                        "x": 19.0,
-                        "y": 59.825
+                        "x": 22.0,
+                        "y": 59.775
                     },
-                    "uuid": "fa0e3a2b-fe8a-4bac-b15d-09e25f8a74cc"
+                    "uuid": "446eaeff-d079-4a0d-90d8-430a682a2106"
                 },
                 {
                     "description": "Pad 10 [/BU_WORK_N] de U101 en F.Cu",
@@ -946,7 +854,7 @@
                         "x": 103.0,
                         "y": 19.825
                     },
-                    "uuid": "f884d304-4e07-45b4-b07a-6e77be5a67bd"
+                    "uuid": "99c66895-1e4b-4350-851b-8a8b8ea00a13"
                 }
             ],
             "severity": "error",
@@ -956,58 +864,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pad 1 [/VALVE_EN_INTERLOCK] de R511 en F.Cu",
+                    "description": "Pad 1 [/DOOR_CLOSED_N] de C403 en F.Cu",
                     "pos": {
-                        "x": 4.175,
-                        "y": 99.0
+                        "x": 21.0,
+                        "y": 71.775
                     },
-                    "uuid": "bb9c35d4-a8d1-4596-bd76-cb8aad892d5c"
-                },
-                {
-                    "description": "Pad 3 [/VALVE_EN_INTERLOCK] de U602 en F.Cu",
-                    "pos": {
-                        "x": 36.3,
-                        "y": 62.325
-                    },
-                    "uuid": "4893b67c-d922-46c2-ab64-74c3be9521b6"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pista [/VALVE_EN_RAW] en (F.Cu), longitud 0.9724 mm",
-                    "pos": {
-                        "x": 41.675,
-                        "y": 64.5
-                    },
-                    "uuid": "1b885fac-863a-4ce9-9262-e97ee4fe2076"
-                },
-                {
-                    "description": "Pad 24 [/VALVE_EN_RAW] de U101 en F.Cu",
-                    "pos": {
-                        "x": 75.75,
-                        "y": 45.675
-                    },
-                    "uuid": "4f10158d-be09-4aa2-a0a1-201c668b3a10"
-                }
-            ],
-            "severity": "error",
-            "type": "unconnected_items"
-        },
-        {
-            "description": "Missing connection between items",
-            "items": [
-                {
-                    "description": "Pista [/DOOR_CLOSED_N] en (F.Cu), longitud 3.0004 mm",
-                    "pos": {
-                        "x": 18.0,
-                        "y": 71.825
-                    },
-                    "uuid": "3f8ea98b-d91e-4442-9507-e8123d7c1df0"
+                    "uuid": "dff5f0de-b961-48ce-a076-36c678d4a549"
                 },
                 {
                     "description": "Pad 8 [/DOOR_CLOSED_N] de U101 en F.Cu",
@@ -1025,12 +887,12 @@
             "description": "Missing connection between items",
             "items": [
                 {
-                    "description": "Pista [/BU_PRESENT_N] en (F.Cu), longitud 3.0004 mm",
+                    "description": "Pad 1 [/BU_PRESENT_N] de C404 en F.Cu",
                     "pos": {
-                        "x": 19.0,
-                        "y": 52.825
+                        "x": 22.0,
+                        "y": 52.775
                     },
-                    "uuid": "c27dbd9b-caa4-4c58-895e-29aeb4bd20fa"
+                    "uuid": "b38dceee-1bdf-4e94-973e-6a9d6a2400e7"
                 },
                 {
                     "description": "Pad 9 [/BU_PRESENT_N] de U101 en F.Cu",
@@ -1056,12 +918,12 @@
                     "uuid": "ab3f7a12-07da-4c15-89af-4efa0248542a"
                 },
                 {
-                    "description": "Pista [/FLOW_TIM] en (F.Cu), longitud 1.8000 mm",
+                    "description": "Pad 2 [/FLOW_TIM] de R404 en F.Cu",
                     "pos": {
                         "x": 31.075,
                         "y": 111.0
                     },
-                    "uuid": "295f6246-3143-40da-a46e-82ddcef58078"
+                    "uuid": "a761068c-cb3d-47ca-ba13-e8803706eb76"
                 }
             ],
             "severity": "error",
@@ -1239,7 +1101,7 @@
                         "x": 50.2,
                         "y": 29.7
                     },
-                    "uuid": "20fd81ec-5c3e-4a6d-af59-2a62537f1e9d"
+                    "uuid": "81e7246a-d580-4fe3-bae0-bfba6281cb55"
                 }
             ],
             "severity": "warning",

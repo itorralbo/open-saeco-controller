@@ -199,7 +199,7 @@ def main():
            'PA8': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
            'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
-           'PB11': 'PUMP_EN_RAW', 'PB12': 'GRINDER_EN_RAW'}
+           'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO17': 'ESP_TX_RAW', 'IO18': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',

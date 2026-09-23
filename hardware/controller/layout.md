@@ -3,8 +3,9 @@
 Estado: colocación mecánica de conectores y colocación funcional con la
 distribución de la placa original, dominio de red contiguo, reserva del disipador
 y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
-interlocks, la válvula, los sensores, las etapas de red y todos los raíles de
-alimentación ya están ruteados a mano; faltan las señales. Aún no fabricable. La fuente de verdad mecánica es
+interlocks, la válvula, los sensores, las etapas de red, todos los raíles de
+alimentación y las órdenes del STM32 a las cargas ya están ruteados a mano;
+faltan el resto de señales. Aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 159 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
@@ -499,8 +500,8 @@ llega por B.Cu a la vía de reset al norte del encapsulado.
 R710 es ya una ERJ-P08J391V (390 Ω, 1206, 500 V de tensión límite), en la
 misma huella 1206.
 
-Pendiente: el tramo desde el STM32 (PB10) con el resto de señales del
-microcontrolador.
+PB10 llega desde el STM32 por el bus de órdenes (ver
+[órdenes a las cargas](#órdenes-a-las-cargas-y-salidas-de-u602)).
 
 ### Etapa de la bomba (JP24)
 
@@ -545,19 +546,15 @@ Enclavamiento ruteado:
   - las masas, cada una a su vía.
 - Los tramos largos se buscaron con un A* en rejilla de 0,25 mm que prima F.Cu
   y se fijaron después en `route_pump_enable`.
-- PB11 es el primer pin del lado este de U101:
-  - baja junto a los desacoplos de la esquina inferior derecha;
-  - pasa a B.Cu bajo el codo de los 24 V y va hacia el oeste por el borde sur
-    del plano de masa, que casi no recorta;
-  - sube junto a U602 hasta Q701, en paralelo a la pista del enclavamiento del
-    calentador.
+- PB11 es el primer pin del lado este de U101. Baja junto a los desacoplos
+  de la esquina inferior derecha y pasa a B.Cu bajo el codo de los 24 V. Desde
+  ahí es el primer carril del bus de órdenes, que lo lleva junto a U602 hasta
+  Q701, en paralelo a la pista del enclavamiento del calentador.
 - 3,3 V llega desde C603 y el reset desde la vía junto a U603, los dos saltando
   por B.Cu bajo Q701.
 - La salida cruza bajo la rama de 24 V de y = 93 mm por B.Cu y, desde el
   2026-09-23, sigue por B.Cu junto al driver del molinillo y llega a R714 por
   el oeste.
-- El paso hacia U603 queda libre para PB10: la misma búsqueda encuentra camino
-  de 64 mm con todo esto ya ruteado.
 
 No hay snubber RC en el triac; ver la nota de la etapa.
 
@@ -625,8 +622,8 @@ Ruteado:
   calentador por el oeste, sube junto a R401 y va por y = 103 mm, encima de la
   fila del NTC, hasta R718. La vía de masa de C401 pasó al este para dejarle
   sitio.
-- El reset entra al pin 6 por debajo del encapsulado. PB12, la orden desde
-  el STM32, espera con el resto de señales del microcontrolador, como PB10.
+- El reset entra al pin 6 por debajo del encapsulado. La orden desde el STM32
+  sale de PC4 y llega por el bus de órdenes.
 
 Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
 triac. Tampoco hay snubber en Q708.
@@ -690,6 +687,58 @@ Pasillos que se han dejado libres para las señales:
 
 Masas: C101, R706, C702, R102 y R711 tienen ya su vía al plano.
 
+### Órdenes a las cargas y salidas de U602
+
+Las puertas U602–U604 quedan al oeste de la troncal de 24 V. Cualquier camino
+en F.Cu desde el STM32 cruza el reset en y = 50,5 mm, las ramas de 24 V en
+x = 46,4 y x = 62,5 mm y la espina de 3,3 V, y el buscador de caminos daba
+entre 24 y 38 vías para las cinco redes. Por eso las cuatro órdenes van como
+un bus en B.Cu. Cada una baja una vez junto a U101 y sube una vez junto a su
+puerta.
+
+- **Cambio de pin**: `GRINDER_EN_RAW` pasa de PB12 (pin 34, lado este) a PC4
+  (pin 25, fila sur, junto a PA7). Así las tres órdenes de la fila sur bajan
+  juntas en el bolsillo bajo U101 y en el orden de sus destinos. El firmware
+  aún no asigna pines, así que no hay nada más que cambiar.
+- **Carriles**: van por el borde sur del plano a 0,4 mm de paso. De norte a
+  sur, bomba (y = 54,6 mm), válvula, molinillo y calentador (y = 55,8 mm).
+  Es lo que cabe entre las vías del salto de 3,3 V y la barrera, con 0,2 mm
+  exactos de separación.
+- **Extremo este**: PA7, PC4 y PB10 bajan a su vía en el bolsillo que cierran
+  los desacoplos y la orden de PB11 en F.Cu. De ahí van al oeste por
+  y = 51,5–52,3 mm y bajan por x = 72,35–73,15 mm, al este de la vía de PB11.
+  La vía de masa de los desacoplos (70,8; 53,0) queda fuera de los carriles.
+- **Extremo oeste**: en x = 44,6–45,8 mm los carriles giran al sur y se separan
+  hacia el oeste en este orden:
+  - la bomba, hasta su vía de siempre en (37,25; 77,5);
+  - la válvula, que sube en (41,5; 62,9) y entra en el pin 5 de U602;
+  - el molinillo, que baja junto a la bomba y la pata B.Cu del enclavamiento
+    del calentador, y sube en (36,9; 90,6), al sur de ambos, para llegar a
+    R717 por el oeste de R717.2;
+  - el calentador, que sube pasada la bajada de 3,3 V en x = 42,5 mm y va en
+    F.Cu por y = 66,55 mm hasta la vía de R711.
+- **PB7 (armado de red)**: su salto bajo la troncal pasa a y = 53,25 mm, al
+  norte de los carriles. Baja entre la vía oeste del salto de 3,3 V y la
+  troncal, con 0,3 mm a esta. Esa vía se movió a x = 44,75 mm para dejarle
+  sitio.
+- **Plano**: C602 lleva su masa por F.Cu a la vía de R604.2. Su vía propia
+  quedaba entre dos carriles, en un trozo de plano sin salida. El relleno
+  queda como antes: el plano principal y los cinco trozos junto a J104.
+
+Salidas de U602:
+
+- Dentro del encapsulado, el reset cruza del pin 6 al 2. La salida de sleep
+  (pin 7) sale al norte y la de la válvula (pin 3) al sur, sin cruzarse.
+- `BREW_SLEEP_INTERLOCK` baja a B.Cu al norte de U602 y sube junto al
+  watchdog por x = 40,75 mm, bajo los 3,3 V, el reset y los 24 V. Aflora al
+  oeste del fusible de 24 V, va al este por y = 38,25 mm entre la fila de R501
+  y el watchdog, y pasa entre los pads de R501 y R503 para llegar a R505.1 por
+  debajo. Deja libres por el este los pads en bruto de R501 y R503.
+- `VALVE_EN_INTERLOCK` baja a B.Cu dentro del contorno de U602, pasa al norte
+  de la vía de masa del pin 4 y rodea el final de la orden del calentador.
+  Después cruza la alimentación de 3,3 V de la fila inferior y va en diagonal
+  hasta R511, saltando la rama de 24 V de y = 91,5 mm.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -701,13 +750,14 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Órdenes del STM32 a las cargas y salidas del supervisor: PB10 hasta U603
-   y PB12 hasta U604 por el pasillo de PB11, la orden de la válvula y
-   `BREW_SLEEP_INTERLOCK`/`VALVE_EN_INTERLOCK` desde U602.
-2. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
+1. Resto de señales del STM32: sensores (fila oeste), puente H (PA3, PA6,
    PA8), UART con el ESP32, BOOT0, telemetría de raíles, NRST hasta J102 y
-   PB0 hasta el corte del frontal.
-3. ESP32 y frontal: bus del LCD por sus series hasta J104, I²C e interrupción
+   PB0 hasta el corte del frontal. Conviene revisar antes la asignación de
+   pines, como se hizo con PC4. PB0 (pin 27) queda encerrado entre PC4 y
+   PB10 y va hacia el este, así que puede pasar a un pin libre del lado este
+   (PB13–PC9). PA4, PA5 y PA6, en la fila sur, necesitarán también vía en el
+   bolsillo bajo U101.
+2. ESP32 y frontal: bus del LCD por sus series hasta J104, I²C e interrupción
    del teclado, cabecera J103 y la red de `ESP_EN`.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no

@@ -20,16 +20,17 @@ Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
 con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión,
 entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
 carga es un DRV8876 para el motor del grupo y la válvula dispone de una etapa
-low-side, ambos desde una entrada de 24 V de banco con fusibles separados;
-quedan sin ensayar y faltan calentador, bomba y molino.
+low-side, ambos desde una entrada de 24 V de banco con fusibles separados.
+Calentador, bomba y molino tienen ya su etapa en el esquema y en la PCB; ninguna
+carga está ensayada.
 El [watchdog e interlock hardware](../hardware/power/watchdog-interlock.md) ya
 reinicia el STM32 y bloquea motor/válvula ante timeout o reset; falta implementar
 el pulso periódico en PB4 y validar la temporización real.
 La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md)
 mantiene dos fuentes DC externas aisladas para el banco, pero la principal final
 integra en la misma PCB la entrada de red, la fuente aislada, calentador, bomba y
-molino. La siguiente ampliación del esquema añade esos bloques y extiende el
-interlock hardware a todas las cargas.
+molino. El interlock hardware cubre ya todas las cargas, y sus órdenes están
+ruteadas desde el STM32; en la PCB quedan 44 conexiones de señal por rutear.
 La principal ya mide ambos rails en PA4/PA5 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
 Las 135 huellas actuales tienen ya una [colocación funcional](../hardware/controller/layout.md)

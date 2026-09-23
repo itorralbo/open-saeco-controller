@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-23T09:20:47</date>
+    <date>2026-09-23T12:38:10</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -7232,7 +7232,7 @@
     </net>
     <net code="55" name="/GRINDER_EN_RAW" class="Default">
       <node ref="R717" pin="1" pintype="passive"/>
-      <node ref="U101" pin="34" pinfunction="PB12_34" pintype="bidirectional"/>
+      <node ref="U101" pin="25" pinfunction="PC4_25" pintype="bidirectional"/>
       <node ref="U604" pin="5" pinfunction="2A_5" pintype="input"/>
     </net>
     <net code="56" name="/GRINDER_GATE_FEED" class="Mains">
@@ -7662,20 +7662,20 @@
     <net code="152" name="unconnected-(U101-PB9-Pad62)" class="Default">
       <node ref="U101" pin="62" pinfunction="PB9_62" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="153" name="unconnected-(U101-PB13-Pad35)" class="Default">
+    <net code="153" name="unconnected-(U101-PB12-Pad34)" class="Default">
+      <node ref="U101" pin="34" pinfunction="PB12_34" pintype="bidirectional+no_connect"/>
+    </net>
+    <net code="154" name="unconnected-(U101-PB13-Pad35)" class="Default">
       <node ref="U101" pin="35" pinfunction="PB13_35" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="154" name="unconnected-(U101-PB14-Pad36)" class="Default">
+    <net code="155" name="unconnected-(U101-PB14-Pad36)" class="Default">
       <node ref="U101" pin="36" pinfunction="PB14_36" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="155" name="unconnected-(U101-PB15-Pad37)" class="Default">
+    <net code="156" name="unconnected-(U101-PB15-Pad37)" class="Default">
       <node ref="U101" pin="37" pinfunction="PB15_37" pintype="bidirectional+no_connect"/>
     </net>
-    <net code="156" name="unconnected-(U101-PC3-Pad11)" class="Default">
+    <net code="157" name="unconnected-(U101-PC3-Pad11)" class="Default">
       <node ref="U101" pin="11" pinfunction="PC3_11" pintype="bidirectional+no_connect"/>
-    </net>
-    <net code="157" name="unconnected-(U101-PC4-Pad25)" class="Default">
-      <node ref="U101" pin="25" pinfunction="PC4_25" pintype="bidirectional+no_connect"/>
     </net>
     <net code="158" name="unconnected-(U101-PC5-Pad26)" class="Default">
       <node ref="U101" pin="26" pinfunction="PC5_26" pintype="bidirectional+no_connect"/>

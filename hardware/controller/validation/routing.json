@@ -30,10 +30,12 @@
     "supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm",
     "12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers",
     "3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109",
-    "UI supply: U302 to J104.1 along the top edge"
+    "UI supply: U302 to J104.1 along the top edge",
+    "load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes",
+    "U602: reset input, brew sleep output to R505 and valve output to R511"
   ],
-  "track_segments": 1010,
-  "vias": 209,
+  "track_segments": 1079,
+  "vias": 220,
   "remaining_blocks": [
     "STM32 signals",
     "ESP32 and front-panel signals",

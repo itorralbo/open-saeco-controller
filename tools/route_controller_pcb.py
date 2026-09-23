@@ -452,7 +452,6 @@ def route_watchdog_interlock(board):
     for start, point in (((36.862, 54.0), (38.4, 54.0)),
                          ((43.275, 53.05), (44.4, 53.05)),
                          ((38.825, 58.8), (39.8, 57.9)),
-                         ((43.275, 61.025), (44.4, 61.025)),
                          ((43.325, 64.5), (44.4, 64.5)),
                          ((32.175, 61.025), (31.1, 61.025)),
                          ((36.3, 62.975), (36.3, 64.6)),
@@ -461,6 +460,9 @@ def route_watchdog_interlock(board):
                          ((31.062, 79.45), (31.062, 80.8))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
+    # C602 shares R604's via: its own would sit between two lanes of the
+    # load bus, on a piece of plane they cut off.
+    track(board, gnd, (43.275, 61.025), (43.325, 64.5), width=PIN_WIDTH)
     # U603 2A/2B are strapped low so its spare gate cannot arm the relay.
 
     # C603 decouples the gate that arms mains, like C601 and C602 do for the
@@ -815,12 +817,12 @@ def route_3v3_distribution(board):
     # capacitors and the 24 V trunk below them.
     polyline(board, v33, [(91.6, 53.6), (91.6, 54.0), (63.9, 54.0)], width=0.4)
     for east, west in (((63.9, 54.0), (61.1, 54.0)),
-                       ((47.8, 54.0), (45.0, 54.0))):
+                       ((47.8, 54.0), (44.75, 54.0))):
         via(board, v33, east)
         track(board, v33, east, west, pcb.B_Cu, width=0.4)
         via(board, v33, west)
     track(board, v33, (61.1, 54.0), (47.8, 54.0), width=0.4)
-    track(board, v33, (45.0, 54.0), (40.52, 54.0), width=0.4)
+    track(board, v33, (44.75, 54.0), (40.52, 54.0), width=0.4)
 
     # Reset pull-up, under the reset corridor that shares this lane.
     polyline(board, v33, [(40.52, 54.0), (40.0, 52.2), (39.4, 51.6)],
@@ -1031,8 +1033,8 @@ def route_heater_enable(board):
     pull-down from the east. Pin 3 is fenced in by the ground stub of pin 4
     and the reset loop of pin 2, so it drops to B.Cu inside the loop and runs
     south under the relay-return and 12 V branches to the LED driver's gate
-    resistor. The MCU side of HEATER_EN_RAW (PB10) waits with the other STM32
-    signals.
+    resistor. The MCU side of HEATER_EN_RAW (PB10) arrives on B.Cu through
+    route_load_bus.
     """
     raw, gated = '/HEATER_EN_RAW', '/HEATER_EN_INTERLOCK'
     polyline(board, raw, [(29.5, 72.025), (29.7, 71.8), (29.7, 69.0)],
@@ -1221,11 +1223,10 @@ def route_pump_enable(board):
     searched on a 0.25 mm grid that favours F.Cu, then fixed here.
 
     PB11 is the first pin of U101's east side. It leaves south past the
-    bottom-right decoupling and crosses to B.Cu under the 24 V bend, running
-    west along the southern edge of the ground plane, so the cut barely
-    touches it, before climbing past U602 to Q701. The output hops under the
-    24 V branch at y = 93 mm on B.Cu, as the heater's does, and meets R714
-    from the west. The corridor to U603 stays open for PB10.
+    bottom-right decoupling and drops to B.Cu under the 24 V bend; from there
+    it is the first lane of route_load_bus, which brings it past U602 to
+    Q701. The output hops under the 24 V branch at y = 93 mm on B.Cu, as the
+    heater's does, and meets R714 from the west.
     """
     raw, nrst, v33 = '/PUMP_EN_RAW', '/STM_NRST', '/3V3_CORE'
     gated, gnd = '/PUMP_EN_INTERLOCK', '/GND_UI'
@@ -1253,12 +1254,7 @@ def route_pump_enable(board):
     polyline(board, raw, [(29.25, 84.5), (34.5, 79.25), (34.75, 79.25),
                           (36.5, 77.5), (37.25, 77.5)], width=PIN_WIDTH)
     via(board, raw, (37.25, 77.5))
-    polyline(board, raw, [(37.25, 77.5), (37.25, 67.75), (43.75, 61.25),
-                          (43.75, 60.75), (46.0, 58.5), (46.0, 55.75),
-                          (46.25, 55.5), (51.5, 55.5), (51.75, 55.25),
-                          (67.25, 55.25), (67.75, 54.75), (68.0, 54.75),
-                          (69.0, 53.75), (71.0, 53.75), (71.5, 53.25),
-                          (71.75, 53.25)], pcb.B_Cu, width=PIN_WIDTH)
+    # The B.Cu run between the two vias is a lane of route_load_bus.
     via(board, raw, (71.75, 53.25))
     polyline(board, raw, [(71.75, 53.25), (72.25, 52.75), (73.25, 52.75),
                           (74.25, 51.75), (79.0, 51.75), (80.0, 50.75),
@@ -1365,8 +1361,8 @@ def route_grinder_enable(board):
     reset through the gap under the package. The output, pin 3, faces west:
     it goes down to B.Cu beside the pin, runs south west of the ground vias
     and of the heater gate's B.Cu leg, surfaces next to R401 and runs east
-    above the NTC row to R718. PB12, the MCU side of the raw order, waits
-    with the other STM32 signals, as PB10 does.
+    above the NTC row to R718. PC4, the MCU side of the raw order, comes in
+    through route_load_bus.
     """
     gnd = '/GND_UI'
     raw, gated = '/GRINDER_EN_RAW', '/GRINDER_EN_INTERLOCK'
@@ -1615,10 +1611,12 @@ def route_supervisor_orders(board):
                           (50.15, 52.2), (50.15, 52.5), (49.4, 53.25),
                           (48.5, 53.25)], width=w)
     via(board, arm, (48.5, 53.25))
-    polyline(board, arm, [(48.5, 53.25), (48.5, 54.25), (47.9, 54.85),
-                          (45.25, 54.85)], pcb.B_Cu, width=w)
-    via(board, arm, (45.25, 54.85))
-    polyline(board, arm, [(45.25, 54.85), (45.25, 64.6), (43.05, 66.8),
+    # Under the 24 V trunk north of the 3.3 V hop, so the load bus keeps the
+    # plane edge; the arm then drops between that hop's west via and the trunk.
+    track(board, arm, (48.5, 53.25), (45.3, 53.25), pcb.B_Cu, width=w)
+    via(board, arm, (45.3, 53.25))
+    polyline(board, arm, [(45.3, 53.25), (45.5, 53.45), (45.5, 64.35),
+                          (45.25, 64.6), (43.05, 66.8),
                           (43.05, 67.15), (37.75, 72.45), (37.75, 73.5),
                           (37.3, 73.95), (33.7, 73.975)], width=w)
 
@@ -1650,6 +1648,120 @@ def route_supervisor_orders(board):
     via(board, kick, (38.0, 55.5))
     polyline(board, kick, [(38.0, 55.5), (37.15, 56.35), (37.175, 56.8)],
              width=w)
+
+
+def route_load_bus(board):
+    """Load orders from U101 to the gates, as one four-lane bus on B.Cu.
+
+    The gates sit west of the 24 V trunk, and every F.Cu path from the MCU
+    crosses the reset line, both 24 V branches and the 3.3 V spine. So each
+    order drops to B.Cu once near U101 and comes up once at its gate. The
+    lanes share the southern edge of the ground plane, north to south pump,
+    valve, grinder and heater, at the 0.4 mm pitch that the band between the
+    3.3 V hop vias and the barrier allows. West of the trunk they turn south
+    in that order and peel off west: the pump first, then the valve, the
+    grinder and the heater.
+
+    PA7 (valve), PC4 (grinder) and PB10 (heater) drop into the pocket under
+    U101's south row, which the decoupling and the pump order fence off on
+    F.Cu, and come down beside PB11's via in the same order. None of the
+    lanes closes round a ground via: the decoupling vias stay north of them
+    and the gate vias west of them.
+    """
+    w = SIGNAL_WIDTH
+    valve, heater = '/VALVE_EN_RAW', '/HEATER_EN_RAW'
+    pump, grinder = '/PUMP_EN_RAW', '/GRINDER_EN_RAW'
+
+    # PB11, between the vias of route_pump_enable. It peels off first and
+    # runs down beside the heater gate's B.Cu leg, as it did alone.
+    polyline(board, pump, [(71.75, 53.25), (71.75, 54.4), (71.55, 54.6),
+                           (44.8, 54.6), (44.6, 54.8), (44.6, 58.8),
+                           (37.25, 66.15), (37.25, 77.5)], pcb.B_Cu, width=w)
+
+    # PA7, pin 24, to U602 pin 5 past R604.
+    track(board, valve, (75.75, 45.675), (75.75, 50.3), width=w)
+    via(board, valve, (75.75, 50.3))
+    polyline(board, valve, [(75.75, 50.3), (75.75, 51.1), (75.35, 51.5),
+                            (72.75, 51.5), (72.35, 51.9), (72.35, 54.8),
+                            (72.15, 55.0), (45.2, 55.0), (45.0, 55.2),
+                            (45.0, 59.4), (41.5, 62.9)], pcb.B_Cu, width=w)
+    via(board, valve, (41.5, 62.9))
+    track(board, valve, (41.5, 62.9), (40.4, 62.975), width=w)
+
+    # PC4, pin 25. R717 is fenced by the heater gate's B.Cu run and the pump
+    # gate's F.Cu leg, so the order comes up south of both, past R717.2.
+    polyline(board, grinder, [(76.25, 45.675), (76.25, 47.0), (76.9, 47.65),
+                              (76.9, 50.3)], width=w)
+    via(board, grinder, (76.9, 50.3))
+    polyline(board, grinder, [(76.9, 50.3), (76.9, 51.5), (76.5, 51.9),
+                              (73.15, 51.9), (72.75, 52.3), (72.75, 55.2),
+                              (72.55, 55.4), (45.6, 55.4), (45.4, 55.6),
+                              (45.4, 60.9), (37.85, 68.45), (37.85, 85.5),
+                              (37.1, 86.25), (37.1, 90.0), (36.9, 90.6)],
+             pcb.B_Cu, width=w)
+    via(board, grinder, (36.9, 90.6))
+    polyline(board, grinder, [(36.9, 90.6), (35.9, 89.6), (35.0, 88.7),
+                              (35.0, 88.475)], width=w)
+
+    # PB10, pin 30, clear of C103 and C110 on its way down.
+    polyline(board, heater, [(78.75, 45.675), (78.75, 46.6), (77.95, 47.4),
+                             (77.95, 50.95), (77.8, 51.1)], width=w)
+    via(board, heater, (77.8, 51.1))
+    polyline(board, heater, [(77.8, 51.1), (77.8, 51.9), (77.4, 52.3),
+                             (73.55, 52.3), (73.15, 52.7), (73.15, 55.6),
+                             (72.95, 55.8), (46.0, 55.8), (45.8, 56.0),
+                             (45.8, 61.4), (41.6, 65.6)], pcb.B_Cu, width=w)
+    # Up again once past the 3.3 V drop at x = 42.5 mm, so the gates' ground
+    # vias keep their plane; then west above the 3.3 V feed to the R711 via.
+    via(board, heater, (41.6, 65.6))
+    polyline(board, heater, [(41.6, 65.6), (40.65, 66.55), (30.55, 66.55),
+                             (30.0, 66.0)], width=w)
+
+def route_supervisor_outputs(board):
+    """U602's reset input on pin 6 and its two gated outputs.
+
+    Inside the package the three share the gap between the pad columns:
+    reset crosses from pin 6 to pin 2, the brew sleep output leaves pin 7
+    north of it and the valve output leaves pin 3 south of it. The sleep
+    output drops to B.Cu north of the package, climbs beside the watchdog
+    kick under the 3.3 V, reset and 24 V lines and surfaces west of the 24 V
+    fuse. It then runs east between the R501 row and the kick, and passes
+    between the pads of R501 and R503 to reach R505's pin 1 from below.
+    """
+    w = SIGNAL_WIDTH
+    sleep = '/BREW_SLEEP_INTERLOCK'
+    polyline(board, '/STM_NRST', [(39.7, 62.325), (38.75, 62.325),
+                                  (38.1, 61.675), (36.3, 61.675)],
+             width=PIN_WIDTH)
+
+    polyline(board, sleep, [(39.7, 61.675), (38.8, 61.675), (38.25, 61.125),
+                            (38.25, 60.375)], width=w)
+    via(board, sleep, (38.25, 60.375))
+    polyline(board, sleep, [(38.25, 60.375), (38.25, 56.25), (40.75, 53.75),
+                            (40.75, 39.75), (40.25, 39.25)], pcb.B_Cu, width=w)
+    via(board, sleep, (40.25, 39.25))
+    polyline(board, sleep, [(40.25, 39.25), (41.25, 38.25), (46.625, 38.25),
+                            (46.875, 38.0), (46.875, 35.0), (47.625, 34.2)],
+             width=w)
+
+    # The valve output drops to B.Cu inside the package outline, passes north
+    # of pin 4's ground via and round the end of the heater order, crosses the
+    # 3.3 V feed to the bottom row and runs diagonally to the valve driver,
+    # hopping the 24 V branch at y = 91.5 mm.
+    valve = '/VALVE_EN_INTERLOCK'
+    polyline(board, valve, [(36.3, 62.325), (37.2, 62.325), (37.5, 62.625),
+                            (37.5, 64.0)], width=w)
+    via(board, valve, (37.5, 64.0))
+    polyline(board, valve, [(37.5, 64.0), (30.375, 64.0), (29.125, 65.25),
+                            (29.125, 67.875)], pcb.B_Cu, width=w)
+    via(board, valve, (29.125, 67.875))
+    polyline(board, valve, [(29.125, 67.875), (26.75, 67.875), (9.5, 85.125),
+                            (9.5, 90.75)], width=w)
+    via(board, valve, (9.5, 90.75))
+    track(board, valve, (9.5, 90.75), (9.5, 92.7), pcb.B_Cu, width=w)
+    via(board, valve, (9.5, 92.7))
+    polyline(board, valve, [(9.5, 92.7), (9.2, 92.7), (4.175, 97.725),
+                            (4.175, 99.0)], width=w)
 
 
 def selv_ground_plane(board):
@@ -1705,6 +1817,8 @@ def main():
     route_grinder_enable(board)
     route_debug_header(board)
     route_supervisor_orders(board)
+    route_load_bus(board)
+    route_supervisor_outputs(board)
     route_12v_rail(board)
     route_3v3_closure(board)
     route_ui_supply(board)
@@ -1740,7 +1854,9 @@ def main():
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
                           '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',
                           '3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109',
-                          'UI supply: U302 to J104.1 along the top edge'],
+                          'UI supply: U302 to J104.1 along the top edge',
+                          'load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes',
+                          'U602: reset input, brew sleep output to R505 and valve output to R511'],
         'track_segments': sum(isinstance(item, pcb.PCB_TRACK) and not isinstance(item, pcb.PCB_VIA)
                               for item in check.GetTracks()),
         'vias': sum(isinstance(item, pcb.PCB_VIA) for item in check.GetTracks()),

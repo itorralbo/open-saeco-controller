@@ -447,3 +447,20 @@ de cargas siguen pendientes en el esquema principal.
   de extremo suelto de antes, 67 conexiones abiertas (66 antes, más PB12 hasta
   U604) y las tres diferencias de paridad de MH1–MH3. No libera fabricación ni
   conexión a red.
+
+## Órdenes a las cargas y salidas de U602, 2026-09-23
+
+- Cambio de pin: `GRINDER_EN_RAW` pasa de PB12 (pin 34) a PC4 (pin 25), junto
+  a PA7 en la fila sur de U101. El firmware aún no asigna pines. KiCad 10.0.6:
+  ERC 0; netlist nativa 187 componentes / 612 pines coincidente.
+- PA7, PB10, PB11 y PC4 llegan a sus puertas como un bus de cuatro carriles en
+  B.Cu por el borde sur del plano, con dos vías por orden. PB11 conserva sus
+  vías; su tramo en B.Cu se rehízo como primer carril. El salto de PB7 bajo la
+  troncal de 24 V subió a y = 53,25 mm, la vía oeste del salto de 3,3 V pasó a
+  x = 44,75 mm y C602 comparte la vía de masa de R604.
+- U602: reset del pin 6 al 2, `BREW_SLEEP_INTERLOCK` hasta R505.1 y
+  `VALVE_EN_INTERLOCK` hasta R511.1, con dos y cuatro vías.
+- DRC con todas las severidades: 0 infracciones, el aviso intencional de
+  extremo suelto en PA3, 44 conexiones abiertas (50 antes) y las tres
+  diferencias de paridad de MH1–MH3. El relleno de GND_UI queda en las mismas
+  seis piezas que antes. No libera fabricación ni conexión a red.

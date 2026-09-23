@@ -195,7 +195,7 @@ Topología, la de la original con dos cambios de pieza:
    aleatorio sigue sin existencias.
 5. R721, la misma ERJ-P08 de 390 Ω en la puerta, y el mismo driver de LED desde
    12 V: Q707 (SI2308A), R718 33 Ω, R719 100 kΩ y R720 1 kΩ.
-6. PB12 da la orden `GRINDER_EN_RAW` a la segunda puerta de U604, que la anula
+6. PC4 da la orden `GRINDER_EN_RAW` a la segunda puerta de U604, que la anula
    mientras `STM_NRST` esté bajo. R717 la mantiene a cero en el arranque.
 
 | Magnitud | Valor |
