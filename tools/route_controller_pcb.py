@@ -691,7 +691,7 @@ def route_3v3_buck(board):
     v12 = '/12V_PROTECTED'
 
     # The fused link passes under D301's own body on B.Cu rather than round it:
-    # the gap north of the diode carries the 3.3 V spine.
+    # the gap north of the diode held the former 3.3 V spine.
     track(board, '/12V_FUSED', (86.4, 27.0), (88.0, 27.0), width=0.5)
     via(board, '/12V_FUSED', (88.0, 27.0), 0.8, 0.4)
     track(board, '/12V_FUSED', (88.0, 27.0), (95.0, 27.0), pcb.B_Cu, width=0.5)
@@ -742,11 +742,11 @@ def route_3v3_buck(board):
 
 
 def route_ui_load_switch(board):
-    """TPS22918 that gates 3.3 V to the front panel, plus its 3.3 V feed.
+    """TPS22918 that gates 3.3 V to the front panel.
 
     PS701's footprint closes this pocket off at x = 101.25 mm, so the parts sit
-    west and north of the switch and the 3.3 V rail comes in along y = 43 mm
-    and down the free column at x = 91.6 mm, west of the capacitor stack.
+    west and north of the switch. Its 3.3 V input and R301 drop to the In2.Cu
+    plane in route_3v3_plane_drops.
     """
     gnd, v33 = '/GND_UI', '/3V3_CORE'
 
@@ -871,7 +871,7 @@ def route_reset_tree(board):
     # Pull-up and filter, both on this corridor.
     track(board, nrst, (41.825, 50.5), (41.825, 49.1), width=PIN_WIDTH)
     track(board, nrst, (43.375, 50.5), (43.375, 49.1), width=PIN_WIDTH)
-    # Under the 3.3 V branch that crosses west at y = 67 mm.
+    # Under the heater order, which crosses west on F.Cu at y = 66.55 mm.
     via(board, nrst, (34.9, 65.9))
     track(board, nrst, (34.9, 65.9), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
     via(board, nrst, (34.9, 68.2))
@@ -984,8 +984,9 @@ def route_heater_enable(board):
     """HEATER_EN_RAW into U603's second gate and its output down to R707.
 
     Pin 5 climbs on F.Cu and reaches the R711 pull-down from the east; the
-    3.3 V branch it once hopped under is now the In2.Cu plane. Pin 3 is fenced in by the ground stub of pin 4
-    and the reset loop of pin 2, so it drops to B.Cu inside the loop and runs
+    3.3 V branch it once hopped under is now the In2.Cu plane. Pin 3 is
+    fenced in by the ground stub of pin 4 and the reset loop of pin 2, so it
+    drops to B.Cu inside the loop and runs
     south under the relay-return and 12 V branches to the LED driver's gate
     resistor. The MCU side of HEATER_EN_RAW (PB10) arrives on B.Cu through
     route_load_bus.
@@ -1354,13 +1355,13 @@ def route_12v_rail(board):
 
     The buck output leaves the bank south of C312 and runs west along
     y = 14 mm, hopping under the 24 V lane, to J101.1. From there it drops
-    beside the 3.3 V trunk and crosses under it and the UART channel west of
+    beside the former 3.3 V trunk and crosses under the UART channel west of
     it to F301.1.
 
     The protected rail has four islands to join: the buck side, J114.3, D303
     (the USB bench feed) and the load drivers in the south-west. From D301 it
-    hops under the 3.3 V trunk, runs west along y = 28.5 mm between F301 and
-    the SWD header and then along y = 32 mm under the LCD series row. It hops
+    hops under the former 3.3 V trunk, runs west along y = 28.5 mm between
+    F301 and the SWD header and then along y = 32 mm. It hops
     under the H-bridge rows at x = 61.25 mm to reach J114.3. From J114.3 a
     B.Cu diagonal passes under the H-bridge series and pull-down rows, so
     their raw pads stay open to the east. It surfaces in the free band north
@@ -1502,8 +1503,8 @@ def route_supervisor_orders(board):
                           (50.15, 52.2), (50.15, 52.5), (49.4, 53.25),
                           (48.5, 53.25)], width=w)
     via(board, arm, (48.5, 53.25))
-    # Under the 24 V trunk north of the 3.3 V hop, so the load bus keeps the
-    # plane edge; the arm then drops between that hop's west via and the trunk.
+    # Under the 24 V trunk north of the load bus, which runs along y = 54.6-
+    # 55.8 mm; the arm then drops between the bus and the trunk.
     track(board, arm, (48.5, 53.25), (45.3, 53.25), pcb.B_Cu, width=w)
     via(board, arm, (45.3, 53.25))
     polyline(board, arm, [(45.3, 53.25), (45.5, 53.45), (45.5, 64.35),
@@ -1547,11 +1548,11 @@ def route_load_bus(board):
     """Load orders from U101 to the gates, as one four-lane bus on B.Cu.
 
     The gates sit west of the 24 V trunk, and every F.Cu path from the MCU
-    crosses the reset line, both 24 V branches and the 3.3 V spine. So each
+    crosses the reset line and both 24 V branches. So each
     order drops to B.Cu once near U101 and comes up once at its gate. The
-    lanes share the southern edge of the ground plane, north to south pump,
-    valve, grinder and heater, at the 0.4 mm pitch that the band between the
-    3.3 V hop vias and the barrier allows. West of the trunk they turn south
+    lanes share the southern edge of the SELV planes, north to south pump,
+    valve, grinder and heater, at a 0.4 mm pitch against the barrier. West
+    of the trunk they turn south
     in that order and peel off west: the pump first, then the valve, the
     grinder and the heater.
 
@@ -1604,8 +1605,8 @@ def route_load_bus(board):
                              (73.55, 52.3), (73.15, 52.7), (73.15, 55.6),
                              (72.95, 55.8), (46.0, 55.8), (45.8, 56.0),
                              (45.8, 61.4), (41.6, 65.6)], pcb.B_Cu, width=w)
-    # Up again once past the 3.3 V drop at x = 42.5 mm, so the gates' ground
-    # vias keep their plane; then west above the 3.3 V feed to the R711 via.
+    # Up again at x = 41.6 mm and west on F.Cu at y = 66.55 mm to the R711
+    # via.
     via(board, heater, (41.6, 65.6))
     polyline(board, heater, [(41.6, 65.6), (40.65, 66.55), (30.55, 66.55),
                              (30.0, 66.0)], width=w)
@@ -1617,7 +1618,7 @@ def route_supervisor_outputs(board):
     reset crosses from pin 6 to pin 2, the brew sleep output leaves pin 7
     north of it and the valve output leaves pin 3 south of it. The sleep
     output drops to B.Cu north of the package, climbs beside the watchdog
-    kick under the 3.3 V, reset and 24 V lines and surfaces west of the 24 V
+    kick under the reset and 24 V lines and surfaces west of the 24 V
     fuse. It then runs east between the R501 row and the kick, and passes
     between the pads of R501 and R503 to reach R505's pin 1 from below.
     """
@@ -1633,7 +1634,8 @@ def route_supervisor_outputs(board):
     # The climb runs on In2.Cu, a 0.2 mm slot in the 3.3 V plane, so that
     # B.Cu stays open for the sensor bus that crosses it westwards.
     polyline(board, sleep, [(38.25, 60.375), (38.25, 56.25), (40.75, 53.75),
-                            (40.75, 39.75), (40.25, 39.25)], pcb.In2_Cu, width=w)
+                            (40.75, 39.75), (40.25, 39.25)], pcb.In2_Cu,
+             width=w)
     via(board, sleep, (40.25, 39.25))
     polyline(board, sleep, [(40.25, 39.25), (41.25, 38.25), (46.625, 38.25),
                             (46.875, 38.0), (46.875, 35.0), (47.625, 34.2)],
@@ -1641,7 +1643,7 @@ def route_supervisor_outputs(board):
 
     # The valve output drops to B.Cu inside the package outline, passes north
     # of pin 4's ground via and round the end of the heater order, crosses the
-    # 3.3 V feed to the bottom row and runs diagonally to the valve driver,
+    # heater order and runs diagonally to the valve driver,
     # hopping the 24 V branch at y = 91.5 mm.
     valve = '/VALVE_EN_INTERLOCK'
     polyline(board, valve, [(36.3, 62.325), (37.2, 62.325), (37.5, 62.625),
@@ -2044,7 +2046,7 @@ def route_esp_and_front(board):
 
 
 def selv_planes(board):
-    """Rebuild the provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu."""
+    """Rebuild the provisional SELV planes: GND on In1.Cu, 3.3 V on In2.Cu."""
     for zone in list(board.Zones()):
         if zone.GetZoneName() in (GND_PLANE_NAME, V33_PLANE_NAME):
             board.Delete(zone)
@@ -2122,8 +2124,8 @@ def main():
                           'sensor harness side: NTC, flow, water, door and contacts',
                           '24 V to 12 V buck: switch node, output bank and feedback',
                           '12 V to 3.3 V buck, its input side and the 12 V telemetry',
-                          'UI load switch and the 3.3 V feed into its pocket',
-                          '3.3 V spine to the logic, headers and pull-ups',
+                          'UI load switch',
+                          '3.3 V: an In2.Cu plane drop for every pad group',
                           'USB and ESP32 ground pins into the plane',
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',
                           'service-USB rail, sense divider and bench jumper',
@@ -2137,7 +2139,6 @@ def main():
                           'SWD header: SWDIO, SWCLK and SWO to J102',
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
                           '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',
-                          '3.3 V closure: STM32 ring to the trunk, H-bridge pull-ups, bottom row and J109',
                           'UI supply: U302 to J104.1 along the top edge',
                           'load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes',
                           'U602: reset input, brew sleep output to R505 and valve output to R511',
