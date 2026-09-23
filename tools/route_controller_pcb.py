@@ -41,10 +41,11 @@ ACT_WIDTH = 1.0
 ACT_LANE_WIDTH = 0.8
 
 GND_PLANE_NAME = 'GND_UI SELV plane (provisional)'
+V33_PLANE_NAME = '3V3_CORE SELV plane (provisional)'
 # SELV side of the barrier drawn by layout_controller_pcb.py, up to the SELV
 # edge of its keepout band. The mains_to_selv rules still hold the fill 8 mm
 # from any primary copper.
-GND_PLANE_OUTLINE = [(0.5, 0.5), (141.1, 0.5), (141.1, 56.0), (47.0, 56.0),
+PLANE_OUTLINE = [(0.5, 0.5), (141.1, 0.5), (141.1, 56.0), (47.0, 56.0),
                      (47.0, 134.7), (0.5, 134.7)]
 
 
@@ -748,11 +749,6 @@ def route_ui_load_switch(board):
     """
     gnd, v33 = '/GND_UI', '/3V3_CORE'
 
-    polyline(board, v33, [(104.225, 44.0), (103.0, 43.0), (92.5, 43.0),
-                          (91.6, 44.0), (91.6, 53.6), (93.275, 53.6)],
-             width=0.5)
-    polyline(board, v33, [(91.6, 51.5), (95.275, 51.5), (95.275, 50.4)],
-             width=0.5)
     track(board, v33, (95.725, 50.05), (96.9, 50.05), width=0.5)
 
     polyline(board, '/UI_PWR_EN', [(95.275, 53.6), (96.2, 52.8), (96.9, 52.2)],
@@ -771,80 +767,52 @@ def route_ui_load_switch(board):
         via(board, gnd, point)
 
 
-def route_3v3_distribution(board):
-    """Spine from the 3.3 V buck to the logic, debug headers and pull-ups.
 
-    One line leaves the buck along y = 43 mm. A northern branch climbs the
-    1.1 mm gap between F301 and D301 at x = 90.9 mm, runs over the top of the
-    ESP32 at y = 2.5 mm and drops into its supply pins, and a western branch
-    runs under the 24 V trunk at y = 54.2 mm to the supervisor spine and on to
-    the sensor pull-ups. route_3v3_closure reaches the bottom row and J109.
+def route_3v3_plane_drops(board):
+    """Tie every 3.3 V pad group to the In2.Cu plane.
+
+    The plane replaced the spine that ran from the buck over the ESP32, under
+    the 24 V trunk and down to the bottom row, with its dozen B.Cu hops. Each
+    decoupling capacitor and each pad group with no capacitor now drops to the
+    plane on its own via. J102.1, J103.1, J109.1 and J114.2 are THT and reach
+    the plane directly. C111 (VBAT) stays on the STM32 ring, which its
+    neighbours already tie to the plane.
     """
     v33 = '/3V3_CORE'
-
-    # Northern branch: ESP32 supply pins, its straps and the UART header.
-    polyline(board, v33, [(95.5, 43.0), (90.9, 43.0), (90.9, 3.5), (89.0, 2.5),
-                          (44.6, 2.5), (43.9, 4.0), (43.9, 13.825)], width=0.5)
-    for y in (6.975, 10.375, 13.825):
-        track(board, v33, (43.9, y), (42.9, y), width=PIN_WIDTH)
-    track(board, v33, (43.9, 7.06), (44.8, 7.06), width=PIN_WIDTH)
-    polyline(board, v33, [(64.5, 2.5), (64.5, 20.7), (65.6, 21.175)],
-             width=PIN_WIDTH)
-    polyline(board, v33, [(75.0, 2.5), (75.0, 9.3)], width=PIN_WIDTH)
-
-    # STM32 side: the reset pull-up is fed from the bulk capacitor at the
-    # corner of the supply ring, which leaves the column east of R101 free for
-    # the reset net itself. The SWD header hangs off the pin 1/64 feed.
-    polyline(board, v33, [(71.9, 32.375), (72.5, 31.5), (73.9, 31.0)],
-             width=PIN_WIDTH)
-
-    # Western branch: it slips between the 24 V trunk at y = 55.1 mm and the
-    # capacitor column, joins the supervisor spine and carries on west.
-    # Western spine. Two 24 V branches climb across its path, at x = 46.4 mm to
-    # the brew fuse and at x = 62.5 mm to the measurement header, so it passes
-    # under each on B.Cu. It runs in the 1.1 mm gap between the supervisor
-    # capacitors and the 24 V trunk below them.
-    polyline(board, v33, [(91.6, 53.6), (91.6, 54.0), (63.9, 54.0)], width=0.4)
-    for east, west in (((63.9, 54.0), (61.1, 54.0)),
-                       ((47.8, 54.0), (44.75, 54.0))):
-        via(board, v33, east)
-        track(board, v33, east, west, pcb.B_Cu, width=0.4)
-        via(board, v33, west)
-    track(board, v33, (61.1, 54.0), (47.8, 54.0), width=0.4)
-    track(board, v33, (44.75, 54.0), (40.52, 54.0), width=0.4)
-
-    # Reset pull-up, under the reset corridor that shares this lane.
-    polyline(board, v33, [(40.52, 54.0), (40.0, 52.2), (39.4, 51.6)],
-             width=PIN_WIDTH)
-    via(board, v33, (39.4, 51.6))
-    track(board, v33, (39.4, 51.6), (39.4, 49.6), pcb.B_Cu, width=PIN_WIDTH)
-    via(board, v33, (39.4, 49.6))
-    polyline(board, v33, [(39.4, 49.6), (39.9, 48.6)], width=PIN_WIDTH)
-
-    # Measurement header, from the spine between the two hops.
-    track(board, v33, (50.25, 54.0), (50.25, 53.5), width=PIN_WIDTH)
-    via(board, v33, (50.25, 53.5))
-    track(board, v33, (50.25, 53.5), (50.25, 49.3), pcb.B_Cu, width=PIN_WIDTH)
-    via(board, v33, (50.25, 49.3))
-    polyline(board, v33, [(50.25, 49.3), (50.5, 41.5), (50.54, 40.85)],
-             width=PIN_WIDTH)
-
-    # Far west: out of the supervisor block south of R604, then to the arm
-    # gate and the sensor pull-ups.
-    polyline(board, v33, [(41.725, 61.025), (41.725, 62.0), (42.5, 62.8),
-                          (42.5, 67.0), (32.0, 67.0), (32.0, 73.975),
-                          (31.2, 73.975)], width=PIN_WIDTH)
-    polyline(board, v33, [(32.0, 67.0), (16.0, 68.0), (15.0, 69.0),
-                          (15.0, 69.7)], width=PIN_WIDTH)
-    # The motor outputs run west to J108 at y = 62 and 64.5 mm, so the feed to
-    # the contact pull-ups passes under both on B.Cu in one hop.
-    polyline(board, v33, [(16.0, 68.0), (13.5, 67.0)], width=PIN_WIDTH)
-    via(board, v33, (13.5, 67.0))
-    track(board, v33, (13.5, 67.0), (13.5, 60.0), pcb.B_Cu, width=PIN_WIDTH)
-    via(board, v33, (13.5, 60.0))
-    polyline(board, v33, [(13.5, 60.0), (13.5, 52.825), (15.6, 52.825)],
-             width=PIN_WIDTH)
-    track(board, v33, (13.5, 59.825), (15.6, 59.825), width=PIN_WIDTH)
+    for start, point in (
+            ((45.25, 7.06), (44.1, 7.35)),  # U201.2
+            ((30.725, 75.6), (29.85, 75.5)),  # C603.1
+            ((42.5, 13.825), (42.0, 13.05)),  # R201.1
+            ((41.725, 53.05), (41.7, 52.15)),  # C601.1
+            ((41.725, 61.025), (41.7, 60.1)),  # C602.1
+            ((109.05, 41.0), (109.95, 41.0)),  # C305.1
+            ((109.05, 36.0), (109.95, 36.0)),  # C304.1
+            ((104.225, 44.0), (103.35, 43.9)),  # C306.1
+            ((93.675, 53.6), (92.8, 53.5)),  # R301.1
+            ((72.675, 50.2), (73.55, 50.1)),  # C109.1
+            ((83.8, 35.875), (83.8, 36.75)),  # C104.1
+            ((72.675, 51.8), (71.95, 51.1)),  # C108.1
+            ((85.4, 35.875), (85.4, 36.75)),  # C106.1
+            ((71.9, 32.375), (71.05, 31.9)),  # C105.1
+            ((72.675, 48.6), (73.55, 48.5)),  # C107.1
+            ((80.275, 49.8), (79.55, 49.1)),  # C110.1
+            ((80.275, 48.2), (80.3, 47.3)),  # C103.1
+            ((66.3, 43.375), (65.4, 43.4)),  # C102.1
+            ((66.0, 21.175), (66.0, 20.3)),  # R202.1
+            ((51.425, 31.0), (52.3, 31.0)),  # R508.1
+            ((40.175, 48.6), (39.4, 49.05)),  # R101.1
+            ((42.5, 6.975), (42.4, 7.85)),  # C202.1
+            ((36.9, 85.425), (37.15, 84.55)),  # C604.1
+            ((95.275, 50.05), (96.15, 49.95)),  # C308.1
+            ((16.0, 59.825), (16.0, 60.7)),  # R409.1
+            ((16.0, 52.825), (16.0, 53.7)),  # R407.1
+            ((42.5, 10.375), (42.4, 11.25)),  # C203.1
+            ((15.0, 70.175), (14.9, 69.3)),  # R405.1
+            ((28.0, 105.825), (28.0, 106.7)),  # R401.1
+            ((31.075, 109.2), (30.25, 109.2)),  # R403.1
+    ):
+        track(board, v33, start, point, width=RING_WIDTH)
+        via(board, v33, point)
 
 
 def route_logic_grounds(board):
@@ -1223,8 +1191,8 @@ def route_pump_enable(board):
                           (28.25, 84.5), (28.25, 85.075)], width=PIN_WIDTH)
     polyline(board, nrst, [(30.8, 85.675), (32.0, 85.675), (32.0, 84.25)],
              width=PIN_WIDTH)
-    polyline(board, v33, [(34.2, 85.025), (35.25, 85.025), (36.9, 85.425),
-                          (37.0, 84.5)], width=PIN_WIDTH)
+    polyline(board, v33, [(34.2, 85.025), (35.25, 85.025), (36.9, 85.425)],
+             width=PIN_WIDTH)
     polyline(board, gated, [(34.2, 85.675), (35.4, 85.675), (36.0, 86.275),
                             (36.0, 88.5)], width=PIN_WIDTH)
     # Pin 4, R713 and C604 get a ground via each. Pins 3, 5 and 6 belong to
@@ -1248,15 +1216,7 @@ def route_pump_enable(board):
                           (80.75, 50.75), (81.25, 50.25), (81.25, 44.75),
                           (81.75, 44.25), (81.75, 43.75)], width=PIN_WIDTH)
 
-    # 3.3 V from C603, reset from the via beside U603, both hopping under
-    # Q701's area on B.Cu.
-    polyline(board, v33, [(37.0, 84.5), (36.25, 83.75), (36.25, 83.0),
-                          (34.75, 81.5), (34.75, 80.0)], width=PIN_WIDTH)
-    via(board, v33, (34.75, 80.0))
-    polyline(board, v33, [(34.75, 80.0), (32.75, 78.0), (32.75, 77.5)],
-             pcb.B_Cu, width=PIN_WIDTH)
-    via(board, v33, (32.75, 77.5))
-    track(board, v33, (32.75, 77.5), (30.75, 75.5), width=PIN_WIDTH)
+    # Reset from the via beside U603, hopping under Q701's area on B.Cu.
     track(board, nrst, (32.0, 84.25), (32.0, 82.75), width=PIN_WIDTH)
     via(board, nrst, (32.0, 82.75))
     polyline(board, nrst, [(32.0, 82.75), (30.25, 81.0), (30.25, 79.25),
@@ -1470,54 +1430,6 @@ def route_12v_rail(board):
                           (38.5, 98.25), (40.75, 98.25), (41.5, 99.0),
                           (41.5, 101.25), (41.77, 101.6)], width=w)
 
-
-def route_3v3_closure(board):
-    """Close the 3.3 V islands left by the distribution pass.
-
-    - The STM32 supply ring was fed only through its own capacitors. It now
-      reaches the trunk from C106 by a B.Cu hop, so UART and BOOT0 can still
-      run north-south on F.Cu between U101 and the trunk.
-    - R507/R508 (H-bridge fault pull-up and VREF) reach J114.2 by a hop under
-      the fault and sleep rows.
-    - The bottom row: from C604 the feed hops under both 24 V branches and the
-      heater LED legs, drops down x = 31 mm to R401 and hops the NTC harness
-      line to R403. J109.1 hangs off R401 down x = 27.3 mm, beside the valve
-      return, and reaches the pin from below the connector.
-    """
-    v33 = '/3V3_CORE'
-
-    def hop(points):
-        via(board, v33, points[0])
-        polyline(board, v33, points, pcb.B_Cu, width=PIN_WIDTH)
-        via(board, v33, points[-1])
-
-    track(board, v33, (85.4, 35.88), (86.5, 35.88), width=0.4)
-    via(board, v33, (86.5, 35.88))
-    track(board, v33, (86.5, 35.88), (90.9, 35.88), pcb.B_Cu, width=0.4)
-    via(board, v33, (90.9, 35.88))
-
-    polyline(board, v33, [(51.42, 32.6), (51.5, 32.7), (52.0, 32.7)],
-             width=PIN_WIDTH)
-    hop([(52.0, 32.7), (52.0, 32.8), (53.6, 34.4), (53.6, 34.7), (54.3, 35.4)])
-    polyline(board, v33, [(54.3, 35.4), (51.5, 38.2), (51.5, 39.0),
-                          (50.54, 40.0)], width=PIN_WIDTH)
-
-    polyline(board, v33, [(36.9, 85.42), (38.0, 86.5), (38.25, 86.5),
-                          (38.75, 87.0), (38.75, 90.25)], width=PIN_WIDTH)
-    hop([(38.75, 90.25), (34.0, 95.0)])
-    polyline(board, v33, [(34.0, 95.0), (31.25, 95.0), (31.0, 95.25),
-                          (31.0, 100.75), (29.5, 102.25)], width=PIN_WIDTH)
-    hop([(29.5, 102.25), (29.5, 104.5), (28.75, 105.25)])
-    track(board, v33, (28.75, 105.25), (28.0, 105.82), width=PIN_WIDTH)
-    polyline(board, v33, [(28.0, 105.82), (28.75, 106.5), (28.75, 107.5)],
-             width=PIN_WIDTH)
-    hop([(28.75, 107.5), (30.25, 107.5)])
-    polyline(board, v33, [(30.25, 107.5), (31.0, 108.25), (31.08, 109.2)],
-             width=PIN_WIDTH)
-    polyline(board, v33, [(28.0, 105.82), (28.0, 108.5), (27.3, 109.2),
-                          (27.3, 121.5), (22.0, 126.8), (22.0, 129.25),
-                          (21.75, 129.5), (20.25, 129.5), (19.0, 128.25)],
-             width=PIN_WIDTH)
 
 
 def route_ui_supply(board):
@@ -1901,26 +1813,28 @@ def route_rails_and_bridge(board):
                           (56.0, 29.7)], width=w)
 
 
-def selv_ground_plane(board):
-    """Rebuild the provisional In1.Cu GND_UI plane on the SELV side."""
+def selv_planes(board):
+    """Rebuild the provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu."""
     for zone in list(board.Zones()):
-        if zone.GetZoneName() == GND_PLANE_NAME:
+        if zone.GetZoneName() in (GND_PLANE_NAME, V33_PLANE_NAME):
             board.Delete(zone)
-    zone = pcb.ZONE(board)
-    zone.SetLayer(pcb.In1_Cu)
-    zone.SetNet(net(board, '/GND_UI'))
-    zone.SetZoneName(GND_PLANE_NAME)
-    zone.SetLocalClearance(MM(0.30))
-    zone.SetMinThickness(MM(0.25))
-    zone.SetPadConnection(pcb.ZONE_CONNECTION_THERMAL)
-    zone.SetThermalReliefGap(MM(0.30))
-    zone.SetThermalReliefSpokeWidth(MM(0.40))
-    zone.SetIslandRemovalMode(pcb.ISLAND_REMOVAL_MODE_ALWAYS)
-    poly = zone.Outline()
-    poly.NewOutline()
-    for x, y in GND_PLANE_OUTLINE:
-        poly.Append(MM(x), MM(y))
-    board.Add(zone)
+    for name, layer, netname in ((GND_PLANE_NAME, pcb.In1_Cu, '/GND_UI'),
+                                 (V33_PLANE_NAME, pcb.In2_Cu, '/3V3_CORE')):
+        zone = pcb.ZONE(board)
+        zone.SetLayer(layer)
+        zone.SetNet(net(board, netname))
+        zone.SetZoneName(name)
+        zone.SetLocalClearance(MM(0.30))
+        zone.SetMinThickness(MM(0.25))
+        zone.SetPadConnection(pcb.ZONE_CONNECTION_THERMAL)
+        zone.SetThermalReliefGap(MM(0.30))
+        zone.SetThermalReliefSpokeWidth(MM(0.40))
+        zone.SetIslandRemovalMode(pcb.ISLAND_REMOVAL_MODE_ALWAYS)
+        poly = zone.Outline()
+        poly.NewOutline()
+        for x, y in PLANE_OUTLINE:
+            poly.Append(MM(x), MM(y))
+        board.Add(zone)
     pcb.ZONE_FILLER(board).Fill(board.Zones())
 
 
@@ -1941,7 +1855,6 @@ def main():
     route_12v_buck(board)
     route_3v3_buck(board)
     route_ui_load_switch(board)
-    route_3v3_distribution(board)
     route_logic_grounds(board)
     route_reset_tree(board)
     route_usb_power(board)
@@ -1959,16 +1872,16 @@ def main():
     route_mcu_east(board)
     route_rails_and_bridge(board)
     route_12v_rail(board)
-    route_3v3_closure(board)
     route_ui_supply(board)
-    selv_ground_plane(board)
+    route_3v3_plane_drops(board)
+    selv_planes(board)
     pcb.SaveBoard(str(BOARD_PATH), board)
     check = pcb.LoadBoard(str(BOARD_PATH))
     result = {
         'status': 'critical_routing_in_progress_not_fabricable',
         'routed_blocks': ['USB-C reversible fanout', 'USB ESD-to-series-pair', 'USB series-to-ESP32',
                           'STM32 VDD ring, VSS vias and decoupling',
-                          'provisional SELV GND_UI plane on In1.Cu',
+                          'provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu',
                           'mains input: J118, F701, F702, RV701, K701 and PS701',
                           '24 V: PS701, J121 and all 24V_ACT_RAW loads',
                           'DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows',

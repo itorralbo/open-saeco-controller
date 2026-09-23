@@ -5,7 +5,7 @@
     "USB ESD-to-series-pair",
     "USB series-to-ESP32",
     "STM32 VDD ring, VSS vias and decoupling",
-    "provisional SELV GND_UI plane on In1.Cu",
+    "provisional SELV planes: GND_UI on In1.Cu, 3V3_CORE on In2.Cu",
     "mains input: J118, F701, F702, RV701, K701 and PS701",
     "24 V: PS701, J121 and all 24V_ACT_RAW loads",
     "DRV8876 H-bridge: outputs to J108, VM, charge pump and control rows",
@@ -36,8 +36,8 @@
     "MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch",
     "H-bridge orders, bridge current, rail telemetry and the dividers under J114"
   ],
-  "track_segments": 1156,
-  "vias": 232,
+  "track_segments": 1092,
+  "vias": 240,
   "remaining_blocks": [
     "STM32 sensor inputs",
     "ESP32 and front-panel signals",
