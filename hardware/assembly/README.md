@@ -125,8 +125,9 @@ Los MPN mecánicos no se elegirán por stock antes de conocer altura, paso y enc
 ## Objetivos de layout
 
 Son decisiones iniciales de diseño, no reglas mínimas publicadas por el fabricante:
-- Principal: dos capas como primera opción, con dominios, retornos y barrera de
-  aislamiento controlados. Solo se pasará a cuatro si el layout o la EMC lo exige.
+- Principal: cuatro capas desde el 2026-09-23 (JLC04161H-7628: planos de GND y
+  3,3 V internos solo en el lado SELV), con dominios, retornos y barrera de
+  aislamiento controlados. Ver el [perfil de fabricación](../controller/manufacturing.md).
   Frontal: dos capas.
 - Componentes SMD preferiblemente en una cara; pasivos 0603 (1608 métrico).
 - Encapsulados con patas accesibles: LQFP64 y TSSOP; módulo de RF con antena integrada.

@@ -10,7 +10,7 @@ la autoridad sobre estados, interlocks y actuadores.
 - J110: USB-C USB 2.0 vertical HRO TYPE-C-31-D-06, junto a la posición del JP21 rojo.
 - GPIO19 = D− y GPIO20 = D+, con 33 Ω junto al módulo.
 - USBLC6-2SC6 junto al conector para ESD; 5,1 kΩ a masa en CC1 y CC2.
-- GPIO21 detecta VBUS con divisor 100 kΩ/100 kΩ y filtro de 10 nF.
+- GPIO15 detecta VBUS con divisor 100 kΩ/100 kΩ y filtro de 10 nF.
 - J111 se fabrica abierto. Solo al cerrarlo en banco, VBUS pasa por un PTC de
   500 mA y un SS34 hasta el buck de 3,3 V. No alimentar cargas por esta vía.
 
@@ -52,7 +52,7 @@ El primer ensayo se hará únicamente con cargas desconectadas y entradas simula
 
 `STATUS` y `STREAM` incluirán como mínimo `rail_12v_mv`, `rail_24v_mv`,
 `brew_current_ma`, `brew_fault_n`, estado de puerta/grupo y bits de interlock.
-Las tensiones proceden de PF1/ADC2_IN10 y PA5/ADC2_IN13 con factor nominal 21;
+Las tensiones proceden de PF1/ADC2_IN10 y PC1/ADC2_IN7 con factor nominal 21;
 el firmware aplicará calibración y límites plausibles antes de usarlas para
 diagnóstico. La cabecera J114 permite contrastar los valores sin interrumpir la
 sesión USB.

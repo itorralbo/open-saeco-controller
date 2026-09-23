@@ -2,10 +2,10 @@
 
 Estado: colocación mecánica de conectores y colocación funcional con la
 distribución de la placa original, dominio de red contiguo, reserva del disipador
-y barrera red/SELV comprobada por DRC. El puente H, el supervisor y sus
-interlocks, la válvula, los sensores, las etapas de red, todos los raíles de
-alimentación y las órdenes del STM32 a las cargas ya están ruteados a mano;
-faltan el resto de señales. Aún no fabricable. La fuente de verdad mecánica es
+y barrera red/SELV comprobada por DRC. Desde el 2026-09-23 la placa es de
+cuatro capas y todas las redes están ruteadas a mano: DRC sin infracciones ni
+conexiones abiertas. Faltan los rellenos exteriores, la serigrafía y la
+revisión de aislamiento. Aún no fabricable. La fuente de verdad mecánica es
 `mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
 coordenadas, coloca las 159 huellas actuales y comprueba que los tres taladros aceptados
 no se muevan.
@@ -152,15 +152,18 @@ Salidas de las señales, desde el 2026-09-23:
 - pines 3, 5 y 6 (dirección y PWM del puente H, telemetría de 12 V): a la
   izquierda, por encima del reset;
 - pin 7 (NRST): a la izquierda y, por dentro del encapsulado, hasta J102;
-- pines 8–16 (corriente del puente H y sensores): a la izquierda, bajo el
-  reset;
-- pines 22, 24, 25 y 30 (telemetría de 24 V y órdenes a las cargas): hacia
-  abajo, a vías en el bolsillo bajo la fila sur;
+- pin 8 (corriente del puente H): a la izquierda, bajo el reset;
+- pin 9 (telemetría de 24 V): a una vía junto a su pad y por B.Cu hasta J114.6;
+- pines 10, 11 y 14–17 (sensores): vía bajo el cuerpo (10), vía al oeste (11),
+  abanico al suroeste bajo C102 (14–16) y vía en la esquina del pad (17);
+- pines 24, 25 y 30 (órdenes a las cargas): hacia abajo, a vías en el bolsillo
+  bajo la fila sur;
 - pines 33, 34, 43 y 44 (bomba, corte del frontal y UART): a la derecha;
 - pines 49–61 (SWD, watchdog, armado y BOOT0): hacia arriba.
 
-El plano GND_UI de B.Cu cubre el lado SELV hasta el borde de la banda de
-barrera; además, el filler lo aparta 8 mm de todo cobre de red.
+El plano GND_UI de In1.Cu y el de 3V3_CORE de In2.Cu cubren el lado SELV
+hasta el borde de la banda de barrera; además, el filler los aparta 8 mm de todo
+cobre de red. B.Cu ya no lleva plano.
 
 ## USB
 
@@ -224,12 +227,13 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
-- 1 156 segmentos y 232 vías. 3 306 mm de pista en F.Cu y 1 018 mm en B.Cu.
-  En B.Cu van el cruce del par USB, los saltos cortos bajo troncales de
-  potencia, los carriles de escape del STM32, los saltos de los raíles de 12 V
-  y 3,3 V y el bus de órdenes a las cargas, que suma unos 280 mm.
-  La impedancia USB se verificará con el stack-up real antes de fabricar.
-- 29 conexiones sin rutear, todas de señal, y tres diferencias de paridad, los
+- Cuatro capas, apilado JLC04161H-7628: GND_UI en In1.Cu y 3V3_CORE en
+  In2.Cu, los dos solo en el lado SELV; el de 3,3 V es una sola pieza y el de
+  masa tiene la pieza principal y los cinco anillos de los pads de masa de J104.
+- 1 244 segmentos y 274 vías. 3 098 mm de pista en F.Cu, 1 823 mm en B.Cu y
+  33 mm en In2.Cu (las dos subidas del supervisor). La impedancia USB se
+  verificará con el apilado antes de fabricar.
+- Todas las redes conectadas; las tres diferencias de paridad son los
   taladros mecánicos MH1–MH3, que son intencionales.
 
 Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
@@ -340,12 +344,19 @@ La huella de PS701 cierra este hueco por el este a x = 101,25 mm, así que todo
 lo que estaba al este de U302 se ha pasado al oeste o al norte. C307, que fija
 el tiempo de subida, estaba a 8 mm de su pin 4 y ahora está pegado a él; C308
 desacopla la entrada junto al pin 1 y C309 sostiene la salida conmutada. El raíl
-de 3,3 V entra al hueco por y = 43 mm y baja por la columna libre de
-x = 91,6 mm, al oeste de la pila de condensadores.
+de 3,3 V llegaba al hueco por y = 43 mm y la columna de x = 91,6 mm; desde el
+2026-09-23 C308 y R301 bajan cada uno al plano de In2.Cu.
 
 ### Distribución de 3,3 V
 
-Una sola línea sale del buck por y = 43 mm y se parte en dos.
+Desde el 2026-09-23 el 3,3 V es un plano en In2.Cu (`route_3v3_plane_drops`):
+cada condensador de desacoplo y cada grupo de pads baja a él con su propia vía,
+y los pads THT (J102.1, J103.1, J109.1 y J114.2) lo tocan directamente. C111
+(VBAT) cuelga del anillo del STM32. La pista de 3,3 V pasó de 506 mm a 143 mm y
+dejó B.Cu. Lo que sigue describe la espina que sustituyó, porque explica la
+posición de F301 y de algunas rutas vecinas.
+
+Una sola línea salía del buck por y = 43 mm y se partía en dos.
 
 La rama norte sube por el hueco de 1,1 mm que queda entre F301 y D301, cruza por
 encima del ESP32 a y = 2,5 mm y baja a sus pines de alimentación, a sus dos
@@ -379,11 +390,9 @@ cruza hacia el oeste por debajo de los dos ramales de 24 V hasta el canal de
 1,35 mm que se había dejado libre junto a C501. De ahí alimenta U601, U602 y
 U603.
 
-Quedan dos puntos de reset abiertos. El pin 6 de U602, su segunda entrada, solo
-se puede alcanzar por el hueco de 0,87 mm al este del encapsulado, que ya usan
-la orden de la válvula y el ramal de 3,3 V. Y el pin de reset de la cabecera
-SWD, que tendría que cruzar el enlace de desacoplo que pasa por el norte del
-microcontrolador. Ninguno de los dos impide depurar ni arrancar.
+Los dos puntos que quedaron abiertos en esta pasada, el pin 6 de U602 y el
+reset de la cabecera SWD, se cerraron después (ver las salidas de U602 y el
+lado este del STM32).
 
 ### Raíl del USB de servicio
 
@@ -661,7 +670,8 @@ Todo va a 0,3 mm. Las cargas consumen decenas de mA. Por el camino de D303
 pasa la alimentación de banco del buck de 3,3 V, unos cientos de mA como
 máximo.
 
-**3,3 V.**
+**3,3 V** (sustituido el 2026-09-23 por el plano de In2.Cu; `route_3v3_closure`
+ya no existe).
 
 - El anillo del STM32 se une al tronco de x = 90,9 mm desde C106 con un
   salto por B.Cu. Así la UART y BOOT0 pueden seguir bajando en F.Cu entre U101
@@ -677,8 +687,8 @@ máximo.
 esquina superior izquierda, así que el único recorrido libre es el borde
 superior: y = 0,8 mm, 0,4 mm de ancho, al norte del ramal de 3,3 V y de CC1
 del USB. El raíl sale del bolsillo bajo el tronco y sube por su lado oeste en
-x = 90 mm. Salta el ramal norte en x = 83,25 mm y entra en J104.1 por el oeste
-de J104.2.
+x = 90 mm y entra en J104.1 por el oeste de J104.2. Los dos saltos por B.Cu
+bajo el tronco y el ramal norte se quitaron con el plano de 3,3 V.
 
 Pasillos que se han dejado libres para las señales:
 
@@ -796,6 +806,82 @@ Salidas de U602:
   en el bolsillo bajo U101 y va por B.Cu, en y = 44,55 mm, hasta la vía de
   J114.6.
 
+### Paso a cuatro capas (2026-09-23)
+
+Con dos capas, B.Cu era a la vez plano de GND y capa de saltos: cada salto
+troceaba el plano, había que vigilar islas en cada cambio y el 3,3 V viajaba
+como espina de 506 mm con una docena de saltos. Las 29 conexiones que faltaban
+necesitaban muchas vías más. El cambio, en cuatro pasos con DRC limpio en cada
+uno:
+
+1. Apilado JLC04161H-7628 (`configure_controller_stackup.py`) y plano de masa
+   de B.Cu a In1.Cu. Las áreas de regla se rehacen en las cuatro capas: antes
+   solo cubrían F.Cu y B.Cu, y los planos internos habrían entrado en la
+   barrera.
+2. Plano de 3,3 V en In2.Cu en lugar de la espina (ver
+   [distribución de 3,3 V](#distribución-de-33-v)).
+3. Bus de sensores y telemetría de 24 V.
+4. ESP32 y frontal.
+
+Después se quitaron los saltos a B.Cu que solo cruzaban la espina: los dos de
+`3V3_UI`, el de `UI_PWR_EN` en x = 91,6 mm y el de `HEATER_EN_RAW` bajo la
+antigua rama de y = 67 mm. Son 10 vías menos. Un barrido de todos los saltos
+de señal buscando un camino solo por F.Cu no encontró más que valgan la pena:
+los que quedan cruzan troncales de 24 V, el par USB o filas de pads.
+
+### Bus de sensores
+
+`route_sensor_bus`. Los seis sensores y la telemetría de 24 V salen del STM32
+como un bus en B.Cu, con dos vías por red: una junto al MCU y otra en su filtro.
+
+- **Cambio de pines**, comprobado con las funciones alternativas del símbolo
+  STM32G431RBTx de KiCad:
+  - `RAIL_24V_ADC` pasa de PA5 a PC1 (ADC2_IN7). Su vía queda junto al pin 9 y
+    llega por B.Cu, en 7 mm, a la bajada de J114.6. El recorrido anterior desde
+    PA5 cerraba con un carril de B.Cu en y = 44,55 mm la bolsa de los pines del
+    oeste.
+  - Agua a PC3 (ADC12_IN9), presencia a PC2, trabajo a PA0, puerta a PA1,
+    caudal a PA2 (TIM2_CH3) y NTC a PA3 (ADC1_IN4). Es el orden en que están
+    sus filtros, de norte a sur, así que el bus no tiene cruces.
+- **Escapes**: PC2 baja a una vía bajo el cuerpo del LQFP, PC3 a una vía al
+  oeste de su pad y PA0–PA2 en abanico hacia el suroeste, por debajo de C102,
+  hasta vías en y ≈ 46 mm. PA3 sale de la esquina de su pad en la fila sur. Para
+  dejar sitio a PC3, el pin 12 ya no se une a C102.2 por pista; cada uno baja
+  al plano por su vía.
+- **Carriles**: hacia el oeste en y = 46,1 / 46,6 / 48,4 / 48,9 / 51,9 /
+  54,0 mm, por encima y por debajo de los saltos del reset y del armado.
+- **Columna del supervisor**: las subidas de `BREW_SLEEP_INTERLOCK` y
+  `WATCHDOG_KICK_RAW` junto a U601 pasan de B.Cu a In2.Cu (con las mismas
+  vías), así que el bus la cruza por B.Cu. Son dos ranuras de 0,2 mm en el
+  plano de 3,3 V, que sigue en una pieza.
+- **Bajada**: el agua baja por x = 19,4 mm, entre la columna de resistencias y
+  la de condensadores de los filtros, al oeste del salto de 24 V de la válvula.
+  Caudal y NTC bajan juntos por x = 24,1–24,6 mm hasta sus filtros del
+  suroeste. Ninguna vía cae sobre un pad.
+
+### ESP32 y frontal
+
+`route_esp_and_front`.
+
+- **Series del LCD**: R213–R218 pasan de una fila al sur del módulo a una fila
+  bajo J104 (y = 12 mm), en la entrada del cable del frontal y en el orden en
+  que llega el bus: SCLK, MOSI, CS, DC, RST y BL. DC y BL suben a la fila
+  lejana de J104 por los huecos entre pads; CS llega a su pin por B.Cu.
+- **Bus del LCD**: DC, CS, MOSI y SCLK salen de los pines sur por vías
+  escalonadas y van hacia el oeste en B.Cu (y = 25,1–27,3 mm) sin más vías
+  hasta la fila. BL y RST salen del lado oeste.
+- **UART**: la TX del ESP32 pasa de IO17 a IO42 y la RX de IO18 a IO2, pines
+  del lado este junto a R212 y R211. Antes cruzaban por debajo del módulo.
+- **VBUS del USB de servicio**: la detección pasa de IO21 a IO15, junto a su
+  divisor. Desaparece la línea de 30 mm por y = 25,5 mm bajo la fila sur, que
+  además tapaba la salida del bus.
+- **Teclado**: I²C e interrupción salen por vías en x = 43,75 mm y cruzan las
+  paredes de B.Cu del conector USB (VBUS y D+) con saltos cortos en F.Cu. Son
+  las rutas con más vías (1–4); son líneas lentas.
+- **EN, depuración y BOOT0**: EN va por B.Cu hasta J103.5 y hacia R201;
+  TX/RX de depuración y BOOT0 llegan a J103 por B.Cu.
+- Nada va en F.Cu bajo el módulo y ninguna vía cae sobre un pad.
+
 ## Verificación de huellas
 
 Se comprobó contra la hoja de datos que el SN74LVC2G08 en encapsulado DCT lleva
@@ -807,11 +893,11 @@ el símbolo.
 
 ## Siguiente paso
 
-1. Sensores: puerta, grupo (dos), NTC, caudalímetro y nivel de agua, desde
-   los seis pines libres de la fila oeste bajo el reset (PC1–PC3 y PA0–PA2)
-   hasta sus filtros, junto a los conectores del oeste y el suroeste.
-2. ESP32 y frontal: bus del LCD por sus series hasta J104, I²C e interrupción
-   del teclado, cabecera J103 y la red de `ESP_EN`.
+1. Rellenos de F.Cu y B.Cu: decidir si llevan masa cosida al plano de In1.Cu.
+2. Serigrafía: referencias legibles de conectores, polaridad, puntos de medida
+   y marcas de seguridad.
+3. Revisión de aislamiento de la barrera y de las ranuras de los optos, y
+   cálculo de la pareja USB con el apilado.
 
 Se probó Freerouting (`tools/autoroute_controller_pcb.py`, experimental y no
 usado por la cadena). No dejó infracciones de separación, pero puso 2,3 m de
@@ -819,5 +905,5 @@ pista y 220 vías en B.Cu, troceó el plano de GND, estrechó pistas a 0,15 mm y
 consiguió rutear el puente H. Se descartó a favor del ruteo manual.
 
 Las etapas de calentador, bomba y molinillo están colocadas y ruteadas; faltan
-los taladros del perfil. No se generarán Gerbers
-mientras queden conexiones abiertas o la revisión de aislamiento pendiente.
+los taladros del perfil. No se generarán Gerbers mientras quede pendiente la
+revisión de aislamiento.

@@ -72,9 +72,9 @@ def main():
         assert nets['U101'][str(pin)] == g, f'STM ground pad {pin}'
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',34:'UI_PWR_EN',
-                     14:'NTC_ADC',15:'FLOW_TIM',11:'DOOR_CLOSED_N',9:'BU_PRESENT_N',
-                     16:'WATER_LEVEL',10:'BU_WORK_N',8:'BREW_CURRENT_ADC',
-                     6:'RAIL_12V_ADC',22:'RAIL_24V_ADC',
+                     17:'NTC_ADC',16:'FLOW_TIM',15:'DOOR_CLOSED_N',10:'BU_PRESENT_N',
+                     11:'WATER_LEVEL',14:'BU_WORK_N',8:'BREW_CURRENT_ADC',
+                     6:'RAIL_12V_ADC',9:'RAIL_24V_ADC',
                      3:'BREW_DIR_RAW',24:'VALVE_EN_RAW',5:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
@@ -83,10 +83,10 @@ def main():
         assert nets['U201'][str(pin)] == g, f'ESP ground/EP pad {pin}'
     for pin in (28,29,30):
         assert nets['U201'][str(pin)] is None, 'Do not use octal PSRAM pins'
-    for pin, net in {3:'ESP_EN',27:'ESP_BOOT0',10:'ESP_TX_RAW',11:'STM_TO_ESP',
+    for pin, net in {3:'ESP_EN',27:'ESP_BOOT0',35:'ESP_TX_RAW',38:'STM_TO_ESP',
                      4:'KEY_SDA',5:'KEY_SCL',6:'KEY_INT_N',7:'BL_RAW',12:'RST_RAW',
                      17:'DC_RAW',18:'CS_RAW',19:'MOSI_RAW',20:'SCLK_RAW',
-                     13:'USB_DM_RAW',14:'USB_DP_RAW',23:'USB_VBUS_SENSE'}.items():
+                     13:'USB_DM_RAW',14:'USB_DP_RAW',8:'USB_VBUS_SENSE'}.items():
         assert nets['U201'][str(pin)] == net
     expected_link = ['3V3_UI',g,'LCD_SCLK',g,'LCD_MOSI',g,'LCD_CS_N','LCD_DC',
                      'LCD_RST_N','LCD_BL_PWM','KEY_SCL','KEY_SDA','KEY_INT_N',g,g,None]

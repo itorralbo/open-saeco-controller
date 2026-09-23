@@ -30,9 +30,10 @@ La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md
 mantiene dos fuentes DC externas aisladas para el banco, pero la principal final
 integra en la misma PCB la entrada de red, la fuente aislada, calentador, bomba y
 molino. El interlock hardware cubre ya todas las cargas, y sus órdenes están
-ruteadas desde el STM32; en la PCB quedan 29 conexiones de señal por rutear:
-los seis sensores y el ESP32 con el frontal.
-La principal ya mide ambos rails en PF1/PA5 y expone J114 para correlacionar la
+ruteadas desde el STM32. Desde el 2026-09-23 la PCB es de cuatro capas y todas
+sus redes están conectadas (DRC sin infracciones); faltan los rellenos
+exteriores, la serigrafía y la revisión de aislamiento antes de fabricar.
+La principal ya mide ambos rails en PF1/PC1 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
 Las 135 huellas actuales tienen ya una [colocación funcional](../hardware/controller/layout.md)
 reproducible y con DRC limpio; JP8, JP24 y JP17 ya ocupan sus posiciones originales.

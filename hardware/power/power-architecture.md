@@ -15,7 +15,7 @@ esquema KiCad actual representa todavía solo el subconjunto de baja tensión.
 | 24 V SELV | motor del grupo y electroválvula | generado por fuente aislada integrada; retorno común de lógica solo después de la barrera |
 | 12/3,3 V SELV | lógica, sensores, frontal, USB y depuración | accesible durante pruebas con la máquina alimentada únicamente si el aislamiento está verificado |
 
-La barrera primaria–SELV deberá ser continua en las dos capas. Como regla inicial
+La barrera primaria–SELV deberá ser continua en todas las capas de cobre. Como regla inicial
 de colocación se reservarán 8 mm sin cobre entre ambos dominios y se añadirán
 ranuras donde la geometría o los componentes lo requieran. Esta cifra es un
 margen de diseño provisional: la liberación exigirá recalcular separación y

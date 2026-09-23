@@ -482,3 +482,23 @@ de cargas siguen pendientes en el esquema principal.
   extremo suelto de PA3), 29 conexiones abiertas (44 antes) y las tres
   diferencias de paridad de MH1–MH3. El relleno de GND_UI queda en las mismas
   seis piezas. No libera fabricación ni conexión a red.
+
+## Cuatro capas y ruteo completo, 2026-09-23
+
+- Apilado JLC04161H-7628 (`configure_controller_stackup.py`): GND_UI pasa de
+  B.Cu a In1.Cu y un plano 3V3_CORE en In2.Cu sustituye la espina de 3,3 V
+  (506 → 143 mm de pista). Ninguna capa interna entra en el dominio de red; las
+  áreas de regla se rehacen en las cuatro capas.
+- Cambios de pin del STM32, comprobados contra el símbolo STM32G431RBTx:
+  `RAIL_24V_ADC` PA5→PC1 (ADC2_IN7), `WATER_LEVEL` PA2→PC3 (ADC12_IN9),
+  `BU_PRESENT_N` PC1→PC2, `BU_WORK_N` PC2→PA0, `DOOR_CLOSED_N` PC3→PA1,
+  `FLOW_TIM` PA1→PA2 (TIM2_CH3) y `NTC_ADC` PA0→PA3 (ADC1_IN4).
+- Cambios de pin del ESP32-S3: `ESP_TX_RAW` IO17→IO42, `STM_TO_ESP`
+  IO18→IO2 y `USB_VBUS_SENSE` IO21→IO15. R213–R218 pasan a una fila bajo J104.
+- Ruteados el bus de sensores y todo el ESP32 con el frontal. Las subidas de
+  `BREW_SLEEP_INTERLOCK` y `WATCHDOG_KICK_RAW` junto al supervisor pasan a
+  In2.Cu. Se quitan los saltos que solo cruzaban la espina de 3,3 V.
+- ERC 0; netlist nativa 187 componentes / 612 pines coincidente;
+  `check_controller_core.py` actualizado. DRC con todas las severidades:
+  0 infracciones, 0 conexiones abiertas y las tres diferencias de paridad de
+  MH1–MH3. 1 244 segmentos y 274 vías. No libera fabricación ni conexión a red.

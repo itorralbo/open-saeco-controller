@@ -35,7 +35,8 @@ sus posiciones originales. JP19 es un TE 1971845-4 (RAST 5, cuatro lengüetas
 FASTON, LCSC C2149727) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
 patas aún por cotejar.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
-El [perfil de fabricación y clases de red](manufacturing.md) configura dos
-capas y reglas conservadoras para lógica, USB, alimentación y actuadores.
+El [perfil de fabricación y clases de red](manufacturing.md) configura cuatro
+capas (planos internos de GND y 3,3 V) y reglas conservadoras para lógica, USB,
+alimentación y actuadores.
 Entregables: esquema jerárquico, PCB, BOM trazable, ERC/DRC y planos de montaje.
 No trasladar pines de una placa de desarrollo al arnés sin verificación.

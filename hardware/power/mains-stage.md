@@ -89,7 +89,7 @@ un opto de 600 o 400 V.
 - Cobre de 1 oz. Las pistas del calentador y de la fase general se duplican en
   las dos caras con vías de cosido, la opción más barata en JLCPCB (decisión del
   2026-09-19). La entrada de red ya sigue ese criterio.
-- Se mantiene una barrera inicial de 8 mm entre red y SELV en las dos capas, con
+- Se mantiene una barrera inicial de 8 mm entre red y SELV en todas las capas, con
   ranuras bajo optos o fuente si hacen falta para conservar creepage real.
 
 ## Datos que decidirán la liberación

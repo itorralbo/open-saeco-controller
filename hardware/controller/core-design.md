@@ -17,19 +17,21 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   hace falta para la zona de red. La antena y su cable (U.FL/IPEX MHF1) son un
   accesorio del arnés, fuera de la BOM de la PCB. Hay que fijarla lejos de la
   caldera y de chapa, y comprobar la cobertura con la carcasa cerrada.
-- UART entre MCU: STM PA9/TX → ESP GPIO18/RX; ESP GPIO17/TX → STM PA10/RX.
+- UART entre MCU: STM PA9/TX → ESP GPIO2/RX; ESP GPIO42/TX → STM PA10/RX. Van
+  por el lado este del módulo, junto a R211/R212 (antes GPIO18/17).
 - Conexión J104 al frontal, con el mismo pinout eléctrico que J1 del frontal.
 - Resistencias serie candidatas de 33 Ω en las dos salidas UART y seis señales
-  del display, para colocar cerca de sus respectivos emisores.
+  del display. Las de la UART van junto a sus emisores; las seis del display,
+  en fila bajo J104, a la entrada del cable del frontal.
 - Entrada de 12 V DC aislada, protección de entrada, buck de 3,3 V y corte
   controlado del rail del frontal.
-- Divisor y filtro del NTC JP13 hacia PA0/ADC1_IN1, con diagnóstico de abierto/corto.
+- Divisor y filtro del NTC JP13 hacia PA3/ADC1_IN4, con diagnóstico de abierto/corto.
 - Alimentación a 12 V y entrada open collector del caudalímetro JP5 hacia
-  PA1/TIM2_CH2; pinout físico 1=señal, 2=GND y 3=VCC.
-- Sensor de agua JP22 alimentado a 3,3 V y señal filtrada hacia PA2/ADC1_IN3;
+  PA2/TIM2_CH3; pinout físico 1=señal, 2=GND y 3=VCC.
+- Sensor de agua JP22 alimentado a 3,3 V y señal filtrada hacia PC3/ADC12_IN9;
   orden rojo=VCC, blanco=señal y negro=GND.
-- Entradas activas a cero para JP14 y los micros de presencia/trabajo de JP16,
-  con pull-up, resistencia serie y filtro RC.
+- Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
+  trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
 - J105–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
   LCSC. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
@@ -46,7 +48,7 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
 - U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
   `STM_NRST`; U602 solo permite activar `nSLEEP` y la válvula mientras reset esté
   inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
-- PF1/ADC2_IN10 y PA5/ADC2_IN13 miden las entradas de 12 V y 24 V mediante
+- PF1/ADC2_IN10 y PC1/ADC2_IN7 miden las entradas de 12 V y 24 V mediante
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
 
@@ -121,7 +123,7 @@ J110 es un HRO TYPE-C-31-D-06 (`C2689964`) USB 2.0 de entrada vertical,
 junto a la zona del conector rojo JP21 original. GPIO19 y
 GPIO20 del ESP32-S3 implementan D− y D+ a través de R221/R222 de 33 Ω. U203
 (USBLC6-2SC6, `C7519`) protege ambas líneas y R223/R224 de 5,1 kΩ anuncian un
-dispositivo USB en CC1/CC2. GPIO21 recibe `USB_VBUS_SENSE` mediante 100 kΩ/100 kΩ
+dispositivo USB en CC1/CC2. GPIO15 recibe `USB_VBUS_SENSE` mediante 100 kΩ/100 kΩ
 y 10 nF, necesario para que un equipo autoalimentado detecte la presencia del host.
 La carcasa se une provisionalmente a `GND_UI`; la política EMI/chasis se revisará
 con el layout y la envolvente final.

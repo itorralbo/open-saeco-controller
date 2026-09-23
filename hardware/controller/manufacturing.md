@@ -2,25 +2,46 @@
 
 Estado: objetivo de diseño para routing, aún no liberado para fabricar.
 
-La principal se configura como FR-4 de dos capas y 1,6 mm, el mismo espesor
-medido en la placa original. La placa
-es grande y USB funciona a Full Speed, por lo que dos capas siguen siendo la
-opción preferida por coste y plazo. La integración de red exige partición física,
-no más capas: se mantendrán dos si la colocación permite planos SELV continuos,
-rutas de potencia dimensionadas y una barrera primaria-SELV sin cruces. La
-asignación prevista es:
+La principal es FR-4 de cuatro capas y 1,6 mm, el mismo espesor medido en la
+placa original. Se pasó de dos a cuatro capas el 2026-09-23: con dos, B.Cu era a
+la vez plano de GND y capa de saltos, y cada salto troceaba el plano; los
+últimos 29 enlaces de señal no cabían sin decenas de vías más, y el 3,3 V
+viajaba como una espina de 506 mm con una docena de saltos. El apilado es el
+estándar de JLCPCB, JLC04161H-7628, según su
+[página de impedancias](https://jlcpcb.com/impedance) (consultada el
+2026-09-23):
 
-| Capa | Uso principal |
-|---|---|
-| F.Cu | componentes, señales críticas y potencia local |
-| B.Cu | plano de GND solo en SELV; retornos/rutas de potencia separados en la zona de red |
+| Capa | Cobre | Uso |
+|---|---|---|
+| F.Cu | 1 oz (0,035 mm) | componentes, señales y potencia local |
+| preimpregnado 7628 | 0,2104 mm, εr 4,4 | |
+| In1.Cu | 0,5 oz (0,0152 mm) | plano GND_UI continuo en el lado SELV, referencia de F.Cu |
+| núcleo | 1,065 mm, εr 4,6 | |
+| In2.Cu | 0,5 oz (0,0152 mm) | plano 3V3_CORE en el lado SELV |
+| preimpregnado 7628 | 0,2104 mm, εr 4,4 | |
+| B.Cu | 1 oz (0,035 mm) | señales y saltos, sin plano |
 
-El cobre es de 1 oz. Las pistas de red que llevan la corriente de carga se
-duplican en las dos caras con vías de cosido en lugar de pasar a 2 oz, que sale
-más caro en JLCPCB. La geometría USB se comprobará con
-el espesor real y el calculador del fabricante antes de pedir la placa. La pareja
-USB tiene por ahora 0,20 mm de ancho y 0,20 mm de separación como regla de
-colocación/routing; no se declara todavía como 90 Ω controlados.
+`tools/configure_controller_stackup.py` escribe este apilado en la placa y
+`layout_controller_pcb.py` fija las cuatro capas de cobre; las áreas de regla
+(barrera, disipador, paso de red y ranuras de optos) cubren las cuatro.
+
+- Ninguna capa interna lleva cobre en el dominio de red: los dos planos acaban
+  en el borde SELV de la banda de barrera y el DRC los mantiene a 8 mm de todo
+  cobre `Mains`. Las fases siguen duplicadas en F.Cu y B.Cu.
+- In2.Cu solo lleva dos pistas de señal: las subidas de `BREW_SLEEP_INTERLOCK`
+  y `WATCHDOG_KICK_RAW` junto al supervisor (33 mm en total), para que el bus
+  de sensores cruce esa columna por B.Cu. Son líneas lentas y el plano de
+  3,3 V sigue siendo una sola pieza.
+- El plano de 3,3 V sustituye la antigua espina: cada condensador de desacoplo
+  y cada grupo de pads baja a él con su propia vía.
+
+El cobre exterior es de 1 oz. Las pistas de red que llevan la corriente de
+carga se duplican en las dos caras con vías de cosido en lugar de pasar a 2 oz,
+que sale más caro en JLCPCB. La pareja USB va en F.Cu sobre el plano de masa de
+In1.Cu, a 0,21 mm; tiene por ahora 0,20 mm de ancho y 0,20 mm de separación
+como regla de routing y no se declara todavía como 90 Ω controlados. Hay que
+recalcularla con este apilado y el calculador del fabricante antes de pedir la
+placa.
 
 ## Reglas de KiCad
 
@@ -45,28 +66,29 @@ admite dos capas, placas mayores que 141,6 × 135,2 mm y pistas/espacios mucho
 menores que 0,20 mm. La fuente es la
 [tabla oficial de capacidades de JLCPCB](https://jlcpcb.com/capabilities/Capab).
 
-Como referencia comercial publicada por JLCPCB en la misma fecha, la producción
+Como referencia comercial publicada por JLCPCB el 2026-09-19, la producción
 por superficie se anuncia desde 56 USD/m² para dos capas y 91 USD/m² para cuatro
 capas, con plazos anunciados de 24 horas y cuatro días respectivamente. La
-cotización real depende de cantidad, acabado, montaje, promociones y envío; esta
-comparación justifica mantener dos capas mientras el DRC y la integridad de
-retorno lo permitan.
+cotización real depende de cantidad, acabado, montaje, promociones y envío. El
+sobrecoste se acepta a cambio de planos continuos y de un ruteo cerrado sin
+trocear la masa.
 
 JP8, JP24 y JP17 ya tienen huellas JST VH candidatas. Las áreas temporales de
-JP19, JP1 y JP9 bloquean ambas capas hasta identificar sus huellas. Después se
+JP19, JP1 y JP9 bloquean todas las capas hasta identificar sus huellas. Después se
 sustituirán por conectores reales y reglas de alta tensión. La zona de red y bus rectificado no compartirá
 relleno, vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
 comprueba en el DRC y se revisará antes de fabricar.
 
 ## Antes de generar Gerbers
 
-- Pedir 1,6 mm (espesor de la original) y 1 oz en la cotización y recalcular la
-  geometría USB.
+- Pedir JLC04161H-7628 (1,6 mm, 1 oz exterior y 0,5 oz interior) y recalcular
+  la geometría USB con ese apilado.
 - Validar con JLCPCB material, acabado, ranuras y reglas reales de separación de
-  la zona de red; aumentar a cuatro capas solo si el layout demuestra que hace falta.
+  la zona de red, también entre capas internas y externas.
 - Revisar capacidad de corriente y temperatura de las pistas de 24 V con cobre,
   longitud, vías y corriente medidas, incluida la corriente de bloqueo del motor.
-- Mantener B.Cu como plano de GND, añadir cosido y revisar cada cruce que lo corte.
+- Decidir los rellenos de F.Cu y B.Cu (masa cosida al plano de In1.Cu o sin
+  relleno) y revisar las dos ranuras de In2.Cu bajo el supervisor.
 - Revisar en 3D alturas (≤ 35 mm, cota comprobada con el disipador original),
   orientación de conectores y acceso al USB.
 - Ejecutar ERC, DRC, paridad esquema/PCB y una prueba mecánica 1:1.
