@@ -52,8 +52,9 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
 
-JP8, JP24 y JP17 ya aparecen como J115, J117 y J118 con huellas JST VH candidatas.
-JP19 es J116, un TE 1971845-4 con huella según el plano del fabricante. Los dos
+JP8 y JP24 ya aparecen como J115 y J117 con huellas JST VH candidatas.
+JP19 es J116 y JP17 es J118, los TE 1971845-4 y 1971845-3 con huella según el
+plano del fabricante. Los dos
 FASTON de PE son J119/J120, con patrón de patas provisional. Los drivers de red todavía no están dibujados.
 
 Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están

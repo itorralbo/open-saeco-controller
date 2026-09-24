@@ -545,3 +545,20 @@ de cargas siguen pendientes en el esquema principal.
   `check_controller_core.py` actualizado. DRC con todas las severidades:
   0 infracciones, 0 conexiones abiertas y las tres diferencias de paridad de
   MH1–MH3. 1 244 segmentos y 274 vías. No libera fabricación ni conexión a red.
+
+## JP17 RAST 5 y revisión de conectores, 2026-09-24
+
+- Relectura con nonio de las fotos de `photos/Conectores/` frente a los planos
+  JST: ninguna carcasa de señal tiene el ancho de XH ni de PH, JP24 mide 10,0 mm
+  (VHR-2N 7,86 mm) y JP8 12,9 mm (VHR-3N 11,82 mm). Sus huellas quedan como
+  provisionales; detalle en [photos.md](HD8911/photos.md).
+- JP17: el propietario identificó la carcasa del mazo como TE 2-1241961-7 (RAST 5,
+  tres vías, polarización 1b). J118 pasa de JST B3P-VH a TE 1971845-3 (LCSC
+  C5169636, 233 en JLCPCB), con huella nueva según el plano C-1971845 rev. B10,
+  a ras del borde en (107,5; 126,55). Se rehacen la fase, el neutro hacia JP24,
+  JP19 y PS701 y la serigrafía de la zona.
+- ERC 0; netlist 187 componentes / 612 pines coincidente. DRC con todas las
+  severidades: 0 infracciones, 0 conexiones abiertas y las tres diferencias de
+  paridad de MH1–MH3. 1 268 segmentos y 441 vías. Pendiente: comprobar con una
+  muestra la codificación 1C/2D contra la carcasa del mazo. No libera
+  fabricación ni conexión a red.

@@ -252,15 +252,15 @@ dV/dt en el apagado con el motor real (GR-05).
 
 ## Reparto de corriente en la fase de cargas
 
-Todas las cargas de red pasan por F701 (T10A), K701 y JP17, cuyo JST VH admite
-10 A por contacto. En el peor caso suman 8,4 A del calentador, 3 A del
+Todas las cargas de red pasan por F701 (T10A), K701 y JP17. JP17 es un TE
+1971845-3 de 16 A por contacto, así que el límite lo pone F701. En el peor caso
+suman 8,4 A del calentador, 3 A del
 molinillo y unos 0,2 A de la bomba: 11,6 A. Por eso, desde el 2026-09-23 el
 firmware aplica una regla de reparto:
 
 - Mientras el molinillo está encendido, el calentador conduce como máximo
   **3 ciclos completos de red de cada 5** (60 %). Su corriente eficaz baja a
-  8,4 × √0,6 ≈ 6,5 A, y el total queda en unos 9,7 A, por debajo de F701 y del
-  conector.
+  8,4 × √0,6 ≈ 6,5 A, y el total queda en unos 9,7 A, por debajo de F701.
 - Se cuentan ciclos completos, no semiciclos, para no meter componente continua
   en la red. Los MOC3083 de cruce por cero ya conmutan así.
 - Un molido dura como máximo 10 s, así que el calentador pierde como mucho 4 s
@@ -291,7 +291,7 @@ un ensamblador equivalente.
 ## Orden de diseño
 
 1. Comprobar en la impresión 1:1 la huella de JP1 y JP9, ya TE 63824-1 por la
-   foto del propietario. JP19 ya usa la huella del TE 1971845-4; JP17, JP24 y JP8 están en sus posiciones originales
+   foto del propietario. JP19 y JP17 ya usan las huellas de los TE 1971845-4 y 1971845-3; JP24 y JP8 están en sus posiciones originales
    estimadas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la fuente candidata IRM-30-24 ya incorporada al esquema y PCB.

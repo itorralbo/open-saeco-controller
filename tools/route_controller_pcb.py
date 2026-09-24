@@ -267,14 +267,18 @@ def route_mains_input(board):
     """
     l_in, l_fused, psu_l = '/MAINS_L_IN', '/MAINS_L_FUSED', '/PSU_L_FUSED'
     neutral, load_l = '/MAINS_N', '/LOAD_L_ENABLED'
-    # The stub leaving J118.1 is narrower to clear the unused middle VH pin.
-    # B.Cu doubles the phase up to y = 77: N crosses on B.Cu above that, so
-    # the last 3 mm bend and the F701 clip link stay on F.Cu only.
+    # J118 is a TE 1971845-3: tab 1, the phase, solders through two tails at
+    # 103.75 and 108.75 mm, y = 121.55, which are linked, and leaves north
+    # from the west one. B.Cu doubles the phase up to y = 77: N crosses on
+    # B.Cu above that, so the last 3 mm bend and the F701 clip link stay on
+    # F.Cu only.
     for layer in (pcb.F_Cu, pcb.B_Cu):
-        track(board, l_in, (106.04, 122.10), (104.50, 118.00), layer, width=2.2)
-    polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
+        track(board, l_in, (103.75, 121.55), (108.75, 121.55), layer,
+              width=MAINS_PHASE_WIDTH)
+        track(board, l_in, (103.75, 121.55), (103.75, 118.00), layer, width=2.2)
+    polyline(board, l_in, [(103.75, 118.00), (99.50, 118.00), (96.50, 115.00),
                            (96.50, 74.00), (87.00, 74.00)], width=MAINS_PHASE_WIDTH)
-    polyline(board, l_in, [(104.50, 118.00), (99.50, 118.00), (96.50, 115.00),
+    polyline(board, l_in, [(103.75, 118.00), (99.50, 118.00), (96.50, 115.00),
                            (96.50, 77.00)], pcb.B_Cu, width=MAINS_PHASE_WIDTH)
     for point in [(102.00, 118.00), (96.50, 110.00), (96.50, 101.00),
                   (96.50, 92.00), (96.50, 83.00), (96.50, 77.00)]:
@@ -298,8 +302,12 @@ def route_mains_input(board):
     via(board, l_fused, (64.50, 67.50), MAINS_VIA, MAINS_DRILL)
     track(board, l_fused, (57.00, 73.25), (57.00, 80.75), pcb.B_Cu, width=2.5)
 
-    polyline(board, neutral, [(113.96, 122.10), (113.96, 116.50),
-                              (111.80, 114.34), (111.80, 113.15)], width=2.5)
+    # PS701 only draws its own current, so its neutral leaves the east tail
+    # of tab 3 at 1.5 mm and climbs at x = 116.6 mm, between the polarizing
+    # post hole and the PE tabs, 2.5 mm from the earth bond.
+    polyline(board, neutral, [(108.75, 131.55), (116.60, 131.55), (116.60, 116.00),
+                              (113.75, 113.15), (111.80, 113.15)],
+             width=MAINS_N_WIDTH)
     polyline(board, neutral, [(111.80, 113.15), (111.80, 70.50), (82.00, 70.50),
                               (82.00, 79.70), (79.50, 82.20)], pcb.B_Cu,
              width=MAINS_N_WIDTH)
@@ -981,20 +989,24 @@ def route_earth_and_heater_return(board):
             track(board, pe, (x, 121.46), (x, 126.54), layer,
                   width=MAINS_PHASE_WIDTH)
 
-    # Neutral leaves JP17 south of the connector row and runs west under it.
-    # The stub out of the pad is narrowed, like the phase, to hold 1.2 mm to
-    # the unused middle pin of the VH connector.
+    # Neutral leaves JP17 (TE 1971845-3) from tab 3, the tab at the board
+    # edge, whose tails at 103.75 and 108.75 mm, y = 131.55, are linked. It
+    # runs west along the edge, rises to y = 127.5 past JP24's neutral and
+    # goes on to JP19.
     # Every tab of the TE 1971845-4 solders through two tails, 5 mm apart.
     # Tab 3 has them at 79.25 and 84.25 mm, y = 126.55. The run climbs over
     # the polarizing-post hole at (86.9, 129.05) and drops onto the east tail.
     for layer in (pcb.F_Cu, pcb.B_Cu):
-        track(board, neutral, (113.96, 122.1), (113.96, 124.0), layer, width=2.2)
-        polyline(board, neutral, [(113.96, 124.0), (113.96, 127.5),
-                                  (92.0, 127.5), (89.5, 125.0), (86.5, 125.0),
-                                  (84.25, 126.55), (79.25, 126.55)], layer,
-                 width=MAINS_PHASE_WIDTH)
-    for point in ((113.96, 126.0), (105.0, 127.5), (96.0, 127.5),
-                  (88.0, 125.0)):
+        track(board, neutral, (103.75, 131.55), (108.75, 131.55), layer,
+              width=MAINS_PHASE_WIDTH)
+        polyline(board, neutral, [(103.75, 131.55), (101.5, 131.55),
+                                  (97.45, 127.5), (92.0, 127.5), (89.5, 125.0),
+                                  (86.5, 125.0), (84.25, 126.55), (79.25, 126.55)],
+                 layer, width=MAINS_PHASE_WIDTH)
+    # Tab 2 is not wired; its two tails are one piece of metal.
+    track(board, 'unconnected-(J118-Pad2)', (106.25, 126.55), (111.25, 126.55),
+          width=MAINS_LIGHT_WIDTH)
+    for point in ((99.47, 129.52), (96.0, 127.5), (88.0, 125.0)):
         via(board, neutral, point, MAINS_VIA, MAINS_DRILL)
 
     # Tabs 2 and 4 are not wired, but each one is a single piece of metal on

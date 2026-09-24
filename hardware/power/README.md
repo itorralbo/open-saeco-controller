@@ -19,7 +19,9 @@ Faltan corrientes dinámicas, arranque, aislamiento y modos de fallo de cada car
 Un motor DC puede trabajar a tensión peligrosa. Fuente aislada y corte independiente
 requieren revisión. No se autoriza fabricación.
 
-Las fotos dimensionales permiten usar JST VH de 3,96 mm como familia
-candidata, en versión vertical: B3P-VH para JP8/JP17 y B2P-VH para JP24. Se añadirán al esquema junto
+Las fotos dimensionales se tomaron como JST VH de 3,96 mm, en versión
+vertical: B3P-VH para JP8 y B2P-VH para JP24. La revisión del 2026-09-24 mide
+esas carcasas más anchas que las VH, así que siguen sin identificar. JP17 es un
+TE RAST 5 1971845-3, identificado por el propietario. Se añadirán al esquema junto
 con la separación de red, el corte de seguridad y los drivers de molino y bomba.
 JP19 continúa sin huella identificada.

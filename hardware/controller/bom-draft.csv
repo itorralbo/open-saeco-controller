@@ -134,7 +134,7 @@ J114,POWER MONITOR / MEASURE ONLY,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.5
 J115,JP8 GRINDER / 320VDC,Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical,photo_candidate_owner_wiring,JST,B3P-VH(LF)(SN),C160316,Extended,TBD
 J116,JP19 HEATER / 1900W 27R5,OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-4,C2149727,Extended,Standard
 J117,JP24 PUMP / 230VAC,Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical,photo_candidate,JST,B2P-VH(LF)(SN),C160315,Extended,TBD
-J118,JP17 MAINS / L-N,Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical,photo_candidate_owner_wiring,JST,B3P-VH(LF)(SN),C160316,Extended,TBD
+J118,JP17 MAINS / L-N,OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-3,C5169636,Extended,TBD
 J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 F701,T10A / 250V MAIN / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,

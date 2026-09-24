@@ -30,9 +30,10 @@ pendientes. La placa ya incluye JP17, fuente aislada y relé general; faltan los
 drivers de calentador, bomba y molino en las posiciones de la original. Su
 [arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
 misma PCB.
-JP8, JP24 y JP17 están en el esquema y en la PCB como JST VH candidatos, en
-sus posiciones originales. JP19 es un TE 1971845-4 (RAST 5, cuatro lengüetas
-FASTON, LCSC C2149727) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
+JP8 y JP24 están en el esquema y en la PCB como JST VH candidatos, en sus
+posiciones originales, aunque las carcasas del mazo miden más que las VH. JP19 y
+JP17 son los TE 1971845-4 y 1971845-3 (RAST 5, cuatro y tres lengüetas FASTON,
+LCSC C2149727 y C5169636) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
 patas aún por cotejar.
 Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
 El [perfil de fabricación y clases de red](manufacturing.md) configura cuatro

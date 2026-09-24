@@ -66,7 +66,7 @@ primario, y las reglas de 8 mm mantienen la masa lejos de todo cobre `Mains`.
 | Switching | 0,60 mm | 0,25 mm | 0,80 / 0,40 mm | nodos del buck y charge pump |
 | Actuator | 1,00 mm | 0,25 mm | 1,00 / 0,50 mm | 24 V, motor y electroválvula |
 
-\* Entre pads de red la limita el paso de 3,96 mm de los VH originales. El mismo
+\* Entre pads de red la limita el paso de 3,96 mm de los conectores de JP8 y JP24. El mismo
 script escribe `controller-core-reva.kicad_dru`, que exige 2,5 mm entre pistas de
 redes `Mains` distintas y 8 mm de separación y creepage entre `Mains` y SELV.
 
@@ -83,7 +83,8 @@ cotización real depende de cantidad, acabado, montaje, promociones y envío. El
 sobrecoste se acepta a cambio de planos continuos y de un ruteo cerrado sin
 trocear la masa.
 
-JP8, JP24 y JP17 ya tienen huellas JST VH candidatas; JP19 es el TE 1971845-4 y
+JP8 y JP24 tienen huellas JST VH candidatas, pendientes de identificar (sus
+carcasas miden más que las VH). JP19 y JP17 son los TE 1971845-4 y 1971845-3 y
 JP1/JP9 son TE 63824-1. La zona de red y bus rectificado no comparte relleno,
 vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
 comprueba en el DRC y se revisará antes de fabricar.

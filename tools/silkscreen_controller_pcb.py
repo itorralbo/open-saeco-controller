@@ -33,7 +33,7 @@ TITLE_TOP = 25.8
 # Connector labels: original harness name first, then what it feeds.
 LABELS = {
     'J118': 'JP17 RED 230 V',
-    'J116': '< JP19 CALENTADOR',
+    'J116': '< JP19 CALDERA',
     'J117': 'JP24 BOMBA',
     'J115': 'JP8 MOLINILLO',
     'J119': 'JP1 PE',
@@ -57,13 +57,16 @@ LABELS = {
 # Labels the automatic search puts somewhere ambiguous: (x, y, angle).
 # JP8 stands upright in the gap between J115 and JP19; JP21 goes under the
 # right half of the IDC header rather than beside the USB-C.
-# JP17 sits under its L/N marks, and JP19, boxed in by JP8 and JP24, points
-# back at its block from the free strip east of it.
+# JP17 stands upright in the strip between its polarizing post and JP1, and
+# JP19, boxed in by JP8, JP24 and JP17, points back at its block from under
+# JP24 in the smaller size. An optional fourth value is the text size.
 LABEL_AT = {'J115': (71.1, 121.4, 90.0), 'J104': (23.5, 11.2, 0.0),
-            'J118': (110.0, 131.3, 0.0), 'J116': (96.5, 128.9, 0.0)}
+            'J118': (117.6, 125.5, 90.0), 'J116': (93.8, 133.6, 0.0, 0.8)}
 # Pin marks: (reference, pad, text), straight above or below their pin.
 PIN_MARKS = (('J115', '1', '+'), ('J115', '3', '-'),
              ('J118', '1', 'L'), ('J118', '3', 'N'))
+# Marks for tabs stacked in a column, beside their row instead: (x, y).
+PIN_MARK_AT = {('J118', '1'): (98.8, 121.55), ('J118', '3'): (98.8, 131.55)}
 WARNING_AT = (58.5, 60.0)
 
 TEXT_SIZES = ((1.0, 0.15), (0.8, 0.12))
@@ -262,8 +265,14 @@ def main():
         pad = next(p for p in fp.Pads() if p.GetNumber() == number)
         px = pcb.ToMM(pad.GetPosition().x)
         courtyard = box_mm(fp.GetCourtyard(pcb.F_CrtYd).BBox())
-        item, tbox = place(board, placer, value, (px - 0.5, courtyard[1], px + 0.5, courtyard[3]),
-                           spots=mark_candidates)
+        if (ref, number) in PIN_MARK_AT:
+            item = text(board, value, PIN_MARK_AT[(ref, number)], *TEXT_SIZES[0])
+            tbox = box_mm(item.GetBoundingBox())
+            assert placer.free(tbox), f'fixed mark {ref}.{number} is not free'
+            placer.take(tbox)
+        else:
+            item, tbox = place(board, placer, value, (px - 0.5, courtyard[1], px + 0.5, courtyard[3]),
+                               spots=mark_candidates)
         add(item)
         placed[f'{ref}.{number}'] = {'text': value, 'box_mm': [round(v, 2) for v in tbox]}
 
@@ -271,8 +280,10 @@ def main():
         fp = board.FindFootprintByReference(ref)
         courtyard = box_mm(fp.GetCourtyard(pcb.F_CrtYd).BBox())
         if ref in LABEL_AT:
-            x, y, angle = LABEL_AT[ref]
-            item = text(board, value, (x, y), *TEXT_SIZES[0], angle)
+            x, y, angle, *size = LABEL_AT[ref]
+            sizes = dict(TEXT_SIZES)
+            size = size[0] if size else TEXT_SIZES[0][0]
+            item = text(board, value, (x, y), size, sizes[size], angle)
             tbox = box_mm(item.GetBoundingBox())
             assert placer.free(tbox), f'fixed label {value!r} is not free'
             placer.take(tbox)

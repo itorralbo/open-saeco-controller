@@ -707,6 +707,22 @@
       "url": "https://www.lcsc.com/product-detail/C2149727.html",
       "selection": "owner_identified"
     },
+    "CONN:TE_RAST5_1971845-3": {
+      "manufacturer": "TE Connectivity",
+      "mpn": "1971845-3",
+      "lcsc": "C5169636",
+      "specification": "RAST 5 tab header, 3 x 6.3 x 0.8 mm tabs, 5 mm pitch, vertical THT, 16 A 250 V, PA UL94V-0, polarization 1b, keying 1C/2D; JP17 mains input, mates the owner's TE 2-1241961-7 harness housing",
+      "footprint": "OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 233,
+      "available_order_qty_observed": null,
+      "stock_checked_on": "2026-09-24",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C5169636",
+      "selection": "owner_identified",
+      "selection_note": "The owner read TE 2-1241961-7 (RAST 5 receptacle, 3 positions, polarization 1b) on the JP17 harness housing on 2026-09-24. Of the 3-position 1971845 headers, 1971845-3 is the base keying with the 1b polarization post; the keying lugs 1C/2D must still be checked against a sample of the harness housing."
+    },
     "CONN:USB_C_HRO_16_V": {
       "manufacturer": "HRO ELECTRONICS",
       "mpn": "TYPE-C-31-D-06",

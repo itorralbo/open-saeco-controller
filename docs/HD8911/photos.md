@@ -51,6 +51,10 @@ alturas ni patrón de anclaje y todavía no se asignaron huellas.
 
 ## Conectores desmontados con calibre, 2026-09-18
 
+> **Corregido el 2026-09-24** (ver «Revisión con nonio»): las anchuras de esta
+> tabla no son las de las carcasas JST XH, PH ni VH, y JP17 es un TE RAST 5. La
+> tabla se conserva como registro de la primera lectura.
+
 Las fotos de `photos/Conectores/` muestran las carcasas de cable de frente y con
 el calibre en el mismo plano. La anchura, número de vías, paso aparente y forma de
 la cara de acoplamiento coinciden con estas familias:
@@ -118,3 +122,46 @@ de pulsador en el [registro mecánico del frontal](../../hardware/front-panel/me
 El recuento de 16 contactos en JP3 no coincide con los 20 de JP21: no se deduce
 la correspondencia del arnés original. Las funciones de los pulsadores y de los
 puentes de JP5 no se infieren de la serigrafía.
+
+## Revisión con nonio, 2026-09-24
+
+Se releyó el nonio de cada foto de `photos/Conectores/` y se cotejó con los
+planos oficiales de JST ([XH](https://www.jst-mfg.com/product/pdf/eng/eXH.pdf),
+[PH](https://www.jst-mfg.com/product/pdf/eng/ePH.pdf),
+[VH](https://www.jst-mfg.com/product/pdf/eng/eVH.pdf)). La carcasa XHP-n mide
+A + 4,8 mm de ancho; 5,7 mm es su fondo, no su anchura, y de ahí vino la
+identificación anterior.
+
+| Conector | Vías | Ancho medido | Carcasa JST supuesta | Lectura |
+|---|---:|---:|---|---|
+| JP13 | 2 | 5,7 mm | XHP-2, 7,3 mm | no es XH |
+| JP14 | 2 | 5,8 mm | XHP-2, 7,3 mm | no es XH |
+| JP5 | 3 | 8,3 mm | XHP-3, 9,8 mm | no es XH |
+| JP3 | 5 | 13,1 mm | XHP-5, 14,8 mm | no es XH |
+| JP16 | 8 | 20,85 mm | XHP-8, 22,3 mm | no es XH |
+| JP22 | 3 | 6,1 mm | PHR-3, 7,8 mm | no es PH; paso ≈1,5 mm en IMG_1086 |
+| JP24 | 2 | 10,0 mm | VHR-2N, 7,86 mm | no es VH; lengüetas a ≈5 mm |
+| JP8 | 3 | 12,9 mm | VHR-3N, 11,82 mm | dudoso; paso ≈3,96 mm |
+| JP17 | 3 | 15,0 mm | VHR-3N, 11,82 mm | TE RAST 5, grabado «STOCKO» |
+
+- Los conectores de señal tienen paso de 2,5 mm (o 2,54 mm; las fotos no lo
+  distinguen) y una carcasa de ancho ≈ A + 3,3 mm. La familia sigue sin
+  identificar; Molex Mini-SPOX 5264 o KK-254 son hipótesis sin confirmar. Las
+  huellas XH/PH de la PCB quedan como provisionales.
+- JP22 no es PH: en IMG_1086 el paso de sus pines es ≈1,5 mm frente a los 2,5 mm
+  de la cabecera de cinco vías vecina. JST ZH es una hipótesis.
+- **JP17 queda identificado.** El propietario leyó en la carcasa del mazo la
+  referencia TE 2-1241961-7: receptáculo RAST 5, tres vías a 5 mm, polarización
+  1b. En IMG_1086 la cabecera de la placa es de la misma familia que JP19, con
+  envolvente y lengüetas FASTON. J118 pasa a ser el TE 1971845-3 (LCSC C5169636);
+  el cambio de huella y ruteo está en el [layout](../../hardware/controller/layout.md).
+- En IMG_1086 todas las cabeceras del borde inferior y del lateral izquierdo son
+  acodadas, con el cable entrando por el canto. La PCB usa cabeceras verticales
+  por decisión del 2026-09-22; hay que comprobar en la máquina que el mazo llega.
+- IMG_1086 muestra una cabecera de tres vías serigrafiada GR.PULSE entre JP22 y
+  NTC que no figura en `connectors.csv`. Falta confirmar si la HD8911 la usa.
+
+Para cerrar la familia de los de señal, lo más directo es medir en la placa
+original el paso sobre todas las vías, la sección de los pines y el ancho de la
+cabecera, o buscar marcas de fabricante. Si no, probar a enchufar una carcasa del
+mazo en una muestra de la cabecera candidata.

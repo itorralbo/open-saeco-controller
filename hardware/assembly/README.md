@@ -39,7 +39,8 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | JP16 | JST B8B-XH-A(LF)(SN), vertical | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.697 | No observado | Categoría JLC por verificar |
 | JP22 | JST B3B-PH-K-S(LF)(SN), vertical | [C131339](https://jlcpcb.com/partdetail/C131339) | 153.612 | No observado | Categoría JLC por verificar |
 | JP24 | JST B2P-VH(LF)(SN), 2 vías/3,96 mm, vertical | [C160315](https://jlcpcb.com/partdetail/C160315) | 328.397 | No observado | Categoría JLC por verificar |
-| JP8/JP17 | JST B3P-VH(LF)(SN), 3 vías/3,96 mm, vertical | [C160316](https://jlcpcb.com/partdetail/C160316) | 39.334 | No observado | Categoría JLC por verificar |
+| JP8 | JST B3P-VH(LF)(SN), 3 vías/3,96 mm, vertical | [C160316](https://jlcpcb.com/partdetail/C160316) | 39.334 | No observado | Categoría JLC por verificar |
+| JP17 | TE 1971845-3, RAST 5, 3 lengüetas 6,3 × 0,8 mm, 16 A, vertical | [C5169636](https://jlcpcb.com/partdetail/C5169636) | 233 | No observado | Extended; categoría JLC por verificar |
 | Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 2.161 | No observado | Economic / Standard; ola |
 | Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | No observado | No observado | Economic / Standard; ola |
 | Buck 24 V → 12 V | Diodes AP63200WU-7, 2 A | [C2071868](https://www.lcsc.com/product-detail/C2071868.html) | 30.090 | No observado | Categoría JLC por verificar |
@@ -114,7 +115,7 @@ solo describe la hoja actual, no el avance de toda la máquina.
 Las referencias JST VH se incorporan al catálogo para reservar una opción
 fabricable, pero todavía no aparecen en el esquema ni en la BOM de la principal.
 Las fotos y las cotas encajan; falta una prueba física de acoplamiento. Además,
-JP8 y JP17 transportan tensión peligrosa, por lo que elegir la carcasa no libera
+JP8 y JP24 transportan tensión peligrosa, por lo que elegir la carcasa no libera
 la arquitectura eléctrica ni el layout de esos circuitos.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados

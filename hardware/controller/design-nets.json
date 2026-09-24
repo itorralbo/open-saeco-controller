@@ -2225,11 +2225,11 @@
     {
       "reference": "J118",
       "value": "JP17 MAINS / L-N",
-      "footprint": "Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical",
-      "status": "photo_candidate_owner_wiring",
-      "manufacturer": "JST",
-      "mpn": "B3P-VH(LF)(SN)",
-      "lcsc": "C160316",
+      "footprint": "OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical",
+      "status": "owner_identified",
+      "manufacturer": "TE Connectivity",
+      "mpn": "1971845-3",
+      "lcsc": "C5169636",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {

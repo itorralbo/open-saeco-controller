@@ -331,7 +331,7 @@
       "numbered_pads": 2
     },
     "J118": {
-      "footprint": "Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical",
+      "footprint": "OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical",
       "numbered_pads": 3
     },
     "J119": {
@@ -753,7 +753,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 1699,
+  "tracks": 1704,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

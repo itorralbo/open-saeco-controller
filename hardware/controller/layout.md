@@ -39,9 +39,8 @@ Todos los conectores de mazo entran en vertical (decisión del propietario,
 2026-09-22). J101, J105–J109, J112–J113, J115, J117 y J118 pasan de las JST
 S-series laterales a las B-series verticales. Los pads, el paso y el taladro son
 los mismos, así que las huellas conservan origen y giro y el cobre no cambia.
-Solo J118 baja 0,8 mm, a y = 122,1 mm, dentro de la tolerancia de ±1,5 mm: la
-carcasa VH vertical sobresale 4,2 mm al norte de los pines y chocaba 0,6 mm con
-el courtyard de PS701. Los courtyards liberan unos 750 mm². La franja útil está
+J118 bajó entonces 0,8 mm para despejar PS701; desde el 2026-09-24 ya no es un
+VH sino el TE 1971845-3 de tres vías (ver «JP17»). Los courtyards liberan unos 750 mm². La franja útil está
 en x = 7–12,7 mm junto a J107/J108 y en y = 10–15,7 mm bajo J101/J112. En la fila
 inferior se libera y ≈ 129–135 mm junto al borde. J110 (USB-C) también pasa a
 vertical, con el HRO TYPE-C-31-D-06 (ver «USB»). J102–J104, J114, J116 y los
@@ -88,7 +87,7 @@ La clase `Mains` agrupa L, N, fase tras fusibles y relé, bomba y bus del
 molinillo. `controller-core-reva.kicad_dru` exige 8 mm de separación y de
 creepage entre cualquier cobre `Mains` y cualquier red SELV, y 2,5 mm entre
 pistas de redes `Mains` distintas. La separación de clase entre pads de red se
-queda en 1,2 mm porque la fija el paso de 3,96 mm de los VH originales. Los
+queda en 1,2 mm porque la fija el paso de 3,96 mm de los conectores de JP8 y JP24. Los
 pines sin uso de conectores de red y los taladros sin red no cuentan como SELV.
 
 `layout_controller_pcb.py` fija además la línea central de la barrera
@@ -194,17 +193,19 @@ DP por B.Cu justo antes de los pads.
 
 ## Entrada de red
 
-- Fase: J118.1 sube por el paso entre el disipador y PS701 hasta F701 (3 mm en
+- Fase: une las dos patas de J118.1 y sube por el paso entre el disipador y PS701 hasta F701 (3 mm en
   cada cara). PSU_L baja desde F702 por el mismo paso hasta PS701.1 (1 mm). Las dos
   pistas van anidadas y separadas 2,5 mm; por eso F702 está encima de F701.
 - Fase protegida: une las dos pinzas de F701 y F702, RV701 y los dos pads COM
   de K701. El par COM de K701 se une por B.Cu para dejar sitio a la unión del par
   NO (`LOAD_L_ENABLED`), que espera a las etapas de carga.
-- Neutro: J118.3 → PS701.2 en F.Cu y, desde ahí, hasta RV701 por B.Cu, por
-  debajo de las dos fases. En el lado de red no hay plano, así que B.Cu está libre.
+- Neutro: sale de la pata este de J118.3, junto al borde, y sube a 1,5 mm por
+  x = 116,6 mm, entre el taladro del poste de J118 y las lengüetas de PE, a
+  2,5 mm del puente de tierra, hasta PS701.2 en F.Cu. Desde ahí sigue hasta RV701
+  por B.Cu, por debajo de las dos fases. En el lado de red no hay plano, así que
+  B.Cu está libre.
 - Todo el cobre de red mantiene 2,5 mm entre redes distintas y 8 mm hasta SELV,
-  comprobados por el DRC. La salida de J118.1 se estrecha a 2,2 mm para respetar
-  1,2 mm hasta el pin central libre del VH.
+  comprobados por el DRC.
 
 Las fases que llevan la corriente de carga (unos 10 A) van duplicadas: 3 mm en
 F.Cu y 3 mm en B.Cu, unidas por pads THT y vías de cosido de 1,6/0,8 mm. Son unos
@@ -231,7 +232,8 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 ## Validación
 
 - 159/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
-  ya sus zonas originales. JP19 es el TE 1971845-4; JP1 y JP9, lengüetas con
+  ya sus zonas originales (J118, 2,5 mm al oeste). JP19 y JP17 son los TE
+  1971845-4 y 1971845-3; JP1 y JP9, lengüetas con
   patrón de patas provisional. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
@@ -412,6 +414,32 @@ desde el conector en vez de intentar colarlo por su propio abanico. R202 se ha
 girado 270° para que su pad de 3,3 V mire al norte y la orden de arranque del
 ESP32 salga por debajo sin cruzarlo.
 
+### JP17
+
+El propietario leyó el 2026-09-24 la referencia de la carcasa del mazo de JP17:
+**TE 2-1241961-7**, receptáculo RAST 5 de tres vías a 5 mm con polarización 1b.
+Es la misma familia que JP19 y no un JST VH, como también indicaban el
+calibre (15,0 mm) y el grabado «STOCKO» de la foto. J118 pasa a ser el
+**TE 1971845-3** (LCSC C5169636), la cabecera de tres lengüetas de la serie de
+J116 con el poste de polarización en 1b. Su huella,
+`TE_RAST5_1971845-3_1x03_P5.00mm_Vertical`, sigue la disposición del plano
+C-1971845 (rev. B10) para número impar de posiciones, con el mismo convenio que
+la de J116:
+
+- lengüetas 1 y 3 en x = −3,75 y +1,25 mm del eje, lengüeta 2 en −1,25 y +3,75;
+- poste en (+6,4; +2,5), 2,5 mm antes de la última lengüeta;
+- carcasa de 17,3 × 14,9 × 12,8 mm, a ras del borde inferior, centrada en
+  (107,5; 126,55).
+
+El centro queda 2,5 mm al oeste del JP17 fotografiado, fuera de la tolerancia de
+±1,5 mm. Así el neutro de PS701 cabe entre el poste y las lengüetas de PE con
+2,5 mm al puente de tierra; el mazo tiene holgura para ese desplazamiento, pero
+se comprobará en la máquina. La lengüeta 1 (negro, fase) queda hacia el
+interior y la 3 (azul, neutro) junto al borde. La 2 no se usa y une sus dos
+patas. Falta comprobar con una muestra que los salientes de codificación 1C/2D
+de la 1971845-3 no chocan con la carcasa del mazo; TE fabrica la serie con otras
+codificaciones si hiciera falta.
+
 ### JP19, JP1 y JP9
 
 Datos del propietario (2026-09-20): de JP19 solo están cableadas las lengüetas 1
@@ -441,8 +469,8 @@ girada para que las lengüetas queden en columna:
 
 La carcasa se centra en (80,5; 124,05) para quedar a ras del borde inferior.
 La lengüeta 3 es la de uso más cercana al borde y toma el retorno de neutro,
-ruteado desde JP17 por debajo de la fila de conectores y duplicado en las dos
-caras; sube a la fila de patas antes de llegar al taladro del poste y une las
+ruteado desde la lengüeta 3 de JP17 a lo largo del borde, por debajo de la fila
+de conectores, y duplicado en las dos caras; sube a la fila de patas antes de llegar al taladro del poste y une las
 dos patas. La lengüeta 1 recibe el vivo conmutado del triac en sus dos patas.
 Las lengüetas 2 y 4 no se usan, pero cada una une sus dos patas para que la
 pieza metálica flotante sea un solo nodo.
@@ -986,7 +1014,7 @@ nada en el lado de red. `selv_outer_fills()` en `route_controller_pcb.py`:
   `bicho-outline.json`), de 20 × 12,3 mm, con el título «OPEN SAECO
   CONTROLLER / HD8911 · Rev A · 2026», en la esquina SELV libre sobre PS701;
 - cada conector de mazo y de servicio con su nombre en la placa original y su
-  función (JP17 RED 230 V, JP19 CALENTADOR, JP8 MOLINILLO, JP16 GRUPO, USB
+  función (JP17 RED 230 V, JP19 CALDERA, JP8 MOLINILLO, JP16 GRUPO, USB
   SERVICIO, SWD STM32…). Se colocan solos en el primer hueco libre alrededor
   del conector, salvo JP8, JP19, JP17 y JP21, fijados a mano para que no
   queden ambiguos;

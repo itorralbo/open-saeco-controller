@@ -112,7 +112,8 @@ un opto de 600 o 400 V.
    de TE. Se comprueba con la impresión 1:1. JP19 queda cerrado: el propietario lo
    identificó el 2026-09-22 como TE 1971845-4 (LCSC C2149727), un RAST 5 de
    cuatro lengüetas 6,3 × 0,8 mm a 5 mm, 16 A 250 V, y su huella sigue el plano
-   de TE.
+   de TE. JP17 queda cerrado el 2026-09-24: la carcasa del mazo es un TE
+   2-1241961-7 y la placa lleva su cabecera, el TE 1971845-3 (LCSC C5169636).
 
 Hasta obtenerlos, el esquema puede avanzar con valores conservadores, pero los
 Gerbers de la zona de red seguirán marcados como no fabricables.

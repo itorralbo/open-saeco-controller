@@ -67,7 +67,7 @@ NEW_POSITIONS = {
     'R704': (105, 7), 'R705': (111, 7), 'R706': (117, 7), 'C702': (123, 7),
     'J114': (106, 101),
     'J115': (59.04, 120.8), 'J117': (91.02, 120.8),
-    'J118': (106.04, 122.1),
+    'J118': (107.5, 126.55),
     'F701': (128, 52), 'RV701': (119, 55), 'F702': (128, 27),
     'PS701': (105, 89), 'J121': (66, 104),
     'U303': (53, 103), 'L302': (61, 103),
@@ -124,9 +124,13 @@ for ref, (side, top) in {
         'J113': ('XH_S5B-XH-A_1x05_P2.50mm_Horizontal', 'XH_B5B-XH-A_1x05_P2.50mm_Vertical'),
         'J115': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
         'J117': ('VH_S2P-VH_1x02_P3.96mm_Horizontal', 'VH_B2P-VH_1x02_P3.96mm_Vertical'),
-        'J118': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
         }.items():
     FOOTPRINT_REPLACEMENTS[ref] = (_JST+side, _JST+top)
+# JP17 identified by the owner on 2026-09-24: the harness housing is a TE RAST 5
+# 2-1241961-7, so the board takes the 1971845-3 tab header, not a JST VH.
+FOOTPRINT_REPLACEMENTS['J118'] = (
+    _JST+'VH_B3P-VH_1x03_P3.96mm_Vertical',
+    'OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical')
 # The service USB-C enters from the top too: HRO's vertical TYPE-C-31-D-06.
 # Its pads differ, so layout_controller_pcb.py moves it and the USB routing
 # is rebuilt around it.

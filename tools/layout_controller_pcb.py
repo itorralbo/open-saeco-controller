@@ -226,9 +226,11 @@ PLACE = {
     'J101': (96, 6, 0), 'J102': (74.5, 31, 90), 'J103': (75, 10, 90),
     **HARNESS_CONNECTORS,
     'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
-    # The top-entry VH housing reaches 4.2 mm north of its pins; J118 sits
-    # 1.3 mm lower than its neighbours so the housing clears PS701.
-    'J118': (106.04, 122.1, 0),
+    # JP17 is a TE 1971845-3 RAST 5 header, flush with the bottom edge like
+    # J116. It sits 2.5 mm west of the photographed JP17 centre so that the
+    # neutral to PS701 can climb between its polarizing post and the PE tabs
+    # with 2.5 mm to J119.
+    'J118': (107.5, 126.55, 0),
     # Heater block and the two protective-earth tabs, in the envelopes that
     # mechanical-source.json had been reserving for them.
     'J116': (80.5, 124.05, 0), 'J119': (121.5, 124.0, 0), 'J120': (128.0, 124.0, 0),

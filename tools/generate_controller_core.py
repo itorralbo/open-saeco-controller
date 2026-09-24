@@ -495,10 +495,13 @@ def main():
           ['PUMP_AC_SWITCHED','MAINS_N'],
           'Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical',
           status='photo_candidate', part_key='CONN:JST_VH_2_V')
+    # Owner, 2026-09-24: the JP17 harness housing is a TE 2-1241961-7, a
+    # RAST 5 receptacle with 1b polarization, so the board takes the matching
+    # 1971845-3 tab header. Tab 1 is the black phase, tab 3 the blue neutral.
     d.add('J118','J3','JP17 MAINS / L-N',1155,738,
           ['MAINS_L_IN',None,'MAINS_N'],
-          'Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical',
-          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_V')
+          'OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical',
+          status='owner_identified', part_key='CONN:TE_RAST5_1971845-3')
     # Owner: both are protective-earth tabs, JP1 to the boiler body and JP9 to
     # the mains inlet. The board is the junction between them.
     # JP1/JP9 are vertical two-leg FASTON tabs (owner's photo, 2026-09-23),
