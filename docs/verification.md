@@ -587,3 +587,28 @@ de cargas siguen pendientes en el esquema principal.
   paridad de MH1–MH3. 1 268 segmentos y 441 vías. Pendiente: probar cada mazo
   en su cabecera, sobre todo el sentido del gancho de JP8, que fija la
   polaridad del molinillo. No libera fabricación ni conexión a red.
+
+## Revisión de la documentación, 2026-09-29
+
+Relectura de todos los documentos contra el esquema, la BOM, la PCB y los
+informes de validación. Se corrigieron, entre otros:
+
+- Estados anteriores al ruteo: 135–159 huellas, conexiones sin rutear, «esquema
+  parcial», etapas de red «sin dibujar», rellenos y serigrafía pendientes. La
+  principal tiene 187 posiciones y está ruteada con DRC limpio.
+- Pines: el caudalímetro va a PA2 (TIM2_CH3) y el nivel de agua a PC3
+  (ADC12_IN9), no a PA1/PA2; la UART del ESP32 va en IO42/IO2 y la detección de
+  VBUS en IO15, no en IO17/IO18/IO21; la corriente del grupo se lee en PC0.
+  `connectors.csv` e `io-map.md` recogen ya el pin de cada conector.
+- Notas del propio esquema («borrador parcial», módulo de red «sin
+  seleccionar») y el texto que `validate_kicad.py` escribe en los README de
+  validación, que ahora toma el recuento de ruteo de `routing.json`.
+- Código del ESP32 en el catálogo de montaje (C2980300), optotriac VOT8125
+  descartado, BOM (180 de 187 con código LCSC) y medida de 27,5 Ω del calentador,
+  que faltaba en el registro de medidas.
+- Se confirmó con la hoja de Mean Well que la IRM-30-24 da 1,3 A y 31,2 W.
+
+Hallazgo de diseño, sin cambiar: J101 comparte nodo con la salida de U303 sin
+diodo ni selector, así que usar J101 con o sin 24 V presentes queda por revisar.
+ERC 0; netlist 187/612 coincidente; enlaces de la documentación comprobados.
+

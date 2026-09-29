@@ -5,8 +5,9 @@ No hay hardware fabricable publicado todavía. Para futuros esquemas/PCB se prop
 evaluar CERN-OHL-P-2.0 y registrar alcance y texto completo antes de publicarlos.
 Esa propuesta no cambia la licencia de los archivos actuales.
 
-PDF y fotos locales son referencias: no se redistribuyen en este paquete ni se
-relicencian. Revisar derechos antes de incorporarlos al historial Git. Dependencias
+Los PDF del fabricante (manual de servicio y despiece) son referencias locales:
+no están en el repositorio ni se relicencian. Las fotos de `docs/HD8911/photos/`
+son del propietario y sí están en el historial Git. Dependencias
 STM32Cube y ESP-IDF conservan sus propias licencias; no están vendorizadas.
 
 Fuentes oficiales de desarrollo (no confirman conexiones de la cafetera):

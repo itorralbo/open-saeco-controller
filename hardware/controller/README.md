@@ -1,46 +1,37 @@
-# Controladora lógica
+# Controladora principal
 
-Primer [diseño de la principal en KiCad](core-design.md): STM32G431RBT6 y
-ESP32-S3-WROOM-1U-N8R8 con antena externa U.FL, alimentación integrada, reset, depuración y UART.
-Incluye IRM-30-24 aislado, buck de 24 V a 12 V, buck de 3,3 V, corte del frontal y
-acondicionamiento de NTC, caudalímetro, nivel de agua, tres contactos y un
-DRV8876 para el motor del grupo y una etapa low-side para la válvula, alimentados
-desde una entrada aislada de 24 V con ramas protegidas por separado.
-Un TPS3828 externo supervisa el STM32; la lógica AND bloquea los actuadores y
-un segundo interlock gobierna el relé general de fase.
-159 posiciones; 151 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
-Las huellas están importadas a la PCB. JP19 es el TE 1971845-4 identificado por
-el propietario; los dos FASTON de PE siguen con patrón de patas provisional.
-J105, J106 y J113 (JP13, JP5 y JP3) son HR A2506WV identificadas por el
-propietario; J107–J109 siguen con cabeceras JST XH/PH candidatas a partir de las
-fotos con calibre, y falta comprobar su acoplamiento con una muestra.
-Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
-taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
-el USB, la alimentación del STM32, la entrada de red, los 24 V, el puente H del
-grupo, el supervisor con sus interlocks y el relé, la válvula, el lado de mazo de
-los sensores y los dos bucks ya ruteados, y la primera etapa de carga sin
-ensayar. El DRC, con la barrera red/SELV de 8 mm como regla, no presenta
-infracciones; quedan 77 conexiones sin rutear, la distribución de 3V3 y 12 V,
-las señales del STM32, caracterizar la salida del nivel
-de agua y completar las demás etapas de potencia.
-Dos divisores permiten leer por ADC las entradas de 12 V y 24 V y J114 facilita
-su medida directa durante las pruebas.
-El [contrato del frontal](front-panel-interface.md) usa un ESP32-S3-WROOM-1U-N8R8
-y asigna sus GPIO de pantalla, botones, UART y USB. J110 implementa USB-C de
-servicio con ESD y alimentación de banco opcional; routing y ensayos siguen
-pendientes. La placa ya incluye JP17, fuente aislada y relé general; faltan los
-drivers de calentador, bomba y molino en las posiciones de la original. Su
-[arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
-misma PCB.
-JP8 y JP24 son las LEOCO 3941P03*000 y 5001P020013 identificadas por el
-propietario, en sus posiciones originales; JLCPCB no las tiene y se sueldan a
-mano o se aportan. JP19 y
-JP17 son los TE 1971845-4 y 1971845-3 (RAST 5, cuatro y tres lengüetas FASTON,
-LCSC C2149727 y C5169636) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
-patas aún por cotejar.
-Se aplica la [estrategia de suministro y montaje JLCPCB](../assembly/README.md).
-El [perfil de fabricación y clases de red](manufacturing.md) configura cuatro
-capas (planos internos de GND y 3,3 V) y reglas conservadoras para lógica, USB,
-alimentación y actuadores.
-Entregables: esquema jerárquico, PCB, BOM trazable, ERC/DRC y planos de montaje.
-No trasladar pines de una placa de desarrollo al arnés sin verificación.
+[Diseño de la principal en KiCad](core-design.md): STM32G431RBT6 y
+ESP32-S3-WROOM-1U-N8R8 con antena externa U.FL, reset, depuración, UART y USB-C
+de servicio. La fuente Mean Well IRM-30-24 va en la propia placa; de sus 24 V
+salen el buck de 12 V y, tras él, el de 3,3 V y el corte del frontal. Incluye el
+acondicionamiento de NTC, caudalímetro, nivel de agua y tres contactos; un
+DRV8876 para el motor del grupo y una etapa low-side para la válvula, cada uno
+con su fusible; y las etapas de triac de calentador, bomba y molinillo detrás de
+un relé general K701. Un TPS3828 supervisa el STM32 y las puertas AND U602–U604
+anulan todas las órdenes de carga y el armado del relé mientras hay reset.
+
+187 posiciones: 180 con MPN y código LCSC; J115 y J117 (LEOCO, que JLCPCB no
+tiene) con MPN y sin código; F701, F702 y RV701 con valor provisional y sin
+pieza; J111 y J121, puentes de soldadura. J105, J106 y J113 (JP13, JP5 y JP3)
+son HR A2506WV, JP8 y JP24 LEOCO 3941P03*000 y 5001P020013, JP17 y JP19 TE RAST 5
+1971845-3 y -4 y JP1/JP9 lengüetas TE 63824-1, todas identificadas por el
+propietario o casadas con sus fotos. J107–J109 (JP14, JP16 y JP22) siguen con
+cabeceras JST candidatas que la revisión con nonio no confirma.
+
+La PCB es de cuatro capas, JLC04161H-7628, con planos de GND y 3,3 V solo en el
+lado SELV, y está [colocada y ruteada](layout.md) en las posiciones de la placa
+original: DRC con todas las severidades sin infracciones ni conexiones abiertas.
+La barrera red/SELV de 8 mm es una regla del DRC. Detalle del proyecto en
+[kicad-workflow.md](../kicad-workflow.md); reglas y apilado en
+[manufacturing.md](manufacturing.md); arquitectura de potencia en
+[power-architecture.md](../power/power-architecture.md); suministro en
+[assembly](../assembly/README.md).
+
+El [contrato del frontal](front-panel-interface.md) fija J104 y los GPIO del
+ESP32 para pantalla, botones, UART y USB. Dos divisores permiten leer por ADC los
+rails de 12 V y 24 V, y J114 facilita su medida directa durante las pruebas.
+
+**No es fabricable.** Falta comprobar la placa impresa 1:1 contra la original y
+los mazos, identificar JP14, JP16 y JP22, cerrar F701/F702/RV701 y el filtro EMI,
+medir las cargas y pasar una revisión independiente de aislamiento. Nada está
+ensayado. No trasladar pines de una placa de desarrollo al arnés sin verificación.

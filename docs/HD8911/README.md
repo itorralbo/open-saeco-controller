@@ -21,7 +21,8 @@ El manual y las referencias confirman conectores, destinos y buena parte de las
 tensiones y potencias. JP5 y los colores funcionales de JP22 ya están identificados;
 siguen pendientes la forma de salida del sensor capacitivo, los contactos de JP16
 y corrientes dinámicas de motores. Ya hay
-resistencias de tres cargas y continuidad funcional de JP14. No se han importado esquemas internos, firmware
+resistencias de cuatro cargas y continuidad funcional de JP14, y el propietario
+identificó las cabeceras de JP3, JP5, JP8, JP13, JP17, JP19 y JP24. No se han importado esquemas internos, firmware
 ni conclusiones eléctricas no mostradas por el fabricante. Los archivos fuente no
 se incluyen en este paquete y conservan sus derechos originales.
 

@@ -9,23 +9,26 @@
 | A4 | Ensayos potencia | Plan revisado, resultados y riesgos cerrados |
 | A5 | Rev A funcional | Ciclo USB/web sin electrónica original y fallos validados |
 
-Prioridades: variante exacta, conectores, alimentación de motores, protecciones,
-calibraciones, aislamiento, selección MCU, interfaz, protocolo y límites de receta.
-El frontal nuevo entra en el diseño: copia mecánica de botones y pantalla reemplazable,
-con [primer esquema y BOM candidata](../hardware/front-panel/README.md).
-La integración física requiere cotas y selección del display. La reutilización de la
+Prioridades: comprobar la principal en papel 1:1 contra la placa y los mazos,
+identificar JP14, JP16 y JP22, cerrar fusibles, MOV y filtro EMI, medir las
+cargas (ver el plan de caracterización), revisión de aislamiento, BSP, protocolo
+y límites de receta.
+El frontal nuevo copia la mecánica de botones y usa una pantalla reemplazable:
+[PCB ruteada y paquete JLCPCB candidato](../hardware/front-panel/README.md), con
+la geometría recuperada por fotogrametría y un ST7789 2,0" como display de
+referencia. Falta cerrar el MPN del panel y el adaptador. La reutilización de la
 electrónica del panel original deja de ser objetivo. OTA y MQTT quedan para después.
 
-Principal: [primer núcleo STM32 + ESP32](../hardware/controller/core-design.md)
+Principal: [STM32 + ESP32](../hardware/controller/core-design.md)
 con conexiones de depuración/UART, USB-C de servicio, fuente de baja tensión,
-entradas de NTC, caudalímetro, nivel de agua y contactos. El primer bloque de
-carga es un DRV8876 para el motor del grupo y la válvula dispone de una etapa
-low-side, ambos desde una entrada de 24 V de banco con fusibles separados.
+entradas de NTC, caudalímetro, nivel de agua y contactos. El motor del grupo
+tiene un DRV8876 y la válvula una etapa low-side, las dos desde el rail de 24 V
+con fusibles separados.
 Calentador, bomba y molino tienen ya su etapa en el esquema y en la PCB; ninguna
 carga está ensayada.
 El [watchdog e interlock hardware](../hardware/power/watchdog-interlock.md) ya
-reinicia el STM32 y bloquea motor/válvula ante timeout o reset; falta implementar
-el pulso periódico en PB4 y validar la temporización real.
+reinicia el STM32 y anula todas las órdenes de carga ante timeout o reset; falta
+implementar el pulso periódico en PB4 y validar la temporización real.
 La [arquitectura de alimentación Rev A](../hardware/power/power-architecture.md)
 mantiene dos fuentes DC externas aisladas para el banco, pero la principal final
 integra en la misma PCB la entrada de red, la fuente aislada, calentador, bomba y
@@ -37,8 +40,8 @@ conector y el par USB calculado a 90 Ω; falta la comprobación en papel 1:1
 antes de fabricar.
 La principal ya mide ambos rails en PF1/PC1 y expone J114 para correlacionar la
 telemetría USB con el multímetro durante los ensayos.
-Las 135 huellas actuales tienen ya una [colocación funcional](../hardware/controller/layout.md)
-reproducible y con DRC limpio; JP8, JP24 y JP17 ya ocupan sus posiciones originales.
+Las 187 huellas eléctricas tienen [colocación y ruteo](../hardware/controller/layout.md)
+reproducibles y con DRC limpio; JP8, JP24 y JP17 ocupan sus posiciones originales.
 JP19 usa ya la pieza identificada, TE 1971845-4; los FASTON de PE son TE 63824-1,
 casados con la foto del propietario.
 La [etapa low-side candidata para la válvula](../hardware/power/valve-driver.md)
@@ -65,9 +68,12 @@ Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
 ## Verificaciones
 - Python: enlaces locales y receta no ejecutable.
 - Frontal: comprobación de conexiones del esquema frente al pinout previsto;
-  ERC nativo y netlist cotejados. Huellas mecánicas y layout pendientes.
-- Principal y frontal: proyectos KiCad con PCB de trabajo; [DRC con incidencias
-  pendientes](../hardware/kicad-workflow.md), no fabricables.
+  ERC nativo y netlist cotejados; PCB ruteada con DRC limpio y paquete JLCPCB
+  candidato, sin pedir.
+- Principal: ERC y [DRC](../hardware/kicad-workflow.md) sin infracciones ni
+  conexiones abiertas; no fabricable hasta cerrar las prioridades anteriores.
+- `check_controller_core.py` exige consultas de stock de menos de 7 días: hay
+  que refrescar el catálogo antes de cada pedido (y para que pase la CI).
 - Host C/CTest: arranque inactivo, START bloqueado, fallo enclavado y STOP sin rearme.
 - ESP-IDF: build pendiente de SDK disponible y versión fijada.
 - Futuro banco: timeout real, parser corrupto, duplicados, reset, brownout y

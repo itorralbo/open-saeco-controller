@@ -123,7 +123,8 @@ sino de la UX y de que el SPI llegue limpio por el arnés — mitigado bajando e
 
 ## Acciones
 
-1. [ ] Capturar cotas del OEM (ventana visible, centros de pulsador, contorno, taladros) → `mechanical.md`.
+1. [ ] Capturar cotas del OEM → `mechanical.md`. Hecho el 2026-09-18 para contorno, taladros y
+   centros de pulsador; falta la ventana visible del display.
 2. [ ] Cerrar MPN del panel 2,0" ST7789 (contorno, activa, espesor, conector, código de compra).
 3. [ ] Definir el adaptador de display (orden de pines, driver de BL, ESD).
 4. [ ] Fijar versión de ESP-IDF y de LVGL; parámetros SPI (modo, R serie) por medir.

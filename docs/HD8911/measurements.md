@@ -8,6 +8,7 @@ o incertidumbre, se conserva expresamente como dato pendiente.
 | MAIN-W | 2026-09-17 / foto | principal | borde izquierdo–derecho | calibre 0,05 mm | PCB desmontada, IMG_1098 | 141,6 ± 0,15 mm | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
 | MAIN-H | 2026-09-17 / foto | principal | borde superior–inferior | calibre 0,05 mm | PCB desmontada, IMG_1099 | 135,2 ± 0,15 mm | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
 | MAIN-MH | 2026-09-17 / fotogrametría | principal | 3 taladros, origen superior izquierdo | cuadrícula + contorno calibrado | vista casi normal, IMG_1098 | centros y diámetro en documento | [mecánica](main-board-mechanics.md) | Aceptada Rev A |
+| LOAD-HEATER-R | 2026-09-20 / propietario | calentador | lengüetas 1 y 3 de JP19 | multímetro/modelo TBD | desconectado; temperatura TBD | 27,5 Ω | comunicación del propietario | Confirma 8,4 A a 230 V |
 | LOAD-GRINDER-R | 2026-09-18 / propietario | molino | terminales del motor | multímetro/modelo TBD | desconectado; temperatura TBD | 68 Ω | comunicación del propietario | Medida inicial |
 | LOAD-VALVE-R | 2026-09-18 / propietario | electroválvula | terminales de bobina | multímetro/modelo TBD | desconectada; temperatura TBD | 56,7 Ω | comunicación del propietario | Confirma ≈10 W a 24 V |
 | LOAD-BU-R | 2026-09-18 / propietario | motor del grupo | rojo–azul de JP16 | multímetro/modelo TBD | desconectado; temperatura/posición de rotor TBD | 54,7 Ω | comunicación del propietario | Medida inicial |
@@ -34,8 +35,10 @@ máquina ni medir la red. Anotar siempre desde qué lado se mira el conector.
 ### 1. Fotos y conectores
 
 Las fotos de cavidades con calibre de JP5, JP13, JP14, JP16 y JP22 ya están en
-`photos/Conectores/`. Permiten seleccionar huellas candidatas XH/PH. Para liberar
-la mecánica todavía conviene una comprobación real de acoplamiento con una muestra.
+`photos/Conectores/`. La revisión con nonio del 2026-09-24 descartó XH y PH, y el
+propietario identificó después JP3, JP5 y JP13 como HR A2506WV (ver
+[photos.md](photos.md)). Para JP14, JP16 y JP22 falta todavía la familia; para
+todos, una comprobación real de acoplamiento con una muestra.
 
 1. Frontal de cavidades, con la pestaña de retención visible.
 2. Lateral de placa y carcasa, con calibre o regla en el mismo plano.

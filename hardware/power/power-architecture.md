@@ -1,9 +1,9 @@
 # Arquitectura de alimentación y potencia — principal completa
 
-Estado: arquitectura de integración en curso. La PCB final sustituirá a la
-original y contendrá en la misma tarjeta la entrada de 230 V, sus protecciones,
-la fuente aislada/transformador, las salidas de red y la electrónica SELV. El
-esquema KiCad actual representa todavía solo el subconjunto de baja tensión.
+Estado: integrada en el esquema y en la PCB ruteada, sin ensayar. La placa
+sustituye a la original y contiene en la misma tarjeta la entrada de 230 V, sus
+protecciones, la fuente aislada, las salidas de red y la electrónica SELV. Falta
+el filtro EMI y cerrar los valores de F701, F702 y RV701.
 
 ## Dominios obligatorios
 
@@ -15,9 +15,9 @@ esquema KiCad actual representa todavía solo el subconjunto de baja tensión.
 | 24 V SELV | motor del grupo y electroválvula | generado por fuente aislada integrada; retorno común de lógica solo después de la barrera |
 | 12/3,3 V SELV | lógica, sensores, frontal, USB y depuración | accesible durante pruebas con la máquina alimentada únicamente si el aislamiento está verificado |
 
-La barrera primaria–SELV deberá ser continua en todas las capas de cobre. Como regla inicial
-de colocación se reservarán 8 mm sin cobre entre ambos dominios y se añadirán
-ranuras donde la geometría o los componentes lo requieran. Esta cifra es un
+La barrera primaria–SELV es continua en las cuatro capas de cobre: una banda de
+8 mm sin cobre entre ambos dominios, comprobada por el DRC, con ranuras fresadas
+bajo los optotriacs. Esta cifra es un
 margen de diseño provisional: la liberación exigirá recalcular separación y
 creepage según tensión, material, contaminación, categoría de sobretensión y la
 norma aplicable al electrodoméstico real.
@@ -55,8 +55,11 @@ Los 31 W son suficientes para la corriente resistiva medida del motor de grupo
 (unos 0,44 A a 24 V), la lógica y, por separado, la válvula (unos 0,42 A). No se
 libera todavía el presupuesto en el caso de arranque, atasco o accionamiento
 simultáneo: la selección queda condicionada a medir esos tres casos en la máquina.
-J101 y J112 se conservarán durante el desarrollo como entradas de banco o puntos
-DNP, con selección que impida realimentar la fuente integrada.
+J101 y J112 se conservan como entradas de banco. J121, un puente de soldadura
+que se fabrica cerrado, une la salida de PS701 al rail de 24 V y se abre antes de
+alimentar por J112. J101 no tiene selector: comparte nodo con la salida de U303,
+el buck de 24 V a 12 V, y hay que revisar si U303 lleva tensión de vuelta a
+`24V_ACT_RAW` cuando J101 alimenta sin 24 V.
 
 ## Cargas conocidas
 
@@ -68,9 +71,7 @@ DNP, con selección que impida realimentar la fuente integrada.
 | Grupo | 24 V DC; 54,7 Ω medidos | DRV8876 y límite de corriente ya dibujados; alimentar desde 24 V aislados integrados |
 | Electroválvula JP3 | OLAB 6000BH/B0DN, 24 V DC; 56,7 Ω | etapa low-side y rueda libre ya dibujadas; alimentar desde 24 V aislados integrados |
 
-## Estado seguro
-
-## Etapa del calentador — diseño propuesto, sin colocar
+## Etapa del calentador
 
 Con la medida del propietario (2026-09-20) el consumo queda cerrado: 27,5 Ω a
 230 V son 8,36 A y 1 924 W, que coincide con los 1 900 W de placa. Ese es el
@@ -110,10 +111,9 @@ Números que hay que respetar:
 | Pico por la puerta con 390 Ω (R710) | 0,83 A, por debajo del 1 A admisible del opto |
 
 El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde
-3,3 V con las resistencias del catálogo no se llega con margen. Se propone el
-mismo patrón que ya usan la válvula y el relé, un MOSFET SI2308A gobernado por
-la puerta AND libre de U603, cuyo segundo canal está hoy atado a masa y solo
-espera esta señal. La resistencia de puerta del triac, en cambio, ve hasta
+3,3 V con las resistencias del catálogo no se llega con margen. Se usa el mismo
+patrón que la válvula y el relé: un MOSFET SI2308A (Q705) gobernado por la
+segunda puerta AND de U603. La resistencia de puerta del triac, en cambio, ve hasta
 325 V de pico y ninguna de las resistencias 0603 del catálogo está calificada
 para esa tensión. **Resuelto 2026-09-22:** R710 es una Panasonic ERJ-P08J391V
 (LCSC C2086379), 1206 antisobretensión de 0,66 W con 500 V de tensión límite de
@@ -158,8 +158,8 @@ Con esta bomba, el cruce por cero no quita nada:
 | Pico por la puerta con 390 Ω (R712) | 0,83 A en el peor caso |
 
 La orden `PUMP_EN_RAW` sale de PB11 y pasa por U604, un tercer SN74LVC2G08, que
-la anula mientras `STM_NRST` esté bajo. Su segunda puerta queda atada a masa y
-reservada para el molinillo. R713 mantiene la orden a cero en el arranque.
+la anula mientras `STM_NRST` esté bajo. Su segunda puerta sirve al molinillo.
+R713 mantiene la orden a cero en el arranque.
 
 No se pone snubber RC. El BTA24-800BW no lo necesita y, con el diodo en serie,
 la corriente llega a cero antes de que el triac tenga que bloquear. Hay que
@@ -274,13 +274,15 @@ exista el control del calentador. No sustituye a F701: es una regla de
 dimensionado, y un fallo del firmware que la incumpla solo sobrecarga F701 un
 110–120 % durante los segundos de un molido.
 
-El calentador debe tener dos medios de corte en serie que no dependan de un único
-semiconductor ni de un único GPIO. Se añade como candidato un relé general
-normalmente abierto Omron `G5RL-1A-E-TV8 DC24` de 16 A delante de las tres ramas
-de carga. Cada carga conserva su propio triac y los dos termostatos externos de
-190 °C siguen en la cadena del calentador. Bomba y molino arrancarán desactivados
-y sus órdenes cruzarán aislamiento. El watchdog existente deberá retirar tanto
-la bobina del relé general como las órdenes individuales.
+## Estado seguro
+
+El calentador tiene dos medios de corte en serie que no dependen de un único
+semiconductor ni de un único GPIO: el relé general normalmente abierto Omron
+`G5RL-1A-E-TV8 DC24` de 16 A, delante de las tres ramas de carga, y su propio
+triac. Los dos termostatos externos de 190 °C siguen en la cadena del
+calentador. Bomba y molino arrancan desactivados y sus órdenes cruzan la barrera
+por optotriacs. Con el MCU en reset, U603 y U604 retiran tanto la bobina del
+relé general como las órdenes individuales.
 
 Un semiconductor puede fallar en corto. Por ello el firmware, el watchdog y un
 triac/MOSFET apagado no bastan para afirmar desconexión. La selección definitiva
@@ -288,22 +290,21 @@ de relé, triacs, optoacopladores, fusibles, MOV, filtro, puente y fuente se har
 con hojas de datos, disponibilidad y proceso de montaje compatibles con JLCPCB o
 un ensamblador equivalente.
 
-## Orden de diseño
+## Lo que queda
 
-1. Comprobar en la impresión 1:1 la huella de JP1 y JP9, ya TE 63824-1 por la
-   foto del propietario. JP19 y JP17 ya usan las huellas de los TE 1971845-4 y 1971845-3; JP24 y JP8 están en sus posiciones originales
-   estimadas.
+Ya están hechos las etapas de las tres cargas de red, el interlock sobre todas
+ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
+
+1. Comprobar en la impresión 1:1 las huellas de JP1/JP9 (TE 63824-1), JP17 y
+   JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
-   sustituir la fuente candidata IRM-30-24 ya incorporada al esquema y PCB.
-3. Cerrar los valores de fusibles/MOV/filtro y diseñar conmutación del calentador y bomba y
-   puente/conmutación del molino.
-4. Extender el interlock hardware a las tres salidas peligrosas.
-5. Delimitar dominios y reglas de aislamiento en KiCad antes de continuar rutas.
-6. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
-7. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
+   sustituir la IRM-30-24.
+3. Cerrar F701, F702, RV701 y el filtro EMI.
+4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
+5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
    eléctrica independiente y el plan de puesta en marcha.
 
-## Uso de banco mientras se integra la red
+## Uso de banco
 
 J101 y J112 permiten seguir probando lógica y actuadores de 24 V con fuentes SELV
 limitadas. J111 permanece abierto por defecto. El USB puede alimentar solo la

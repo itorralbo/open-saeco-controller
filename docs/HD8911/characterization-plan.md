@@ -72,7 +72,7 @@ El límite resistivo derivado es 0,44 A a 24 V.
 | BU-02 | N1 | Corriente en vacío | Grupo fuera de la máquina, 24 V limitados a 1 A, los dos sentidos | Fuente de banco + pinza o shunt | Rango del shunt y de `I0` |
 | BU-03 | N1 | Corriente en carrera completa | Grupo montado, sin café; registro de toda la carrera | Shunt 0,1 Ω + osciloscopio | Perfil de movimiento, tiempos y timeouts |
 | BU-04 | N1 | Pico de arranque e inversión | 10 arranques e inversiones | Igual que BU-03 | Límite de corriente del DRV8876 |
-| BU-05 | N2 | Corriente de compresión con café | Dosis de 7, 9 y 11 g; aroma 1, 3 y 5 | Telemetría del prototipo (PA3) | Tabla de autodosis |
+| BU-05 | N2 | Corriente de compresión con café | Dosis de 7, 9 y 11 g; aroma 1, 3 y 5 | Telemetría del prototipo (IPROPI en PC0) | Tabla de autodosis |
 | BU-06 | N1 | Tiempo de carrera y separación tras el micro | Registro de micros y corriente | Analizador lógico | Algoritmo de homing (1–2 mm tras el micro) |
 
 ## Electroválvula (JP3)

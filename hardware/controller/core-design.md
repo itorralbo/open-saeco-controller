@@ -1,14 +1,13 @@
-# Principal Rev A.0 — lógica y alimentación integrada
+# Principal Rev A — esquema
 
-Existe una hoja eléctrica parcial con 158 posiciones eléctricas:
+El esquema tiene 187 posiciones eléctricas en una sola hoja:
 [esquema KiCad](kicad/controller-core-reva.kicad_sch),
-[vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv).
-Es una parte de la futura principal; no es una placa de sustitución terminada.
-Ya dispone de [proyecto y PCB de trabajo](../kicad-workflow.md), con 155 huellas,
-contorno y tres taladros. ERC nativo superado y DRC sin infracciones, con la
-barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
+[vista SVG auxiliar](preview/core.svg) y [BOM](bom-draft.csv). Cubre toda la
+placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
+[PCB](layout.md) está colocada y ruteada con DRC limpio; ver
+[proyecto y validación](../kicad-workflow.md).
 
-## Alcance implementado en el borrador
+## Alcance del esquema
 
 - U101: STM32G431RBT6, LQFP64; alimentación, desacoplo, NRST, BOOT0 y SWD.
 - U201: ESP32-S3-WROOM-1U-N8R8 (LCSC C2980300); alimentación, EN con RC, BOOT y
@@ -23,8 +22,8 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
 - Resistencias serie candidatas de 33 Ω en las dos salidas UART y seis señales
   del display. Las de la UART van junto a sus emisores; las seis del display,
   en fila bajo J104, a la entrada del cable del frontal.
-- Entrada de 12 V DC aislada, protección de entrada, buck de 3,3 V y corte
-  controlado del rail del frontal.
+- Entrada de 12 V DC aislada de banco (J101), protección de entrada, buck de
+  3,3 V y corte controlado del rail del frontal.
 - Divisor y filtro del NTC JP13 hacia PA3/ADC1_IN4, con diagnóstico de abierto/corto.
 - Alimentación a 12 V y entrada open collector del caudalímetro JP5 hacia
   PA2/TIM2_CH3; pinout físico 1=señal, 2=GND y 3=VCC.
@@ -33,8 +32,8 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
 - Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
 - J105 y J106 son HR A2506WV-02P/-03P, identificadas por el propietario;
-  J107–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
-  LCSC. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
+  J107–J109 usan huellas candidatas JST XH/PH que la revisión con nonio del
+  2026-09-24 no confirma. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
 - J112 recibe 24 V DC aislados para los actuadores; F303/D304/C501 forman la
@@ -53,17 +52,19 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
 
-JP8 y JP24 ya aparecen como J115 y J117, las LEOCO 3941P03*000 y 5001P020013
-identificadas por el propietario, con huella según el plano del fabricante.
-JP19 es J116 y JP17 es J118, los TE 1971845-4 y 1971845-3 con huella según el
-plano del fabricante. Los dos
-FASTON de PE son J119/J120, con patrón de patas provisional. Los drivers de red todavía no están dibujados.
+- Etapas de calentador (U701/Q703), bomba (U702/Q704) y molinillo
+  (U703/Q708/F703/BR701): MOC3083 de cruce por cero y BTA24 tras K701, con el
+  LED de cada opto gobernado por un SI2308A desde 12 V. Órdenes PB10, PB11 y PC4
+  a través de U603/U604. Detalle en
+  [power-architecture.md](../power/power-architecture.md).
 
-Los GPIO restantes llevan NC en esta hoja parcial. Significa que no están
-conectados **en el circuito actual**; se cambiarán al incorporar I/O. No equivale
-a una asignación del arnés Saeco. El motor del grupo es la primera salida de carga
-incorporada; la válvula tiene una etapa experimental y calentador, bomba y molino
-aún no tienen driver.
+JP8 y JP24 son J115 y J117, las LEOCO 3941P03*000 y 5001P020013 identificadas
+por el propietario, con huella según el plano del fabricante. JP19 es J116 y JP17
+es J118, los TE 1971845-4 y 1971845-3, también con huella según el plano. Los dos
+FASTON de PE son J119/J120, TE 63824-1 casados con la foto del propietario.
+
+Los GPIO sin uso llevan NC: no están conectados en el circuito y no equivalen a
+ninguna vía del arnés Saeco.
 
 ## Alimentación y arranque
 
@@ -72,14 +73,14 @@ recibir 12 V DC de una fuente AC/DC aislada y certificada; no admite conexión a
 red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
 (SMAJ18A) limita transitorios antes del regulador.
 
-La identificación posterior de cargas confirma que el motor del grupo y la
-electroválvula necesitan 24 V DC. J112 añade un segundo rail aislado de 24 V
-compartido en origen por ambas ramas protegidas; J101 continúa siendo
-exclusivamente de 12 V para lógica. La [decisión de alimentación de Rev A](../power/power-architecture.md)
-mantiene ambas fuentes externas para poder probar con límites independientes sin
-aplicar 24 V al AP63203. La fuente aislada integrada forma parte de esta misma PCB
-y se elegirá con las medidas del prototipo; J101/J112 quedarán como entradas
-auxiliares de banco o DNP.
+En la máquina, PS701 (IRM-30-24) da `24V_INTERNAL_RAW`, que J121, puenteado de
+fábrica, une a `24V_ACT_RAW`: de ahí salen el motor del grupo, la válvula, la
+bobina de K701 y U303, que baja a 12 V sobre la misma red `12V_ISO_RAW` que J101.
+En banco, J112 inyecta 24 V limitados con J121 abierto, y J101 12 V para la
+lógica sola. J101 comparte nodo con la salida de U303: no hay diodo ni selector
+entre ellos, así que alimentar J101 con 24 V presentes, o sin ellos (U303 puede
+llevar tensión de vuelta a `24V_ACT_RAW`), queda por revisar antes de usarlo.
+Ver la [arquitectura de alimentación](../power/power-architecture.md).
 
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
 la tabla 2 de su hoja de datos: L301=3,9 µH, C301=10 µF/25 V, C304+C305=2×22 µF/10 V
@@ -91,7 +92,7 @@ U302 (TPS22918DBVR) genera `3V3_UI` desde `3V3_CORE`. PB12 del STM32 controla
 rampa y QOD queda unido a VOUT para descargar el frontal al apagarlo. Esta rama
 permite cortar el frontal y reduce su corriente de arranque. La rampa, descarga y
 posible backfeed deben medirse con el display definitivo. `GND_UI` es la masa
-lógica común; el aislamiento está en la fuente anterior a J101.
+lógica común; el aislamiento lo da PS701 (o la fuente de banco de J101/J112).
 
 VDDA y VREF+ del STM32 quedan conectados a 3V3_CORE y desacoplados localmente.
 VREFBUF interno debe permanecer deshabilitado mientras VREF+ se alimenta así.
@@ -131,9 +132,9 @@ y 10 nF, necesario para que un equipo autoalimentado detecte la presencia del ho
 La carcasa se une provisionalmente a `GND_UI`; la política EMI/chasis se revisará
 con el layout y la envolvente final.
 
-El layout deberá mantener D+/D− a 90 Ω diferencial ±10 %, longitudes igualadas,
-plano de masa continuo y el mínimo de vías. U203 irá junto a J110 y R221/R222 junto
-al ESP32. Son requisitos de colocación/routing; el PCB actual solo coloca huellas.
+El par D+/D− está ruteado para 90 Ω diferencial (0,29/0,20 mm sobre el plano de
+In1.Cu), con U203 junto a J110 y R221/R222 junto al ESP32; ver
+[service-usb.md](../../docs/service-usb.md).
 
 La vía de alimentación USB es deliberadamente opcional: F302 limita a 500 mA,
 J111 es un puente de soldadura que se fabrica **abierto** y D303 impide retorno
@@ -143,20 +144,21 @@ alimentar actuadores, el frontal completo ni la máquina desde el PC. Con J111
 abierto, USB sigue disponible para datos cuando J101 alimenta la lógica. El uso
 de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.md).
 
-## Bloques que faltan en la principal
+## Lo que falta en la principal
 
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
-| Fuente aislada | Elegir e integrar la fuente/transformador de 230 V a 24 V | Espacio original, temperatura, aislamiento y potencia total |
-| Alimentación lógica | Ensayar AP63203, térmica, ripple y transitorios | Presupuesto de corriente y prototipo cargado |
+| Fuente aislada | Confirmar IRM-30-24 con los consumos reales (PS-01 a PS-03) | Consumos simultáneos, temperatura interior |
+| Protección de red | Valores de F701/F702, MOV RV701 y filtro EMI | Corriente de falta, inrush e identificación de L5/L7 de la original |
+| Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; revisar J101 frente a U303 | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
-| USB | Rutear el par, comprobar enumeración y consumo de banco | Impedancia del stack-up, acceso mecánico y dominio aislado verificado |
+| USB | Comprobar enumeración y consumo de banco | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Ensayar el [watchdog e interlock implementados](../power/watchdog-interlock.md) | Firmware PB4, osciloscopio y análisis de fallos |
 | Sensores | Caracterizar salida del nivel capacitivo y ensayar adaptadores | Niveles lleno/vacío de JP22 y estados de contactos JP16 |
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
 | Electroválvula | Ensayar la [etapa low-side implementada](../power/valve-driver.md), corriente, liberación y transitorios | Fuente 24 V limitada, bobina real y osciloscopio |
-| Resto de potencia | Integrar calentador, bomba y molino en la zona de red de esta PCB | Corrientes reales, aislamiento, térmica y corte independiente |
-| Layout | Colocación final, conectores y routing | Posición de conectores y cierre de I/O |
+| Etapas de red | Ensayar calentador, bomba y molinillo | [Plan de caracterización](../../docs/HD8911/characterization-plan.md) y revisión de aislamiento |
+| Mecánica | Comprobación 1:1 y conectores de JP14, JP16 y JP22 | Placa original, mazos y muestras |
 
 ### Puente H del motor del grupo
 
@@ -195,9 +197,9 @@ J112 exige 24 V DC aislados y limitados. F303 es de 1 A y D304 protege contra
 polaridad inversa. No se ha añadido un TVS al rail de motor: su tensión de trabajo
 y energía deben elegirse con la tolerancia y respuesta transitoria de la fuente
 real para no superar los 40 V absolutos del DRV8876. El catálogo registra todas
-las piezas como candidatas, no liberadas para compra. La huella estándar incluye
-pad térmico de 3×3 mm; antes del layout final se derivará una huella local con la
-matriz de vías y el área de cobre recomendadas por TI.
+las piezas como candidatas, no liberadas para compra. Se usa la huella estándar
+con pad térmico de 3×3 mm, que baja al plano por cuatro vías; la matriz de vías y
+el área de cobre que recomienda TI quedan por comprobar antes de fabricar.
 
 ### Telemetría de alimentación
 
@@ -236,7 +238,9 @@ que el watchdog se desactive cuando el GPIO queda en alta impedancia.
 U602 (SN74LVC2G08DCTR) combina `STM_NRST` con `BREW_SLEEP_RAW` y
 `VALVE_EN_RAW`. Si reset está activo, fuerza `BREW_SLEEP_INTERLOCK` y
 `VALVE_EN_INTERLOCK` a cero independientemente del software. R603/R604 mantienen
-las órdenes brutas a cero mientras el MCU arranca. Ver el [diseño y temporización
+las órdenes brutas a cero mientras el MCU arranca. U603 y U604, del mismo tipo,
+hacen lo mismo con el armado del relé general (PB7) y las órdenes de calentador
+(PB10), bomba (PB11) y molinillo (PC4). Ver el [diseño y temporización
 del supervisor](../power/watchdog-interlock.md).
 
 ### Fuente integrada y corte general de cargas
@@ -254,7 +258,7 @@ U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación us
 K701 es un relé Omron G5RL-1A-E-TV8 DC24 normalmente abierto. Sus dos pads COM y
 sus dos pads NO se mantienen duplicados para repartir corriente. U603 exige a la
 vez `STM_NRST` inactivo y `MAINS_ARM_RAW`; Q701 excita la bobina y D701 absorbe su
-energía. `LOAD_L_ENABLED` será la única fase entregada a los drivers de calentador,
+energía. `LOAD_L_ENABLED` es la única fase que llega a los triacs de calentador,
 bomba y molino. El dimensionado final depende aún de medir los motores y revisar
 el calentador de 1900 W.
 
@@ -270,15 +274,14 @@ instantánea de existencias están en el [catálogo de montaje](../assembly/part
 python3 tools/generate_controller_core.py
 python3 tools/check_controller_core.py
 python3 tools/validate_kicad.py
-<python de KiCad> tools/sync_controller_pcb.py
 ```
+
+La cadena completa de la PCB está en [kicad-workflow.md](../kicad-workflow.md#cómo-continuar).
 
 El comprobador propio lee el esquema y verifica alimentación, masas, conexión cruzada
 UART, SWD, arranque, reserva PSRAM, enlace frontal y MPN/huella contra catálogo.
 Es un parser limitado propio, no KiCad. Adicionalmente,
 `python3 tools/validate_kicad.py` ejecuta ERC y coteja una netlist exportada por
-KiCad. El sincronizador conserva la mecánica, actualiza redes y mantiene las
-huellas en una colocación provisional. Las siete cabeceras de
-máquina deben ensayarse con los arneses antes de liberar la mecánica.
-Ver [resultados y límites](../kicad-workflow.md). No hay routing, firmware de placa
-ni ensayo físico.
+KiCad. Las cabeceras de máquina deben probarse con los arneses antes de liberar
+la mecánica. Ver [resultados y límites](../kicad-workflow.md). No hay firmware de
+placa ni ensayo físico.

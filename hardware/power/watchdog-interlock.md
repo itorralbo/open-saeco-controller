@@ -24,7 +24,17 @@ BREW_SLEEP_INTERLOCK = BREW_SLEEP_RAW AND STM_NRST
 VALVE_EN_INTERLOCK   = VALVE_EN_RAW   AND STM_NRST
 ```
 
-R603 y R604, ambos de 10 kΩ, mantienen las órdenes brutas a cero al arrancar.
+U603 y U604, del mismo tipo, aplican la misma regla al resto:
+
+```text
+MAINS_RELAY_EN         = MAINS_ARM_RAW  AND STM_NRST   (U603, relé K701)
+HEATER_EN_INTERLOCK    = HEATER_EN_RAW  AND STM_NRST   (U603)
+PUMP_EN_INTERLOCK      = PUMP_EN_RAW    AND STM_NRST   (U604)
+GRINDER_EN_INTERLOCK   = GRINDER_EN_RAW AND STM_NRST   (U604)
+```
+
+R603 y R604, ambos de 10 kΩ, mantienen las órdenes brutas a cero al arrancar;
+R711, R713 y R717 hacen lo mismo con calentador, bomba y molinillo.
 R506 y R512 conservan además los pull-down junto a cada driver. Mientras
 `STM_NRST` está bajo, U602 fuerza ambas salidas a cero aunque el software o un
 GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las cargas.
@@ -42,7 +52,8 @@ GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las carga
 - Confirmar que el arranque completo llega al primer pulso antes de 0,9 s o
   definir una estrategia de inicialización que mantenga las cargas bloqueadas.
 - Inyectar bloqueo del firmware, brownout, PB4 fijo alto/bajo y reset SWD. Cada
-  caso debe llevar `BREW_SLEEP_DRV` y `VALVE_EN_DRV` a cero.
+  caso debe llevar a cero `BREW_SLEEP_DRV`, `VALVE_EN_DRV`, el relé K701 y las
+  tres órdenes de red.
 
 Fuentes: [TPS3828/TPS382x de TI](https://www.ti.com/lit/ds/symlink/tps3823.pdf),
 [SN74LVC2G08 de TI](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf),

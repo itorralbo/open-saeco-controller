@@ -38,11 +38,9 @@ rojos para posición de trabajo. Esta secuencia se registra como posición visua
   analógica de dos hilos para JP13 y tres pares de contactos: JP14 y los dos de JP16.
 - JP16 mezcla motor y contactos en un mismo conector. El acondicionamiento lógico
   y la etapa del motor deben mantenerse diferenciados aunque compartan carcasa.
-- JP17 introduce red y JP19 conduce el circuito del calentador. La controladora
-  actual solo acepta 12 V DC aislados por J101; este documento no autoriza conectar
-  JP17 o JP19 al subconjunto de baja tensión actual ni selecciona por sí solo los
-  drivers de potencia. Ambos conectores y sus etapas sí son obligatorios en la
-  principal completa.
+- JP17 introduce red y JP19 conduce el circuito del calentador. La principal
+  Rev A ya incluye ambos conectores, la fuente aislada y las etapas de potencia,
+  pero nada de eso está ensayado: no conectar la placa a red.
 - JP2 debe permanecer sin uso hasta encontrar documentación que contradiga de
   forma verificable la indicación `NOT CONNECT`.
 
@@ -52,7 +50,7 @@ La identificación de componentes y otras secciones del manual cierran tensiones
 potencia del calentador y bomba, curva NTC y características del caudalímetro. El
 resultado se mantiene en [components.md](components.md).
 
-Siguen sin conocerse corrientes dinámicas de motores, pinout del sensor capacitivo,
-COM/NO/NC de los dos micros de JP16, pinout de JP21 o PROG. y referencias completas
-de las carcasas. Estos datos requieren continuidad sin tensión y ensayos específicos
+Siguen sin conocerse corrientes dinámicas de motores, el tipo de salida del sensor
+capacitivo, COM/NO/NC de los dos micros de JP16, pinout de JP21 o PROG. y las
+carcasas de JP14, JP16 y JP22. Estos datos requieren continuidad sin tensión y ensayos específicos
 antes de cerrar las etapas eléctricas.

@@ -1,7 +1,7 @@
 # Interfaz propuesta controladora–frontal, Rev A.0
 
 Estado: contrato de diseño nuevo; no es el pinout de JP21 Saeco.
-Compatible con el [esquema preliminar del frontal](../front-panel/README.md).
+Compatible con el [frontal Rev A](../front-panel/README.md).
 Display seleccionado (ST7789 2,0") y presupuestos en el [subsistema display + UI](../../docs/display-ui.md).
 
 ## Distribución de funciones
@@ -38,16 +38,17 @@ reutilizar el arnés Saeco existente.
 | 16 | NC | Sin conexión | Reserva, sin tensión asignada |
 
 Todas las señales de esta interfaz se diseñan para lógica de 3,3 V. `GND_UI` es
-la masa lógica propuesta; su nombre no demuestra separación de red. Su unión a
-la principal depende del diseño de alimentación y aislamiento todavía pendiente.
+la masa lógica de la principal, aislada de red por la fuente IRM-30-24; su nombre
+no demuestra por sí solo esa separación, que queda por verificar en la revisión
+de aislamiento.
 J1/J2 están dentro del mismo dominio lógico; no hay aislamiento en el frontal.
 
-## Reserva candidata ESP32-S3-WROOM-1U-N8R8
+## Pines del ESP32-S3-WROOM-1U-N8R8
 
-Selección de trabajo del módulo, instanciada en el [núcleo inicial](core-design.md).
+Módulo del [esquema de la principal](core-design.md).
 La variante 1U tiene el mismo pinout que la WROOM-1 y sustituye la antena impresa
 por un conector U.FL para antena externa.
-No hay BSP; USB ya está conectado en el esquema principal y queda por rutear y ensayar. No usar números de un DevKit.
+No hay BSP; USB está conectado y ruteado, pendiente de ensayo. No usar números de un DevKit.
 Tabla cotejada con la sección de pines de la
 [hoja de datos Espressif del módulo](https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.html).
 
@@ -62,30 +63,36 @@ Tabla cotejada con la sección de pines de la
 | KEY_SCL | 5 | 5 |
 | KEY_SDA | 4 | 4 |
 | KEY_INT_N | 6 | 6 |
-| UART_TX hacia STM32 | 17 | 10 |
-| UART_RX desde STM32 | 18 | 11 |
+| UART_TX hacia STM32 | 42 | 35 |
+| UART_RX desde STM32 | 2 | 38 |
 | USB D− / D+ | 19 / 20 | 13 / 14 |
-| USB VBUS sense | 21 | 23 |
+| USB VBUS sense | 15 | 8 |
+| UART de depuración TX / RX (J103) | 43 / 44 | 37 / 36 |
+| BOOT (J103) | 0 | 27 |
 
-Esta asignación evita pines de arranque 0/3/45/46 y, para la variante con PSRAM
-octal N8R8, 35/36/37. Quedan por cerrar el layout USB, alimentación final, depuración,
-antena y enlace STM32. La tabla reserva recursos, no completa esos circuitos.
+Salvo GPIO0, que solo sirve para forzar el arranque desde J103, la asignación
+evita los pines de arranque 0/3/45/46 y, para la variante con PSRAM octal N8R8,
+35/36/37. La UART pasó el 2026-09-23 de IO17/IO18 a IO42/IO2 y la detección de
+VBUS de IO21 a IO15, para acortar el ruteo (ver
+[layout.md](layout.md#esp32-y-frontal)). Quedan por ensayar el USB, la antena y el
+enlace con el STM32.
 
 ## Condiciones eléctricas pendientes de cierre
 
-- Reservar protección de corriente y posible corte de `3V3_UI` en la principal;
-  calcular el rail con consumo máximo e inrush del display elegido, caída del
-  cable y consumo del resto de electrónica. No hay presupuesto de corriente cerrado.
+- `3V3_UI` sale de U302 (TPS22918, 2 A, con rampa por C307 y descarga QOD).
+  Falta calcular el rail con consumo máximo e inrush del display elegido, caída
+  del cable y consumo del resto de electrónica. No hay presupuesto de corriente cerrado.
 - Pull-ups de SCL/SDA/INT en el frontal; no duplicarlas inadvertidamente.
   Al apagar el frontal, poner sus señales en alta impedancia y revisar caminos
-  de backfeed. Fuente, corte y protección ESD todavía sin componente seleccionado.
+  de backfeed. La protección ESD del arnés sigue sin componente seleccionado.
 - I²C: arrancar en banco a 100 kHz. Con 4,7 kΩ, el modelo RC
   `tr ≈ 0,8473 × R × C` da aproximadamente 1 µs a 250 pF. Medir capacitancia y
   flancos del arnés completo; no se declara una longitud máxima admisible.
 - SPI: **reloj de partida 10 MHz** (decisión; ver
-  [subsistema display + UI](../../docs/display-ui.md)) con resistencias serie candidatas de
-  22–47 Ω cerca del ESP32, especialmente en reloj. Revisable al alza solo por medida
-  de flancos con el arnés real; la frecuencia no garantiza por sí sola integridad de señal.
+  [subsistema display + UI](../../docs/display-ui.md)). R213–R218, de 33 Ω, van en
+  serie con las seis señales del display, en una fila junto a J104, a la entrada
+  del cable. Revisable al alza solo por medida de flancos con el arnés real; la
+  frecuencia no garantiza por sí sola integridad de señal.
 - Un frame 240 × 320 RGB565 (1,2288 Mbit) tarda ≈ 123 ms a 10 MHz (≈ 1,23 s a 1 MHz),
   sin contar comandos. LVGL repinta solo el área sucia, así que el full-frame es el
   peor caso, no un objetivo de interfaz fluida. Evaluar actualización parcial y
@@ -96,13 +103,13 @@ antena y enlace STM32. La tabla reserva recursos, no completa esos circuitos.
 
 ## Continuación de la principal
 
-| Bloque | Avance permitido ahora | Dato que falta para cerrarlo |
+| Bloque | Hecho | Lo que falta para cerrarlo |
 |---|---|---|
-| ESP32 y frontal | Módulo, alimentación con corte, J104/J1 IDC y contrato eléctrico implementados | Longitud de arnés, EMC y dimensiones del frontal |
-| STM32G431RBT6 | Primer núcleo LQFP64 con UART, reset y SWD | Asignación de I/O y acondicionamiento de sensores |
-| Sensores | Definir requisitos de diagnóstico abierto/corto | Pinouts, niveles y curva NTC de la unidad |
-| Potencia | Separar control lógico, drivers y corte independiente | Ratings de cargas, topología y protecciones |
-| PCB principal | Registrar zonas y restricciones mecánicas | Cotas, taladros, posición y orientación de conectores |
+| ESP32 y frontal | Módulo, alimentación con corte, J104/J1 IDC y contrato eléctrico, ruteados | Longitud de arnés, EMC y MPN del display |
+| STM32G431RBT6 | Todas las E/S asignadas y ruteadas | BSP y ensayo |
+| Sensores | Acondicionamiento con diagnóstico de abierto/corto | Salida de JP22, NO/NC de JP16 y conectores de JP14/JP16/JP22 |
+| Potencia | Etapas de 24 V y de red con corte general e interlock | Medidas de las cargas, fusibles, MOV, filtro EMI y ensayos |
+| PCB principal | Colocación y ruteo completos, DRC limpio | Comprobación 1:1 y revisión de aislamiento |
 
 No derivar fuentes de motor ni referencias de driver de cifras no verificadas
 en conversaciones anteriores. El frontal nuevo elimina la dependencia del

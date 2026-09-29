@@ -65,11 +65,11 @@ reserva.
 2. Comparar el tiempo de liberación con SS34: produce caída lenta y poco ruido;
    un TVS o zéner
    acelera la liberación a costa de mayor tensión. La función hidráulica decidirá.
-3. Dimensionar la fuente y J112. Motor y válvula suman aproximadamente 0,862 A
-   resistivos. F303 y F304 protegen ahora cada rama por separado, pero la fuente y
+3. Confirmar la fuente (PS701, IRM-30-24) y J112. Motor y válvula suman
+   aproximadamente 0,862 A resistivos. F303 y F304 protegen ahora cada rama por separado, pero la fuente y
    el conector común deben dimensionarse con arranque, bloqueo y margen térmico.
 4. Verificar con osciloscopio `VALVE_RETURN`, la tensión máxima de Q501 y el
    comportamiento al conectar/desconectar 12 V y 24 V en cualquier orden.
 
-ERC y DRC geométrico pasan sin infracciones. La PCB principal sigue sin rutear;
-esta validación comprueba coherencia del diseño, no el funcionamiento con la carga.
+ERC y DRC pasan sin infracciones y la etapa está ruteada; esta validación
+comprueba la coherencia del diseño, no el funcionamiento con la carga.

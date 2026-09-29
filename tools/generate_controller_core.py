@@ -207,12 +207,12 @@ def main():
            'IO10': 'CS_RAW', 'IO11': 'MOSI_RAW', 'IO12': 'SCLK_RAW',
            'IO19': 'USB_DM_RAW', 'IO20': 'USB_DP_RAW',
            'IO15': 'USB_VBUS_SENSE'}
-    d.note('OPEN SAECO / PRINCIPAL — NÚCLEO LÓGICO A.0', 12, 12, 3)
-    d.note('BORRADOR PARCIAL: lógica, USB, sensores y dos cargas de 24V. La principal final integra red.', 12, 22, 1.8)
+    d.note('OPEN SAECO / PRINCIPAL — REV A', 12, 12, 3)
+    d.note('BORRADOR: lógica, USB, sensores, cargas de 24V y de red y fuente IRM-30 en la misma placa. Sin ensayar.', 12, 22, 1.8)
     d.note('01 / STM32 de control — C431633', 20, 36, 1.8)
     d.add('U101','STM32G431RB','STM32G431RBT6',82,112,[stm.get(n) for n in STM_PINS],
           'Package_QFP:LQFP-64_10x10mm_P0.5mm')
-    d.note('NC = sin asignar en esta hoja parcial; revisar al integrar sensores y drivers.', 20, 187)
+    d.note('NC = pin sin asignar; no equivale a ninguna vía del arnés Saeco.', 20, 187)
     d.note('Reloj HSI interno. USART1 PA9/PA10, AF7. VREFBUF interno deshabilitado.', 20, 194)
     d.note('02 / ESP32 de interfaz, antena externa U.FL — C2980300', 195, 36, 1.8)
     d.add('U201','ESP32S3WROOM1','ESP32-S3-WROOM-1U-N8R8',263,112,
@@ -290,7 +290,7 @@ def main():
     d.add('C306','C','100nF / output HF',807,101,[v,g],
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
     d.note('Fusible + bloqueo de polaridad + TVS. Valores del circuito recomendado Diodes, tabla 2.',610,145,1.2)
-    d.note('Entrada exclusivamente desde una fuente AC/DC aislada y certificada; el módulo de red aún no está seleccionado.',610,151,1.2)
+    d.note('J101 solo desde una fuente AC/DC aislada y certificada; en la máquina los 12V salen de U303 (hoja 15).',610,151,1.2)
     d.note('08 / Corte y descarga del frontal — TPS22918, 2A',610,174,1.8)
     d.add('U302','TPS22918','TPS22918DBVR',690,207,
           [v,g,'UI_PWR_EN','3V3_UI','3V3_UI','UI_RISE'],
@@ -695,8 +695,8 @@ def main():
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
-    d.note('Siguiente: filtro EMI, huellas PE y medidas de caracterización del molino.',12,804)
-    d.note('Contorno/taladros aceptados; conectores incompletos y rutas pendientes. BOM no liberada.',12,812)
+    d.note('Siguiente: filtro EMI, valores de F701/F702/RV701 y medidas de caracterización del molino.',12,804)
+    d.note('Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 
 

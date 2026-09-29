@@ -94,6 +94,11 @@ respectivamente. El mapa completo, incluidos los huecos reservados de potencia,
 se mantiene en `hardware/controller/mechanical-source.json` y se renderiza como
 `hardware/controller/validation/main-connector-map.svg`.
 
+> **Superado:** la revisión del 2026-09-24 descartó VH para JP8 y JP24 y JP17
+> resultó ser un TE RAST 5; el 2026-09-29 JP8 y JP24 quedaron identificados como
+> LEOCO 3941P03*000 y 5001P020013 (ver el final de este documento). Se conserva
+> el párrafo como registro.
+
 Para los tres conectores de potencia se cotejaron las fotos con el plano oficial
 de la serie [JST VH](https://www.jst-mfg.com/product/index.php?series=262):
 paso de 3,96 mm, VHR-2N de 7,86 mm y VHR-3N de 11,82 mm de ancho. Se reservan

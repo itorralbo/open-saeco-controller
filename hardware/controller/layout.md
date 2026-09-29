@@ -4,11 +4,11 @@ Estado: colocación mecánica de conectores y colocación funcional con la
 distribución de la placa original, dominio de red contiguo, reserva del disipador
 y barrera red/SELV comprobada por DRC. Desde el 2026-09-23 la placa es de
 cuatro capas y todas las redes están ruteadas a mano: DRC sin infracciones ni
-conexiones abiertas. Faltan los rellenos exteriores, la serigrafía y la
-revisión de aislamiento. Aún no fabricable. La fuente de verdad mecánica es
-`mechanical-source.json`; `tools/layout_controller_pcb.py` consume sus
-coordenadas, coloca las 159 huellas actuales y comprueba que los tres taladros aceptados
-no se muevan.
+conexiones abiertas. Tiene rellenos de masa en el lado SELV y serigrafía. Faltan
+la comprobación 1:1 y la revisión de aislamiento. Aún no fabricable. La fuente
+de verdad mecánica es `mechanical-source.json`; `tools/layout_controller_pcb.py`
+consume sus coordenadas, coloca las 187 huellas eléctricas y comprueba que los
+tres taladros aceptados no se muevan.
 
 ![Vista superior de la colocación](preview/pcb-staging-top.png)
 
@@ -37,8 +37,10 @@ mismo borde superior para las pruebas por ordenador.
 
 Todos los conectores de mazo entran en vertical (decisión del propietario,
 2026-09-22). J101, J105–J109, J112–J113, J115, J117 y J118 pasan de las JST
-S-series laterales a las B-series verticales. Los pads, el paso y el taladro son
-los mismos, así que las huellas conservan origen y giro y el cobre no cambia.
+S-series laterales a las B-series verticales. Los pads, el paso y el taladro eran
+los mismos, así que las huellas conservaron origen y giro y el cobre no cambió.
+Desde el 2026-09-29 J105, J106, J113, J115 y J117 llevan las cabeceras
+identificadas por el propietario (ver «JP3, JP5, JP13, JP8 y JP24»).
 J118 bajó entonces 0,8 mm para despejar PS701; desde el 2026-09-24 ya no es un
 VH sino el TE 1971845-3 de tres vías (ver «JP17»). Los courtyards liberan unos 750 mm². La franja útil está
 en x = 7–12,7 mm junto a J107/J108 y en y = 10–15,7 mm bajo J101/J112. En la fila
@@ -78,8 +80,8 @@ encima de JP8/JP19/JP24.
   (TE 1971845-4) y los dos FASTON de protección.
 
 USB, frontal, sensores, STM32, ESP32 y depuración permanecen íntegramente en
-SELV. Las órdenes hacia las cargas de red cruzarán la frontera únicamente por
-componentes de aislamiento y ningún plano de masa la atravesará.
+SELV. Las órdenes hacia las cargas de red cruzan la frontera únicamente por
+los optotriacs y ningún plano de masa la atraviesa.
 
 ## Barrera red/SELV verificable
 
@@ -198,7 +200,7 @@ DP por B.Cu justo antes de los pads.
   pistas van anidadas y separadas 2,5 mm; por eso F702 está encima de F701.
 - Fase protegida: une las dos pinzas de F701 y F702, RV701 y los dos pads COM
   de K701. El par COM de K701 se une por B.Cu para dejar sitio a la unión del par
-  NO (`LOAD_L_ENABLED`), que espera a las etapas de carga.
+  NO (`LOAD_L_ENABLED`), que baja a los triacs de las tres cargas.
 - Neutro: sale de la pata este de J118.3, junto al borde, y sube a 1,5 mm por
   x = 116,6 mm, entre el taladro del poste de J118 y las lengüetas de PE, a
   2,5 mm del puente de tierra, hasta PS701.2 en F.Cu. Desde ahí sigue hasta RV701
@@ -231,26 +233,26 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 
 ## Validación
 
-- 159/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
-  ya sus zonas originales (J118, 2,5 mm al oeste). JP19 y JP17 son los TE
-  1971845-4 y 1971845-3; JP8 y JP24, las LEOCO 3941P03 y 5001P02; JP3, JP5 y
-  JP13, las HR A2506WV; JP1 y JP9, lengüetas con
-  patrón de patas provisional. Contorno
+- 187/187 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
+  sus zonas originales (J118, 2,5 mm al oeste; J117, 0,5 mm al este). JP19 y JP17
+  son los TE 1971845-4 y 1971845-3; JP8 y JP24, las LEOCO 3941P03 y 5001P02; JP3,
+  JP5 y JP13, las HR A2506WV; JP1 y JP9, lengüetas TE 63824-1. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
   barrera de 8 mm, la reserva del disipador y los solapes de courtyard.
 - Cuatro capas, apilado JLC04161H-7628: GND_UI en In1.Cu y 3V3_CORE en
   In2.Cu, los dos solo en el lado SELV; el de 3,3 V es una sola pieza y el de
   masa tiene la pieza principal y los cinco anillos de los pads de masa de J104.
-- 1 244 segmentos y 274 vías. 3 098 mm de pista en F.Cu, 1 823 mm en B.Cu y
-  33 mm en In2.Cu (las dos subidas del supervisor). La impedancia USB se
-  verificará con el apilado antes de fabricar.
+- 1 268 segmentos y 441 vías, 156 de ellas de cosido (2026-09-29). 3 132 mm de
+  pista en F.Cu, 1 925 mm en B.Cu y 33 mm en In2.Cu (las dos subidas del
+  supervisor). El par USB está calculado para el apilado (ver «Par USB»).
 - Todas las redes conectadas; las tres diferencias de paridad son los
   taladros mecánicos MH1–MH3, que son intencionales.
 
-Las referencias se dejan temporalmente en `F.Fab` para que la colocación densa no
-genere conflictos de serigrafía. Se añadirán identificadores legibles de
-conectores, polaridad, puntos de medida y seguridad después del routing.
+Las referencias de los componentes van en `F.Fab` para que la colocación densa
+no genere conflictos de serigrafía. La serigrafía lleva el nombre de cada
+conector (J114 como MEDIDA), la polaridad y el aviso de red (ver «Serigrafía»);
+no hay otros puntos de prueba.
 
 ## Bloques ruteados a mano
 
@@ -497,10 +499,9 @@ cuál es cuál. El elemento mide 27,5 Ω y declara 1900 W, o sea 8,4 A a 230 V, 
 es justo lo que ya soporta el cobre de fase duplicado. JP1 y JP9 son tomas de
 tierra, del cuerpo del boiler y de la entrada de red.
 
-Con eso ya tienen huella las tres. Las tomas de tierra usan una lengüeta
-suelta dibujada en `OpenSaeco.pretty`, **provisional en el patrón de patas**:
-las medidas dan la lengüeta, no cómo suelda, así que lleva un taladro redondo
-de 1,6 mm. Hay que cotejarla con una muestra antes de pedir la placa.
+Con eso ya tienen huella las tres. Las tomas de tierra usaron primero una
+lengüeta suelta provisional, con un taladro redondo de 1,6 mm; el 2026-09-23
+pasaron a la TE 63824-1 de dos patas (ver «JP1 y JP9»).
 
 El propietario identificó JP19 el 2026-09-22: es el **TE 1971845-4** (LCSC
 C2149727, Extended en JLCPCB, soldadura por ola), un RAST 5 de cuatro
@@ -659,7 +660,7 @@ PA13 (SWDIO) y PA14 (SWCLK) son los dos pines más al este de la fila norte, per
 llegan a J102 cruzados. SWCLK sigue en F.Cu por y = 32,3 mm, bajo J102.3, y
 SWDIO baja a B.Cu justo al este de su pad y vuelve hacia el oeste por debajo.
 SWO (PB3) sube entre J102.1 y J102.2 y llega al pin 6 por encima de la
-cabecera. El pin de reset de J102 sigue abierto.
+cabecera. El reset de J102 se cerró después (ver «Lado este y norte del STM32»).
 
 ### Órdenes al supervisor
 
@@ -681,11 +682,12 @@ noroeste. Por eso salen por B.Cu:
 
 ### Etapa del molinillo (JP8)
 
-Colocada y ruteada el 2026-09-23, sobre 1 A de marcha supuesto; ver
+Colocada y ruteada el 2026-09-23, primero sobre 1 A de marcha supuesto y ese
+mismo día redimensionada a 3 A; ver
 [power-architecture.md](../power/power-architecture.md#etapa-del-molinillo).
 Las piezas son las del calentador y la bomba: MOC3083 (U703), BTA24 (Q708), una
 ERJ-P08 de 390 Ω (R721) y un SI2308A (Q707). Además lleva el puente KBP410
-(BR701) y el fusible T2A (F703).
+(BR701) y el fusible T4A (F703).
 
 Colocación:
 
@@ -902,7 +904,7 @@ Salidas de U602:
   - `BREW_PWM_RAW` pasa de PA8 a PF0 (TIM1_CH3N).
   - `RAIL_12V_ADC` pasa de PA4 a PF1 (ADC2_IN10).
   - `BREW_CURRENT_ADC` pasa de PA3 a PC0 (ADC12_IN6).
-  - `DOOR_CLOSED_N` pasa de PC0 a PC3.
+  - `DOOR_CLOSED_N` pasa de PC0 a PC3 (y después a PA1, en el bus de sensores).
 
   PC14, PF0 y PF1 están en la parte alta de la fila oeste, por encima del
   reset, y salen directos a la franja libre entre las órdenes al supervisor
@@ -926,9 +928,8 @@ Salidas de U602:
   x = 66,4 mm bajo la franja y las filas del supervisor, y enlaza en
   y = 30,4 mm con la línea de `IPROPI` que esperaba en y = 29,7 mm. Con eso
   desaparece el extremo suelto intencional.
-- **Telemetría**: PF1 baja por la franja directo a J114.5. PA5 baja a su vía
-  en el bolsillo bajo U101 y va por B.Cu, en y = 44,55 mm, hasta la vía de
-  J114.6.
+- **Telemetría**: PF1 baja por la franja directo a J114.5. La de 24 V salía de
+  PA5 por B.Cu hasta J114.6; con el bus de sensores pasó a PC1.
 
 ### Paso a cuatro capas (2026-09-23)
 

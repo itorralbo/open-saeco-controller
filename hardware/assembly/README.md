@@ -8,8 +8,9 @@ esperará al final del layout para buscar referencias.
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,
 huella candidata, categoría, modalidad de montaje, URL y fecha de consulta.
-Existencias verificadas en las páginas renderizadas de JLCPCB/LCSC el **2026-09-16/19**,
-sin iniciar sesión ni hacer compras. Son una instantánea, no una reserva.
+Existencias verificadas en JLCPCB/LCSC entre el **2026-09-16 y el 2026-09-29**
+(cada pieza lleva su fecha en el catálogo), sin iniciar sesión ni hacer compras.
+Son una instantánea, no una reserva.
 `stock_observed` y `available_order_qty_observed` son campos distintos de la web;
 un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 
@@ -35,10 +36,10 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 270.440 | 270.440 | Economic / Standard |
 | Entradas 12 V y 24 V, 2 unidades | JST B2B-XH-A(LF)(SN), vertical | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
 | JP13 | HR A2506WV-02P, 2 vías/2,50 mm, vertical | [C382532](https://jlcpcb.com/partdetail/C382532) | 700 (2026-09-29) | No observado | Extended; categoría JLC por verificar |
-| JP14 | JST B2B-XH-A(LF)(SN), vertical, candidato | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
+| JP14 | JST B2B-XH-A(LF)(SN), vertical, candidato no confirmado | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
 | JP5 | HR A2506WV-03P, 3 vías/2,50 mm, vertical | [C382533](https://jlcpcb.com/partdetail/C382533) | 0 (2026-09-29) | No observado | Extended; sin stock |
-| JP16 | JST B8B-XH-A(LF)(SN), vertical | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.697 | No observado | Categoría JLC por verificar |
-| JP22 | JST B3B-PH-K-S(LF)(SN), vertical | [C131339](https://jlcpcb.com/partdetail/C131339) | 153.612 | No observado | Categoría JLC por verificar |
+| JP16 | JST B8B-XH-A(LF)(SN), vertical, candidato no confirmado | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.697 | No observado | Categoría JLC por verificar |
+| JP22 | JST B3B-PH-K-S(LF)(SN), vertical, candidato no confirmado | [C131339](https://jlcpcb.com/partdetail/C131339) | 153.612 | No observado | Categoría JLC por verificar |
 | JP24 | LEOCO 5001P020013, 2 vías/5,00 mm, pin cuadrado, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP8 | LEOCO 3941P03*000, 3 vías/3,96 mm, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP17 | TE 1971845-3, RAST 5, 3 lengüetas 6,3 × 0,8 mm, 16 A, vertical | [C5169636](https://jlcpcb.com/partdetail/C5169636) | 233 | No observado | Extended; categoría JLC por verificar |
@@ -49,15 +50,16 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Entrada buck 24 V | Samsung CL31B106KBHNNNE, 10 µF/50 V X7R | [C89632](https://jlcpcb.com/partdetail/90812-CL31B106KBHNNNE/C89632) | 231.690 | 174.742 | Economic / Standard; Extended |
 | Salida buck 12 V, 2 unidades | CCTC TCC1210X7R226K250MT, 22 µF/25 V X7R | [C49118556](https://jlcpcb.com/partdetail/CCTC-TCC1210X7R226K250MT/C49118556) | 46.369 | 42.198 | Economic / Standard; Extended |
 | Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.051 | No observado | Categoría JLC por verificar |
-| Optotriac calentador | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 11.916 | No observado | Categoría JLC por verificar |
-| Optotriac motores, candidato | Vishay VOT8125AG-V, aleatorio/800 V | C6925370 | No observado | No observado | Suministro y montaje por verificar |
+| Optotriac calentador, bomba y molinillo | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 11.916 | No observado | Categoría JLC por verificar |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 35.363 | 35.210 | Economic / Standard |
 | Enlace principal–frontal, 2 unidades | IDC polarizado 2×8 2,54 mm | [C7501244](https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244) | 1.643 | 1.603 | Economic / Standard |
 
 Los integrados y magnéticos figuran como Extended; los pasivos de mayor volumen
 se han elegido Basic cuando existe una referencia adecuada. El código
 genérico de montaje `C9900171795` no identifica la variante N8R8 del módulo:
-no sustituye a `C2913201`.
+no sustituye a `C2980300`. El VOT8125AG de disparo aleatorio que se barajó para
+bomba y molinillo no tenía existencias en DIP; se usa el MOC3083 en las tres
+cargas.
 
 El DRV8876 figura en LCSC con stock, pero aún no se ha verificado su categoría ni
 su disponibilidad dentro del selector de montaje de JLCPCB. Ya forma parte del
@@ -89,14 +91,11 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal, lógica, alimentación y sensores](../controller/bom-draft.csv):
-  150 de 158 posiciones actuales tienen MPN y código LCSC; J111 y
-  J121 son puentes de cobre y no requieren pieza. J116/J119/J120 aún no tienen huella ni referencia
-  comprable. Las cabeceras de máquina
-  son candidatas mecánicas; faltan caracterizar la salida de JP22, ensayar el
-  puente H y la válvula, y completar las etapas de calentador, bomba y molino.
-  La fuente IRM-30, el relé, el buck de 12 V y la protección de entrada ya se
-  contabilizan en la BOM; fusibles, MOV y tres pasivos del buck siguen abiertos.
+- [Principal](../controller/bom-draft.csv): 187 posiciones. 180 tienen MPN y
+  código LCSC; J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
+  las vende; F701, F702 y RV701 tienen valor provisional y ninguna pieza; J111 y
+  J121 son puentes de cobre. J107–J109 (JP14, JP16 y JP22) son cabeceras
+  candidatas sin confirmar.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST B8B-PH-K-S(LF)(SN) vertical (C157974, Extended, sustituye el 2026-09-22 al lateral C157915),
@@ -104,14 +103,7 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
   [front-panel/fabrication](../front-panel/fabrication/).
 
 Los mismos campos están embebidos en los símbolos de los esquemas; el generador
-reutiliza el catálogo y comprueba huellas. La BOM de la principal incluye la
-protección de entrada DC, el buck, el corte del frontal, sensores de baja tensión,
-  USB de servicio, telemetría de 12/24 V, el driver del motor del grupo, la etapa
-  de válvula, la fuente IRM-30, el relé general y el watchdog con interlock
-  hardware. **Todavía no incluye en el esquema** los drivers de calentador,
-  bomba o molino.
-El porcentaje anterior
-solo describe la hoja actual, no el avance de toda la máquina.
+reutiliza el catálogo y comprueba huellas.
 
 El propietario identificó el 2026-09-29 las cabeceras de JP3, JP5, JP13, JP8 y
 JP24. Las tres de señal son HR (Joint Tech) A2506WV y están en JLCPCB, pero con
@@ -138,7 +130,8 @@ Son decisiones iniciales de diseño, no reglas mínimas publicadas por el fabric
   aislamiento controlados. Ver el [perfil de fabricación](../controller/manufacturing.md).
   Frontal: dos capas.
 - Componentes SMD preferiblemente en una cara; pasivos 0603 (1608 métrico).
-- Encapsulados con patas accesibles: LQFP64 y TSSOP; módulo de RF con antena integrada.
+- Encapsulados con patas accesibles: LQFP64 y TSSOP; módulo de RF con conector U.FL
+  para antena externa.
 - En señales lógicas, comenzar con pistas/espacios de 0,20 mm y vías 0,60/0,30 mm;
   revisar con stack-up y cotización. Estas cifras **no** dimensionan aislamiento
   de red, pistas de potencia, térmica ni impedancia USB.
@@ -155,7 +148,8 @@ identifica Comment, Designator y Footprint. Añadiremos el código de componente
 para evitar coincidencias ambiguas. Las referencias de BOM y CPL deben coincidir;
 ver [guía de preparación](https://jlcpcb.com/help/article/advice-for-bom-and-cpl-files-preparation).
 
-La BOM de la principal es de diseño: no hay CPL sin posiciones reales, ni Gerbers sin
-contorno y routing. El frontal ya tiene Gerbers, BOM y CPL generados por
+La principal ya tiene posiciones y ruteo, pero no se generan su CPL ni sus
+Gerbers hasta cerrar la revisión (ver [manufacturing.md](../controller/manufacturing.md)).
+El frontal ya tiene Gerbers, BOM y CPL generados por
 `tools/export_front_panel_fab.py`, pendientes de revisión antes del pedido. Antes de cotizar, refrescar stock y cantidades con merma,
 revisar orientaciones en la vista de montaje y cerrar las piezas todavía pendientes.

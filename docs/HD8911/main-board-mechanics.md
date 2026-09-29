@@ -78,24 +78,22 @@ centros de carcasa:
 | JP3 | J113 | 3,5 | 125,3 | 0° | borde inferior |
 | JP22 | J109 | 19,0 | 128,2 | 0° | borde inferior |
 | JP13 | J105 | 29,0 | 125,3 | 0° | borde inferior |
-| JP5 | J106 | 38,5 | 125,3 | 0° | borde inferior |
+| JP5 | J106 | 38,2 | 125,3 | 0° | borde inferior |
 
 La incertidumbre asignada es ±1,5 mm, suficiente para congelar el placement de
-Rev A y preparar una verificación física 1:1. Desde el 2026-09-22 todos los
-conectores de mazo de la Rev A son de entrada vertical, con los pads en las
-mismas coordenadas que las versiones laterales a las que sustituyen. El mapa reproducible está en
+Rev A y preparar una verificación física 1:1. J106 va 0,3 mm al oeste de la foto
+desde el 2026-09-29, para que la cabecera A2506 no toque U702. Desde el
+2026-09-22 todos los conectores de mazo de la Rev A son de entrada vertical. El mapa reproducible está en
 `hardware/controller/validation/main-connector-map.svg` y las coordenadas
 estructuradas en `hardware/controller/mechanical-source.json`.
 
-Se conservan además como posiciones obligatorias las de JP8, JP19, JP24,
-JP17, JP1 y JP9. Todavía no forman parte del esquema parcial, pero dejar
-libre su volumen evita cerrar el camino a una revisión que sustituya también la
-etapa conectada a red.
+JP8, JP19, JP24, JP17, JP1 y JP9 también conservan su posición original y están
+en el esquema y en la PCB; sus coordenadas están en `mechanical-source.json` y en
+el [layout](../../hardware/controller/layout.md).
 
-La geometría queda liberada para el layout Rev A. Esta aceptación cierra contorno,
-fijaciones y una primera posición de conectores; no libera todavía la PCB
-completa, porque alimentación, potencia, rutas y comprobaciones eléctricas siguen
-pendientes.
+La geometría quedó liberada para el layout Rev A, que ya está colocado y ruteado.
+Esta aceptación cierra contorno y fijaciones; no libera la PCB, pendiente de la
+comprobación 1:1 con la placa original y los mazos.
 
 ## Familias mecánicas que ya pueden acotarse
 
@@ -113,6 +111,13 @@ pendientes.
   6,35 × 0,8 mm. Por ejemplo, TE documenta esas dimensiones para
   [63066-1](https://www.te.com/pt/product-63066-1.html), pero no se ha medido el
   patrón de anclaje de la pieza original y esa referencia no queda seleccionada.
+
+> **Actualizado:** la revisión con nonio del 2026-09-24 descartó JST XH para
+> los conectores blancos. El propietario identificó JP3, JP5 y JP13 como HR
+> A2506WV, JP8 y JP24 como LEOCO 3941 y 5001, JP17 y JP19 como TE RAST 5 y JP1/JP9
+> como lengüetas TE 63824-1 (ver [photos.md](photos.md) y el
+> [layout](../../hardware/controller/layout.md)). JP14, JP16, JP22 y JP21 siguen
+> como candidatos.
 
 Estas identificaciones reducen la búsqueda de repuestos, pero continúan como
 candidatos. La huella se cerrará con una foto ortogonal de soldaduras o una medida

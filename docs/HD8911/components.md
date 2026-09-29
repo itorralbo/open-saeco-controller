@@ -55,7 +55,7 @@ pin 2 = GND y pin 3 = VCC**.
 
 La Rev A alimenta VCC desde `12V_PROTECTED`, dentro del intervalo admitido, y
 eleva la salida de colector abierto a 3,3 V con 4,7 kΩ. Una resistencia serie de
-1 kΩ y 10 nF protegen/filtran la entrada PA1/TIM2_CH2. Así el sensor trabaja a
+1 kΩ y 10 nF protegen/filtran la entrada PA2/TIM2_CH3. Así el sensor trabaja a
 12 V pero nunca aplica 12 V al GPIO.
 
 ## NTC JP13
@@ -136,7 +136,7 @@ terminales de cada contacto; queda por medir si son COM–NO o COM–NC.
   `996530073436` y cable de tres polos `421946035161`. Está situado aproximadamente
   a un tercio de la altura del depósito. El cable observado usa rojo=VCC,
   blanco=señal y negro=GND; el propietario confirma alimentación válida a 3,3 o
-  5 V. La Rev A elige 3,3 V y lleva la señal a PA2 mediante 1 kΩ/10 nF. Sigue
+  5 V. La Rev A elige 3,3 V y lleva la señal a PC3 (ADC12_IN9) mediante 1 kΩ/10 nF. Sigue
   pendiente medir si la salida es analógica, push-pull o colector abierto y sus
   niveles con depósito lleno/vacío.
 
@@ -146,4 +146,4 @@ terminales de cada contacto; queda por medir si son COM–NO o COM–NC.
 2. COM–NO/COM–NC de los dos contactos de JP16.
 3. Corrientes de arranque y bloqueo del motor de grupo y del molino.
 4. Corriente en caliente de la electroválvula.
-5. Referencia completa marcada en los microinterruptores y verificación de acoplamiento de las carcasas candidatas.
+5. Referencia completa marcada en los microinterruptores e identificación de las carcasas de JP14, JP16 y JP22.

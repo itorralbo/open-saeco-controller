@@ -10,76 +10,61 @@ Los dos proyectos se han cargado con KiCad CLI 10.0.6. Para abrirlos en el gesto
   [PCB de trabajo](front-panel/kicad/front-panel-reva.kicad_pcb).
 
 Cada carpeta incluye `OpenSaeco.kicad_sym`, `sym-lib-table` y `fp-lib-table`.
-Los símbolos son locales al proyecto; las huellas proceden de las bibliotecas
-estándar de KiCad 10 mediante `KICAD10_FOOTPRINT_DIR`. No dependen de una ruta
-absoluta del equipo de desarrollo.
+Los símbolos son locales al proyecto. Las huellas vienen de las bibliotecas
+estándar de KiCad 10, mediante `KICAD10_FOOTPRINT_DIR`, o de la biblioteca local
+`OpenSaeco.pretty` de cada proyecto (conectores identificados, fuente, relé,
+optos con ranura, fusible del molinillo, USB-C vertical y pulsadores). No dependen
+de una ruta absoluta del equipo de desarrollo.
 
 ## Qué contienen las PCB
 
-Se han importado las huellas seleccionadas y sus redes desde la netlist **nativa**
-de KiCad, conservando los UUID de los símbolos para actualizar desde el esquema.
-También se han conservado fabricante, MPN y código JLC como campos ocultos.
-Las PCB se han guardado y vuelto a cargar con `pcbnew`, cotejando cada pad/red.
+Las huellas y sus redes vienen de la netlist **nativa** de KiCad, con los UUID de
+los símbolos para poder actualizar desde el esquema, y con fabricante, MPN y
+código JLC como campos ocultos. Los scripts guardan cada PCB y la vuelven a
+cargar con `pcbnew`, cotejando cada pad y su red.
 
 | Proyecto | Componentes en esquema | Huellas en PCB | Sin huella |
 |---|---:|---:|---|
-| Principal | 159 | 159 | — |
+| Principal | 187 | 187 (más MH1–MH3) | — |
 | Frontal | 42 | 42 | — |
 
-Las coordenadas actuales forman una [colocación funcional completa](controller/layout.md),
-todavía sujeta a ajustes de routing y acoplamiento. **No es una colocación liberada
-para fabricación.** La principal incorpora un [contorno y tres taladros aceptados para
-la Rev A a partir de las fotos](../docs/HD8911/main-board-mechanics.md); el resto de la colocación
-sigue siendo de trabajo. Los desacoplos se han agrupado con sus circuitos y el módulo
-ESP32 está en el borde con su keepout libre. En la principal están ruteados el USB, la entrada de red, los 24 V, el puente H,
-el supervisor y el relé, la válvula, los sensores y el buck de 12 V, y
-JP8/JP24/JP17 ya están colocados; también están ruteados los raíles de 3,3 V y
-12 V, las etapas de calentador, bomba y molinillo y las órdenes del STM32 a las
-cargas. Siguen pendientes el resto de señales del STM32, del ESP32 y del frontal. El **frontal está
-colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
-limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
-seleccionadas; J105, J106 y J113 son HR A2506WV identificadas por el propietario, y J107–J109 y J112 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
-y queda colocado provisionalmente en el borde superior junto a JP21. U501 y su
-etapa de 24 V para el grupo, U502/Q501 para la válvula y U601/U602 para supervisión están colocados solo para comprobar cabida; no generar
-Gerbers/BOM de fabricación/CPL de la principal todavía. J114 y los divisores de
-12/24 V permiten contrastar por multímetro la telemetría que enviará el STM32.
+- **Principal**: [colocada y ruteada](controller/layout.md) sobre el
+  [contorno y los tres taladros aceptados](../docs/HD8911/main-board-mechanics.md),
+  con los conectores de mazo en sus posiciones originales. Cuatro capas, todas
+  las redes conectadas, rellenos de masa en el lado SELV y serigrafía. **No es
+  fabricable**: no generar Gerbers, BOM de fabricación ni CPL hasta la
+  comprobación 1:1, la identificación de JP14/JP16/JP22 y la revisión de
+  aislamiento.
+- **Frontal**: [colocado y ruteado](front-panel/layout.md) sobre el
+  [contorno aceptado](front-panel/mechanical.md), con paquete JLCPCB candidato
+  pendiente de las [comprobaciones previas al pedido](front-panel/layout.md#pendiente-antes-de-pedir).
 
-## Validación actualizada el 2026-09-19
+## Validación
 
-ERC nativo: cero errores y cero avisos en ambos esquemas, sin excluir infracciones.
-Se mantiene la configuración estándar de KiCad; los cuatro controles opcionales
-desactivados por defecto figuran en cada informe. En la principal, los PWR_FLAG
-declaran las fuentes aisladas de J101/J112 y los nodos de potencia separados por elementos
-pasivos; U301/U302 implementan la regulación y el corte del frontal, U501 el
-puente H del grupo, U502/Q501 la válvula y U601/U602 el watchdog/interlock. En el
-frontal, J1 sigue declarando su alimentación externa.
-Los GPIO aún sin asignar permanecen NC. Los tipos de pin de GPIO genéricos no
-comprueban las futuras funciones alternativas o la configuración de firmware.
+ERC nativo: cero errores y cero avisos en ambos esquemas, sin excluir
+infracciones. Se mantiene la configuración estándar de KiCad; los cuatro
+controles opcionales desactivados por defecto figuran en cada informe. Los
+PWR_FLAG declaran las fuentes aisladas de J101/J112 y los nodos de potencia
+separados por elementos pasivos; en el frontal, J1 declara su alimentación
+externa. Los tipos de pin genéricos de los GPIO no comprueban la configuración
+del firmware.
 
-La netlist XML de KiCad coincide con los 457 pines de la principal y los 118 del
-frontal. Se revisaron las exportaciones SVG nativas y se corrigió la orientación
-del texto de las etiquetas del lado izquierdo.
+La netlist XML de KiCad coincide con los 612 pines de la principal y los 118 del
+frontal.
 
-**DRC ejecutado; diseño aún no liberado:**
-
-| Resultado | Principal | Frontal |
+| Resultado del DRC (todas las severidades) | Principal | Frontal |
 |---|---:|---:|
 | Infracciones geométricas/de reglas | 0 | 0 |
-| Conexiones pendientes de rutear | 44 | 0 |
+| Conexiones pendientes de rutear | 0 | 0 |
 | Huellas ausentes respecto al esquema | 0 | 0 |
-| Contorno ausente | 0 | 0 |
 | Diferencias adicionales de paridad | 3 taladros mecánicos intencionales | 0 |
 
-El pad expuesto del ESP32 usa doce vías térmicas de 0,20 mm. Se ha fijado 0,20 mm
-como mínimo de taladro del proyecto: coincide con el mínimo preferido publicado
-por JLCPCB para placas rígidas. Esto elimina la discrepancia del footprint sin
-modificarlo. Las reglas siguen sin cubrir aislamiento de red ni constituir un
-perfil de fabricación completo.
-
-La paridad de la principal solo informa las tres huellas de montaje adicionales
-al esquema. Son intencionales y proceden del registro mecánico; no se han excluido.
-El frontal, ruteado el 2026-09-18, pasa el DRC de KiCad 10.0.6 con paridad y todas
-las severidades sin infracciones, conexiones pendientes ni diferencias con el esquema.
+Las reglas de la principal (`controller-core-reva.kicad_dru`, escritas por
+`configure_controller_rules.py`) incluyen la barrera de 8 mm de separación y
+creepage entre red y SELV, 2,5 mm entre redes de red distintas y las
+excepciones por pieza de optos y triacs; ver [manufacturing.md](controller/manufacturing.md).
+El pad expuesto del ESP32 usa doce vías térmicas de 0,20 mm, el mínimo de taladro
+del proyecto y el preferido por JLCPCB para placas rígidas.
 
 Informes y vistas:
 
@@ -109,9 +94,11 @@ nombre de cada conector) y `tools/export_controller_print.py` saca la copia
 `tools/trace_silkscreen_logo.py`, que necesita Pillow, NumPy, scikit-image y
 Shapely fuera del Python de KiCad.
 
-Desde la raíz del repositorio:
+Desde la raíz del repositorio (en Windows, con `PYTHONUTF8=1`: los scripts
+leen JSON y CSV con texto en español):
 
 ```sh
+python3 tools/generate_controller_core.py
 python3 tools/check_front_panel.py
 python3 tools/check_controller_core.py
 python3 tools/validate_kicad.py
@@ -123,21 +110,25 @@ python3 tools/configure_controller_rules.py
 <python de KiCad> tools/route_controller_pcb.py
 <python de KiCad> tools/silkscreen_controller_pcb.py
 <python de KiCad> tools/export_controller_print.py
+python3 tools/render_main_connector_map.py
 <python de KiCad> tools/sync_front_panel_pcb.py
 <python de KiCad> tools/layout_front_panel_pcb.py
-kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb
+kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/controller/validation/drc-staging.json hardware/controller/kicad/controller-core-reva.kicad_pcb
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/pcb/drc.json hardware/controller/kicad/controller-core-reva.kicad_pcb
 kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/front-panel/validation/drc-staging.json hardware/front-panel/kicad/front-panel-reva.kicad_pcb
 python3 tools/export_front_panel_fab.py
 ```
 
-Si el ejecutable no está en PATH, `validate_kicad.py` admite `KICAD_CLI` y detecta
-la instalación habitual de macOS y de Windows. La creación inicial de PCB requiere el Python
-incluido en KiCad y sus bibliotecas; no es necesario regenerarlas para editarlas.
+Si el ejecutable no está en PATH, `validate_kicad.py` y `export_controller_print.py`
+admiten `KICAD_CLI` y detectan la instalación habitual de macOS y de Windows. La
+vista `controller/preview/pcb-staging-top.png` se renderiza con
+`kicad-cli pcb render --side top`. Los scripts de PCB requieren el Python
+incluido en KiCad y sus bibliotecas.
 
-Siguiente trabajo eléctrico: rutear y ensayar USB, probar el acoplamiento de J105–J109/J112–J113,
-medir los niveles lleno/vacío de JP22, ensayar el motor del grupo con J112 limitado,
-seleccionar el módulo AC/DC aislado, cerrar el presupuesto de corriente y completar
-el watchdog y la válvula, y completar los drivers de red/molino. Siguiente
+Siguiente trabajo eléctrico: comprobar la principal impresa 1:1 contra la placa
+original y los mazos, identificar JP14, JP16 y JP22, cerrar F701/F702/RV701 y el
+filtro EMI, revisar J101 frente a la salida de U303, y ensayar USB, watchdog,
+motor del grupo, válvula y etapas de red según el
+[plan de caracterización](../docs/HD8911/characterization-plan.md). Siguiente
 trabajo mecánico: cerrar las comprobaciones previas al pedido del frontal
 ([layout.md](front-panel/layout.md#pendiente-antes-de-pedir)) y el adaptador de pantalla.

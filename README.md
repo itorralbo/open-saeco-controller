@@ -3,8 +3,9 @@
 Controladora open-source para sustituir la electrónica de la Saeco Incanto HD8911,
 placa objetivo 421941308981/01. Proyecto independiente, sin afiliación a Philips/Saeco.
 
-**Rev A: scaffolding, no hardware validado. Hay 230 VAC. Toda etapa de potencia es
-experimental hasta verificación. Este código no permite controlar cargas.**
+**Rev A: diseño en curso, sin hardware fabricado ni ensayado. Hay 230 VAC. Toda
+etapa de potencia es experimental hasta verificación. El firmware actual no
+controla cargas.**
 
 ## Objetivo
 Controlar la máquina sin depender de la electrónica original, inicialmente por USB/web.
@@ -20,7 +21,9 @@ STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
 - [Diseño preliminar del frontal y pantalla](hardware/front-panel/README.md)
 - [Subsistema display y UI (ST7789 + LVGL)](docs/display-ui.md)
 - [Decisión de frontal/display (ADR-0001)](docs/adr/0001-front-panel-display-st7789.md)
-- [Núcleo inicial de la principal](hardware/controller/core-design.md)
+- [Diseño de la principal](hardware/controller/core-design.md) y
+  [su colocación y ruteo](hardware/controller/layout.md)
+- [Arquitectura de potencia](hardware/power/power-architecture.md)
 - [Abrir y editar los proyectos KiCad](hardware/kicad-workflow.md)
 - [Componentes y fabricación JLCPCB](hardware/assembly/README.md)
 - [Seguridad](docs/safety.md)
@@ -29,14 +32,16 @@ STM32 se ocupará del control; ESP32, de interfaz y comunicaciones.
 
 ## Estructura
 ```
-hardware/controller/  esquema parcial del núcleo lógico y BOM candidata
-hardware/front-panel/ esquema KiCad preliminar, BOM y mecánica pendiente
+docs/                 arquitectura, seguridad, ingeniería inversa de la HD8911 y registro de verificación
+hardware/controller/  principal completa: esquema, PCB de cuatro capas ruteada, BOM; no fabricable
+hardware/front-panel/ frontal: esquema, PCB ruteada y paquete JLCPCB candidato, sin pedir
 hardware/assembly/    catálogo de componentes con códigos JLC y stock observado
-hardware/power/       requisitos de potencia experimental
+hardware/power/       diseño de las etapas de red, 24 V, válvula y watchdog
 firmware/stm32/       núcleo C portable, sin BSP ni pines
 firmware/esp32/       proyecto mínimo ESP-IDF
 firmware/common/      contrato de comunicaciones propuesto
 recipes/              ejemplo de simulación no ejecutable
+tools/                generadores, layout, ruteo y comprobaciones de las dos placas
 tests/                pruebas de bloqueo del núcleo
 ```
 

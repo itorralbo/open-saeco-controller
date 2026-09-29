@@ -78,7 +78,7 @@ def main():
             svg_path.write_text('\n'.join(line.rstrip() for line in
                                            svg_path.read_text(encoding='utf-8').splitlines())+'\n',
                                 encoding='utf-8')
-        scope = ('La principal incluye el núcleo lógico, USB-C de servicio, fuente aislada '
+        scope = ('Esquema completo de la principal: núcleo lógico, USB-C de servicio, fuente aislada '
                  'IRM-30-24, selección de 24 V internos/externos, buck AP63200 de 24 V a 12 V, '
                  'buck de 3,3 V, sensores, puente H DRV8876, etapa low-side de válvula y '
                  'etapas de triac de calentador, bomba y molinillo. '
@@ -86,10 +86,12 @@ def main():
                  'mediante reset válido y orden explícita. Las etapas de red no están '
                  'ensayadas.'
                  if directory == 'controller' else
-                 'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
+                 'Esquema completo del frontal. Declara alimentación externa por J1; no '
+                 'valida la fuente ni la mecánica.')
         remaining = ('Los GPIO sin asignar llevan NC. J105, J106 y J113 son HR A2506WV '
-                     'identificadas por el propietario; J107–J109 y J112 usan huellas '
-                     'candidatas XH/PH cotejadas con fotos. JP16 V1/V2 llegan al puente H y '
+                     'identificadas por el propietario; J107–J109 (JP14, JP16 y JP22) usan '
+                     'huellas candidatas XH/PH que la revisión con nonio no confirma. '
+                     'JP16 V1/V2 llegan al puente H y '
                      'JP3.1/JP3.2 a la etapa de válvula. J112 requiere una fuente de 24 V '
                      'aislada limitada; corriente, frenado, térmica, liberación de válvula y '
                      'la salida de JP22 requieren ensayo. El watchdog y sus tiempos también '
@@ -98,6 +100,8 @@ def main():
                      'Todas las posiciones tienen huella: SW1–SW7 HRO K2-1102SP-A4SC-04 '
                      '(OpenSaeco.pretty), J2 JST PH 8 y LED STBY en P7. Contorno y '
                      'taladros Ø8,4 desde mechanical-source.json.')
+        routing = (json.loads((base/'validation/routing.json').read_text(encoding='utf-8'))
+                   if directory == 'controller' else {})
         extra = (('\nLa colocación alinea J104, J108, J107, J113, J109, J105 y J106 con '
                   'JP21, JP16, JP14, JP3, JP22, JP13 y JP5. JP8, JP19, JP24, JP17, '
                   'JP1 y JP9 son conectores obligatorios y ya tienen huella: JP19 y JP17 son los TE '
@@ -108,7 +112,8 @@ def main():
                   'el puente H, el supervisor con sus interlocks, las etapas de válvula, '
                   'calentador, bomba y molinillo, los bucks de 12 V y 3,3 V, el frontal, '
                   'las órdenes a las cargas, el bus de sensores, la telemetría y el ESP32 '
-                  'con el bus del LCD hasta J104: 1268 segmentos y 441 vías, 156 de ellas de cosido. Las fases de '
+                  f'con el bus del LCD hasta J104: {routing["track_segments"]} segmentos y '
+                  f'{routing["vias"]} vías, {routing["stitching_vias"]} de ellas de cosido. Las fases de '
                   'carga van duplicadas en F.Cu y B.Cu con cobre de 1 oz; la de las cargas '
                   'conmutadas, con un bloque de B.Cu bajo el pie del disipador. F.Cu y B.Cu '
                   'llevan masa en el lado SELV y nada en el de red. La serigrafía lleva el '
@@ -120,8 +125,8 @@ def main():
                   'La principal usa cuatro capas, apilado JLC04161H-7628: F.Cu y B.Cu de '
                   'señal, plano GND_UI en In1.Cu y plano 3V3_CORE en In2.Cu, ambos solo en '
                   'el lado SELV. Clases explícitas para red, USB, alimentación, conmutación '
-                  'y actuadores. La geometría USB sigue pendiente de verificar con ese '
-                  'apilado.\n')
+                  'y actuadores. El par USB se calculó para ese apilado (0,29/0,20 mm, '
+                  '90 Ω); no se pide impedancia controlada.\n')
                  if directory == 'controller' else '')
         (out/'README.md').write_text(
             f'# Validación nativa — {name}\n\n'
@@ -129,7 +134,7 @@ def main():
             f'Netlist nativa cotejada: {count} componentes, {pins} pines.\n\n'
             'Configuración estándar de KiCad: no se ejecutan los controles opcionales\n'
             + ', '.join(sorted(ignored)) + '. No se han añadido supresiones.\n\n'
-            f'Alcance: esquema parcial. {scope}\n'
+            f'Alcance: {scope}\n'
             'No valida mecánica completa, selección eléctrica completa ni fabricación.\n'
             f'{remaining}\n'
             f'{extra}'

@@ -1,7 +1,9 @@
 # Núcleo STM32
 
 C99 portable sin HAL. CMake compila para host; no es firmware flasheable.
-MCU definitivo, BSP, startup, linker script, pines y proyecto CubeMX TBD.
+El esquema usa un STM32G431RBT6 y ya fija sus pines
+([core-design.md](../../hardware/controller/core-design.md)); BSP, startup,
+linker script y proyecto CubeMX siguen TBD.
 El adaptador futuro calculará interlocks y vigencia real del enlace; aquí son booleanos
 simulados. No usar este scaffolding como supervisor de seguridad.
 Ningún estado actual autoriza cargas.

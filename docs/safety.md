@@ -18,7 +18,8 @@ Las pruebas de software no certifican seguridad de la máquina modificada.
 ## Requisitos software futuros
 Entradas ausentes, inválidas o caducadas impiden operar. Fallos enclavados sin
 reanudación automática. Límites de receta subordinados a límites de máquina validados.
-Watchdog, timeout real y límite temporal por fase: pendientes; no los implementa esta base.
+El watchdog hardware (TPS3828) está en el esquema; su servicio por firmware, el
+timeout real y el límite temporal por fase están pendientes.
 
 | Peligro | Mitigación requerida | Cierre |
 |---|---|---|

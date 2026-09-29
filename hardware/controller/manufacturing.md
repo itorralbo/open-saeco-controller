@@ -1,6 +1,6 @@
 # Perfil de fabricación de la controladora
 
-Estado: objetivo de diseño para routing, aún no liberado para fabricar.
+Estado: perfil aplicado a la PCB ruteada; aún no liberado para fabricar.
 
 La principal es FR-4 de cuatro capas y 1,6 mm, el mismo espesor medido en la
 placa original. Se pasó de dos a cuatro capas el 2026-09-23: con dos, B.Cu era a

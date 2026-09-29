@@ -43,7 +43,8 @@ Señales sobre J_UI (16 contactos, arnés 1:1), todas lógica 3,3 V:
 
 - **Reloj SPI: 10 MHz** (decisión). Elegido por margen de integridad de señal sobre el arnés,
   no por límite del ST7789 (admite mucho más). Revisable al alza solo tras medir flancos con el
-  arnés real. Reservar **R serie 22–47 Ω** cerca del ESP32, especialmente en SCLK.
+  arnés real. La principal lleva **R213–R218, 33 Ω** en serie con las seis señales del display,
+  junto a J104; el valor se ajusta por medida.
 - SPI modo 0 (CPOL=0, CPHA=0), MSB first. **TBD confirmar** contra el panel elegido.
 - BL es lógica: **no** alimentar la retroiluminación desde el GPIO; el módulo/adaptador lleva su driver.
 

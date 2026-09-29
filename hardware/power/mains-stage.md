@@ -1,7 +1,7 @@
 # Etapa de red y cargas — Rev A
 
-Estado: arquitectura y componentes candidatos. Todavía no es apta para conectar
-a 230 V ni para pedir una placa montada.
+Estado: en el esquema y en la PCB ruteada, con componentes candidatos. Todavía
+no es apta para conectar a 230 V ni para pedir una placa montada.
 
 ## Lo que muestran las fotos de la original
 
@@ -25,13 +25,15 @@ confirmará por continuidad antes de copiar detalles del circuito.
 ## Arquitectura de Rev A
 
 ```text
-JP17 L -- F1 -- MOV/filtro -- K701 relé general --+-- QH -- JP19 calentador
-                                                   +-- QP -- JP24 bomba
-                                                   +-- QG -- BR701 -- JP8 molino DC
-JP17 N --------------------------------------------+---------------------------
-             +-- F2 electrónica -- PS701 IRM-30-24 -- 24V_SELV
-JP9 PE ------------------------------------------------------- JP1 PE
+JP17 L -- F701 --+-- RV701 a N -- K701 relé general --+-- Q703 -- JP19 calentador
+                 |                                    +-- Q704 -- JP24 bomba
+                 |                                    +-- Q708 -- F703 -- BR701 -- JP8 molino DC
+                 +-- F702 -- PS701 IRM-30-24 -- 24V_SELV
+JP17 N ----------------------------------------------- N de cargas, PS701 y BR701
+JP9 PE ----------------------------------------------- JP1 PE
 ```
+
+El filtro EMI (L5/L7 en la original) todavía no está en el esquema.
 
 `K701` permanece abierto sin 24 V y su mando pasa por el interlock hardware. Los
 triacs se disparan mediante optotriacs; ninguna red de puerta cruza a la zona
@@ -41,7 +43,7 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 
 ## Componentes candidatos con suministro JLC/LCSC
 
-| Funcón | Candidato | Código | Motivo y estado |
+| Función | Candidato | Código | Motivo y estado |
 |---|---|---|---|
 | Fuente 24 V | Mean Well IRM-30-24 | C6280124 | 85–264 VAC, 24 V/1,3 A, 31 W, encapsulada y aislada; montaje por ola disponible |
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
@@ -78,15 +80,16 @@ un opto de 600 o 400 V.
 
 ## Protección y reglas pendientes de cerrar
 
-- F1 será un fusible retardado reemplazable, inicialmente 10 A/250 V, ajustado
+- F701 es un fusible retardado reemplazable de 5 × 20 mm, provisionalmente
+  T10A/250 V, que se ajustará
   después de medir calentador, bomba y molinillo en el peor caso permitido. Con
   el molinillo a 3 A la suma llegaría a 11,6 A; el firmware limita el
   calentador al 60 % mientras se muele y el total queda en ≈ 9,7 A (ver
   [reparto de corriente](power-architecture.md#reparto-de-corriente-en-la-fase-de-cargas)).
-- F2 protegerá solo la rama de fuente/electrónica y se dimensionará con el pico de
-  entrada del IRM-30 y su recomendación de fabricante.
-- El MOV será de 275 VAC y se coordinará con F1; falta seleccionar MPN, energía y
-  disposición térmica.
+- F702 protege solo la rama de la fuente; provisionalmente T1A, se dimensionará
+  con el pico de entrada del IRM-30 y la recomendación del fabricante.
+- RV701 es un MOV de 275 VAC en disco de 15,5 mm, coordinado con F701; falta
+  seleccionar MPN y energía.
 - El filtro EMI se copiará funcionalmente, no por aspecto. Falta medir/identificar
   L5/L7 o elegir un choque certificado con corriente suficiente.
 - Cobre de 1 oz. Las pistas del calentador y de la fase general se duplican en

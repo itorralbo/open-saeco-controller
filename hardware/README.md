@@ -1,12 +1,16 @@
 # Hardware
 
-Hay un [esquema preliminar del frontal](front-panel/README.md), con botones y
-adaptador de pantalla, y un [contrato con la principal](controller/front-panel-interface.md).
-La principal dispone de un [primer núcleo lógico](controller/core-design.md).
-Ambas siguen la [selección para montaje JLCPCB](assembly/README.md).
-El frontal reproducirá la mecánica original cuando se disponga de cotas.
-Ya existen [proyectos KiCad y PCB de trabajo](kicad-workflow.md) con huellas y
-redes importadas, ERC nativo y registro de incidencias DRC aún abiertas.
+- [Frontal](front-panel/README.md): botones, LED y conector de pantalla, con la
+  mecánica recuperada de la placa original. PCB ruteada, DRC limpio y paquete
+  JLCPCB candidato, pendiente de las comprobaciones previas al pedido.
+- [Principal](controller/core-design.md): lógica, USB de servicio, sensores,
+  cargas de 24 V y de red y fuente aislada en una sola placa de cuatro capas,
+  ruteada y con DRC limpio. [Contrato con el frontal](controller/front-panel-interface.md).
+- [Potencia](power/README.md): etapas de red, válvula y watchdog.
+- [Selección para montaje JLCPCB](assembly/README.md) y
+  [proyectos KiCad](kicad-workflow.md).
 
-Sin PCB fabricables. No generar Gerbers hasta completar mapa I/O,
-selección de componentes, aislamiento y revisión independiente de seguridad.
+La principal no es fabricable: faltan la comprobación 1:1 de conectores, la
+identificación de JP14, JP16 y JP22, los valores de F701/F702/RV701, el filtro
+EMI y la revisión independiente de aislamiento y seguridad. No generar sus
+Gerbers hasta cerrarlos.

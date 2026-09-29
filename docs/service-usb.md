@@ -14,13 +14,14 @@ la autoridad sobre estados, interlocks y actuadores.
 - J111 se fabrica abierto. Solo al cerrarlo en banco, VBUS pasa por un PTC de
   500 mA y un SS34 hasta el buck de 3,3 V. No alimentar cargas por esta vía.
 
-El equipo puede funcionar autoalimentado desde J101 con J111 abierto. En ese caso
-el firmware debe comprobar VBUS antes de habilitar el dispositivo USB. La unión
+El equipo funciona autoalimentado (desde la fuente interna o, en banco, desde
+J101/J112) con J111 abierto. En ese caso el firmware debe comprobar VBUS antes
+de habilitar el dispositivo USB. La unión
 de la pantalla del conector a `GND_UI` y el dominio aislado deben revisarse antes
 de exponer el puerto en una máquina conectada a red.
 
-El par D+/D− se rutará a 90 Ω diferencial ±10 %, sobre referencia de masa continua,
-con longitudes igualadas y pocas vías. Recalculado el 2026-09-23 con la
+El par D+/D− va ruteado para 90 Ω diferencial ±10 %, sobre referencia de masa
+continua, con longitudes igualadas y pocas vías. Recalculado el 2026-09-23 con la
 calculadora de JLCPCB para el apilado JLC04161H-7628 (F.Cu sobre el plano de
 In1.Cu a 0,2104 mm de 7628): 90 Ω piden **0,29 mm de ancho con 0,20 mm de
 separación**; los 0,20/0,20 anteriores daban unos 104 Ω. El tramo largo de U203
