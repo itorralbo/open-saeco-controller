@@ -332,10 +332,12 @@ def main():
           'Diode_SMD:D_SMA', part_key='D:SS34')
     d.note('GPIO19=D-, GPIO20=D+. R221/R222 junto al ESP; par diferencial 90 ohm y misma longitud.',610,402,1.1)
     d.note('J111 se fabrica ABIERTO. Cerrarlo solo en banco: USB limitado a 500mA alimenta el buck; no cargas.',610,408,1.1)
-    d.note('10 / Entradas pasivas — huellas candidatas según fotos con calibre', 12, 406, 1.8)
+    d.note('10 / Entradas pasivas — JP13 y JP5 HR A2506; resto, huellas candidatas por foto', 12, 406, 1.8)
+    # Owner, 2026-09-29: JP13, JP5 and JP3 are HR A2506 wafers (2.50 mm),
+    # not JST XH; the board takes the same parts.
     d.add('J105','J2','JP13 NTC / 2 vías',62,445,['NTC_RAW',g],
-          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
-          status='photo_candidate', part_key='CONN:JST_XH_2_V')
+          'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical',
+          status='owner_identified', part_key='CONN:HR_A2506WV_2_V')
     d.passive('R401','R','4.7k / NTC pull-up',145,430,v,'NTC_RAW')
     d.passive('R402','R','1k / NTC serie',145,447,'NTC_RAW','NTC_ADC')
     d.passive('C401','C','100nF / NTC filtro',145,464,'NTC_ADC',g)
@@ -343,8 +345,8 @@ def main():
 
     d.add('J106','J3','JP5 FLOW ADAPTER / VCC-GND-OC',292,445,
           ['FLOW_RAW',g,'12V_PROTECTED'],
-          'Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical',
-          status='photo_candidate_owner_pinout', part_key='CONN:JST_XH_3_V')
+          'OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical',
+          status='owner_identified_owner_pinout', part_key='CONN:HR_A2506WV_3_V')
     d.passive('R403','R','4.7k / FLOW pull-up',385,430,v,'FLOW_RAW')
     d.passive('R404','R','1k / FLOW serie',385,447,'FLOW_RAW','FLOW_TIM')
     d.passive('C402','C','10nF / FLOW filtro',385,464,'FLOW_TIM',g)
@@ -419,10 +421,10 @@ def main():
     d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
     d.note('J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.',870,294,1.1)
     d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
-    d.add('J113','J5','JP3 VALVE / JST XH',905,354,
+    d.add('J113','J5','JP3 VALVE / A2506',905,354,
           ['24V_VALVE','VALVE_RETURN',None,None,None],
-          'Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical',
-          status='owner_pinout_candidate', part_key='CONN:JST_XH_5_V')
+          'OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical',
+          status='owner_identified_owner_pinout', part_key='CONN:HR_A2506WV_5_V')
     d.add('F304','FUSE','1A / 72VDC',970,354,['24V_ACT_RAW','24V_VALVE_FUSED'],
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
     d.add('D305','DIODE','SS34',1040,354,['24V_VALVE_FUSED','24V_VALVE'],
@@ -478,10 +480,13 @@ def main():
     d.note('PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
     d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
+    # Owner, 2026-09-29: JP8 and JP24 are LEOCO friction-lock headers, the
+    # 3941P03*000 (3.96 mm) and the 5001P020013 (5.00 mm). JLCPCB does not
+    # stock either, so they are soldered by hand or consigned.
     d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,
           ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
-          'Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical',
-          status='photo_candidate_owner_wiring', part_key='CONN:JST_VH_3_V')
+          'OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical',
+          status='owner_identified_not_stocked_by_jlcpcb', part_key='CONN:LEOCO_3941P03')
     # Owner: only tabs 1 and 3 are wired, and they are the two ends of the
     # same boiler element, so which is which does not matter. 1900 W element
     # measured at 27.5 ohm, so 8.4 A at 230 V.
@@ -493,8 +498,8 @@ def main():
           status='owner_identified', part_key='CONN:TE_RAST5_1971845-4')
     d.add('J117','J2','JP24 PUMP / 230VAC',1100,702,
           ['PUMP_AC_SWITCHED','MAINS_N'],
-          'Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical',
-          status='photo_candidate', part_key='CONN:JST_VH_2_V')
+          'OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical',
+          status='owner_identified_not_stocked_by_jlcpcb', part_key='CONN:LEOCO_5001P02')
     # Owner, 2026-09-24: the JP17 harness housing is a TE 2-1241961-7, a
     # RAST 5 receptacle with 1b polarization, so the board takes the matching
     # 1971845-3 tab header. Tab 1 is the black phase, tab 3 the blue neutral.

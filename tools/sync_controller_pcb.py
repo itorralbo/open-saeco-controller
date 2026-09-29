@@ -66,7 +66,7 @@ NEW_POSITIONS = {
     'R701': (86, 12), 'R702': (82, 12), 'R703': (78, 12), 'C701': (74, 12),
     'R704': (105, 7), 'R705': (111, 7), 'R706': (117, 7), 'C702': (123, 7),
     'J114': (106, 101),
-    'J115': (59.04, 120.8), 'J117': (91.02, 120.8),
+    'J115': (59.04, 120.8), 'J117': (91.0, 120.8),
     'J118': (107.5, 126.55),
     'F701': (128, 52), 'RV701': (119, 55), 'F702': (128, 27),
     'PS701': (105, 89), 'J121': (66, 104),
@@ -115,15 +115,10 @@ FOOTPRINT_REPLACEMENTS = {
 _JST = 'Connector_JST:JST_'
 for ref, (side, top) in {
         'J101': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
-        'J105': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
-        'J106': ('XH_S3B-XH-A_1x03_P2.50mm_Horizontal', 'XH_B3B-XH-A_1x03_P2.50mm_Vertical'),
         'J107': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
         'J108': ('XH_S8B-XH-A_1x08_P2.50mm_Horizontal', 'XH_B8B-XH-A_1x08_P2.50mm_Vertical'),
         'J109': ('PH_S3B-PH-K_1x03_P2.00mm_Horizontal', 'PH_B3B-PH-K_1x03_P2.00mm_Vertical'),
         'J112': ('XH_S2B-XH-A_1x02_P2.50mm_Horizontal', 'XH_B2B-XH-A_1x02_P2.50mm_Vertical'),
-        'J113': ('XH_S5B-XH-A_1x05_P2.50mm_Horizontal', 'XH_B5B-XH-A_1x05_P2.50mm_Vertical'),
-        'J115': ('VH_S3P-VH_1x03_P3.96mm_Horizontal', 'VH_B3P-VH_1x03_P3.96mm_Vertical'),
-        'J117': ('VH_S2P-VH_1x02_P3.96mm_Horizontal', 'VH_B2P-VH_1x02_P3.96mm_Vertical'),
         }.items():
     FOOTPRINT_REPLACEMENTS[ref] = (_JST+side, _JST+top)
 # JP17 identified by the owner on 2026-09-24: the harness housing is a TE RAST 5
@@ -131,6 +126,24 @@ for ref, (side, top) in {
 FOOTPRINT_REPLACEMENTS['J118'] = (
     _JST+'VH_B3P-VH_1x03_P3.96mm_Vertical',
     'OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical')
+# Owner, 2026-09-29: the harness housings of JP13, JP5 and JP3 mate with HR
+# A2506 wafers and those of JP8 and JP24 with LEOCO headers, so the JST
+# candidates give way to them. The A2506 keeps the XH pad row; the LEOCO
+# 3941 keeps the VH pitch and the 5001 moves to 5 mm, which
+# layout_controller_pcb.py and the routing follow.
+for ref, (old, new) in {
+        'J105': (_JST+'XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+                 'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical'),
+        'J106': (_JST+'XH_B3B-XH-A_1x03_P2.50mm_Vertical',
+                 'OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical'),
+        'J113': (_JST+'XH_B5B-XH-A_1x05_P2.50mm_Vertical',
+                 'OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical'),
+        'J115': (_JST+'VH_B3P-VH_1x03_P3.96mm_Vertical',
+                 'OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical'),
+        'J117': (_JST+'VH_B2P-VH_1x02_P3.96mm_Vertical',
+                 'OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical'),
+        }.items():
+    FOOTPRINT_REPLACEMENTS[ref] = (old, new)
 # The service USB-C enters from the top too: HRO's vertical TYPE-C-31-D-06.
 # Its pads differ, so layout_controller_pcb.py moves it and the USB routing
 # is rebuilt around it.

@@ -1145,7 +1145,7 @@
 <text x="782.72" y="389.39" font-size="0.9" text-anchor="start" fill="#23745f">12V_PROTECTED</text>
 <text x="610" y="402" font-size="1.1" text-anchor="start" fill="#213b50">GPIO19=D-, GPIO20=D+. R221/R222 junto al ESP; par diferencial 90 ohm y misma longitud.</text>
 <text x="610" y="408" font-size="1.1" text-anchor="start" fill="#213b50">J111 se fabrica ABIERTO. Cerrarlo solo en banco: USB limitado a 500mA alimenta el buck; no cargas.</text>
-<text x="12" y="406" font-size="1.8" text-anchor="start" fill="#213b50">10 / Entradas pasivas — huellas candidatas según fotos con calibre</text>
+<text x="12" y="406" font-size="1.8" text-anchor="start" fill="#213b50">10 / Entradas pasivas — JP13 y JP5 HR A2506; resto, huellas candidatas por foto</text>
 <rect x="57.15" y="440.055" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="62.23" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J105</text>
 <text x="62.23" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP13 NTC / 2 vías</text>
@@ -1589,7 +1589,7 @@
 <text x="870" y="326" font-size="1.8" text-anchor="start" fill="#213b50">12 / Electroválvula 24V — low-side, fusible propio y rueda libre</text>
 <rect x="900.43" y="343.53499999999997" width="10.16" height="21.59" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="905.51" y="338.53499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">J113</text>
-<text x="905.51" y="341.03499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">JP3 VALVE / JST XH</text>
+<text x="905.51" y="341.03499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">JP3 VALVE / A2506</text>
 <path d="M 900.43 346.71 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="347.01" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="898.49" y="346.21" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>

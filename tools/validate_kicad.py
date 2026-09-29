@@ -87,7 +87,8 @@ def main():
                  'ensayadas.'
                  if directory == 'controller' else
                  'El frontal declara alimentación externa por J1; no valida la fuente ni la mecánica.')
-        remaining = ('Los GPIO sin asignar llevan NC. J105–J109 y J112–J113 usan huellas '
+        remaining = ('Los GPIO sin asignar llevan NC. J105, J106 y J113 son HR A2506WV '
+                     'identificadas por el propietario; J107–J109 y J112 usan huellas '
                      'candidatas XH/PH cotejadas con fotos. JP16 V1/V2 llegan al puente H y '
                      'JP3.1/JP3.2 a la etapa de válvula. J112 requiere una fuente de 24 V '
                      'aislada limitada; corriente, frenado, térmica, liberación de válvula y '
@@ -100,7 +101,8 @@ def main():
         extra = (('\nLa colocación alinea J104, J108, J107, J113, J109, J105 y J106 con '
                   'JP21, JP16, JP14, JP3, JP22, JP13 y JP5. JP8, JP19, JP24, JP17, '
                   'JP1 y JP9 son conectores obligatorios y ya tienen huella: JP19 y JP17 son los TE '
-                  '1971845-4 y 1971845-3 (RAST 5) identificados por el propietario, y los FASTON de PE son TE '
+                  '1971845-4 y 1971845-3 (RAST 5) y JP8 y JP24 las LEOCO 3941P03 y 5001P02, '
+                  'identificados por el propietario, y los FASTON de PE son TE '
                   '63824-1 de dos patas, casados con la foto del propietario. El routing reproducible conecta todas las '
                   'redes: USB, la entrada de red hasta PS701, K701 y RV701, la salida de 24 V, '
                   'el puente H, el supervisor con sus interlocks, las etapas de válvula, '

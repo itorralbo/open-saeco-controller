@@ -225,7 +225,10 @@ PLACE = {
     'U101': stm(0, 0, 0), 'U201': (54, 14.2, 0),
     'J101': (96, 6, 0), 'J102': (74.5, 31, 90), 'J103': (75, 10, 90),
     **HARNESS_CONNECTORS,
-    'J115': (59.04, 120.8, 0), 'J117': (91.02, 120.8, 0),
+    # JP8 is a LEOCO 3941P03 on the VH pitch it replaced. JP24 is a LEOCO
+    # 5001P02 at 5 mm, centred 0.5 mm east of the photographed JP24 so that
+    # its housing clears JP19's courtyard.
+    'J115': (59.04, 120.8, 0), 'J117': (91.0, 120.8, 0),
     # JP17 is a TE 1971845-3 RAST 5 header, flush with the bottom edge like
     # J116. It sits 2.5 mm west of the photographed JP17 centre so that the
     # neutral to PS701 can climb between its polarizing post and the PE tabs

@@ -28,7 +28,7 @@ IMG_1101 para confirmar el sentido de entrada lateral. Se fija esta relación:
 | JP3 | J113, electroválvula | inferior | 3,5 / 125,3 | 0° |
 | JP22 | J109, nivel de agua | inferior | 19,0 / 128,2 | 0° |
 | JP13 | J105, NTC | inferior | 29,0 / 125,3 | 0° |
-| JP5 | J106, caudalímetro | inferior | 38,5 / 125,3 | 0° |
+| JP5 | J106, caudalímetro | inferior | 38,2 / 125,3 | 0° |
 
 La incertidumbre de posición asignada es ±1,5 mm. J104 ocupa la zona de JP21,
 pero no reproduce su interfaz: el IDC 2×8 nuevo es algo más ancho y enlaza con la
@@ -87,7 +87,7 @@ La clase `Mains` agrupa L, N, fase tras fusibles y relé, bomba y bus del
 molinillo. `controller-core-reva.kicad_dru` exige 8 mm de separación y de
 creepage entre cualquier cobre `Mains` y cualquier red SELV, y 2,5 mm entre
 pistas de redes `Mains` distintas. La separación de clase entre pads de red se
-queda en 1,2 mm porque la fija el paso de 3,96 mm de los conectores de JP8 y JP24. Los
+queda en 1,2 mm porque la fija el paso de 3,96 mm de la cabecera de JP8. Los
 pines sin uso de conectores de red y los taladros sin red no cuentan como SELV.
 
 `layout_controller_pcb.py` fija además la línea central de la barrera
@@ -233,7 +233,8 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 
 - 159/159 huellas eléctricas colocadas; J115/JP8, J117/JP24 y J118/JP17 ocupan
   ya sus zonas originales (J118, 2,5 mm al oeste). JP19 y JP17 son los TE
-  1971845-4 y 1971845-3; JP1 y JP9, lengüetas con
+  1971845-4 y 1971845-3; JP8 y JP24, las LEOCO 3941P03 y 5001P02; JP3, JP5 y
+  JP13, las HR A2506WV; JP1 y JP9, lengüetas con
   patrón de patas provisional. Contorno
   141,6 × 135,2 mm y MH1–MH3 preservados.
 - DRC KiCad 10.0.6 con todas las severidades: 0 infracciones, incluidas la
@@ -440,6 +441,54 @@ patas. Falta comprobar con una muestra que los salientes de codificación 1C/2D
 de la 1971845-3 no chocan con la carcasa del mazo; TE fabrica la serie con otras
 codificaciones si hiciera falta.
 
+### JP3, JP5, JP13, JP8 y JP24
+
+El propietario identificó el 2026-09-29 las cabeceras que casan con los mazos
+originales. Confirma la revisión con nonio del 2026-09-24: ninguna era JST.
+
+| Conector | Rev A | Pieza | Paso | Código |
+|---|---|---|---:|---|
+| JP3 | J113 | HR (Joint Tech) A2506WV-05P | 2,50 mm | C382535 |
+| JP5 | J106 | HR (Joint Tech) A2506WV-03P | 2,50 mm | C382533 |
+| JP13 | J105 | HR (Joint Tech) A2506WV-02P | 2,50 mm | C382532 |
+| JP8 | J115 | LEOCO 3941P03*000 | 3,96 mm | no está en JLCPCB |
+| JP24 | J117 | LEOCO 5001P020013 | 5,00 mm | no está en JLCPCB |
+
+Las huellas están en `OpenSaeco.pretty`, dibujadas desde los planos de los
+fabricantes, con el pin 1 en el origen y la fila hacia el este como en las
+anteriores:
+
+- **A2506WV** (plano A2506WV-XP rev. B5): taladro de 0,85 mm para el pin
+  redondo de 0,70 mm y los mismos pads de 1,7 × 2 mm que tenían las XH, así que
+  el cobre no cambia. La carcasa mide (A + 5) × 4,9 mm, con la fila a 1,85 mm
+  de la pared de nervios y a 3,05 mm del lado de la pestaña. En la vista
+  cenital del plano el circuito 1 está al este; para dejarlo en el pad 1 la
+  huella gira 180°: nervios al sur, pestaña al norte y chaflán en la esquina
+  sureste.
+- **LEOCO 3941 y 5001** (planos 394105S rev. F y 500101S rev. D): pines de
+  1,14 mm en taladros de 1,80 mm, el recomendado para el pin cuadrado; en la
+  3941 admite también el redondo (el `*` de la referencia), cuyo taladro
+  recomendado es de 1,40 mm. Base de 9,6 mm de fondo con la fila en el centro;
+  el gancho de retención ocupa la mitad del frente. El plano va en tercer
+  diedro y su alzado, visto desde la espalda plana, pone el circuito 1 a la
+  derecha. Con el pad 1 al oeste, la espalda queda al norte y el gancho al sur,
+  hacia el borde. Esto fija la polaridad de JP8: el + sale del pad 1.
+
+Cambios de colocación y ruteo:
+
+- J105, J113 y J115 conservan su origen. El courtyard de la A2506WV-03P llega
+  0,7 mm más al norte que el de la XH y tocaba el de U702, así que J106 se
+  corre 0,3 mm al oeste, a (38,2; 125,3), dentro de la tolerancia de ±1,5 mm,
+  y sus tres salidas se mueven con él.
+- J117 pasa de 3,96 a 5 mm entre pines. Se centra en x = 93,5 mm, 0,5 mm al
+  este del JP24 fotografiado, para que su courtyard no toque el de JP19. La
+  salida de la bomba sigue entrando por el norte al pad 1 y el neutro baja del
+  pad 2 a la vía que ya tenía el neutro de JP19.
+
+Pendiente: comprobar con los mazos que las carcasas entran en la orientación
+dibujada, sobre todo el gancho de JP8, que decide qué pin es el +. JLCPCB tenía
+3 unidades de la A2506WV-05P y ninguna de la -03P el 2026-09-29.
+
 ### JP19, JP1 y JP9
 
 Datos del propietario (2026-09-20): de JP19 solo están cableadas las lengüetas 1
@@ -575,9 +624,11 @@ Ruteado:
   sur de la fila de triacs y al norte de la lengüeta 1 de JP19, con 2,5 mm a
   las dos.
 - La salida de la bomba y su neutro, 0,4 A, van a 1,2 mm hasta JP24.1 y desde
-  JP24.2 hasta el neutro de JP19. Con 1,2 mm quedan 2,5 mm entre las dos pistas
-  en los pads de 3,96 mm, y la salida termina en el borde norte de su pad para
-  respetar esos 2,5 mm con el neutro.
+  JP24.2 hasta la vía del neutro de JP19. La salida termina en el borde norte
+  de su pad para respetar 2,5 mm con el neutro de JP19. Desde el 2026-09-29 JP24
+  es una LEOCO 5001 con los pads a 5 mm (x = 91 y 96 mm): el neutro baja recto
+  sobre la vía de (96; 127,5) y sale de la mitad sur de su pad para quedar a
+  2,5 mm del codo de la fase que pasa al noreste.
 - Q704 tiene su propia área `mains device pitch`, igual que Q703.
 
 Enclavamiento ruteado:
@@ -1018,7 +1069,9 @@ nada en el lado de red. `selv_outer_fills()` en `route_controller_pcb.py`:
   SERVICIO, SWD STM32…). Se colocan solos en el primer hueco libre alrededor
   del conector, salvo JP8, JP19, JP17 y JP21, fijados a mano para que no
   queden ambiguos;
-- polaridad: + y − en JP8, L y N en JP17;
+- polaridad: + y − en JP8, L y N en JP17. La L va al este de la lengüeta 1,
+  delante del rótulo de JP17, porque desde el 2026-09-29 la cabecera de 5 mm
+  de JP24 no deja sitio al oeste; la N sigue al oeste de la lengüeta 3;
 - un triángulo de peligro con «PELIGRO 230 V~ / ZONA DE RED» en la banda de
   barrera, que no lleva cobre.
 

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-09-24T15:29:50</date>
+    <source>C:\Developer\open-saeco-controller\hardware\controller\kicad\controller-core-reva.kicad_sch</source>
+    <date>2026-09-29T21:29:58</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2238,21 +2238,21 @@
     </comp>
     <comp ref="J105">
       <value>JP13 NTC / 2 vías</value>
-      <footprint>Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</footprint>
+      <footprint>OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">JST</field>
-        <field name="mpn">B2B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C158012</field>
+        <field name="manufacturer">HR(Joint Tech Elec)</field>
+        <field name="mpn">A2506WV-02P</field>
+        <field name="lcsc">C382532</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical</field>
+        <field name="Footprint">OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
-      <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="B2B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C158012"/>
+      <property name="manufacturer" value="HR(Joint Tech Elec)"/>
+      <property name="mpn" value="A2506WV-02P"/>
+      <property name="lcsc" value="C382532"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -2270,21 +2270,21 @@
     </comp>
     <comp ref="J106">
       <value>JP5 FLOW ADAPTER / VCC-GND-OC</value>
-      <footprint>Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</footprint>
+      <footprint>OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">JST</field>
-        <field name="mpn">B3B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C144394</field>
+        <field name="manufacturer">HR(Joint Tech Elec)</field>
+        <field name="mpn">A2506WV-03P</field>
+        <field name="lcsc">C382533</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical</field>
+        <field name="Footprint">OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
-      <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="B3B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C144394"/>
+      <property name="manufacturer" value="HR(Joint Tech Elec)"/>
+      <property name="mpn" value="A2506WV-03P"/>
+      <property name="lcsc" value="C382533"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -2506,22 +2506,22 @@
       </units>
     </comp>
     <comp ref="J113">
-      <value>JP3 VALVE / JST XH</value>
-      <footprint>Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</footprint>
+      <value>JP3 VALVE / A2506</value>
+      <footprint>OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">JST</field>
-        <field name="mpn">B5B-XH-A(LF)(SN)</field>
-        <field name="lcsc">C157991</field>
+        <field name="manufacturer">HR(Joint Tech Elec)</field>
+        <field name="mpn">A2506WV-05P</field>
+        <field name="lcsc">C382535</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical</field>
+        <field name="Footprint">OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J5" description=""/>
-      <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="B5B-XH-A(LF)(SN)"/>
-      <property name="lcsc" value="C157991"/>
+      <property name="manufacturer" value="HR(Joint Tech Elec)"/>
+      <property name="mpn" value="A2506WV-05P"/>
+      <property name="lcsc" value="C382535"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -2578,23 +2578,19 @@
     </comp>
     <comp ref="J115">
       <value>JP8 GRINDER / 320VDC</value>
-      <footprint>Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</footprint>
+      <footprint>OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">JST</field>
-        <field name="mpn">B3P-VH(LF)(SN)</field>
-        <field name="lcsc">C160316</field>
-        <field name="jlc_class">Extended</field>
-        <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical</field>
+        <field name="manufacturer">LEOCO</field>
+        <field name="mpn">3941P03*000</field>
+        <field name="pcba_type">hand_solder_or_consigned</field>
+        <field name="Footprint">OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J3" description=""/>
-      <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="B3P-VH(LF)(SN)"/>
-      <property name="lcsc" value="C160316"/>
-      <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="TBD"/>
+      <property name="manufacturer" value="LEOCO"/>
+      <property name="mpn" value="3941P03*000"/>
+      <property name="pcba_type" value="hand_solder_or_consigned"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -2645,23 +2641,19 @@
     </comp>
     <comp ref="J117">
       <value>JP24 PUMP / 230VAC</value>
-      <footprint>Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical</footprint>
+      <footprint>OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">JST</field>
-        <field name="mpn">B2P-VH(LF)(SN)</field>
-        <field name="lcsc">C160315</field>
-        <field name="jlc_class">Extended</field>
-        <field name="pcba_type">TBD</field>
-        <field name="Footprint">Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical</field>
+        <field name="manufacturer">LEOCO</field>
+        <field name="mpn">5001P020013</field>
+        <field name="pcba_type">hand_solder_or_consigned</field>
+        <field name="Footprint">OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J2" description=""/>
-      <property name="manufacturer" value="JST"/>
-      <property name="mpn" value="B2P-VH(LF)(SN)"/>
-      <property name="lcsc" value="C160315"/>
-      <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="TBD"/>
+      <property name="manufacturer" value="LEOCO"/>
+      <property name="mpn" value="5001P020013"/>
+      <property name="pcba_type" value="hand_solder_or_consigned"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

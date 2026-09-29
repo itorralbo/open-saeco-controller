@@ -217,7 +217,7 @@ def main():
             ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
             ('J112','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
             ('U501','Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm','C575551'),
-            ('J113','Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical','C157991'),
+            ('J113','OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical','C382535'),
             ('U502','Package_TO_SOT_SMD:SOT-23-5','C99395'),
             ('Q501','Package_TO_SOT_SMD:SOT-23','C347491'),
             ('U601','Package_TO_SOT_SMD:SOT-23-5','C20032'),
@@ -227,12 +227,19 @@ def main():
             ('C504','Capacitor_SMD:C_0603_1608Metric','C77571')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     for ref, footprint, lcsc in [
-            ('J105','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
-            ('J106','Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical','C144394'),
+            ('J105','OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical','C382532'),
+            ('J106','OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical','C382533'),
             ('J107','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
             ('J108','Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical','C157972'),
             ('J109','Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical','C131339')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
+    # JP8 and JP24 are the LEOCO headers the owner identified; JLCPCB lists
+    # neither, so they carry no LCSC code.
+    for ref, footprint, mpn in [
+            ('J115','OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical','3941P03*000'),
+            ('J117','OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical','5001P020013')]:
+        assert fields[ref]['Footprint'] == footprint and fields[ref]['mpn'] == mpn
+        assert 'lcsc' not in fields[ref]
     exported = json.loads((base/'design-nets.json').read_text())
     assert nets == {c['reference']:c['pins'] for c in exported['components']}
 
@@ -252,6 +259,7 @@ def main():
             'dnp_open_by_default', 'mechanical_and_pinout_tbd',
             'rating_and_holder_tbd',
             'mpn_and_energy_tbd', 'normally_closed_open_for_external_24V',
+            'owner_identified_not_stocked_by_jlcpcb',
         }
         for ref, p in props.items():
             code = p.get('lcsc')
@@ -261,9 +269,12 @@ def main():
                 continue
             part = by_code[code]
             assert p['mpn'] == part['mpn'] and p['Footprint'] == part['footprint']
-            if part['stock_observed'] is None:
+            if not part['stock_observed']:
+                # Owner-identified parts are kept even when JLCPCB shows no
+                # stock; the catalog records the zero.
                 assert part['selection'] in ('candidate_supply_pending',
-                                             'candidate_not_released')
+                                             'candidate_not_released',
+                                             'owner_identified_supply_pending')
                 supply_pending += 1
                 continue
             assert part['stock_observed'] > 0, f'No stock at last check: {code}'

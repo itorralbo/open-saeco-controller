@@ -60,11 +60,11 @@ C205,1uF / USB VBUS,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Me
 F302,500mA resettable PTC,Fuse:Fuse_1206_3216Metric,candidate,Littelfuse,1206L050YR,C163512,TBD,TBD
 J111,USB BENCH POWER / OPEN,Jumper:SolderJumper-2_P1.3mm_Open_RoundedPad1.0x1.5mm,dnp_open_by_default,,,,,
 D303,SS34 / USB power OR,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
-J105,JP13 NTC / 2 vías,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,photo_candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
+J105,JP13 NTC / 2 vías,OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical,owner_identified,HR(Joint Tech Elec),A2506WV-02P,C382532,Extended,TBD
 R401,4.7k / NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R402,1k / NTC serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C401,100nF / NTC filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-J106,JP5 FLOW ADAPTER / VCC-GND-OC,Connector_JST:JST_XH_B3B-XH-A_1x03_P2.50mm_Vertical,photo_candidate_owner_pinout,JST,B3B-XH-A(LF)(SN),C144394,Extended,TBD
+J106,JP5 FLOW ADAPTER / VCC-GND-OC,OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical,owner_identified_owner_pinout,HR(Joint Tech Elec),A2506WV-03P,C382533,Extended,TBD
 R403,4.7k / FLOW pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4701T5E,C23162,Basic,Economic and Standard
 R404,1k / FLOW serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C402,10nF / FLOW filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
@@ -102,7 +102,7 @@ R509,49.9k / VREF bottom,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603
 C505,100nF / VREF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R510,2.49k / IPROPI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2491T5E,C22908,Basic,Economic and Standard
 C506,10nF / IPROPI,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
-J113,JP3 VALVE / JST XH,Connector_JST:JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical,owner_pinout_candidate,JST,B5B-XH-A(LF)(SN),C157991,Extended,TBD
+J113,JP3 VALVE / A2506,OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical,owner_identified_owner_pinout,HR(Joint Tech Elec),A2506WV-05P,C382535,Extended,TBD
 F304,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D305,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 D306,SS34 / flyback,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
@@ -131,9 +131,9 @@ R705,100k / 24V div B,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF
 R706,10k / 24V div low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C702,100nF / 24V ADC,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J114,POWER MONITOR / MEASURE ONLY,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
-J115,JP8 GRINDER / 320VDC,Connector_JST:JST_VH_B3P-VH_1x03_P3.96mm_Vertical,photo_candidate_owner_wiring,JST,B3P-VH(LF)(SN),C160316,Extended,TBD
+J115,JP8 GRINDER / 320VDC,OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,3941P03*000,,,hand_solder_or_consigned
 J116,JP19 HEATER / 1900W 27R5,OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-4,C2149727,Extended,Standard
-J117,JP24 PUMP / 230VAC,Connector_JST:JST_VH_B2P-VH_1x02_P3.96mm_Vertical,photo_candidate,JST,B2P-VH(LF)(SN),C160315,Extended,TBD
+J117,JP24 PUMP / 230VAC,OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,5001P020013,,,hand_solder_or_consigned
 J118,JP17 MAINS / L-N,OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-3,C5169636,Extended,TBD
 J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD

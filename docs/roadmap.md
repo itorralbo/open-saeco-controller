@@ -56,9 +56,10 @@ priorizadas por lo que desbloquean.
 El contorno de 141,6 × 135,2 mm y los tres taladros quedan aceptados como línea
 base mecánica de la Rev A; ya no bloquean la colocación de la principal.
 Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fechada.
-JP17 es un TE RAST 5 1971845-3, identificado por el propietario. JP8 y JP24
-llevan candidatos JST VH de 3 y 2 vías, pero sus carcasas miden más que las VH:
-hay que identificarlos antes de fijar sus huellas.
+JP17 es un TE RAST 5 1971845-3, identificado por el propietario. El
+2026-09-29 identificó también JP3, JP5 y JP13 (HR A2506WV, en JLCPCB) y JP8 y
+JP24 (LEOCO 3941P03*000 y 5001P020013, que JLCPCB no tiene: se sueldan a mano
+o se aportan). Quedan por identificar JP14, JP16 y JP22.
 Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
 
 ## Verificaciones

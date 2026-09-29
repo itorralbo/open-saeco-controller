@@ -66,7 +66,9 @@ LABEL_AT = {'J115': (71.1, 121.4, 90.0), 'J104': (23.5, 11.2, 0.0),
 PIN_MARKS = (('J115', '1', '+'), ('J115', '3', '-'),
              ('J118', '1', 'L'), ('J118', '3', 'N'))
 # Marks for tabs stacked in a column, beside their row instead: (x, y).
-PIN_MARK_AT = {('J118', '1'): (98.8, 121.55), ('J118', '3'): (98.8, 131.55)}
+# JP24's 5 mm header leaves too little room west of JP17's tab 1, so L goes
+# east of it, before the JP17 label; N stays west of tab 3.
+PIN_MARK_AT = {('J118', '1'): (115.95, 121.55), ('J118', '3'): (98.8, 131.55)}
 WARNING_AT = (58.5, 60.0)
 
 TEXT_SIZES = ((1.0, 0.15), (0.8, 0.12))

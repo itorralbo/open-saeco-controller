@@ -68,7 +68,7 @@ for _ref in OPTO_SLOT_REFS:
 
 CLASS_RULES = {
     # Primary-side copper. The 1.2 mm class clearance is set by the 3.96 mm
-    # pitch of the original VH mains connectors; copper between different
+    # pitch of JP8's LEOCO 3941 header; copper between different
     # Mains nets is held to 2.5 mm and Mains-to-SELV to 8 mm by DRU_RULES.
     'Mains': {
         'clearance': 1.20, 'track_width': 2.50, 'via_diameter': 1.60,

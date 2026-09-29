@@ -562,3 +562,28 @@ de cargas siguen pendientes en el esquema principal.
   paridad de MH1–MH3. 1 268 segmentos y 441 vías. Pendiente: comprobar con una
   muestra la codificación 1C/2D contra la carcasa del mazo. No libera
   fabricación ni conexión a red.
+
+## Conectores de JP3, JP5, JP13, JP8 y JP24, 2026-09-29
+
+- El propietario identificó las cabeceras: HR A2506WV-05P, -03P y -02P para JP3,
+  JP5 y JP13 (C382535, C382533 y C382532) y LEOCO 3941P03*000 y 5001P020013 para
+  JP8 y JP24, que JLCPCB no tiene. Stock JLCPCB consultado el mismo día por la
+  API de lista de componentes, solo lectura: 3, 0 y 700 unidades.
+- Cinco huellas nuevas en `OpenSaeco.pretty`, desde los planos A2506WV-XP
+  rev. B5, 394105S rev. F y 500101S rev. D. El pad 1 queda en el circuito 1 de
+  cada plano; en las LEOCO se lee del alzado en tercer diedro.
+- J105, J113 y J115 conservan su origen y su cobre. J106 se corre 0,3 mm al oeste
+  para despejar el courtyard de U702. J117 pasa a 5 mm entre pines, centrado
+  0,5 mm al este del JP24 fotografiado; el neutro sale de la mitad sur de su
+  pad 2 para quedar a 2,5 mm de la fase. La marca L de JP17 pasa al este de la
+  lengüeta 1.
+- `check_controller_core.py` admite piezas del propietario sin stock o sin código
+  JLCPCB, siempre con su estado explícito en el catálogo. La comprobación de
+  frescura del stock falla hoy en piezas no tocadas (consultas del 2026-09-16 al
+  2026-09-22, más de 7 días); con esa fecha fijada al 2026-09-23 pasa todo lo
+  demás.
+- ERC 0; netlist 187 componentes / 612 pines coincidente. DRC con todas las
+  severidades: 0 infracciones, 0 conexiones abiertas y las tres diferencias de
+  paridad de MH1–MH3. 1 268 segmentos y 441 vías. Pendiente: probar cada mazo
+  en su cabecera, sobre todo el sentido del gancho de JP8, que fija la
+  polaridad del molinillo. No libera fabricación ni conexión a red.

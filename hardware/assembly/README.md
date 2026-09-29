@@ -23,7 +23,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 30.138 | No observado | Categoría JLC por verificar |
 | Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 27.530 | 27.530 | Categoría JLC por verificar |
 | MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 546.570 | 546.570 | Categoría JLC por verificar |
-| Conector JP3 | JST B5B-XH-A(LF)(SN), vertical | [C157991](https://jlcpcb.com/partdetail/C157991) | 63.729 | No observado | Categoría JLC por verificar |
+| Conector JP3 | HR A2506WV-05P, 5 vías/2,50 mm, vertical | [C382535](https://jlcpcb.com/partdetail/C382535) | 3 (2026-09-29) | No observado | Extended; categoría JLC por verificar |
 | Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 49.065 | 49.065 | Categoría JLC por verificar |
 | Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 21.000 | 21.000 | Categoría JLC por verificar |
 | Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 48.395 | 48.395 | Economic / Standard |
@@ -34,12 +34,13 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Inductor buck | SRN6028C-3R9M | [C19947652](https://www.lcsc.com/product-detail/C19947652.html) | 227 | 227 | Economic / Standard |
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 270.440 | 270.440 | Economic / Standard |
 | Entradas 12 V y 24 V, 2 unidades | JST B2B-XH-A(LF)(SN), vertical | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
-| JP13/JP14, 2 unidades | JST B2B-XH-A(LF)(SN), vertical | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
-| JP5 | JST B3B-XH-A(LF)(SN), vertical | [C144394](https://jlcpcb.com/partdetail/C144394) | 213.419 | No observado | Categoría JLC por verificar |
+| JP13 | HR A2506WV-02P, 2 vías/2,50 mm, vertical | [C382532](https://jlcpcb.com/partdetail/C382532) | 700 (2026-09-29) | No observado | Extended; categoría JLC por verificar |
+| JP14 | JST B2B-XH-A(LF)(SN), vertical, candidato | [C158012](https://jlcpcb.com/partdetail/C158012) | 364.229 | No observado | Categoría JLC por verificar |
+| JP5 | HR A2506WV-03P, 3 vías/2,50 mm, vertical | [C382533](https://jlcpcb.com/partdetail/C382533) | 0 (2026-09-29) | No observado | Extended; sin stock |
 | JP16 | JST B8B-XH-A(LF)(SN), vertical | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.697 | No observado | Categoría JLC por verificar |
 | JP22 | JST B3B-PH-K-S(LF)(SN), vertical | [C131339](https://jlcpcb.com/partdetail/C131339) | 153.612 | No observado | Categoría JLC por verificar |
-| JP24 | JST B2P-VH(LF)(SN), 2 vías/3,96 mm, vertical | [C160315](https://jlcpcb.com/partdetail/C160315) | 328.397 | No observado | Categoría JLC por verificar |
-| JP8 | JST B3P-VH(LF)(SN), 3 vías/3,96 mm, vertical | [C160316](https://jlcpcb.com/partdetail/C160316) | 39.334 | No observado | Categoría JLC por verificar |
+| JP24 | LEOCO 5001P020013, 2 vías/5,00 mm, pin cuadrado, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
+| JP8 | LEOCO 3941P03*000, 3 vías/3,96 mm, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP17 | TE 1971845-3, RAST 5, 3 lengüetas 6,3 × 0,8 mm, 16 A, vertical | [C5169636](https://jlcpcb.com/partdetail/C5169636) | 233 | No observado | Extended; categoría JLC por verificar |
 | Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 2.161 | No observado | Economic / Standard; ola |
 | Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | No observado | No observado | Economic / Standard; ola |
@@ -112,11 +113,17 @@ protección de entrada DC, el buck, el corte del frontal, sensores de baja tensi
 El porcentaje anterior
 solo describe la hoja actual, no el avance de toda la máquina.
 
-Las referencias JST VH se incorporan al catálogo para reservar una opción
-fabricable, pero todavía no aparecen en el esquema ni en la BOM de la principal.
-Las fotos y las cotas encajan; falta una prueba física de acoplamiento. Además,
-JP8 y JP24 transportan tensión peligrosa, por lo que elegir la carcasa no libera
-la arquitectura eléctrica ni el layout de esos circuitos.
+El propietario identificó el 2026-09-29 las cabeceras de JP3, JP5, JP13, JP8 y
+JP24. Las tres de señal son HR (Joint Tech) A2506WV y están en JLCPCB, pero con
+poco stock: la de cinco vías tenía 3 unidades y la de tres, ninguna
+(`C9900130733`, la A2506WV-03P blanca de JLCPCB Assembly, tampoco tenía). Habrá
+que reservarlas o comprarlas en LCSC antes del pedido. JP8 y JP24 son LEOCO
+3941P03*000 y 5001P020013; JLCPCB no tiene LEOCO ni ninguna de las dos series,
+así que su línea de la BOM va sin código LCSC y se sueldan a mano o se aportan
+a JLCPCB. Para la 3941, el `*` es la opción de pin (V cuadrado, R redondo); la
+huella usa el taladro de 1,80 mm del pin cuadrado, que admite los dos. JP8 y
+JP24 transportan tensión peligrosa: fijar el conector no libera la arquitectura
+eléctrica ni el layout de esos circuitos.
 
 Capacitores de 100 nF y 10 nF: X7R. De 1 µF, 4,7 µF y 10 µF: X5R seleccionados
 por suministro. Cerrar temperatura y capacitancia efectiva bajo polarización

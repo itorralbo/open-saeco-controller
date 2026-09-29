@@ -53,7 +53,9 @@ alturas ni patrón de anclaje y todavía no se asignaron huellas.
 
 > **Corregido el 2026-09-24** (ver «Revisión con nonio»): las anchuras de esta
 > tabla no son las de las carcasas JST XH, PH ni VH, y JP17 es un TE RAST 5. La
-> tabla se conserva como registro de la primera lectura.
+> tabla se conserva como registro de la primera lectura. El 2026-09-29 el
+> propietario identificó JP3, JP5, JP13, JP8 y JP24 (ver «Identificación del
+> propietario»).
 
 Las fotos de `photos/Conectores/` muestran las carcasas de cable de frente y con
 el calibre en el mismo plano. La anchura, número de vías, paso aparente y forma de
@@ -165,3 +167,23 @@ Para cerrar la familia de los de señal, lo más directo es medir en la placa
 original el paso sobre todas las vías, la sección de los pines y el ancho de la
 cabecera, o buscar marcas de fabricante. Si no, probar a enchufar una carcasa del
 mazo en una muestra de la cabecera candidata.
+
+## Identificación del propietario, 2026-09-29
+
+El propietario dio como seguras y definitivas estas cabeceras, que casan con los
+mazos originales:
+
+| Conector | Pieza | Paso | JLCPCB |
+|---|---|---:|---|
+| JP3 | HR (Joint Tech) A2506WV-05P | 2,50 mm | C382535 |
+| JP5 | HR (Joint Tech) A2506WV-03P | 2,50 mm | C382533 |
+| JP13 | HR (Joint Tech) A2506WV-02P | 2,50 mm | C382532 |
+| JP8 | LEOCO 3941P03*000 | 3,96 mm | no disponible |
+| JP24 | LEOCO 5001P020013 | 5,00 mm | no disponible |
+
+Encaja con lo medido con nonio: la boca de la cabecera A2506 mide A + 3,62 mm
+(6,12, 8,62 y 13,62 mm para 2, 3 y 5 vías) y en ella caben las carcasas medidas
+de 5,7, 8,3 y 13,1 mm; JP24 tiene los pines a 5 mm y JP8 conserva el paso de
+3,96 mm. Las huellas y su
+orientación están en el [layout](../../hardware/controller/layout.md#jp3-jp5-jp13-jp8-y-jp24).
+Siguen sin identificar JP14, JP16 y JP22.

@@ -626,7 +626,7 @@ def route_sensors(board):
     # Flow meter (JP5): the raw net climbs west of MH2 to the filter column,
     # where the pull-up and the series resistor both face it with their raw
     # pad. The filtered net drops straight to C402.
-    polyline(board, '/FLOW_RAW', [(38.5, 125.3), (38.5, 122.0), (35.3, 118.8),
+    polyline(board, '/FLOW_RAW', [(38.2, 125.3), (38.2, 122.0), (35.3, 118.8),
                                   (35.3, 112.0), (33.6, 110.3), (33.6, 109.2),
                                   (32.725, 109.2)], width=PIN_WIDTH)
     polyline(board, '/FLOW_RAW', [(33.6, 110.3), (33.6, 111.0), (32.725, 111.0)],
@@ -645,7 +645,7 @@ def route_sensors(board):
                          # East, not north: the grinder's gate order runs
                          # above the NTC row at y = 103 mm.
                          ((34.0, 104.225), (34.9, 104.225)),
-                         ((41.0, 125.3), (40.2, 122.5)),
+                         ((40.7, 125.3), (39.9, 122.5)),
                          ((32.725, 112.8), (33.7, 113.7)),
                          ((23.0, 128.2), (24.6, 127.0)),
                          ((22.0, 115.225), (23.4, 115.225)),
@@ -1180,14 +1180,14 @@ def route_pump_stage(board):
     from the foot of the lane. The gate is the only net that runs the
     35 mm to the triac: on B.Cu, south of the heater gate and north of JP19's
     tab 1, holding 2.5 mm to both. The pump current is 0.4 A, so its own
-    tracks stay at 1.2 mm, narrow enough to keep 2.5 mm between the two JP24
-    pads.
+    tracks stay at 1.2 mm; the LEOCO 5001 header of JP24 has its pads 5 mm
+    apart, and the neutral drops from pin 2 straight onto the JP19 run's via.
     """
     gnd = '/GND_UI'
 
     # LED loop on the SELV side. 12 V comes from JP5 pin 3 on B.Cu along the
     # plane edge; the gate network sits north of Q706, clear of MH2.
-    polyline(board, '/12V_PROTECTED', [(43.5, 125.3), (45.3, 123.5),
+    polyline(board, '/12V_PROTECTED', [(43.2, 125.3), (45.3, 123.2),
                                        (45.3, 108.4)], pcb.B_Cu, width=0.5)
     via(board, '/12V_PROTECTED', (45.3, 108.4))
     track(board, '/12V_PROTECTED', (45.3, 108.4), (45.3, 109.775), width=0.5)
@@ -1228,9 +1228,11 @@ def route_pump_stage(board):
     # neutral run to JP19.
     track(board, '/LOAD_L_ENABLED', (89.0, 106.45), (89.0, 108.8), width=0.9)
     polyline(board, '/PUMP_AC_SWITCHED', [(86.46, 110.5), (86.46, 112.0),
-                                          (91.02, 116.5), (91.02, 119.8)],
+                                          (91.0, 116.54), (91.0, 119.8)],
              width=1.2)
-    track(board, '/MAINS_N', (94.98, 120.8), (94.98, 127.5), width=1.2)
+    # The neutral leaves the south half of pin 2 to hold 2.5 mm from the
+    # phase bend north-east of JP24.
+    track(board, '/MAINS_N', (96.0, 121.6), (96.0, 127.5), width=1.2)
 
 
 def route_pump_enable(board):

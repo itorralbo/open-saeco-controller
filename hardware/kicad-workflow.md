@@ -38,7 +38,7 @@ JP8/JP24/JP17 ya están colocados; también están ruteados los raíles de 3,3 V
 cargas. Siguen pendientes el resto de señales del STM32, del ESP32 y del frontal. El **frontal está
 colocado y ruteado** sobre el [contorno aceptado](front-panel/mechanical.md), con DRC
 limpio y paquete JLCPCB candidato: ver [layout del frontal](front-panel/layout.md). J101–J104 y J1 tienen huellas
-seleccionadas; J105–J109 y J112–J113 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
+seleccionadas; J105, J106 y J113 son HR A2506WV identificadas por el propietario, y J107–J109 y J112 usan candidatas JST XH/PH según las fotos con calibre; J110 es USB-C
 y queda colocado provisionalmente en el borde superior junto a JP21. U501 y su
 etapa de 24 V para el grupo, U502/Q501 para la válvula y U601/U602 para supervisión están colocados solo para comprobar cabida; no generar
 Gerbers/BOM de fabricación/CPL de la principal todavía. J114 y los divisores de

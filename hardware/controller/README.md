@@ -10,8 +10,10 @@ Un TPS3828 externo supervisa el STM32; la lógica AND bloquea los actuadores y
 un segundo interlock gobierna el relé general de fase.
 159 posiciones; 151 con MPN y código JLC/LCSC, más los puentes de cobre J111/J121.
 Las huellas están importadas a la PCB. JP19 es el TE 1971845-4 identificado por
-el propietario; los dos FASTON de PE siguen con patrón de patas provisional. J105–J109 usan cabeceras JST XH/PH candidatas a partir de las fotos con
-calibre; falta comprobar el acoplamiento con una muestra.
+el propietario; los dos FASTON de PE siguen con patrón de patas provisional.
+J105, J106 y J113 (JP13, JP5 y JP3) son HR A2506WV identificadas por el
+propietario; J107–J109 siguen con cabeceras JST XH/PH candidatas a partir de las
+fotos con calibre, y falta comprobar su acoplamiento con una muestra.
 Hay [proyecto KiCad, ERC y netlist nativos](../kicad-workflow.md), contorno,
 taladros aceptados y [colocación mecánica/funcional reproducible](layout.md), con
 el USB, la alimentación del STM32, la entrada de red, los 24 V, el puente H del
@@ -30,8 +32,9 @@ pendientes. La placa ya incluye JP17, fuente aislada y relé general; faltan los
 drivers de calentador, bomba y molino en las posiciones de la original. Su
 [arquitectura](../power/power-architecture.md) ya forma parte del alcance de esta
 misma PCB.
-JP8 y JP24 están en el esquema y en la PCB como JST VH candidatos, en sus
-posiciones originales, aunque las carcasas del mazo miden más que las VH. JP19 y
+JP8 y JP24 son las LEOCO 3941P03*000 y 5001P020013 identificadas por el
+propietario, en sus posiciones originales; JLCPCB no las tiene y se sueldan a
+mano o se aportan. JP19 y
 JP17 son los TE 1971845-4 y 1971845-3 (RAST 5, cuatro y tres lengüetas FASTON,
 LCSC C2149727 y C5169636) y JP1/JP9 llevan una lengüeta cada uno, con el patrón de
 patas aún por cotejar.

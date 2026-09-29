@@ -19,11 +19,10 @@ En modo diodo se miden 0,073 V en ambos sentidos. Esa simetría, junto con los
 en paralelo. No se ha detectado supresión interna accesible desde los terminales;
 la rueda libre externa forma parte necesaria del driver.
 
-JP3 parece JST XH de cinco vías y 2,50 mm. La huella compatible de trabajo es
-`JST_XH_B5B-XH-A_1x05_P2.50mm_Vertical`; se selecciona
-`B5B-XH-A(LF)(SN)` (`C157991`), de entrada vertical como el resto de conectores,
-con 63.729 unidades JLCPCB observadas el 2026-09-22.
-La referencia continúa siendo candidata hasta probar el acoplamiento físico.
+JP3 es una HR (Joint Tech) A2506WV-05P de cinco vías a 2,50 mm, identificada
+por el propietario el 2026-09-29 (no es JST XH). La huella
+`OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical` sigue el plano A2506WV-XP; la
+pieza es `C382535`, de la que JLCPCB solo tenía 3 unidades el 2026-09-29.
 
 ## Topología propuesta
 

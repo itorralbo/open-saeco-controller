@@ -32,7 +32,8 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   orden rojo=VCC, blanco=señal y negro=GND.
 - Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
-- J105–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
+- J105 y J106 son HR A2506WV-02P/-03P, identificadas por el propietario;
+  J107–J109 usan huellas candidatas JST XH/PH cotejadas con fotos y catálogo
   LCSC. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
@@ -52,7 +53,8 @@ barrera red/SELV comprobada; quedan 273 conexiones sin rutear.
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
 
-JP8 y JP24 ya aparecen como J115 y J117 con huellas JST VH candidatas.
+JP8 y JP24 ya aparecen como J115 y J117, las LEOCO 3941P03*000 y 5001P020013
+identificadas por el propietario, con huella según el plano del fabricante.
 JP19 es J116 y JP17 es J118, los TE 1971845-4 y 1971845-3 con huella según el
 plano del fabricante. Los dos
 FASTON de PE son J119/J120, con patrón de patas provisional. Los drivers de red todavía no están dibujados.
@@ -219,7 +221,7 @@ de 12 V conduce Q501 (SI2308A, 60 V) a través de R513=33 Ω, con R514=100 kΩ e
 puerta y source. C507=100 nF y C508=1 µF desacoplan el driver. D306 (SS34) queda
 en paralelo con la bobina, cátodo a `24V_VALVE` y ánodo a `VALVE_RETURN`.
 
-J113 usa JST B5B-XH-A(LF)(SN) vertical, LCSC `C157991`, con pin 1 a +24 V y pin 2 al
+J113 usa HR A2506WV-05P vertical, LCSC `C382535`, con pin 1 a +24 V y pin 2 al
 retorno conmutado; 3–5 quedan NC. La etapa se ha dibujado para probar la bobina
 OLAB 6000BH/B0DN. Antes de liberarla deben medirse corriente en caliente, tiempo
 de liberación, tensión de drenador y temperatura del MOSFET.

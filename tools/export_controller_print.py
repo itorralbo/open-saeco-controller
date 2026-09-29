@@ -8,6 +8,8 @@ printer's margin would crop it, so a scratch copy is shifted 30 mm in and
 gets a 100 mm scale bar to check the print was not scaled. Print at 100 %
 ("actual size"), then lay the real connectors, the relay and the PSU on it.
 """
+import os
+import shutil
 import subprocess
 import tempfile
 from pathlib import Path
@@ -17,7 +19,10 @@ import pcbnew as pcb
 ROOT = Path(__file__).resolve().parents[1]
 BOARD_PATH = ROOT / 'hardware/controller/kicad/controller-core-reva.kicad_pcb'
 TARGET = ROOT / 'hardware/controller/preview/controller-top-1to1.pdf'
-KICAD_CLI = '/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli'
+KICAD_CLI = (os.environ.get('KICAD_CLI') or shutil.which('kicad-cli') or next(
+    (path for path in ('/Applications/KiCad/KiCad.app/Contents/MacOS/kicad-cli',
+                       'C:/Program Files/KiCad/10.0/bin/kicad-cli.exe')
+     if Path(path).is_file()), 'kicad-cli'))
 MM = pcb.FromMM
 OFFSET = (30.0, 30.0)
 LAYERS = 'Edge.Cuts,F.SilkS,F.Fab,F.CrtYd,F.Mask,User.Comments'
