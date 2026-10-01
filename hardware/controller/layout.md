@@ -569,6 +569,8 @@ del cable, que queda retenido y solo entra en un sentido.
 - JLCPCB lista la pieza como C19103863 sin stock el 2026-10-01.
 - El pestillo fija el sentido del cable; con el cable 1:1 y la misma huella en
   el frontal, el pin 1 llega al pin 1.
+- Detalle: [planta](preview/j104-wr-mm-top.png) y
+  [perspectiva](preview/j104-wr-mm-3d.png); el modelo es un cuerpo simplificado.
 
 ### Etapa del calentador y disipador
 

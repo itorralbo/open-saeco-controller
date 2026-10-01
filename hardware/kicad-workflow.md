@@ -123,7 +123,11 @@ python3 tools/export_front_panel_fab.py
 Si el ejecutable no está en PATH, `validate_kicad.py` y `export_controller_print.py`
 admiten `KICAD_CLI` y detectan la instalación habitual de macOS y de Windows. La
 vista `controller/preview/pcb-staging-top.png` se renderiza con
-`kicad-cli pcb render --side top`. Las piezas sin modelo 3D en KiCad 10.0 llevan
+`kicad-cli pcb render --side top`. Los detalles del enlace del frontal salen
+con `--width 1600 --height 900 --quality high` y: `--zoom 5 --pan "5.4,-5.8,0"`
+para `controller/preview/j104-wr-mm-top.png` (más `--rotate "-35,0,0"
+--perspective` para `j104-wr-mm-3d.png`) y `--zoom 4 --pan "-6.2,2.2,0"` para
+`front-panel/preview/j1-wr-mm-top.png`. Las piezas sin modelo 3D en KiCad 10.0 llevan
 [cuerpos de sustitución](controller/kicad/OpenSaeco.3dshapes/README.md) que
 genera `make_controller_3d_models.py`: valen para los renders y para ver
 holguras a ojo, no para CAD mecánico, encaje en la carcasa ni distancias de

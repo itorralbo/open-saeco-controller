@@ -76,7 +76,8 @@ sin alivio térmico y los de U1 solo por su pista a la vía.
   pendientes y 0 diferencias con el esquema** ([informe](validation/drc-staging.json)).
 - Freerouting informa 32 «violations» internas sin detalle en su registro; la
   referencia es el DRC de KiCad con las reglas del proyecto, que no encuentra ninguna.
-- Vistas: [cara superior](preview/pcb-top.png) y [cara inferior](preview/pcb-bottom.png).
+- Vistas: [cara superior](preview/pcb-top.png), [cara inferior](preview/pcb-bottom.png)
+  y [detalle de J1](preview/j1-wr-mm-top.png).
   El modelo 3D de los pulsadores es el C&K PTS645 de la biblioteca de KiCad
   (mismo cuerpo 6 × 6 × 4,3 mm), solo como representación.
 
