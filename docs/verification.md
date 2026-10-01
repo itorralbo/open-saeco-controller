@@ -633,3 +633,16 @@ cable entra en un taladro de 1,5 mm junto al pin 1. Sustituye al IDC 2×8 en J10
 - El recuento fotográfico de 20 contactos en JP21 era un error. Pendiente:
   presentar el cable y comprobar que el pestillo entra en el taladro de las dos
   placas nuevas.
+
+## Resistencias Basic para el límite del puente H, 2026-10-01
+
+R510 (IPROPI) pasa de 2,49 kΩ (C22908) a 2,4 kΩ (C22940) y R508 (VREF, lado alto)
+de 16 kΩ (C4210) a 18 kΩ (C25810, la misma de R303). Las dos anteriores pasaron a
+Extended en JLCPCB; las nuevas son Basic y R509 sigue en 49,9 kΩ.
+
+- VREF = 3,3 × 49,9 / 67,9 ≈ 2,425 V (antes 2,498 V); con 1 000 µA/A,
+  I_TRIP ≈ 2,425 / 2,4 ≈ 1,01 A (antes 1,00 A). IPROPI ≈ 1,2 V a 0,5 A.
+- Misma huella 0603: colocación y ruteo intactos; solo cambian valor y campos.
+- ERC 0; netlist 187/612; DRC con todas las severidades: 0 infracciones,
+  0 sin conectar y paridad solo MH1–MH3. El límite sigue pendiente de medir.
+

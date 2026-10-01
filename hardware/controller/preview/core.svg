@@ -1550,7 +1550,7 @@
 <text x="908.4499999999999" y="217.94" font-size="0.9" text-anchor="start" fill="#23745f">BREW_FAULT_N</text>
 <rect x="967.74" y="233.95" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="970.28" y="228.95" font-size="1.05" text-anchor="middle" fill="#213b50">R508</text>
-<text x="970.28" y="231.45" font-size="1.05" text-anchor="middle" fill="#213b50">16k / VREF top</text>
+<text x="970.28" y="231.45" font-size="1.05" text-anchor="middle" fill="#213b50">18k / VREF top</text>
 <path d="M 967.74 234.95 H 962.66" stroke="#27856d" stroke-width=".22"/>
 <text x="962.26" y="234.45" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 972.8199999999999 234.95 H 977.9" stroke="#27856d" stroke-width=".22"/>
@@ -1571,7 +1571,7 @@
 <text x="1118.0" y="234.45" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="967.74" y="254.27" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="970.28" y="249.27" font-size="1.05" text-anchor="middle" fill="#213b50">R510</text>
-<text x="970.28" y="251.77" font-size="1.05" text-anchor="middle" fill="#213b50">2.49k / IPROPI</text>
+<text x="970.28" y="251.77" font-size="1.05" text-anchor="middle" fill="#213b50">2.4k / IPROPI</text>
 <path d="M 967.74 255.27 H 962.66" stroke="#27856d" stroke-width=".22"/>
 <text x="962.26" y="254.77" font-size="0.9" text-anchor="end" fill="#23745f">BREW_CURRENT_ADC</text>
 <path d="M 972.8199999999999 255.27 H 977.9" stroke="#27856d" stroke-width=".22"/>

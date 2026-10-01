@@ -176,10 +176,13 @@ U501 es un
 encaja con la autodosis basada en corriente del grupo. La hoja de datos incluye
 precisamente un caso de 24 V, 0,5 A RMS y límite de 1 A.
 
-La primera revisión implementa `RIPROPI = 2,49 kΩ`, `RREF1 = 16,0 kΩ` y
-`RREF2 = 49,9 kΩ` desde 3,3 V. El divisor produce aproximadamente 2,498 V y el
-límite teórico es aproximadamente 1,00 A. `IPROPI` entregaría unos 1,245 V a
-0,5 A y quedaría limitado cerca de 2,5 V, dentro del ADC de 3,3 V. IMODE se
+La primera revisión implementa `RIPROPI = 2,4 kΩ`, `RREF1 = 18 kΩ` y
+`RREF2 = 49,9 kΩ` desde 3,3 V, los tres Basic en JLCPCB (hasta el 2026-10-01 eran
+2,49 kΩ y 16,0 kΩ, que pasaron a Extended). El divisor produce aproximadamente
+2,425 V y el límite teórico es aproximadamente 1,01 A. `IPROPI` entregaría unos
+1,2 V a 0,5 A y quedaría limitado cerca de 2,43 V, dentro del ADC de 3,3 V. Con
+la ganancia de 1 000 µA/A, el firmware convierte con I ≈ V_IPROPI / 2,4 (0,417 A
+por voltio). IMODE se
 conecta a masa para regulación fixed-off-time con recuperación automática. PB5
 mantiene `nSLEEP` a cero durante reset mediante R506; el firmware deberá retirar
 `nSLEEP` inmediatamente al detectar `nFAULT`, ya que el modo elegido reintenta

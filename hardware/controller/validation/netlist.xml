@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Developer\open-saeco-controller\hardware\controller\kicad\controller-core-reva.kicad_sch</source>
-    <date>2026-10-01T21:46:25</date>
+    <date>2026-10-01T21:54:40</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -4431,24 +4431,24 @@
       </units>
     </comp>
     <comp ref="R508">
-      <value>16k / VREF top</value>
+      <value>18k / VREF top</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1602T5E</field>
-        <field name="lcsc">C4210</field>
-        <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
+        <field name="mpn">0603WAF1802T5E</field>
+        <field name="lcsc">C25810</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">TBD</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
       <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1602T5E"/>
-      <property name="lcsc" value="C4210"/>
-      <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="mpn" value="0603WAF1802T5E"/>
+      <property name="lcsc" value="C25810"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -4495,13 +4495,13 @@
       </units>
     </comp>
     <comp ref="R510">
-      <value>2.49k / IPROPI</value>
+      <value>2.4k / IPROPI</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
         <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF2491T5E</field>
-        <field name="lcsc">C22908</field>
-        <field name="jlc_class">Extended</field>
+        <field name="mpn">0603WAF2401T5E</field>
+        <field name="lcsc">C22940</field>
+        <field name="jlc_class">Basic</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
@@ -4509,9 +4509,9 @@
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
       <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF2491T5E"/>
-      <property name="lcsc" value="C22908"/>
-      <property name="jlc_class" value="Extended"/>
+      <property name="mpn" value="0603WAF2401T5E"/>
+      <property name="lcsc" value="C22940"/>
+      <property name="jlc_class" value="Basic"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>

@@ -97,10 +97,10 @@ R504,10k / PH pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603W
 R505,33 / nSLEEP,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R506,10k / nSLEEP pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R507,10k / nFAULT pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
-R508,16k / VREF top,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1602T5E,C4210,Extended,Economic and Standard
+R508,18k / VREF top,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1802T5E,C25810,Basic,TBD
 R509,49.9k / VREF bottom,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF4992T5E,C23184,Basic,Economic and Standard
 C505,100nF / VREF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
-R510,2.49k / IPROPI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2491T5E,C22908,Extended,Economic and Standard
+R510,2.4k / IPROPI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2401T5E,C22940,Basic,Economic and Standard
 C506,10nF / IPROPI,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
 J113,JP3 VALVE / A2506,OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical,owner_identified_owner_pinout,HR(Joint Tech Elec),A2506WV-05P,C382535,Extended,TBD
 F304,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard

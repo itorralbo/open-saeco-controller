@@ -1646,14 +1646,14 @@
     },
     {
       "reference": "R508",
-      "value": "16k / VREF top",
+      "value": "18k / VREF top",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF1602T5E",
-      "lcsc": "C4210",
-      "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
+      "mpn": "0603WAF1802T5E",
+      "lcsc": "C25810",
+      "jlc_class": "Basic",
+      "pcba_type": "TBD",
       "pins": {
         "1": "3V3_CORE",
         "2": "BREW_VREF"
@@ -1691,13 +1691,13 @@
     },
     {
       "reference": "R510",
-      "value": "2.49k / IPROPI",
+      "value": "2.4k / IPROPI",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF2491T5E",
-      "lcsc": "C22908",
-      "jlc_class": "Extended",
+      "mpn": "0603WAF2401T5E",
+      "lcsc": "C22940",
+      "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "BREW_CURRENT_ADC",
