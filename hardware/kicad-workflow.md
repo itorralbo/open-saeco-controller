@@ -109,6 +109,7 @@ python3 tools/apply_front_panel_mechanics.py
 python3 tools/configure_controller_rules.py
 <python de KiCad> tools/route_controller_pcb.py
 <python de KiCad> tools/silkscreen_controller_pcb.py
+<python de KiCad> tools/make_controller_3d_models.py
 <python de KiCad> tools/export_controller_print.py
 python3 tools/render_main_connector_map.py
 <python de KiCad> tools/sync_front_panel_pcb.py
@@ -122,8 +123,12 @@ python3 tools/export_front_panel_fab.py
 Si el ejecutable no está en PATH, `validate_kicad.py` y `export_controller_print.py`
 admiten `KICAD_CLI` y detectan la instalación habitual de macOS y de Windows. La
 vista `controller/preview/pcb-staging-top.png` se renderiza con
-`kicad-cli pcb render --side top`. Los scripts de PCB requieren el Python
-incluido en KiCad y sus bibliotecas.
+`kicad-cli pcb render --side top`. Las piezas sin modelo 3D en KiCad 10.0 llevan
+[cuerpos de sustitución](controller/kicad/OpenSaeco.3dshapes/README.md) que
+genera `make_controller_3d_models.py`: valen para los renders y para ver
+holguras a ojo, no para CAD mecánico, encaje en la carcasa ni distancias de
+aislamiento. Los scripts de PCB requieren el Python incluido en KiCad y sus
+bibliotecas.
 
 Siguiente trabajo eléctrico: comprobar la principal impresa 1:1 contra la placa
 original y los mazos, identificar JP14, JP16 y JP22, cerrar F701/F702/RV701 y el

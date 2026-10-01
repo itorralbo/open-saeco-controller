@@ -12,6 +12,10 @@ tres taladros aceptados no se muevan.
 
 ![Vista superior de la colocación](preview/pcb-staging-top.png)
 
+Los cuerpos del relé, la IRM-30, el ESP32-S3-1U, los conectores de mazo y otras
+piezas sin modelo en KiCad son [sustitutos simplificados](kicad/OpenSaeco.3dshapes/README.md):
+la vista sirve para orientarse, no para medir alturas.
+
 ![Mapa mecánico de conectores](validation/main-connector-map.svg)
 
 ## Sustitución física de la placa original

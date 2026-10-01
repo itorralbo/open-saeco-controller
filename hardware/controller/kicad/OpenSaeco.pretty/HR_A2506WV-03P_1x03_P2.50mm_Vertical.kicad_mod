@@ -36,4 +36,9 @@
   (pad "1" thru_hole roundrect (at 0 0) (size 1.7 2) (drill 0.85) (layers "*.Cu" "*.Mask") (roundrect_rratio 0.147059))
   (pad "2" thru_hole oval (at 2.5 0) (size 1.7 2) (drill 0.85) (layers "*.Cu" "*.Mask"))
   (pad "3" thru_hole oval (at 5 0) (size 1.7 2) (drill 0.85) (layers "*.Cu" "*.Mask"))
+  (model "${KIPRJMOD}/OpenSaeco.3dshapes/HR_A2506WV-03P_1x03_P2.50mm_Vertical.wrl"
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )

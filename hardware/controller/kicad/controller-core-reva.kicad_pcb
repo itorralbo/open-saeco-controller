@@ -575,6 +575,17 @@
 			(uuid "9c3b3084-6ab9-4e1d-9cb7-d6fc62462679")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/MeanWell_IRM-30_THT.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical"
 		(layer "F.Cu")
@@ -2330,7 +2341,7 @@
 			(uuid "0d7f7c4b-e659-4638-be03-d7d7b66d4a14")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/RF_Module.3dshapes/ESP32-S3-WROOM-1U.step"
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/ESP32-S3-WROOM-1U.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -4052,6 +4063,17 @@
 			(uuid "2bb6bc28-7f58-458a-86b3-216d31f35e8c")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -7429,6 +7451,17 @@
 			(uuid "49d55cce-3755-4fb1-a6d8-2a7d187682de")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/Fuse_2410_JDT_JFC2410.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -9712,6 +9745,17 @@
 			(uuid "f45ca9c8-61dd-4d53-955a-1641eb623b31")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/HR_A2506WV-02P_1x02_P2.50mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Fuse:Fuse_1206_3216Metric"
 		(layer "F.Cu")
@@ -11935,6 +11979,17 @@
 			(uuid "e7140493-494f-434e-a917-6fdc362beadd")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/Relay_SPST_Omron_G5RL-1A-E-TV8.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Diode_SMD:D_SMA"
 		(layer "F.Cu")
@@ -12446,6 +12501,17 @@
 			(uuid "e7db6569-6a31-4c8d-b94a-54161eec396b")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/LEOCO_3941P03_1x03_P3.96mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -15545,6 +15611,17 @@
 			(uuid "a0de599f-bf0e-48a6-9159-c752154989f3")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/TE_FASTON_63824-1_Tab_6.35mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -25133,6 +25210,17 @@
 			(uuid "50f2152f-3990-4e61-a50f-b5cb21e7df85")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/LEOCO_5001P02_1x02_P5.00mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Resistor_SMD:R_0603_1608Metric"
 		(layer "F.Cu")
@@ -26358,7 +26446,7 @@
 			(uuid "0ac0bc14-365f-4c31-bd6f-e79d0d5a976f")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Bourns_SRP7028A_7.3x6.6mm.step"
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/L_Bourns_SRP7028A_7.3x6.6mm.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -29507,7 +29595,7 @@
 			(uuid "4510fc3d-a0d7-46d5-a7ed-d46b366a24d1")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -33713,6 +33801,17 @@
 			(uuid "93dfa787-e1b7-4aed-80e4-b10bba281d10")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/HR_A2506WV-05P_1x05_P2.50mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -34810,6 +34909,17 @@
 			(uuid "dcfc57e9-d36c-4b20-9397-845cb9b90122")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/HR_A2506WV-03P_1x03_P2.50mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Capacitor_SMD:C_0603_1608Metric"
 		(layer "F.Cu")
@@ -36647,6 +36757,17 @@
 			(uuid "586a76e1-2413-4626-9b42-e508a4e483ee")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/TE_FASTON_63824-1_Tab_6.35mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Package_TO_SOT_SMD:SOT-23"
 		(layer "F.Cu")
@@ -40619,6 +40740,17 @@
 			(uuid "5d958ea7-9547-4662-8666-f47601f5a2f4")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/TE_RAST5_1971845-3_1x03_P5.00mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Diode_SMD:D_SMA"
 		(layer "F.Cu")
@@ -42266,7 +42398,7 @@
 			(uuid "f5e11c3a-4a47-474c-81cd-32e0fcc1e443")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm.step"
+		(model "${KICAD10_3DMODEL_DIR}/Package_SO.3dshapes/HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3.4x5mm.step"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -42582,7 +42714,7 @@
 			(uuid "d2a75b4f-7c43-415b-8753-d2a751359104")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Inductor_SMD.3dshapes/L_Bourns-SRN6028.step"
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/L_Bourns-SRN6028.wrl"
 			(offset
 				(xyz 0 0 0)
 			)
@@ -46196,6 +46328,17 @@
 			(uuid "94020f68-d265-4498-8bc2-61024dd47f6e")
 		)
 		(embedded_fonts no)
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/TE_RAST5_1971845-4_1x04_P5.00mm_Vertical.wrl"
+			(offset
+				(xyz 0 0 0)
+			)
+			(scale
+				(xyz 1 1 1)
+			)
+			(rotate
+				(xyz 0 0 0)
+			)
+		)
 	)
 	(footprint "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical"
 		(layer "F.Cu")
@@ -47807,7 +47950,7 @@
 			(uuid "a1b8d303-fcec-47f6-855a-dcaa2d879e85")
 		)
 		(embedded_fonts no)
-		(model "${KICAD10_3DMODEL_DIR}/Fuse.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.step"
+		(model "${KIPRJMOD}/OpenSaeco.3dshapes/Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal.wrl"
 			(offset
 				(xyz 0 0 0)
 			)

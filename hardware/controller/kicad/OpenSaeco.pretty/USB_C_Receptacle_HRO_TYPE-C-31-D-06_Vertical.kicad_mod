@@ -45,4 +45,9 @@
   (pad "SH" thru_hole oval (at 2.4 2.15) (size 1.35 1.1) (drill oval 0.85 0.6) (layers "*.Cu" "*.Mask"))
   (pad "" np_thru_hole circle (at -3.75 0) (size 0.52 0.52) (drill 0.52) (layers "*.Cu" "*.Mask"))
   (pad "" np_thru_hole oval (at 3.75 0) (size 0.72 0.52) (drill oval 0.72 0.52) (layers "*.Cu" "*.Mask"))
+  (model "${KIPRJMOD}/OpenSaeco.3dshapes/USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical.wrl"
+    (offset (xyz 0 0 0))
+    (scale (xyz 1 1 1))
+    (rotate (xyz 0 0 0))
+  )
 )
