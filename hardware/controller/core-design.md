@@ -54,7 +54,7 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
 
 - Etapas de calentador (U701/Q703), bomba (U702/Q704) y molinillo
   (U703/Q708/F703/BR701): MOC3083 de cruce por cero y BTA24 tras K701, con el
-  LED de cada opto gobernado por un SI2308A desde 12 V. Órdenes PB10, PB11 y PC4
+  LED de cada opto gobernado por un SI2308A desde 12 V. Órdenes PC5, PB11 y PC4
   a través de U603/U604. Detalle en
   [power-architecture.md](../power/power-architecture.md).
 
@@ -94,6 +94,10 @@ permite cortar el frontal y reduce su corriente de arranque. La rampa, descarga 
 posible backfeed deben medirse con el display definitivo. `GND_UI` es la masa
 lógica común; el aislamiento lo da PS701 (o la fuente de banco de J101/J112).
 
+El símbolo del STM32 sigue la tabla de pads LQFP64 de ST
+(`STM32_open_pin_data`, la misma del símbolo oficial de KiCad): VSS/VDD en 15/16
+y VSSA/VREF+/VDDA en 27–29. Hasta el 2026-10-01 dibujaba los pads 12–29 con el
+orden de la serie F; lo detectó el [modelo de placa](../../sim/README.md).
 VDDA y VREF+ del STM32 quedan conectados a 3V3_CORE y desacoplados localmente.
 VREFBUF interno debe permanecer deshabilitado mientras VREF+ se alimenta así.
 Para adquisición de precisión queda pendiente evaluar filtrado y referencia,
@@ -223,7 +227,8 @@ placa a través de sus pines.
 ### Driver de la electroválvula
 
 La rama de válvula parte de `24V_ACT_RAW` pero dispone de F304=1 A y D305 propios.
-U502 (UCC27517DBVR) recibe PA7 mediante R511=33 Ω y R512=10 kΩ a masa; su salida
+U502 (UCC27517DBVR; pads DBV de TI SLUSAY4D: 1 VDD, 2 GND, 3 IN+, 4 IN−,
+5 OUT) recibe PA7 mediante R511=33 Ω y R512=10 kΩ a masa; su salida
 de 12 V conduce Q501 (SI2308A, 60 V) a través de R513=33 Ω, con R514=100 kΩ entre
 puerta y source. C507=100 nF y C508=1 µF desacoplan el driver. D306 (SS34) queda
 en paralelo con la bobina, cátodo a `24V_VALVE` y ánodo a `VALVE_RETURN`.
@@ -245,7 +250,8 @@ U602 (SN74LVC2G08DCTR) combina `STM_NRST` con `BREW_SLEEP_RAW` y
 `VALVE_EN_INTERLOCK` a cero independientemente del software. R603/R604 mantienen
 las órdenes brutas a cero mientras el MCU arranca. U603 y U604, del mismo tipo,
 hacen lo mismo con el armado del relé general (PB7) y las órdenes de calentador
-(PB10), bomba (PB11) y molinillo (PC4). Ver el [diseño y temporización
+(PC5), bomba (PB11) y molinillo (PC4); R722, R711, R713 y R717 son sus
+pull-down. Ver el [diseño y temporización
 del supervisor](../power/watchdog-interlock.md).
 
 ### Fuente integrada y corte general de cargas

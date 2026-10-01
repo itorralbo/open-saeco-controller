@@ -5,10 +5,13 @@ remain review-only. Unassigned MCU pins marked NC must be reassigned as sheets g
 """
 import generate_front_panel as d
 
-# ST DS12589 rev 6, figure 10 / table 12, LQFP64 (not a development board).
+# STM32G431RBTx LQFP64 pad order from ST's STM32_open_pin_data
+# (mcu/STM32G431R(6-8-B)Tx.xml), identical to KiCad's STM32G431R_6-8-B_Tx.
+# Pads 12-29 differ from the F-series LQFP64: VSS/VDD sit at 15/16 and
+# VSSA/VREF+/VDDA at 27-29 (sim/reference/pinouts.json).
 STM_PINS = (
-    'VBAT PC13 PC14 PC15 PF0 PF1 NRST PC0 PC1 PC2 PC3 VSS VDD PA0 PA1 PA2 '
-    'PA3 VSSA VREF+ VDDA PA4 PA5 PA6 PA7 PC4 PC5 PB0 PB1 PB2 PB10 VSS VDD '
+    'VBAT PC13 PC14 PC15 PF0 PF1 NRST PC0 PC1 PC2 PC3 PA0 PA1 PA2 VSS VDD '
+    'PA3 PA4 PA5 PA6 PA7 PC4 PC5 PB0 PB1 PB2 VSSA VREF+ VDDA PB10 VSS VDD '
     'PB11 PB12 PB13 PB14 PB15 PC6 PC7 PC8 PC9 PA8 PA9 PA10 PA11 PA12 VSS VDD '
     'PA13 PA14 PA15 PC10 PC11 PC12 PD2 PB3 PB4 PB5 PB6 PB7 PB8 PB9 VSS VDD'
 ).split()
@@ -124,12 +127,13 @@ def power_symbols():
         ('16', 'PMODE', 'input', 12.7, 15.24, 180),
         ('17', 'EP', 'power_in', 12.7, -15.24, 180),
     ], 10.16, 17.78)
+    # TI SLUSAY4D, UCC27517 DBV: 1 VDD, 2 GND, 3 IN+, 4 IN-, 5 OUT.
     d.DEFS['UCC27517DBV'] = ([
-        ('1', 'IN+', 'input', -7.62, 3.81, 0),
+        ('3', 'IN+', 'input', -7.62, 3.81, 0),
         ('2', 'GND', 'power_in', -7.62, 0, 0),
-        ('3', 'IN-', 'input', -7.62, -3.81, 0),
-        ('5', 'VDD', 'power_in', 7.62, 3.81, 180),
-        ('4', 'OUT', 'output', 7.62, -3.81, 180),
+        ('4', 'IN-', 'input', -7.62, -3.81, 0),
+        ('1', 'VDD', 'power_in', 7.62, 3.81, 180),
+        ('5', 'OUT', 'output', 7.62, -3.81, 180),
     ], 5.08, 6.35)
     # Zero-cross phototriac driver. Pins 3 and 5 are not connected inside.
     d.DEFS['OPTO_TRIAC'] = ([
@@ -198,7 +202,7 @@ def main():
            'PA7': 'VALVE_EN_RAW',
            'PF0': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
-           'PB7': 'MAINS_ARM_RAW', 'PB10': 'HEATER_EN_RAW',
+           'PB7': 'MAINS_ARM_RAW', 'PC5': 'HEATER_EN_RAW',
            'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO42': 'ESP_TX_RAW', 'IO2': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
@@ -258,11 +262,11 @@ def main():
         d.passive(f'R{211+i}','R','33',x,y,a,b)
     d.note('UART cruzada. 33 ohm candidato, ajustar con flancos y arnés real.',230,300)
     d.note('06 / Desacoplo — colocar junto al pin indicado, comprobar capacitancia efectiva',20,315,1.8)
-    caps=[('C102','100nF','VDD13'),('C103','100nF','VDD32'),
+    caps=[('C102','100nF','VDD16'),('C103','100nF','VDD32'),
           ('C104','100nF','VDD48'),('C105','100nF','VDD64'),
-          ('C106','4.7uF','bulk STM'),('C107','10nF','VDDA20'),
-          ('C108','1uF','VDDA20'),('C109','100nF','VREF19'),
-          ('C110','1uF','VREF19'),('C111','100nF','VBAT1'),
+          ('C106','4.7uF','bulk STM'),('C107','10nF','VDDA29'),
+          ('C108','1uF','VDDA29'),('C109','100nF','VREF28'),
+          ('C110','1uF','VREF28'),('C111','100nF','VBAT1'),
           ('C202','100nF','ESP pad2'),('C203','10uF','ESP pad2')]
     for i,(ref,val,pin) in enumerate(caps):
         d.passive(ref,'C',val+' / '+pin,56+(i%6)*98,335+(i//6)*22,v,g)
@@ -564,8 +568,9 @@ def main():
     # selected actuator rail as powered on the load side of that jumper.
     d.add('#FLG113','PWR_FLAG','Selected 24V actuator source',990,703,['24V_ACT_RAW'])
 
-    # Independent normally-open phase cut. U603 is a second known dual-AND;
-    # its unused channel is tied low so the relay cannot arm on floating inputs.
+    # Independent normally-open phase cut. U603 is a second known dual-AND.
+    # R722 holds the arm order low while PB7 is still high impedance after
+    # reset, like R603/R604/R711/R713/R717 for the other orders.
     # C603 gives it the same local decoupling U601 and U602 already have; the
     # gate that arms mains must not see a supply dip as a valid high.
     # The second gate was strapped low while it had no job. It now gates the
@@ -578,6 +583,7 @@ def main():
           ['MAINS_RELAY_GATE',g,'MAINS_RELAY_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
     d.passive('C603','C','100nF / arm gate local',800,660,v,g)
+    d.passive('R722','R','10k / mains arm pull-down',680,640,'MAINS_ARM_RAW',g)
     d.passive('R801','R','33 / relay gate',680,704,'MAINS_RELAY_EN','MAINS_RELAY_GATE')
     d.passive('R802','R','100k / relay off',680,724,'MAINS_RELAY_GATE',g)
     d.add('D701','DIODE','SS34 / relay flyback',735,756,

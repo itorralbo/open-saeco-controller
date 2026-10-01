@@ -661,3 +661,38 @@ Revisión de todas las resistencias Extended del catálogo. Solo quedaban dos:
 Misma huella 0603: colocación y ruteo intactos. La salida de 12 V queda
 pendiente de medir en banco, como antes.
 
+
+## Pinout del STM32 y del UCC27517, pull-down del relé general, 2026-10-01
+
+El [modelo de placa](../sim/README.md) (`tools/build_board_model.py`) comparó cada
+símbolo con el pinout del fabricante y encontró tres errores en la principal:
+
+- **U101, STM32G431RBT6**: los pads 12–29 seguían el LQFP64 de la serie F. El
+  G431 tiene PA0–PA2 en 12–14, VSS/VDD en 15/16 y VSSA/VREF+/VDDA en 27–29
+  (`STM32_open_pin_data` de ST, idéntico al símbolo `STM32G431R_6-8-B_Tx` de
+  KiCad 10). En la placa ruteada VSS caía en `DOOR_CLOSED_N`, VDD en `FLOW_TIM` y
+  VSSA, VREF+ y VDDA quedaban sin conectar.
+- **U502, UCC27517DBVR**: el DBV es 1 VDD, 2 GND, 3 IN+, 4 IN−, 5 OUT (TI
+  SLUSAY4D); el símbolo ponía la salida en el pad de VDD, unida al rail de 12 V.
+- **`MAINS_ARM_RAW`** (PB7 → U603.1A) no tenía pull-down, a diferencia de las
+  otras cinco órdenes. Se añade R722 = 10 kΩ (C25804, Basic).
+
+Corrección:
+
+- Las funciones del firmware no cambian salvo una: PA0 trabajo, PA1 puerta,
+  PA2 caudal (TIM2_CH3), PA3 NTC, PA7 válvula y PC4 molinillo. El calentador pasa
+  de PB10 (pin 30) a PC5 (pin 23) para dejar sitio a C107 junto a VREF+/VDDA.
+- Ruteo: escapes de PA0–PA2 alrededor de VSS15/VDD16; VSS15, VSSA27 y VSS31 a
+  vías interiores; VDD16 y VREF+/VDDA al anillo; C107 (10 nF) bajo los pads
+  28/29; vía del nivel de agua desplazada; bajadas de PA7/PC4/PC5 al bus de
+  órdenes; U502 reconectado (VDD desde C507/C508, IN+ desde R511/R512, OUT a
+  R513); R722 junto a U603.1 con la vía de masa de C603.
+- C102 queda al oeste de los escapes y desacopla VDD16 a través de los planos,
+  y C109/C108 siguen en su columna como bulk analógico. Es menos local que antes:
+  revisar en la comprobación 1:1.
+- `check_controller_core.py` tenía la misma tabla errónea de la serie F y se
+  corrige con la de ST.
+
+Resultado: ERC 0 en las dos placas; netlist 188/614; DRC con todas las
+severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3; modelo de
+placa 0 errores y 0 avisos. Sin hardware fabricado ni ensayado.

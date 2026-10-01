@@ -678,6 +678,10 @@
       "footprint": "Resistor_SMD:R_1206_3216Metric",
       "numbered_pads": 2
     },
+    "R722": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2

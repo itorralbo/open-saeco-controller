@@ -11,6 +11,8 @@ jobs:
       - run: python tools/check_scaffold.py
       - run: python tools/check_front_panel.py
       - run: python tools/check_controller_core.py
+      - run: python -m unittest discover -s tests/sim
+      - run: python tools/build_board_model.py --check
       - run: cmake -S firmware/stm32 -B build/host
       - run: cmake --build build/host
       - run: ctest --test-dir build/host --output-on-failure

@@ -300,10 +300,15 @@ PLACE = {
     # contacts in the mains domain. Drive and flyback diode sit by the coil.
     'U603': (32, 73, 180), 'C603': (31.5, 75.6, 0), 'Q701': (32, 78.5, 0),
     'R801': (26, 71, 180), 'R802': (26, 75, 0), 'D701': (40.6, 87.5, 90),
+    # R722 holds the arm order low until the BSP drives PB7; it hangs off
+    # U603 pin 1, east of the gate and clear of the coil return.
+    'R722': (35.6, 74.9, 270),
     'K701': (52, 77, 180),
 
     # STM32 reset, analog supply and local decoupling. Each capacitor sits at
     # its VDD/VSS pair outside the signal escape channels planned in layout.md;
+    # C107 (10 nF) is under VREF+28/VDDA29, C109/C108 stay as bulk on the
+    # planes and C102 decouples VDD16 through them from the west;
     # route_controller_pcb.py joins the VDD pins through a ring under the body.
     # The reset pull-up and filter moved from east of the MCU, where its NRST
     # pin does not face, to the reset net's own corridor beside the supervisor
@@ -311,7 +316,7 @@ PLACE = {
     'R101': (41.0, 48.6, 0), 'C101': (44.2, 48.6, 0), 'R102': stm(11, 4, 90),
     'C102': stm(-9.7, 2.6, 90), 'C103': stm(3.5, 8.2, 180),
     'C104': stm(7.8, -4.9, 90), 'C105': stm(-4.1, -8.4, 90),
-    'C106': stm(9.4, -4.9, 90), 'C107': stm(-4.1, 8.6, 180),
+    'C106': stm(9.4, -4.9, 90), 'C107': stm(1.25, 8.6, 270),
     'C108': stm(-4.1, 11.8, 180), 'C109': stm(-4.1, 10.2, 180),
     'C110': stm(3.5, 9.8, 180), 'C111': stm(-8.4, -3.75, 180),
 

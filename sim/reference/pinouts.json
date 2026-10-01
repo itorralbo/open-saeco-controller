@@ -1,0 +1,78 @@
+{
+  "_doc": "Pad number -> pad name of each active IC, transcribed from the manufacturer's data (source per part) and cross-checked as noted. 'a|b' accepts either spelling. The board check compares every component with this MPN against its schematic symbol.",
+  "parts": {
+    "STM32G431RBT6": {
+      "source": "ST STM32_open_pin_data mcu/STM32G431R(6-8-B)Tx.xml (CubeMX database); identical to KiCad 10 MCU_ST_STM32G4 STM32G431R_6-8-B_Tx. Checked 2026-10-01.",
+      "pins": {
+        "1": "VBAT", "2": "PC13", "3": "PC14", "4": "PC15", "5": "PF0", "6": "PF1",
+        "7": "NRST|PG10", "8": "PC0", "9": "PC1", "10": "PC2", "11": "PC3",
+        "12": "PA0", "13": "PA1", "14": "PA2", "15": "VSS", "16": "VDD",
+        "17": "PA3", "18": "PA4", "19": "PA5", "20": "PA6", "21": "PA7",
+        "22": "PC4", "23": "PC5", "24": "PB0", "25": "PB1", "26": "PB2",
+        "27": "VSSA", "28": "VREF+", "29": "VDDA", "30": "PB10", "31": "VSS", "32": "VDD",
+        "33": "PB11", "34": "PB12", "35": "PB13", "36": "PB14", "37": "PB15",
+        "38": "PC6", "39": "PC7", "40": "PC8", "41": "PC9", "42": "PA8",
+        "43": "PA9", "44": "PA10", "45": "PA11", "46": "PA12", "47": "VSS", "48": "VDD",
+        "49": "PA13", "50": "PA14", "51": "PA15", "52": "PC10", "53": "PC11",
+        "54": "PC12", "55": "PD2", "56": "PB3", "57": "PB4", "58": "PB5",
+        "59": "PB6", "60": "PB7", "61": "PB8", "62": "PB9", "63": "VSS", "64": "VDD"
+      }
+    },
+    "ESP32-S3-WROOM-1U-N8R8": {
+      "source": "Espressif ESP32-S3-WROOM-1/1U datasheet, pin definitions; identical to KiCad 10 RF_Module ESP32-S3-WROOM-1. Checked 2026-10-01.",
+      "pins": {
+        "1": "GND", "2": "3V3", "3": "EN", "4": "IO4", "5": "IO5", "6": "IO6", "7": "IO7",
+        "8": "IO15", "9": "IO16", "10": "IO17", "11": "IO18", "12": "IO8",
+        "13": "IO19|USB_D-", "14": "IO20|USB_D+", "15": "IO3", "16": "IO46", "17": "IO9",
+        "18": "IO10", "19": "IO11", "20": "IO12", "21": "IO13", "22": "IO14", "23": "IO21",
+        "24": "IO47", "25": "IO48", "26": "IO45", "27": "IO0", "28": "IO35", "29": "IO36",
+        "30": "IO37", "31": "IO38", "32": "IO39", "33": "IO40", "34": "IO41", "35": "IO42",
+        "36": "RXD0", "37": "TXD0", "38": "IO2", "39": "IO1", "40": "GND", "41": "GND|EP_GND"
+      }
+    },
+    "UCC27517DBVR": {
+      "source": "TI SLUSAY4D, section 7 Pin Configuration and Functions, UCC27517 DBV.",
+      "pins": {"1": "VDD", "2": "GND", "3": "IN+", "4": "IN-", "5": "OUT"}
+    },
+    "TPS22918DBVR": {
+      "source": "TI SLVSD76C, section 5 Pin Configuration and Functions, DBV.",
+      "pins": {"1": "VIN", "2": "GND", "3": "ON", "4": "CT", "5": "QOD", "6": "VOUT"}
+    },
+    "DRV8876PWPR": {
+      "source": "TI SLVSDS7B, section 5 Pin Configuration and Functions, PWP.",
+      "pins": {
+        "1": "EN/IN1", "2": "PH/IN2", "3": "nSLEEP", "4": "nFAULT", "5": "VREF", "6": "IPROPI",
+        "7": "IMODE", "8": "OUT1", "9": "PGND", "10": "OUT2", "11": "VM", "12": "VCP",
+        "13": "CPH", "14": "CPL", "15": "GND", "16": "PMODE", "17": "EP|PAD"
+      }
+    },
+    "SN74LVC2G08DCTR": {
+      "source": "KiCad 10 74xGxx 74LVC2G08: gate 1 inputs 1,2 output 7; gate 2 inputs 5,6 output 3; GND 4, VCC 8.",
+      "pins": {"1": "1A", "2": "1B", "3": "2Y", "4": "GND", "5": "2A", "6": "2B", "7": "1Y", "8": "VCC"}
+    },
+    "TCA9534PWR": {
+      "source": "KiCad 10 Interface_Expansion TCA9534 (TI SCPS197D).",
+      "pins": {
+        "1": "A0", "2": "A1", "3": "A2", "4": "P0", "5": "P1", "6": "P2", "7": "P3", "8": "GND",
+        "9": "P4", "10": "P5", "11": "P6", "12": "P7", "13": "~{INT}", "14": "SCL", "15": "SDA",
+        "16": "VCC|VDD"
+      }
+    },
+    "TPS3828-33DBVR": {
+      "source": "KiCad 10 Power_Supervisor TPS3823-xxDBV (same DBV pinout for TPS3823/3828).",
+      "pins": {"1": "~{RESET}", "2": "GND", "3": "~{MR}", "4": "WDI", "5": "VDD|V_{DD}"}
+    },
+    "AP63203WU-7": {
+      "source": "KiCad 10 Regulator_Switching AP63203WU.",
+      "pins": {"1": "FB", "2": "EN", "3": "VIN|IN", "4": "GND", "5": "SW", "6": "BST"}
+    },
+    "AP63200WU-7": {
+      "source": "KiCad 10 Regulator_Switching AP63200WU.",
+      "pins": {"1": "FB", "2": "EN", "3": "VIN|IN", "4": "GND", "5": "SW", "6": "BST"}
+    },
+    "USBLC6-2SC6": {
+      "source": "KiCad 10 Power_Protection USBLC6-2SC6.",
+      "pins": {"1": "I/O1", "2": "GND", "3": "I/O2", "4": "I/O2", "5": "VBUS", "6": "I/O1"}
+    }
+  }
+}

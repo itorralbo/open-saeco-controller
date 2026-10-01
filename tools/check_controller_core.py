@@ -65,17 +65,21 @@ def main():
     nets, fields = read_connections(base/'kicad/controller-core-reva.kicad_sch')
     v, g = '3V3_CORE', 'GND_UI'
     assert len(nets['U101']) == 64 and len(nets['U201']) == 41
-    # Independent checks against ST DS12589 LQFP64 supply / debug pin table.
-    for pin in (1,13,19,20,32,48,64):
+    # Independent checks against ST's STM32G431R(6-8-B)Tx LQFP64 pad table
+    # (STM32_open_pin_data, also KiCad's STM32G431R_6-8-B_Tx): VBAT 1,
+    # VSS/VDD 15/16, VSSA/VREF+/VDDA 27-29, VSS/VDD 31/32, 47/48, 63/64.
+    for pin in (1,16,28,29,32,48,64):
         assert nets['U101'][str(pin)] == v, f'STM power pad {pin}'
-    for pin in (12,18,31,47,63):
+    for pin in (15,27,31,47,63):
         assert nets['U101'][str(pin)] == g, f'STM ground pad {pin}'
     for pin, net in {7:'STM_NRST',43:'STM_TX_RAW',44:'ESP_TO_STM',49:'STM_SWDIO',
                      50:'STM_SWCLK',56:'STM_SWO',61:'STM_BOOT0',34:'UI_PWR_EN',
-                     17:'NTC_ADC',16:'FLOW_TIM',15:'DOOR_CLOSED_N',10:'BU_PRESENT_N',
-                     11:'WATER_LEVEL',14:'BU_WORK_N',8:'BREW_CURRENT_ADC',
+                     17:'NTC_ADC',14:'FLOW_TIM',13:'DOOR_CLOSED_N',10:'BU_PRESENT_N',
+                     11:'WATER_LEVEL',12:'BU_WORK_N',8:'BREW_CURRENT_ADC',
                      6:'RAIL_12V_ADC',9:'RAIL_24V_ADC',
-                     3:'BREW_DIR_RAW',24:'VALVE_EN_RAW',5:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
+                     3:'BREW_DIR_RAW',21:'VALVE_EN_RAW',22:'GRINDER_EN_RAW',
+                     23:'HEATER_EN_RAW',33:'PUMP_EN_RAW',60:'MAINS_ARM_RAW',
+                     5:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
                      59:'BREW_FAULT_N'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
@@ -185,8 +189,9 @@ def main():
     assert nets['F304'] == {'1':'24V_ACT_RAW','2':'24V_VALVE_FUSED'}
     assert nets['D305'] == {'2':'24V_VALVE_FUSED','1':'24V_VALVE'}
     assert nets['D306'] == {'2':'VALVE_RETURN','1':'24V_VALVE'}
-    assert nets['U502'] == {'1':'VALVE_EN_DRV','2':g,'3':g,
-                            '4':'VALVE_GATE_RAW','5':'12V_PROTECTED'}
+    # TI SLUSAY4D UCC27517 DBV: 1 VDD, 2 GND, 3 IN+, 4 IN-, 5 OUT.
+    assert nets['U502'] == {'1':'12V_PROTECTED','2':g,'3':'VALVE_EN_DRV',
+                            '4':g,'5':'VALVE_GATE_RAW'}
     assert nets['Q501'] == {'1':'VALVE_GATE','2':g,'3':'VALVE_RETURN'}
     for ref, a, b in [('R511','VALVE_EN_INTERLOCK','VALVE_EN_DRV'),
                       ('R512','VALVE_EN_DRV',g),

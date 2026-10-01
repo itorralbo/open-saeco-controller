@@ -172,8 +172,10 @@ def route_stm32_supply(board):
 
     VSS pins drop to the B.Cu plane through their own via inside the pad ring.
     VDD pins meet on an F.Cu ring under the package; their outer ends feed the
-    corner capacitors placed by layout_controller_pcb.py. Pins 2-11, 14-17,
-    21-27, 42-44 and 49-61 keep their escape channels free for signal routing.
+    corner capacitors placed by layout_controller_pcb.py. Pins 2-14, 17,
+    21-23, 42-44 and 49-61 keep their escape channels free for signal routing.
+    Supply pads follow the G431 LQFP64 (sim/reference/pinouts.json): VSS/VDD
+    15/16, VSSA/VREF+/VDDA 27-29, VSS/VDD 31/32, 47/48 and 63/64, VBAT 1.
     """
     v33, gnd = '/3V3_CORE', '/GND_UI'
     # Coordinates below are for U101 at (55, 65); shift them to its placement.
@@ -192,26 +194,28 @@ def route_stm32_supply(board):
     def vi(netname, point):
         via(board, netname, sh(point))
 
-    # 3V3 ring under the LQFP body, reached from pins 1/64, 13, 19/20, 32, 48.
+    # 3V3 ring under the LQFP body, reached from pins 1/64, 16, 28/29, 32, 48.
     ring = [(52.75, 62.60), (57.60, 62.60), (57.60, 67.80), (52.75, 67.80),
             (52.75, 62.60)]
     pl(v33, ring, width=RING_WIDTH)
     pl(v33, [(51.25, 59.60), (51.25, 61.25), (52.75, 62.60)],
              width=RING_WIDTH)
     tr(v33, (49.60, 61.25), (51.25, 61.25), width=PIN_WIDTH)
-    tr(v33, (49.60, 67.25), (52.75, 67.25), width=PIN_WIDTH)
-    tr(v33, (52.75, 70.40), (52.75, 67.80), width=PIN_WIDTH)
-    pl(v33, [(52.25, 70.40), (52.25, 69.40), (52.75, 68.90)],
-             width=PIN_WIDTH)
+    # VDD16 meets the ring's south-west corner; VREF+28 and VDDA29 rise
+    # straight to its south edge.
+    pl(v33, [(49.60, 68.75), (51.80, 68.75), (52.75, 67.80)], width=PIN_WIDTH)
+    tr(v33, (56.75, 70.40), (56.75, 67.80), width=PIN_WIDTH)
+    tr(v33, (57.25, 70.40), (57.25, 67.80), width=PIN_WIDTH)
     pl(v33, [(58.75, 70.40), (58.75, 68.60), (57.60, 67.80)],
              width=PIN_WIDTH)
     pl(v33, [(60.30, 61.25), (58.20, 61.25), (57.60, 61.85),
                           (57.60, 62.60)], width=PIN_WIDTH)
 
-    # Inner VSS vias: pins 12, 18, 31, 47 and 63.
-    for path in ([(49.60, 66.75), (50.60, 66.75), (51.30, 66.40)],
-                 [(51.75, 70.40), (51.75, 68.80)],
-                 [(58.25, 70.40), (58.25, 69.30), (57.50, 69.30)],
+    # Inner VSS vias: pins 15, 27 (VSSA), 31, 47 and 63. Pin 31's via sits
+    # east of the VDDA29 riser.
+    for path in ([(49.60, 68.25), (50.60, 68.25), (51.30, 67.55)],
+                 [(56.25, 70.40), (56.25, 69.05), (55.90, 68.70)],
+                 [(58.25, 70.40), (58.25, 69.30), (57.90, 68.95)],
                  [(60.30, 61.75), (59.50, 61.75), (59.10, 62.35)],
                  [(51.75, 59.60), (51.75, 60.35), (52.40, 61.00)]):
         pl(gnd, path, width=PIN_WIDTH)
@@ -225,11 +229,9 @@ def route_stm32_supply(board):
     tr(gnd, (45.825, 61.25), (44.60, 61.25), width=PIN_WIDTH)
     vi(gnd, (44.60, 61.25))
 
-    # C102 at VDD13/VSS12, left of the pin 14-16 escape. Pin 12 reaches the
-    # In1.Cu plane through its inner via and C102's ground pad through its
-    # own, so no track joins them: the gap is where pin 11 escapes west.
-    pl(v33, [(49.00, 67.25), (46.10, 67.25), (46.10, 68.375),
-                          (45.40, 68.375)], width=PIN_WIDTH)
+    # C102 west of the pin 12-14 escapes. VDD16 and VSS15 face it across
+    # those three lanes, so it decouples them through its own plane vias
+    # (C102.1 in route_3v3_plane_drops) and VSS15's inner via.
     tr(gnd, (45.30, 66.825), (43.90, 66.825), width=PIN_WIDTH)
     vi(gnd, (43.90, 66.825))
 
@@ -247,14 +249,16 @@ def route_stm32_supply(board):
                           (57.725, 76.10)], width=PIN_WIDTH)
     vi(gnd, (57.725, 76.10))
 
-    # VDDA20/VREF19 column: C107 10 nF nearest, then C109 and C108.
-    for x in (52.25, 52.75):
-        pl(v33, [(x, 71.00), (x, 71.80), (52.50, 72.05)],
-                 width=PIN_WIDTH)
-    pl(v33, [(52.50, 72.05), (52.50, 72.60), (52.00, 73.10),
-                          (52.00, 76.80)], width=RING_WIDTH)
-    pl(gnd, [(51.75, 71.00), (51.75, 72.35), (49.80, 72.35),
-                          (49.80, 78.00)], width=RING_WIDTH)
+    # VREF+28 and VDDA29 also meet C107 (10 nF) just south of their pads,
+    # below VSSA27; C107 grounds through its own via. C109 and C108, the
+    # bulk of the analog supply, keep the west column on the planes: each
+    # has a 3V3 plane drop and this rail grounds them.
+    tr(v33, (56.75, 71.00), (56.75, 71.85), width=PIN_WIDTH)
+    pl(v33, [(57.25, 71.00), (57.25, 71.85), (56.25, 71.85), (56.25, 72.825)],
+       width=PIN_WIDTH)
+    tr(gnd, (56.25, 74.375), (56.25, 75.35), width=PIN_WIDTH)
+    vi(gnd, (56.25, 75.35))
+    pl(gnd, [(49.80, 74.75), (49.80, 78.00)], width=RING_WIDTH)
     vi(gnd, (49.80, 78.00))
 
 
@@ -548,22 +552,27 @@ def route_valve_stage(board):
                           (6.0, 121.0), (6.0, 125.3)], width=ACT_LANE_WIDTH)
     track(board, ret, (23.678, 107.0), (26.5, 107.0), width=ACT_LANE_WIDTH)
 
-    # 12 V driver supply: U502 VDD north to its two local capacitors.
-    polyline(board, '/12V_PROTECTED', [(12.137, 100.05), (13.6, 98.6),
+    # UCC27517 DBV (TI SLUSAY4D): 1 VDD, 2 GND, 3 IN+, 4 IN-, 5 OUT.
+    # 12 V driver supply: the feed reaches the two local capacitors, and
+    # VDD on pin 1 drops straight from the link between them.
+    polyline(board, '/12V_PROTECTED', [(13.6, 98.6),
                                        (13.6, 96.5), (10.725, 96.5),
                                        (10.725, 97.1)], width=0.5)
     track(board, '/12V_PROTECTED', (10.725, 97.5), (8.775, 97.5), width=0.5)
+    track(board, '/12V_PROTECTED', (9.863, 97.5), (9.863, 100.05), width=0.5)
 
-    # Enable chain: R511 series and R512 pull-down into the driver input.
-    polyline(board, '/VALVE_EN_DRV', [(5.825, 99.0), (8.8, 99.0), (8.8, 100.05),
-                                      (9.4, 100.05)], width=PIN_WIDTH)
+    # Enable chain: R511 series and R512 pull-down into IN+ on pin 3.
     polyline(board, '/VALVE_EN_DRV', [(4.175, 104.0), (4.175, 102.5), (6.375, 100.3),
                                       (6.9, 100.3), (6.9, 99.0), (6.25, 99.0)],
              width=PIN_WIDTH)
+    polyline(board, '/VALVE_EN_DRV', [(6.9, 100.3), (6.9, 101.5), (7.35, 101.95),
+                                      (9.4, 101.95)], width=PIN_WIDTH)
 
-    # Gate chain: driver output, series resistor, MOSFET gate and pull-down.
-    polyline(board, '/VALVE_GATE_RAW', [(12.137, 101.95), (13.3, 101.95),
-                                        (13.3, 106.5), (14.75, 108.0)],
+    # Gate chain: driver output on pin 5, series resistor, MOSFET gate and
+    # pull-down.
+    polyline(board, '/VALVE_GATE_RAW', [(12.137, 100.05), (13.0, 100.05),
+                                        (13.3, 100.35), (13.3, 106.5),
+                                        (14.75, 108.0)],
              width=PIN_WIDTH)
     polyline(board, '/VALVE_GATE', [(16.825, 108.0), (18.025, 106.8), (18.3, 106.8),
                                     (19.05, 106.05), (20.5, 106.05)],
@@ -574,12 +583,11 @@ def route_valve_stage(board):
     for start, point in (((7.225, 97.5), (6.0, 97.5)),
                          ((12.275, 97.5), (12.275, 98.8)),
                          ((5.825, 104.0), (7.2, 104.0)),
-                         ((21.825, 113.0), (23.2, 113.0))):
+                         ((21.825, 113.0), (23.2, 113.0)),
+                         ((9.4, 101.0), (8.4, 101.0)),      # U502.2 GND
+                         ((12.137, 101.95), (12.137, 102.9))):  # U502.4 IN-
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
-    polyline(board, gnd, [(9.4, 101.0), (9.0, 101.0), (8.5, 101.5), (8.5, 101.95), (9.4, 101.95)],
-             width=PIN_WIDTH)
-    via(board, gnd, (8.5, 101.5))
     track(board, gnd, (21.062, 107.95), (21.062, 109.6), width=PIN_WIDTH)
     via(board, gnd, (21.062, 109.6))
 
@@ -826,7 +834,6 @@ def route_3v3_plane_drops(board):
             ((72.675, 51.8), (71.95, 51.1)),  # C108.1
             ((85.4, 35.875), (85.4, 36.75)),  # C106.1
             ((71.9, 32.375), (71.05, 31.9)),  # C105.1
-            ((72.675, 48.6), (73.55, 48.6)),  # C107.1
             ((80.275, 49.8), (79.55, 49.1)),  # C110.1
             ((80.275, 48.2), (80.275, 47.3)),  # C103.1
             ((66.3, 43.375), (65.4, 43.375)),  # C102.1
@@ -1031,7 +1038,7 @@ def route_heater_enable(board):
     fenced in by the ground stub of pin 4 and the reset loop of pin 2, so it
     drops to B.Cu inside the loop and runs
     south under the relay-return and 12 V branches to the LED driver's gate
-    resistor. The MCU side of HEATER_EN_RAW (PB10) arrives on B.Cu through
+    resistor. The MCU side of HEATER_EN_RAW (PC5) arrives on B.Cu through
     route_load_bus.
     """
     raw, gated = '/HEATER_EN_RAW', '/HEATER_EN_INTERLOCK'
@@ -1583,6 +1590,10 @@ def route_supervisor_orders(board):
     polyline(board, arm, [(45.3, 53.25), (45.5, 53.45), (45.5, 64.35),
                           (37.75, 72.1), (37.75, 73.5),
                           (37.3, 73.95), (33.7, 73.975)], width=w)
+    # R722 pull-down: its arm pad sits on the order, its ground pad shares
+    # C603's ground via.
+    track(board, arm, (35.6, 73.96), (35.6, 74.075), width=w)
+    track(board, '/GND_UI', (35.6, 75.725), (33.725, 75.725), width=PIN_WIDTH)
 
     # PB5 to R603 and, under the reset corridor, to U602 pin 1.
     polyline(board, sleep, [(70.85, 34.73), (54.05, 34.75), (49.25, 39.55),
@@ -1628,11 +1639,12 @@ def route_load_bus(board):
     in that order and peel off west: the pump first, then the valve, the
     grinder and the heater.
 
-    PA7 (valve), PC4 (grinder) and PB10 (heater) drop into the pocket under
-    U101's south row, which the decoupling and the pump order fence off on
-    F.Cu, and come down beside PB11's via in the same order. None of the
-    lanes closes round a ground via: the decoupling vias stay north of them
-    and the gate vias west of them.
+    PA7 (valve), PC4 (grinder) and PC5 (heater), pins 21-23, drop into the
+    pocket under U101's south row, which the bulk decoupling and the pump
+    order fence off on F.Cu, and come down beside PB11's via in the same
+    order. The heater left PB10 (pin 30) so VREF+28/VDDA29 keep the east end
+    of the pocket for C107. None of the lanes closes round a ground via: the
+    decoupling vias stay north of them and the gate vias west of them.
     """
     w = SIGNAL_WIDTH
     valve, heater = '/VALVE_EN_RAW', '/HEATER_EN_RAW'
@@ -1644,22 +1656,23 @@ def route_load_bus(board):
                            (44.8, 54.6), (44.6, 54.8), (44.6, 58.8),
                            (37.25, 66.15), (37.25, 77.5)], pcb.B_Cu, width=w)
 
-    # PA7, pin 24, to U602 pin 5 past R604.
-    track(board, valve, (75.75, 45.675), (75.75, 50.3), width=w)
-    via(board, valve, (75.75, 50.3))
-    polyline(board, valve, [(75.75, 50.3), (75.75, 51.1), (75.35, 51.5),
+    # PA7, pin 21, to U602 pin 5 past R604. Its via sits below C109's plane
+    # drop.
+    track(board, valve, (74.25, 45.675), (74.25, 50.9), width=w)
+    via(board, valve, (74.25, 50.9))
+    polyline(board, valve, [(74.25, 50.9), (74.25, 51.1), (73.85, 51.5),
                             (72.75, 51.5), (72.35, 51.9), (72.35, 54.8),
                             (72.15, 55.0), (45.2, 55.0), (45.0, 55.2),
                             (45.0, 59.4), (41.5, 62.9)], pcb.B_Cu, width=w)
     via(board, valve, (41.5, 62.9))
     track(board, valve, (41.5, 62.9), (40.4, 62.975), width=w)
 
-    # PC4, pin 25. R717 is fenced by the heater gate's B.Cu run and the pump
+    # PC4, pin 22. R717 is fenced by the heater gate's B.Cu run and the pump
     # gate's F.Cu leg, so the order comes up south of both, past R717.2.
-    polyline(board, grinder, [(76.25, 45.675), (76.25, 47.0), (76.9, 47.65),
-                              (76.9, 50.3)], width=w)
-    via(board, grinder, (76.9, 50.3))
-    polyline(board, grinder, [(76.9, 50.3), (76.9, 51.5), (76.5, 51.9),
+    polyline(board, grinder, [(74.75, 45.675), (74.75, 47.0), (75.4, 47.65),
+                              (75.4, 50.3)], width=w)
+    via(board, grinder, (75.4, 50.3))
+    polyline(board, grinder, [(75.4, 50.3), (75.4, 51.5), (75.0, 51.9),
                               (73.15, 51.9), (72.75, 52.3), (72.75, 55.2),
                               (72.55, 55.4), (45.6, 55.4), (45.4, 55.6),
                               (45.4, 60.9), (37.85, 68.45), (37.85, 85.5),
@@ -1669,11 +1682,11 @@ def route_load_bus(board):
     polyline(board, grinder, [(36.9, 90.6), (35.0, 88.7),
                               (35.0, 88.475)], width=w)
 
-    # PB10, pin 30, clear of C103 and C110 on its way down.
-    polyline(board, heater, [(78.75, 45.675), (78.75, 46.6), (77.95, 47.4),
-                             (77.95, 50.95), (77.8, 51.1)], width=w)
-    via(board, heater, (77.8, 51.1))
-    polyline(board, heater, [(77.8, 51.1), (77.8, 51.9), (77.4, 52.3),
+    # PC5, pin 23, west of C107 on its way down.
+    polyline(board, heater, [(75.25, 45.675), (75.25, 46.6), (76.3, 47.65),
+                             (76.3, 51.1)], width=w)
+    via(board, heater, (76.3, 51.1))
+    polyline(board, heater, [(76.3, 51.1), (76.3, 51.9), (75.9, 52.3),
                              (73.55, 52.3), (73.15, 52.7), (73.15, 55.6),
                              (72.95, 55.8), (46.0, 55.8), (45.8, 56.0),
                              (45.8, 61.4), (41.6, 65.6)], pcb.B_Cu, width=w)
@@ -1884,11 +1897,12 @@ def route_sensor_bus(board):
 
     - PC1 (pin 9.0) now carries RAIL_24V_ADC; PA5 is free. It is the only
       west-side pin north of the escape pocket that can reach J114.6.
-    - PC3, PC2, PA0, PA1, PA2 and PA3 carry water, group present, group at
-      work, door, flow (TIM2_CH3) and NTC (ADC1_IN4).
+    - PC3, PC2, PA0, PA1, PA2 and PA3 (pins 11, 10, 12, 13, 14 and 17) carry
+      water, group present, group at work, door, flow (TIM2_CH3) and NTC
+      (ADC1_IN4).
     - PC2 drops under the package body, PC3 west of its pad, and PA0-PA2 fan
-      south-west past C102 into the free pocket under the west row; PA3
-      leaves its pad corner on the south row.
+      south-west, east of C102 and round VSS15/VDD16, into the free pocket
+      under the west row; PA3 leaves its pad corner on the south row.
     - West of U101 the lanes run at y = 46.1-54.0 mm, around the reset and
       arm hops, and cross the supervisor column on B.Cu: the brew sleep and
       watchdog climbs there moved to In2.Cu.
@@ -1908,9 +1922,10 @@ def route_sensor_bus(board):
 
     # PC3, pin 11: water level, the outer lane. It runs down x = 19.4 mm
     # between the resistor and capacitor columns, west of the valve's 24 V hop.
-    polyline(board, water, [(70.325, 41.25), (68.65, 41.2)], width=w)
-    via(board, water, (68.65, 41.2))
-    polyline(board, water, [(68.65, 41.2), (63.725, 46.125), (27.5, 46.125),
+    # Its via sits high, between the 24 V telemetry and the PA0 escape.
+    polyline(board, water, [(70.325, 41.25), (68.65, 41.25), (68.4, 41.0)], width=w)
+    via(board, water, (68.4, 41.0))
+    polyline(board, water, [(68.4, 41.0), (68.625, 41.225), (63.725, 46.125), (27.5, 46.125),
                             (19.375, 54.25), (19.375, 113.0), (20.5, 114.125),
                             (20.5, 115.9)], pcb.B_Cu, width=w)
     via(board, water, (20.5, 115.9))
@@ -1923,18 +1938,18 @@ def route_sensor_bus(board):
     via(board, present, (23.125, 52.5))
     polyline(board, present, [(23.125, 52.5), (22.85, 52.775), (22.0, 52.775)], width=w)
 
-    # PA0, pin 14: group at work.
-    polyline(board, work, [(70.325, 42.75), (69.2, 42.75), (68.1, 43.85),
-                           (68.1, 46.3)], width=w)
+    # PA0, pin 12: group at work, the outer of the three fanned lanes.
+    polyline(board, work, [(70.325, 41.75), (68.4, 41.75), (67.95, 42.2),
+                           (67.95, 46.15), (68.1, 46.3)], width=w)
     via(board, work, (68.1, 46.3))
     polyline(board, work, [(68.1, 46.3), (66.025, 48.375), (38.75, 48.375),
                            (27.325, 59.8), (20.5, 59.8)], pcb.B_Cu, width=w)
     via(board, work, (20.5, 59.8))
 
-    # PA1, pin 15: door. Its via sits south-west of C403, clear of the
+    # PA1, pin 13: door. Its via sits south-west of C403, clear of the
     # water lane and of the valve interlock line.
-    polyline(board, door, [(70.325, 43.25), (69.35, 43.25), (68.85, 43.75),
-                           (68.85, 45.5)], width=w)
+    polyline(board, door, [(70.325, 42.25), (68.95, 42.25), (68.55, 42.65),
+                           (68.55, 45.2), (68.85, 45.5)], width=w)
     via(board, door, (68.85, 45.5))
     polyline(board, door, [(68.85, 45.5), (68.85, 46.9), (66.875, 48.875),
                            (42.125, 48.875), (20.0, 71.0), (20.0, 72.9)],
@@ -1942,8 +1957,9 @@ def route_sensor_bus(board):
     via(board, door, (20.0, 72.9))
     polyline(board, door, [(20.0, 72.9), (20.0, 71.8)], width=w)
 
-    # PA2, pin 16: flow meter, TIM2_CH3.
-    polyline(board, flow, [(70.325, 43.75), (69.6, 43.75), (69.6, 46.3)],
+    # PA2, pin 14: flow meter, TIM2_CH3, round the VSS15/VDD16 pads.
+    polyline(board, flow, [(70.325, 42.75), (69.4, 42.75), (69.15, 43.0),
+                           (69.15, 44.4), (69.6, 44.85), (69.6, 46.3)],
              width=w)
     via(board, flow, (69.6, 46.3))
     polyline(board, flow, [(69.6, 46.3), (69.6, 47.55), (65.275, 51.875),
@@ -2340,7 +2356,7 @@ def main():
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
                           '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',
                           'UI supply: U302 to J104.1 along the top edge',
-                          'load bus: PA7, PB10, PB11 and PC4 to the gates on four B.Cu lanes',
+                          'load bus: PA7, PC4, PC5 and PB11 to the gates on four B.Cu lanes',
                           'U602: reset input, brew sleep output to R505 and valve output to R511',
                           'MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch',
                           'H-bridge orders, bridge current, rail telemetry and the dividers under J114',

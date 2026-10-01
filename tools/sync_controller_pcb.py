@@ -17,7 +17,9 @@ from validate_kicad import ROOT, verify_netlist
 
 BASE = ROOT/'hardware/controller'
 BOARD_PATH = BASE/'kicad/controller-core-reva.kicad_pcb'
-FP_ROOT = Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints')
+FP_ROOT = next((p for p in (Path('/Applications/KiCad/KiCad.app/Contents/SharedSupport/footprints'),
+                            Path('C:/Program Files/KiCad/10.0/share/kicad/footprints'))
+                if p.exists()), None)
 LOCAL_FP_ROOT = BASE/'kicad/OpenSaeco.pretty'
 
 # Provisional placement, clear of the current ESP antenna area. J104 occupies
@@ -88,7 +90,7 @@ NEW_POSITIONS = {
     'F703': (66.5, 113.8), 'BR701': (58.0, 130.8),
     'Q707': (39.6, 104.2), 'R717': (35.0, 89.3), 'R718': (36.6, 103.9),
     'R719': (36.8, 106.8), 'R720': (42.6, 101.6),
-    'R801': (44, 80), 'R802': (44, 84), 'D701': (57, 84),
+    'R801': (44, 80), 'R802': (44, 84), 'D701': (57, 84), 'R722': (44, 76),
     'K701': (54, 92),
 }
 # Reviewed package swaps. The new footprint takes the old position and rotation;

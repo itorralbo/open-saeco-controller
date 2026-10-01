@@ -34,7 +34,9 @@ GRINDER_EN_INTERLOCK   = GRINDER_EN_RAW AND STM_NRST   (U604)
 ```
 
 R603 y R604, ambos de 10 kΩ, mantienen las órdenes brutas a cero al arrancar;
-R711, R713 y R717 hacen lo mismo con calentador, bomba y molinillo.
+R711, R713, R717 y R722 hacen lo mismo con calentador, bomba, molinillo y el
+armado del relé general. R722 se añadió el 2026-10-01: sin él, la entrada 1A de
+U603 quedaba flotante entre el fin del reset y la configuración de PB7.
 R506 y R512 conservan además los pull-down junto a cada driver. Mientras
 `STM_NRST` está bajo, U602 fuerza ambas salidas a cero aunque el software o un
 GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las cargas.

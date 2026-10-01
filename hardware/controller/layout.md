@@ -155,12 +155,15 @@ recortarlo.
 
 Todo el bloque del STM32 se desplaza junto con U101: la colocación lo define
 respecto a `U101_AT` y el routing aplica a sus pistas el desplazamiento de U101.
-Cada VSS baja al plano con su propia vía dentro del anillo de pads. Los VDD
-(1/64, 13, 19/20, 32 y 48) se unen mediante un anillo de 3V3 en F.Cu bajo el
-cuerpo del LQFP, y cada par VDD/VSS tiene su condensador fuera, en una esquina o
-junto al par: C105/C111 arriba a la izquierda, C102 a la izquierda, C104 con el
-bulk C106 arriba a la derecha, C103/C110 abajo a la derecha y la columna
-C107/C109/C108 de VDDA/VREF+ bajo los pines 18–20.
+Cada VSS (15, 27, 31, 47 y 63) baja al plano con su propia vía dentro del anillo
+de pads. Los VDD (1/64, 16, 28/29, 32 y 48) se unen mediante un anillo de 3V3 en
+F.Cu bajo el cuerpo del LQFP, y cada par VDD/VSS tiene su condensador fuera, en
+una esquina o junto al par: C105/C111 arriba a la izquierda, C104 con el bulk
+C106 arriba a la derecha, C103/C110 abajo a la derecha y C107 (10 nF) justo bajo
+VREF+/VDDA (28/29). C102 queda a la izquierda, al otro lado de los escapes de
+PA0–PA2, y desacopla VDD16 por los planos; C109/C108 siguen como bulk analógico
+en la columna del suroeste, también por los planos. Desde el 2026-10-01 los pads
+siguen el pinout real del G431 ([verificación](../../docs/verification.md)).
 
 Salidas de las señales, desde el 2026-09-23:
 
@@ -169,10 +172,11 @@ Salidas de las señales, desde el 2026-09-23:
 - pin 7 (NRST): a la izquierda y, por dentro del encapsulado, hasta J102;
 - pin 8 (corriente del puente H): a la izquierda, bajo el reset;
 - pin 9 (telemetría de 24 V): a una vía junto a su pad y por B.Cu hasta J114.6;
-- pines 10, 11 y 14–17 (sensores): vía bajo el cuerpo (10), vía al oeste (11),
-  abanico al suroeste bajo C102 (14–16) y vía en la esquina del pad (17);
-- pines 24, 25 y 30 (órdenes a las cargas): hacia abajo, a vías en el bolsillo
-  bajo la fila sur;
+- pines 10–14 y 17 (sensores): vía bajo el cuerpo (10), vía al oeste (11),
+  abanico al suroeste entre C102 y VSS15/VDD16 (12–14) y vía en la esquina del
+  pad (17);
+- pines 21–23 (órdenes a las cargas): hacia abajo, a vías en el bolsillo bajo la
+  fila sur;
 - pines 33, 34, 43 y 44 (bomba, corte del frontal y UART): a la derecha;
 - pines 49–61 (SWD, watchdog, armado y BOOT0): hacia arriba.
 
@@ -626,7 +630,7 @@ llega por B.Cu a la vía de reset al norte del encapsulado.
 R710 es ya una ERJ-P08J391V (390 Ω, 1206, 500 V de tensión límite), en la
 misma huella 1206.
 
-PB10 llega desde el STM32 por el bus de órdenes (ver
+PC5 llega desde el STM32 por el bus de órdenes (ver
 [órdenes a las cargas](#órdenes-a-las-cargas-y-salidas-de-u602)).
 
 ### Etapa de la bomba (JP24)
@@ -875,8 +879,9 @@ puerta.
   sur, bomba (y = 54,6 mm), válvula, molinillo y calentador (y = 55,8 mm).
   Es lo que cabe entre las vías del salto de 3,3 V y la barrera, con 0,2 mm
   exactos de separación.
-- **Extremo este**: PA7, PC4 y PB10 bajan a su vía en el bolsillo que cierran
-  los desacoplos y la orden de PB11 en F.Cu. De ahí van al oeste por
+- **Extremo este**: PA7, PC4 y PC5 (pines 21–23) bajan a su vía en el bolsillo
+  que cierran los desacoplos y la orden de PB11 en F.Cu. El calentador dejó PB10
+  (pin 30) para que C107 ocupe el extremo este, bajo VREF+/VDDA. De ahí van al oeste por
   y = 51,5–52,3 mm y bajan por x = 72,35–73,15 mm, al este de la vía de PB11.
   La vía de masa de los desacoplos (70,8; 53,0) queda fuera de los carriles.
 - **Extremo oeste**: en x = 44,6–45,8 mm los carriles giran al sur y se separan
@@ -1002,10 +1007,11 @@ como un bus en B.Cu, con dos vías por red: una junto al MCU y otra en su filtro
     caudal a PA2 (TIM2_CH3) y NTC a PA3 (ADC1_IN4). Es el orden en que están
     sus filtros, de norte a sur, así que el bus no tiene cruces.
 - **Escapes**: PC2 baja a una vía bajo el cuerpo del LQFP, PC3 a una vía al
-  oeste de su pad y PA0–PA2 en abanico hacia el suroeste, por debajo de C102,
-  hasta vías en y ≈ 46 mm. PA3 sale de la esquina de su pad en la fila sur. Para
-  dejar sitio a PC3, el pin 12 ya no se une a C102.2 por pista; cada uno baja
-  al plano por su vía.
+  oeste de su pad, entre la telemetría de 24 V y PA0, y PA0–PA2 (pines 12–14)
+  en abanico hacia el suroeste, al este de C102 y rodeando VSS15/VDD16, hasta
+  vías en y ≈ 46 mm. PA3 sale de la esquina de su pad en la fila sur. VSS15 baja
+  al plano por una vía interior y VDD16 sube al anillo; C102 los desacopla por
+  sus propias vías a los planos.
 - **Carriles**: hacia el oeste en y = 46,1 / 46,6 / 48,4 / 48,9 / 51,9 /
   54,0 mm, por encima y por debajo de los saltos del reset y del armado.
 - **Columna del supervisor**: las subidas de `BREW_SLEEP_INTERLOCK` y

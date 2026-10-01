@@ -23,25 +23,25 @@
         "9": "RAIL_24V_ADC",
         "10": "BU_PRESENT_N",
         "11": "WATER_LEVEL",
-        "12": "GND_UI",
-        "13": "3V3_CORE",
-        "14": "BU_WORK_N",
-        "15": "DOOR_CLOSED_N",
-        "16": "FLOW_TIM",
+        "12": "BU_WORK_N",
+        "13": "DOOR_CLOSED_N",
+        "14": "FLOW_TIM",
+        "15": "GND_UI",
+        "16": "3V3_CORE",
         "17": "NTC_ADC",
-        "18": "GND_UI",
-        "19": "3V3_CORE",
-        "20": "3V3_CORE",
-        "21": null,
-        "22": null,
-        "23": null,
-        "24": "VALVE_EN_RAW",
-        "25": "GRINDER_EN_RAW",
+        "18": null,
+        "19": null,
+        "20": null,
+        "21": "VALVE_EN_RAW",
+        "22": "GRINDER_EN_RAW",
+        "23": "HEATER_EN_RAW",
+        "24": null,
+        "25": null,
         "26": null,
-        "27": null,
-        "28": null,
-        "29": null,
-        "30": "HEATER_EN_RAW",
+        "27": "GND_UI",
+        "28": "3V3_CORE",
+        "29": "3V3_CORE",
+        "30": null,
         "31": "GND_UI",
         "32": "3V3_CORE",
         "33": "PUMP_EN_RAW",
@@ -426,7 +426,7 @@
     },
     {
       "reference": "C102",
-      "value": "100nF / VDD13",
+      "value": "100nF / VDD16",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "YAGEO",
@@ -501,7 +501,7 @@
     },
     {
       "reference": "C107",
-      "value": "10nF / VDDA20",
+      "value": "10nF / VDDA29",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "FH",
@@ -516,7 +516,7 @@
     },
     {
       "reference": "C108",
-      "value": "1uF / VDDA20",
+      "value": "1uF / VDDA29",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "Samsung Electro-Mechanics",
@@ -531,7 +531,7 @@
     },
     {
       "reference": "C109",
-      "value": "100nF / VREF19",
+      "value": "100nF / VREF28",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "YAGEO",
@@ -546,7 +546,7 @@
     },
     {
       "reference": "C110",
-      "value": "1uF / VREF19",
+      "value": "1uF / VREF28",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "Samsung Electro-Mechanics",
@@ -1793,11 +1793,11 @@
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
-        "1": "VALVE_EN_DRV",
+        "3": "VALVE_EN_DRV",
         "2": "GND_UI",
-        "3": "GND_UI",
-        "5": "12V_PROTECTED",
-        "4": "VALVE_GATE_RAW"
+        "4": "GND_UI",
+        "1": "12V_PROTECTED",
+        "5": "VALVE_GATE_RAW"
       }
     },
     {
@@ -2531,6 +2531,21 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R722",
+      "value": "10k / mains arm pull-down",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "MAINS_ARM_RAW",
         "2": "GND_UI"
       }
     },

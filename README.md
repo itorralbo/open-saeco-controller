@@ -41,6 +41,7 @@ firmware/stm32/       núcleo C portable, sin BSP ni pines
 firmware/esp32/       proyecto mínimo ESP-IDF
 firmware/common/      contrato de comunicaciones propuesto
 recipes/              ejemplo de simulación no ejecutable
+sim/                  modelo de las dos placas para el simulador del firmware
 tools/                generadores, layout, ruteo y comprobaciones de las dos placas
 tests/                pruebas de bloqueo del núcleo
 ```
@@ -50,6 +51,8 @@ Con Python 3: `python tools/check_scaffold.py`.
 Conexiones del frontal: `python tools/check_front_panel.py` (no sustituye ERC).
 Núcleo y suministro: `python tools/check_controller_core.py` (no sustituye ERC/DRC).
 ERC y netlist nativos, con KiCad 10: `python3 tools/validate_kicad.py`.
+Coherencia firmware ↔ placas: `python tools/build_board_model.py --check`
+([simulador](sim/README.md), [informe](sim/board-report.md)).
 Con CMake >= 3.20 y compilador C:
 ```
 cmake -S firmware/stm32 -B build/host
