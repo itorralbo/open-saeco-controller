@@ -646,3 +646,18 @@ Extended en JLCPCB; las nuevas son Basic y R509 sigue en 49,9 kΩ.
 - ERC 0; netlist 187/612; DRC con todas las severidades: 0 infracciones,
   0 sin conectar y paridad solo MH1–MH3. El límite sigue pendiente de medir.
 
+## Divisor Basic del buck de 12 V, 2026-10-01
+
+Revisión de todas las resistencias Extended del catálogo. Solo quedaban dos:
+
+- R302/R303 (realimentación de U303, AP63200): 249 kΩ (C22918, Extended)/18 kΩ
+  pasan a 330 kΩ (C23137)/24 kΩ (C23352), ambas Basic. Ecuación 6 de la hoja Diodes:
+  V_OUT = 0,8 × (1 + 330/24) = 11,80 V, frente a 11,87 V. C314 sigue en 56 pF,
+  dentro de los 10–220 pF admitidos para el condensador de avance.
+- R710, R712 y R721 (puertas de los triacs, lado de red) siguen como Panasonic
+  ERJ-P08J391V Extended: necesitan 500 V de tensión límite y pulsos de 0,83 A, y
+  las 1206 Basic son de película gruesa normal de unos 200 V.
+
+Misma huella 0603: colocación y ruteo intactos. La salida de 12 V queda
+pendiente de medir en banco, como antes.
+

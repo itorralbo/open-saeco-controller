@@ -2129,14 +2129,14 @@
 <text x="932.5799999999999" y="743.72" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_SW</text>
 <rect x="935.99" y="771.16" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="938.53" y="766.16" font-size="1.05" text-anchor="middle" fill="#213b50">R302</text>
-<text x="938.53" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">249k / 12V FB high</text>
+<text x="938.53" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">330k / 12V FB high</text>
 <path d="M 935.99 772.16 H 930.91" stroke="#27856d" stroke-width=".22"/>
 <text x="930.51" y="771.66" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
 <path d="M 941.0699999999999 772.16 H 946.15" stroke="#27856d" stroke-width=".22"/>
 <text x="946.55" y="771.66" font-size="0.9" text-anchor="start" fill="#23745f">BUCK12_FB</text>
 <rect x="975.36" y="771.16" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="977.9" y="766.16" font-size="1.05" text-anchor="middle" fill="#213b50">R303</text>
-<text x="977.9" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">18k / 12V FB low</text>
+<text x="977.9" y="768.66" font-size="1.05" text-anchor="middle" fill="#213b50">24k / 12V FB low</text>
 <path d="M 975.36 772.16 H 970.28" stroke="#27856d" stroke-width=".22"/>
 <text x="969.88" y="771.66" font-size="0.9" text-anchor="end" fill="#23745f">BUCK12_FB</text>
 <path d="M 980.4399999999999 772.16 H 985.52" stroke="#27856d" stroke-width=".22"/>

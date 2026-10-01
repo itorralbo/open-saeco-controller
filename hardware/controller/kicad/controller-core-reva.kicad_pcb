@@ -29788,7 +29788,7 @@
 				)
 			)
 		)
-		(property "Value" "18k / 12V FB low"
+		(property "Value" "24k / 12V FB low"
 			(at 0 1.43 180)
 			(layer "F.Fab")
 			(hide yes)
@@ -29846,7 +29846,7 @@
 				)
 			)
 		)
-		(property "mpn" "0603WAF1802T5E"
+		(property "mpn" "0603WAF2402T5E"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -29858,7 +29858,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C25810"
+		(property "lcsc" "C23352"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -29882,7 +29882,7 @@
 				)
 			)
 		)
-		(property "pcba_type" "TBD"
+		(property "pcba_type" "Economic and Standard"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -43752,7 +43752,7 @@
 				)
 			)
 		)
-		(property "Value" "249k / 12V FB high"
+		(property "Value" "330k / 12V FB high"
 			(at 0 1.43 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -43810,7 +43810,7 @@
 				)
 			)
 		)
-		(property "mpn" "0603WAF2493T5E"
+		(property "mpn" "0603WAF3303T5E"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -43822,7 +43822,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C22918"
+		(property "lcsc" "C23137"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -43834,7 +43834,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Extended"
+		(property "jlc_class" "Basic"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

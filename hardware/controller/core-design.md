@@ -258,7 +258,10 @@ desde PS701 y se abre antes de inyectar 24 V limitados por J112 durante el banco
 
 U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación usa
 10 µH, 10 µF/50 V en entrada, dos condensadores de 22 µF/25 V en salida y divisor
-249 kΩ/18 kΩ con 56 pF de avance, siguiendo la tabla de 12 V del fabricante.
+330 kΩ/24 kΩ con 56 pF de avance. La tabla de 12 V del fabricante da 249 kΩ/18 kΩ
+(11,87 V), pero 249 kΩ es Extended en JLCPCB; el par Basic 330/24 kΩ da
+0,8 × (1 + 330/24) = 11,80 V según la ecuación 6 de la hoja, y el avance de 56 pF
+queda dentro de los 10–220 pF que admite.
 
 K701 es un relé Omron G5RL-1A-E-TV8 DC24 normalmente abierto. Sus dos pads COM y
 sus dos pads NO se mantienen duplicados para repartir corriente. U603 exige a la

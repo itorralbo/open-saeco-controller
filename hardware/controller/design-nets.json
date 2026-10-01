@@ -2439,13 +2439,13 @@
     },
     {
       "reference": "R302",
-      "value": "249k / 12V FB high",
+      "value": "330k / 12V FB high",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF2493T5E",
-      "lcsc": "C22918",
-      "jlc_class": "Extended",
+      "mpn": "0603WAF3303T5E",
+      "lcsc": "C23137",
+      "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "12V_ISO_RAW",
@@ -2454,14 +2454,14 @@
     },
     {
       "reference": "R303",
-      "value": "18k / 12V FB low",
+      "value": "24k / 12V FB low",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
-      "mpn": "0603WAF1802T5E",
-      "lcsc": "C25810",
+      "mpn": "0603WAF2402T5E",
+      "lcsc": "C23352",
       "jlc_class": "Basic",
-      "pcba_type": "TBD",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "BUCK12_FB",
         "2": "GND_UI"

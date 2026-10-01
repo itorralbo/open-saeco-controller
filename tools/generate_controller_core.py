@@ -554,10 +554,10 @@ def main():
           'Capacitor_SMD:C_1210_3225Metric',part_key='C:22uF_25V_1210')
     d.add('C313','C','100nF / BST',924,744,['BUCK12_BST','BUCK12_SW'],
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
-    d.add('R302','R','249k / 12V FB high',938,772,['12V_ISO_RAW','BUCK12_FB'],
-          'Resistor_SMD:R_0603_1608Metric',part_key='R:249k')
-    d.add('R303','R','18k / 12V FB low',978,772,['BUCK12_FB',g],
-          'Resistor_SMD:R_0603_1608Metric',part_key='R:18k')
+    d.add('R302','R','330k / 12V FB high',938,772,['12V_ISO_RAW','BUCK12_FB'],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:330k')
+    d.add('R303','R','24k / 12V FB low',978,772,['BUCK12_FB',g],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:24k')
     d.add('C314','C','56pF / feed-forward',1018,772,['12V_ISO_RAW','BUCK12_FB'],
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:56pF')
     # J121 intentionally permits disconnecting the onboard supply. Mark the
