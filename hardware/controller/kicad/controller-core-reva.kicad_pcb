@@ -2444,7 +2444,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -4590,7 +4590,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -8729,7 +8729,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -15922,7 +15922,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -16250,7 +16250,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -17094,7 +17094,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -18604,7 +18604,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Basic"
+		(property "jlc_class" "Extended"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -23266,7 +23266,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24526,7 +24526,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -26085,7 +26085,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -26765,7 +26765,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -29870,7 +29870,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Basic"
 			(at 0 0 180)
 			(layer "F.SilkS")
 			(hide yes)
@@ -30078,7 +30078,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -30822,7 +30822,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Basic"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36302,7 +36302,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -37879,7 +37879,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -41464,7 +41464,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "TBD"
+		(property "jlc_class" "Extended"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)

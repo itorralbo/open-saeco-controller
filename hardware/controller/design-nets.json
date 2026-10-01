@@ -1029,7 +1029,7 @@
       "manufacturer": "Littelfuse",
       "mpn": "1206L050YR",
       "lcsc": "C163512",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "USB_VBUS",
@@ -1487,7 +1487,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "DRV8876PWPR",
       "lcsc": "C575551",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "BREW_EN_DRV",
@@ -1652,7 +1652,7 @@
       "manufacturer": "UNI-ROYAL",
       "mpn": "0603WAF1602T5E",
       "lcsc": "C4210",
-      "jlc_class": "Basic",
+      "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "3V3_CORE",
@@ -1697,7 +1697,7 @@
       "manufacturer": "UNI-ROYAL",
       "mpn": "0603WAF2491T5E",
       "lcsc": "C22908",
-      "jlc_class": "Basic",
+      "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "BREW_CURRENT_ADC",
@@ -1790,7 +1790,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "UCC27517DBVR",
       "lcsc": "C99395",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "VALVE_EN_DRV",
@@ -1808,7 +1808,7 @@
       "manufacturer": "UMW",
       "mpn": "SI2308A",
       "lcsc": "C347491",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "VALVE_GATE",
@@ -1914,7 +1914,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "TPS3828-33DBVR",
       "lcsc": "C20032",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "STM_NRST",
@@ -1932,7 +1932,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "SN74LVC2G08DCTR",
       "lcsc": "C352973",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "BREW_SLEEP_RAW",
@@ -2351,7 +2351,7 @@
       "manufacturer": "Diodes Incorporated",
       "mpn": "AP63200WU-7",
       "lcsc": "C2071868",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "BUCK12_FB",
@@ -2370,7 +2370,7 @@
       "manufacturer": "Bourns",
       "mpn": "SRP7028A-100M",
       "lcsc": "C2687402",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "BUCK12_SW",
@@ -2460,7 +2460,7 @@
       "manufacturer": "UNI-ROYAL",
       "mpn": "0603WAF1802T5E",
       "lcsc": "C25810",
-      "jlc_class": "TBD",
+      "jlc_class": "Basic",
       "pcba_type": "TBD",
       "pins": {
         "1": "BUCK12_FB",
@@ -2490,7 +2490,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "SN74LVC2G08DCTR",
       "lcsc": "C352973",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "MAINS_ARM_RAW",
@@ -2511,7 +2511,7 @@
       "manufacturer": "UMW",
       "mpn": "SI2308A",
       "lcsc": "C347491",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "MAINS_RELAY_GATE",
@@ -2651,7 +2651,7 @@
       "manufacturer": "UMW",
       "mpn": "SI2308A",
       "lcsc": "C347491",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "HEATER_LED_GATE",
@@ -2747,7 +2747,7 @@
       "manufacturer": "Texas Instruments",
       "mpn": "SN74LVC2G08DCTR",
       "lcsc": "C352973",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "PUMP_EN_RAW",
@@ -2813,7 +2813,7 @@
       "manufacturer": "UMW",
       "mpn": "SI2308A",
       "lcsc": "C347491",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "PUMP_LED_GATE",
@@ -2939,7 +2939,7 @@
       "manufacturer": "UMW",
       "mpn": "SI2308A",
       "lcsc": "C347491",
-      "jlc_class": "TBD",
+      "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
         "1": "GRINDER_LED_GATE",

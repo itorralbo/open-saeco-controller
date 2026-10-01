@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Developer\open-saeco-controller\hardware\controller\kicad\controller-core-reva.kicad_sch</source>
-    <date>2026-10-01T19:48:02</date>
+    <date>2026-10-01T21:46:25</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -1921,7 +1921,7 @@
         <field name="manufacturer">Littelfuse</field>
         <field name="mpn">1206L050YR</field>
         <field name="lcsc">C163512</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Fuse:Fuse_1206_3216Metric</field>
         <field name="Datasheet"/>
@@ -1931,7 +1931,7 @@
       <property name="manufacturer" value="Littelfuse"/>
       <property name="mpn" value="1206L050YR"/>
       <property name="lcsc" value="C163512"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -2859,7 +2859,7 @@
         <field name="manufacturer">Bourns</field>
         <field name="mpn">SRP7028A-100M</field>
         <field name="lcsc">C2687402</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm</field>
         <field name="Datasheet"/>
@@ -2869,7 +2869,7 @@
       <property name="manufacturer" value="Bourns"/>
       <property name="mpn" value="SRP7028A-100M"/>
       <property name="lcsc" value="C2687402"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -2925,7 +2925,7 @@
         <field name="manufacturer">UMW</field>
         <field name="mpn">SI2308A</field>
         <field name="lcsc">C347491</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
         <field name="Datasheet"/>
@@ -2935,7 +2935,7 @@
       <property name="manufacturer" value="UMW"/>
       <property name="mpn" value="SI2308A"/>
       <property name="lcsc" value="C347491"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -2958,7 +2958,7 @@
         <field name="manufacturer">UMW</field>
         <field name="mpn">SI2308A</field>
         <field name="lcsc">C347491</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
         <field name="Datasheet"/>
@@ -2968,7 +2968,7 @@
       <property name="manufacturer" value="UMW"/>
       <property name="mpn" value="SI2308A"/>
       <property name="lcsc" value="C347491"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -3057,7 +3057,7 @@
         <field name="manufacturer">UMW</field>
         <field name="mpn">SI2308A</field>
         <field name="lcsc">C347491</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
         <field name="Datasheet"/>
@@ -3067,7 +3067,7 @@
       <property name="manufacturer" value="UMW"/>
       <property name="mpn" value="SI2308A"/>
       <property name="lcsc" value="C347491"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -3090,7 +3090,7 @@
         <field name="manufacturer">UMW</field>
         <field name="mpn">SI2308A</field>
         <field name="lcsc">C347491</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
         <field name="Datasheet"/>
@@ -3100,7 +3100,7 @@
       <property name="manufacturer" value="UMW"/>
       <property name="mpn" value="SI2308A"/>
       <property name="lcsc" value="C347491"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -3123,7 +3123,7 @@
         <field name="manufacturer">UMW</field>
         <field name="mpn">SI2308A</field>
         <field name="lcsc">C347491</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
         <field name="Datasheet"/>
@@ -3133,7 +3133,7 @@
       <property name="manufacturer" value="UMW"/>
       <property name="mpn" value="SI2308A"/>
       <property name="lcsc" value="C347491"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -3829,7 +3829,7 @@
         <field name="manufacturer">UNI-ROYAL</field>
         <field name="mpn">0603WAF1802T5E</field>
         <field name="lcsc">C25810</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Basic</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
@@ -3839,7 +3839,7 @@
       <property name="manufacturer" value="UNI-ROYAL"/>
       <property name="mpn" value="0603WAF1802T5E"/>
       <property name="lcsc" value="C25810"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Basic"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -4437,7 +4437,7 @@
         <field name="manufacturer">UNI-ROYAL</field>
         <field name="mpn">0603WAF1602T5E</field>
         <field name="lcsc">C4210</field>
-        <field name="jlc_class">Basic</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
@@ -4447,7 +4447,7 @@
       <property name="manufacturer" value="UNI-ROYAL"/>
       <property name="mpn" value="0603WAF1602T5E"/>
       <property name="lcsc" value="C4210"/>
-      <property name="jlc_class" value="Basic"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -4501,7 +4501,7 @@
         <field name="manufacturer">UNI-ROYAL</field>
         <field name="mpn">0603WAF2491T5E</field>
         <field name="lcsc">C22908</field>
-        <field name="jlc_class">Basic</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
@@ -4511,7 +4511,7 @@
       <property name="manufacturer" value="UNI-ROYAL"/>
       <property name="mpn" value="0603WAF2491T5E"/>
       <property name="lcsc" value="C22908"/>
-      <property name="jlc_class" value="Basic"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -5820,7 +5820,7 @@
         <field name="manufacturer">Diodes Incorporated</field>
         <field name="mpn">AP63200WU-7</field>
         <field name="lcsc">C2071868</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:TSOT-23-6</field>
         <field name="Datasheet"/>
@@ -5830,7 +5830,7 @@
       <property name="manufacturer" value="Diodes Incorporated"/>
       <property name="mpn" value="AP63200WU-7"/>
       <property name="lcsc" value="C2071868"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -5856,7 +5856,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">DRV8876PWPR</field>
         <field name="lcsc">C575551</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm</field>
         <field name="Datasheet"/>
@@ -5866,7 +5866,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="DRV8876PWPR"/>
       <property name="lcsc" value="C575551"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -5903,7 +5903,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">UCC27517DBVR</field>
         <field name="lcsc">C99395</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
         <field name="Datasheet"/>
@@ -5913,7 +5913,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="UCC27517DBVR"/>
       <property name="lcsc" value="C99395"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -5938,7 +5938,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">TPS3828-33DBVR</field>
         <field name="lcsc">C20032</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23-5</field>
         <field name="Datasheet"/>
@@ -5948,7 +5948,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="TPS3828-33DBVR"/>
       <property name="lcsc" value="C20032"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -5973,7 +5973,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">SN74LVC2G08DCTR</field>
         <field name="lcsc">C352973</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_SO:SSOP-8_2.95x2.8mm_P0.65mm</field>
         <field name="Datasheet"/>
@@ -5983,7 +5983,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="SN74LVC2G08DCTR"/>
       <property name="lcsc" value="C352973"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -6011,7 +6011,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">SN74LVC2G08DCTR</field>
         <field name="lcsc">C352973</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_SO:SSOP-8_2.95x2.8mm_P0.65mm</field>
         <field name="Datasheet"/>
@@ -6021,7 +6021,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="SN74LVC2G08DCTR"/>
       <property name="lcsc" value="C352973"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
@@ -6049,7 +6049,7 @@
         <field name="manufacturer">Texas Instruments</field>
         <field name="mpn">SN74LVC2G08DCTR</field>
         <field name="lcsc">C352973</field>
-        <field name="jlc_class">TBD</field>
+        <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_SO:SSOP-8_2.95x2.8mm_P0.65mm</field>
         <field name="Datasheet"/>
@@ -6059,7 +6059,7 @@
       <property name="manufacturer" value="Texas Instruments"/>
       <property name="mpn" value="SN74LVC2G08DCTR"/>
       <property name="lcsc" value="C352973"/>
-      <property name="jlc_class" value="TBD"/>
+      <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>

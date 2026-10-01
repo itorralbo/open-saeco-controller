@@ -22,36 +22,36 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Botones frontal | TCA9534PWR | [C783615](https://jlcpcb.com/partdetail/C783615) | 15.208 | 15.100 | Economic / Standard |
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 17.757 | 13.963 | Economic / Standard |
 | Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 12.979 | 12.454 | Economic / Standard |
-| Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 29.786 | 29.550 | Categoría JLC por verificar |
-| Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 52.619 | 50.161 | Categoría JLC por verificar |
-| MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 517.787 | 515.535 | Categoría JLC por verificar |
+| Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 29.786 | 29.550 | Extended; categoría JLC por verificar |
+| Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 52.619 | 50.161 | Extended; categoría JLC por verificar |
+| MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 517.787 | 515.535 | Extended; categoría JLC por verificar |
 | Conector JP3 | HR A2506WV-05P, 5 vías/2,50 mm, vertical | [C382535](https://jlcpcb.com/partdetail/C382535) | 3 | 0 | Extended; categoría JLC por verificar |
-| Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 65.914 | 65.843 | Categoría JLC por verificar |
-| Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 34.655 | 34.618 | Categoría JLC por verificar |
+| Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 65.914 | 65.843 | Extended; categoría JLC por verificar |
+| Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 34.655 | 34.618 | Extended; categoría JLC por verificar |
 | Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 31.195 | 24.428 | Economic / Standard |
 | Bomba de carga DRV8876 | 22 nF/50 V X7R 0603 | [C77571](https://www.lcsc.com/product-detail/C77571.html) | 221.958 | 215.030 | Economic / Standard |
-| USB-C de servicio | HRO TYPE-C-31-D-06, vertical | [C2689964](https://jlcpcb.com/partdetail/C2689964) | 2.317 | 2.242 | Categoría JLC por verificar |
+| USB-C de servicio | HRO TYPE-C-31-D-06, vertical | [C2689964](https://jlcpcb.com/partdetail/C2689964) | 2.317 | 2.242 | Extended; categoría JLC por verificar |
 | Protección ESD USB | USBLC6-2SC6 | [C7519](https://jlcpcb.com/partdetail/C7519) | 36.647 | 33.364 | Economic / Standard |
-| PTC alimentación USB opcional | Littelfuse 1206L050YR | [C163512](https://www.lcsc.com/product-detail/C163512.html) | 20.858 | 20.804 | Categoría JLC por verificar |
+| PTC alimentación USB opcional | Littelfuse 1206L050YR | [C163512](https://www.lcsc.com/product-detail/C163512.html) | 20.858 | 20.804 | Extended; categoría JLC por verificar |
 | Inductor buck | SRN6028C-3R9M | [C19947652](https://www.lcsc.com/product-detail/C19947652.html) | 208 | 203 | Economic / Standard |
 | Salida buck, 2 unidades | 22 µF/10 V X5R 0805 | [C380338](https://jlcpcb.com/partdetail/CCTC-TCC0805X5R226M100FT/C380338) | 278.106 | 271.385 | Economic / Standard |
-| Entradas 12 V y 24 V, 2 unidades | JST B2B-XH-A(LF)(SN), vertical | [C158012](https://jlcpcb.com/partdetail/C158012) | 337.727 | 330.310 | Categoría JLC por verificar |
+| Entradas 12 V y 24 V, 2 unidades | JST B2B-XH-A(LF)(SN), vertical | [C158012](https://jlcpcb.com/partdetail/C158012) | 337.727 | 330.310 | Extended; categoría JLC por verificar |
 | JP13 | HR A2506WV-02P, 2 vías/2,50 mm, vertical | [C382532](https://jlcpcb.com/partdetail/C382532) | 700 | 698 | Extended; categoría JLC por verificar |
-| JP14 | JST B2B-XH-A(LF)(SN), vertical, candidato no confirmado | [C158012](https://jlcpcb.com/partdetail/C158012) | 337.727 | 330.310 | Categoría JLC por verificar |
+| JP14 | JST B2B-XH-A(LF)(SN), vertical, candidato no confirmado | [C158012](https://jlcpcb.com/partdetail/C158012) | 337.727 | 330.310 | Extended; categoría JLC por verificar |
 | JP5 | HR A2506WV-03P, 3 vías/2,50 mm, vertical | [C382533](https://jlcpcb.com/partdetail/C382533) | 0 | 0 | Extended; sin stock |
-| JP16 | JST B8B-XH-A(LF)(SN), vertical, candidato no confirmado | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.079 | 10.527 | Categoría JLC por verificar |
-| JP22 | JST B3B-PH-K-S(LF)(SN), vertical, candidato no confirmado | [C131339](https://jlcpcb.com/partdetail/C131339) | 142.355 | 129.686 | Categoría JLC por verificar |
+| JP16 | JST B8B-XH-A(LF)(SN), vertical, candidato no confirmado | [C157972](https://jlcpcb.com/partdetail/C157972) | 11.079 | 10.527 | Extended; categoría JLC por verificar |
+| JP22 | JST B3B-PH-K-S(LF)(SN), vertical, candidato no confirmado | [C131339](https://jlcpcb.com/partdetail/C131339) | 142.355 | 129.686 | Extended; categoría JLC por verificar |
 | JP24 | LEOCO 5001P020013, 2 vías/5,00 mm, pin cuadrado, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP8 | LEOCO 3941P03*000, 3 vías/3,96 mm, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP17 | TE 1971845-3, RAST 5, 3 lengüetas 6,3 × 0,8 mm, 16 A, vertical | [C5169636](https://jlcpcb.com/partdetail/C5169636) | 233 | 233 | Extended; categoría JLC por verificar |
 | Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 13.220 | 13.045 | Economic / Standard; ola |
 | Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | 0 | 0 | Economic / Standard; ola; sin stock |
-| Buck 24 V → 12 V | Diodes AP63200WU-7, 2 A | [C2071868](https://www.lcsc.com/product-detail/C2071868.html) | 0 | 0 | Categoría JLC por verificar; sin stock |
-| Inductor buck 12 V | Bourns SRP7028A-100M, 10 µH/3,5 A | [C2687402](https://www.lcsc.com/product-detail/C2687402.html) | 4.959 | 4.914 | Categoría JLC por verificar |
+| Buck 24 V → 12 V | Diodes AP63200WU-7, 2 A | [C2071868](https://www.lcsc.com/product-detail/C2071868.html) | 0 | 0 | Extended; categoría JLC por verificar; sin stock |
+| Inductor buck 12 V | Bourns SRP7028A-100M, 10 µH/3,5 A | [C2687402](https://www.lcsc.com/product-detail/C2687402.html) | 4.959 | 4.914 | Extended; categoría JLC por verificar |
 | Entrada buck 24 V | Samsung CL31B106KBHNNNE, 10 µF/50 V X7R | [C89632](https://jlcpcb.com/partdetail/90812-CL31B106KBHNNNE/C89632) | 141.791 | 80.067 | Economic / Standard; Extended |
 | Salida buck 12 V, 2 unidades | CCTC TCC1210X7R226K250MT, 22 µF/25 V X7R | [C49118556](https://jlcpcb.com/partdetail/CCTC-TCC1210X7R226K250MT/C49118556) | 84.542 | 78.344 | Economic / Standard; Extended |
-| Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.077 | 1.039 | Categoría JLC por verificar |
-| Optotriac calentador, bomba y molinillo | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 18.898 | 18.845 | Categoría JLC por verificar |
+| Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.077 | 1.039 | Extended; categoría JLC por verificar |
+| Optotriac calentador, bomba y molinillo | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 18.898 | 18.845 | Extended; categoría JLC por verificar |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 34.356 | 34.222 | Economic / Standard |
 | Enlace principal–frontal, 2 unidades | Würth WR-MM 690367181672, 16 contactos 1,27 mm al tresbolillo (identificado por el propietario) | [C19103863](https://jlcpcb.com/partdetail/C19103863) | 0 | 0 | Sin stock el 2026-10-01; tipo PCBA por verificar |
 
