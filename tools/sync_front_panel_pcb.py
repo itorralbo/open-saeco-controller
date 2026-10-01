@@ -28,6 +28,11 @@ REMOVED = {'R18', 'R28', 'C18'}
 FOOTPRINT_REPLACEMENTS = {
     'J2': ('Connector_JST:JST_PH_S8B-PH-K_1x08_P2.00mm_Horizontal',
            'Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical'),
+    # Owner, 2026-10-01: the original JP3 is a Wurth WR-MM 690367181672, the
+    # same part as J104 on the main board. Pads differ; the layout script
+    # places it on the original JP3 zone and reroutes.
+    'J1': ('Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical',
+           'OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical'),
 }
 MECHANICS = json.loads((BASE/'mechanical-source.json').read_text(encoding='utf-8'))
 EDGE_ITEMS = len(MECHANICS['outline_mm']['vertices'])+len(MECHANICS['holes'])

@@ -612,3 +612,24 @@ Hallazgo de diseño, sin cambiar: J101 comparte nodo con la salida de U303 sin
 diodo ni selector, así que usar J101 con o sin 24 V presentes queda por revisar.
 ERC 0; netlist 187/612 coincidente; enlaces de la documentación comprobados.
 
+## Conector del frontal Würth WR-MM, 2026-10-01
+
+El propietario identificó el conector del enlace entre la principal y el frontal
+como Würth WR-MM 690367181672 (16 contactos a 1,27 mm al tresbolillo), el mismo
+en las dos placas, con el cable original plano 1:1 de 16 hilos. El pestillo del
+cable entra en un taladro de 1,5 mm junto al pin 1. Sustituye al IDC 2×8 en J104 y J1.
+
+- Huella `OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical` del plano Würth
+  rev 002.000, en las dos bibliotecas, con modelo 3D simplificado (22,32 × 5 ×
+  6,1 mm). Catálogo: JLC C19103863, Extended, sin stock el 2026-10-01.
+- Principal: J104 gira 180° con el pin 1 en (6,2; 6,5); los impares no se mueven y
+  los pares van 1,27 mm al este. Se reencaminan 3V3_UI (al oeste del taladro del
+  pestillo), DC, BL, SDA, SCL e INT. 1 315 segmentos y 439 vías.
+- Frontal: J1 se centra en la zona del JP3 original; C3 sigue junto al pin 1.
+  Freerouting: 297 segmentos y 192 vías. Gerber, BOM y CPL regenerados.
+- ERC 0 en las dos placas; netlists 187/612 y 42/118 coincidentes. DRC con todas
+  las severidades: principal 0 infracciones, 0 sin conectar y paridad solo MH1–MH3;
+  frontal 0/0/0.
+- El recuento fotográfico de 20 contactos en JP21 era un error. Pendiente:
+  presentar el cable y comprobar que el pestillo entra en el taladro de las dos
+  placas nuevas.

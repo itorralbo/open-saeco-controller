@@ -42,8 +42,10 @@ PLACE = {
     'SW7': (*SWITCH_POS['PB7'], 0),
     'D1': (*LED_POS, 180), 'R7': (LED_POS[0]-3.0, LED_POS[1], 0),
     'J2': (99.0, 6.6, 180),        # PH8 opening towards the top edge, pin 1 at x=99
-    'J1': (139.7, 57.3, 90),       # IDC 2x8 in the JP3 tab, pin 1 bottom-left
-    'C3': (131.5, 57.5, 90),
+    # WR-MM 16 on the original JP3 zone (x 143-166, y 51.5-59.3), body centred
+    # on it; pin 1 bottom-left, odd pins in the south row.
+    'J1': (145.1, 56.7, 180),
+    'C3': (141.8, 57.5, 90),
     'U1': (112.0, 30.0, 0),
     'C1': (116.2, 25.8, 0), 'C2': (116.2, 24.0, 0),
     'R1': (122.4, 42.6, 180), 'R2': (122.4, 44.2, 180), 'R3': (122.4, 41.0, 180),
@@ -64,7 +66,7 @@ for i, y in RIGHT_ROWS.items():
 
 # (ref, pad position selector, via x, via y): stub from the pad to a GND via.
 GND_VIAS = [('U1', (109.138, 28.375), 107.7, 28.375), ('U1', (109.138, 32.275), 107.7, 32.275),
-            ('C1', (116.975, 25.8), 118.1, 25.8), ('C3', (131.5, 56.725), 130.1, 56.725),
+            ('C1', (116.975, 25.8), 118.1, 25.8), ('C3', (141.8, 56.725), 140.4, 56.725),
             ('R6', (85.0, 11.225), 85.0, 12.6), ('J2', (97.0, 6.6), 97.0, 9.3),
             ('SW4', (87.057, 45.75), 85.2, 45.75), ('SW4', (96.343, 45.75), 98.2, 45.75)]
 GND_VIAS += [(f'C1{i}', (101.5, y+1.55), 102.75, y+1.55) for i, y in LEFT_ROWS.items()]
@@ -100,6 +102,14 @@ def place(board):
             stand_in.m_Filename = model
             stand_in.m_Rotation = pcb.VECTOR3D(0, 0, 90)
             fp.Models().push_back(stand_in)
+    # J1 shares the controller's WR-MM stand-in body (make_controller_3d_models.py).
+    wr_mm = ('${KIPRJMOD}/../../controller/kicad/OpenSaeco.3dshapes/'
+             'Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical.wrl')
+    if not any(m.m_Filename == wr_mm for m in fps['J1'].Models()):
+        fps['J1'].Models().clear()
+        body = pcb.FP_3DMODEL()
+        body.m_Filename = wr_mm
+        fps['J1'].Models().push_back(body)
     # THT GND pins of the connectors sit between bus tracks: solid, not thermal, joints.
     for ref in ('J1', 'J2'):
         for pad in fps[ref].Pads():
@@ -386,7 +396,7 @@ def free_spot(island, other, pads, vias, step, r=VIA/2+0.1):
 
 
 # Silkscreen designators that the footprint default would put far from the part.
-REF_POS = {'U1': (112.0, 34.3), 'J2': (80.6, 6.6), 'J1': (148.6, 50.4), 'D1': (91.8, 50.3)}
+REF_POS = {'U1': (112.0, 34.3), 'J2': (80.6, 6.6), 'J1': (154.6, 51.8), 'D1': (91.8, 50.3)}
 # (layer, text, x, y, size): board identity and JLCPCB order-number placeholder.
 LABELS = [(pcb.F_SilkS, 'OPEN SAECO - FRONTAL Rev A.0', 62.0, 50.8, 1.2),
           (pcb.B_SilkS, 'JLCJLCJLCJLC', 62.0, 21.5, 1.0)]

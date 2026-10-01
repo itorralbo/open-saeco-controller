@@ -22,6 +22,7 @@ el script.
 | `LEOCO_5001P02_1x02_P5.00mm_Vertical` | J117 | Planta del plano LEOCO 500101S; altura de 11 mm y rampa estimadas. |
 | `TE_RAST5_1971845-3_1x03_P5.00mm_Vertical` | J118 | Carcasa 17,3 x 14,9 x 12,8 mm del plano TE C-1971845; paredes y lengüetas simplificadas. |
 | `TE_RAST5_1971845-4_1x04_P5.00mm_Vertical` | J116 | Carcasa 22,3 x 14,9 x 12,8 mm del plano TE C-1971845; paredes y lengüetas simplificadas. |
+| `Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical` | J104 | Cuerpo de 22,32 x 5 x 6,1 mm del plano Würth 690367181672; sin pestillo ni cavidades. |
 | `TE_FASTON_63824-1_Tab_6.35mm_Vertical` | J119, J120 | Lengüeta de 6,35 x 0,81 mm del plano TE C-63824; altura de unos 9 mm estimada. |
 | `Relay_SPST_Omron_G5RL-1A-E-TV8` | K701 | Planta de 29 x 12,7 mm de la serigrafía; 15,7 mm de alto según la serie G5RL, sin cotejar con el plano. |
 | `MeanWell_IRM-30_THT` | PS701 | Caja de 69,5 x 39 x 24 mm del plano Mean Well IRM-30. |

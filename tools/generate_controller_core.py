@@ -235,9 +235,9 @@ def main():
           'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('J102/J103 pinout propio; 3V3 es referencia, no alimentar desde el programador.',390,133)
-    d.add('J104','J16','UI_LINK / IDC 2x8 2.54mm',440,185,d.UPLINK,
-          'Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical',
-          status='candidate', part_key='CONN:IDC_2X8_2.54')
+    d.add('J104','J16','UI_LINK / WR-MM 16',440,185,d.UPLINK,
+          'OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical',
+          status='owner_identified_supply_pending', part_key='CONN:WURTH_WR-MM_16')
     d.note('J101 recibe 12V DC aislados. Nunca conectar a red.',390,229)
     d.note('04 / Reset y arranque',20,213,1.8)
     for args in [

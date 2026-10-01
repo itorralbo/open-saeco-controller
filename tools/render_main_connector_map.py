@@ -34,7 +34,7 @@ for hole in SOURCE['mounting_holes']:
     parts.append(f'<text class="label" x="{hole["x"]*S+16:.1f}" y="{hole["y"]*S:.1f}">{hole["reference"]}</text>')
 
 # Envelopes approximate the photographed housing, not copper pads.
-active_sizes = {'JP21': (29, 11), 'JP16': (12.5, 23.5), 'JP14': (12.5, 8.5),
+active_sizes = {'JP21': (22.3, 5), 'JP16': (12.5, 23.5), 'JP14': (12.5, 8.5),
                 'JP3': (16, 12.5), 'JP22': (9, 8.7), 'JP13': (8.5, 12.5), 'JP5': (11, 12.5)}
 for item in SOURCE['connector_placements']:
     x, y = item['footprint_origin_mm']
@@ -42,7 +42,7 @@ for item in SOURCE['connector_placements']:
     if item['rotation_deg'] in (90, 270) and item['original_reference'] not in ('JP21', 'JP16', 'JP14'):
         w, h = h, w
     # Hand-tuned body centers from KiCad footprint bounds at the stored rotation.
-    offsets = {'JP21': (8.9, -0.8), 'JP16': (3.45, -8.75), 'JP14': (3.45, -1.25),
+    offsets = {'JP21': (9.525, -1.27), 'JP16': (3.45, -8.75), 'JP14': (3.45, -1.25),
                'JP3': (5.0, 3.45), 'JP22': (2.0, 2.45), 'JP13': (1.25, 3.45), 'JP5': (2.5, 3.45)}
     dx, dy = offsets[item['original_reference']]
     parts.append(rect(x+dx, y+dy, w, h, 'active', f'{item["original_reference"]} / {item["new_reference"]}'))

@@ -26,7 +26,7 @@ IMG_1101 para confirmar el sentido de entrada lateral. Se fija esta relación:
 
 | Original | Rev A | Borde | Origen de huella X/Y (mm) | Giro |
 |---|---|---|---:|---:|
-| JP21 | J104, enlace del frontal nuevo | superior | 6,2 / 6,5 | 90° |
+| JP21 | J104, enlace del frontal nuevo | superior | 6,2 / 6,5 | 180° |
 | JP16 | J108, grupo y micros | izquierdo | 3,0 / 64,5 | 90° |
 | JP14 | J107, puerta/cajón | izquierdo | 3,0 / 73,5 | 90° |
 | JP3 | J113, electroválvula | inferior | 3,5 / 125,3 | 0° |
@@ -35,7 +35,8 @@ IMG_1101 para confirmar el sentido de entrada lateral. Se fija esta relación:
 | JP5 | J106, caudalímetro | inferior | 38,2 / 125,3 | 0° |
 
 La incertidumbre de posición asignada es ±1,5 mm. J104 ocupa la zona de JP21,
-pero no reproduce su interfaz: el IDC 2×8 nuevo es algo más ancho y enlaza con la
+pero no reproduce su interfaz: desde el 2026-10-01 es el Würth WR-MM 690367181672
+(ver «JP21: Würth WR-MM»), con pinout nuevo, y enlaza con la
 nueva placa frontal. J110 queda inmediatamente a su derecha, accesible desde el
 mismo borde superior para las pruebas por ordenador.
 
@@ -247,8 +248,8 @@ unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
 - Cuatro capas, apilado JLC04161H-7628: GND_UI en In1.Cu y 3V3_CORE en
   In2.Cu, los dos solo en el lado SELV; el de 3,3 V es una sola pieza y el de
   masa tiene la pieza principal y los cinco anillos de los pads de masa de J104.
-- 1 268 segmentos y 441 vías, 156 de ellas de cosido (2026-09-29). 3 132 mm de
-  pista en F.Cu, 1 925 mm en B.Cu y 33 mm en In2.Cu (las dos subidas del
+- 1 315 segmentos y 439 vías, 154 de ellas de cosido (2026-10-01). 2 997 mm de
+  pista en F.Cu, 2 023 mm en B.Cu y 33 mm en In2.Cu (las dos subidas del
   supervisor). El par USB está calculado para el apilado (ver «Par USB»).
 - Todas las redes conectadas; las tres diferencias de paridad son los
   taladros mecánicos MH1–MH3, que son intencionales.
@@ -545,6 +546,30 @@ Con las tres huellas puestas desaparecen las áreas temporales que las
 reservaban, y la paridad esquema/PCB baja de seis diferencias a tres: solo
 quedan los taladros mecánicos MH1–MH3, que son intencionales.
 
+### JP21: Würth WR-MM
+
+El propietario identificó el 2026-10-01 el conector del enlace con el frontal:
+Würth WR-MM 690367181672, hembra de placa compatible Micro-MaTch, 16 contactos a
+1,27 mm al tresbolillo (2,54 mm por fila, filas a 2,54 mm). La huella `OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical`
+sigue el plano Würth rev 002.000: taladros de 0,85 mm, pads de 1,4 mm, cuerpo de
+22,32 × 5 mm y 6,1 mm de alto, y un taladro sin metalizar de 1,5 mm a 1,40 mm más
+allá del pin 1 y 1,80 mm hacia la fila par. En él entra el pestillo del conector
+del cable, que queda retenido y solo entra en un sentido.
+
+- J104 gira 180° con el pin 1 donde estaba el del IDC (6,2; 6,5). Los pines
+  impares quedan en los mismos puntos; los pares se desplazan 1,27 mm al este, y
+  J104.16 queda en x = 25,25 mm. El cuerpo cabe dentro del contorno del IDC
+  anterior, en la parte izquierda de la zona original.
+- El propietario confirmó el mismo conector de 16 contactos en las dos placas y
+  un cable plano 1:1 de 16 hilos; los 20 contactos del recuento fotográfico de
+  JP21 eran un error. La posición sigue con ±1,5 mm.
+- Cambios de cobre: 3V3_UI baja por x = 3,3 mm, al oeste del taladro del
+  pestillo; DC, BL y SDA llegan a sus nuevos pines (ver «ESP32 y frontal»); SCL e
+  INT terminan en el centro de sus pads, que ya no son los cuadrados de 1,7 mm.
+- JLCPCB lista la pieza como C19103863 sin stock el 2026-10-01.
+- El pestillo fija el sentido del cable; con el cable 1:1 y la misma huella en
+  el frontal, el pin 1 llega al pin 1.
+
 ### Etapa del calentador y disipador
 
 Disipador elegido: perfil extruido estándar de 33 × 21 mm de pie y 35 mm de
@@ -818,7 +843,8 @@ ya no existe).
 esquina superior izquierda, así que el único recorrido libre es el borde
 superior: y = 0,8 mm, 0,4 mm de ancho, al norte del ramal de 3,3 V y de CC1
 del USB. El raíl sale del bolsillo bajo el tronco y sube por su lado oeste en
-x = 90 mm y entra en J104.1 por el oeste de J104.2. Los dos saltos por B.Cu
+x = 90 mm, baja por x = 3,3 mm al oeste del taladro del pestillo del WR-MM y
+entra en J104.1 por el oeste. Los dos saltos por B.Cu
 bajo el tronco y el ramal norte se quitaron con el plano de 3,3 V.
 
 Pasillos que se han dejado libres para las señales:
@@ -995,8 +1021,10 @@ como un bus en B.Cu, con dos vías por red: una junto al MCU y otra en su filtro
 
 - **Series del LCD**: R213–R218 pasan de una fila al sur del módulo a una fila
   bajo J104 (y = 12 mm), en la entrada del cable del frontal y en el orden en
-  que llega el bus: SCLK, MOSI, CS, DC, RST y BL. DC y BL suben a la fila
-  lejana de J104 por los huecos entre pads; CS llega a su pin por B.Cu.
+  que llega el bus: SCLK, MOSI, CS, DC, RST y BL. En el WR-MM la fila lejana
+  está desplazada 1,27 mm: BL sube recto entre J104.9 y J104.11, y DC sube entre
+  J104.5 y J104.7 y sigue por el pasillo entre filas hasta J104.8; CS llega a su
+  pin por B.Cu.
 - **Bus del LCD**: DC, CS, MOSI y SCLK salen de los pines sur por vías
   escalonadas y van hacia el oeste en B.Cu (y = 25,1–27,3 mm) sin más vías
   hasta la fila. BL y RST salen del lado oeste.

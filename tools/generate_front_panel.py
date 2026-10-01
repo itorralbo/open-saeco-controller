@@ -194,10 +194,10 @@ def main():
     note('OPEN SAECO / FRONTAL Rev A.0 — BORRADOR ELÉCTRICO', 12, 12, 2.5)
     note('Contorno y pulsadores según hardware/front-panel/mechanical.md. Borrador en revisión. Validación: tools/validate_kicad.py.', 12, 19)
     note('01 / Enlace nuevo a ESP32', 12, 30)
-    add('J1', 'J16', 'UI_LINK / IDC 2x8 2.54mm', 55, 72, UPLINK,
-        'Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical',
-        status='candidate', part_key='CONN:IDC_2X8_2.54')
-    note('J1 NO corresponde a JP21 Saeco.', 12, 111)
+    add('J1', 'J16', 'UI_LINK / WR-MM 16', 55, 72, UPLINK,
+        'OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical',
+        status='owner_identified_supply_pending', part_key='CONN:WURTH_WR-MM_16')
+    note('J1: WR-MM del JP3 original; pinout nuevo, no el Saeco.', 12, 111)
     note('16 sin conectar. Vista eléctrica, no del cable.', 12, 116, 1.2)
     add('#FLG01', 'PWR_FLAG', 'External supply via J1', 75, 96, [VCC])
     add('#FLG02', 'PWR_FLAG', 'External return via J1', 75, 105, [GND])

@@ -116,7 +116,10 @@ comprobación 1:1 con la placa original y los mazos.
 > los conectores blancos. El propietario identificó JP3, JP5 y JP13 como HR
 > A2506WV, JP8 y JP24 como LEOCO 3941 y 5001, JP17 y JP19 como TE RAST 5 y JP1/JP9
 > como lengüetas TE 63824-1 (ver [photos.md](photos.md) y el
-> [layout](../../hardware/controller/layout.md)). JP14, JP16, JP22 y JP21 siguen
+> [layout](../../hardware/controller/layout.md)). El 2026-10-01 identificó el
+> conector del enlace con el frontal como Würth WR-MM 690367181672, de 16
+> contactos, en las dos placas, unidas por un cable plano 1:1 de 16 hilos; el
+> recuento fotográfico de 20 para JP21 era un error. JP14, JP16 y JP22 siguen
 > como candidatos.
 
 Estas identificaciones reducen la búsqueda de repuestos, pero continúan como
@@ -125,5 +128,6 @@ directa entre pines; la disponibilidad JLCPCB se evaluará después de fijar la 
 
 Los conectores nuevos J101–J104 no intentan copiar estas piezas de la Saeco.
 La Rev A usa JST XH vertical para la entrada aislada de 12 V, cabezales 1×6 para
-servicio y un IDC polarizado 2×8 para el frontal nuevo. JP21 conserva valor como
-referencia de posición y para documentar la placa original, no como contrato eléctrico.
+servicio y, para el frontal, el mismo Würth WR-MM 690367181672 del enlace
+original. JP21 conserva valor como referencia de posición y para documentar la
+placa original, no como contrato eléctrico: el pinout del enlace es nuevo.

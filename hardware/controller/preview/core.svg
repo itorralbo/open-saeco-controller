@@ -528,7 +528,7 @@
 <text x="390" y="133" font-size="1.5" text-anchor="start" fill="#213b50">J102/J103 pinout propio; 3V3 es referencia, no alimentar desde el programador.</text>
 <rect x="434.34000000000003" y="153.035" width="10.16" height="63.5" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="439.42" y="148.035" font-size="1.05" text-anchor="middle" fill="#213b50">J104</text>
-<text x="439.42" y="150.535" font-size="1.05" text-anchor="middle" fill="#213b50">UI_LINK / IDC 2x8 2.54mm</text>
+<text x="439.42" y="150.535" font-size="1.05" text-anchor="middle" fill="#213b50">UI_LINK / WR-MM 16</text>
 <path d="M 434.34000000000003 156.21 H 429.26" stroke="#27856d" stroke-width=".22"/>
 <text x="435.04" y="156.51000000000002" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="432.40000000000003" y="155.71" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>

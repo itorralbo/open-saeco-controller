@@ -44,8 +44,9 @@ Secuencia para el firmware (sustituye la configuración anterior de ocho entrada
   4,3 mm en el original) centrados en las cotas de [mechanical.md](mechanical.md),
   con las patas arriba/abajo como el original (SW4 girado 90°). Los pads de tecla
   miran hacia U1 y los de masa hacia fuera, cada uno con su vía.
-- J1 (IDC 2 × 8) en la pestaña del JP3 original, cara de componentes, pin 1 abajo
-  a la izquierda. El propietario confirmó ≥16 mm libres delante de la pestaña.
+- J1 (Würth WR-MM 690367181672, el conector del JP3 original) con el cuerpo
+  centrado en la zona del JP3 (x 143…166, y 51,5…59,3), cara de componentes, pin 1
+  abajo a la izquierda y fila impar al sur. El propietario confirmó ≥16 mm libres delante de la pestaña.
 - J2 (JST PH 8 vertical, entrada desde arriba) arriba al centro, donde estaban
   JP1/JP2; mismos pads que el lateral anterior. Orden del cable PH del módulo Waveshare 2": VCC GND DIN CLK CS DC RST BL.
 - U1 en el centro (112; 30) con C1/C2 junto a VCC y dos peines RC: P0–P3 a la
@@ -58,7 +59,7 @@ Secuencia para el firmware (sustituye la configuración anterior de ocho entrada
 Freerouting 2.4.1 rutea desde un DSN exportado por KiCad sin la red GND_UI, que
 va por dos rellenos de masa (F.Cu y B.Cu) con vías de cosido cada 7 mm, más una vía
 junto a cada pad de masa. Zonas de exclusión de 0,6 mm alrededor de los taladros
-Ø8,4. Resultado: 290 segmentos y 182 vías (137 de cosido). F.Cu lleva sobre todo
+Ø8,4. Resultado: 297 segmentos y 192 vías (141 de cosido). F.Cu lleva sobre todo
 las líneas de tecla por pasillos rectos; B.Cu lleva el bus SPI y los 3,3 V de J1 a J2
 y el I²C de J1 a U1, con el plano de masa inferior entero en la mitad izquierda.
 
@@ -96,7 +97,8 @@ En la vista previa de montaje de JLCPCB comprobar, antes de confirmar:
 - U1: pin 1 (arriba a la izquierda de la huella) contra el punto del encapsulado.
 - D1: cátodo en el pad 1, el de la derecha, según la marca del LED.
 - SW1–SW7: patas arriba/abajo; SW4 girado 90°.
-- J1: muesca de polarización del IDC hacia el borde inferior de la pestaña.
+- J1: pin 1 en el extremo izquierdo, junto al taladro sin metalizar de 1,5 mm en
+  el que entra el pestillo del cable; la marca de pin 1 de la serigrafía queda debajo.
 - J2: boca del PH hacia el borde superior de la placa.
 
 Las rotaciones del CPL son las de KiCad; si la vista previa muestra una pieza girada,
@@ -107,7 +109,7 @@ se corrige allí y se anota aquí.
 - De [mechanical.md](mechanical.md): calibre del alto del cuerpo (54,3), la pestaña
   (62,3) y la separación entre taladros (82,1 × 35,0), y superposición 1:1.
 - Función de SP1–SP3 (hoy bajo el relleno de masa, sin pad propio).
-- Espesor de la PCB original y holgura real de la carcasa delante de J1 y J2 (4,8 mm de alto).
+- Espesor de la PCB original y holgura real de la carcasa delante de J1 (WR-MM, 6,1 mm de alto) y J2 (4,8 mm).
 - Adaptador de pantalla definitivo; J2 está preparado para el cable del módulo Waveshare.
 - Stock y precio en el momento del pedido; las cifras del catálogo son del 2026-09-18.
 

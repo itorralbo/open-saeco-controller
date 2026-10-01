@@ -56,7 +56,7 @@ LABELS = {
 }
 # Labels the automatic search puts somewhere ambiguous: (x, y, angle).
 # JP8 stands upright in the gap between J115 and JP19; JP21 goes under the
-# right half of the IDC header rather than beside the USB-C.
+# right half of the WR-MM header rather than beside the USB-C.
 # JP17 stands upright in the strip between its polarizing post and JP1, and
 # JP19, boxed in by JP8, JP24 and JP17, points back at its block from under
 # JP24 in the smaller size. An optional fourth value is the text size.

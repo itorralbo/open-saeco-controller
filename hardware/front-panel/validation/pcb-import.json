@@ -36,7 +36,7 @@
       "footprint": "LED_SMD:LED_0603_1608Metric"
     },
     "J1": {
-      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical"
+      "footprint": "OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical"
     },
     "J2": {
       "footprint": "Connector_JST:JST_PH_B8B-PH-K_1x08_P2.00mm_Vertical"

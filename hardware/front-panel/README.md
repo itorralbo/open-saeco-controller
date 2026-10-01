@@ -70,9 +70,11 @@ No alimentar directamente una retroiluminación desde ese GPIO. J2 es un JST PH 
 Waveshare 2" (VCC GND DIN CLK CS DC RST BL), útil para el banco. El adaptador
 definitivo deberá respetar ese orden y añadir driver si lo necesita la pantalla.
 
-J1 es un cabezal IDC polarizado 2×8 de 2,54 mm, idéntico a J104 de la principal.
-El arnés será plano y 1:1; esta elección evita invertir el cable y admite montaje
-automatizado THT en JLCPCB. Va en la pestaña del JP3 original, cara de componentes.
+J1 es el Würth WR-MM 690367181672 que el propietario identificó el 2026-10-01 en
+el JP3 original, igual que J104 de la principal: 16 contactos a 1,27 mm al
+tresbolillo. El cable original es plano, de 16 hilos y 1:1; su pestillo entra en
+un taladro de 1,5 mm junto al pin 1, que lo retiene y fija el sentido. Va sobre la
+zona del JP3 original, en su pestaña, cara de componentes. JLCPCB lo lista como C19103863 sin stock (2026-10-01).
 
 ## Pantalla reemplazable
 

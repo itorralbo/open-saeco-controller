@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>C:\Developer\open-saeco-controller\hardware\controller\kicad\controller-core-reva.kicad_sch</source>
-    <date>2026-09-29T22:36:39</date>
+    <date>2026-10-01T19:48:02</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2191,24 +2191,24 @@
       </units>
     </comp>
     <comp ref="J104">
-      <value>UI_LINK / IDC 2x8 2.54mm</value>
-      <footprint>Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical</footprint>
+      <value>UI_LINK / WR-MM 16</value>
+      <footprint>OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical</footprint>
       <fields>
-        <field name="manufacturer">Megastar</field>
-        <field name="mpn">ZX-IDC2.54-2-8PZZ</field>
-        <field name="lcsc">C7501244</field>
+        <field name="manufacturer">Wurth Elektronik</field>
+        <field name="mpn">690367181672</field>
+        <field name="lcsc">C19103863</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical</field>
+        <field name="pcba_type">TBD</field>
+        <field name="Footprint">OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="J16" description=""/>
-      <property name="manufacturer" value="Megastar"/>
-      <property name="mpn" value="ZX-IDC2.54-2-8PZZ"/>
-      <property name="lcsc" value="C7501244"/>
+      <property name="manufacturer" value="Wurth Elektronik"/>
+      <property name="mpn" value="690367181672"/>
+      <property name="lcsc" value="C19103863"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

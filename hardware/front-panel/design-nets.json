@@ -3,14 +3,14 @@
   "components": [
     {
       "reference": "J1",
-      "value": "UI_LINK / IDC 2x8 2.54mm",
-      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
-      "status": "candidate",
-      "manufacturer": "Megastar",
-      "mpn": "ZX-IDC2.54-2-8PZZ",
-      "lcsc": "C7501244",
+      "value": "UI_LINK / WR-MM 16",
+      "footprint": "OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical",
+      "status": "owner_identified_supply_pending",
+      "manufacturer": "Wurth Elektronik",
+      "mpn": "690367181672",
+      "lcsc": "C19103863",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
+      "pcba_type": "TBD",
       "pins": {
         "1": "3V3_UI",
         "2": "GND_UI",

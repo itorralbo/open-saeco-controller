@@ -275,7 +275,7 @@
       "numbered_pads": 6
     },
     "J104": {
-      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
+      "footprint": "OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical",
       "numbered_pads": 16
     },
     "J105": {
@@ -753,7 +753,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 1709,
+  "tracks": 1749,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

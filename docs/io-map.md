@@ -16,7 +16,7 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 | Presencia/posición grupo | JP16 | 35–36, 59 | 8 posiciones: motor, puente y dos micros; presencia en PC2 y trabajo en PA0; orden físico, NO/NC y carcasa TBD |
 | Puerta/cajón | JP14 | 35, 59 | Abierto si falta puerta o cajón; cerrado únicamente con ambos colocados; PA1; carcasa TBD |
 | Nivel depósito | JP22 | 34, 59 | Módulo capacitivo V3 `421941306721`; rojo VCC, blanco señal, negro GND; 3,3 V elegidos; PC3 (ADC12_IN9); tipo de salida y carcasa TBD |
-| Panel frontal original | JP21 | 34, 59 | Multipolar; pines/niveles TBD; sustituido por frontal nuevo con arnés propio (J104) |
+| Panel frontal original | JP21 | 34, 59 | Würth WR-MM 690367181672 de 16 contactos (propietario, 2026-10-01); pinout original TBD; J104 usa la misma pieza con el pinout nuevo del frontal |
 | Calentador | JP19 | 59 | XS4 220–230 V AC, 1900 W, 27,5 Ω medidos; TE RAST 5 1971845-4, 4 lengüetas/2 cableadas; BTA24 + MOC3083 (Q703/U701), orden PB10 vía U603 |
 | Motor grupo | JP16 | 59 | 24 V DC reversible, 54,7 Ω medidos; DRV8876 (U501): PWM PF0, dirección PC14, nSLEEP PB5 vía U602, nFAULT PB6, corriente PC0; medida de corriente de compresión para autodosis |
 | Entrada de red | JP17 | 59 | TE RAST 5 1971845-3, 3 lengüetas (carcasa del mazo TE 2-1241961-7), 2 cableadas después del interruptor bipolar; F701, RV701 y relé general K701 (armado por PB7 vía U603) |

@@ -1512,8 +1512,8 @@ def route_ui_supply(board):
     corner, so the feed runs along the board's top edge, y = 0.8 mm, north
     of the USB CC1 line. It leaves the pocket west and climbs x = 90 mm,
     clear of the UART channel, then runs west to J104 and passes west of
-    J104.2 to reach pin 1 from below. The two B.Cu hops it needed under the
-    old 3.3 V spine are gone with the In2.Cu plane.
+    the WR-MM latch hole to reach pin 1 from the west. The two B.Cu hops
+    it needed under the old 3.3 V spine are gone with the In2.Cu plane.
     """
     ui = '/3V3_UI'
     polyline(board, ui, [(96.72, 45.5), (95.0, 45.5), (93.75, 44.25),
@@ -1521,8 +1521,8 @@ def route_ui_supply(board):
     track(board, ui, (92.5, 44.25), (90.75, 44.25), width=0.3)
     polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.0, 43.0),
                          (90.0, 10.0), (80.8, 0.8)], width=0.3)
-    polyline(board, ui, [(80.8, 0.8), (5.2, 0.8), (4.4, 1.6),
-                         (4.4, 6.5), (6.2, 6.5)], width=0.4)
+    polyline(board, ui, [(80.8, 0.8), (5.2, 0.8), (3.3, 2.7),
+                         (3.3, 6.5), (6.2, 6.5)], width=0.4)
 
 
 def route_supervisor_orders(board):
@@ -1973,8 +1973,9 @@ def route_esp_and_front(board):
       four SPI lines leave the south pins on staggered vias and run west on
       B.Cu at y = 25.1-27.3 mm; BL and RST leave the west pins. They reach
       the row in its own order, SCLK, MOSI, CS, DC, RST, BL, with no
-      crossings. DC and BL climb to J104's far row between the pads; CS
-      reaches its pin on B.Cu.
+      crossings. J104 is a WR-MM at 1.27 mm stagger: BL climbs straight to
+      the far row between pins 9 and 11, DC between pins 5 and 7 and then
+      along the lane between the rows; CS reaches its pin on B.Cu.
     - UART: ESP TX moved from IO17 to IO42 and STM-to-ESP from IO18 to IO2,
       east-side pins beside R212 and R211, so neither crosses the module.
     - VBUS sense moved from IO21 to IO15, on the west side next to its
@@ -1995,11 +1996,12 @@ def route_esp_and_front(board):
              pcb.B_Cu, width=w)
     via(board, '/LCD_CS_N', (11.5, 10.3))
     polyline(board, '/LCD_DC', [(12.8, 11.175), (12.55, 10.925),
-                                (12.55, 4.35), (12.94, 3.96), (13.82, 3.96)], width=w)
+                                (12.55, 5.86), (13.18, 5.23), (14.46, 5.23),
+                                (15.09, 4.6), (15.09, 3.96)], width=w)
     polyline(board, '/LCD_RST_N', [(14.4, 11.175), (16.36, 9.215),
                                    (16.36, 6.5)], width=w)
     polyline(board, '/LCD_BL_PWM', [(16.0, 11.175), (17.63, 9.545),
-                                    (17.63, 4.35), (17.24, 3.96), (16.36, 3.96)], width=w)
+                                    (17.63, 3.96)], width=w)
     polyline(board, '/SCLK_RAW', [(8.0, 12.825), (8.0, 13.75)], width=w)
     via(board, '/SCLK_RAW', (8.0, 13.75))
     polyline(board, '/SCLK_RAW', [(53.365, 23.55), (53.365, 26.1)], width=w)
@@ -2048,8 +2050,8 @@ def route_esp_and_front(board):
     polyline(board, '/KEY_SDA', [(43.75, 9.6), (43.75, 10.125),
                                  (33.375, 10.125), (32.25, 9.0)],
              pcb.B_Cu, width=w)
-    polyline(board, '/KEY_SDA', [(32.25, 9.0), (28.5, 5.25), (20.625, 5.25),
-                                 (19.625, 4.25)], width=w)
+    polyline(board, '/KEY_SDA', [(32.25, 9.0), (28.5, 5.25), (21.46, 5.25),
+                                 (20.17, 3.96)], width=w)
     via(board, '/KEY_SDA', (32.25, 9.0))
     polyline(board, '/KEY_SCL', [(45.25, 10.87), (43.75, 10.87)], width=w)
     via(board, '/KEY_SCL', (43.75, 10.87))
@@ -2059,7 +2061,7 @@ def route_esp_and_front(board):
     polyline(board, '/KEY_SCL', [(31.875, 11.25), (31.125, 12.0),
                                  (29.625, 12.0)], width=w)
     polyline(board, '/KEY_SCL', [(29.625, 12.0), (24.75, 12.0),
-                                 (19.625, 6.875)], pcb.B_Cu, width=w)
+                                 (19.25, 6.5), (18.9, 6.5)], pcb.B_Cu, width=w)
     via(board, '/KEY_SCL', (31.875, 11.25))
     via(board, '/KEY_SCL', (29.625, 12.0))
     polyline(board, '/KEY_INT_N', [(45.25, 12.14), (43.75, 12.14)], width=w)
@@ -2073,7 +2075,7 @@ def route_esp_and_front(board):
     polyline(board, '/KEY_INT_N', [(32.0, 12.75), (30.375, 12.75)], width=w)
     polyline(board, '/KEY_INT_N', [(30.375, 12.75), (30.375, 11.75),
                                    (26.375, 7.75), (23.375, 7.75),
-                                   (22.25, 6.625)], pcb.B_Cu, width=w)
+                                   (22.125, 6.5), (21.44, 6.5)], pcb.B_Cu, width=w)
     via(board, '/KEY_INT_N', (37.375, 14.125))
     via(board, '/KEY_INT_N', (36.0, 12.75))
     via(board, '/KEY_INT_N', (32.0, 12.75))

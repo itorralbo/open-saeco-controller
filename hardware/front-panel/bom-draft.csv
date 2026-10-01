@@ -1,5 +1,5 @@
 reference,value,footprint,status,manufacturer,mpn,lcsc,jlc_class,pcba_type
-J1,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candidate,Megastar,ZX-IDC2.54-2-8PZZ,C7501244,Extended,Economic and Standard
+J1,UI_LINK / WR-MM 16,OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical,owner_identified_supply_pending,Wurth Elektronik,690367181672,C19103863,Extended,TBD
 U1,TCA9534PWR,Package_SO:TSSOP-16_4.4x5mm_P0.65mm,candidate,Texas Instruments,TCA9534PWR,C783615,Extended,Economic and Standard
 C1,100nF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C2,1uF,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard

@@ -53,7 +53,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Triac de potencia, candidato | ST BTA24-800BWRG, 25 A/800 V | [C15293](https://jlcpcb.com/partdetail/Stmicroelectronics-BTA24800BWRG/C15293) | 1.077 | 1.039 | Categoría JLC por verificar |
 | Optotriac calentador, bomba y molinillo | Lite-On MOC3083, cruce por cero/800 V | [C10797](https://jlcpcb.com/partdetail/liteon-MOC3083/C10797) | 18.898 | 18.845 | Categoría JLC por verificar |
 | SWD/UART, 2 unidades | 1×6 2,54 mm vertical | [C52016393](https://jlcpcb.com/partdetail/C52016393) | 34.356 | 34.222 | Economic / Standard |
-| Enlace principal–frontal, 2 unidades | IDC polarizado 2×8 2,54 mm | [C7501244](https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244) | 2.067 | 2.038 | Economic / Standard |
+| Enlace principal–frontal, 2 unidades | Würth WR-MM 690367181672, 16 contactos 1,27 mm al tresbolillo (identificado por el propietario) | [C19103863](https://jlcpcb.com/partdetail/C19103863) | 0 | 0 | Sin stock el 2026-10-01; tipo PCBA por verificar |
 
 Los integrados y magnéticos figuran como Extended; los pasivos de mayor volumen
 se han elegido Basic cuando existe una referencia adecuada. El código

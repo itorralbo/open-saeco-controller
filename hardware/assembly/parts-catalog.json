@@ -589,20 +589,21 @@
       "url": "https://jlcpcb.com/partdetail/C52016393",
       "selection": "candidate_not_released"
     },
-    "CONN:IDC_2X8_2.54": {
-      "manufacturer": "Megastar",
-      "mpn": "ZX-IDC2.54-2-8PZZ",
-      "lcsc": "C7501244",
-      "specification": "polarized IDC box header, 2x8, 2.54mm, vertical THT, 3A",
-      "footprint": "Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical",
+    "CONN:WURTH_WR-MM_16": {
+      "manufacturer": "Wurth Elektronik",
+      "mpn": "690367181672",
+      "lcsc": "C19103863",
+      "specification": "WR-MM (Micro-MaTch compatible) female PCB connector, 16 contacts, 1.27mm staggered (2.54mm per row), vertical THT, 1.5A 250VAC; the latch of the cable plug enters a 1.5mm PCB hole beside pin 1, which locks it and sets its direction; front-panel link on both boards",
+      "footprint": "OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
-      "stock_observed": 2067,
-      "available_order_qty_observed": 2038,
+      "pcba_type": "TBD",
+      "stock_observed": 0,
+      "available_order_qty_observed": 0,
       "stock_checked_on": "2026-10-01",
-      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
-      "url": "https://jlcpcb.com/partdetail/Megastar-ZX_IDC2_54_28PZZ/C7501244",
-      "selection": "candidate_not_released"
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
+      "url": "https://www.we-online.com/components/products/datasheet/690367181672.pdf",
+      "selection": "owner_identified_supply_pending",
+      "selection_note": "The owner identified on 2026-10-01 the connector of the original front-panel link as this Wurth part, used at both ends with the original 16-wire 1:1 flat cable. JLCPCB lists it as C19103863 with no stock on 2026-10-01. Wurth drawing 690367181672 rev 002.000."
     },
     "R:470": {
       "manufacturer": "UNI-ROYAL",

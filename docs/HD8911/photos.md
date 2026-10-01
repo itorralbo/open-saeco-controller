@@ -185,10 +185,12 @@ mazos originales:
 | JP13 | HR (Joint Tech) A2506WV-02P | 2,50 mm | C382532 |
 | JP8 | LEOCO 3941P03*000 | 3,96 mm | no disponible |
 | JP24 | LEOCO 5001P020013 | 5,00 mm | no disponible |
+| JP21 y JP3 del frontal | Würth WR-MM 690367181672, 16 contactos | 1,27 mm al tresbolillo | C19103863, sin stock (2026-10-01) |
 
 Encaja con lo medido con nonio: la boca de la cabecera A2506 mide A + 3,62 mm
 (6,12, 8,62 y 13,62 mm para 2, 3 y 5 vías) y en ella caben las carcasas medidas
 de 5,7, 8,3 y 13,1 mm; JP24 tiene los pines a 5 mm y JP8 conserva el paso de
 3,96 mm. Las huellas y su
 orientación están en el [layout](../../hardware/controller/layout.md#jp3-jp5-jp13-jp8-y-jp24).
+El conector del enlace con el frontal lo identificó el 2026-10-01 en las dos placas, con un cable plano 1:1 de 16 hilos; los 20 contactos contados en la foto de JP21 eran un error.
 Siguen sin identificar JP14, JP16 y JP22.

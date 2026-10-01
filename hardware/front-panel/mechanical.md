@@ -19,9 +19,10 @@ comprobaciones de calibre y superposición de más abajo.
 - U1 = 74HCT166 (TI, SOIC-16): los botones se leen por registro de desplazamiento.
 - JP1: cabecera blanca de 4 vías, cable de retroiluminación del display OEM.
   JP2: FPC de 18 vías y 0,5 mm, display OEM `10107-LED-C-A173-160406`.
-  JP3: conector rojo de 2 × 8 al tresbolillo, **16 contactos**, estilo Micro-MaTch,
-  en una pestaña del borde inferior derecho. JP21 de la principal tiene 20, así que
-  la continuidad del arnés original sigue sin verificar.
+  JP3: conector rojo de 2 × 8 al tresbolillo, **16 contactos**, en una pestaña del
+  borde inferior derecho. El propietario lo identificó el 2026-10-01 como Würth
+  WR-MM 690367181672, el mismo del extremo de la principal, unido por un cable
+  plano 1:1 de 16 hilos; el recuento fotográfico de 20 en JP21 era un error.
 - JP5: puentes serigrafiados OTC / AMF / CMF. JP4: huella sin poblar.
 - El display OEM no va montado sobre esta PCB: cuelga del FPC y del cable.
 
@@ -133,7 +134,7 @@ Comprobado en KiCad 10.0.6: contorno cerrado de 10 vértices con 4 agujeros
 - Comprobar conjunto carcasa–actuador–pulsador, incluyendo tolerancias y carrera.
 - Presentar pantalla y adaptador en el hueco; verificar imagen visible sin recortes.
 - Evitar que tornillos, flex o nervios carguen sobre el vidrio o componentes.
-- Confirmar conector polarizado, pin 1 y vista de ambos extremos del nuevo arnés.
+- Comprobar que el pestillo del cable entra en el taladro de 1,5 mm de J1 y de J104.
 - Elegir stack-up, cobre, acabado y protección ambiental después de esta revisión.
 
 La nueva PCB puede repetir la mecánica y contactos de la original sin reutilizar

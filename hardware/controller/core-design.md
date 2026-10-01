@@ -117,8 +117,10 @@ J102 y J103 usan cabezales 1×6 de 2,54 mm con numeración propia; el orden no
 corresponde al conector Cortex de 10 pines ni a un adaptador USB-serie concreto.
 Su pin de 3V3 es referencia para el programador; no se alimenta desde él.
 
-J104 y J1 del frontal usan cabezales IDC polarizados 2×8 de 2,54 mm. El cable es
-plano 1:1 de 16 conductores; el saliente rojo original JP21 no comparte pinout.
+J104 y J1 del frontal usan el Würth WR-MM 690367181672 que el propietario
+identificó en el enlace original (16 contactos a 1,27 mm al tresbolillo). El
+cable original es plano 1:1 de 16 conductores y su pestillo entra en un taladro de
+1,5 mm junto al pin 1, que fija el sentido; el pinout es nuevo, no el de JP21 Saeco.
 Las masas intercaladas junto a SCLK y MOSI forman parte del contrato del cable.
 
 ## USB de servicio y control en banco

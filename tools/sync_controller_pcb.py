@@ -144,6 +144,13 @@ for ref, (old, new) in {
                  'OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical'),
         }.items():
     FOOTPRINT_REPLACEMENTS[ref] = (old, new)
+# Owner, 2026-10-01: the original front-panel link uses Wurth WR-MM
+# 690367181672 at both ends, so the IDC gives way to it. Turned 180 deg with
+# pin 1 on the IDC's pin 1, the odd row keeps its pads and the even row moves
+# 1.27 mm east; layout_controller_pcb.py and the routing follow.
+FOOTPRINT_REPLACEMENTS['J104'] = (
+    'Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical',
+    'OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical')
 # The service USB-C enters from the top too: HRO's vertical TYPE-C-31-D-06.
 # Its pads differ, so layout_controller_pcb.py moves it and the USB routing
 # is rebuilt around it.

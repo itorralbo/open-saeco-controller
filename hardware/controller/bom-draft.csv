@@ -4,7 +4,7 @@ U201,ESP32-S3-WROOM-1U-N8R8,RF_Module:ESP32-S3-WROOM-1U,candidate,Espressif Syst
 J101,12V_ISOLATED_INPUT / JST XH,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 J102,STM_SWD / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
 J103,ESP_UART / 1x6 2.54mm,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
-J104,UI_LINK / IDC 2x8 2.54mm,Connector_IDC:IDC-Header_2x08_P2.54mm_Vertical,candidate,Megastar,ZX-IDC2.54-2-8PZZ,C7501244,Extended,Economic and Standard
+J104,UI_LINK / WR-MM 16,OpenSaeco:Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical,owner_identified_supply_pending,Wurth Elektronik,690367181672,C19103863,Extended,TBD
 R101,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C101,100nF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R102,10k,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard

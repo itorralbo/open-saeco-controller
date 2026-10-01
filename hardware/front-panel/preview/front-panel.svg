@@ -3,7 +3,7 @@
 <text x="12" y="30" font-size="1.5" text-anchor="start" fill="#213b50">01 / Enlace nuevo a ESP32</text>
 <rect x="49.53" y="40.004999999999995" width="10.16" height="63.5" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="54.61" y="35.004999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">J1</text>
-<text x="54.61" y="37.504999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">UI_LINK / IDC 2x8 2.54mm</text>
+<text x="54.61" y="37.504999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">UI_LINK / WR-MM 16</text>
 <path d="M 49.53 43.18 H 44.45" stroke="#27856d" stroke-width=".22"/>
 <text x="50.23" y="43.48" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="47.59" y="42.68" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -68,7 +68,7 @@
 <text x="50.23" y="100.63" font-size="0.9" text-anchor="start" fill="#213b50">16</text>
 <text x="47.59" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">16</text>
 <text x="44.45" y="100.63" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
-<text x="12" y="111" font-size="1.5" text-anchor="start" fill="#213b50">J1 NO corresponde a JP21 Saeco.</text>
+<text x="12" y="111" font-size="1.5" text-anchor="start" fill="#213b50">J1: WR-MM del JP3 original; pinout nuevo, no el Saeco.</text>
 <text x="12" y="116" font-size="1.2" text-anchor="start" fill="#213b50">16 sin conectar. Vista eléctrica, no del cable.</text>
 <rect x="72.39" y="95.25" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="74.93" y="90.25" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG01</text>

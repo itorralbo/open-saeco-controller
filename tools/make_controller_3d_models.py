@@ -28,6 +28,7 @@ MODEL_DIR = '${KIPRJMOD}/OpenSaeco.3dshapes'
 
 NYLON = (0.93, 0.91, 0.84)
 TE_NYLON = (0.90, 0.88, 0.80)
+RED_PBT = (0.72, 0.12, 0.10)
 TIN = (0.80, 0.80, 0.82)
 BRASS = (0.83, 0.76, 0.52)
 BLACK = (0.10, 0.10, 0.11)
@@ -200,6 +201,20 @@ def inductor(sx, sy, h, pads):
     return parts
 
 
+def wr_mm(n):
+    """Wurth WR-MM female PCB connector, n contacts at 1.27 mm stagger: a
+    22.32 x 5 mm, 4.2 mm base and a 20.85 x 4 mm, 1.9 mm upper block with the
+    receptacles (Wurth drawing 690367181672); latch and cavities omitted."""
+    xc, yc, pl = -(n-1)*1.27/2, 1.27, (n-1)*1.27
+    parts = [(RED_PBT, box(xc-11.16, xc+11.16, yc-2.5, yc+2.5, 0, 4.2)),
+             (RED_PBT, box(xc-10.425, xc+10.425, yc-2.0, yc+2.0, 4.2, 6.1))]
+    for i in range(n):
+        x, y = -1.27*i, 0 if i % 2 == 0 else 2.54
+        parts.append((TIN, box(x-0.28, x+0.28, y-0.2, y+0.2, -2.9, 0.4)))
+    assert abs(pl-19.05) < 1e-9 or n != 16
+    return parts
+
+
 def fuseholder_111():
     """Two Littelfuse 111 clips 20 mm apart holding a 5 x 20 mm glass fuse.
     Clip outline from the footprint; 9 mm clip height and the fuse axis at
@@ -233,6 +248,8 @@ SCOPE = {
         'Carcasa 17,3 x 14,9 x 12,8 mm del plano TE C-1971845; paredes y lengüetas simplificadas.'),
     'TE_RAST5_1971845-4_1x04_P5.00mm_Vertical': ('OpenSaeco', rast5(4),
         'Carcasa 22,3 x 14,9 x 12,8 mm del plano TE C-1971845; paredes y lengüetas simplificadas.'),
+    'Wurth_WR-MM_690367181672_2x08_P1.27mm_Vertical': ('OpenSaeco', wr_mm(16),
+        'Cuerpo de 22,32 x 5 x 6,1 mm del plano Würth 690367181672; sin pestillo ni cavidades.'),
     'TE_FASTON_63824-1_Tab_6.35mm_Vertical': ('OpenSaeco', faston(),
         'Lengüeta de 6,35 x 0,81 mm del plano TE C-63824; altura de unos 9 mm estimada.'),
     'Relay_SPST_Omron_G5RL-1A-E-TV8': ('OpenSaeco', relay_g5rl(),

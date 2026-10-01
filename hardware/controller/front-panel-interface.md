@@ -13,10 +13,16 @@ Así la definición del frontal puede avanzar mientras se caracterizan las carga
 
 ## J_UI en principal ↔ J1 en frontal
 
-Numeración eléctrica de 16 contactos, arnés nuevo 1:1. Se selecciona un cabezal
-IDC polarizado 2×8 de 2,54 mm en ambos extremos, candidato Megastar
-ZX-IDC2.54-2-8PZZ / JLC C7501244. No es una vista del lado del cable y no autoriza
-reutilizar el arnés Saeco existente.
+Numeración eléctrica de 16 contactos, cable plano 1:1. Los dos extremos llevan el
+conector que el propietario identificó el 2026-10-01 en el enlace original con el
+frontal: Würth WR-MM 690367181672 (hembra de placa compatible Micro-MaTch,
+16 contactos a 1,27 mm al tresbolillo, 2,54 mm por fila, THT vertical, 1,5 A por
+contacto; JLC C19103863, sin stock el 2026-10-01). La huella sigue el plano Würth
+rev 002.000. La tabla es la numeración del fabricante, no una vista del lado del
+cable. El cable original es plano, de 16 hilos y 1:1 (propietario, 2026-10-01).
+El pestillo de su conector entra en un taladro de 1,5 mm junto al pin 1, que lo
+retiene y solo deja enchufarlo en un sentido. Como las dos placas llevan la misma
+huella, el pin 1 llega al pin 1. El pinout es nuevo, no el de Saeco.
 
 | Pin | Red | Dirección desde principal | Función |
 |---|---|---|---|
@@ -82,6 +88,8 @@ enlace con el STM32.
 - `3V3_UI` sale de U302 (TPS22918, 2 A, con rampa por C307 y descarga QOD).
   Falta calcular el rail con consumo máximo e inrush del display elegido, caída
   del cable y consumo del resto de electrónica. No hay presupuesto de corriente cerrado.
+  `3V3_UI` va por un solo contacto (pin 1) y el WR-MM admite 1,5 A por contacto,
+  menos que los 2 A de U302: el consumo del frontal debe quedar por debajo.
 - Pull-ups de SCL/SDA/INT en el frontal; no duplicarlas inadvertidamente.
   Al apagar el frontal, poner sus señales en alta impedancia y revisar caminos
   de backfeed. La protección ESD del arnés sigue sin componente seleccionado.
@@ -105,7 +113,7 @@ enlace con el STM32.
 
 | Bloque | Hecho | Lo que falta para cerrarlo |
 |---|---|---|
-| ESP32 y frontal | Módulo, alimentación con corte, J104/J1 IDC y contrato eléctrico, ruteados | Longitud de arnés, EMC y MPN del display |
+| ESP32 y frontal | Módulo, alimentación con corte, J104/J1 WR-MM y contrato eléctrico, ruteados | Longitud de arnés, EMC y MPN del display |
 | STM32G431RBT6 | Todas las E/S asignadas y ruteadas | BSP y ensayo |
 | Sensores | Acondicionamiento con diagnóstico de abierto/corto | Salida de JP22, NO/NC de JP16 y conectores de JP14/JP16/JP22 |
 | Potencia | Etapas de 24 V y de red con corte general e interlock | Medidas de las cargas, fusibles, MOV, filtro EMI y ensayos |
