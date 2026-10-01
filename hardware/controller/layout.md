@@ -314,9 +314,10 @@ desde sus conectores a sus filas de pull-up, serie y filtro. El filtro del
 caudalímetro (R403, R404 y C402) bajó el 2026-09-23 a la columna al oeste de
 MH2, para dejar su sitio junto a U703 al driver del molinillo; la señal en bruto
 sube desde JP5 por el oeste de MH2. Los pines 3 y 4 de
-JP16 quedan puenteados. El contacto de trabajo sube por el este de MH1 y C501
-para no cruzar la fila del contacto de presencia. Cada condensador de filtro
-baja al plano por su propia vía.
+JP16 quedan puenteados. El contacto de trabajo pasa por B.Cu bajo la fila del
+contacto de presencia y sube junto a su divisor; el nivel de agua baja de R411
+a B.Cu y va recto bajo el retorno de la válvula hasta J109. Cada condensador de
+filtro baja al plano por su propia vía.
 
 ### Buck de 24 V a 12 V
 
@@ -789,10 +790,10 @@ con el canal de la UART, hasta F301.1. El raíl protegido une cuatro islas:
 - De J114.3 a D303 va por B.Cu en diagonal bajo las filas de serie y
   pull-down del puente H, para que sus pads de orden en bruto sigan abiertos
   hacia el este. Sale en la franja libre al norte de las filas (y = 28,75 mm).
-- De D303 salta la pista de habilitación del USB de banco y baja por el borde
-  izquierdo en x = 1 mm, por detrás de los pines de J108 y J107. Deja 0,85 mm
-  al canto (mínimo 0,5) y 0,875 mm a los pads, y no lo cruza ninguna red de
-  mazo. Salta los dos ramales de 24 V en x = 8,5 mm y llega a C507.
+- De D303 baja a B.Cu junto al diodo y va hacia el sur por x = 16,75 mm, bajo
+  las filas de sensores y los dos ramales de 24 V, y sube junto a C507
+  (unos 75 mm y dos vías, frente a los 105 mm y cuatro vías del borde
+  izquierdo).
 - Un último tramo une la alimentación del LED del calentador (R709) con la
   del molinillo y la bomba (R720) rodeando Q705.
 

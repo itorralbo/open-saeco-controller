@@ -98,7 +98,7 @@ def route_usb_port(board):
     track(board, dp, (35.75, 4.15), (35.75, 2.95))
     via(board, dp, (35.75, 2.95))
     polyline(board, dp, [(35.75, 2.95), (35.75, 7.10), (36.10, 7.45)], pcb.B_Cu)
-    track(board, dp, (36.25, 5.85), (36.10, 7.45))
+    polyline(board, dp, [(36.25, 5.85), (36.25, 7.3), (36.10, 7.45)])
     via(board, dp, (36.10, 7.45))
 
     polyline(board, dm, [(36.25, 4.15), (36.25, 3.30), (36.60, 2.95),
@@ -162,7 +162,7 @@ def route_usb_device(board):
                                     (44.30, 22.30), (45.25, 22.30)])
     track(board, '/USB_DM_RAW', (40.825, 22.10), (41.80, 22.10))
     via(board, '/USB_DM_RAW', (41.80, 22.10))
-    track(board, '/USB_DM_RAW', (41.80, 22.10), (44.00, 21.03), pcb.B_Cu)
+    polyline(board, '/USB_DM_RAW', [(41.80, 22.10), (42.87, 21.03), (44.00, 21.03)], pcb.B_Cu)
     via(board, '/USB_DM_RAW', (44.00, 21.03))
     track(board, '/USB_DM_RAW', (44.00, 21.03), (45.25, 21.03))
 
@@ -328,11 +328,11 @@ def route_24v_output(board):
     # The lane runs up the empty column at x = 112.5 mm, east of the 3.3 V
     # output capacitors. It used to climb at x = 107.85 mm, straight between
     # the inductor and those capacitors, where every 3.3 V link crossed it.
-    polyline(board, act, [(107.85, 45.20), (107.85, 43.6), (109.0, 43.0),
+    polyline(board, act, [(107.85, 45.20), (107.85, 43.6), (108.45, 43.0),
                           (112.5, 43.0), (112.5, 9.50), (114.00, 9.50),
                           (116.025, 7.475), (116.025, 5.00)],
              width=ACT_LANE_WIDTH)
-    polyline(board, act, [(112.5, 11.0), (109.8, 8.0), (108.3, 6.6)],
+    polyline(board, act, [(112.5, 11.0), (109.8, 8.3), (109.8, 8.0), (108.3, 8.0), (108.3, 6.6)],
              width=ACT_LANE_WIDTH)
     polyline(board, act, [(116.025, 7.30), (120.20, 7.30), (121.362, 6.14)],
              width=ACT_LANE_WIDTH)
@@ -369,13 +369,13 @@ def route_h_bridge(board):
     # Exposed pad and ground pins.
     for point in [(34.4, 36.4), (35.6, 36.4), (34.4, 37.6), (35.6, 37.6)]:
         via(board, gnd, point)
-    polyline(board, gnd, [(33.375, 33.35), (33.375, 32.9), (33.0, 32.5)])
+    polyline(board, gnd, [(33.375, 33.35), (33.375, 32.5), (33.0, 32.5)])
     via(board, gnd, (33.0, 32.5))
-    polyline(board, gnd, [(32.725, 40.65), (32.3, 40.9), (31.6, 40.9)])
+    polyline(board, gnd, [(32.725, 40.65), (32.725, 40.9), (31.6, 40.9)])
     via(board, gnd, (31.6, 40.9))
     polyline(board, gnd, [(36.625, 40.65), (36.625, 41.2), (37.275, 41.2),
                           (37.275, 40.65)])
-    track(board, gnd, (37.275, 41.2), (37.7, 41.6))
+    polyline(board, gnd, [(37.275, 41.2), (37.7, 41.2), (37.7, 41.6)])
     via(board, gnd, (37.7, 41.7))
 
     # Motor outputs, 0.8 mm after a pad-width stub.
@@ -387,7 +387,7 @@ def route_h_bridge(board):
              width=ACT_LANE_WIDTH)
 
     # Charge pump and VM: pins 11-14 drop straight into C503 and C504.
-    polyline(board, vm, [(34.025, 40.6), (34.1, 41.7), (33.4, 42.4), (32.975, 42.9),
+    polyline(board, vm, [(34.025, 40.6), (34.1, 41.7), (33.4, 42.4), (33.4, 42.9), (32.975, 42.9),
                          (32.975, 43.3)], width=0.3)
     track(board, '/BREW_VCP', (34.675, 40.65), (34.675, 43.3))
     polyline(board, '/BREW_CPH', [(35.325, 40.65), (35.325, 44.4), (34.875, 44.85),
@@ -400,7 +400,7 @@ def route_h_bridge(board):
     track(board, vm, (35.525, 46.4), (35.525, 47.6), width=0.5)
     track(board, gnd, (37.075, 48.0), (38.0, 48.0), width=0.5)
     via(board, gnd, (38.2, 48.0))
-    polyline(board, gnd, [(31.1, 56.95), (30.4, 57.7), (30.4, 58.5)], width=0.5)
+    polyline(board, gnd, [(31.1, 56.95), (30.4, 56.95), (30.4, 58.5)], width=0.5)
     via(board, gnd, (30.4, 58.5))
     track(board, '/24V_BREW_FUSED', (39.1, 41.0), (39.1, 43.0), width=ACT_LANE_WIDTH)
 
@@ -426,9 +426,10 @@ def route_h_bridge(board):
                     '/BREW_VREF', '/BREW_CURRENT_ADC'):
         wrap(netname, rows[netname])
     wrap('/BREW_VREF', 31.0, 46.025, 49.825)
-    polyline(board, '/BREW_CURRENT_ADC', [(46.025, 29.4), (46.6, 28.6), (49.4, 28.6),
-                                          (50.2, 29.7), (56.0, 29.7)])
-    polyline(board, '/BREW_FAULT_N', [(49.825, 32.6), (50.4, 33.4), (52.3, 33.4),
+    polyline(board, '/BREW_CURRENT_ADC', [(46.025, 29.4), (46.6, 29.4), (46.6, 28.6),
+                                          (49.4, 28.6), (49.4, 28.9), (50.2, 29.7),
+                                          (56.0, 29.7)])
+    polyline(board, '/BREW_FAULT_N', [(49.825, 32.6), (50.4, 33.175), (50.4, 33.4), (52.9, 33.4),
                                       (52.9, 32.6), (56.0, 32.6)])
     for y in (29.4, 31.0, 34.2, 35.8, 37.4):
         track(board, gnd, (43.775, y), (44.9, y))
@@ -463,21 +464,21 @@ def route_watchdog_interlock(board):
 
     # Watchdog input: U601 WDI to the R601 series resistor and the R602
     # pull-down that keeps the supervisor kicked if the GPIO floats.
-    polyline(board, '/WATCHDOG_KICK', [(39.138, 54.95), (39.138, 55.9),
-                                       (38.825, 56.3), (38.825, 56.8)],
+    polyline(board, '/WATCHDOG_KICK', [(39.138, 54.95), (39.138, 55.9), (38.825, 55.9),
+                                       (38.825, 56.8)],
              width=PIN_WIDTH)
-    polyline(board, '/WATCHDOG_KICK', [(38.825, 56.8), (38.825, 57.6),
+    polyline(board, '/WATCHDOG_KICK', [(38.825, 56.8), (38.825, 57.6), (37.975, 57.6),
                                        (37.175, 58.4), (37.175, 58.8)],
              width=PIN_WIDTH)
 
     # Valve arm input and its pull-down, both east of U602.
-    polyline(board, '/VALVE_EN_RAW', [(41.675, 64.5), (41.0, 63.8),
+    polyline(board, '/VALVE_EN_RAW', [(41.675, 64.5), (41.0, 64.5), (41.0, 63.8), (40.4, 63.2),
                                       (40.4, 62.975)], width=PIN_WIDTH)
 
     # Every ground pin drops into the B.Cu plane on its own via.
     for start, point in (((36.862, 54.0), (38.4, 54.0)),
                          ((43.275, 53.05), (44.4, 53.05)),
-                         ((38.825, 58.8), (39.8, 57.9)),
+                         ((38.825, 58.8), (39.775, 57.85)),
                          ((43.325, 64.5), (44.4, 64.5)),
                          ((32.175, 61.025), (31.1, 61.025)),
                          ((36.3, 62.975), (36.3, 64.6)),
@@ -493,7 +494,7 @@ def route_watchdog_interlock(board):
 
     # C603 decouples the gate that arms mains, like C601 and C602 do for the
     # supervisor and the interlock gate.
-    polyline(board, v33, [(30.3, 73.975), (30.3, 75.0), (30.725, 75.6)],
+    polyline(board, v33, [(30.3, 73.975), (30.3, 75.0), (30.725, 75.0), (30.725, 75.6)],
              width=PIN_WIDTH)
     track(board, gnd, (32.275, 75.6), (33.6, 75.6), width=PIN_WIDTH)
     via(board, gnd, (33.6, 75.6))
@@ -502,8 +503,8 @@ def route_watchdog_interlock(board):
     # Q701 to the K701 coil and the D701 flyback diode.
     # Straight west before turning north, so that the pocket beside pin 6
     # stays free for its reset via.
-    polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (27.6, 73.325),
-                                        (27.6, 71.6), (27.1, 71.0)],
+    polyline(board, '/MAINS_RELAY_EN', [(30.3, 73.325), (27.6, 73.325), (27.6, 71.0),
+                                        (27.1, 71.0)],
              width=PIN_WIDTH)
     polyline(board, '/MAINS_RELAY_GATE', [(25.175, 71.0), (25.175, 77.55),
                                           (31.062, 77.55)], width=PIN_WIDTH)
@@ -512,7 +513,7 @@ def route_watchdog_interlock(board):
                                             (42.0, 74.7), (42.0, 73.25)],
              width=0.5)
     # West of the coil pins: the 24 V feed to K701.1 owns the east corridor.
-    polyline(board, '/MAINS_RELAY_RETURN', [(42.0, 73.25), (39.5, 74.4),
+    polyline(board, '/MAINS_RELAY_RETURN', [(42.0, 73.25), (40.65, 73.25), (39.5, 74.4),
                                             (39.5, 84.0), (40.6, 85.1)],
              width=0.5)
 
@@ -540,10 +541,10 @@ def route_valve_stage(board):
     via(board, v24, (22.5, 94.3), 1.0, 0.5)
     track(board, v24, (22.5, 94.3), (22.5, 91.7), pcb.B_Cu, width=ACT_LANE_WIDTH)
     via(board, v24, (22.5, 91.7), 1.0, 0.5)
-    polyline(board, v24, [(22.5, 91.7), (2.2, 91.7), (2.2, 122.0),
-                          (3.5, 124.0), (3.5, 125.3)], width=ACT_LANE_WIDTH)
+    polyline(board, v24, [(22.5, 91.7), (2.2, 91.7), (2.2, 122.0), (3.5, 123.3),
+                          (3.5, 125.3)], width=ACT_LANE_WIDTH)
     # Switched return: flyback cathode, Q501 drain and JP3 pin 2.
-    polyline(board, ret, [(25.25, 99.0), (26.5, 100.3), (26.5, 121.0),
+    polyline(board, ret, [(25.25, 99.0), (26.5, 99.0), (26.5, 121.0),
                           (6.0, 121.0), (6.0, 125.3)], width=ACT_LANE_WIDTH)
     track(board, ret, (23.678, 107.0), (26.5, 107.0), width=ACT_LANE_WIDTH)
 
@@ -554,20 +555,20 @@ def route_valve_stage(board):
     track(board, '/12V_PROTECTED', (10.725, 97.5), (8.775, 97.5), width=0.5)
 
     # Enable chain: R511 series and R512 pull-down into the driver input.
-    polyline(board, '/VALVE_EN_DRV', [(5.825, 99.0), (7.8, 99.0), (8.8, 100.05),
+    polyline(board, '/VALVE_EN_DRV', [(5.825, 99.0), (8.8, 99.0), (8.8, 100.05),
                                       (9.4, 100.05)], width=PIN_WIDTH)
-    polyline(board, '/VALVE_EN_DRV', [(4.175, 104.0), (4.175, 102.5),
+    polyline(board, '/VALVE_EN_DRV', [(4.175, 104.0), (4.175, 102.5), (6.375, 100.3),
                                       (6.9, 100.3), (6.9, 99.0), (6.25, 99.0)],
              width=PIN_WIDTH)
 
     # Gate chain: driver output, series resistor, MOSFET gate and pull-down.
-    polyline(board, '/VALVE_GATE_RAW', [(12.137, 101.95), (13.3, 103.2),
+    polyline(board, '/VALVE_GATE_RAW', [(12.137, 101.95), (13.3, 101.95),
                                         (13.3, 106.5), (14.75, 108.0)],
              width=PIN_WIDTH)
-    polyline(board, '/VALVE_GATE', [(16.825, 108.0), (18.3, 106.8),
-                                    (19.6, 106.05), (20.5, 106.05)],
+    polyline(board, '/VALVE_GATE', [(16.825, 108.0), (18.025, 106.8), (18.3, 106.8),
+                                    (19.05, 106.05), (20.5, 106.05)],
              width=PIN_WIDTH)
-    polyline(board, '/VALVE_GATE', [(18.3, 106.8), (18.3, 111.5),
+    polyline(board, '/VALVE_GATE', [(18.3, 106.8), (18.3, 113.0),
                                     (19.9, 113.0)], width=PIN_WIDTH)
 
     for start, point in (((7.225, 97.5), (6.0, 97.5)),
@@ -576,7 +577,7 @@ def route_valve_stage(board):
                          ((21.825, 113.0), (23.2, 113.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
-    polyline(board, gnd, [(9.4, 101.0), (8.5, 101.5), (9.4, 101.95)],
+    polyline(board, gnd, [(9.4, 101.0), (9.0, 101.0), (8.5, 101.5), (8.5, 101.95), (9.4, 101.95)],
              width=PIN_WIDTH)
     via(board, gnd, (8.5, 101.5))
     track(board, gnd, (21.062, 107.95), (21.062, 109.6), width=PIN_WIDTH)
@@ -597,57 +598,60 @@ def route_sensors(board):
     track(board, '/BU_BRIDGE', (3.0, 59.5), (3.0, 57.0), width=PIN_WIDTH)
 
     # Brew-unit present and working contacts (JP16 pins 6 and 8).
-    polyline(board, '/BU_PRESENT_RAW', [(3.0, 52.0), (12.0, 52.0),
-                                        (14.5, 51.175), (19.0, 51.175)],
+    polyline(board, '/BU_PRESENT_RAW', [(3.0, 52.0), (12.0, 52.0), (12.825, 51.175),
+                                        (19.0, 51.175)],
              width=PIN_WIDTH)
     track(board, '/BU_PRESENT_N', (19.0, 52.825), (22.0, 52.775), width=PIN_WIDTH)
-    # The working contact climbs east of MH1 and C501 so it never crosses the
-    # present-contact row on its way to the second divider.
-    polyline(board, '/BU_WORK_RAW', [(3.0, 47.0), (18.0, 47.0), (26.5, 50.5),
-                                     (26.5, 56.5), (14.5, 56.5), (15.5, 58.175),
-                                     (19.0, 58.175)], width=PIN_WIDTH)
+    # The working contact passes under the present-contact row on B.Cu and
+    # comes up beside the second divider.
+    polyline(board, '/BU_WORK_RAW', [(3.0, 47.0), (6.0, 47.0), (14.175, 55.175),
+                                     (14.175, 58.175)], pcb.B_Cu, width=PIN_WIDTH)
+    via(board, '/BU_WORK_RAW', (14.175, 58.175))
+    track(board, '/BU_WORK_RAW', (14.175, 58.175), (19.0, 58.175), width=PIN_WIDTH)
     track(board, '/BU_WORK_N', (19.0, 59.825), (22.0, 59.775), width=PIN_WIDTH)
 
     # Door contact (JP14).
-    polyline(board, '/DOOR_RAW', [(3.0, 73.5), (6.0, 73.5), (13.0, 71.825),
+    polyline(board, '/DOOR_RAW', [(3.0, 73.5), (6.0, 73.5), (7.675, 71.825),
                                   (15.0, 71.825)], width=PIN_WIDTH)
-    polyline(board, '/DOOR_RAW', [(15.475, 71.825), (16.5, 71.0),
+    polyline(board, '/DOOR_RAW', [(15.475, 71.825), (15.675, 71.825), (16.5, 71.0), (16.775, 71.0),
                                   (17.6, 70.175)], width=PIN_WIDTH)
     track(board, '/DOOR_CLOSED_N', (18.0, 71.825), (21.0, 71.775), width=PIN_WIDTH)
 
     # NTC (JP13): raw net up the gap between the pull-up and the series part.
-    polyline(board, '/NTC_RAW', [(29.0, 125.3), (29.5, 124.0), (29.5, 106.5),
+    polyline(board, '/NTC_RAW', [(29.0, 125.3), (29.5, 124.8), (29.5, 106.5), (29.8, 106.5),
                                  (30.4, 105.9), (31.0, 105.825)], width=PIN_WIDTH)
     polyline(board, '/NTC_RAW', [(29.5, 106.5), (29.5, 103.5), (28.0, 103.5),
                                  (28.0, 103.9)], width=PIN_WIDTH)
-    polyline(board, '/NTC_ADC', [(31.0, 104.175), (32.5, 104.8), (33.6, 105.5)],
+    polyline(board, '/NTC_ADC', [(31.0, 104.175), (31.625, 104.8), (32.5, 104.8),
+                                 (33.2, 105.5), (33.6, 105.5)],
              width=PIN_WIDTH)
 
     # Flow meter (JP5): the raw net climbs west of MH2 to the filter column,
     # where the pull-up and the series resistor both face it with their raw
     # pad. The filtered net drops straight to C402.
-    polyline(board, '/FLOW_RAW', [(38.2, 125.3), (38.2, 122.0), (35.3, 118.8),
+    polyline(board, '/FLOW_RAW', [(38.2, 125.3), (38.2, 122.0), (35.3, 119.1),
                                   (35.3, 112.0), (33.6, 110.3), (33.6, 109.2),
                                   (32.725, 109.2)], width=PIN_WIDTH)
     polyline(board, '/FLOW_RAW', [(33.6, 110.3), (33.6, 111.0), (32.725, 111.0)],
              width=PIN_WIDTH)
     track(board, '/FLOW_TIM', (31.075, 111.0), (31.075, 112.8), width=PIN_WIDTH)
 
-    # Water level (JP22): east of the valve return pair, then west to R411.
-    # West of the valve pair: the return already owns y = 121 mm eastwards.
-    polyline(board, '/WATER_RAW', [(21.0, 128.2), (21.0, 126.8), (4.75, 126.8),
-                                   (4.75, 120.0), (19.0, 120.0), (19.0, 117.0)],
-             width=PIN_WIDTH)
-    polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (20.5, 115.9),
-                                     (22.0, 116.775)], width=PIN_WIDTH)
+    # Water level (JP22): R411 drops to B.Cu and runs straight down under the
+    # valve return to the connector.
+    track(board, '/WATER_RAW', (19.0, 117.0), (20.5, 118.5), width=PIN_WIDTH)
+    via(board, '/WATER_RAW', (20.5, 118.5))
+    polyline(board, '/WATER_RAW', [(20.5, 118.5), (20.5, 127.7), (21.0, 128.2)],
+             pcb.B_Cu, width=PIN_WIDTH)
+    polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (19.725, 115.9), (20.5, 115.9),
+                                     (21.375, 116.775), (22.0, 116.775)], width=PIN_WIDTH)
 
     for start, point in (((31.5, 125.3), (33.2, 125.3)),
                          # East, not north: the grinder's gate order runs
                          # above the NTC row at y = 103 mm.
                          ((34.0, 104.225), (34.9, 104.225)),
-                         ((40.7, 125.3), (39.9, 122.5)),
-                         ((32.725, 112.8), (33.7, 113.7)),
-                         ((23.0, 128.2), (24.6, 127.0)),
+                         ((40.7, 125.3), (40.7, 122.4)),
+                         ((32.725, 112.8), (33.675, 113.75)),
+                         ((23.0, 128.2), (24.425, 126.775)),
                          ((22.0, 115.225), (23.4, 115.225)),
                          ((21.0, 70.225), (22.4, 70.225)),
                          ((3.0, 71.0), (4.8, 71.0)),
@@ -669,22 +673,21 @@ def route_12v_buck(board):
     gnd, sw = '/GND_UI', '/BUCK12_SW'
     out, fb = '/12V_ISO_RAW', '/BUCK12_FB'
 
-    polyline(board, sw, [(123.638, 5.0), (125.7, 5.275), (129.275, 5.0)],
-             width=0.6)
-    polyline(board, '/BUCK12_BST', [(123.638, 4.05), (124.6, 3.725),
+    track(board, sw, (123.638, 5.0), (129.275, 5.0), width=0.6)
+    polyline(board, '/BUCK12_BST', [(123.638, 4.05), (123.963, 3.725),
                                     (125.7, 3.725)], width=PIN_WIDTH)
 
     # Output bank: the two 1210 capacitors share the x = 139 mm column with a
     # ground pad between them, so the rail hops round their east side.
-    polyline(board, out, [(134.725, 5.0), (137.0, 5.2), (139.0, 5.475)],
+    polyline(board, out, [(134.725, 5.0), (134.925, 5.2), (138.725, 5.2), (139.0, 5.475)],
              width=0.5)
-    polyline(board, out, [(139.0, 5.475), (136.0, 7.5), (136.0, 10.5),
-                          (139.0, 11.975)], width=0.5)
+    polyline(board, out, [(139.0, 5.475), (139.0, 7.5), (136.0, 7.5), (136.0, 10.5),
+                          (137.475, 11.975), (139.0, 11.975)], width=0.5)
 
     # Feedback. The divider now sits north-west of the switcher, so one line at
     # y = 3.4 mm collects R303, R302 and C314 and reaches pin 1 without meeting
     # the 24 V lane, which stays at y >= 5 mm all the way round C310.
-    polyline(board, fb, [(120.702, 4.05), (120.2, 3.4), (108.825, 3.4)],
+    polyline(board, fb, [(120.702, 4.05), (120.702, 3.4), (108.825, 3.4)],
              width=PIN_WIDTH)
     for x in (108.825, 113.825, 117.825):
         track(board, fb, (x, 3.4), (x, 2.675), width=PIN_WIDTH)
@@ -725,41 +728,42 @@ def route_3v3_buck(board):
 
     # Protected rail: one line south of the diodes, with stubs up into each
     # pad, and a branch down the west side into the switcher input pins.
-    polyline(board, v12, [(93.0, 27.0), (92.8, 28.6), (92.8, 37.3),
+    polyline(board, v12, [(93.0, 27.0), (92.8, 28.6), (92.8, 37.3), (95.05, 37.3),
                           (95.4, 36.95)], width=0.5)
     track(board, v12, (95.5, 36.95), (95.5, 36.0), width=0.5)
     track(board, v12, (92.8, 29.0), (109.05, 29.0), width=0.5)
     track(board, v12, (101.0, 29.0), (101.0, 27.9), width=0.5)
     track(board, v12, (109.05, 29.0), (109.05, 27.7), width=0.5)
     # Input HF capacitor: straight down from the second input pin.
-    polyline(board, v12, [(95.4, 36.95), (95.7, 38.0), (96.3, 38.7)], width=0.5)
+    polyline(board, v12, [(95.4, 36.95), (95.7, 37.25), (95.7, 38.7), (96.3, 38.7)], width=0.5)
 
     # Switch and bootstrap nodes stay short and away from the sense line.
-    polyline(board, '/SW_NODE', [(98.798, 36.0), (99.8, 36.2), (101.0, 37.0)],
+    polyline(board, '/SW_NODE', [(98.798, 36.0), (99.6, 36.0), (100.6, 37.0), (101.0, 37.0)],
              width=0.6)
-    polyline(board, '/SW_NODE', [(102.775, 33.0), (102.775, 35.0), (102.0, 36.4)],
+    polyline(board, '/SW_NODE', [(102.775, 33.0), (102.775, 35.0), (102.0, 35.775), (102.0, 36.4)],
              width=0.6)
-    polyline(board, '/BST_NODE', [(98.798, 35.05), (99.8, 34.2), (100.9, 33.0)],
+    polyline(board, '/BST_NODE', [(98.798, 35.05), (98.798, 34.2), (100.9, 34.2), (100.9, 33.0)],
              width=PIN_WIDTH)
 
     # 3.3 V: inductor down to the output bank, the HF capacitor, and the sense
     # line round the north of U301 back to pin 1. All of it west of the lane.
-    polyline(board, v33, [(107.15, 37.0), (108.6, 36.2)], width=0.5)
-    polyline(board, v33, [(107.15, 40.5), (108.6, 41.0)], width=0.5)
-    polyline(board, v33, [(106.0, 41.8), (104.5, 42.6), (104.2, 43.6)], width=0.5)
-    polyline(board, v33, [(105.5, 37.0), (105.0, 35.5), (105.0, 31.5),
+    polyline(board, v33, [(107.15, 37.0), (107.95, 36.2), (108.6, 36.2)], width=0.5)
+    polyline(board, v33, [(107.15, 40.5), (107.65, 41.0), (108.6, 41.0)], width=0.5)
+    polyline(board, v33, [(106.0, 41.8), (105.3, 41.8), (104.5, 42.6), (104.5, 43.3),
+                          (104.2, 43.6)], width=0.5)
+    polyline(board, v33, [(105.5, 37.0), (105.0, 36.5), (105.0, 31.5),
                           (94.3, 31.5), (94.3, 35.05), (95.3, 35.05)],
              width=PIN_WIDTH)
 
     # The switcher's ground pin reaches the plane through the input capacitor's
     # own pad, so the input loop closes in copper before it reaches a via.
     track(board, gnd, (98.138, 36.95), (98.138, 38.7), width=0.5)
-    polyline(board, gnd, [(98.0, 39.0), (99.2, 39.6)], width=0.5)
+    polyline(board, gnd, [(98.0, 39.0), (98.6, 39.0), (99.2, 39.6)], width=0.5)
     via(board, gnd, (99.2, 39.6))
 
     for start, point in (((110.95, 36.0), (110.95, 33.8)),
                          ((110.95, 41.0), (110.95, 38.5)),
-                         ((105.775, 44.0), (106.5, 45.2)),
+                         ((105.775, 44.0), (106.775, 45.0)),
                          ((110.95, 27.0), (110.95, 24.5)),
                          ((105.0, 27.0), (107.3, 27.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
@@ -777,16 +781,18 @@ def route_ui_load_switch(board):
 
     track(board, v33, (95.725, 50.05), (96.9, 50.05), width=0.5)
 
-    polyline(board, '/UI_PWR_EN', [(95.275, 53.6), (96.2, 52.8), (96.9, 52.2)],
+    polyline(board, '/UI_PWR_EN', [(95.275, 53.6), (96.2, 53.6), (96.2, 52.8),
+                                   (96.9, 52.8), (96.9, 52.2)],
              width=PIN_WIDTH)
-    polyline(board, '/UI_RISE', [(99.638, 52.25), (98.4, 52.4), (97.725, 53.4)],
+    polyline(board, '/UI_RISE', [(99.638, 52.25), (99.488, 52.4), (98.4, 52.4),
+                                 (97.725, 53.075), (97.725, 53.4)],
              width=PIN_WIDTH)
     track(board, '/3V3_UI', (99.638, 51.0), (99.638, 50.05), width=0.5)
-    polyline(board, '/3V3_UI', [(99.638, 49.9), (99.0, 48.5), (97.5, 46.8),
-                                (96.9, 45.9)], width=0.5)
+    polyline(board, '/3V3_UI', [(99.638, 49.9), (99.0, 49.262), (99.0, 48.5),
+                                (97.5, 47.0), (97.5, 46.5), (96.9, 45.9)], width=0.5)
 
     for start, point in (((93.725, 50.05), (92.6, 50.05)),
-                         ((96.9, 51.0), (96.3, 51.2)),
+                         ((96.9, 51.0), (96.275, 51.0)),
                          ((99.275, 53.7), (100.4, 53.7)),
                          ((98.275, 45.5), (99.4, 45.5))):
         track(board, gnd, start, point, width=PIN_WIDTH)
@@ -806,34 +812,34 @@ def route_3v3_plane_drops(board):
     """
     v33 = '/3V3_CORE'
     for start, point in (
-            ((45.25, 7.06), (44.1, 7.35)),  # U201.2
-            ((30.725, 75.6), (29.85, 75.5)),  # C603.1
-            ((42.5, 13.825), (42.0, 13.05)),  # R201.1
-            ((41.725, 53.05), (41.7, 52.15)),  # C601.1
-            ((41.725, 61.025), (41.7, 60.1)),  # C602.1
+            ((45.25, 7.06), (44.075, 7.05)),  # U201.2
+            ((30.725, 75.6), (29.85, 75.6)),  # C603.1
+            ((42.5, 13.825), (41.8, 13.125)),  # R201.1
+            ((41.725, 53.05), (41.725, 52.15)),  # C601.1
+            ((41.725, 61.025), (41.725, 60.1)),  # C602.1
             ((109.05, 41.0), (109.95, 41.0)),  # C305.1
             ((109.05, 36.0), (109.95, 36.0)),  # C304.1
-            ((104.225, 44.0), (103.35, 43.9)),  # C306.1
-            ((93.675, 53.6), (92.8, 53.5)),  # R301.1
-            ((72.675, 50.2), (73.55, 50.1)),  # C109.1
+            ((104.225, 44.0), (103.35, 44.0)),  # C306.1
+            ((93.675, 53.6), (92.8, 53.6)),  # R301.1
+            ((72.675, 50.2), (73.55, 50.2)),  # C109.1
             ((83.8, 35.875), (83.8, 36.75)),  # C104.1
             ((72.675, 51.8), (71.95, 51.1)),  # C108.1
             ((85.4, 35.875), (85.4, 36.75)),  # C106.1
             ((71.9, 32.375), (71.05, 31.9)),  # C105.1
-            ((72.675, 48.6), (73.55, 48.5)),  # C107.1
+            ((72.675, 48.6), (73.55, 48.6)),  # C107.1
             ((80.275, 49.8), (79.55, 49.1)),  # C110.1
-            ((80.275, 48.2), (80.3, 47.3)),  # C103.1
-            ((66.3, 43.375), (65.4, 43.4)),  # C102.1
+            ((80.275, 48.2), (80.275, 47.3)),  # C103.1
+            ((66.3, 43.375), (65.4, 43.375)),  # C102.1
             ((66.0, 21.175), (66.0, 20.3)),  # R202.1
             ((51.425, 31.0), (52.3, 31.0)),  # R508.1
-            ((40.175, 48.6), (39.4, 49.05)),  # R101.1
-            ((42.5, 6.975), (42.4, 7.85)),  # C202.1
+            ((40.175, 48.6), (39.475, 49.3)),  # R101.1
+            ((42.5, 6.975), (42.5, 7.85)),  # C202.1
             ((36.9, 85.425), (37.15, 84.55)),  # C604.1
-            ((95.275, 50.05), (96.15, 49.95)),  # C308.1
+            ((95.275, 50.05), (96.15, 50.05)),  # C308.1
             ((16.0, 59.825), (16.0, 60.7)),  # R409.1
             ((16.0, 52.825), (16.0, 53.7)),  # R407.1
-            ((42.5, 10.375), (42.4, 11.25)),  # C203.1
-            ((15.0, 70.175), (14.9, 69.3)),  # R405.1
+            ((42.5, 10.375), (42.5, 11.25)),  # C203.1
+            ((15.0, 70.175), (15.0, 69.3)),  # R405.1
             ((28.0, 105.825), (28.0, 106.7)),  # R401.1
             ((31.075, 109.2), (30.25, 109.2)),  # R403.1
     ):
@@ -848,15 +854,15 @@ def route_logic_grounds(board):
     no via of their own.
     """
     gnd = '/GND_UI'
-    for start, point in (((23.775, 19.0), (24.9, 17.8)),
+    for start, point in (((23.775, 19.0), (24.95, 17.825)),
                          ((23.775, 22.0), (24.9, 22.0)),
                          ((27.0, 17.175), (27.0, 15.9)),
-                         ((35.798, 16.0), (37.8, 16.5)),
-                         ((42.5, 15.625), (41.4, 15.0)),
-                         ((42.5, 5.425), (41.4, 4.8)),
+                         ((35.798, 16.0), (37.85, 16.0)),
+                         ((42.5, 15.625), (41.6, 14.725)),
+                         ((42.5, 5.425), (41.6, 4.525)),
                          ((42.5, 8.825), (41.4, 9.4)),
-                         ((45.25, 5.79), (46.6, 4.8)),
-                         ((62.75, 5.79), (61.4, 4.8)),
+                         ((45.25, 5.79), (46.425, 4.6)),
+                         ((62.75, 5.79), (61.575, 4.6)),
                          ((30.45, 5.025), (30.45, 6.0)),
                          ((40.325, 12.5), (41.3, 12.5)),
                          ((44.975, 48.6), (44.975, 47.35)),
@@ -880,7 +886,7 @@ def route_reset_tree(board):
     # The pin escapes west on its own row, because the west pads sit on a
     # 0.5 mm pitch, then drops to y = 50.5 mm and runs west under two 24 V
     # branches into the 1.35 mm channel left empty for it beside C501.
-    polyline(board, nrst, [(70.325, 39.25), (66.0, 39.25), (63.8, 40.8),
+    polyline(board, nrst, [(70.325, 39.25), (65.35, 39.25), (63.8, 40.8),
                            (63.8, 50.5)], width=PIN_WIDTH)
     via(board, nrst, (63.8, 50.5))
     track(board, nrst, (63.8, 50.5), (61.2, 50.5), pcb.B_Cu, width=PIN_WIDTH)
@@ -889,7 +895,7 @@ def route_reset_tree(board):
     via(board, nrst, (47.6, 50.5))
     track(board, nrst, (47.6, 50.5), (45.2, 50.5), pcb.B_Cu, width=PIN_WIDTH)
     via(board, nrst, (45.2, 50.5))
-    polyline(board, nrst, [(45.2, 50.5), (36.0, 50.5), (34.9, 51.8),
+    polyline(board, nrst, [(45.2, 50.5), (36.0, 50.5), (36.0, 50.7), (34.9, 51.8),
                            (34.9, 65.9)], width=PIN_WIDTH)
     track(board, nrst, (34.9, 61.675), (35.7, 61.675), width=PIN_WIDTH)
     track(board, nrst, (34.9, 53.05), (36.3, 53.05), width=PIN_WIDTH)
@@ -906,9 +912,10 @@ def route_reset_tree(board):
                            (37.2, 73.325), (34.4, 73.325)], width=PIN_WIDTH)
     # U603 pin 6, the heater gate's reset input: out west into the pocket
     # between pins 5 and 7, then under the package on B.Cu to the same via.
-    track(board, nrst, (29.5, 72.675), (28.85, 72.6), width=PIN_WIDTH)
-    via(board, nrst, (28.85, 72.6))
-    track(board, nrst, (28.85, 72.6), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
+    track(board, nrst, (29.5, 72.675), (28.85, 72.675), width=PIN_WIDTH)
+    via(board, nrst, (28.85, 72.675))
+    polyline(board, nrst, [(28.85, 72.675), (30.425, 72.675), (34.9, 68.2)], pcb.B_Cu,
+             width=PIN_WIDTH)
     # Two reset points stay open: U602 pin 6, whose only approach is the
     # 0.87 mm gap east of the package that the valve arm net already uses, and
     # the SWD header's reset pin, which would have to cross the decoupling
@@ -936,31 +943,31 @@ def route_usb_power(board):
     track(board, vbus, (34.75, 5.85), (34.75, 6.60), width=0.3)
     polyline(board, vbus, [(34.75, 6.60), (34.75, 7.80), (33.55, 9.0),
                            (31.0, 11.0)], width=0.4)
-    polyline(board, vbus, [(31.0, 11.0), (27.0, 11.6), (25.175, 12.4),
-                           (25.175, 12.6)], width=0.5)
+    polyline(board, vbus, [(31.0, 11.0), (27.6, 11.0), (27.0, 11.6), (25.975, 11.6),
+                           (25.175, 12.4), (25.175, 12.6)], width=0.5)
     via(board, vbus, (31.0, 11.0))
     track(board, vbus, (31.0, 11.0), (31.6, 16.0), pcb.B_Cu, width=0.5)
     via(board, vbus, (31.6, 16.0))
     track(board, vbus, (31.6, 16.0), (32.4, 16.0), width=0.5)
-    polyline(board, vbus, [(24.9, 13.3), (21.0, 16.0), (21.0, 21.6),
+    polyline(board, vbus, [(24.9, 13.3), (23.7, 13.3), (21.0, 16.0), (21.0, 21.6), (21.4, 22.0),
                            (21.9, 22.0)], width=0.5)
-    polyline(board, vbus, [(21.9, 22.0), (20.0, 22.5), (17.0, 22.5),
+    polyline(board, vbus, [(21.9, 22.0), (21.9, 22.5), (17.0, 22.5), (16.6, 22.9),
                            (16.6, 23.4)], width=0.5)
 
-    polyline(board, '/USB_VBUS_FUSED', [(19.4, 24.0), (19.4, 26.0),
+    polyline(board, '/USB_VBUS_FUSED', [(19.4, 24.0), (19.4, 26.8),
                                         (20.35, 26.8)], width=0.5)
     # The bench jumper's far side reaches D303 round the south of the diode.
-    polyline(board, '/USB_BENCH_ENABLE', [(21.65, 27.25), (22.5, 28.5),
+    polyline(board, '/USB_BENCH_ENABLE', [(21.65, 27.25), (22.5, 28.1), (22.5, 28.5),
                                           (23.0, 31.3), (32.0, 31.3),
                                           (32.0, 29.8)], width=PIN_WIDTH)
 
     sense = '/USB_VBUS_SENSE'
-    polyline(board, sense, [(26.825, 13.0), (28.2, 14.0), (28.2, 19.5),
-                            (27.3, 18.825)], width=PIN_WIDTH)
-    polyline(board, sense, [(26.7, 18.825), (25.6, 19.8), (25.0, 20.8),
+    polyline(board, sense, [(26.825, 13.0), (27.2, 13.0), (28.2, 14.0), (28.2, 19.5),
+                            (27.975, 19.5), (27.3, 18.825)], width=PIN_WIDTH)
+    polyline(board, sense, [(26.7, 18.825), (25.6, 18.825), (25.6, 20.2), (25.0, 20.8),
                             (22.225, 20.8), (22.225, 19.4)], width=PIN_WIDTH)
 
-    polyline(board, '/ESP_BOOT0', [(65.525, 22.825), (64.0, 22.6),
+    polyline(board, '/ESP_BOOT0', [(65.525, 22.825), (65.3, 22.6), (63.6, 22.6),
                                    (63.3, 22.3)], width=PIN_WIDTH)
 
 
@@ -1038,7 +1045,7 @@ def route_heater_enable(board):
     polyline(board, gated, [(36.5, 72.675), (36.5, 90.0), (29.4, 97.1),
                             (29.4, 100.0)], pcb.B_Cu, width=PIN_WIDTH)
     via(board, gated, (29.4, 100.0))
-    track(board, gated, (29.4, 100.0), (30.175, 99.0), width=PIN_WIDTH)
+    polyline(board, gated, [(29.4, 100.0), (30.175, 99.225), (30.175, 99.0)], width=PIN_WIDTH)
 
 
 # A barrier optocoupler sits on x = 51 with its rows at 47.19 and 54.81 mm.
@@ -1087,13 +1094,13 @@ def route_heater_stage(board):
 
     # LED loop. The 12 V rail is picked up from the valve driver's own feed.
     # The rail hops under the valve return, which climbs at x = 26.5 mm.
-    polyline(board, '/12V_PROTECTED', [(13.6, 98.6), (14.8, 100.5),
+    polyline(board, '/12V_PROTECTED', [(13.6, 98.6), (14.8, 99.8),
                                        (14.8, 101.6), (25.3, 101.6)], width=0.5)
     via(board, '/12V_PROTECTED', (25.3, 101.6))
     track(board, '/12V_PROTECTED', (25.3, 101.6), (27.7, 101.6), pcb.B_Cu, width=0.5)
     via(board, '/12V_PROTECTED', (27.7, 101.6))
     polyline(board, '/12V_PROTECTED', [(27.7, 101.6), (28.0, 101.3),
-                                       (28.0, 94.2), (34.5, 94.2),
+                                       (28.0, 94.2), (34.5, 94.2), (35.175, 94.875),
                                        (35.175, 95.5)], width=0.5)
     # Anode and return climb under the trunk on parallel B.Cu diagonals.
     track(board, '/HEATER_LED_ANODE', (36.825, 96.0), (40.0, 96.0), width=PIN_WIDTH)
@@ -1103,7 +1110,7 @@ def route_heater_stage(board):
     via(board, '/HEATER_LED_ANODE', (44.6, 88.9))
     polyline(board, '/HEATER_LED_ANODE', [(44.6, 88.9), (45.5, 88.0),
                                           (OPTO_SELV_STUB_END, 88.0)], width=PIN_WIDTH)
-    polyline(board, '/HEATER_LED_RETURN', [(38.938, 99.5), (39.9, 99.5),
+    polyline(board, '/HEATER_LED_RETURN', [(38.938, 99.5), (40.5, 99.5),
                                            (40.5, 99.0)], width=PIN_WIDTH)
     via(board, '/HEATER_LED_RETURN', (40.5, 99.0))
     polyline(board, '/HEATER_LED_RETURN', [(40.5, 99.0), (45.35, 94.15),
@@ -1113,7 +1120,7 @@ def route_heater_stage(board):
           width=PIN_WIDTH)
     opto_stubs(board, 'U701', {1: '/HEATER_LED_ANODE', 2: '/HEATER_LED_RETURN'})
     track(board, '/HEATER_LED_GATE', (31.825, 99.0), (31.825, 96.0), width=PIN_WIDTH)
-    polyline(board, '/HEATER_LED_GATE', [(31.825, 99.0), (34.0, 98.8),
+    polyline(board, '/HEATER_LED_GATE', [(31.825, 99.0), (33.8, 99.0), (34.25, 98.55),
                                          (36.5, 98.55)], width=PIN_WIDTH)
     for start, point in (((30.175, 96.0), (28.9, 96.0)),
                          ((37.062, 100.45), (37.062, 101.9))):
@@ -1124,8 +1131,8 @@ def route_heater_stage(board):
     # then the lane at 3.3 mm, 0.6 mm from the gate resistors' feed pads,
     # and east along the strip between the heatsink foot (y = 105.5 mm) and
     # the triac pads. Each triac takes its middle terminal straight down.
-    polyline(board, '/LOAD_L_ENABLED', [(62.0, 80.75), (62.0, 82.2),
-                                        (60.6, 83.6), (60.25, 84.4)], width=2.6)
+    polyline(board, '/LOAD_L_ENABLED', [(62.0, 80.75), (62.0, 82.2), (60.25, 83.95),
+                                        (60.25, 84.4)], width=2.6)
     track(board, '/LOAD_L_ENABLED', (60.25, 84.4), (60.25, 106.45), width=3.3)
     track(board, '/LOAD_L_ENABLED', (60.25, 106.45), (89.0, 106.45), width=1.7)
     # Q703's drop stops at the top of its pad, 2.5 mm from the element's
@@ -1198,8 +1205,8 @@ def route_pump_stage(board):
           width=PIN_WIDTH)
     opto_stubs(board, 'U702', {1: '/PUMP_LED_ANODE', 2: '/PUMP_LED_RETURN'})
     track(board, '/PUMP_LED_GATE', (44.125, 106.6), (44.125, 108.2), width=PIN_WIDTH)
-    polyline(board, '/PUMP_LED_GATE', [(44.125, 108.2), (43.5, 108.9),
-                                       (43.5, 114.3), (42.862, 115.05)],
+    polyline(board, '/PUMP_LED_GATE', [(44.125, 108.2), (43.5, 108.2), (43.5, 115.05),
+                                       (42.862, 115.05)],
              width=PIN_WIDTH)
     for start, point in (((42.475, 106.6), (41.6, 106.6)),
                          ((42.862, 116.95), (42.862, 118.2))):
@@ -1208,7 +1215,7 @@ def route_pump_stage(board):
 
     # Mains side: the phase from the foot of the lane down to R712, and the
     # feed into pin 6.
-    polyline(board, '/LOAD_L_ENABLED', [(60.6, 106.45), (60.6, 108.8),
+    polyline(board, '/LOAD_L_ENABLED', [(60.6, 106.45), (60.6, 108.8), (59.763, 109.637),
                                         (59.763, 113.0)], width=0.6)
     opto_stubs(board, 'U702', {6: '/PUMP_GATE_FEED'})
     track(board, '/PUMP_GATE_FEED', (OPTO_MAINS_STUB_END, 113.46), (56.837, 113.0),
@@ -1254,7 +1261,7 @@ def route_pump_enable(board):
     gated, gnd = '/PUMP_EN_INTERLOCK', '/GND_UI'
 
     # Pin escapes.
-    polyline(board, raw, [(30.8, 85.025), (29.75, 85.025), (29.25, 84.5),
+    polyline(board, raw, [(30.8, 85.025), (29.25, 85.025), (29.25, 84.5),
                           (28.25, 84.5), (28.25, 85.075)], width=PIN_WIDTH)
     polyline(board, nrst, [(30.8, 85.675), (32.0, 85.675), (32.0, 84.25)],
              width=PIN_WIDTH)
@@ -1264,10 +1271,10 @@ def route_pump_enable(board):
                             (36.0, 88.5)], width=PIN_WIDTH)
     # Pin 4, R713 and C604 get a ground via each. Pins 3, 5 and 6 belong to
     # the grinder's gate, routed in route_grinder_enable.
-    for start, point in (((30.8, 86.975), (29.5, 87.5)),
+    for start, point in (((30.8, 86.975), (29.8, 87.975)),
                          ((28.25, 86.725), (28.25, 87.75)),
                          # East of the heater gate's B.Cu run at x = 36.5.
-                         ((36.9, 86.975), (37.9, 87.2))):
+                         ((36.9, 86.975), (37.925, 86.975))):
         if point:
             track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point or start)
@@ -1287,7 +1294,7 @@ def route_pump_enable(board):
     track(board, nrst, (32.0, 84.25), (32.0, 82.75), width=PIN_WIDTH)
     via(board, nrst, (32.0, 82.75))
     polyline(board, nrst, [(32.0, 82.75), (30.25, 81.0), (30.25, 79.25),
-                           (29.0, 78.0), (29.0, 72.5)], pcb.B_Cu,
+                           (28.85, 77.85), (28.85, 72.675)], pcb.B_Cu,
              width=PIN_WIDTH)
 
     # Gated output down to R714. It stays on B.Cu past the grinder's LED
@@ -1326,16 +1333,17 @@ def route_grinder_stage(board):
                                             (OPTO_SELV_STUB_END, 103.26)],
              width=PIN_WIDTH)
     opto_stubs(board, 'U703', {1: '/GRINDER_LED_ANODE', 2: '/GRINDER_LED_RETURN'})
-    polyline(board, v12, [(45.3, 108.4), (44.0, 107.1), (41.0, 104.1),
+    polyline(board, v12, [(45.3, 108.4), (41.0, 104.1),
                           (41.0, 100.8)], pcb.B_Cu, width=0.5)
     via(board, v12, (41.0, 100.8))
     track(board, v12, (41.0, 100.8), (41.775, 101.6), width=0.5)
-    polyline(board, '/GRINDER_LED_GATE', [(36.6, 104.725), (37.35, 103.975),
+    polyline(board, '/GRINDER_LED_GATE', [(36.6, 104.725),
                                           (38.0, 103.325), (38.66, 103.25)],
              width=PIN_WIDTH)
     polyline(board, '/GRINDER_LED_GATE', [(36.6, 104.725), (35.975, 105.35),
                                           (35.975, 106.8)], width=PIN_WIDTH)
-    polyline(board, gnd, [(38.66, 105.15), (38.3, 106.1), (37.625, 106.8)],
+    polyline(board, gnd, [(38.66, 105.15), (38.3, 105.51), (38.3, 106.1), (38.3, 106.8),
+                          (37.625, 106.8)],
              width=PIN_WIDTH)
     via(board, gnd, (38.3, 106.1))
 
@@ -1381,11 +1389,11 @@ def route_grinder_enable(board):
     """
     gnd = '/GND_UI'
     raw, gated = '/GRINDER_EN_RAW', '/GRINDER_EN_INTERLOCK'
-    polyline(board, raw, [(34.2, 86.975), (34.7, 87.475), (35.0, 87.775),
+    polyline(board, raw, [(34.2, 86.975), (35.0, 87.775),
                           (35.0, 88.475)], width=PIN_WIDTH)
-    polyline(board, '/STM_NRST', [(32.0, 85.675), (32.6, 86.325), (34.2, 86.325)],
+    polyline(board, '/STM_NRST', [(32.0, 85.675), (32.0, 86.325), (34.2, 86.325)],
              width=PIN_WIDTH)
-    polyline(board, gnd, [(35.0, 90.125), (34.3, 90.4), (34.0, 90.4)],
+    polyline(board, gnd, [(35.0, 90.125), (34.575, 90.125), (34.3, 90.4), (34.0, 90.4)],
              width=PIN_WIDTH)
     via(board, gnd, (34.0, 90.4))
 
@@ -1410,7 +1418,7 @@ def route_debug_header(board):
     polyline(board, '/STM_SWCLK', [(79.25, 34.33), (79.25, 32.6), (79.55, 32.3),
                                    (81.4, 32.3), (82.12, 31.58), (82.12, 31.0)],
              width=SIGNAL_WIDTH)
-    polyline(board, '/STM_SWDIO', [(79.75, 34.33), (79.75, 33.6), (80.4, 33.0)],
+    polyline(board, '/STM_SWDIO', [(79.75, 34.33), (79.75, 33.0), (80.4, 33.0)],
              width=SIGNAL_WIDTH)
     via(board, '/STM_SWDIO', (80.4, 33.0))
     polyline(board, '/STM_SWDIO', [(80.4, 33.0), (78.6, 33.0), (77.04, 31.44),
@@ -1435,10 +1443,9 @@ def route_12v_rail(board):
     under the H-bridge rows at x = 61.25 mm to reach J114.3. From J114.3 a
     B.Cu diagonal passes under the H-bridge series and pull-down rows, so
     their raw pads stay open to the east. It surfaces in the free band north
-    of the rows and runs along it to D303. The west leg hops the USB bench
-    enable and follows the left edge at x = 1 mm, behind the J108/J107 pins,
-    where no harness net crosses. It hops under both 24 V branches at
-    x = 8.5 mm and lands on C507. A last link joins the heater LED feed at
+    of the rows and runs along it to D303. The west leg drops to B.Cu beside
+    D303 and runs south along x = 16.75 mm, under the sensor rows and both
+    24 V branches, then surfaces beside C507. A last link joins the heater LED feed at
     R709 to the grinder and pump LED feed at R720, round Q705.
 
     The loads draw tens of milliamps, but the D303 path carries the whole
@@ -1469,11 +1476,11 @@ def route_12v_rail(board):
     polyline(board, v12, [(93.0, 27.0), (91.75, 28.25), (91.75, 28.5)],
              width=w)
     hop(v12, (91.75, 28.5), (87.25, 28.5), w)
-    polyline(board, v12, [(87.25, 28.5), (78.25, 28.5), (78.0, 28.75),
-                          (71.75, 28.75), (68.5, 32.0), (61.25, 32.0)],
+    polyline(board, v12, [(87.25, 28.5), (72.0, 28.5), (68.5, 32.0),
+                          (61.25, 32.0)],
              width=w)
     hop(v12, (61.25, 32.0), (61.25, 36.25), w)
-    polyline(board, v12, [(61.25, 36.25), (60.75, 36.75), (56.25, 38.75),
+    polyline(board, v12, [(61.25, 36.25), (60.75, 36.75), (58.25, 36.75), (56.25, 38.75),
                           (54.5, 38.75), (53.08, 40.0)], width=w)
 
     # J114.3 to D303, under the H-bridge rows.
@@ -1484,19 +1491,17 @@ def route_12v_rail(board):
                           (30.75, 27.5), (29.25, 29.0), (28.0, 29.0)],
              width=w)
 
-    # D303 down the left edge to the valve driver's supply.
+    # D303 down B.Cu to the valve driver's supply.
     track(board, v12, (28.0, 29.0), (23.25, 29.0), width=w)
-    hop(v12, (23.25, 29.0), (22.0, 29.5), w)
-    polyline(board, v12, [(22.0, 29.5), (7.5, 44.0), (1.5, 44.0), (1.0, 44.5),
-                          (1.0, 74.5), (8.5, 82.0), (8.5, 90.6)], width=w)
-    hop(v12, (8.5, 90.6), (8.5, 94.4), w)
-    polyline(board, v12, [(8.5, 94.4), (8.775, 94.7), (8.775, 97.5)],
-             width=w)
+    via(board, v12, (23.25, 29.0))
+    polyline(board, v12, [(23.25, 29.0), (16.75, 35.5), (16.75, 86.525),
+                          (8.775, 94.5)], pcb.B_Cu, width=w)
+    via(board, v12, (8.775, 94.5))
+    track(board, v12, (8.775, 94.5), (8.775, 97.5), width=w)
 
     # Heater LED feed to the grinder/pump LED feed.
-    polyline(board, v12, [(35.17, 96.0), (36.9, 97.75), (38.0, 97.75),
-                          (38.5, 98.25), (40.75, 98.25), (41.5, 99.0),
-                          (41.5, 101.25), (41.77, 101.6)], width=w)
+    polyline(board, v12, [(35.17, 96.0), (36.9, 97.75), (38.0, 97.75), (38.5, 98.25),
+                          (40.75, 98.25), (41.5, 99.0), (41.5, 101.6), (41.77, 101.6)], width=w)
 
 
 
@@ -1514,11 +1519,9 @@ def route_ui_supply(board):
     polyline(board, ui, [(96.72, 45.5), (95.0, 45.5), (93.75, 44.25),
                          (92.5, 44.25)], width=0.3)
     track(board, ui, (92.5, 44.25), (90.75, 44.25), width=0.3)
-    polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.25, 43.25),
-                         (90.25, 36.25), (90.0, 36.0), (90.0, 10.0),
-                         (86.0, 6.0), (85.75, 6.0), (83.25, 3.5)], width=0.3)
-    track(board, ui, (83.25, 3.5), (83.25, 1.5), width=0.3)
-    polyline(board, ui, [(83.25, 1.5), (82.45, 0.8), (5.2, 0.8), (4.4, 1.6),
+    polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.0, 43.0),
+                         (90.0, 10.0), (80.8, 0.8)], width=0.3)
+    polyline(board, ui, [(80.8, 0.8), (5.2, 0.8), (4.4, 1.6),
                          (4.4, 6.5), (6.2, 6.5)], width=0.4)
 
 
@@ -1578,8 +1581,7 @@ def route_supervisor_orders(board):
     track(board, arm, (48.5, 53.25), (45.3, 53.25), pcb.B_Cu, width=w)
     via(board, arm, (45.3, 53.25))
     polyline(board, arm, [(45.3, 53.25), (45.5, 53.45), (45.5, 64.35),
-                          (45.25, 64.6), (43.05, 66.8),
-                          (43.05, 67.15), (37.75, 72.45), (37.75, 73.5),
+                          (37.75, 72.1), (37.75, 73.5),
                           (37.3, 73.95), (33.7, 73.975)], width=w)
 
     # PB5 to R603 and, under the reset corridor, to U602 pin 1.
@@ -1591,7 +1593,7 @@ def route_supervisor_orders(board):
     polyline(board, sleep, [(45.25, 44.55), (42.05, 47.75), (39.7, 47.75),
                             (38.0, 49.45), (36.35, 49.45), (34.15, 51.65),
                             (34.15, 60.05)], width=w)
-    polyline(board, sleep, [(34.15, 60.05), (33.825, 60.4), (33.825, 61.025)],
+    polyline(board, sleep, [(34.15, 60.05), (33.825, 60.05), (33.825, 61.025)],
              width=w)
     via(board, sleep, (34.15, 60.05))
     polyline(board, sleep, [(34.15, 60.05), (34.4, 60.3), (35.65, 60.3)],
@@ -1661,10 +1663,10 @@ def route_load_bus(board):
                               (73.15, 51.9), (72.75, 52.3), (72.75, 55.2),
                               (72.55, 55.4), (45.6, 55.4), (45.4, 55.6),
                               (45.4, 60.9), (37.85, 68.45), (37.85, 85.5),
-                              (37.1, 86.25), (37.1, 90.0), (36.9, 90.6)],
+                              (37.1, 86.25), (37.1, 90.0), (36.9, 90.2), (36.9, 90.6)],
              pcb.B_Cu, width=w)
     via(board, grinder, (36.9, 90.6))
-    polyline(board, grinder, [(36.9, 90.6), (35.9, 89.6), (35.0, 88.7),
+    polyline(board, grinder, [(36.9, 90.6), (35.0, 88.7),
                               (35.0, 88.475)], width=w)
 
     # PB10, pin 30, clear of C103 and C110 on its way down.
@@ -1708,7 +1710,7 @@ def route_supervisor_outputs(board):
              width=w)
     via(board, sleep, (40.25, 39.25))
     polyline(board, sleep, [(40.25, 39.25), (41.25, 38.25), (46.625, 38.25),
-                            (46.875, 38.0), (46.875, 35.0), (47.625, 34.2)],
+                            (46.875, 38.0), (46.875, 34.2), (47.625, 34.2)],
              width=w)
 
     # The valve output drops to B.Cu inside the package outline, passes north
@@ -1816,7 +1818,7 @@ def route_rails_and_bridge(board):
     # 12 V divider.
     track(board, v12, (53.08, 40.0), (53.08, 42.575), width=0.3)
     track(board, div12, (53.08, 44.225), (53.08, 45.575), width=w)
-    polyline(board, adc12, [(53.08, 47.225), (53.8, 47.0), (54.575, 47.0)],
+    polyline(board, adc12, [(53.08, 47.225), (53.305, 47.0), (54.575, 47.0)],
              width=w)
     track(board, adc12, (54.575, 47.0), (54.625, 48.9), width=w)
     polyline(board, adc12, [(54.575, 47.0), (54.575, 45.225), (55.6, 44.2)],
@@ -1919,7 +1921,7 @@ def route_sensor_bus(board):
     polyline(board, present, [(71.75, 40.75), (65.875, 46.625), (29.0, 46.625),
                               (23.125, 52.5)], pcb.B_Cu, width=w)
     via(board, present, (23.125, 52.5))
-    polyline(board, present, [(23.125, 52.5), (22.0, 52.775)], width=w)
+    polyline(board, present, [(23.125, 52.5), (22.85, 52.775), (22.0, 52.775)], width=w)
 
     # PA0, pin 14: group at work.
     polyline(board, work, [(70.325, 42.75), (69.2, 42.75), (68.1, 43.85),
@@ -1988,28 +1990,28 @@ def route_esp_and_front(board):
              width=w)
     polyline(board, '/LCD_MOSI', [(9.6, 11.175), (11.28, 9.495), (11.28, 6.5)],
              width=w)
-    polyline(board, '/LCD_CS_N', [(11.2, 11.175), (11.5, 10.3)], width=w)
-    polyline(board, '/LCD_CS_N', [(11.5, 10.3), (13.82, 6.5)],
+    polyline(board, '/LCD_CS_N', [(11.2, 11.175), (11.5, 10.875), (11.5, 10.3)], width=w)
+    polyline(board, '/LCD_CS_N', [(11.5, 10.3), (13.82, 7.98), (13.82, 6.5)],
              pcb.B_Cu, width=w)
     via(board, '/LCD_CS_N', (11.5, 10.3))
     polyline(board, '/LCD_DC', [(12.8, 11.175), (12.55, 10.925),
-                                (12.55, 4.35), (13.82, 3.96)], width=w)
+                                (12.55, 4.35), (12.94, 3.96), (13.82, 3.96)], width=w)
     polyline(board, '/LCD_RST_N', [(14.4, 11.175), (16.36, 9.215),
                                    (16.36, 6.5)], width=w)
     polyline(board, '/LCD_BL_PWM', [(16.0, 11.175), (17.63, 9.545),
-                                    (17.63, 4.35), (16.36, 3.96)], width=w)
+                                    (17.63, 4.35), (17.24, 3.96), (16.36, 3.96)], width=w)
     polyline(board, '/SCLK_RAW', [(8.0, 12.825), (8.0, 13.75)], width=w)
     via(board, '/SCLK_RAW', (8.0, 13.75))
     polyline(board, '/SCLK_RAW', [(53.365, 23.55), (53.365, 26.1)], width=w)
     via(board, '/SCLK_RAW', (53.365, 26.1))
-    polyline(board, '/SCLK_RAW', [(53.365, 26.1), (52.75, 26.75),
+    polyline(board, '/SCLK_RAW', [(53.365, 26.1), (53.365, 26.75),
                                   (21.0, 26.75), (8.0, 13.75)],
              pcb.B_Cu, width=w)
     polyline(board, '/MOSI_RAW', [(9.6, 12.825), (9.6, 13.75)], width=w)
     via(board, '/MOSI_RAW', (9.6, 13.75))
     polyline(board, '/MOSI_RAW', [(52.095, 23.55), (52.095, 25.1)], width=w)
     via(board, '/MOSI_RAW', (52.095, 25.1))
-    polyline(board, '/MOSI_RAW', [(52.095, 25.1), (51.25, 24.375),
+    polyline(board, '/MOSI_RAW', [(52.095, 25.1), (52.095, 24.375),
                                   (28.25, 24.375), (16.875, 13.0),
                                   (10.375, 13.0), (9.6, 13.75)],
              pcb.B_Cu, width=w)
@@ -2043,7 +2045,7 @@ def route_esp_and_front(board):
     via(board, '/BL_RAW', (21.75, 13.75))
     polyline(board, '/KEY_SDA', [(45.25, 9.6), (43.75, 9.6)], width=w)
     via(board, '/KEY_SDA', (43.75, 9.6))
-    polyline(board, '/KEY_SDA', [(43.75, 9.6), (43.25, 10.125),
+    polyline(board, '/KEY_SDA', [(43.75, 9.6), (43.75, 10.125),
                                  (33.375, 10.125), (32.25, 9.0)],
              pcb.B_Cu, width=w)
     polyline(board, '/KEY_SDA', [(32.25, 9.0), (28.5, 5.25), (20.625, 5.25),
@@ -2107,9 +2109,9 @@ def route_esp_and_front(board):
     polyline(board, '/ESP_EN', [(43.75, 8.33), (43.33, 8.75), (40.75, 8.75)],
              pcb.B_Cu, width=w)
     polyline(board, '/ESP_EN', [(40.75, 8.75), (40.75, 10.5),
-                                (42.125, 11.875), (42.5, 12.175)], width=w)
+                                (42.125, 11.875), (42.5, 11.875), (42.5, 12.175)], width=w)
     polyline(board, '/ESP_EN', [(43.75, 8.33), (43.83, 8.25), (82.875, 8.25),
-                                (84.375, 9.75), (85.16, 10.0)],
+                                (84.625, 10.0), (85.16, 10.0)],
              pcb.B_Cu, width=w)
     via(board, '/ESP_EN', (43.75, 8.33))
     via(board, '/ESP_EN', (40.75, 8.75))
