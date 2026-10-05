@@ -877,3 +877,15 @@ severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1334
 segmentos y 448 vías, 149 de cosido); modelo de placa 0 errores y 0 avisos;
 `tests/sim` 53/53; CTest 3/3 (con el protocolo). Serigrafía, PDF 1:1 y render
 regenerados. Sin hardware fabricado ni ensayado.
+
+## Simulador F3: panel web local, 2026-10-05
+
+`tools/sim_panel.py` sirve en 127.0.0.1 un panel de la máquina virtual con los
+dos firmwares en tiempo real: frontal con teclas, LED y pantalla del ST7789V
+virtual, estado de los dos núcleos, STATUS, cargas, planta, gráficas, registro
+de eventos, inyección de fallos (puerta, grupo, NTC, nFAULT, cuelgues, teclado,
+ruido UART, esquinas de los rails, sensor de agua) y VCD de las señales
+digitales. Probado en el navegador integrado: arranque a SAFE_IDLE, puerta
+abierta a FALLO en rojo, gráficas y descarga del VCD. Con un 5 % de bytes
+corruptos en la UART el enlace llega a caer y el núcleo queda en FAULT hasta
+CLEAR_FAULT, como prevé el protocolo. `tests/sim` 59/59. Sin hardware.

@@ -15,6 +15,7 @@ receiver. An ESP32 pin driven high into the front panel while 3V3_UI is off
 is recorded as a 'backfeed' event.
 """
 from collections import deque
+import random
 import re
 from dataclasses import dataclass, field
 
@@ -106,6 +107,9 @@ class VirtualBoard:
         self.out = None
         self.loads_state = {}
         self._cache = {}
+        self.faults = set()        # refs whose open-drain fault output is pulled low
+        self.uart_noise = 0.0      # probability that a UART byte arrives with a bit flipped
+        self._rng = random.Random(1)
         self.vrefint_v = VREFINT_V
         if firmware is not None:
             firmware.io.vrefint_cal = round(self.vrefint_v / 3.0 * 4095)
@@ -221,11 +225,12 @@ class VirtualBoard:
         loads = tuple(tuple(_round(x) for x in el) for el in self.plant_loads())
         asserting = self.sup.asserting(self.t)
         amps = _round(self.plant.motor_amps)
-        key = (drives, loads, asserting, amps)
+        faults = tuple(sorted(self.faults))
+        key = (drives, loads, asserting, amps, faults)
         out = self._cache.get(key)
         if out is None:
             out = self.circuit.evaluate(self.rails, drives, loads, supervisor_reset=asserting,
-                                        bridge_amps={'controller:U501': amps})
+                                        bridge_amps={'controller:U501': amps}, faults=faults)
             if len(self._cache) > 4096:
                 self._cache.clear()
             self._cache[key] = out
@@ -368,6 +373,13 @@ class VirtualBoard:
         self._deliver(self.to_stm, fw.io if (fw is not None and stm_rx) else None,
                       idle(self.pads[self.stm_rx][0], self.vdd, self.mcu['vih_frac']))
 
+    def set_corner(self, corner):
+        """Supplies at their minimum (0), maximum (1) or nominal (None)."""
+        self.corner = corner
+        self.rails = self.bench.rails(corner)
+        self.vdd = self.rails[self.bench.vdd_net]
+        self._cache.clear()
+
     def _deliver(self, queue, io, line_idle):
         if io is not None and not line_idle:
             while len(queue) > 4 * UART_BYTES_PER_MS:
@@ -376,6 +388,8 @@ class VirtualBoard:
             return
         for _ in range(min(UART_BYTES_PER_MS, len(queue))):
             byte = queue.popleft()
+            if self.uart_noise and self._rng.random() < self.uart_noise:
+                byte ^= 1 << self._rng.randrange(8)
             if io is None:
                 self.uart_dropped += 1
                 continue

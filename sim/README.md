@@ -9,7 +9,7 @@ de KiCad, así que un error de diseño aparece como un fallo de simulación.
 | F0 | Modelo de las dos placas, contrato de firmware, comprobaciones y `board_pins.h` | Hecha |
 | F1 | STM32 en host contra la placa virtual: HAL, modelos de componentes y planta | Hecha; planta con valores supuestos |
 | F2 | ESP32 en host: ST7789 y TCA9534 virtuales, protocolo v0 | Hecha; LVGL queda para el puerto ESP-IDF |
-| F3 | Panel web local: frontal, pantalla, gráficas, inyección de fallos, VCD | Pendiente |
+| F3 | Panel web local: frontal, pantalla, gráficas, inyección de fallos, VCD | Hecha |
 | F4 | Recetas y máquina de estados completa | Pendiente |
 
 ## F0: modelo de placa
@@ -146,3 +146,30 @@ pantalla de enlace perdido y recuperación si se cuelga el STM32, START rechazad
 como respuesta normal, tecla mantenida al arrancar, rebotes, puerta abierta y
 CLEAR_FAULT, standby con el LED, teclado colgado recuperado con un ciclo de
 `3V3_UI` sin backfeed, y que el detector de backfeed salta con una línea en alto.
+
+## F3: panel web local
+
+```
+python tools/sim_panel.py              # http://127.0.0.1:8765/
+python tools/sim_panel.py --speed 5 --corner min
+```
+
+[`panel.py`](osc_sim/panel.py) ejecuta los dos firmwares en la placa virtual en
+tiempo real (o más rápido) y sirve [`panel/index.html`](panel/index.html), sin
+dependencias externas y solo en 127.0.0.1:
+
+- Frontal con las siete teclas en su sitio (mantener pulsado = pulsada), el LED
+  STBY y la pantalla tal como la pinta el ST7789V virtual.
+- Estado del STM32 y del ESP32, enlace, peticiones y respuestas, `3V3_UI`,
+  STATUS, cargas, planta y registro de eventos (watchdog, resets, backfeed).
+- Gráficas de caldera, rails y grupo.
+- Inyección: puerta, grupo, NTC abierto, nFAULT del DRV8876, STM32, ESP32 o
+  teclado colgados, ruido en la UART, rails en sus esquinas y sensor de agua;
+  pausa, paso de 100 ms, reinicio y velocidad.
+- [VCD](osc_sim/vcd.py) de las señales digitales (órdenes del STM32,
+  `STM_NRST`, WDI, enlaces, cargas, teclas, estado del núcleo y pantalla), para
+  GTKWave, PulseView o Surfer.
+
+API: `GET /api/state`, `/api/history`, `/api/frame` (RGB565 de 320 × 240),
+`/api/vcd`; `POST /api/cmd` con `{"cmd": ...}`. Los
+[escenarios](../tests/sim/test_f3.py) la recorren en un puerto efímero.
