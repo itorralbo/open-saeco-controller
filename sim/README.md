@@ -68,6 +68,7 @@ Salidas (generadas, no editar):
 | `drive-limit` | IF del opto, tensión de bobina o VDS por encima del máximo |
 | `slow-edge` | Entrada lógica sin histéresis en una red RC más lenta que su Δt/Δv máximo |
 | `back-feed` | Entrada de alimentación externa que llega al nodo de conmutación de un buck por bobinas o fusibles, sin cruzar otro rail |
+| `tvs` | TVS que conduciría con el rail en su máximo (VWM) o que no empieza a conducir (VBR máx.) antes del máximo absoluto de lo que protege |
 | `pin-voltage` | Pin de un MCU por encima de su máximo absoluto en algún estado, con los rails y VBUS al máximo |
 | `input-level` | Entrada digital activa a cero que, con su contacto cerrado (50 Ω) o abierto, no pasa de VIL o VIH en las dos esquinas |
 

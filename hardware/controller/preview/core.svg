@@ -828,7 +828,7 @@
 <text x="697.63" y="82.05" font-size="0.9" text-anchor="start" fill="#23745f">12V_PROTECTED</text>
 <rect x="732.7900000000001" y="56.92" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="735.33" y="51.92" font-size="1.05" text-anchor="middle" fill="#213b50">D302</text>
-<text x="735.33" y="54.42" font-size="1.05" text-anchor="middle" fill="#213b50">SMAJ18A</text>
+<text x="735.33" y="54.42" font-size="1.05" text-anchor="middle" fill="#213b50">SMAJ15A</text>
 <path d="M 732.7900000000001 58.42 H 727.71" stroke="#27856d" stroke-width=".22"/>
 <text x="733.49" y="58.72" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
 <text x="730.85" y="57.92" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>

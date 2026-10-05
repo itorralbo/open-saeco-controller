@@ -31,6 +31,9 @@
     "sources": "AP63203 VFB 3.27-3.33 V plus ripple; U303 11.8 V (VFB 0.792-0.808 V, 1 % divider) or the J101 bench supply, less D301; IRM-30-24 24 V -10 %/+10 % plus margin, as RAIL_24V; 24V_BREW and 24V_VALVE less one SS34; USB VBUS 5 V -5 %/+10 % with a service cable plugged"
   },
   "mains": {"phase": "controller:MAINS_L_FUSED", "neutral": "controller:MAINS_N"},
+  "external_limits": [
+    {"pin": "controller:J106.3", "volts": 20.0, "source": "Digmesa FHKSC 932-9521-B supply 3.8-20 V (docs/verification.md)"}
+  ],
   "external_supplies": {
     "_doc": "Bench and service inputs that may be live while the on-board converters are not.",
     "pins": ["controller:J101.1", "controller:J112.1", "controller:J110.A4"]
@@ -99,8 +102,8 @@
          "from": "controller:J108.8", "pull": "up"},
         {"name": "WATER_LEVEL", "net": "WATER_LEVEL", "function": "adc", "from": "controller:J109.2"},
         {"name": "RAIL_12V", "net": "RAIL_12V_ADC", "function": "adc", "from": "controller:J114.5",
-         "analog": {"kind": "divider", "source_net": "controller:12V_PROTECTED", "range_v": [0, 18],
-                    "source": "SMAJ18A (D302) standoff voltage as the highest steady input"}},
+         "analog": {"kind": "divider", "source_net": "controller:12V_PROTECTED", "range_v": [0, 15],
+                    "source": "SMAJ15A (D302) standoff voltage as the highest steady input"}},
         {"name": "RAIL_24V", "net": "RAIL_24V_ADC", "function": "adc", "from": "controller:J114.6",
          "analog": {"kind": "divider", "source_net": "controller:24V_ACT_RAW", "range_v": [0, 28],
                     "source": "IRM-30-24 at its +10 % trim plus margin; J112 bench supply alike"}},

@@ -193,6 +193,11 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'J101', '1', '12V_ISO_RAW')
         self.expect(b, 'back-feed', 'U303.SW')
 
+    def test_tvs_breaks_down_above_what_it_protects(self):
+        b = baseline()  # the SMAJ18A starts at 20-22.1 V, over U502's 20 V VDD
+        b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'
+        self.expect(b, 'tvs', 'U502.VDD')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

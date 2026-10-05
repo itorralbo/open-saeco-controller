@@ -12752,7 +12752,7 @@
 				)
 			)
 		)
-		(property "Value" "SMAJ18A"
+		(property "Value" "SMAJ15A"
 			(at 0 2.6 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -12790,7 +12790,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "JUXING"
+		(property "manufacturer" "Littelfuse"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12802,7 +12802,7 @@
 				)
 			)
 		)
-		(property "mpn" "SMAJ18A"
+		(property "mpn" "SMAJ15A"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12814,7 +12814,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C5356039"
+		(property "lcsc" "C148216"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -12838,7 +12838,7 @@
 				)
 			)
 		)
-		(property "pcba_type" "Economic and Standard"
+		(property "pcba_type" "TBD"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

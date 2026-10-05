@@ -666,14 +666,14 @@
     },
     {
       "reference": "D302",
-      "value": "SMAJ18A",
+      "value": "SMAJ15A",
       "footprint": "Diode_SMD:D_SMA",
       "status": "candidate",
-      "manufacturer": "JUXING",
-      "mpn": "SMAJ18A",
-      "lcsc": "C5356039",
+      "manufacturer": "Littelfuse",
+      "mpn": "SMAJ15A",
+      "lcsc": "C148216",
       "jlc_class": "Extended",
-      "pcba_type": "Economic and Standard",
+      "pcba_type": "TBD",
       "pins": {
         "2": "GND_UI",
         "1": "12V_PROTECTED"

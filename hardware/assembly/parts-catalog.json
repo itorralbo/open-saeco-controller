@@ -317,6 +317,21 @@
       "url": "https://jlcpcb.com/partdetail/JUXING-SMAJ18A/C5356039",
       "selection": "candidate_not_released"
     },
+    "D:SMAJ15A": {
+      "manufacturer": "Littelfuse",
+      "mpn": "SMAJ15A",
+      "lcsc": "C148216",
+      "specification": "15V standoff, 16.7-18.5V breakdown, 24.4V clamp at 16.4A, 400W unidirectional TVS; breaks down below the 20V of U502 VDD and the flow sensor",
+      "footprint": "Diode_SMD:D_SMA",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 5699,
+      "available_order_qty_observed": 5455,
+      "stock_checked_on": "2026-10-05",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C148216",
+      "selection": "candidate_not_released"
+    },
     "TCA9534PWR": {
       "manufacturer": "Texas Instruments",
       "mpn": "TCA9534PWR",

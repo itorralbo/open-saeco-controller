@@ -291,8 +291,11 @@ def main():
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
     d.add('D307','DIODE','SS34 / bench OR',690,82,['12V_BENCH_FUSED','12V_PROTECTED'],
           'Diode_SMD:D_SMA',part_key='D:SS34')
-    d.add('D302','DIODE','SMAJ18A',735,58,[g,'12V_PROTECTED'],
-          'Diode_SMD:D_SMA',part_key='D:SMAJ18A')
+    # SMAJ15A: its breakdown (18.5 V max) sits under the 20 V absolute
+    # maximum of U502's VDD and of the flow sensor on J106.3; the SMAJ18A
+    # that was here only starts at 20-22.1 V.
+    d.add('D302','DIODE','SMAJ15A',735,58,[g,'12V_PROTECTED'],
+          'Diode_SMD:D_SMA',part_key='D:SMAJ15A')
     d.add('C301','C','10uF / 25V input',775,58,['12V_PROTECTED',g],
           'Capacitor_SMD:C_0805_2012Metric',part_key='C:10uF_25V_0805')
     d.add('C302','C','100nF / input HF',775,78,['12V_PROTECTED',g],

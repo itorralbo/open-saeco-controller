@@ -65,6 +65,7 @@ class Checker:
         self.check_keypad()
         self.check_ui_domain()
         self.check_backfeed()
+        self.check_tvs()
         drive.check(self)
         order = {'error': 0, 'warning': 1, 'info': 2}
         self.findings.sort(key=lambda f: order[f.severity])
@@ -501,6 +502,43 @@ class Checker:
                         if other and other not in seen:
                             seen.add(other)
                             todo.append(other)
+
+    def check_tvs(self):
+        """A TVS must stay off on its rail and start conducting below what it protects.
+
+        VWM must cover the rail's highest steady value (rail_range) and the
+        highest breakdown voltage must sit under the lowest absolute maximum
+        of every supply pin on the rail (sim/reference/devices.json) and of the
+        external parts powered from it (external_limits).
+        """
+        dev = json.loads((self.s.root / 'sim/reference/devices.json').read_text(encoding='utf-8'))['parts']
+        limits = {}
+        for e in self.c.get('external_limits', []):
+            limits.setdefault(self.s.net_of(self.s.endpoint(e['pin'])), []).append((e['volts'], e['pin']))
+        for board, b in self.s.boards.items():
+            for ref, comp in b.components.items():
+                for num in comp.pins:
+                    node = Node(board, ref, num)
+                    lim = dev.get(comp.mpn, {}).get('abs_max', {}).get(self.s.physical_name(node))
+                    if lim:
+                        limits.setdefault(self.s.net_of(node), []).append((lim, f'{ref}.{self.s.physical_name(node)}'))
+        ranges = {self.s.find(n): span for n, span in self.c.get('rail_range', {}).items() if ':' in n}
+        for board, b in self.s.boards.items():
+            for ref, comp in sorted(b.components.items()):
+                p = dev.get(comp.mpn)
+                if not p or p['kind'] != 'tvs':
+                    continue
+                rail = self.s.net_of(self.s.node_by_name(board, ref, 'K'))
+                top = ranges.get(rail, [None, None])[1]
+                if top is not None and top > p['vwm']:
+                    self.add('error', 'tvs', f'{ref} ({comp.mpn}): VWM {p["vwm"]} V por debajo de los {top} V '
+                             f'que puede tener {rail.split(":")[1]}.', f'{board}:{ref}')
+                for volts, who in sorted(limits.get(rail, [])):
+                    if p['vbr'][1] > volts:
+                        self.add('error', 'tvs',
+                                 f'{ref} ({comp.mpn}) no empieza a conducir hasta {p["vbr"][1]} V (VBR máx.) y '
+                                 f'{who}, en {rail.split(":")[1]}, admite {volts:g} V como máximo absoluto.',
+                                 f'{board}:{ref}')
 
     def check_ui_domain(self):
         """Logic pull-ups on another rail than the MCU's: back-feed when it is off."""

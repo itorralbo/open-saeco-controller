@@ -4,79 +4,183 @@
     "STM32G431RBT6": {
       "kind": "mcu",
       "source": "ST DS12589 rev 6, table 55 I/O static characteristics and table 56 output voltage characteristics (CMOS port, |IIO| = 8 mA, VDD >= 2.7 V); NRST weak pull-up RPU.",
-      "vih_frac": 0.7, "vil_frac": 0.3,
-      "voh_drop": 0.4, "vol": 0.4, "io_max": 0.008,
-      "nrst_pullup_ohms": [25000, 55000],
-      "vin_max": 4.0, "vin_max_source": "table 19 voltage characteristics: input voltage on pins other than FT_xxx 4.0 V (FT_xxx min(VDD, VDDA) + 4.0 V); 4.0 V is taken for every pin"
+      "vih_frac": 0.7,
+      "vil_frac": 0.3,
+      "voh_drop": 0.4,
+      "vol": 0.4,
+      "io_max": 0.008,
+      "nrst_pullup_ohms": [
+        25000,
+        55000
+      ],
+      "vin_max": 4.0,
+      "vin_max_source": "table 19 voltage characteristics: input voltage on pins other than FT_xxx 4.0 V (FT_xxx min(VDD, VDDA) + 4.0 V); 4.0 V is taken for every pin"
     },
     "ESP32-S3-WROOM-1U-N8R8": {
       "kind": "mcu",
       "source": "Espressif ESP32-S3 datasheet, table 5-4 DC characteristics (3.3 V): VIH 0.75 x VDD, VIL 0.25 x VDD, VIH max VDD + 0.3 V; VOH 0.8 x VDD; IOH 40 mA at 2.64 V with PAD_DRIVER 3 (20 mA taken, the default drive 2); RPU/RPD 45 kOhm.",
-      "vih_frac": 0.75, "vil_frac": 0.25,
-      "voh_drop": 0.66, "vol": 0.495, "io_max": 0.02,
+      "vih_frac": 0.75,
+      "vil_frac": 0.25,
+      "voh_drop": 0.66,
+      "vol": 0.495,
+      "io_max": 0.02,
       "vin_max_over_vdd": 0.3
     },
     "SN74LVC2G08DCTR": {
       "kind": "logic",
       "source": "TI SCES198N, 6.3 recommended operating conditions (VCC 3 V to 3.6 V, input transition rate 10 ns/V max; no hysteresis) and 6.5 electrical characteristics.",
-      "vih": 2.0, "vil": 0.8, "max_dt_dv": 1e-8,
-      "voh_drop_100ua": 0.1, "voh_16ma": 2.4, "vol_16ma": 0.4, "io_max": 0.016
+      "vih": 2.0,
+      "vil": 0.8,
+      "max_dt_dv": 1e-08,
+      "voh_drop_100ua": 0.1,
+      "voh_16ma": 2.4,
+      "vol_16ma": 0.4,
+      "io_max": 0.016
     },
     "SN74LVC1G17DBVR": {
       "kind": "schmitt_buffer",
       "source": "TI SCES351, pin functions (DBV: 1 NC, 2 A, 3 GND, 4 Y, 5 VCC) and table 5-1 at VCC 3 V: VT+ 1.92 V max, VT- 0.89 V min; IOH -100 uA at VCC - 0.1 V, 24 mA drive; Schmitt input, no transition-rate limit.",
-      "vih": 1.92, "vil": 0.89,
-      "voh_drop_100ua": 0.1, "voh_16ma": 2.4, "vol_16ma": 0.4, "io_max": 0.016
+      "vih": 1.92,
+      "vil": 0.89,
+      "voh_drop_100ua": 0.1,
+      "voh_16ma": 2.4,
+      "vol_16ma": 0.4,
+      "io_max": 0.016
     },
     "TPS3828-33DBVR": {
       "kind": "supervisor",
       "source": "TI SLVS165O, 6.5/6.8: VIT- 2.93 V (TPS382x-33), WDI VIH 0.7 x VDD and VIL 0.3 x VDD, ttout 0.9/1.6/2.5 s, td 120/200/300 ms, open-drain RESET (7.3.3), RESET VOL 0.4 V at 1.2 mA.",
       "vit": 2.93,
-      "wdi_vih_frac": 0.7, "wdi_vil_frac": 0.3,
-      "watchdog_s": [0.9, 1.6, 2.5],
-      "reset_delay_s": [0.12, 0.2, 0.3],
-      "output": "open_drain", "vol": 0.4, "iol": 0.0012
+      "wdi_vih_frac": 0.7,
+      "wdi_vil_frac": 0.3,
+      "watchdog_s": [
+        0.9,
+        1.6,
+        2.5
+      ],
+      "reset_delay_s": [
+        0.12,
+        0.2,
+        0.3
+      ],
+      "output": "open_drain",
+      "vol": 0.4,
+      "iol": 0.0012
     },
     "SI2308A": {
       "kind": "nmos",
       "source": "UMW SI2308A datasheet, Nov 2024, 5 electrical characteristics: VGS(th) 1-3 V at 250 uA; RDS(on) 95 mOhm max at VGS 4.5 V, 80 mOhm at 10 V; VDS 60 V.",
-      "vgs_th": [1.0, 3.0], "vgs_on": 4.5, "rds_on": 0.095, "vds_max": 60, "id_max": 3.0
+      "vgs_th": [
+        1.0,
+        3.0
+      ],
+      "vgs_on": 4.5,
+      "rds_on": 0.095,
+      "vds_max": 60,
+      "id_max": 3.0
     },
     "BSS138LT1G": {
       "kind": "nmos",
       "source": "onsemi BSS138LT1/D: VGS(th) 0.5-1.5 V; rDS(on) 10 Ohm max at VGS 2.75 V, ID < 200 mA, -40 to 85 C; VDSS 50 V; ID 200 mA.",
-      "vgs_th": [0.5, 1.5], "vgs_on": 2.75, "rds_on": 10.0, "vds_max": 50, "id_max": 0.2
+      "vgs_th": [
+        0.5,
+        1.5
+      ],
+      "vgs_on": 2.75,
+      "rds_on": 10.0,
+      "vds_max": 50,
+      "id_max": 0.2
     },
     "UCC27517DBVR": {
       "kind": "gate_driver",
-      "source": "TI SLUSAY4D, 6.5: VIN_H 2.4 V max, VIN_L 1.0 V min, UVLO 4.2 V typical rising; ROH 7.5 Ohm and ROL 1 Ohm max at VDD 12 V.",
-      "vih": 2.4, "vil": 1.0, "uvlo": 4.2, "roh": 7.5, "rol": 1.0
+      "source": "TI SLUSAY4D, 6.5: VIN_H 2.4 V max, VIN_L 1.0 V min, UVLO 4.2 V typical rising; ROH 7.5 Ohm and ROL 1 Ohm max at VDD 12 V. Absolute maximum VDD 20 V (8.1).",
+      "vih": 2.4,
+      "vil": 1.0,
+      "uvlo": 4.2,
+      "roh": 7.5,
+      "rol": 1.0,
+      "abs_max": {
+        "VDD": 20.0
+      }
     },
     "DRV8876PWPR": {
       "kind": "h_bridge",
       "source": "TI SLVSDS7B, 6.5: EN/IN1, PH/IN2 and nSLEEP VIH 1.5 V min, VIL 0.8 V max (VM >= 5 V), RPD 100 kOhm; AIPROPI 1000 uA/A; tWAKE 1 ms; PMODE low = PH/EN (table 2); IMODE to GND = fixed off-time, automatic retry (table 6); nFAULT open drain.",
-      "vih": 1.5, "vil": 0.8, "rpd": 100000, "aipropi": 0.001, "t_wake_s": 0.001
+      "vih": 1.5,
+      "vil": 0.8,
+      "rpd": 100000,
+      "aipropi": 0.001,
+      "t_wake_s": 0.001
     },
     "TPS22918DBVR": {
       "kind": "load_switch",
       "source": "TI SLVSD76C, 6.5: VIH,ON 1 V min, VIL,ON 0.5 V max; RON 53 mOhm typical at VIN 3.3 V.",
-      "vih": 1.0, "vil": 0.5, "ron": 0.1
+      "vih": 1.0,
+      "vil": 0.5,
+      "ron": 0.1
     },
     "MOC3083": {
       "kind": "opto_triac",
       "source": "Lite-On MOC3083 datasheet: IFT 5 mA max (latches output), recommended IF between IFT max and 50 mA absolute maximum; VF 1.4 V max at 20 mA; output ITSM 1 A; zero-cross inhibit 20 V max.",
-      "ift": 0.005, "if_max": 0.05, "vf": [1.0, 1.4], "itsm": 1.0
+      "ift": 0.005,
+      "if_max": 0.05,
+      "vf": [
+        1.0,
+        1.4
+      ],
+      "itsm": 1.0
     },
     "BTA24-800BWRG": {
       "kind": "triac",
       "source": "ST BTA24 datasheet DS2117: BW (snubberless) IGT 50 mA max, VGT 1.3 V max, quadrants I-II-III.",
-      "igt": 0.05, "vgt": 1.3
+      "igt": 0.05,
+      "vgt": 1.3
     },
     "G5RL-1A-E-TV8 DC24": {
       "kind": "relay",
       "source": "Omron G5RL datasheet, high-inrush TV8 coil ratings: 24 VDC, 16.7 mA, 1440 Ohm +/-10 %, must operate 70 % max, must release 10 % min, 130 % max.",
-      "v_rated": 24.0, "coil_ohms": 1440, "coil_tol": 0.1,
-      "operate_frac": 0.7, "release_frac": 0.1, "max_frac": 1.3
+      "v_rated": 24.0,
+      "coil_ohms": 1440,
+      "coil_tol": 0.1,
+      "operate_frac": 0.7,
+      "release_frac": 0.1,
+      "max_frac": 1.3
+    },
+    "AP63203WU-7": {
+      "kind": "regulator",
+      "source": "Diodes AP63200/1/3/5 datasheet, absolute maximum ratings: VIN and EN -0.3 to +35 V DC, VSW -1 V to VIN + 0.3 V.",
+      "abs_max": {
+        "VIN": 35.0,
+        "EN": 35.0
+      }
+    },
+    "AP63200WU-7": {
+      "kind": "regulator",
+      "source": "Diodes AP63200/1/3/5 datasheet, absolute maximum ratings: VIN and EN -0.3 to +35 V DC, VSW -1 V to VIN + 0.3 V.",
+      "abs_max": {
+        "VIN": 35.0,
+        "EN": 35.0
+      }
+    },
+    "SMAJ18A": {
+      "kind": "tvs",
+      "source": "JUXING / Littelfuse SMAJ series: SMAJ18A VWM 18 V, VBR 20.0-22.1 V at 1 mA, VC 29.2 V at IPP 13.7 A.",
+      "vwm": 18.0,
+      "vbr": [
+        20.0,
+        22.1
+      ],
+      "vc": 29.2
+    },
+    "SMAJ15A": {
+      "kind": "tvs",
+      "source": "Littelfuse SMAJ series datasheet: SMAJ15A VWM 15 V, VBR 16.7-18.5 V at 1 mA, VC 24.4 V at IPP 16.4 A.",
+      "vwm": 15.0,
+      "vbr": [
+        16.7,
+        18.5
+      ],
+      "vc": 24.4
     }
   }
 }

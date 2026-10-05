@@ -60,7 +60,7 @@ Qué comprueba cada regla: [README del simulador](README.md).
 |---|---|
 | BREW_CURRENT | VREF 2.425 V; regulación a 1.01 A; 2.400 V/A; 0.34 mA/LSB |
 | NTC | 0 °C → 3.212 V, 150 °C → 0.537 V; 90 °C: 1.600 V, 0.032 °C/LSB; 125 °C: 0.863 V, 0.050 °C/LSB |
-| RAIL_12V | 18 V → 0.857 V; fondo de escala 69.3 V; 16.9 mV/LSB |
+| RAIL_12V | 15 V → 0.714 V; fondo de escala 69.3 V; 16.9 mV/LSB |
 | RAIL_24V | 28 V → 1.333 V; fondo de escala 69.3 V; 16.9 mV/LSB |
 
 ## Excitación en el peor caso

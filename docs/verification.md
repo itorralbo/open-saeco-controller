@@ -786,3 +786,25 @@ Resultado: ERC 0 en las dos placas; netlist 192/625; DRC con todas las
 severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1333
 segmentos y 443 vías, 150 de cosido); modelo de placa 0 errores y 0 avisos;
 `tests/sim` 38/38. Sin hardware fabricado ni ensayado.
+
+## TVS del rail de 12 V, 2026-10-05
+
+La regla nueva `tvs` del modelo de placa compara cada TVS con su rail: VWM por
+encima del máximo estable (`rail_range`) y VBR máxima por debajo del máximo
+absoluto de cada pin de alimentación del rail (`abs_max` en
+`sim/reference/devices.json`) y de las cargas externas (`external_limits`).
+Encontró un error:
+
+- **D302, SMAJ18A** en `12V_PROTECTED`: VBR de 20,0 a 22,1 V. El VDD de U502
+  (UCC27517) admite 20 V como máximo absoluto (TI SLUSAY4D, 8.1) y el Digmesa de
+  J106.3 se alimenta de 3,8 a 20 V; un transitorio entre 20 y 22 V no lo frenaba.
+
+Corrección: **SMAJ15A** de Littelfuse (C148216, Extended; 5.699 en stock hoy):
+VWM 15 V, por encima de los 12,5 V máximos del rail; VBR de 16,7 a 18,5 V y
+VC 24,4 V a 16,4 A. A plena corriente de pico la pinza sigue pasando de 20 V; el
+rail solo lo alimentan U303 y una fuente de banco certificada por J101, y la
+pinza protege frente a los transitorios de baja energía del enchufe en caliente.
+Misma huella SMA. La entrada `RAIL_12V` del contrato pasa a 15 V de fondo.
+
+Resultado: ERC 0; netlist 192/625; DRC 0 infracciones y 0 sin conectar, paridad
+solo MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 39/39.

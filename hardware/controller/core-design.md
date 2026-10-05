@@ -72,7 +72,9 @@ J101 usa un JST XH vertical de dos contactos (B2B-XH-A, `C158012`): `12V_BENCH_R
 recibir 12 V DC de una fuente AC/DC aislada y certificada; no admite conexión a
 red. F305 (1 A) protege su rama y D307 (SS34) bloquea polaridad inversa y la une
 a `12V_PROTECTED` en OR con la salida de U303, que llega por F301 y D301. D302
-(SMAJ18A) limita transitorios antes del regulador.
+(SMAJ15A) limita transitorios antes del regulador: empieza a conducir entre 16,7 y
+18,5 V, por debajo de los 20 V máximos del VDD de U502 y del caudalímetro de J106.
+Hasta el 2026-10-05 era un SMAJ18A, que no conduce hasta 20–22,1 V.
 
 En la máquina, PS701 (IRM-30-24) da `24V_INTERNAL_RAW`, que J121, puenteado de
 fábrica, une a `24V_ACT_RAW`: de ahí salen el motor del grupo, la válvula, la

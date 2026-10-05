@@ -35,7 +35,7 @@ F301,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,E
 D301,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 F305,1A / 72VDC bench,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D307,SS34 / bench OR,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
-D302,SMAJ18A,Diode_SMD:D_SMA,candidate,JUXING,SMAJ18A,C5356039,Extended,Economic and Standard
+D302,SMAJ15A,Diode_SMD:D_SMA,candidate,Littelfuse,SMAJ15A,C148216,Extended,TBD
 C301,10uF / 25V input,Capacitor_SMD:C_0805_2012Metric,candidate,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,Basic,Economic and Standard
 C302,100nF / input HF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 U301,AP63203WU-7,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63203WU-7,C780769,Extended,Economic and Standard

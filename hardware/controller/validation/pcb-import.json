@@ -1,5 +1,5 @@
 {
-  "status": "new_footprints_staged_not_fabricable",
+  "status": "synchronized_preserving_existing_placement_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -772,11 +772,8 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [
-    "D307",
-    "F305"
-  ],
-  "tracks": 1771,
+  "newly_staged_footprints": [],
+  "tracks": 1776,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

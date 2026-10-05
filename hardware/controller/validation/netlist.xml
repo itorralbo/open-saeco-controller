@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-05T17:34:46</date>
+    <date>2026-10-05T17:39:50</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -1723,24 +1723,24 @@
       </units>
     </comp>
     <comp ref="D302">
-      <value>SMAJ18A</value>
+      <value>SMAJ15A</value>
       <footprint>Diode_SMD:D_SMA</footprint>
       <fields>
-        <field name="manufacturer">JUXING</field>
-        <field name="mpn">SMAJ18A</field>
-        <field name="lcsc">C5356039</field>
+        <field name="manufacturer">Littelfuse</field>
+        <field name="mpn">SMAJ15A</field>
+        <field name="lcsc">C148216</field>
         <field name="jlc_class">Extended</field>
-        <field name="pcba_type">Economic and Standard</field>
+        <field name="pcba_type">TBD</field>
         <field name="Footprint">Diode_SMD:D_SMA</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="DIODE" description=""/>
-      <property name="manufacturer" value="JUXING"/>
-      <property name="mpn" value="SMAJ18A"/>
-      <property name="lcsc" value="C5356039"/>
+      <property name="manufacturer" value="Littelfuse"/>
+      <property name="mpn" value="SMAJ15A"/>
+      <property name="lcsc" value="C148216"/>
       <property name="jlc_class" value="Extended"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
