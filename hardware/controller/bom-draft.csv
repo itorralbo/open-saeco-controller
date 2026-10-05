@@ -152,7 +152,7 @@ R302,330k / 12V FB high,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603W
 R303,24k / 12V FB low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF2402T5E,C23352,Basic,Economic and Standard
 C314,56pF / feed-forward,Capacitor_SMD:C_0603_1608Metric,candidate,AIDE CAPACITOR,0603C0G560J500NT,C49326334,Extended,Economic and Standard
 U603,SN74LVC2G08DCTR,Package_SO:SSOP-8_2.95x2.8mm_P0.65mm,candidate,Texas Instruments,SN74LVC2G08DCTR,C352973,Extended,TBD
-Q701,SI2308A / relay coil,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,Extended,TBD
+Q701,BSS138LT1G / relay coil,Package_TO_SOT_SMD:SOT-23,candidate,onsemi,BSS138LT1G,C82045,Extended,TBD
 C603,100nF / arm gate local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R722,10k / mains arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R801,33 / relay gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
@@ -162,7 +162,7 @@ K701,G5RL-1A-E-TV8 DC24,OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8,candidate_not_r
 R711,10k / heater arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R707,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R708,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
-Q705,SI2308A / heater opto LED,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,Extended,TBD
+Q705,BSS138LT1G / heater opto LED,Package_TO_SOT_SMD:SOT-23,candidate,onsemi,BSS138LT1G,C82045,Extended,TBD
 R709,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 U701,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R710,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
@@ -172,7 +172,7 @@ U604,SN74LVC2G08DCTR,Package_SO:SSOP-8_2.95x2.8mm_P0.65mm,candidate,Texas Instru
 C604,100nF / pump gate local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R714,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R715,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
-Q706,SI2308A / pump opto LED,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,Extended,TBD
+Q706,BSS138LT1G / pump opto LED,Package_TO_SOT_SMD:SOT-23,candidate,onsemi,BSS138LT1G,C82045,Extended,TBD
 R716,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 U702,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R712,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
@@ -180,7 +180,7 @@ Q704,BTA24-800BWRG / pump,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicro
 R717,10k / grinder arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R718,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R719,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
-Q707,SI2308A / grinder opto LED,Package_TO_SOT_SMD:SOT-23,candidate,UMW,SI2308A,C347491,Extended,TBD
+Q707,BSS138LT1G / grinder opto LED,Package_TO_SOT_SMD:SOT-23,candidate,onsemi,BSS138LT1G,C82045,Extended,TBD
 R720,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 U703,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard

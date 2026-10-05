@@ -54,7 +54,7 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
 
 - Etapas de calentador (U701/Q703), bomba (U702/Q704) y molinillo
   (U703/Q708/F703/BR701): MOC3083 de cruce por cero y BTA24 tras K701, con el
-  LED de cada opto gobernado por un SI2308A desde 12 V. Órdenes PC5, PB11 y PC4
+  LED de cada opto gobernado por un BSS138LT1G desde 12 V. Órdenes PC5, PB11 y PC4
   a través de U603/U604. Detalle en
   [power-architecture.md](../power/power-architecture.md).
 
@@ -271,8 +271,9 @@ queda dentro de los 10–220 pF que admite.
 
 K701 es un relé Omron G5RL-1A-E-TV8 DC24 normalmente abierto. Sus dos pads COM y
 sus dos pads NO se mantienen duplicados para repartir corriente. U603 exige a la
-vez `STM_NRST` inactivo y `MAINS_ARM_RAW`; Q701 excita la bobina y D701 absorbe su
-energía. `LOAD_L_ENABLED` es la única fase que llega a los triacs de calentador,
+vez `STM_NRST` inactivo y `MAINS_ARM_RAW`; Q701 (BSS138LT1G, especificado a
+VGS = 2,75 V, porque su puerta sale de los 3,3 V de U603) excita la bobina y D701
+absorbe su energía. `LOAD_L_ENABLED` es la única fase que llega a los triacs de calentador,
 bomba y molino. El dimensionado final depende aún de medir los motores y revisar
 el calentador de 1900 W.
 

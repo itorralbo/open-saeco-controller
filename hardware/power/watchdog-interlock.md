@@ -57,6 +57,15 @@ GPIO fallen en alto. Mantener NRST bajo desde SWD también deshabilita las carga
   caso debe llevar a cero `BREW_SLEEP_DRV`, `VALVE_EN_DRV`, el relé K701 y las
   tres órdenes de red.
 
+El [simulador](../../sim/README.md) (F1) ejecuta el bucle del firmware contra
+este circuito con los tiempos del extremo desfavorable: el firmware sano no
+provoca resets con un time-out de 0,9 s, un núcleo colgado se resetea antes de
+2,5 s y las órdenes que un núcleo desbocado deja activas caen en el mismo paso en
+que U601 baja `STM_NRST`. También modela que el TPS3828 sin sufijo A deja RESET
+enclavado si WDI recibe flancos mientras está activo; con el STM32 en reset PB4
+queda en alta impedancia y R602 lo mantiene bajo, así que no ocurre. No sustituye
+al ensayo anterior.
+
 Fuentes: [TPS3828/TPS382x de TI](https://www.ti.com/lit/ds/symlink/tps3823.pdf),
 [SN74LVC2G08 de TI](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf),
 [TPS3828-33DBVR en LCSC](https://www.lcsc.com/product-detail/C20032.html) y

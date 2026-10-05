@@ -112,8 +112,12 @@ Números que hay que respetar:
 
 El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde
 3,3 V con las resistencias del catálogo no se llega con margen. Se usa el mismo
-patrón que la válvula y el relé: un MOSFET SI2308A (Q705) gobernado por la
-segunda puerta AND de U603. La resistencia de puerta del triac, en cambio, ve hasta
+patrón que el relé: un MOSFET BSS138LT1G (Q705) gobernado por la
+segunda puerta AND de U603. La puerta recibe 3,3 V, así que el MOSFET tiene que
+estar especificado a esa tensión: el BSS138LT1G garantiza 10 Ω a VGS = 2,75 V
+(VGS(th) máx. 1,5 V). El SI2308A que hubo hasta el 2026-10-05 solo está
+especificado desde 4,5 V y su VGS(th) llega a 3 V; lo detectó la comprobación de
+excitación del simulador. La resistencia de puerta del triac, en cambio, ve hasta
 325 V de pico y ninguna de las resistencias 0603 del catálogo está calificada
 para esa tensión. **Resuelto 2026-09-22:** R710 es una Panasonic ERJ-P08J391V
 (LCSC C2086379), 1206 antisobretensión de 0,66 W con 500 V de tensión límite de
@@ -202,7 +206,7 @@ Topología, la de la original con dos cambios de pieza:
    nada y además arranca el motor con tensión mínima. El VOT8125AG de disparo
    aleatorio sigue sin existencias.
 5. R721, la misma ERJ-P08 de 390 Ω en la puerta, y el mismo driver de LED desde
-   12 V: Q707 (SI2308A), R718 33 Ω, R719 100 kΩ y R720 1 kΩ.
+   12 V: Q707 (BSS138LT1G), R718 33 Ω, R719 100 kΩ y R720 1 kΩ.
 6. PC4 da la orden `GRINDER_EN_RAW` a la segunda puerta de U604, que la anula
    mientras `STM_NRST` esté bajo. R717 la mantiene a cero en el arranque.
 

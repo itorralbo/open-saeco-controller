@@ -696,3 +696,38 @@ Corrección:
 Resultado: ERC 0 en las dos placas; netlist 188/614; DRC con todas las
 severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3; modelo de
 placa 0 errores y 0 avisos. Sin hardware fabricado ni ensayado.
+
+## Simulador F1 y MOSFET del relé y de los optos, 2026-10-05
+
+F1 del [simulador](../sim/README.md): modelo DC por conmutación de las dos placas
+desde los netlists, con los límites de cada CI y transistor en
+`sim/reference/devices.json` (fuente por pieza), la regla `drive` en el peor caso
+de los rails y el firmware del STM32 (controlador, BSP y bucle principal nuevos
+sobre `osc_hal.h`) ejecutado en host contra la placa virtual, con U601 y una
+planta sencilla.
+
+Su primera pasada encontró un error en la principal:
+
+- **Q701, Q705, Q706 y Q707** (relé K701 y LED de U701–U703) eran SI2308A con la
+  puerta a 3,3 V desde U603/U604. UMW solo especifica RDS(on) a VGS = 4,5 V y
+  10 V, y VGS(th) llega a 3 V a 250 µA: con 3,2 V de puerta no está garantizado
+  que conduzcan los 17 mA de la bobina ni los 10 mA del LED (IFT 5 mA). Con los
+  rails al mínimo, las cuatro órdenes de red quedaban indefinidas.
+
+Corrección: los cuatro pasan a **BSS138LT1G** de onsemi (C82045, Extended; 550.029
+en stock hoy): VGS(th) 0,5–1,5 V, 10 Ω como máximo a VGS = 2,75 V con ID < 200 mA
+y 50 V de VDS para los 28 V del relé. Misma huella SOT-23 y mismo pinout
+(1 G, 2 S, 3 D): colocación y ruteo intactos. Q501, la válvula, conserva el
+SI2308A porque el UCC27517 le da 12 V de puerta. Márgenes en el peor caso: VGS
+3,20 V ≥ 2,75 V, IF de los optos 9,5 mA ≥ 5 mA, bobina de K701 a 21,5 V ≥ 16,8 V.
+
+Escenarios de F1 en verde: arranque en las dos esquinas, watchdog sin resets con
+time-out de 0,9 s, reset de un núcleo colgado antes de 2,5 s, corte por el
+interlock de las órdenes de un núcleo desbocado en el mismo paso, *dead battery*
+de UCPD, caldera/NTC, grupo/IPROPI (2,4 V/A) y flancos del caudalímetro. La planta
+usa valores supuestos donde falta caracterización.
+
+Resultado: ERC 0 en las dos placas; netlist 188/614; DRC: 0 infracciones,
+0 sin conectar y paridad solo MH1–MH3; modelo de placa 0 errores y 0 avisos;
+tests de `tests/sim` 33/33 (24 de modelo y mutación, 9 de F1); CTest 2/2. Sin
+hardware fabricado ni ensayado.

@@ -30,6 +30,14 @@
         "36": "RXD0", "37": "TXD0", "38": "IO2", "39": "IO1", "40": "GND", "41": "GND|EP_GND"
       }
     },
+    "SI2308A": {
+      "source": "UMW SI2308A datasheet, Nov 2024, 3 pinning information (SOT-23).",
+      "pins": {"1": "G", "2": "S", "3": "D"}
+    },
+    "BSS138LT1G": {
+      "source": "onsemi BSS138LT1/D, SOT-23 case 318 style 21: 1 gate, 2 source, 3 drain.",
+      "pins": {"1": "G", "2": "S", "3": "D"}
+    },
     "UCC27517DBVR": {
       "source": "TI SLUSAY4D, section 7 Pin Configuration and Functions, UCC27517 DBV.",
       "pins": {"1": "VDD", "2": "GND", "3": "IN+", "4": "IN-", "5": "OUT"}

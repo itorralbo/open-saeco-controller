@@ -62,3 +62,19 @@ Qué comprueba cada regla: [README del simulador](README.md).
 | NTC | 0 °C → 3.212 V, 150 °C → 0.537 V; 90 °C: 1.600 V, 0.032 °C/LSB; 125 °C: 0.863 V, 0.050 °C/LSB |
 | RAIL_12V | 18 V → 0.857 V; fondo de escala 69.3 V; 16.9 mV/LSB |
 | RAIL_24V | 28 V → 1.333 V; fondo de escala 69.3 V; 16.9 mV/LSB |
+
+## Excitación en el peor caso
+
+Cada orden activa con los rails al mínimo (sim/osc_sim/drive.py): lo que cambia de estado y su margen frente al punto que garantiza el fabricante (sim/reference/devices.json).
+
+| Señal | Carga | Cadena |
+|---|---|---|
+| BREW_DIR | J108.2 | U501 fwd: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 3.17 V (VIH 1.5 V) |
+| BREW_PWM | J108.1 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
+| BREW_SLEEP_N | J108.1 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
+| GRINDER_EN | J115.1 | Q707 VGS 3.20 V ≥ 2.75 V; Q708 disparado; U703 IF 9.5 mA ≥ 5 mA |
+| HEATER_EN | J116.1 | Q703 disparado; Q705 VGS 3.20 V ≥ 2.75 V; U701 IF 9.5 mA ≥ 5 mA |
+| MAINS_ARM | Q703.A2 | K701 bobina 21.5 V ≥ 16.8 V; Q701 VGS 3.20 V ≥ 2.75 V |
+| PUMP_EN | J117.1 | Q704 disparado; Q706 VGS 3.20 V ≥ 2.75 V; U702 IF 9.5 mA ≥ 5 mA |
+| UI_PWR_EN | J104.1 | U302 ON 3.20 V ≥ 1.0 V |
+| VALVE_EN | J113.2 | Q501 VGS 11.00 V ≥ 4.5 V; U502 IN+ 3.17 V ≥ 2.4 V |

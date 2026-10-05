@@ -4716,7 +4716,7 @@
 				)
 			)
 		)
-		(property "Value" "SI2308A / heater opto LED"
+		(property "Value" "BSS138LT1G / heater opto LED"
 			(at 0 2.4 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -4762,7 +4762,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UMW"
+		(property "manufacturer" "onsemi"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -4774,7 +4774,7 @@
 				)
 			)
 		)
-		(property "mpn" "SI2308A"
+		(property "mpn" "BSS138LT1G"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -4786,7 +4786,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C347491"
+		(property "lcsc" "C82045"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -16376,7 +16376,7 @@
 				)
 			)
 		)
-		(property "Value" "SI2308A / relay coil"
+		(property "Value" "BSS138LT1G / relay coil"
 			(at 0 2.4 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -16422,7 +16422,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UMW"
+		(property "manufacturer" "onsemi"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -16434,7 +16434,7 @@
 				)
 			)
 		)
-		(property "mpn" "SI2308A"
+		(property "mpn" "BSS138LT1G"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -16446,7 +16446,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C347491"
+		(property "lcsc" "C82045"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -23392,7 +23392,7 @@
 				)
 			)
 		)
-		(property "Value" "SI2308A / pump opto LED"
+		(property "Value" "BSS138LT1G / pump opto LED"
 			(at 0 2.4 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -23438,7 +23438,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UMW"
+		(property "manufacturer" "onsemi"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -23450,7 +23450,7 @@
 				)
 			)
 		)
-		(property "mpn" "SI2308A"
+		(property "mpn" "BSS138LT1G"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -23462,7 +23462,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C347491"
+		(property "lcsc" "C82045"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36428,7 +36428,7 @@
 				)
 			)
 		)
-		(property "Value" "SI2308A / grinder opto LED"
+		(property "Value" "BSS138LT1G / grinder opto LED"
 			(at 0 2.4 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -36474,7 +36474,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UMW"
+		(property "manufacturer" "onsemi"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36486,7 +36486,7 @@
 				)
 			)
 		)
-		(property "mpn" "SI2308A"
+		(property "mpn" "BSS138LT1G"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36498,7 +36498,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C347491"
+		(property "lcsc" "C82045"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

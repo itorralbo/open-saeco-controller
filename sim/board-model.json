@@ -4496,8 +4496,8 @@
   },
   "controller:Q701": {
    "part": "NMOS_SOT23",
-   "value": "SI2308A / relay coil",
-   "mpn": "SI2308A",
+   "value": "BSS138LT1G / relay coil",
+   "mpn": "BSS138LT1G",
    "pins": {
     "1": {
      "symbol": "G",
@@ -4562,8 +4562,8 @@
   },
   "controller:Q705": {
    "part": "NMOS_SOT23",
-   "value": "SI2308A / heater opto LED",
-   "mpn": "SI2308A",
+   "value": "BSS138LT1G / heater opto LED",
+   "mpn": "BSS138LT1G",
    "pins": {
     "1": {
      "symbol": "G",
@@ -4584,8 +4584,8 @@
   },
   "controller:Q706": {
    "part": "NMOS_SOT23",
-   "value": "SI2308A / pump opto LED",
-   "mpn": "SI2308A",
+   "value": "BSS138LT1G / pump opto LED",
+   "mpn": "BSS138LT1G",
    "pins": {
     "1": {
      "symbol": "G",
@@ -4606,8 +4606,8 @@
   },
   "controller:Q707": {
    "part": "NMOS_SOT23",
-   "value": "SI2308A / grinder opto LED",
-   "mpn": "SI2308A",
+   "value": "BSS138LT1G / grinder opto LED",
+   "mpn": "BSS138LT1G",
    "pins": {
     "1": {
      "symbol": "G",

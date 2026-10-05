@@ -636,7 +636,7 @@ PC5 llega desde el STM32 por el bus de órdenes (ver
 ### Etapa de la bomba (JP24)
 
 Es gemela de la del calentador y usa las mismas piezas: MOC3083 (U702), BTA24
-(Q704), una ERJ-P08 de 390 Ω como resistencia de puerta (R712) y un SI2308A
+(Q704), una ERJ-P08 de 390 Ω como resistencia de puerta (R712) y un BSS138LT1G
 (Q706) para el LED desde 12 V. Por qué el mismo opto de cruce por cero, y no uno
 de disparo aleatorio, se explica en
 [power-architecture.md](../power/power-architecture.md#etapa-de-la-bomba).
@@ -722,7 +722,7 @@ Colocada y ruteada el 2026-09-23, primero sobre 1 A de marcha supuesto y ese
 mismo día redimensionada a 3 A; ver
 [power-architecture.md](../power/power-architecture.md#etapa-del-molinillo).
 Las piezas son las del calentador y la bomba: MOC3083 (U703), BTA24 (Q708), una
-ERJ-P08 de 390 Ω (R721) y un SI2308A (Q707). Además lleva el puente KBP410
+ERJ-P08 de 390 Ω (R721) y un BSS138LT1G (Q707). Además lleva el puente KBP410
 (BR701) y el fusible T4A (F703).
 
 Colocación:

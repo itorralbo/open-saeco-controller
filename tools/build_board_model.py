@@ -49,6 +49,11 @@ def report(checker):
                    f'{r.reset_level or ""} | {path} |')
     out += ['', '## Entradas analógicas', '', '| Señal | Resultado |', '|---|---|']
     out += [f'| {name} | {text} |' for name, text in checker.analog]
+    out += ['', '## Excitación en el peor caso', '',
+            'Cada orden activa con los rails al mínimo (sim/osc_sim/drive.py): lo que cambia de estado y su margen '
+            'frente al punto que garantiza el fabricante (sim/reference/devices.json).', '',
+            '| Señal | Carga | Cadena |', '|---|---|---|']
+    out += [f'| {name} | {load.split(":")[1]} | {text} |' for name, load, text in sorted(checker.drive_rows)]
     return '\n'.join(out) + '\n'
 
 

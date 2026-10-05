@@ -8,7 +8,8 @@ esperará al final del layout para buscar referencias.
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,
 huella candidata, categoría, modalidad de montaje, URL y fecha de consulta.
-Existencias de la tabla consultadas el **2026-10-01** en la API pública de
+Existencias de la tabla consultadas el **2026-10-01** (el BSS138LT1G, el
+2026-10-05) en la API pública de
 búsqueda de JLCPCB con `tools/refresh_jlc_stock.py` (cada pieza lleva su fecha
 en el catálogo), sin iniciar sesión ni hacer compras.
 Son una instantánea, no una reserva.
@@ -25,6 +26,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 29.786 | 29.550 | Extended; categoría JLC por verificar |
 | Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 52.619 | 50.161 | Extended; categoría JLC por verificar |
 | MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 517.787 | 515.535 | Extended; categoría JLC por verificar |
+| MOSFET del relé y de los LED de los optos | onsemi BSS138LT1G, 50 V/200 mA, 10 Ω a VGS 2,75 V | [C82045](https://jlcpcb.com/partdetail/C82045) | 550.029 | 547.356 | Extended; categoría PCBA por verificar |
 | Conector JP3 | HR A2506WV-05P, 5 vías/2,50 mm, vertical | [C382535](https://jlcpcb.com/partdetail/C382535) | 3 | 0 | Extended; categoría JLC por verificar |
 | Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 65.914 | 65.843 | Extended; categoría JLC por verificar |
 | Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 34.655 | 34.618 | Extended; categoría JLC por verificar |

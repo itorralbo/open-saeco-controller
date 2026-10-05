@@ -2192,7 +2192,7 @@
 <text x="745.89" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">HEATER_EN_INTERLOCK</text>
 <rect x="730.25" y="711.1999999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="735.33" y="706.1999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">Q701</text>
-<text x="735.33" y="708.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / relay coil</text>
+<text x="735.33" y="708.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">BSS138LT1G / relay coil</text>
 <path d="M 730.25 716.28 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="716.5799999999999" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
 <text x="728.3100000000001" y="715.78" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2295,7 +2295,7 @@
 <text x="947.8199999999999" y="891.04" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="994.41" y="875.03" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="999.49" y="870.03" font-size="1.05" text-anchor="middle" fill="#213b50">Q705</text>
-<text x="999.49" y="872.53" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / heater opto LED</text>
+<text x="999.49" y="872.53" font-size="1.05" text-anchor="middle" fill="#213b50">BSS138LT1G / heater opto LED</text>
 <path d="M 994.41 880.11 H 989.33" stroke="#27856d" stroke-width=".22"/>
 <text x="995.11" y="880.41" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
 <text x="992.47" y="879.61" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2432,7 +2432,7 @@
 <text x="947.8199999999999" y="981.21" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="994.41" y="965.1999999999999" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="999.49" y="960.1999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">Q706</text>
-<text x="999.49" y="962.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / pump opto LED</text>
+<text x="999.49" y="962.6999999999999" font-size="1.05" text-anchor="middle" fill="#213b50">BSS138LT1G / pump opto LED</text>
 <path d="M 994.41 970.28 H 989.33" stroke="#27856d" stroke-width=".22"/>
 <text x="995.11" y="970.5799999999999" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
 <text x="992.47" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2526,7 +2526,7 @@
 <text x="947.8199999999999" y="1071.38" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="994.41" y="1055.3700000000001" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="999.49" y="1050.3700000000001" font-size="1.05" text-anchor="middle" fill="#213b50">Q707</text>
-<text x="999.49" y="1052.8700000000001" font-size="1.05" text-anchor="middle" fill="#213b50">SI2308A / grinder opto LED</text>
+<text x="999.49" y="1052.8700000000001" font-size="1.05" text-anchor="middle" fill="#213b50">BSS138LT1G / grinder opto LED</text>
 <path d="M 994.41 1060.45 H 989.33" stroke="#27856d" stroke-width=".22"/>
 <text x="995.11" y="1060.75" font-size="0.9" text-anchor="start" fill="#213b50">G</text>
 <text x="992.47" y="1059.95" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>

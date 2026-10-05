@@ -22,3 +22,12 @@ else()
   target_compile_options(test_board_pins PRIVATE -Wall -Wextra -Werror -pedantic)
 endif()
 add_test(NAME board_pins_distinct COMMAND test_board_pins)
+# BSP and main loop on the simulator's host HAL (sim/README.md, F1); the
+# tests in tests/sim build the same sources with sim/osc_sim/firmware.py.
+add_library(osc_sim_fw SHARED src/controller.c src/bsp.c src/app.c ../../sim/hal/hal_sim.c)
+target_include_directories(osc_sim_fw PRIVATE include ../../sim/hal)
+if(MSVC)
+  target_compile_options(osc_sim_fw PRIVATE /W4 /WX)
+else()
+  target_compile_options(osc_sim_fw PRIVATE -Wall -Wextra -Werror -pedantic)
+endif()

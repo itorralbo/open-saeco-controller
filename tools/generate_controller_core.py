@@ -579,9 +579,14 @@ def main():
           ['MAINS_ARM_RAW','STM_NRST','HEATER_EN_RAW','STM_NRST',v,g,
            'MAINS_RELAY_EN','HEATER_EN_INTERLOCK'],
           'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
-    d.add('Q701','NMOS_SOT23','SI2308A / relay coil',735,716,
+    # The relay and opto-LED switches take their gate straight from a 3.3 V
+    # LVC2G08 output, so they need a MOSFET specified at that drive: the
+    # BSS138LT1G guarantees 10 ohm at VGS = 2.75 V (VGS(th) 1.5 V max) and
+    # 50 V for the relay's 28 V. The SI2308A that was here is only specified
+    # from VGS = 4.5 V and its VGS(th) reaches 3 V (F1 drive check).
+    d.add('Q701','NMOS_SOT23','BSS138LT1G / relay coil',735,716,
           ['MAINS_RELAY_GATE',g,'MAINS_RELAY_RETURN'],
-          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
     d.passive('C603','C','100nF / arm gate local',800,660,v,g)
     d.passive('R722','R','10k / mains arm pull-down',680,640,'MAINS_ARM_RAW',g)
     d.passive('R801','R','33 / relay gate',680,704,'MAINS_RELAY_EN','MAINS_RELAY_GATE')
@@ -597,9 +602,9 @@ def main():
     d.passive('R711','R','10k / heater arm pull-down',880,872,'HEATER_EN_RAW',g)
     d.passive('R707','R','33 / opto LED gate',940,872,'HEATER_EN_INTERLOCK','HEATER_LED_GATE')
     d.passive('R708','R','100k / opto LED off',940,892,'HEATER_LED_GATE',g)
-    d.add('Q705','NMOS_SOT23','SI2308A / heater opto LED',1000,880,
+    d.add('Q705','NMOS_SOT23','BSS138LT1G / heater opto LED',1000,880,
           ['HEATER_LED_GATE',g,'HEATER_LED_RETURN'],
-          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
     d.passive('R709','R','1k / opto LED series',1060,872,'12V_PROTECTED','HEATER_LED_ANODE')
     d.add('U701','OPTO_TRIAC','MOC3083 / zero-cross',1120,880,
           # Pins 4 and 6 are the two ends of the same output triac, so they
@@ -638,9 +643,9 @@ def main():
     d.passive('C604','C','100nF / pump gate local',940,1010,v,g)
     d.passive('R714','R','33 / opto LED gate',940,962,'PUMP_EN_INTERLOCK','PUMP_LED_GATE')
     d.passive('R715','R','100k / opto LED off',940,982,'PUMP_LED_GATE',g)
-    d.add('Q706','NMOS_SOT23','SI2308A / pump opto LED',1000,970,
+    d.add('Q706','NMOS_SOT23','BSS138LT1G / pump opto LED',1000,970,
           ['PUMP_LED_GATE',g,'PUMP_LED_RETURN'],
-          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
     d.passive('R716','R','1k / opto LED series',1060,962,'12V_PROTECTED','PUMP_LED_ANODE')
     d.add('U702','OPTO_TRIAC','MOC3083 / zero-cross',1120,970,
           # Here the feed takes pin 6, nearest R712, and the gate pin 4.
@@ -667,9 +672,9 @@ def main():
     d.passive('R717','R','10k / grinder arm pull-down',880,1052,'GRINDER_EN_RAW',g)
     d.passive('R718','R','33 / opto LED gate',940,1052,'GRINDER_EN_INTERLOCK','GRINDER_LED_GATE')
     d.passive('R719','R','100k / opto LED off',940,1072,'GRINDER_LED_GATE',g)
-    d.add('Q707','NMOS_SOT23','SI2308A / grinder opto LED',1000,1060,
+    d.add('Q707','NMOS_SOT23','BSS138LT1G / grinder opto LED',1000,1060,
           ['GRINDER_LED_GATE',g,'GRINDER_LED_RETURN'],
-          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:SI2308A_60V')
+          'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
     d.passive('R720','R','1k / opto LED series',1060,1052,'12V_PROTECTED','GRINDER_LED_ANODE')
     d.add('U703','OPTO_TRIAC','MOC3083 / zero-cross',1120,1060,
           ['GRINDER_LED_ANODE','GRINDER_LED_RETURN',None,'GRINDER_GATE_FEED',

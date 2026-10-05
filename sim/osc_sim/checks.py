@@ -8,7 +8,7 @@ import math
 import re
 from dataclasses import dataclass, field
 
-from . import dc, parts
+from . import dc, drive, parts
 from .model import Node
 
 
@@ -44,6 +44,7 @@ class Checker:
         self.findings = []
         self.signals = {}  # (mcu, name) -> Resolved
         self.analog = []   # report rows
+        self.drive_rows = []  # (signal, load, margins) at the low corner
 
     def add(self, severity, code, message, *where):
         self.findings.append(Finding(severity, code, message, [str(w) for w in where]))
@@ -63,6 +64,7 @@ class Checker:
             self.check_analog(r)
         self.check_keypad()
         self.check_ui_domain()
+        drive.check(self)
         order = {'error': 0, 'warning': 1, 'info': 2}
         self.findings.sort(key=lambda f: order[f.severity])
         return self.findings

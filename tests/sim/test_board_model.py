@@ -148,6 +148,26 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'U101', '29', None)  # VDDA
         self.expect(b, 'supply-pad', 'U101.29')
 
+    def test_mosfet_not_specified_at_3v3(self):
+        b = baseline()  # the SI2308A is only specified from VGS = 4.5 V
+        b['controller'].components['Q705'].fields['mpn'] = 'SI2308A'
+        self.expect(b, 'drive', 'HEATER_EN')
+
+    def test_opto_led_below_ift(self):
+        b = baseline()
+        b['controller'].components['R709'].value = '3.3k'
+        self.expect(b, 'drive', 'U701: IF')
+
+    def test_relay_coil_below_must_operate(self):
+        b = baseline()
+        set_net(b['controller'], 'K701', '1', '12V_PROTECTED')
+        self.expect(b, 'drive', 'K701: bobina')
+
+    def test_gate_output_overloaded(self):
+        b = baseline()
+        b['controller'].components['R512'].value = '100'
+        self.expect(b, 'drive-current', 'U602.2Y')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

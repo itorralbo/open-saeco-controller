@@ -437,6 +437,21 @@
       "url": "https://www.lcsc.com/product-detail/C347491.html",
       "selection": "candidate_not_released"
     },
+    "MOSFET:BSS138LT1G_50V": {
+      "manufacturer": "onsemi",
+      "mpn": "BSS138LT1G",
+      "lcsc": "C82045",
+      "specification": "50V 200mA N-channel MOSFET, VGS(th) 0.5-1.5V, 10ohm max at VGS 2.75V; logic-level switch for the 3.3V interlock outputs",
+      "footprint": "Package_TO_SOT_SMD:SOT-23",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 550029,
+      "available_order_qty_observed": 547356,
+      "stock_checked_on": "2026-10-05",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C82045",
+      "selection": "candidate_not_released"
+    },
     "CONN:HR_A2506WV_5_V": {
       "manufacturer": "HR(Joint Tech Elec)",
       "mpn": "A2506WV-05P",

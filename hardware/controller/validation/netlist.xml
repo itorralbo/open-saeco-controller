@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <export version="E">
   <design>
-    <source>C:\Developer\open-saeco-controller\hardware\controller\kicad\controller-core-reva.kicad_sch</source>
-    <date>2026-10-01T22:43:13</date>
+    <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
+    <date>2026-10-05T16:10:02</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2952,12 +2952,12 @@
       </units>
     </comp>
     <comp ref="Q701">
-      <value>SI2308A / relay coil</value>
+      <value>BSS138LT1G / relay coil</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
       <fields>
-        <field name="manufacturer">UMW</field>
-        <field name="mpn">SI2308A</field>
-        <field name="lcsc">C347491</field>
+        <field name="manufacturer">onsemi</field>
+        <field name="mpn">BSS138LT1G</field>
+        <field name="lcsc">C82045</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
@@ -2965,9 +2965,9 @@
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="NMOS_SOT23" description=""/>
-      <property name="manufacturer" value="UMW"/>
-      <property name="mpn" value="SI2308A"/>
-      <property name="lcsc" value="C347491"/>
+      <property name="manufacturer" value="onsemi"/>
+      <property name="mpn" value="BSS138LT1G"/>
+      <property name="lcsc" value="C82045"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -3051,12 +3051,12 @@
       </units>
     </comp>
     <comp ref="Q705">
-      <value>SI2308A / heater opto LED</value>
+      <value>BSS138LT1G / heater opto LED</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
       <fields>
-        <field name="manufacturer">UMW</field>
-        <field name="mpn">SI2308A</field>
-        <field name="lcsc">C347491</field>
+        <field name="manufacturer">onsemi</field>
+        <field name="mpn">BSS138LT1G</field>
+        <field name="lcsc">C82045</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
@@ -3064,9 +3064,9 @@
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="NMOS_SOT23" description=""/>
-      <property name="manufacturer" value="UMW"/>
-      <property name="mpn" value="SI2308A"/>
-      <property name="lcsc" value="C347491"/>
+      <property name="manufacturer" value="onsemi"/>
+      <property name="mpn" value="BSS138LT1G"/>
+      <property name="lcsc" value="C82045"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -3084,12 +3084,12 @@
       </units>
     </comp>
     <comp ref="Q706">
-      <value>SI2308A / pump opto LED</value>
+      <value>BSS138LT1G / pump opto LED</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
       <fields>
-        <field name="manufacturer">UMW</field>
-        <field name="mpn">SI2308A</field>
-        <field name="lcsc">C347491</field>
+        <field name="manufacturer">onsemi</field>
+        <field name="mpn">BSS138LT1G</field>
+        <field name="lcsc">C82045</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
@@ -3097,9 +3097,9 @@
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="NMOS_SOT23" description=""/>
-      <property name="manufacturer" value="UMW"/>
-      <property name="mpn" value="SI2308A"/>
-      <property name="lcsc" value="C347491"/>
+      <property name="manufacturer" value="onsemi"/>
+      <property name="mpn" value="BSS138LT1G"/>
+      <property name="lcsc" value="C82045"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -3117,12 +3117,12 @@
       </units>
     </comp>
     <comp ref="Q707">
-      <value>SI2308A / grinder opto LED</value>
+      <value>BSS138LT1G / grinder opto LED</value>
       <footprint>Package_TO_SOT_SMD:SOT-23</footprint>
       <fields>
-        <field name="manufacturer">UMW</field>
-        <field name="mpn">SI2308A</field>
-        <field name="lcsc">C347491</field>
+        <field name="manufacturer">onsemi</field>
+        <field name="mpn">BSS138LT1G</field>
+        <field name="lcsc">C82045</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:SOT-23</field>
@@ -3130,9 +3130,9 @@
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="NMOS_SOT23" description=""/>
-      <property name="manufacturer" value="UMW"/>
-      <property name="mpn" value="SI2308A"/>
-      <property name="lcsc" value="C347491"/>
+      <property name="manufacturer" value="onsemi"/>
+      <property name="mpn" value="BSS138LT1G"/>
+      <property name="lcsc" value="C82045"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
