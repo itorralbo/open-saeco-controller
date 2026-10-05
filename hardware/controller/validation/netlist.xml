@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-05T17:39:50</date>
+    <date>2026-10-05T17:43:36</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -5138,21 +5138,21 @@
       <value>1k / opto LED series</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1001T5E</field>
-        <field name="lcsc">C21190</field>
-        <field name="jlc_class">Basic</field>
-        <field name="pcba_type">Economic and Standard</field>
+        <field name="manufacturer">ROHM Semicon</field>
+        <field name="mpn">ESR03EZPF1001</field>
+        <field name="lcsc">C2653986</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">TBD</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
-      <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1001T5E"/>
-      <property name="lcsc" value="C21190"/>
-      <property name="jlc_class" value="Basic"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="manufacturer" value="ROHM Semicon"/>
+      <property name="mpn" value="ESR03EZPF1001"/>
+      <property name="lcsc" value="C2653986"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -5362,21 +5362,21 @@
       <value>1k / opto LED series</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1001T5E</field>
-        <field name="lcsc">C21190</field>
-        <field name="jlc_class">Basic</field>
-        <field name="pcba_type">Economic and Standard</field>
+        <field name="manufacturer">ROHM Semicon</field>
+        <field name="mpn">ESR03EZPF1001</field>
+        <field name="lcsc">C2653986</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">TBD</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
-      <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1001T5E"/>
-      <property name="lcsc" value="C21190"/>
-      <property name="jlc_class" value="Basic"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="manufacturer" value="ROHM Semicon"/>
+      <property name="mpn" value="ESR03EZPF1001"/>
+      <property name="lcsc" value="C2653986"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -5490,21 +5490,21 @@
       <value>1k / opto LED series</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
       <fields>
-        <field name="manufacturer">UNI-ROYAL</field>
-        <field name="mpn">0603WAF1001T5E</field>
-        <field name="lcsc">C21190</field>
-        <field name="jlc_class">Basic</field>
-        <field name="pcba_type">Economic and Standard</field>
+        <field name="manufacturer">ROHM Semicon</field>
+        <field name="mpn">ESR03EZPF1001</field>
+        <field name="lcsc">C2653986</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">TBD</field>
         <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="R" description=""/>
-      <property name="manufacturer" value="UNI-ROYAL"/>
-      <property name="mpn" value="0603WAF1001T5E"/>
-      <property name="lcsc" value="C21190"/>
-      <property name="jlc_class" value="Basic"/>
-      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="manufacturer" value="ROHM Semicon"/>
+      <property name="mpn" value="ESR03EZPF1001"/>
+      <property name="lcsc" value="C2653986"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>

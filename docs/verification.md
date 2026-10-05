@@ -808,3 +808,22 @@ Misma huella SMA. La entrada `RAIL_12V` del contrato pasa a 15 V de fondo.
 
 Resultado: ERC 0; netlist 192/625; DRC 0 infracciones y 0 sin conectar, paridad
 solo MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 39/39.
+
+## Potencia de las resistencias de LED de los optos, 2026-10-05
+
+La regla nueva `resistor-power` compara la potencia de cada resistencia en el
+peor estado (rails al máximo; órdenes activas, inactivas y en reset) con la
+nominal de su pieza del catálogo o, si no la tiene, de su tamaño de huella, y
+avisa por encima del 60 %. Encontró un error:
+
+- **R709, R716 y R720** (1 kΩ en serie con el LED de U701–U703 desde
+  `12V_PROTECTED`) eran UNI-ROYAL 0603WAF1001T5E de 100 mW y disipan hasta
+  120 mW con 12,5 V.
+
+Corrección: **ROHM ESR03EZPF1001** (C2653986, 1 kΩ 1 %, 0603 anti-sobretensión
+de 250 mW, Extended; 68.914 en stock hoy). Misma huella; la PCB solo cambia de
+campos. La corriente de los LED no cambia (9,5–11,5 mA). Las demás resistencias
+quedan por debajo del 60 %.
+
+Resultado: ERC 0; netlist 192/625; DRC 0 infracciones y 0 sin conectar, paridad
+solo MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 40/40.

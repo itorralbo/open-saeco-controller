@@ -198,6 +198,11 @@ class Mutations(unittest.TestCase):
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'
         self.expect(b, 'tvs', 'U502.VDD')
 
+    def test_resistor_over_its_rating(self):
+        b = baseline()  # the catalogue's 100 mW 1k back in the 12 V LED feed
+        b['controller'].components['R709'].fields['lcsc'] = 'C21190'
+        self.expect(b, 'resistor-power', 'R709')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

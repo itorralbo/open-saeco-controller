@@ -9229,7 +9229,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UNI-ROYAL"
+		(property "manufacturer" "ROHM Semicon"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -9241,7 +9241,7 @@
 				)
 			)
 		)
-		(property "mpn" "0603WAF1001T5E"
+		(property "mpn" "ESR03EZPF1001"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -9253,7 +9253,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C21190"
+		(property "lcsc" "C2653986"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -9265,7 +9265,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Basic"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -9277,7 +9277,7 @@
 				)
 			)
 		)
-		(property "pcba_type" "Economic and Standard"
+		(property "pcba_type" "TBD"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24402,7 +24402,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UNI-ROYAL"
+		(property "manufacturer" "ROHM Semicon"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24414,7 +24414,7 @@
 				)
 			)
 		)
-		(property "mpn" "0603WAF1001T5E"
+		(property "mpn" "ESR03EZPF1001"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24426,7 +24426,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C21190"
+		(property "lcsc" "C2653986"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24438,7 +24438,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Basic"
+		(property "jlc_class" "Extended"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
@@ -24450,7 +24450,7 @@
 				)
 			)
 		)
-		(property "pcba_type" "Economic and Standard"
+		(property "pcba_type" "TBD"
 			(at 0 0 270)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36604,7 +36604,7 @@
 				)
 			)
 		)
-		(property "manufacturer" "UNI-ROYAL"
+		(property "manufacturer" "ROHM Semicon"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36616,7 +36616,7 @@
 				)
 			)
 		)
-		(property "mpn" "0603WAF1001T5E"
+		(property "mpn" "ESR03EZPF1001"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36628,7 +36628,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C21190"
+		(property "lcsc" "C2653986"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36640,7 +36640,7 @@
 				)
 			)
 		)
-		(property "jlc_class" "Basic"
+		(property "jlc_class" "Extended"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -36652,7 +36652,7 @@
 				)
 			)
 		)
-		(property "pcba_type" "Economic and Standard"
+		(property "pcba_type" "TBD"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

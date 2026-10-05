@@ -631,7 +631,10 @@ def main():
     d.add('Q705','NMOS_SOT23','BSS138LT1G / heater opto LED',1000,880,
           ['HEATER_LED_GATE',g,'HEATER_LED_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
-    d.passive('R709','R','1k / opto LED series',1060,872,'12V_PROTECTED','HEATER_LED_ANODE')
+    # Up to 120 mW from 12.5 V into the LED: a 250 mW anti-surge 0603, as the
+    # 100 mW part of the catalogue would be overloaded (F1 resistor-power).
+    d.add('R709','R','1k / opto LED series',1060,872,['12V_PROTECTED','HEATER_LED_ANODE'],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:1k_0603_250mW')
     d.add('U701','OPTO_TRIAC','MOC3083 / zero-cross',1120,880,
           # Pins 4 and 6 are the two ends of the same output triac, so they
           # are interchangeable. U701 sits at the top of the optocoupler stack
@@ -672,7 +675,8 @@ def main():
     d.add('Q706','NMOS_SOT23','BSS138LT1G / pump opto LED',1000,970,
           ['PUMP_LED_GATE',g,'PUMP_LED_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
-    d.passive('R716','R','1k / opto LED series',1060,962,'12V_PROTECTED','PUMP_LED_ANODE')
+    d.add('R716','R','1k / opto LED series',1060,962,['12V_PROTECTED','PUMP_LED_ANODE'],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:1k_0603_250mW')
     d.add('U702','OPTO_TRIAC','MOC3083 / zero-cross',1120,970,
           # Here the feed takes pin 6, nearest R712, and the gate pin 4.
           ['PUMP_LED_ANODE','PUMP_LED_RETURN',None,'PUMP_GATE_FEED',
@@ -701,7 +705,8 @@ def main():
     d.add('Q707','NMOS_SOT23','BSS138LT1G / grinder opto LED',1000,1060,
           ['GRINDER_LED_GATE',g,'GRINDER_LED_RETURN'],
           'Package_TO_SOT_SMD:SOT-23',part_key='MOSFET:BSS138LT1G_50V')
-    d.passive('R720','R','1k / opto LED series',1060,1052,'12V_PROTECTED','GRINDER_LED_ANODE')
+    d.add('R720','R','1k / opto LED series',1060,1052,['12V_PROTECTED','GRINDER_LED_ANODE'],
+          'Resistor_SMD:R_0603_1608Metric',part_key='R:1k_0603_250mW')
     d.add('U703','OPTO_TRIAC','MOC3083 / zero-cross',1120,1060,
           ['GRINDER_LED_ANODE','GRINDER_LED_RETURN',None,'GRINDER_GATE_FEED',
            None,'GRINDER_TRIAC_GATE'],

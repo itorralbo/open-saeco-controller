@@ -5725,7 +5725,7 @@
   "controller:R709": {
    "part": "R",
    "value": "1k / opto LED series",
-   "mpn": "0603WAF1001T5E",
+   "mpn": "ESR03EZPF1001",
    "pins": {
     "1": {
      "symbol": "",
@@ -5844,7 +5844,7 @@
   "controller:R716": {
    "part": "R",
    "value": "1k / opto LED series",
-   "mpn": "0603WAF1001T5E",
+   "mpn": "ESR03EZPF1001",
    "pins": {
     "1": {
      "symbol": "",
@@ -5912,7 +5912,7 @@
   "controller:R720": {
    "part": "R",
    "value": "1k / opto LED series",
-   "mpn": "0603WAF1001T5E",
+   "mpn": "ESR03EZPF1001",
    "pins": {
     "1": {
      "symbol": "",

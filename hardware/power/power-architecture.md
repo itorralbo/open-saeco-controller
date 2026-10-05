@@ -109,7 +109,8 @@ Números que hay que respetar:
 | Corriente de carga | 8,36 A eficaces |
 | Disipación estimada del triac | ≈ 8 W |
 | Resistencia térmica máxima del disipador | ≈ 5 °C/W |
-| Corriente del LED del opto | 10,5 mA desde 12 V con 1 kΩ |
+| Corriente del LED del opto | 10,5 mA desde 12 V con 1 kΩ (9,5–11,5 mA en el peor caso) |
+| Potencia en la resistencia del LED | hasta 120 mW: ROHM ESR03EZPF1001, 0603 de 250 mW |
 | Pico por la puerta con 390 Ω (R710) | 0,83 A, por debajo del 1 A admisible del opto |
 
 El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde

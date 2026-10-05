@@ -126,6 +126,7 @@ def check(checker):
     check_edges(checker, bench)
     check_pin_voltage(checker, bench)
     check_inputs(checker, bench)
+    check_resistor_power(checker, bench)
 
 
 def margins(bench, active, inactive):
@@ -291,3 +292,53 @@ def check_inputs(checker, bench):
                                 f'{mcu}.{name} ({r.pin}): {state}, con {CORNER_NAME[corner]}, el pad queda a '
                                 f'{shown} (VIL {p["vil_frac"] * vdd:.2f} V, VIH {p["vih_frac"] * vdd:.2f} V).',
                                 r.pad)
+
+
+RATING_BY_FOOTPRINT = {'0402': 0.0625, '0603': 0.1, '0805': 0.125, '1206': 0.25}
+POWER_WARN = 0.6  # of the rating: thick-film derating used for the warning
+
+
+def check_resistor_power(checker, bench):
+    """Every resistor under its rated power in the worst steady state.
+
+    The rating comes from the catalogued part (hardware/assembly/
+    parts-catalog.json, 'NNNmW' or 'N.NN W') or from the footprint size. Mains
+    nets have no DC value in the model and are not covered here.
+    """
+    import json
+    import re
+    s = checker.s
+    catalog = json.loads((s.root / 'hardware/assembly/parts-catalog.json').read_text(encoding='utf-8'))['parts']
+    by_code = {p.get('lcsc'): p for p in catalog.values() if p.get('lcsc')}
+    levels = {name: True for (mcu, name), r in checker.signals.items() if mcu == 'stm32' and r.spec.get('drive')}
+    runs = [bench.run(1, levels).lo, bench.run(1, {}).lo, bench.run(1, {}, False, True).lo]
+    for board, b in s.boards.items():
+        for ref, comp in sorted(b.components.items()):
+            if comp.part != 'R':
+                continue
+            ohms = netlist.resistance(comp.value)
+            if not ohms:
+                continue
+            part = by_code.get(comp.fields.get('lcsc'), {})
+            m = re.search(r'(\d+(?:\.\d+)?)\s*(m?)W\b', part.get('specification', ''))
+            if m:
+                rating = float(m.group(1)) / (1000 if m.group(2) else 1)
+            else:
+                size = re.search(r'_(\d{4})_', comp.fields.get('Footprint', '') or '')
+                rating = RATING_BY_FOOTPRINT.get(size.group(1)) if size else None
+            if not rating:
+                continue
+            a, c = (s.net_of(Node(board, ref, n)) for n in sorted(comp.pins))
+            watts = 0.0
+            for run in runs:
+                va, vc = run.volts.get(a), run.volts.get(c)
+                if va is not None and vc is not None:
+                    watts = max(watts, (va - vc) ** 2 / ohms)
+            if watts > rating:
+                checker.add('error', 'resistor-power',
+                            f'{ref} ({comp.value}) disipa {watts * 1000:.0f} mW con los rails al máximo; '
+                            f'su potencia nominal es {rating * 1000:.0f} mW.', f'{board}:{ref}')
+            elif watts > POWER_WARN * rating:
+                checker.add('warning', 'resistor-power',
+                            f'{ref} ({comp.value}) disipa {watts * 1000:.0f} mW, el {watts / rating:.0%} de sus '
+                            f'{rating * 1000:.0f} mW nominales.', f'{board}:{ref}')

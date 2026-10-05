@@ -46,6 +46,21 @@
       "url": "https://jlcpcb.com/partdetail/C21190",
       "selection": "candidate_not_released"
     },
+    "R:1k_0603_250mW": {
+      "manufacturer": "ROHM Semicon",
+      "mpn": "ESR03EZPF1001",
+      "lcsc": "C2653986",
+      "specification": "1k 1% 250mW 0603 anti-surge thick film; opto LED series from 12V (120 mW worst case)",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 68914,
+      "available_order_qty_observed": 68639,
+      "stock_checked_on": "2026-10-05",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C2653986",
+      "selection": "candidate_not_released"
+    },
     "R:100k": {
       "manufacturer": "UNI-ROYAL",
       "mpn": "0603WAF1003T5E",
