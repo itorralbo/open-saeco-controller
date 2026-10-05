@@ -760,3 +760,29 @@ severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1326
 segmentos y 445 vías, 153 de cosido); modelo de placa 0 errores y 0 avisos;
 `tests/sim` 35/35. Serigrafía, PDF 1:1 y render regenerados. Sin hardware
 fabricado ni ensayado.
+
+## J101 en OR con U303 y tres reglas nuevas del simulador, 2026-10-05
+
+Reglas nuevas del modelo de placa: `back-feed` (una entrada de alimentación
+externa no puede llegar por bobinas o fusibles al nodo de conmutación de un
+buck), `pin-voltage` (ningún pin de MCU por encima de su máximo absoluto, con
+los rails y VBUS al máximo) e `input-level` (cada entrada activa a cero lee sus
+dos estados en las dos esquinas). Las dos últimas pasan sin cambios; la primera
+encontró un error en la principal:
+
+- **J101** estaba en `12V_ISO_RAW`, el nodo de salida de U303 (AP63200). Con la
+  placa alimentada por J101 sin 24 V, L302 lleva esos 12 V al nodo SW con VIN
+  sin alimentar: Diodes limita VSW a VIN + 0,3 V y el diodo interno del MOSFET
+  alto devolvía tensión a `24V_ACT_RAW`. La documentación lo tenía como
+  pregunta abierta.
+
+Corrección: J101 pasa a `12V_BENCH_RAW` y entra a `12V_PROTECTED` por su propio
+fusible F305 (1 A/72 V, el de F301) y Schottky D307 (SS34, el de D301), en OR con
+U303 por F301/D301. D307 también bloquea la polaridad inversa. En la PCB, J101.1
+pasa en B.Cu bajo la salida del buck hasta F305, y D307 llega al pad de C301;
+las dos redes nuevas están en la clase Power.
+
+Resultado: ERC 0 en las dos placas; netlist 192/625; DRC con todas las
+severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1333
+segmentos y 443 vías, 150 de cosido); modelo de placa 0 errores y 0 avisos;
+`tests/sim` 38/38. Sin hardware fabricado ni ensayado.

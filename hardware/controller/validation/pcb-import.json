@@ -234,6 +234,10 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D307": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "D701": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -251,6 +255,10 @@
       "numbered_pads": 2
     },
     "F304": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F305": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
@@ -765,10 +773,10 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "C605",
-    "U605"
+    "D307",
+    "F305"
   ],
-  "tracks": 1755,
+  "tracks": 1771,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

@@ -231,10 +231,10 @@ def main():
           [esp.get(n) for n in ESP_PINS], 'RF_Module:ESP32-S3-WROOM-1U')
     d.note('GPIO35/36/37 reservados PSRAM. USB nativo en GPIO19/20; GPIO15 detecta VBUS.',195,163)
     d.note('03 / Conexiones internas y programación',390,36,1.8)
-    d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_ISO_RAW',g],
+    d.add('J101','J2','12V_ISOLATED_INPUT / JST XH',440,60,['12V_BENCH_RAW',g],
           'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
           status='candidate', part_key='CONN:JST_XH_2_V')
-    d.add('#FLG101', 'PWR_FLAG', 'Isolated 12V source / J101', 540, 48, ['12V_ISO_RAW'])
+    d.add('#FLG101', 'PWR_FLAG', 'Isolated 12V source / J101', 540, 48, ['12V_BENCH_RAW'])
     d.add('#FLG102', 'PWR_FLAG', 'Isolated return / J101', 540, 61, [g])
     d.add('#FLG103', 'PWR_FLAG', 'Regulated output / U301', 540, 74, [v])
     d.add('#FLG104', 'PWR_FLAG', 'Protected 12V after F301/D301', 540, 87, ['12V_PROTECTED'])
@@ -283,6 +283,14 @@ def main():
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
     d.add('D301','DIODE','SS34',690,58,['12V_FUSED','12V_PROTECTED'],
           'Diode_SMD:D_SMA',part_key='D:SS34')
+    # J101 joins 12V_PROTECTED through its own fuse and Schottky, an OR with
+    # D301. On U303's output node it would drive the buck's switch node above
+    # its unpowered input (VSW abs. max is VIN + 0.3 V) and back-feed
+    # 24V_ACT_RAW through the high-side body diode.
+    d.add('F305','FUSE','1A / 72VDC bench',645,82,['12V_BENCH_RAW','12V_BENCH_FUSED'],
+          'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
+    d.add('D307','DIODE','SS34 / bench OR',690,82,['12V_BENCH_FUSED','12V_PROTECTED'],
+          'Diode_SMD:D_SMA',part_key='D:SS34')
     d.add('D302','DIODE','SMAJ18A',735,58,[g,'12V_PROTECTED'],
           'Diode_SMD:D_SMA',part_key='D:SMAJ18A')
     d.add('C301','C','10uF / 25V input',775,58,['12V_PROTECTED',g],
@@ -301,7 +309,7 @@ def main():
               'Capacitor_SMD:C_0805_2012Metric',part_key='C:22uF_10V_0805')
     d.add('C306','C','100nF / output HF',807,101,[v,g],
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
-    d.note('Fusible + bloqueo de polaridad + TVS. Valores del circuito recomendado Diodes, tabla 2.',610,145,1.2)
+    d.note('Fusible + bloqueo de polaridad + TVS. J101 entra por F305/D307, en OR con U303 por F301/D301.',610,145,1.2)
     d.note('J101 solo desde una fuente AC/DC aislada y certificada; en la máquina los 12V salen de U303 (hoja 15).',610,151,1.2)
     d.note('08 / Corte y descarga del frontal — TPS22918, 2A',610,174,1.8)
     d.add('U302','TPS22918','TPS22918DBVR',690,207,

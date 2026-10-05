@@ -1458,12 +1458,13 @@ def route_debug_header(board):
 
 
 def route_12v_rail(board):
-    """12 V from the AP63200 bank to J101, F301 and every 12 V_PROTECTED load.
+    """12 V from the AP63200 bank to F301, J101 to F305, and every 12 V_PROTECTED load.
 
     The buck output leaves the bank south of C312 and runs west along
-    y = 14 mm, hopping under the 24 V lane, to J101.1. From there it drops
+    y = 14 mm, hopping under the 24 V lane, to x = 96 mm. From there it drops
     beside the former 3.3 V trunk and crosses under the UART channel west of
-    it to F301.1.
+    it to F301.1. J101.1 passes under that run on B.Cu to F305, and D307 ORs
+    the bench supply into the rail at C301.
 
     The protected rail has four islands to join: the buck side, J114.3, D303
     (the USB bench feed) and the load drivers in the south-west. From D301 it
@@ -1489,12 +1490,20 @@ def route_12v_rail(board):
         track(board, netname, a, b, pcb.B_Cu, width=width)
         via(board, netname, b)
 
-    # Buck bank to J101 and on to the fuse.
+    # Buck bank to the fuse. J101 no longer joins it: it has its own fuse
+    # and OR diode into the protected rail, so it never drives U303's output.
     polyline(board, iso, [(139.0, 11.975), (139.0, 14.0), (114.3, 14.0)],
              width=0.5)
     hop(iso, (114.3, 14.0), (110.7, 14.0), 0.5)
-    polyline(board, iso, [(110.7, 14.0), (97.5, 14.0), (96.0, 12.5),
-                          (96.0, 6.0)], width=0.5)
+    polyline(board, iso, [(110.7, 14.0), (97.5, 14.0), (96.0, 12.5)], width=0.5)
+    # J101 under the buck run on B.Cu to F305, then D307 to C301's pad.
+    bench, fused = '/12V_BENCH_RAW', '/12V_BENCH_FUSED'
+    polyline(board, bench, [(96.0, 6.0), (96.0, 8.0), (99.6, 11.6), (99.6, 17.2)],
+             pcb.B_Cu, width=0.5)
+    via(board, bench, (99.6, 17.2), 0.8, 0.4)
+    track(board, bench, (99.6, 17.2), (99.6, 19.0), width=0.5)
+    polyline(board, fused, [(102.4, 19.0), (103.0, 19.6), (103.0, 22.5)], width=0.5)
+    polyline(board, v12, [(107.0, 22.5), (109.05, 24.55), (109.05, 27.0)], width=0.5)
     polyline(board, iso, [(96.0, 12.5), (93.5, 15.0), (93.5, 23.1),
                           (92.1, 24.5)], width=0.5)
     hop(iso, (92.1, 24.5), (86.6, 24.5), 0.5)

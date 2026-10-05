@@ -31,5 +31,9 @@ AND_GATES = {'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')}}
 # Non-inverting buffers: their output carries the input's logic level.
 BUFFERS = {'SCHMITT_BUF': {'Y': 'A'}}
 
+# Switching regulators and the pin that switches; an external supply must not
+# reach it through series parts (back-feed through the high-side body diode).
+SWITCH_NODES = {'AP63200': 'SW', 'AP63203': 'SW'}
+
 SUPPLY_NAMES = {'VDD', 'VCC', 'VM', 'VIN', 'VBAT', '3V3', 'VDDA', 'VREF+'}
 GROUND_NAMES = {'GND', 'VSS', 'VSSA', 'PGND', 'EP', 'PAD', 'EP_GND'}

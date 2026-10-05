@@ -6,7 +6,15 @@
       "source": "ST DS12589 rev 6, table 55 I/O static characteristics and table 56 output voltage characteristics (CMOS port, |IIO| = 8 mA, VDD >= 2.7 V); NRST weak pull-up RPU.",
       "vih_frac": 0.7, "vil_frac": 0.3,
       "voh_drop": 0.4, "vol": 0.4, "io_max": 0.008,
-      "nrst_pullup_ohms": [25000, 55000]
+      "nrst_pullup_ohms": [25000, 55000],
+      "vin_max": 4.0, "vin_max_source": "table 19 voltage characteristics: input voltage on pins other than FT_xxx 4.0 V (FT_xxx min(VDD, VDDA) + 4.0 V); 4.0 V is taken for every pin"
+    },
+    "ESP32-S3-WROOM-1U-N8R8": {
+      "kind": "mcu",
+      "source": "Espressif ESP32-S3 datasheet, table 5-4 DC characteristics (3.3 V): VIH 0.75 x VDD, VIL 0.25 x VDD, VIH max VDD + 0.3 V; VOH 0.8 x VDD; IOH 40 mA at 2.64 V with PAD_DRIVER 3 (20 mA taken, the default drive 2); RPU/RPD 45 kOhm.",
+      "vih_frac": 0.75, "vil_frac": 0.25,
+      "voh_drop": 0.66, "vol": 0.495, "io_max": 0.02,
+      "vin_max_over_vdd": 0.3
     },
     "SN74LVC2G08DCTR": {
       "kind": "logic",

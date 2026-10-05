@@ -64,6 +64,7 @@ class Checker:
             self.check_analog(r)
         self.check_keypad()
         self.check_ui_domain()
+        self.check_backfeed()
         drive.check(self)
         order = {'error': 0, 'warning': 1, 'info': 2}
         self.findings.sort(key=lambda f: order[f.severity])
@@ -465,6 +466,41 @@ class Checker:
             k_net = self.s.net_of(self.s.node_by_name(board, led, 'K'))
             if g != k_net:
                 self.add('error', 'keypad', f'{ref}.{port} no gobierna el cátodo de {led}.')
+
+    def check_backfeed(self):
+        """An external supply must not reach a converter's switch node.
+
+        Followed through inductors and fuses, the low-impedance series parts,
+        and not across another rail: a diode or a divider does not back-feed.
+        A synchronous buck's switch node cannot sit above its input (the
+        high-side body diode back-feeds it), so a bench supply on its output
+        node drives the converter outside its absolute ratings.
+        """
+        sw = {}
+        for board, b in self.s.boards.items():
+            for ref, comp in b.components.items():
+                name = parts.SWITCH_NODES.get(comp.part)
+                if name:
+                    sw[self.s.net_of(self.s.node_by_name(board, ref, name))] = f'{ref}.{name}'
+        for pin in self.c.get('external_supplies', {}).get('pins', []):
+            start = self.s.net_of(self.s.endpoint(pin))
+            seen, todo = {start}, [start]
+            while todo:
+                g = todo.pop()
+                if g in sw:
+                    self.add('error', 'back-feed',
+                             f'{pin} llega a {sw[g]} por bobinas o fusibles: con el convertidor sin '
+                             'entrada, la fuente externa pone su nodo de conmutación por encima de VIN.')
+                    break
+                if g in self.s.rails and g != start:
+                    continue
+                for node in self.s.members.get(g, []):
+                    comp = self.s.comp(node.board, node.ref)
+                    if comp.part in ('L', 'FUSE') and len(comp.pins) == 2:
+                        other = self.s.net_of(Node(node.board, node.ref, next(n for n in comp.pins if n != node.pin)))
+                        if other and other not in seen:
+                            seen.add(other)
+                            todo.append(other)
 
     def check_ui_domain(self):
         """Logic pull-ups on another rail than the MCU's: back-feed when it is off."""

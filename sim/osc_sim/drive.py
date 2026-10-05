@@ -124,6 +124,8 @@ def check(checker):
                     f'{label} {name}, con {CORNER_NAME[corner]}.')
     check_limits(checker, bench)
     check_edges(checker, bench)
+    check_pin_voltage(checker, bench)
+    check_inputs(checker, bench)
 
 
 def margins(bench, active, inactive):
@@ -227,3 +229,65 @@ def check_edges(checker, bench):
                         f'{where} en {net.split(":")[1]}: {ohms / 1000:.1f} kΩ con {cs} '
                         f'({farads * 1e9:.0f} nF) dan {rate * 1e6:.1f} µs/V en la transición; la entrada no '
                         f'tiene histéresis y admite {limit * 1e9:.0f} ns/V. Hace falta un buffer Schmitt.')
+
+
+def check_pin_voltage(checker, bench):
+    """No MCU pin above its absolute maximum, at the high corner, in any state."""
+    s = checker.s
+    levels = {name: True for (mcu, name), r in checker.signals.items()
+              if mcu == 'stm32' and r.spec.get('drive')}
+    runs = [bench.run(1, levels).lo, bench.run(1, {}).lo, bench.run(1, {}, False, True).lo]
+    rails = bench.rails(1)
+    for mcu, spec in checker.c['mcus'].items():
+        p = bench.circuit.mcus[mcu]
+        board, ref = spec['ref'].split(':')
+        vdd = rails[s.find(spec['vdd'])]
+        limit = p.get('vin_max') or vdd + p['vin_max_over_vdd']
+        for num in s.comp(board, ref).pins:
+            node = Node(board, ref, num)
+            net = s.net_of(node)
+            if net is None or net in rails:
+                continue
+            worst = max((r.volts.get(net) or 0.0) for r in runs)
+            if worst > limit:
+                checker.add('error', 'pin-voltage',
+                            f'{mcu}: {ref}.{num} ({s.physical_name(node)}) llega a {worst:.2f} V en '
+                            f'{net.split(":")[1]}, por encima de {limit:.2f} V.', node)
+
+
+SWITCH_OHMS = 50.0  # a closed contact or a saturated open collector, pessimistic
+
+
+def check_inputs(checker, bench):
+    """Every active-low digital input reads both states at both corners.
+
+    The source ('from') is shorted to ground through SWITCH_OHMS for the
+    active state and left open for the idle one; the MCU pad must then sit
+    below VIL and above VIH of that MCU.
+    """
+    s = checker.s
+    gnd = bench.circuit.gnd
+    # Outputs that idle on (the front-panel supply) stay on, as after boot.
+    idle = {n: True for (m, n), x in checker.signals.items() if m == 'stm32' and x.spec.get('reset') == 'high'}
+    for (mcu, name), r in sorted(checker.signals.items()):
+        if r.pad is None or r.function not in ('gpio_in', 'tim_in') or r.spec.get('active') != 'low':
+            continue
+        src = r.spec.get('from', '')
+        if src.split(':')[0] in checker.c['mcus']:
+            continue
+        a = s.net_of(s.endpoint(src))
+        pad = s.net_of(r.pad)
+        p = bench.circuit.mcus[mcu]
+        for corner in CORNERS:
+            vdd = bench.rails(corner)[s.find(checker.c['mcus'][mcu]['vdd'])]
+            for closed in (True, False):
+                extra = [('r', a, gnd, SWITCH_OHMS)] if closed else []
+                v = bench.run(corner, idle, True, False, extra_loads=extra).lo.volts.get(pad)
+                ok = v is not None and (v <= p['vil_frac'] * vdd if closed else v >= p['vih_frac'] * vdd)
+                if not ok:
+                    state = 'activa' if closed else 'en reposo'
+                    shown = 'flotante' if v is None else f'{v:.2f} V'
+                    checker.add('error', 'input-level',
+                                f'{mcu}.{name} ({r.pin}): {state}, con {CORNER_NAME[corner]}, el pad queda a '
+                                f'{shown} (VIL {p["vil_frac"] * vdd:.2f} V, VIH {p["vih_frac"] * vdd:.2f} V).',
+                                r.pad)

@@ -438,7 +438,7 @@
 <path d="M 434.34000000000003 58.42 H 429.26" stroke="#27856d" stroke-width=".22"/>
 <text x="435.04" y="58.72" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="432.40000000000003" y="57.92" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="428.86" y="57.92" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<text x="428.86" y="57.92" font-size="0.9" text-anchor="end" fill="#23745f">12V_BENCH_RAW</text>
 <path d="M 434.34000000000003 62.23 H 429.26" stroke="#27856d" stroke-width=".22"/>
 <text x="435.04" y="62.529999999999994" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="432.40000000000003" y="61.73" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
@@ -449,7 +449,7 @@
 <path d="M 537.21 48.26 H 532.13" stroke="#27856d" stroke-width=".22"/>
 <text x="537.91" y="48.559999999999995" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
 <text x="535.27" y="47.76" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="531.73" y="47.76" font-size="0.9" text-anchor="end" fill="#23745f">12V_ISO_RAW</text>
+<text x="531.73" y="47.76" font-size="0.9" text-anchor="end" fill="#23745f">12V_BENCH_RAW</text>
 <rect x="537.21" y="59.69" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="539.75" y="54.69" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG102</text>
 <text x="539.75" y="57.19" font-size="1.05" text-anchor="middle" fill="#213b50">Isolated return / J101</text>
@@ -804,6 +804,28 @@
 <text x="691.45" y="58.72" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
 <text x="694.09" y="57.92" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
 <text x="697.63" y="57.92" font-size="0.9" text-anchor="start" fill="#23745f">12V_PROTECTED</text>
+<rect x="642.62" y="81.05" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="645.16" y="76.05" font-size="1.05" text-anchor="middle" fill="#213b50">F305</text>
+<text x="645.16" y="78.55" font-size="1.05" text-anchor="middle" fill="#213b50">1A / 72VDC bench</text>
+<path d="M 642.62 82.55 H 637.54" stroke="#27856d" stroke-width=".22"/>
+<text x="643.3199999999999" y="82.85" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="640.6800000000001" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="637.14" y="82.05" font-size="0.9" text-anchor="end" fill="#23745f">12V_BENCH_RAW</text>
+<path d="M 647.6999999999999 82.55 H 652.78" stroke="#27856d" stroke-width=".22"/>
+<text x="647.0" y="82.85" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="649.64" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="653.18" y="82.05" font-size="0.9" text-anchor="start" fill="#23745f">12V_BENCH_FUSED</text>
+<rect x="687.07" y="81.05" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="689.61" y="76.05" font-size="1.05" text-anchor="middle" fill="#213b50">D307</text>
+<text x="689.61" y="78.55" font-size="1.05" text-anchor="middle" fill="#213b50">SS34 / bench OR</text>
+<path d="M 687.07 82.55 H 681.99" stroke="#27856d" stroke-width=".22"/>
+<text x="687.77" y="82.85" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="685.13" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="681.59" y="82.05" font-size="0.9" text-anchor="end" fill="#23745f">12V_BENCH_FUSED</text>
+<path d="M 692.15 82.55 H 697.23" stroke="#27856d" stroke-width=".22"/>
+<text x="691.45" y="82.85" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
+<text x="694.09" y="82.05" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="697.63" y="82.05" font-size="0.9" text-anchor="start" fill="#23745f">12V_PROTECTED</text>
 <rect x="732.7900000000001" y="56.92" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="735.33" y="51.92" font-size="1.05" text-anchor="middle" fill="#213b50">D302</text>
 <text x="735.33" y="54.42" font-size="1.05" text-anchor="middle" fill="#213b50">SMAJ18A</text>
@@ -895,7 +917,7 @@
 <text x="798.4300000000001" y="101.1" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 808.99 101.6 H 814.07" stroke="#27856d" stroke-width=".22"/>
 <text x="814.47" y="101.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<text x="610" y="145" font-size="1.2" text-anchor="start" fill="#213b50">Fusible + bloqueo de polaridad + TVS. Valores del circuito recomendado Diodes, tabla 2.</text>
+<text x="610" y="145" font-size="1.2" text-anchor="start" fill="#213b50">Fusible + bloqueo de polaridad + TVS. J101 entra por F305/D307, en OR con U303 por F301/D301.</text>
 <text x="610" y="151" font-size="1.2" text-anchor="start" fill="#213b50">J101 solo desde una fuente AC/DC aislada y certificada; en la máquina los 12V salen de U303 (hoja 15).</text>
 <text x="610" y="174" font-size="1.8" text-anchor="start" fill="#213b50">08 / Corte y descarga del frontal — TPS22918, 2A</text>
 <rect x="684.53" y="200.66" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>

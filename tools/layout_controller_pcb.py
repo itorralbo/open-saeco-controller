@@ -338,6 +338,8 @@ PLACE = {
     # F301 moved west to open the gap between it and D301: the 3.3 V spine
     # climbs there, and the fused link needs room for its own via.
     'F301': (85, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
+    # J101's own fuse and OR diode, east of the buck output's run to F301.
+    'F305': (101, 19, 0), 'D307': (105, 22.5, 180),
     'C301': (110, 27, 0), 'U301': (97, 36, 0),
     # C302 is the switcher's input HF capacitor, so it sits under the package
     # bridging the input pins to the ground pin instead of 8 mm away by C301.

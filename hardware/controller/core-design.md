@@ -68,18 +68,21 @@ ninguna vía del arnés Saeco.
 
 ## Alimentación y arranque
 
-J101 usa un JST XH vertical de dos contactos (B2B-XH-A, `C158012`): `12V_ISO_RAW` y `GND_UI`. Debe
+J101 usa un JST XH vertical de dos contactos (B2B-XH-A, `C158012`): `12V_BENCH_RAW` y `GND_UI`. Debe
 recibir 12 V DC de una fuente AC/DC aislada y certificada; no admite conexión a
-red. F301 (1 A) protege la rama, D301 (SS34) bloquea polaridad inversa y D302
+red. F305 (1 A) protege su rama y D307 (SS34) bloquea polaridad inversa y la une
+a `12V_PROTECTED` en OR con la salida de U303, que llega por F301 y D301. D302
 (SMAJ18A) limita transitorios antes del regulador.
 
 En la máquina, PS701 (IRM-30-24) da `24V_INTERNAL_RAW`, que J121, puenteado de
 fábrica, une a `24V_ACT_RAW`: de ahí salen el motor del grupo, la válvula, la
-bobina de K701 y U303, que baja a 12 V sobre la misma red `12V_ISO_RAW` que J101.
+bobina de K701 y U303, que baja a 12 V sobre `12V_ISO_RAW`.
 En banco, J112 inyecta 24 V limitados con J121 abierto, y J101 12 V para la
-lógica sola. J101 comparte nodo con la salida de U303: no hay diodo ni selector
-entre ellos, así que alimentar J101 con 24 V presentes, o sin ellos (U303 puede
-llevar tensión de vuelta a `24V_ACT_RAW`), queda por revisar antes de usarlo.
+lógica sola. Hasta el 2026-10-05 J101 compartía nodo con la salida de U303: sin
+24 V, el nodo SW del AP63200 quedaba por encima de su VIN (máximo absoluto
+VIN + 0,3 V) y su diodo interno devolvía tensión a `24V_ACT_RAW`. Ahora J101 y
+U303 se unen en OR por D307 y D301, y con 24 V presentes manda la tensión más
+alta sin que ninguna fuente alimente a la otra.
 Ver la [arquitectura de alimentación](../power/power-architecture.md).
 
 U301 es un AP63203WU-7 síncrono de salida fija a 3,3 V/2 A. El circuito implementa
@@ -156,7 +159,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 |---|---|---|
 | Fuente aislada | Confirmar IRM-30-24 con los consumos reales (PS-01 a PS-03) | Consumos simultáneos, temperatura interior |
 | Protección de red | Valores de F701/F702, MOV RV701 y filtro EMI | Corriente de falta, inrush e identificación de L5/L7 de la original |
-| Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; revisar J101 frente a U303 | Presupuesto de corriente y prototipo cargado |
+| Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; J101 en OR con U303 por D307/D301 | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Comprobar enumeración y consumo de banco | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Ensayar el [watchdog e interlock implementados](../power/watchdog-interlock.md) | Firmware PB4, osciloscopio y análisis de fallos |

@@ -117,7 +117,8 @@ CLASS_NETS = {
         '/USB_DP_DEVICE', '/USB_DM_DEVICE',
     ],
     'Power': [
-        '/12V_ISO_RAW', '/12V_FUSED', '/12V_PROTECTED', '/3V3_CORE', '/3V3_UI',
+        '/12V_ISO_RAW', '/12V_FUSED', '/12V_PROTECTED', '/12V_BENCH_RAW', '/12V_BENCH_FUSED',
+        '/3V3_CORE', '/3V3_UI',
         '/USB_VBUS', '/USB_VBUS_FUSED',
     ],
     'Switching': [

@@ -107,7 +107,11 @@ def main():
         assert nets[ref] == {'1':a,'2':b} and fields[ref]['Value'] == val
     for ref in [f'C{i}' for i in range(102,112)] + ['C202','C203']:
         assert nets[ref] == {'1':v,'2':g}, f'Decoupling missing at {ref}'
-    assert nets['J101'] == {'1':'12V_ISO_RAW','2':g}
+    assert nets['J101'] == {'1':'12V_BENCH_RAW','2':g}
+    # J101 has its own fuse and Schottky into 12V_PROTECTED, OR-ed with the
+    # buck's F301/D301, so it never reaches U303's output.
+    assert nets['F305'] == {'1':'12V_BENCH_RAW','2':'12V_BENCH_FUSED'}
+    assert nets['D307'] == {'2':'12V_BENCH_FUSED','1':'12V_PROTECTED'}
     assert nets['F301'] == {'1':'12V_ISO_RAW','2':'12V_FUSED'}
     assert nets['D301'] == {'2':'12V_FUSED','1':'12V_PROTECTED'}
     assert nets['D302'] == {'2':g,'1':'12V_PROTECTED'}

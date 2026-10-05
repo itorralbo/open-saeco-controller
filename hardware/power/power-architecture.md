@@ -57,9 +57,11 @@ libera todavía el presupuesto en el caso de arranque, atasco o accionamiento
 simultáneo: la selección queda condicionada a medir esos tres casos en la máquina.
 J101 y J112 se conservan como entradas de banco. J121, un puente de soldadura
 que se fabrica cerrado, une la salida de PS701 al rail de 24 V y se abre antes de
-alimentar por J112. J101 no tiene selector: comparte nodo con la salida de U303,
-el buck de 24 V a 12 V, y hay que revisar si U303 lleva tensión de vuelta a
-`24V_ACT_RAW` cuando J101 alimenta sin 24 V.
+alimentar por J112. J101 entra a `12V_PROTECTED` por su propio fusible (F305) y
+Schottky (D307), en OR con la salida de U303 por F301/D301. Antes compartía nodo
+con la salida de U303: alimentado sin 24 V, el nodo SW del AP63200 quedaba por
+encima de su VIN, fuera de su máximo absoluto, y su diodo interno devolvía
+tensión a `24V_ACT_RAW`. Lo detecta la regla `back-feed` del simulador.
 
 ## Cargas conocidas
 

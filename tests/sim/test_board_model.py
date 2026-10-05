@@ -178,6 +178,21 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'U605', '2', '3V3_CORE')
         self.expect(b, 'interlock', 'HEATER_EN')
 
+    def test_vbus_sense_without_lower_divider(self):
+        b = baseline()
+        del b['controller'].components['R226']
+        self.expect(b, 'pin-voltage', 'IO15')
+
+    def test_door_pull_up_too_strong(self):
+        b = baseline()  # a closed contact can no longer pull the line under VIL
+        b['controller'].components['R405'].value = '100'
+        self.expect(b, 'input-level', 'DOOR_CLOSED_N')
+
+    def test_bench_supply_on_the_buck_output(self):
+        b = baseline()  # J101 back on U303's output node, as before 2026-10-05
+        set_net(b['controller'], 'J101', '1', '12V_ISO_RAW')
+        self.expect(b, 'back-feed', 'U303.SW')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')
