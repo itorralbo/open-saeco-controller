@@ -17,20 +17,28 @@ flancos de bajada con un periodo menor que el timeout mínimo de 0,9 s; el valor
 nominal es 1,6 s y el máximo 2,5 s. Tras un fallo, reset permanece activo entre
 120 y 300 ms, 200 ms nominales.
 
+`STM_NRST` sube por R101 (10 kΩ) contra C101 (100 nF): unos 0,5 ms/V. Las
+entradas del `SN74LVC2G08` no tienen histéresis y su hoja pide como mucho
+10 ns/V, así que desde el 2026-10-05 las seis entradas de reset de las AND toman
+`STM_NRST` a través de U605, un buffer Schmitt `SN74LVC1G17DBVR` (`C7836`)
+desacoplado por C605. Su salida es `STM_NRST_BUF`, con flancos limpios; entre
+VT− y VT+ mantiene el último nivel. Lo encontró la regla `slow-edge` del
+simulador.
+
 U602 es un `SN74LVC2G08DCTR` (`C352973`) alimentado a 3,3 V. Implementa:
 
 ```text
-BREW_SLEEP_INTERLOCK = BREW_SLEEP_RAW AND STM_NRST
-VALVE_EN_INTERLOCK   = VALVE_EN_RAW   AND STM_NRST
+BREW_SLEEP_INTERLOCK = BREW_SLEEP_RAW AND STM_NRST_BUF
+VALVE_EN_INTERLOCK   = VALVE_EN_RAW   AND STM_NRST_BUF
 ```
 
 U603 y U604, del mismo tipo, aplican la misma regla al resto:
 
 ```text
-MAINS_RELAY_EN         = MAINS_ARM_RAW  AND STM_NRST   (U603, relé K701)
-HEATER_EN_INTERLOCK    = HEATER_EN_RAW  AND STM_NRST   (U603)
-PUMP_EN_INTERLOCK      = PUMP_EN_RAW    AND STM_NRST   (U604)
-GRINDER_EN_INTERLOCK   = GRINDER_EN_RAW AND STM_NRST   (U604)
+MAINS_RELAY_EN         = MAINS_ARM_RAW  AND STM_NRST_BUF   (U603, relé K701)
+HEATER_EN_INTERLOCK    = HEATER_EN_RAW  AND STM_NRST_BUF   (U603)
+PUMP_EN_INTERLOCK      = PUMP_EN_RAW    AND STM_NRST_BUF   (U604)
+GRINDER_EN_INTERLOCK   = GRINDER_EN_RAW AND STM_NRST_BUF   (U604)
 ```
 
 R603 y R604, ambos de 10 kΩ, mantienen las órdenes brutas a cero al arrancar;
@@ -68,6 +76,7 @@ al ensayo anterior.
 
 Fuentes: [TPS3828/TPS382x de TI](https://www.ti.com/lit/ds/symlink/tps3823.pdf),
 [SN74LVC2G08 de TI](https://www.ti.com/lit/ds/symlink/sn74lvc2g08.pdf),
+[SN74LVC1G17 de TI](https://www.ti.com/lit/ds/symlink/sn74lvc1g17.pdf),
 [TPS3828-33DBVR en LCSC](https://www.lcsc.com/product-detail/C20032.html) y
 [SN74LVC2G08DCTR en LCSC](https://www.lcsc.com/product-detail/C352973.html).
 El 2026-09-19 se observaron 49.065 y 21.000 unidades respectivamente; no son una

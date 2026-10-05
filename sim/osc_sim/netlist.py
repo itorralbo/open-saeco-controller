@@ -88,3 +88,10 @@ def resistance(value):
     if tail:  # 2k4 notation
         base = f'{base}.{tail}'
     return float(base) * _SI[unit]
+
+
+def capacitance(value):
+    """Farads from a value field such as '100nF / local', '4.7uF', '56pF'."""
+    head = value.split('/')[0].strip().replace(',', '.')
+    m = re.fullmatch(r'(\d+(?:\.\d+)?)\s*([pnuµm]?)F?', head)
+    return float(m.group(1)) * _SI[m.group(2)] if m else None

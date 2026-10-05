@@ -8,6 +8,7 @@ The levels come from sim/osc_sim/circuit.py, so a gate below the voltage at
 which its MOSFET is specified, a logic input between VIL and VIH or an opto
 below its IFT shows up here as an undefined load.
 """
+from . import netlist
 from .circuit import ON, OFF, X, Circuit
 from .model import Node
 
@@ -122,6 +123,7 @@ def check(checker):
                     f'{src} entrega {abs(amps) * 1000:.1f} mA (límite {limit * 1000:.0f} mA) cuando '
                     f'{label} {name}, con {CORNER_NAME[corner]}.')
     check_limits(checker, bench)
+    check_edges(checker, bench)
 
 
 def margins(bench, active, inactive):
@@ -180,3 +182,48 @@ def check_limits(checker, bench):
                 checker.add('error', 'drive-limit',
                             f'{d.ref.split(":")[1]}: el drenador llega a {vd:.1f} V (+1 V de rueda libre) '
                             f'con VDS máxima de {p["vds_max"]} V.')
+
+
+def check_edges(checker, bench):
+    """Inputs without hysteresis need fast edges (LVC: 10 ns/V at 3.3 V).
+
+    Each such input's net is an RC: the capacitors on it and the Thevenin
+    resistance seen there, the largest of running, in reset and with U601
+    asserting. Its slope at mid-supply, 2RC/VCC, must stay under the limit.
+    """
+    s = checker.s
+    caps = {}
+    for board, b in s.boards.items():
+        for ref, comp in b.components.items():
+            if comp.part == 'C':
+                farads = netlist.capacitance(comp.value)
+                for num in comp.pins:
+                    net = s.net_of(Node(board, ref, num))
+                    if net and farads:
+                        caps.setdefault(net, []).append((ref, farads))
+    users = {}
+    for d in bench.circuit.devices:
+        if d.kind != 'logic' or 'max_dt_dv' not in d.params:
+            continue
+        for name in ('1A', '1B', '2A', '2B'):
+            net = d.pins[name]
+            if net in caps:
+                users.setdefault(net, []).append((d, name))
+    for net, pins in sorted(users.items()):
+        farads = sum(f for _, f in caps[net])
+        ohms = 0.0
+        for running, sup in ((True, False), (False, False), (True, True)):
+            a = bench.run(0, {}, running, sup).lo.volts.get(net)
+            b = bench.run(0, {}, running, sup, extra_loads=[('i', net, 1e-6)]).lo.volts.get(net)
+            if a is not None and b is not None:
+                ohms = max(ohms, (b - a) / 1e-6)
+        vcc = bench.rails(0)[bench.vdd_net]
+        rate = 2 * ohms * farads / vcc
+        limit = min(d.params['max_dt_dv'] for d, _ in pins)
+        if rate > limit:
+            where = ', '.join(f'{d.ref.split(":")[1]}.{n}' for d, n in pins)
+            cs = ' + '.join(r for r, _ in caps[net])
+            checker.add('error', 'slow-edge',
+                        f'{where} en {net.split(":")[1]}: {ohms / 1000:.1f} kΩ con {cs} '
+                        f'({farads * 1e9:.0f} nF) dan {rate * 1e6:.1f} µs/V en la transición; la entrada no '
+                        f'tiene histéresis y admite {limit * 1e9:.0f} ns/V. Hace falta un buffer Schmitt.')

@@ -66,6 +66,7 @@ Salidas (generadas, no editar):
 | `drive` | Orden que no mueve su carga en el peor caso: activa, inactiva, con el MCU en reset y, si va enclavada, con `STM_NRST` bajo y el pin aún activo, con los rails al mínimo y al máximo |
 | `drive-current` | Salida del MCU o de una puerta que entrega más corriente de la que garantiza su VOH/VOL |
 | `drive-limit` | IF del opto, tensión de bobina o VDS por encima del máximo |
+| `slow-edge` | Entrada lógica sin histéresis en una red RC más lenta que su Δt/Δv máximo |
 
 El modelo usa los pads físicos: cuando un símbolo no sigue su pinout de
 referencia, el modelo se comporta como la placa que se fabricaría, no como el

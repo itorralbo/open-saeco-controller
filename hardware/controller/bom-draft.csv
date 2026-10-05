@@ -122,6 +122,8 @@ R603,10k / brew arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL
 R604,10k / valve pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C601,100nF / supervisor local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C602,100nF / logic local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+U605,SN74LVC1G17DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,SN74LVC1G17DBVR,C7836,Extended,TBD
+C605,100nF / reset buffer local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R701,100k / 12V div A,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 R702,100k / 12V div B,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 R703,10k / 12V div low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard

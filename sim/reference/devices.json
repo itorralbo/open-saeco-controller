@@ -10,8 +10,14 @@
     },
     "SN74LVC2G08DCTR": {
       "kind": "logic",
-      "source": "TI SCES198N, 6.3 recommended operating conditions (VCC 3 V to 3.6 V) and 6.5 electrical characteristics.",
-      "vih": 2.0, "vil": 0.8,
+      "source": "TI SCES198N, 6.3 recommended operating conditions (VCC 3 V to 3.6 V, input transition rate 10 ns/V max; no hysteresis) and 6.5 electrical characteristics.",
+      "vih": 2.0, "vil": 0.8, "max_dt_dv": 1e-8,
+      "voh_drop_100ua": 0.1, "voh_16ma": 2.4, "vol_16ma": 0.4, "io_max": 0.016
+    },
+    "SN74LVC1G17DBVR": {
+      "kind": "schmitt_buffer",
+      "source": "TI SCES351, pin functions (DBV: 1 NC, 2 A, 3 GND, 4 Y, 5 VCC) and table 5-1 at VCC 3 V: VT+ 1.92 V max, VT- 0.89 V min; IOH -100 uA at VCC - 0.1 V, 24 mA drive; Schmitt input, no transition-rate limit.",
+      "vih": 1.92, "vil": 0.89,
       "voh_drop_100ua": 0.1, "voh_16ma": 2.4, "vol_16ma": 0.4, "io_max": 0.016
     },
     "TPS3828-33DBVR": {

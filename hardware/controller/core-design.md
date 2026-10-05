@@ -46,8 +46,8 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   J113 reproduce JP3: pin 1 a +24 V, pin 2 al retorno conmutado y 3–5 sin uso.
   D306 proporciona rueda libre externa.
 - U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
-  `STM_NRST`; U602 solo permite activar `nSLEEP` y la válvula mientras reset esté
-  inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
+  `STM_NRST`; U605 (Schmitt) lo cuadra como `STM_NRST_BUF` y U602 solo permite
+  activar `nSLEEP` y la válvula mientras reset esté inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
 - PF1/ADC2_IN10 y PC1/ADC2_IN7 miden las entradas de 12 V y 24 V mediante
   divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
   señales ADC para medida en banco; no es una entrada de alimentación.
@@ -245,7 +245,10 @@ salida open-drain comparte `STM_NRST`; un timeout de WDI o una caída del rail
 reinicia el STM32. PB4 alimenta WDI mediante R601=33 Ω y R602=1 kΩ a masa evita
 que el watchdog se desactive cuando el GPIO queda en alta impedancia.
 
-U602 (SN74LVC2G08DCTR) combina `STM_NRST` con `BREW_SLEEP_RAW` y
+`STM_NRST` sube por R101 contra C101, unos 0,5 ms/V, y las entradas del
+SN74LVC2G08 sin histéresis piden 10 ns/V como mucho: U605 (SN74LVC1G17DBVR,
+buffer Schmitt, con C605) entrega a las seis entradas de reset `STM_NRST_BUF`.
+U602 (SN74LVC2G08DCTR) combina `STM_NRST_BUF` con `BREW_SLEEP_RAW` y
 `VALVE_EN_RAW`. Si reset está activo, fuerza `BREW_SLEEP_INTERLOCK` y
 `VALVE_EN_INTERLOCK` a cero independientemente del software. R603/R604 mantienen
 las órdenes brutas a cero mientras el MCU arranca. U603 y U604, del mismo tipo,

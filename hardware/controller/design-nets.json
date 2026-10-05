@@ -1936,9 +1936,9 @@
       "pcba_type": "TBD",
       "pins": {
         "1": "BREW_SLEEP_RAW",
-        "2": "STM_NRST",
+        "2": "STM_NRST_BUF",
         "5": "VALVE_EN_RAW",
-        "6": "STM_NRST",
+        "6": "STM_NRST_BUF",
         "8": "3V3_CORE",
         "4": "GND_UI",
         "7": "BREW_SLEEP_INTERLOCK",
@@ -2023,6 +2023,39 @@
     {
       "reference": "C602",
       "value": "100nF / logic local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U605",
+      "value": "SN74LVC1G17DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G17DBVR",
+      "lcsc": "C7836",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "pins": {
+        "2": "STM_NRST",
+        "3": "GND_UI",
+        "1": null,
+        "5": "3V3_CORE",
+        "4": "STM_NRST_BUF"
+      }
+    },
+    {
+      "reference": "C605",
+      "value": "100nF / reset buffer local",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "YAGEO",
@@ -2494,9 +2527,9 @@
       "pcba_type": "TBD",
       "pins": {
         "1": "MAINS_ARM_RAW",
-        "2": "STM_NRST",
+        "2": "STM_NRST_BUF",
         "5": "HEATER_EN_RAW",
-        "6": "STM_NRST",
+        "6": "STM_NRST_BUF",
         "8": "3V3_CORE",
         "4": "GND_UI",
         "7": "MAINS_RELAY_EN",
@@ -2766,9 +2799,9 @@
       "pcba_type": "TBD",
       "pins": {
         "1": "PUMP_EN_RAW",
-        "2": "STM_NRST",
+        "2": "STM_NRST_BUF",
         "5": "GRINDER_EN_RAW",
-        "6": "STM_NRST",
+        "6": "STM_NRST_BUF",
         "8": "3V3_CORE",
         "4": "GND_UI",
         "7": "PUMP_EN_INTERLOCK",

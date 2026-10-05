@@ -286,11 +286,26 @@ class Checker:
                 mine = self.s.physical_name(a)
                 other = next(p for p in gate if p != mine)
                 gates.append((a, self.s.net_of(self.s.node_by_name(a.board, a.ref, other))))
-        if not any(net == want for _, net in gates):
+        if not any(net in self._buffered(want) for _, net in gates):
             found = ', '.join(f'{a.ref} con {net}' for a, net in gates) or 'ninguna puerta'
             self.add('error', 'interlock',
                      f'{r.mcu}.{r.name}: el camino a {r.spec["reaches"]} no pasa por una AND con '
                      f'{self.c["interlock_net"]} ({found}).', r.pad)
+
+    def _buffered(self, net):
+        """The net and every net that carries it through non-inverting buffers."""
+        out, todo = {net}, [net]
+        while todo:
+            g = todo.pop()
+            for node in self.s.members.get(g, []):
+                comp = self.s.comp(node.board, node.ref)
+                for y, a in parts.BUFFERS.get(comp.part, {}).items():
+                    if self.s.physical_name(node) == a:
+                        nxt = self.s.net_of(self.s.node_by_name(node.board, node.ref, y))
+                        if nxt and nxt not in out:
+                            out.add(nxt)
+                            todo.append(nxt)
+        return out
 
     # -- levels ---------------------------------------------------------------
     def _vdd(self, r):

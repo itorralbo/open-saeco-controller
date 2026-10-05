@@ -8,8 +8,8 @@ esperará al final del layout para buscar referencias.
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,
 huella candidata, categoría, modalidad de montaje, URL y fecha de consulta.
-Existencias de la tabla consultadas el **2026-10-01** (el BSS138LT1G, el
-2026-10-05) en la API pública de
+Existencias de la tabla consultadas el **2026-10-01** (el BSS138LT1G y el
+SN74LVC1G17DBVR, el 2026-10-05) en la API pública de
 búsqueda de JLCPCB con `tools/refresh_jlc_stock.py` (cada pieza lleva su fecha
 en el catálogo), sin iniciar sesión ni hacer compras.
 Son una instantánea, no una reserva.
@@ -29,6 +29,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | MOSFET del relé y de los LED de los optos | onsemi BSS138LT1G, 50 V/200 mA, 10 Ω a VGS 2,75 V | [C82045](https://jlcpcb.com/partdetail/C82045) | 550.029 | 547.356 | Extended; categoría PCBA por verificar |
 | Conector JP3 | HR A2506WV-05P, 5 vías/2,50 mm, vertical | [C382535](https://jlcpcb.com/partdetail/C382535) | 3 | 0 | Extended; categoría JLC por verificar |
 | Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 65.914 | 65.843 | Extended; categoría JLC por verificar |
+| Buffer Schmitt del reset de los interlocks | TI SN74LVC1G17DBVR | [C7836](https://jlcpcb.com/partdetail/C7836) | 57.737 | 55.232 | Extended; categoría PCBA por verificar |
 | Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 34.655 | 34.618 | Extended; categoría JLC por verificar |
 | Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 31.195 | 24.428 | Economic / Standard |
 | Bomba de carga DRV8876 | 22 nF/50 V X7R 0603 | [C77571](https://www.lcsc.com/product-detail/C77571.html) | 221.958 | 215.030 | Economic / Standard |

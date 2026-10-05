@@ -200,8 +200,12 @@ def main():
                       ('C507','12V_PROTECTED',g),('C508','12V_PROTECTED',g)]:
         assert nets[ref] == {'1':a,'2':b}
     assert nets['U601'] == {'1':'STM_NRST','2':g,'3':v,'4':'WATCHDOG_KICK','5':v}
-    assert nets['U602'] == {'1':'BREW_SLEEP_RAW','2':'STM_NRST',
-                            '5':'VALVE_EN_RAW','6':'STM_NRST','8':v,'4':g,
+    # The gates take reset through U605, a Schmitt buffer: STM_NRST's RC edge
+    # is far slower than the LVC2G08 inputs allow.
+    assert nets['U605'] == {'1':None,'2':'STM_NRST','3':g,'4':'STM_NRST_BUF','5':v}
+    assert nets['C605'] == {'1':v,'2':g}
+    assert nets['U602'] == {'1':'BREW_SLEEP_RAW','2':'STM_NRST_BUF',
+                            '5':'VALVE_EN_RAW','6':'STM_NRST_BUF','8':v,'4':g,
                             '7':'BREW_SLEEP_INTERLOCK','3':'VALVE_EN_INTERLOCK'}
     for ref, a, b in [('R601','WATCHDOG_KICK_RAW','WATCHDOG_KICK'),
                       ('R602','WATCHDOG_KICK',g),('R603','BREW_SLEEP_RAW',g),

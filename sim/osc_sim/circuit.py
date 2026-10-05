@@ -199,7 +199,7 @@ class Circuit:
 
         rails: {net: volts} for every supply (including ground).
         drives: (net, volts, ohms) Thevenin sources, e.g. MCU outputs.
-        loads: elements of the plant: ('r', a, b, ohms), ('src', net, volts, ohms) or
+        loads: elements of the plant: ('r', a, b, ohms), ('src', net, volts, ohms), ('i', net, amps) or
             ('vr', a, b, volts, ohms), a series source of 'volts' from a to b (a motor's back-EMF).
         supervisor_reset: the TPS3828 holds RESET low.
         faults: refs of open-drain fault outputs pulled low (DRV8876 nFAULT).
@@ -239,6 +239,8 @@ class Circuit:
                     edges.append((el[1], el[2], el[3]))
                 elif el[0] == 'src':
                     src(f'load{i}', el[1], el[2], el[3])
+                elif el[0] == 'i':
+                    inject[el[1]] = inject.get(el[1], 0.0) + el[2]
                 else:
                     vr(el[1], el[2], el[3], el[4])
             on = {ref: (st is ON or (st is X and x_on)) for ref, st in states.items()}
@@ -253,6 +255,11 @@ class Circuit:
                         st = states.get(f'{d.ref}.{y}', OFF)
                         level_v = vcc if (st is ON or (st is X and x_on)) else 0.0
                         src(f'{d.ref}.{y}', pin[y], level_v, rout, p['io_max'], f'{_short(d.ref)}.{y}')
+                elif k == 'schmitt_buffer':
+                    vcc = fixed.get(pin['VCC'])
+                    rout = (vcc - p['voh_16ma']) / p['io_max'] if vcc else 50.0
+                    high = on[d.ref]
+                    src(f'{d.ref}.Y', pin['Y'], vcc if high else 0.0, rout, p['io_max'], f'{_short(d.ref)}.Y')
                 elif k == 'nmos':
                     if on[d.ref]:
                         edges.append((pin['D'], pin['S'], p['rds_on']))
@@ -325,6 +332,13 @@ class Circuit:
                                 f'{i}={_fmt(vget(pin[i]))}' for i in ins) +
                                 f' (VIH {p["vih"]} V, VIL {p["vil"]} V)')
                     new[d.ref] = ON
+                elif k == 'schmitt_buffer':
+                    # Hysteresis: between VT- and VT+ the output keeps its last level.
+                    lv = level(vget(pin['A']), p['vih'], p['vil'])
+                    va = vget(pin['A'])
+                    new[d.ref] = lv if lv is not X else (states.get(d.ref, OFF) if va is not None else X)
+                    if new[d.ref] is X:
+                        why[d.ref] = f'{_short(d.ref)}: entrada A flotante'
                 elif k == 'nmos':
                     vg, vs = vget(pin['G']), vget(pin['S'])
                     if vg is None or vs is None:

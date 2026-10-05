@@ -731,3 +731,32 @@ Resultado: ERC 0 en las dos placas; netlist 188/614; DRC: 0 infracciones,
 0 sin conectar y paridad solo MH1–MH3; modelo de placa 0 errores y 0 avisos;
 tests de `tests/sim` 33/33 (24 de modelo y mutación, 9 de F1); CTest 2/2. Sin
 hardware fabricado ni ensayado.
+
+## Buffer Schmitt para el reset de los interlocks, 2026-10-05
+
+La regla nueva `slow-edge` del simulador comprueba que las entradas lógicas sin
+histéresis no cuelguen de una red RC lenta. Encontró un error en la principal:
+
+- Las seis entradas de reset de U602–U604 (SN74LVC2G08) estaban en `STM_NRST`,
+  que sube por R101 (10 kΩ ‖ el pull-up interno del STM32) contra C101 (100 nF):
+  8,5 kΩ × 100 nF dan unos 530 µs/V en la transición. TI SCES198N pide como
+  mucho 10 ns/V a 3,3 V y la entrada no tiene histéresis. Con una orden activa,
+  el flanco de bajada de un reset de watchdog puede hacer oscilar la salida de
+  la AND antes de quedar a cero. Ningún SN74LVC2G08 equivalente con entradas
+  Schmitt cabe en la huella SM-8.
+
+Corrección: **U605, SN74LVC1G17DBVR** (TI, C7836, Extended; 57.737 en stock hoy)
+con C605 = 100 nF. Toma `STM_NRST` y entrega `STM_NRST_BUF` a las seis entradas;
+VT+ ≤ 1,92 V y VT− ≥ 0,89 V a 3 V, sin límite de Δt/Δv. U601, R101, C101, el
+STM32 y J102 siguen en `STM_NRST`. En la PCB, U605 va en el bolsillo bajo R603,
+la columna del reset se corta en y = 61 mm y baja a B.Cu hasta la entrada de
+U605; la salida retoma la columna hacia U602, U603 y U604. C605 queda al sur de
+la orden del calentador. El chequeo de interlock acepta ahora `STM_NRST` a
+través de buffers no inversores. Dos tests de mutación nuevos cubren la regla y
+el interlock a través del buffer.
+
+Resultado: ERC 0 en las dos placas; netlist 190/621; DRC con todas las
+severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1326
+segmentos y 445 vías, 153 de cosido); modelo de placa 0 errores y 0 avisos;
+`tests/sim` 35/35. Serigrafía, PDF 1:1 y render regenerados. Sin hardware
+fabricado ni ensayado.

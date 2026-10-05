@@ -1767,7 +1767,7 @@
 <path d="M 335.28000000000003 656.59 H 330.2" stroke="#27856d" stroke-width=".22"/>
 <text x="335.98" y="656.89" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
 <text x="333.34000000000003" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="329.8" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="329.8" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 335.28000000000003 660.4 H 330.2" stroke="#27856d" stroke-width=".22"/>
 <text x="335.98" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
 <text x="333.34000000000003" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
@@ -1775,7 +1775,7 @@
 <path d="M 335.28000000000003 664.21 H 330.2" stroke="#27856d" stroke-width=".22"/>
 <text x="335.98" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
 <text x="333.34000000000003" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="329.8" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="329.8" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 345.44 652.78 H 350.52" stroke="#27856d" stroke-width=".22"/>
 <text x="344.74" y="653.0799999999999" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
 <text x="347.38" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
@@ -1834,8 +1834,38 @@
 <text x="332.34000000000003" y="709.43" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 342.90000000000003 709.93 H 347.98" stroke="#27856d" stroke-width=".22"/>
 <text x="348.38" y="709.43" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="415.29" y="652.78" width="10.16" height="15.24" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="420.37" y="647.78" font-size="1.05" text-anchor="middle" fill="#213b50">U605</text>
+<text x="420.37" y="650.28" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC1G17DBVR</text>
+<path d="M 415.29 657.86 H 410.21" stroke="#27856d" stroke-width=".22"/>
+<text x="415.99" y="658.16" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="413.35" y="657.36" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="409.81" y="657.36" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 415.29 662.94 H 410.21" stroke="#27856d" stroke-width=".22"/>
+<text x="415.99" y="663.24" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="413.35" y="662.44" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="409.81" y="662.44" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 415.29 665.48 H 410.21" stroke="#27856d" stroke-width=".22"/>
+<text x="415.99" y="665.78" font-size="0.9" text-anchor="start" fill="#213b50">NC</text>
+<text x="413.35" y="664.98" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="410.21" y="665.78" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 425.45 657.86 H 430.53" stroke="#27856d" stroke-width=".22"/>
+<text x="424.75" y="658.16" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
+<text x="427.39" y="657.36" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="430.92999999999995" y="657.36" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 425.45 662.94 H 430.53" stroke="#27856d" stroke-width=".22"/>
+<text x="424.75" y="663.24" font-size="0.9" text-anchor="end" fill="#213b50">Y</text>
+<text x="427.39" y="662.44" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="430.92999999999995" y="662.44" font-size="0.9" text-anchor="start" fill="#23745f">STM_NRST_BUF</text>
+<path d="M 417.83 709.93 H 419.735 M 421.005 709.93 H 422.91 M 419.735 708.43 V 711.43 M 421.005 708.43 V 711.43" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="420.37" y="703.43" font-size="1.05" text-anchor="middle" fill="#213b50">C605</text>
+<text x="420.37" y="705.93" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / reset buffer local</text>
+<path d="M 417.83 709.93 H 412.75" stroke="#27856d" stroke-width=".22"/>
+<text x="412.35" y="709.43" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 422.91 709.93 H 427.99" stroke="#27856d" stroke-width=".22"/>
+<text x="428.39" y="709.43" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="12" y="744" font-size="1.1" text-anchor="start" fill="#213b50">PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.</text>
-<text x="12" y="752" font-size="1.1" text-anchor="start" fill="#213b50">~RESET open-drain comparte STM_NRST y fuerza ambas salidas a 0 mediante U602.</text>
+<text x="12" y="752" font-size="1.1" text-anchor="start" fill="#213b50">~RESET open-drain comparte STM_NRST; U605 (Schmitt) lo cuadra para las AND U602-U604.</text>
 <text x="12" y="760" font-size="1.1" text-anchor="start" fill="#213b50">R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.</text>
 <text x="470" y="610" font-size="1.8" text-anchor="start" fill="#213b50">14 / Telemetría de alimentación y cabecera de medida</text>
 <rect x="497.84" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
@@ -2165,7 +2195,7 @@
 <path d="M 730.25 656.59 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="656.89" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
 <text x="728.3100000000001" y="656.09" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="724.77" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="724.77" y="656.09" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 730.25 660.4 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="660.6999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
 <text x="728.3100000000001" y="659.9" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
@@ -2173,7 +2203,7 @@
 <path d="M 730.25 664.21 H 725.17" stroke="#27856d" stroke-width=".22"/>
 <text x="730.95" y="664.51" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
 <text x="728.3100000000001" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="724.77" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="724.77" y="663.71" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 740.4100000000001 652.78 H 745.49" stroke="#27856d" stroke-width=".22"/>
 <text x="739.71" y="653.0799999999999" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
 <text x="742.35" y="652.28" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
@@ -2384,7 +2414,7 @@
 <path d="M 875.03 995.68 H 869.95" stroke="#27856d" stroke-width=".22"/>
 <text x="875.73" y="995.9799999999999" font-size="0.9" text-anchor="start" fill="#213b50">1B</text>
 <text x="873.09" y="995.18" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="869.5500000000001" y="995.18" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="869.5500000000001" y="995.18" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 875.03 999.49 H 869.95" stroke="#27856d" stroke-width=".22"/>
 <text x="875.73" y="999.79" font-size="0.9" text-anchor="start" fill="#213b50">2A</text>
 <text x="873.09" y="998.99" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
@@ -2392,7 +2422,7 @@
 <path d="M 875.03 1003.3 H 869.95" stroke="#27856d" stroke-width=".22"/>
 <text x="875.73" y="1003.5999999999999" font-size="0.9" text-anchor="start" fill="#213b50">2B</text>
 <text x="873.09" y="1002.8" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="869.5500000000001" y="1002.8" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<text x="869.5500000000001" y="1002.8" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST_BUF</text>
 <path d="M 885.19 991.87 H 890.27" stroke="#27856d" stroke-width=".22"/>
 <text x="884.49" y="992.17" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
 <text x="887.13" y="991.37" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>

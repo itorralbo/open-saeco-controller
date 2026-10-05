@@ -738,6 +738,7 @@
     "controller:C602.1",
     "controller:C603.1",
     "controller:C604.1",
+    "controller:C605.1",
     "controller:J102.1",
     "controller:J103.1",
     "controller:J109.1",
@@ -768,7 +769,8 @@
     "controller:U601.5",
     "controller:U602.8",
     "controller:U603.8",
-    "controller:U604.8"
+    "controller:U604.8",
+    "controller:U605.5"
    ]
   },
   "controller:3V3_UI": {
@@ -1285,6 +1287,7 @@
     "controller:C602.2",
     "controller:C603.2",
     "controller:C604.2",
+    "controller:C605.2",
     "controller:C701.2",
     "controller:C702.2",
     "controller:D302.2",
@@ -1363,6 +1366,7 @@
     "controller:U602.4",
     "controller:U603.4",
     "controller:U604.4",
+    "controller:U605.3",
     "front:C1.2",
     "front:C11.2",
     "front:C12.2",
@@ -2084,12 +2088,23 @@
     "controller:R101.2",
     "controller:U101.7",
     "controller:U601.1",
+    "controller:U605.2"
+   ]
+  },
+  "controller:STM_NRST_BUF": {
+   "aliases": [
+    "controller:STM_NRST_BUF"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
     "controller:U602.2",
     "controller:U602.6",
     "controller:U603.2",
     "controller:U603.6",
     "controller:U604.2",
-    "controller:U604.6"
+    "controller:U604.6",
+    "controller:U605.4"
    ]
   },
   "controller:STM_SWCLK": {
@@ -3461,6 +3476,23 @@
   "controller:C604": {
    "part": "C",
    "value": "100nF / pump gate local",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C605": {
+   "part": "C",
+   "value": "100nF / reset buffer local",
    "mpn": "CC0603KRX7R9BB104",
    "pins": {
     "1": {
@@ -6779,7 +6811,7 @@
     "2": {
      "symbol": "1B",
      "physical": "1B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "3": {
      "symbol": "2Y",
@@ -6799,7 +6831,7 @@
     "6": {
      "symbol": "2B",
      "physical": "2B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "7": {
      "symbol": "1Y",
@@ -6826,7 +6858,7 @@
     "2": {
      "symbol": "1B",
      "physical": "1B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "3": {
      "symbol": "2Y",
@@ -6846,7 +6878,7 @@
     "6": {
      "symbol": "2B",
      "physical": "2B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "7": {
      "symbol": "1Y",
@@ -6873,7 +6905,7 @@
     "2": {
      "symbol": "1B",
      "physical": "1B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "3": {
      "symbol": "2Y",
@@ -6893,7 +6925,7 @@
     "6": {
      "symbol": "2B",
      "physical": "2B",
-     "net": "controller:STM_NRST"
+     "net": "controller:STM_NRST_BUF"
     },
     "7": {
      "symbol": "1Y",
@@ -6901,6 +6933,38 @@
      "net": "controller:PUMP_EN_INTERLOCK"
     },
     "8": {
+     "symbol": "VCC",
+     "physical": "VCC",
+     "net": "controller:3V3_CORE"
+    }
+   }
+  },
+  "controller:U605": {
+   "part": "SCHMITT_BUF",
+   "value": "SN74LVC1G17DBVR",
+   "mpn": "SN74LVC1G17DBVR",
+   "pins": {
+    "1": {
+     "symbol": "NC",
+     "physical": "NC",
+     "net": null
+    },
+    "2": {
+     "symbol": "A",
+     "physical": "A",
+     "net": "controller:STM_NRST"
+    },
+    "3": {
+     "symbol": "GND",
+     "physical": "GND",
+     "net": "controller:GND_UI"
+    },
+    "4": {
+     "symbol": "Y",
+     "physical": "Y",
+     "net": "controller:STM_NRST_BUF"
+    },
+    "5": {
      "symbol": "VCC",
      "physical": "VCC",
      "net": "controller:3V3_CORE"

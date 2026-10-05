@@ -58,6 +58,10 @@
       "source": "KiCad 10 74xGxx 74LVC2G08: gate 1 inputs 1,2 output 7; gate 2 inputs 5,6 output 3; GND 4, VCC 8.",
       "pins": {"1": "1A", "2": "1B", "3": "2Y", "4": "GND", "5": "2A", "6": "2B", "7": "1Y", "8": "VCC"}
     },
+    "SN74LVC1G17DBVR": {
+      "source": "TI SCES351, pin functions, DBV: 1 NC, 2 A, 3 GND, 4 Y, 5 VCC.",
+      "pins": {"1": "NC", "2": "A", "3": "GND", "4": "Y", "5": "VCC"}
+    },
     "TCA9534PWR": {
       "source": "KiCad 10 Interface_Expansion TCA9534 (TI SCPS197D).",
       "pins": {

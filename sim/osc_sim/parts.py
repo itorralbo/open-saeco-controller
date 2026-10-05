@@ -13,6 +13,7 @@ THROUGH = {'USBLC6': (('1', '6'), ('3', '4'))}
 
 ARCS = {
     'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')},
+    'SCHMITT_BUF': {'Y': ('A',)},
     'UCC27517DBV': {'OUT': ('IN+', 'IN-')},
     'NMOS_SOT23': {'D': ('G',)},
     'OPTO_TRIAC': {'MT_G': ('A', 'K')},
@@ -27,6 +28,8 @@ ARCS = {
 
 # Logic function of the gates the interlock check reasons about.
 AND_GATES = {'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')}}
+# Non-inverting buffers: their output carries the input's logic level.
+BUFFERS = {'SCHMITT_BUF': {'Y': 'A'}}
 
 SUPPLY_NAMES = {'VDD', 'VCC', 'VM', 'VIN', 'VBAT', '3V3', 'VDDA', 'VREF+'}
 GROUND_NAMES = {'GND', 'VSS', 'VSSA', 'PGND', 'EP', 'PAD', 'EP_GND'}

@@ -411,8 +411,12 @@ oeste, así que la pareja se ha llevado al propio carril del reset, junto al
 supervisor que lo gobierna. El pin sale en horizontal, porque los pads del oeste
 van a 0,5 mm de paso y cualquier diagonal toca el vecino, baja a y = 50,5 mm y
 cruza hacia el oeste por debajo de los dos ramales de 24 V hasta el canal de
-1,35 mm que se había dejado libre junto a C501. De ahí alimenta U601, U602 y
-U603.
+1,35 mm que se había dejado libre junto a C501. De ahí alimenta U601 y, desde
+el 2026-10-05, U605: la columna se corta en y = 61 mm, baja a B.Cu bajo la orden
+de R603 y sube en el bolsillo bajo R603 a la entrada de U605, entre sus filas de
+pads. Su salida `STM_NRST_BUF` vuelve a la columna en y = 64,95 mm y sigue el
+camino que antes llevaba `STM_NRST` hasta U602, U603 y U604. C605 desacopla
+U605 al sur de la orden del calentador, con sus vías a los planos.
 
 Los dos puntos que quedaron abiertos en esta pasada, el pin 6 de U602 y el
 reset de la cabecera SWD, se cerraron después (ver las salidas de U602 y el

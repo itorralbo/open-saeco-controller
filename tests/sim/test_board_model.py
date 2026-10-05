@@ -168,6 +168,16 @@ class Mutations(unittest.TestCase):
         b['controller'].components['R512'].value = '100'
         self.expect(b, 'drive-current', 'U602.2Y')
 
+    def test_gate_reset_input_on_the_slow_rc(self):
+        b = baseline()  # U602 1B back on STM_NRST, bypassing the Schmitt buffer
+        set_net(b['controller'], 'U602', '2', 'STM_NRST')
+        self.expect(b, 'slow-edge', 'U602.1B')
+
+    def test_interlock_through_buffer_must_reach_nrst(self):
+        b = baseline()  # U605 fed from 3.3 V: the gates no longer see the reset
+        set_net(b['controller'], 'U605', '2', '3V3_CORE')
+        self.expect(b, 'interlock', 'HEATER_EN')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

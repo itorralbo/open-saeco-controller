@@ -391,6 +391,10 @@ PLACE = {
 
     # Hardware watchdog/interlock on the SELV side, left of the barrier.
     'U601': (38, 54, 0), 'U602': (38, 62, 0),
+    # U605 squares STM_NRST for the six AND reset inputs. It sits in the
+    # pocket under R603, west of the reset column, which it cuts in two; C605
+    # decouples it from south of the heater order.
+    'U605': (31.9, 64.0, 0), 'C605': (32.4, 67.4, 0),
     # R601/R602 tuck under U601 so the channel between the chips and the
     # capacitor column stays free for the 3V3 spine. The 1.35 mm channel west
     # of U601/U602 is reserved for STM_NRST and is not used by this block.

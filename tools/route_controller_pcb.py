@@ -880,13 +880,15 @@ def route_logic_grounds(board):
 
 
 def route_reset_tree(board):
-    """STM_NRST from the MCU to its pull-up, filter, SWD header and the gates.
+    """STM_NRST from the MCU to its pull-up, filter, U601 and U605.
 
     The MCU pin escapes west, drops south of the package and runs east at
     y = 47 mm to the column at x = 88.8 mm, which serves R101, C101 and the
     SWD header. A second leg goes west at y = 45 mm and down to y = 50.5 mm,
     where it passes under the 24 V branch at x = 46.4 mm and enters the 1.35 mm
-    channel west of the supervisor that was left empty for it.
+    channel west of the supervisor that was left empty for it. Past U601 the
+    column feeds U605, the Schmitt buffer, whose output STM_NRST_BUF takes the
+    rest of the column to the reset inputs of U602, U603 and U604.
     """
     nrst = '/STM_NRST'
 
@@ -903,12 +905,32 @@ def route_reset_tree(board):
     track(board, nrst, (47.6, 50.5), (45.2, 50.5), pcb.B_Cu, width=PIN_WIDTH)
     via(board, nrst, (45.2, 50.5))
     polyline(board, nrst, [(45.2, 50.5), (36.0, 50.5), (36.0, 50.7), (34.9, 51.8),
-                           (34.9, 65.9)], width=PIN_WIDTH)
-    track(board, nrst, (34.9, 61.675), (35.7, 61.675), width=PIN_WIDTH)
+                           (34.9, 61.0)], width=PIN_WIDTH)
     track(board, nrst, (34.9, 53.05), (36.3, 53.05), width=PIN_WIDTH)
     # Pull-up and filter, both on this corridor.
     track(board, nrst, (41.825, 50.5), (41.825, 49.1), width=PIN_WIDTH)
     track(board, nrst, (43.375, 50.5), (43.375, 49.1), width=PIN_WIDTH)
+    # The column stops above U602 and drops to B.Cu, crosses under R603's
+    # order into the pocket and comes up to U605's input between its pad
+    # rows. Below the cut the column carries the buffered reset.
+    via(board, nrst, (34.9, 61.0))
+    polyline(board, nrst, [(34.9, 61.0), (33.7, 62.2), (32.1, 62.2)], pcb.B_Cu, width=PIN_WIDTH)
+    via(board, nrst, (32.1, 62.2))
+    polyline(board, nrst, [(32.1, 62.2), (31.9, 62.4), (31.9, 64.0), (30.762, 64.0)],
+             width=SIGNAL_WIDTH)
+    nrst = '/STM_NRST_BUF'
+    track(board, nrst, (34.9, 61.675), (34.9, 65.9), width=PIN_WIDTH)
+    track(board, nrst, (34.9, 61.675), (35.7, 61.675), width=PIN_WIDTH)
+    track(board, nrst, (33.038, 64.95), (34.9, 64.95), width=PIN_WIDTH)
+    # U605 supply and ground to the planes, and C605 beside the heater order.
+    track(board, '/3V3_CORE', (33.038, 63.05), (34.05, 63.05), width=PIN_WIDTH)
+    via(board, '/3V3_CORE', (34.05, 63.05))
+    track(board, '/GND_UI', (30.762, 64.95), (30.762, 65.9), width=PIN_WIDTH)
+    via(board, '/GND_UI', (30.762, 65.9))
+    track(board, '/3V3_CORE', (31.625, 67.4), (30.75, 67.4), width=PIN_WIDTH)
+    via(board, '/3V3_CORE', (30.75, 67.4))
+    track(board, '/GND_UI', (33.175, 67.4), (34.05, 67.4), width=PIN_WIDTH)
+    via(board, '/GND_UI', (34.05, 67.4))
     # Under the heater order, which crosses west on F.Cu at y = 66.55 mm.
     via(board, nrst, (34.9, 65.9))
     track(board, nrst, (34.9, 65.9), (34.9, 68.2), pcb.B_Cu, width=PIN_WIDTH)
@@ -1264,7 +1286,7 @@ def route_pump_enable(board):
     Q701. The output hops under the 24 V branch at y = 93 mm on B.Cu, as the
     heater's does, and meets R714 from the west.
     """
-    raw, nrst, v33 = '/PUMP_EN_RAW', '/STM_NRST', '/3V3_CORE'
+    raw, nrst, v33 = '/PUMP_EN_RAW', '/STM_NRST_BUF', '/3V3_CORE'
     gated, gnd = '/PUMP_EN_INTERLOCK', '/GND_UI'
 
     # Pin escapes.
@@ -1398,7 +1420,7 @@ def route_grinder_enable(board):
     raw, gated = '/GRINDER_EN_RAW', '/GRINDER_EN_INTERLOCK'
     polyline(board, raw, [(34.2, 86.975), (35.0, 87.775),
                           (35.0, 88.475)], width=PIN_WIDTH)
-    polyline(board, '/STM_NRST', [(32.0, 85.675), (32.0, 86.325), (34.2, 86.325)],
+    polyline(board, '/STM_NRST_BUF', [(32.0, 85.675), (32.0, 86.325), (34.2, 86.325)],
              width=PIN_WIDTH)
     polyline(board, gnd, [(35.0, 90.125), (34.575, 90.125), (34.3, 90.4), (34.0, 90.4)],
              width=PIN_WIDTH)
@@ -1709,7 +1731,7 @@ def route_supervisor_outputs(board):
     """
     w = SIGNAL_WIDTH
     sleep = '/BREW_SLEEP_INTERLOCK'
-    polyline(board, '/STM_NRST', [(39.7, 62.325), (38.75, 62.325),
+    polyline(board, '/STM_NRST_BUF', [(39.7, 62.325), (38.75, 62.325),
                                   (38.1, 61.675), (36.3, 61.675)],
              width=PIN_WIDTH)
 

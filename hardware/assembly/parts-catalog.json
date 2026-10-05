@@ -498,6 +498,21 @@
       "url": "https://www.lcsc.com/product-detail/C352973.html",
       "selection": "candidate_not_released"
     },
+    "SN74LVC1G17DBVR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G17DBVR",
+      "lcsc": "C7836",
+      "specification": "single Schmitt-trigger buffer, 1.65V to 5.5V, SOT-23-5 (DBV); squares STM_NRST for the interlock AND gates",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 57737,
+      "available_order_qty_observed": 55232,
+      "stock_checked_on": "2026-10-05",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C7836",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_V": {
       "manufacturer": "JST",
       "mpn": "B2B-XH-A(LF)(SN)",
