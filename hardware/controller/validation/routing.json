@@ -18,6 +18,7 @@
     "3.3 V: an In2.Cu plane drop for every pad group",
     "USB and ESP32 ground pins into the plane",
     "reset tree: MCU, pull-up, filter, SWD header and the gates",
+    "WDI gate: U606 holds WDI high while U601 asserts reset",
     "service-USB rail, sense divider and bench jumper",
     "protective-earth bond and the heater neutral return",
     "heater stage: optocoupler, triac, gate and switched phase",
@@ -38,8 +39,8 @@
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense",
     "SELV ground fills on F.Cu and B.Cu, stitched to In1.Cu; no fill on the mains side"
   ],
-  "track_segments": 1318,
-  "vias": 444,
+  "track_segments": 1334,
+  "vias": 448,
   "stitching_vias": 149,
   "remaining_blocks": []
 }

@@ -1778,7 +1778,7 @@
 <path d="M 185.42000000000002 664.21 H 190.5" stroke="#27856d" stroke-width=".22"/>
 <text x="184.72" y="664.51" font-size="0.9" text-anchor="end" fill="#213b50">WDI</text>
 <text x="187.36" y="663.71" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="190.9" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_KICK</text>
+<text x="190.9" y="663.71" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_WDI</text>
 <rect x="335.28000000000003" y="651.51" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="340.36" y="646.51" font-size="1.05" text-anchor="middle" fill="#213b50">U602</text>
 <text x="340.36" y="649.01" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC2G08DCTR</text>
@@ -1823,7 +1823,7 @@
 <text x="67.71000000000001" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_KICK</text>
 <rect x="57.15" y="678.45" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="59.69" y="673.45" font-size="1.05" text-anchor="middle" fill="#213b50">R602</text>
-<text x="59.69" y="675.95" font-size="1.05" text-anchor="middle" fill="#213b50">1k / WDI pull-down</text>
+<text x="59.69" y="675.95" font-size="1.05" text-anchor="middle" fill="#213b50">1k / kick pull-down</text>
 <path d="M 57.15 679.45 H 52.07" stroke="#27856d" stroke-width=".22"/>
 <text x="51.67" y="678.95" font-size="0.9" text-anchor="end" fill="#23745f">WATCHDOG_KICK</text>
 <path d="M 62.23 679.45 H 67.31" stroke="#27856d" stroke-width=".22"/>
@@ -1886,9 +1886,39 @@
 <text x="412.35" y="709.43" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 422.91 709.93 H 427.99" stroke="#27856d" stroke-width=".22"/>
 <text x="428.39" y="709.43" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="95.25" y="692.15" width="10.16" height="15.24" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="100.33" y="687.15" font-size="1.05" text-anchor="middle" fill="#213b50">U606</text>
+<text x="100.33" y="689.65" font-size="1.05" text-anchor="middle" fill="#213b50">SN74LVC1G132DBVR</text>
+<path d="M 95.25 697.23 H 90.17" stroke="#27856d" stroke-width=".22"/>
+<text x="95.95" y="697.53" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="93.30999999999999" y="696.73" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="89.77" y="696.73" font-size="0.9" text-anchor="end" fill="#23745f">STM_NRST</text>
+<path d="M 95.25 702.31 H 90.17" stroke="#27856d" stroke-width=".22"/>
+<text x="95.95" y="702.6099999999999" font-size="0.9" text-anchor="start" fill="#213b50">B</text>
+<text x="93.30999999999999" y="701.81" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="89.77" y="701.81" font-size="0.9" text-anchor="end" fill="#23745f">WATCHDOG_KICK</text>
+<path d="M 95.25 704.85 H 90.17" stroke="#27856d" stroke-width=".22"/>
+<text x="95.95" y="705.15" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="93.30999999999999" y="704.35" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="89.77" y="704.35" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 105.41 697.23 H 110.49" stroke="#27856d" stroke-width=".22"/>
+<text x="104.71" y="697.53" font-size="0.9" text-anchor="end" fill="#213b50">VCC</text>
+<text x="107.35000000000001" y="696.73" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="110.89" y="696.73" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 105.41 702.31 H 110.49" stroke="#27856d" stroke-width=".22"/>
+<text x="104.71" y="702.6099999999999" font-size="0.9" text-anchor="end" fill="#213b50">Y</text>
+<text x="107.35000000000001" y="701.81" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="110.89" y="701.81" font-size="0.9" text-anchor="start" fill="#23745f">WATCHDOG_WDI</text>
+<path d="M 137.16 730.25 H 139.065 M 140.33499999999998 730.25 H 142.23999999999998 M 139.065 728.75 V 731.75 M 140.33499999999998 728.75 V 731.75" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="139.7" y="723.75" font-size="1.05" text-anchor="middle" fill="#213b50">C606</text>
+<text x="139.7" y="726.25" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / WDI gate local</text>
+<path d="M 137.16 730.25 H 132.08" stroke="#27856d" stroke-width=".22"/>
+<text x="131.68" y="729.75" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 142.23999999999998 730.25 H 147.32" stroke="#27856d" stroke-width=".22"/>
+<text x="147.72" y="729.75" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="12" y="744" font-size="1.1" text-anchor="start" fill="#213b50">PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.</text>
 <text x="12" y="752" font-size="1.1" text-anchor="start" fill="#213b50">~RESET open-drain comparte STM_NRST; U605 (Schmitt) lo cuadra para las AND U602-U604.</text>
-<text x="12" y="760" font-size="1.1" text-anchor="start" fill="#213b50">R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.</text>
+<text x="12" y="760" font-size="1.1" text-anchor="start" fill="#213b50">U606 deja WDI en alto durante el reset (TPS3828 sin A); R602 fija su entrada si PB4 queda Hi-Z. R603/R604: órdenes a 0 al arrancar.</text>
 <text x="470" y="610" font-size="1.8" text-anchor="start" fill="#213b50">14 / Telemetría de alimentación y cabecera de medida</text>
 <rect x="497.84" y="639.08" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="500.38" y="634.08" font-size="1.05" text-anchor="middle" fill="#213b50">R701</text>

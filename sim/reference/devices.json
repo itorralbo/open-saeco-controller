@@ -49,7 +49,7 @@
     },
     "TPS3828-33DBVR": {
       "kind": "supervisor",
-      "source": "TI SLVS165O, 6.5/6.8: VIT- 2.93 V (TPS382x-33), WDI VIH 0.7 x VDD and VIL 0.3 x VDD, ttout 0.9/1.6/2.5 s, td 120/200/300 ms, open-drain RESET (7.3.3), RESET VOL 0.4 V at 1.2 mA.",
+      "source": "TI SLVS165O, 6.5/6.8: VIT- 2.93 V (TPS382x-33), WDI VIH 0.7 x VDD and VIL 0.3 x VDD, ttout 0.9/1.6/2.5 s, td 120/200/300 ms, open-drain RESET (7.3.3), RESET VOL 0.4 V at 1.2 mA. 7.3.4: the non-A devices latch RESET low if a WDI pulse is received while RESET is asserted.",
       "vit": 2.93,
       "wdi_vih_frac": 0.7,
       "wdi_vil_frac": 0.3,
@@ -65,7 +65,8 @@
       ],
       "output": "open_drain",
       "vol": 0.4,
-      "iol": 0.0012
+      "iol": 0.0012,
+      "wdi_latch": true
     },
     "SI2308A": {
       "kind": "nmos",
@@ -181,6 +182,16 @@
         18.5
       ],
       "vc": 24.4
+    },
+    "SN74LVC1G132DBVR": {
+      "kind": "nand_schmitt",
+      "source": "TI SCES538, pin functions (DBV: 1 A, 2 B, 3 GND, 4 Y, 5 VCC) and 6.5 at VCC 3 V: VT+ 1.87 V max, VT- 0.84 V min; Schmitt inputs.",
+      "vih": 1.87,
+      "vil": 0.84,
+      "voh_drop_100ua": 0.1,
+      "voh_16ma": 2.4,
+      "vol_16ma": 0.4,
+      "io_max": 0.016
     }
   }
 }

@@ -543,6 +543,21 @@
       "url": "https://jlcpcb.com/partdetail/C7836",
       "selection": "candidate_not_released"
     },
+    "SN74LVC1G132DBVR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G132DBVR",
+      "lcsc": "C403723",
+      "specification": "single 2-input NAND with Schmitt-trigger inputs, 1.65V to 5.5V, SOT-23-5 (DBV); holds U601 WDI high while RESET is asserted",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 30058,
+      "available_order_qty_observed": 22508,
+      "stock_checked_on": "2026-10-05",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C403723",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_V": {
       "manufacturer": "JST",
       "mpn": "B2B-XH-A(LF)(SN)",

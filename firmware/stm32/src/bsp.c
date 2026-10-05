@@ -59,6 +59,12 @@ void bsp_read(osc_inputs *in) {
     in->rail_24v = ADC(RAIL_24V);
     in->brew_current = ADC(BREW_CURRENT);
     in->flow_edges = osc_hal_edge_count(PORT(FLOW), PIN(FLOW));
+    /* Every analog reading is relative to VDDA, which the 3.3 V buck only
+     * holds to a few percent: measure it against VREFINT. */
+    in->vrefint = osc_hal_adc_read(OSC_HAL_VREFINT_ADC, OSC_HAL_VREFINT_CHANNEL);
+    in->vdda_mv = in->vrefint
+        ? (uint16_t)((uint32_t)OSC_HAL_VREFINT_CAL_MV * osc_hal_vrefint_cal() / in->vrefint)
+        : 3300u;
 }
 
 void bsp_write(const osc_outputs *out) {

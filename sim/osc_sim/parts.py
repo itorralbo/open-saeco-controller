@@ -14,6 +14,7 @@ THROUGH = {'USBLC6': (('1', '6'), ('3', '4'))}
 ARCS = {
     'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')},
     'SCHMITT_BUF': {'Y': ('A',)},
+    'SCHMITT_NAND': {'Y': ('A', 'B')},
     'UCC27517DBV': {'OUT': ('IN+', 'IN-')},
     'NMOS_SOT23': {'D': ('G',)},
     'OPTO_TRIAC': {'MT_G': ('A', 'K')},

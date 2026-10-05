@@ -29,6 +29,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Conector JP3 | HR A2506WV-05P, 5 vías/2,50 mm, vertical | [C382535](https://jlcpcb.com/partdetail/C382535) | 3 | 0 | Extended; categoría JLC por verificar |
 | Supervisor/watchdog | TI TPS3828-33DBVR | [C20032](https://www.lcsc.com/product-detail/C20032.html) | 65.894 | 65.817 | Extended; categoría JLC por verificar |
 | Buffer Schmitt del reset de los interlocks | TI SN74LVC1G17DBVR | [C7836](https://jlcpcb.com/partdetail/C7836) | 57.737 | 55.232 | Extended; categoría PCBA por verificar |
+| Puerta del WDI del supervisor | TI SN74LVC1G132DBVR, NAND con entradas Schmitt | [C403723](https://jlcpcb.com/partdetail/C403723) | 30.058 | 22.508 | Extended; categoría PCBA por verificar |
 | Interlock doble | TI SN74LVC2G08DCTR | [C352973](https://www.lcsc.com/product-detail/C352973.html) | 34.113 | 34.075 | Extended; categoría JLC por verificar |
 | Bulk motor del grupo | Lelon VZH101M1VTR-0607, 100 µF/35 V | [C176683](https://jlcpcb.com/partdetail/Lelon-VZH101M1VTR0607/C176683) | 31.003 | 22.085 | Economic / Standard |
 | Bomba de carga DRV8876 | 22 nF/50 V X7R 0603 | [C77571](https://www.lcsc.com/product-detail/C77571.html) | 309.390 | 300.942 | Economic / Standard |

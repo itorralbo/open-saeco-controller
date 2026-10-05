@@ -574,7 +574,8 @@
    "af": null,
    "adc": null,
    "path": [
-    "controller:R601"
+    "controller:R601",
+    "controller:U606"
    ],
    "reset_level": "low"
   }
@@ -761,6 +762,7 @@
     "controller:C603.1",
     "controller:C604.1",
     "controller:C605.1",
+    "controller:C606.1",
     "controller:J102.1",
     "controller:J103.1",
     "controller:J109.1",
@@ -792,7 +794,8 @@
     "controller:U602.8",
     "controller:U603.8",
     "controller:U604.8",
-    "controller:U605.5"
+    "controller:U605.5",
+    "controller:U606.5"
    ]
   },
   "controller:3V3_UI": {
@@ -1310,6 +1313,7 @@
     "controller:C603.2",
     "controller:C604.2",
     "controller:C605.2",
+    "controller:C606.2",
     "controller:C701.2",
     "controller:C702.2",
     "controller:D302.2",
@@ -1389,6 +1393,7 @@
     "controller:U603.4",
     "controller:U604.4",
     "controller:U605.3",
+    "controller:U606.3",
     "front:C1.2",
     "front:C11.2",
     "front:C12.2",
@@ -2110,7 +2115,8 @@
     "controller:R101.2",
     "controller:U101.7",
     "controller:U601.1",
-    "controller:U605.2"
+    "controller:U605.2",
+    "controller:U606.1"
    ]
   },
   "controller:STM_NRST_BUF": {
@@ -2440,7 +2446,7 @@
    "pins": [
     "controller:R601.2",
     "controller:R602.1",
-    "controller:U601.4"
+    "controller:U606.2"
    ]
   },
   "controller:WATCHDOG_KICK_RAW": {
@@ -2452,6 +2458,17 @@
    "pins": [
     "controller:R601.1",
     "controller:U101.57"
+   ]
+  },
+  "controller:WATCHDOG_WDI": {
+   "aliases": [
+    "controller:WATCHDOG_WDI"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:U601.4",
+    "controller:U606.4"
    ]
   },
   "controller:WATER_LEVEL": {
@@ -3515,6 +3532,23 @@
   "controller:C605": {
    "part": "C",
    "value": "100nF / reset buffer local",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C606": {
+   "part": "C",
+   "value": "100nF / WDI gate local",
    "mpn": "CC0603KRX7R9BB104",
    "pins": {
     "1": {
@@ -5537,7 +5571,7 @@
   },
   "controller:R602": {
    "part": "R",
-   "value": "1k / WDI pull-down",
+   "value": "1k / kick pull-down",
    "mpn": "0603WAF1001T5E",
    "pins": {
     "1": {
@@ -6845,7 +6879,7 @@
     "4": {
      "symbol": "WDI",
      "physical": "WDI",
-     "net": "controller:WATCHDOG_KICK"
+     "net": "controller:WATCHDOG_WDI"
     },
     "5": {
      "symbol": "VDD",
@@ -7019,6 +7053,38 @@
      "symbol": "Y",
      "physical": "Y",
      "net": "controller:STM_NRST_BUF"
+    },
+    "5": {
+     "symbol": "VCC",
+     "physical": "VCC",
+     "net": "controller:3V3_CORE"
+    }
+   }
+  },
+  "controller:U606": {
+   "part": "SCHMITT_NAND",
+   "value": "SN74LVC1G132DBVR",
+   "mpn": "SN74LVC1G132DBVR",
+   "pins": {
+    "1": {
+     "symbol": "A",
+     "physical": "A",
+     "net": "controller:STM_NRST"
+    },
+    "2": {
+     "symbol": "B",
+     "physical": "B",
+     "net": "controller:WATCHDOG_KICK"
+    },
+    "3": {
+     "symbol": "GND",
+     "physical": "GND",
+     "net": "controller:GND_UI"
+    },
+    "4": {
+     "symbol": "Y",
+     "physical": "Y",
+     "net": "controller:WATCHDOG_WDI"
     },
     "5": {
      "symbol": "VCC",

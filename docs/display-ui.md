@@ -151,6 +151,12 @@ de estados implementada.
 - Versión de ESP-IDF y de LVGL a fijar; parámetros SPI (modo, R serie) por medida.
 - Longitud máxima del arnés y validación de integridad de señal a 10 MHz.
 
+El simulador ya cubre en host los puntos 1, 2, 4 y 6 con un driver mínimo
+(`firmware/esp32/core`): init del ST7789 a 10 MHz, BL solo sobre imagen pintada,
+teclado con antirrebote y liberación al arranque, y STATUS/START/STOP con enlace
+perdido y FALLO ([F2](../sim/README.md#f2-interfaz-frontal-y-protocolo)). LVGL y
+los tiempos reales sobre el arnés siguen pendientes.
+
 ## 12. Verificación prevista
 
 - Banco: patrón de color, prueba de rotación, latencia de full-frame y de repintado parcial medidas.

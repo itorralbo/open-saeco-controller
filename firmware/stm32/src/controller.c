@@ -20,6 +20,12 @@ osc_result osc_start(osc_controller *c) {
     disable(c);
     return OSC_REJECTED_NOT_IMPLEMENTED;
 }
+bool osc_clear_fault(osc_controller *c, bool interlocks_ok, bool link_ok) {
+    disable(c);
+    if (c->state != OSC_FAULT || !interlocks_ok || !link_ok) return false;
+    c->state = OSC_SAFE_IDLE;
+    return true;
+}
 unsigned osc_heater_cycles_allowed(bool grinder_on) {
     return grinder_on ? OSC_HEATER_CYCLES_WHILE_GRINDING : OSC_HEATER_WINDOW_CYCLES;
 }

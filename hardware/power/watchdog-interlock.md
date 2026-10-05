@@ -10,9 +10,18 @@ el rail con umbral nominal de 2,93 V y exige transiciones periódicas en WDI. Su
 salida activa a cero y open-drain comparte `STM_NRST`, por lo que puede reiniciar
 el STM32 sin entrar en conflicto con el adaptador SWD.
 
-PB4 genera `WATCHDOG_KICK_RAW`. R601=33 Ω lo conecta a WDI y R602=1 kΩ mantiene
-WDI a masa si el GPIO queda en alta impedancia. Esto impide el modo de watchdog
-deshabilitado que el fabricante define para WDI flotante. El firmware debe crear
+PB4 genera `WATCHDOG_KICK_RAW`. R601=33 Ω lo lleva a `WATCHDOG_KICK` y R602=1 kΩ
+mantiene esa línea a masa si el GPIO queda en alta impedancia. Desde el
+2026-10-05 WDI no se conecta directamente: U606, una NAND con entradas Schmitt
+`SN74LVC1G132DBVR` (`C403723`) con C606 de desacoplo, hace
+`WATCHDOG_WDI = NAND(STM_NRST, WATCHDOG_KICK)`. El TPS3828 sin sufijo A deja RESET
+enclavado en bajo si WDI recibe un pulso mientras RESET está activo (TI
+SLVS165O, 7.3.4), y el STM32 entra en reset con PB4 en alto, en bajo o liberado:
+sin la puerta, un núcleo colgado con PB4 en alto o una bajada de tensión daban un
+flanco en WDI al entrar en reset y dejaban la máquina en reset permanente. Con
+`STM_NRST` bajo, U606 mantiene WDI en alto pase lo que pase en PB4; en marcha WDI
+sigue al impulso invertido. WDI nunca queda flotante, así que el modo de watchdog
+deshabilitado tampoco es posible. Lo encontró la regla `wdi-reset` del simulador. El firmware debe crear
 flancos de bajada con un periodo menor que el timeout mínimo de 0,9 s; el valor
 nominal es 1,6 s y el máximo 2,5 s. Tras un fallo, reset permanece activo entre
 120 y 300 ms, 200 ms nominales.
@@ -70,8 +79,9 @@ este circuito con los tiempos del extremo desfavorable: el firmware sano no
 provoca resets con un time-out de 0,9 s, un núcleo colgado se resetea antes de
 2,5 s y las órdenes que un núcleo desbocado deja activas caen en el mismo paso en
 que U601 baja `STM_NRST`. También modela que el TPS3828 sin sufijo A deja RESET
-enclavado si WDI recibe flancos mientras está activo; con el STM32 en reset PB4
-queda en alta impedancia y R602 lo mantiene bajo, así que no ocurre. No sustituye
+enclavado si WDI recibe flancos mientras está activo: así encontró la regla
+`wdi-reset` el riesgo que U606 corrige, y el escenario de núcleo colgado con PB4
+en alto y en bajo comprueba que la placa vuelve a arrancar. No sustituye
 al ensayo anterior.
 
 Fuentes: [TPS3828/TPS382x de TI](https://www.ti.com/lit/ds/symlink/tps3823.pdf),

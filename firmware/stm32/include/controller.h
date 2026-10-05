@@ -10,6 +10,9 @@ void osc_init(osc_controller *c);
 void osc_tick(osc_controller *c, bool interlocks_ok, bool link_ok);
 void osc_stop(osc_controller *c);
 osc_result osc_start(osc_controller *c);
+/* Leaves OSC_FAULT for OSC_SAFE_IDLE only when the interlocks and the link
+ * are both good again; returns whether it did. */
+bool osc_clear_fault(osc_controller *c, bool interlocks_ok, bool link_ok);
 /* Load sharing on the relay-switched phase (hardware/power/power-architecture.md).
  * Heater 8.4 A plus a grinder sized for 3 A would draw 11.6 A through F701
  * (T10A) and JP17 (10 A per VH contact). While the grinder runs the heater

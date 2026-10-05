@@ -286,6 +286,12 @@ depuración.
 
 ### Supervisor, interlocks y mando del relé
 
+Desde el 2026-10-05 U606 (NAND Schmitt del WDI) y C606 ocupan el sitio de la
+espina de 3V3 entre U601 y U602, que ahora une el plano de In2: el impulso sale de
+R601 hacia el este, `STM_NRST` baja del corredor por x = 40,95 mm entre los pads de
+C601 y WDI sale bajo el encapsulado, salta en B.Cu bajo el reset y sube junto al
+pad de U601.
+
 R601 y R602 se han metido debajo de U601 para dejar libre el canal entre los
 integrados y la columna de condensadores; por él sube la espina de 3V3 que
 alimenta U601, C601, U602 y C602. El canal de 1,35 mm que queda al oeste de

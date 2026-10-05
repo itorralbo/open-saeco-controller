@@ -247,8 +247,10 @@ de liberación, tensión de drenador y temperatura del MOSFET.
 
 U601 (TPS3828-33DBVR) monitoriza `3V3_CORE` con umbral nominal de 2,93 V. Su
 salida open-drain comparte `STM_NRST`; un timeout de WDI o una caída del rail
-reinicia el STM32. PB4 alimenta WDI mediante R601=33 Ω y R602=1 kΩ a masa evita
-que el watchdog se desactive cuando el GPIO queda en alta impedancia.
+reinicia el STM32. PB4 llega por R601=33 Ω a U606 (SN74LVC1G132, NAND Schmitt),
+que entrega WDI = NAND(`STM_NRST`, impulso): durante el reset WDI queda en alto y
+quieto, porque el TPS3828 enclavaría RESET ante un pulso en WDI con RESET activo.
+R602=1 kΩ a masa fija la entrada del impulso si el GPIO queda en alta impedancia.
 
 `STM_NRST` sube por R101 contra C101, unos 0,5 ms/V, y las entradas del
 SN74LVC2G08 sin histéresis piden 10 ns/V como mucho: U605 (SN74LVC1G17DBVR,

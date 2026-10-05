@@ -170,6 +170,14 @@ def power_symbols():
         ('5', 'VCC', 'power_in', 7.62, 2.54, 180),
         ('4', 'Y', 'output', 7.62, -2.54, 180),
     ], 5.08, 7.62)
+    # Single 2-input NAND with Schmitt inputs, SOT-23-5 (DBV): 1 A, 2 B, 3 GND, 4 Y, 5 VCC.
+    d.DEFS['SCHMITT_NAND'] = ([
+        ('1', 'A', 'input', -7.62, 2.54, 0),
+        ('2', 'B', 'input', -7.62, -2.54, 0),
+        ('3', 'GND', 'power_in', -7.62, -5.08, 0),
+        ('5', 'VCC', 'power_in', 7.62, 2.54, 180),
+        ('4', 'Y', 'output', 7.62, -2.54, 180),
+    ], 5.08, 7.62)
     d.DEFS['TPS3828DBV'] = ([
         ('1', '~{RESET}', 'open_collector', -7.62, 3.81, 0),
         ('2', 'GND', 'power_in', -7.62, 0, 0),
@@ -472,14 +480,14 @@ def main():
     d.note('F304 separa la válvula de F303; validar corriente en caliente, transitorio y térmica en banco.',870,526,1.1)
     d.note('13 / Supervisor y corte hardware — reset + watchdog + AND doble',12,610,1.8)
     d.add('U601','TPS3828DBV','TPS3828-33DBVR',180,660,
-          ['STM_NRST',g,v,v,'WATCHDOG_KICK'],
+          ['STM_NRST',g,v,v,'WATCHDOG_WDI'],
           'Package_TO_SOT_SMD:SOT-23-5',part_key='TPS3828-33DBVR')
     d.add('U602','DUAL_AND','SN74LVC2G08DCTR',340,660,
           ['BREW_SLEEP_RAW','STM_NRST_BUF','VALVE_EN_RAW','STM_NRST_BUF',v,g,
            'BREW_SLEEP_INTERLOCK','VALVE_EN_INTERLOCK'],
           'Package_SO:SSOP-8_2.95x2.8mm_P0.65mm',part_key='SN74LVC2G08DCTR')
     d.passive('R601','R','33 / WDI',60,640,'WATCHDOG_KICK_RAW','WATCHDOG_KICK')
-    d.passive('R602','R','1k / WDI pull-down',60,680,'WATCHDOG_KICK',g)
+    d.passive('R602','R','1k / kick pull-down',60,680,'WATCHDOG_KICK',g)
     d.passive('R603','R','10k / brew arm pull-down',260,630,'BREW_SLEEP_RAW',g)
     d.passive('R604','R','10k / valve pull-down',260,690,'VALVE_EN_RAW',g)
     d.passive('C601','C','100nF / supervisor local',180,710,v,g)
@@ -491,9 +499,18 @@ def main():
           ['STM_NRST',g,None,v,'STM_NRST_BUF'],
           'Package_TO_SOT_SMD:SOT-23-5',part_key='SN74LVC1G17DBVR')
     d.passive('C605','C','100nF / reset buffer local',420,710,v,g)
+    # The TPS3828 (no A suffix) latches RESET low if WDI sees a pulse while
+    # RESET is asserted (TI SLVS165O, 7.3.4). The STM32 enters reset with PB4
+    # high, low or released, so WDI = NAND(kick, STM_NRST): while reset is
+    # asserted WDI sits high whatever PB4 does, and in operation it follows the
+    # inverted kick. R602 still holds the kick input low if PB4 is released.
+    d.add('U606','SCHMITT_NAND','SN74LVC1G132DBVR',100,700,
+          ['STM_NRST','WATCHDOG_KICK',g,v,'WATCHDOG_WDI'],
+          'Package_TO_SOT_SMD:SOT-23-5',part_key='SN74LVC1G132DBVR')
+    d.passive('C606','C','100nF / WDI gate local',140,730,v,g)
     d.note('PB4 debe producir flancos antes de 0,9s (mínimo). Timeout típico 1,6s; reset 120–300ms.',12,744,1.1)
     d.note('~RESET open-drain comparte STM_NRST; U605 (Schmitt) lo cuadra para las AND U602-U604.',12,752,1.1)
-    d.note('R602 mantiene WDI activo si PB4 queda Hi-Z; R603/R604 aseguran órdenes inactivas al arrancar.',12,760,1.1)
+    d.note('U606 deja WDI en alto durante el reset (TPS3828 sin A); R602 fija su entrada si PB4 queda Hi-Z. R603/R604: órdenes a 0 al arrancar.',12,760,1.1)
     d.note('14 / Telemetría de alimentación y cabecera de medida',470,610,1.8)
     d.passive('R701','R','100k / 12V div A',500,640,'12V_PROTECTED','RAIL_12V_DIV')
     d.passive('R702','R','100k / 12V div B',570,640,'RAIL_12V_DIV','RAIL_12V_ADC')

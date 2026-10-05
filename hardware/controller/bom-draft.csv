@@ -119,13 +119,15 @@ C508,1uF / driver local,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electr
 U601,TPS3828-33DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,TPS3828-33DBVR,C20032,Extended,TBD
 U602,SN74LVC2G08DCTR,Package_SO:SSOP-8_2.95x2.8mm_P0.65mm,candidate,Texas Instruments,SN74LVC2G08DCTR,C352973,Extended,TBD
 R601,33 / WDI,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
-R602,1k / WDI pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+R602,1k / kick pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 R603,10k / brew arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R604,10k / valve pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C601,100nF / supervisor local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C602,100nF / logic local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 U605,SN74LVC1G17DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,SN74LVC1G17DBVR,C7836,Extended,TBD
 C605,100nF / reset buffer local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+U606,SN74LVC1G132DBVR,Package_TO_SOT_SMD:SOT-23-5,candidate,Texas Instruments,SN74LVC1G132DBVR,C403723,Extended,TBD
+C606,100nF / WDI gate local,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 R701,100k / 12V div A,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 R702,100k / 12V div B,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 R703,10k / 12V div low,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard

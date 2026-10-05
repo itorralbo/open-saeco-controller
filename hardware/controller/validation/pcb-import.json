@@ -1,5 +1,5 @@
 {
-  "status": "synchronized_preserving_existing_placement_not_fabricable",
+  "status": "new_footprints_staged_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -199,6 +199,10 @@
       "numbered_pads": 2
     },
     "C605": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C606": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -758,6 +762,10 @@
       "footprint": "Package_TO_SOT_SMD:SOT-23-5",
       "numbered_pads": 5
     },
+    "U606": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "numbered_pads": 5
+    },
     "U701": {
       "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "numbered_pads": 6
@@ -772,8 +780,11 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [],
-  "tracks": 1776,
+  "newly_staged_footprints": [
+    "C606",
+    "U606"
+  ],
+  "tracks": 1762,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

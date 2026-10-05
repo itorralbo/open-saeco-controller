@@ -401,6 +401,9 @@ PLACE = {
     # capacitor column stays free for the 3V3 spine. The 1.35 mm channel west
     # of U601/U602 is reserved for STM_NRST and is not used by this block.
     'R601': (38, 56.8, 0), 'R602': (38, 58.8, 0),
+    # U606 gates WDI with the reset east of R601/R602, where the 3.3 V spine
+    # ran before the In2.Cu plane took it over; C606 sits below it.
+    'U606': (42.4, 56.6, 0), 'C606': (43.4, 59.3, 180),
     'R603': (33, 61.025, 180), 'R604': (42.5, 64.5, 0),
     'C601': (42.5, 53.05, 0), 'C602': (42.5, 61.025, 0),
 

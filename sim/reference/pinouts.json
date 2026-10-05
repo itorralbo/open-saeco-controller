@@ -62,6 +62,10 @@
       "source": "TI SCES351, pin functions, DBV: 1 NC, 2 A, 3 GND, 4 Y, 5 VCC.",
       "pins": {"1": "NC", "2": "A", "3": "GND", "4": "Y", "5": "VCC"}
     },
+    "SN74LVC1G132DBVR": {
+      "source": "TI SCES538, pin functions, DBV: 1 A, 2 B, 3 GND, 4 Y, 5 VCC.",
+      "pins": {"1": "A", "2": "B", "3": "GND", "4": "Y", "5": "VCC"}
+    },
     "TCA9534PWR": {
       "source": "KiCad 10 Interface_Expansion TCA9534 (TI SCPS197D).",
       "pins": {

@@ -16,8 +16,10 @@ static int valid(unsigned port, unsigned pin) {
 
 void osc_sim_reset(void) {
     const uint32_t now = osc_sim_io.millis;
+    const uint16_t cal = osc_sim_io.vrefint_cal;
     memset(&osc_sim_io, 0, sizeof osc_sim_io);
     osc_sim_io.millis = now;
+    osc_sim_io.vrefint_cal = cal; /* system memory survives reset */
     osc_sim_io.dead_battery = 1;
 }
 
@@ -73,3 +75,22 @@ void osc_hal_pwm_set(unsigned port, unsigned pin, unsigned permille) {
 void osc_hal_disable_ucpd_dead_battery(void) { osc_sim_io.dead_battery = 0; }
 
 uint32_t osc_hal_millis(void) { return osc_sim_io.millis; }
+
+uint16_t osc_hal_vrefint_cal(void) { return osc_sim_io.vrefint_cal; }
+
+unsigned osc_hal_uart_write(const uint8_t *data, unsigned n) {
+    unsigned room = SIM_UART_BUF - osc_sim_io.uart_tx_len;
+    if (n > room) n = room;
+    memcpy(&osc_sim_io.uart_tx[osc_sim_io.uart_tx_len], data, n);
+    osc_sim_io.uart_tx_len = (uint16_t)(osc_sim_io.uart_tx_len + n);
+    return n;
+}
+
+bool osc_hal_uart_read(uint8_t *byte) {
+    if (osc_sim_io.uart_rx_head >= osc_sim_io.uart_rx_len) return false;
+    *byte = osc_sim_io.uart_rx[osc_sim_io.uart_rx_head++];
+    return true;
+}
+
+/* Size the ctypes mirror in sim/osc_sim/firmware.py checks on load. */
+unsigned osc_sim_size(void) { return (unsigned)sizeof(sim_io); }

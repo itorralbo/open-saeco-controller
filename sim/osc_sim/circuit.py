@@ -255,7 +255,7 @@ class Circuit:
                         st = states.get(f'{d.ref}.{y}', OFF)
                         level_v = vcc if (st is ON or (st is X and x_on)) else 0.0
                         src(f'{d.ref}.{y}', pin[y], level_v, rout, p['io_max'], f'{_short(d.ref)}.{y}')
-                elif k == 'schmitt_buffer':
+                elif k in ('schmitt_buffer', 'nand_schmitt'):
                     vcc = fixed.get(pin['VCC'])
                     rout = (vcc - p['voh_16ma']) / p['io_max'] if vcc else 50.0
                     high = on[d.ref]
@@ -339,6 +339,20 @@ class Circuit:
                     new[d.ref] = lv if lv is not X else (states.get(d.ref, OFF) if va is not None else X)
                     if new[d.ref] is X:
                         why[d.ref] = f'{_short(d.ref)}: entrada A flotante'
+                elif k == 'nand_schmitt':
+                    ins = [vget(pin[n]) for n in ('A', 'B')]
+                    lv = [level(v, p['vih'], p['vil']) for v in ins]
+                    if None in ins:
+                        out = X
+                    elif OFF in lv:
+                        out = ON          # any input low: output high
+                    elif all(x is ON for x in lv):
+                        out = OFF
+                    else:
+                        out = states.get(d.ref, OFF)  # inside the hysteresis band
+                    new[d.ref] = out
+                    if out is X:
+                        why[d.ref] = f'{_short(d.ref)}: entrada flotante'
                 elif k == 'nmos':
                     vg, vs = vget(pin['G']), vget(pin['S'])
                     if vg is None or vs is None:

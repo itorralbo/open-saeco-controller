@@ -8,7 +8,7 @@ de KiCad, así que un error de diseño aparece como un fallo de simulación.
 |---|---|---|
 | F0 | Modelo de las dos placas, contrato de firmware, comprobaciones y `board_pins.h` | Hecha |
 | F1 | STM32 en host contra la placa virtual: HAL, modelos de componentes y planta | Hecha; planta con valores supuestos |
-| F2 | ESP32 en host: LVGL, ST7789 y TCA9534 virtuales, protocolo v0 | Pendiente |
+| F2 | ESP32 en host: ST7789 y TCA9534 virtuales, protocolo v0 | Hecha; LVGL queda para el puerto ESP-IDF |
 | F3 | Panel web local: frontal, pantalla, gráficas, inyección de fallos, VCD | Pendiente |
 | F4 | Recetas y máquina de estados completa | Pendiente |
 
@@ -70,6 +70,7 @@ Salidas (generadas, no editar):
 | `back-feed` | Entrada de alimentación externa que llega al nodo de conmutación de un buck por bobinas o fusibles, sin cruzar otro rail |
 | `tvs` | TVS que conduciría con el rail en su máximo (VWM) o que no empieza a conducir (VBR máx.) antes del máximo absoluto de lo que protege |
 | `resistor-power` | Resistencia que disipa más de su potencia nominal (catálogo o tamaño de huella) en el peor estado; aviso por encima del 60 % |
+| `wdi-reset` | Supervisor que enclava RESET ante un pulso en WDI (TPS382x sin A) cuyo WDI cambia, con RESET activo, según PB4 esté en alto, en bajo o liberado |
 | `pin-voltage` | Pin de un MCU por encima de su máximo absoluto en algún estado, con los rails y VBUS al máximo |
 | `input-level` | Entrada digital activa a cero que, con su contacto cerrado (50 Ω) o abierto, no pasa de VIL o VIH en las dos esquinas |
 
@@ -122,3 +123,26 @@ resetea, que el interlock corta las órdenes de un núcleo desbocado en el mismo
 paso en que U601 baja `STM_NRST`, que olvidar el *dead battery* de UCPD deja
 `nFAULT` indefinido, y la caldera/NTC, el grupo/IPROPI y los flancos del
 caudalímetro.
+
+## F2: interfaz, frontal y protocolo
+
+- [`firmware.py`](osc_sim/firmware.py) compila también el núcleo del ESP32
+  (`firmware/esp32/core`) con [`hal/hal_esp_sim.c`](hal/hal_esp_sim.c). Sus
+  pines entran en el circuito como los del STM32; el I²C y el SPI se resuelven
+  al momento en Python.
+- [`front.py`](osc_sim/front.py): TCA9534 y ST7789V al otro lado del mazo. Solo
+  responden con `3V3_UI` presente; el TCA9534 lee cada tecla como la tensión en
+  su pin (pulsador, pull-up y serie del netlist), su INT es una bajada en drenador
+  abierto sobre el circuito, y la pantalla descodifica CASET/RASET/RAMWR sobre un
+  framebuffer de 320 × 240.
+- [`board.py`](osc_sim/board.py) lleva los bytes de la UART entre los dos
+  firmwares a 115200 baudios, solo con los dos pines configurados y la línea en
+  reposo alto en el receptor, y registra `backfeed` si el ESP32 deja en alto una
+  línea del frontal con `3V3_UI` apagado.
+
+Los [escenarios](../tests/sim/test_f2.py): arranque y enlace en las dos
+esquinas, STATUS con los rails reales, núcleo FAULT si el ESP32 se cuelga,
+pantalla de enlace perdido y recuperación si se cuelga el STM32, START rechazado
+como respuesta normal, tecla mantenida al arrancar, rebotes, puerta abierta y
+CLEAR_FAULT, standby con el LED, teclado colgado recuperado con un ciclo de
+`3V3_UI` sin backfeed, y que el detector de backfeed salta con una línea en alto.

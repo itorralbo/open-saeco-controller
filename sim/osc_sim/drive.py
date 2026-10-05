@@ -127,6 +127,7 @@ def check(checker):
     check_pin_voltage(checker, bench)
     check_inputs(checker, bench)
     check_resistor_power(checker, bench)
+    check_wdi_reset(checker, bench)
 
 
 def margins(bench, active, inactive):
@@ -342,3 +343,52 @@ def check_resistor_power(checker, bench):
                 checker.add('warning', 'resistor-power',
                             f'{ref} ({comp.value}) disipa {watts * 1000:.0f} mW, el {watts / rating:.0%} de sus '
                             f'{rating * 1000:.0f} mW nominales.', f'{board}:{ref}')
+
+
+DEAD_BATTERY_OHMS = 5100.0  # UCPD Rd on PB4/PB6 from reset (RM0440)
+
+
+def check_wdi_reset(checker, bench):
+    """A supervisor that latches on WDI edges during reset must see none.
+
+    TPS382x without the A suffix keep RESET low for good if a WDI pulse
+    arrives while RESET is asserted (TI SLVS165, 7.3.4). The MCU enters reset
+    with its kick pin high, low or released, so with RESET asserted WDI must
+    sit at the same level in all three cases, else entering reset is itself
+    the edge.
+    """
+    s = checker.s
+    r = checker.signals.get(('stm32', 'WDT_KICK'))
+    if r is None or r.pad is None:
+        return
+    pad = s.net_of(r.pad)
+    for d in bench.circuit.devices:
+        if d.kind != 'supervisor' or not d.params.get('wdi_latch'):
+            continue
+        wdi = d.pins['WDI']
+        for corner in CORNERS:
+            vdd = bench.rails(corner)[bench.vdd_net]
+            levels = {}
+            for label, kick in (('PB4 en alto', True), ('PB4 en bajo', False)):
+                out = bench.run(corner, {'WDT_KICK': kick}, True, True)
+                levels[label] = _wdi_level(out.lo.volts.get(wdi), vdd, d.params)
+            rd = [('r', pad, bench.circuit.gnd, DEAD_BATTERY_OHMS)]
+            out = bench.run(corner, {}, False, True, extra_loads=rd)
+            levels['MCU en reset'] = _wdi_level(out.lo.volts.get(wdi), vdd, d.params)
+            if len(set(levels.values())) > 1 or None in levels.values():
+                shown = ', '.join(f'{k}: {v or "indefinido"}' for k, v in levels.items())
+                checker.add('error', 'wdi-reset',
+                            f'{d.ref.split(":")[1]}.WDI con RESET activo cambia según el estado de PB4 '
+                            f'({shown}, {CORNER_NAME[corner]}): al entrar el STM32 en reset aparece un flanco '
+                            'que deja RESET enclavado en bajo (TI SLVS165O, 7.3.4).', r.pad)
+                return
+
+
+def _wdi_level(v, vdd, p):
+    if v is None:
+        return None
+    if v >= p['wdi_vih_frac'] * vdd:
+        return 'alto'
+    if v <= p['wdi_vil_frac'] * vdd:
+        return 'bajo'
+    return None

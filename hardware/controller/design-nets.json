@@ -1951,7 +1951,7 @@
         "2": "GND_UI",
         "3": "3V3_CORE",
         "5": "3V3_CORE",
-        "4": "WATCHDOG_KICK"
+        "4": "WATCHDOG_WDI"
       }
     },
     {
@@ -1992,7 +1992,7 @@
     },
     {
       "reference": "R602",
-      "value": "1k / WDI pull-down",
+      "value": "1k / kick pull-down",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "UNI-ROYAL",
@@ -2086,6 +2086,39 @@
     {
       "reference": "C605",
       "value": "100nF / reset buffer local",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "U606",
+      "value": "SN74LVC1G132DBVR",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-5",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "SN74LVC1G132DBVR",
+      "lcsc": "C403723",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "STM_NRST",
+        "2": "WATCHDOG_KICK",
+        "3": "GND_UI",
+        "5": "3V3_CORE",
+        "4": "WATCHDOG_WDI"
+      }
+    },
+    {
+      "reference": "C606",
+      "value": "100nF / WDI gate local",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "status": "candidate",
       "manufacturer": "YAGEO",

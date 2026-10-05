@@ -203,6 +203,11 @@ class Mutations(unittest.TestCase):
         b['controller'].components['R709'].fields['lcsc'] = 'C21190'
         self.expect(b, 'resistor-power', 'R709')
 
+    def test_wdi_left_to_follow_pb4_through_reset(self):
+        b = baseline()  # U601 WDI back on the kick, without U606 between them
+        set_net(b['controller'], 'U601', '4', 'WATCHDOG_KICK')
+        self.expect(b, 'wdi-reset', 'U601.WDI')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

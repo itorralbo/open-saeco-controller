@@ -203,7 +203,11 @@ def main():
                       ('R514','VALVE_GATE',g),
                       ('C507','12V_PROTECTED',g),('C508','12V_PROTECTED',g)]:
         assert nets[ref] == {'1':a,'2':b}
-    assert nets['U601'] == {'1':'STM_NRST','2':g,'3':v,'4':'WATCHDOG_KICK','5':v}
+    assert nets['U601'] == {'1':'STM_NRST','2':g,'3':v,'4':'WATCHDOG_WDI','5':v}
+    # WDI = NAND(kick, STM_NRST): high and still while U601 asserts reset,
+    # since the TPS3828 latches RESET on a WDI pulse during reset.
+    assert nets['U606'] == {'1':'STM_NRST','2':'WATCHDOG_KICK','3':g,'4':'WATCHDOG_WDI','5':v}
+    assert nets['C606'] == {'1':v,'2':g}
     # The gates take reset through U605, a Schmitt buffer: STM_NRST's RC edge
     # is far slower than the LVC2G08 inputs allow.
     assert nets['U605'] == {'1':None,'2':'STM_NRST','3':g,'4':'STM_NRST_BUF','5':v}

@@ -10,6 +10,8 @@
 typedef struct {
     bool door_closed, bu_present, bu_work, brew_fault;
     uint16_t ntc, water, rail_12v, rail_24v, brew_current; /* raw ADC codes */
+    uint16_t vrefint;    /* raw code of the internal reference */
+    uint16_t vdda_mv;    /* VDDA from VREFINT and its factory calibration */
     uint32_t flow_edges;
 } osc_inputs;
 

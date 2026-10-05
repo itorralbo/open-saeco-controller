@@ -65,9 +65,12 @@ class Boot(unittest.TestCase):
         self.assertEqual(b.kinds('undefined'), [])
         self.assertEqual((b.fw.io.undefined_reads, b.fw.io.analog_reads, b.fw.io.bad_calls), (0, 0, 0))
 
-    def test_without_link_the_core_faults_with_loads_off(self):
+    def test_without_link_the_core_waits_then_faults_with_loads_off(self):
         b = booted(board(1))
         b.run(0.5)
+        state, outs = b.fw.controller
+        self.assertEqual(state, 'BOOT')  # waiting for the ESP32 (OSC_LINK_BOOT_GRACE_MS)
+        b.run(1.6)
         state, outs = b.fw.controller
         self.assertEqual(state, 'FAULT')
         self.assertFalse(any(outs.values()))
@@ -88,6 +91,17 @@ class Watchdog(unittest.TestCase):
         b.fw.hung = False
         b.run(0.2, until=lambda x: len(x.kinds('boot')) == 2)
         self.assertEqual(len(b.kinds('boot')), 2)
+
+    def test_hung_core_recovers_whatever_pb4_was(self):
+        # TPS3828 latches RESET if WDI pulses during reset; U606 keeps it high.
+        for level in (True, False):
+            b = booted(board(0))
+            b.run(0.3)
+            b.fw.hung = True
+            b.force('WDT_KICK', level)
+            self.assertTrue(b.run(1.5, until=lambda x: bool(x.kinds('watchdog'))))
+            self.assertTrue(b.run(0.5, until=lambda x: len(x.kinds('boot')) == 2), b.events)
+            self.assertEqual(b.kinds('reset-latched'), [])
 
     def test_runaway_orders_are_cut_by_the_interlock(self):
         b = booted(board(0))

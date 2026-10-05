@@ -460,17 +460,16 @@ def route_watchdog_interlock(board):
     # 3V3 spine: U601 VDD and MR, C601, U602 VCC and C602.
     polyline(board, v33, [(39.138, 53.05), (40.52, 53.05), (41.275, 53.05)],
              width=PIN_WIDTH)
-    track(board, v33, (40.52, 53.05), (40.52, 61.025), width=RING_WIDTH)
+    # The spine between U601 and U602 gave way to U606; the In2.Cu plane
+    # joins C601 and C602, and only the MR branch's last leg is left.
+    track(board, v33, (40.52, 59.75), (40.52, 61.025), width=RING_WIDTH)
     polyline(board, v33, [(39.85, 61.025), (40.52, 61.025), (41.275, 61.025)],
              width=PIN_WIDTH)
     polyline(board, v33, [(36.862, 54.95), (36.1, 55.7), (36.1, 59.75),
                           (40.52, 59.75)], width=PIN_WIDTH)
 
-    # Watchdog input: U601 WDI to the R601 series resistor and the R602
-    # pull-down that keeps the supervisor kicked if the GPIO floats.
-    polyline(board, '/WATCHDOG_KICK', [(39.138, 54.95), (39.138, 55.9), (38.825, 55.9),
-                                       (38.825, 56.8)],
-             width=PIN_WIDTH)
+    # Kick: R601 to U606's input and the R602 pull-down that holds it if the
+    # GPIO floats. U606 drives WDI (route_wdi_gate).
     polyline(board, '/WATCHDOG_KICK', [(38.825, 56.8), (38.825, 57.6), (37.975, 57.6),
                                        (37.175, 58.4), (37.175, 58.8)],
              width=PIN_WIDTH)
@@ -944,6 +943,37 @@ def route_reset_tree(board):
     # 0.87 mm gap east of the package that the valve arm net already uses, and
     # the SWD header's reset pin, which would have to cross the decoupling
     # link north of the MCU.
+
+
+def route_wdi_gate(board):
+    """U606: WDI = NAND(STM_NRST, kick), east of R601/R602.
+
+    The kick runs east from R601's output to input B. STM_NRST leaves the
+    reset corridor at x = 40.95 mm, passes between C601's pads and reaches
+    input A from the north-east. WDI leaves Y under the package body, hops on
+    B.Cu under the reset line and comes up beside U601's WDI pad. VCC drops to
+    the In2.Cu plane north of the package and through C606, south of it,
+    whose ground shares U606's ground via. Paths found with the scratch A*
+    over the dumped copper (see controller-routing-method).
+    """
+    kick, nrst, wdi = '/WATCHDOG_KICK', '/STM_NRST', '/WATCHDOG_WDI'
+    v33, gnd = '/3V3_CORE', '/GND_UI'
+    polyline(board, kick, [(38.825, 56.8), (41.05, 56.8), (41.263, 56.6)], width=PIN_WIDTH)
+    polyline(board, nrst, [(40.95, 50.5), (42.5, 52.05), (42.5, 54.4), (41.263, 55.65)],
+             width=SIGNAL_WIDTH)
+    polyline(board, wdi, [(43.538, 57.55), (42.55, 56.55), (42.55, 55.2), (42.9, 54.85)],
+             width=PIN_WIDTH)
+    via(board, wdi, (42.9, 54.85))
+    track(board, wdi, (42.9, 54.85), (40.75, 54.85), pcb.B_Cu, width=PIN_WIDTH)
+    via(board, wdi, (40.75, 54.85))
+    polyline(board, wdi, [(40.75, 54.85), (39.25, 54.85), (39.138, 54.95)], width=PIN_WIDTH)
+    track(board, v33, (43.538, 55.65), (43.538, 54.35), width=PIN_WIDTH)
+    via(board, v33, (43.538, 54.35))
+    polyline(board, v33, [(44.175, 59.3), (44.7, 58.775), (44.7, 55.95), (44.4, 55.65),
+                          (43.538, 55.65)], width=PIN_WIDTH)
+    track(board, gnd, (41.263, 57.55), (41.263, 58.45), width=PIN_WIDTH)
+    via(board, gnd, (41.263, 58.45))
+    polyline(board, gnd, [(42.625, 59.3), (41.775, 58.45), (41.263, 58.45)], width=PIN_WIDTH)
 
 
 def route_usb_power(board):
@@ -2315,6 +2345,7 @@ def main():
     route_ui_load_switch(board)
     route_logic_grounds(board)
     route_reset_tree(board)
+    route_wdi_gate(board)
     route_usb_power(board)
     route_earth_and_heater_return(board)
     route_heater_enable(board)
@@ -2354,6 +2385,7 @@ def main():
                           '3.3 V: an In2.Cu plane drop for every pad group',
                           'USB and ESP32 ground pins into the plane',
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',
+                          'WDI gate: U606 holds WDI high while U601 asserts reset',
                           'service-USB rail, sense divider and bench jumper',
                           'protective-earth bond and the heater neutral return',
                           'heater stage: optocoupler, triac, gate and switched phase',

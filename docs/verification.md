@@ -844,3 +844,36 @@ Resultado: ERC 0; netlist 192/625; DRC con todas las severidades: 0 infracciones
 0 sin conectar y paridad solo MH1–MH3 (1318 segmentos y 444 vías, 149 de
 cosido); modelo de placa 0 errores y 0 avisos. Serigrafía, PDF 1:1 y render
 regenerados.
+
+## Simulador F2, VREFINT y puerta del WDI, 2026-10-05
+
+F2 del [simulador](../sim/README.md#f2-interfaz-frontal-y-protocolo):
+[protocolo v0](../firmware/common/protocol.md) implementado y compartido por los
+dos firmwares; núcleo portable del ESP32 (`firmware/esp32/core`: TCA9534 con
+antirrebote, ST7789V no bloqueante, enlace y pantallas) sobre su HAL; el STM32
+atiende el enlace y solo llega a SAFE_IDLE con él vivo; TCA9534 y ST7789V
+virtuales en el frontal, que responden desde las tensiones del otro lado del
+mazo; UART entre firmwares y detector de backfeed.
+
+Encontró dos errores, uno de firmware y otro de circuito:
+
+- **Medida de los rails**: el firmware escalaba con VREF = 3,3 V supuestos; con
+  VDDA en 3,4 V (esquina alta del AP63203 más rizado) leía 12,13 V en un rail de
+  12,5 V. Ahora mide VDDA contra VREFINT (ADC1_IN18) y su valor de fábrica a
+  3,0 V (DS12589, 3.18.2).
+- **U601 y el reset enclavado**: el TPS3828 sin sufijo A deja RESET en bajo para
+  siempre si WDI recibe un pulso con RESET activo (TI SLVS165O, 7.3.4). Con WDI
+  unido a PB4 y R602 a masa, un núcleo colgado con PB4 en alto o una bajada de
+  tensión daban ese pulso al entrar el STM32 en reset: el escenario del watchdog
+  quedaba en reset permanente. Corrección: **U606, SN74LVC1G132DBVR** (TI,
+  C403723, Extended; 30.058 en stock hoy) y C606, con WDI = NAND(`STM_NRST`,
+  impulso): durante el reset WDI queda en alto pase lo que pase en PB4. La versión
+  A del supervisor no sirve porque su salida es push-pull y NRST necesita drenador
+  abierto. Regla nueva `wdi-reset` con su test de mutación, y escenario de núcleo
+  colgado con PB4 en alto y en bajo.
+
+Resultado: ERC 0 en las dos placas; netlist 194/632; DRC con todas las
+severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1334
+segmentos y 448 vías, 149 de cosido); modelo de placa 0 errores y 0 avisos;
+`tests/sim` 53/53; CTest 3/3 (con el protocolo). Serigrafía, PDF 1:1 y render
+regenerados. Sin hardware fabricado ni ensayado.

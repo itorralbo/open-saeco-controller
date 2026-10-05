@@ -52,7 +52,7 @@ Qué comprueba cada regla: [README del simulador](README.md).
 | stm32 | UI_PWR_EN | `UI_PWR_EN` | 34 | PB12 |  | high | U302 |
 | stm32 | VALVE_EN | `VALVE_EN_RAW` | 21 | PA7 |  | low | U602 → R511 → U502 → R513 → Q501 |
 | stm32 | WATER_LEVEL | `WATER_LEVEL` | 11 | PC3 | ADC1_IN9 |  | R411 |
-| stm32 | WDT_KICK | `WATCHDOG_KICK_RAW` | 57 | PB4 |  | low | R601 |
+| stm32 | WDT_KICK | `WATCHDOG_KICK_RAW` | 57 | PB4 |  | low | R601 → U606 |
 
 ## Entradas analógicas
 
