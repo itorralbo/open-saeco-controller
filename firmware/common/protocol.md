@@ -34,11 +34,13 @@ SOF 0xA5 | VER | TYPE | SEQ | LEN | PAYLOAD[LEN] | CRC16 lo | CRC16 hi
 |---|---|---|---|---|
 | HELLO | 0x01 | ESP → STM | versión, rol | ACK, o ERROR si la versión no es 0 |
 | KEEPALIVE | 0x02 | ESP → STM | — | ninguna |
-| STATUS | 0x10 | STM → ESP | `osc_status`, 16 bytes | — |
+| STATUS | 0x10 | STM → ESP | `osc_status`, 18 bytes | — |
+| TEST_REPORT | 0x11 | STM → ESP | `osc_test_report`, 32 bytes | — |
 | STOP | 0x20 | ESP → STM | — | ACK; todas las cargas a cero |
 | CLEAR_FAULT | 0x21 | ESP → STM | — | ACK, o ERROR 3 si puerta/fallo/enlace no lo permiten |
 | START_RECIPE | 0x22 | ESP → STM | receta (u8) | ERROR 3: el núcleo actual no arranca ciclos |
 | UI_POWER | 0x23 | ESP → STM | 0 apagar, 1 encender el frontal | ACK |
+| TEST | 0x24 | ESP → STM | prueba (u8), parámetro (u16, opcional) | ACK, o ERROR 3 si la rechaza; 0 borra el informe |
 | ACK | 0x7E | STM → ESP | tipo aceptado | — |
 | ERROR | 0x7F | STM → ESP | tipo, código | — |
 
@@ -46,11 +48,13 @@ Códigos de error: 1 tipo desconocido, 2 longitud incorrecta, 3 rechazado por el
 núcleo, 4 no implementado. Un rechazo (START) es una respuesta normal, no un fallo
 de comunicación.
 
-`STATUS` (little endian): estado del núcleo (0 BOOT, 1 SAFE_IDLE, 2 FAULT),
+`STATUS` (little endian): estado del núcleo (0 BOOT, 1 SAFE_IDLE, 2 FAULT,
+3 SERVICE mientras una prueba de puesta a punto mueve cargas),
 entradas (bit 0 puerta cerrada, 1 grupo presente, 2 grupo en trabajo, 3 fallo del
 DRV8876, 4 frontal alimentado), salidas (bit 0 calentador, 1 bomba, 2 válvula,
 3 molinillo, 4 motor del grupo), 12 V y 24 V en mV, corriente del grupo en mA,
-código ADC del NTC (hasta calibrar la tabla) y tiempo desde el arranque en ms.
+código ADC del NTC, tiempo desde el arranque en ms y temperatura de la caldera
+en décimas de °C (int16, −32768 con el NTC abierto o en corto).
 Los rails y la corriente se escalan con la VDDA que el STM32 mide contra VREFINT.
 
 ## Tiempos
@@ -62,6 +66,20 @@ Los rails y la corriente se escalan con la VDDA que el STM32 mide contra VREFINT
   de FAULT exige CLEAR_FAULT con interlocks y enlace correctos; nada se reanuda
   solo.
 
-Pendientes: STREAM, TEST (prueba acotada con timeout que la desconexión USB o la
-pérdida de UART cancelan), sesión y límites de receta. Ver
+## Pruebas de puesta a punto
+
+`TEST` arranca una prueba acotada de
+[`service_ids.h`](service_ids.h) (`firmware/stm32/src/service.c`): entradas,
+ciclo del grupo, válvula, relé K701, bomba y caudal, calentador y molinillo.
+El STM32 la rechaza (ERROR 3 y un informe `REFUSED` con el motivo) si el núcleo
+no está en SAFE_IDLE, ya corre otra, falta la puerta o el grupo, el NTC no lee o
+el parámetro se sale de rango. Mientras corre, `TEST_REPORT` sale cada 100 ms y
+al terminar: prueba, fase (0 ninguna, 1 en curso, 2 terminada, 3 abortada,
+4 rechazada), paso, motivo, ms transcurridos y seis valores int32 cuyo
+significado fija `service_ids.h`. STOP, la pérdida del enlace, la puerta
+abierta, nFAULT del DRV8876, el límite de temperatura o el tiempo máximo la
+abortan con todas las cargas a cero; nada se reanuda solo. Una prueba con
+cargas pasa por K701 con 100 ms de margen antes y después del triac.
+
+Pendientes: STREAM, sesión y límites de receta. Ver
 [USB de servicio](../../docs/service-usb.md).

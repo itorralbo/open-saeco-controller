@@ -283,7 +283,8 @@ class VirtualBoard:
                             'valve_v': valve, 'motor_v': motor,
                             'ui': self.s.find('controller:3V3_UI') and
                             (run.volts.get(self.s.find('controller:3V3_UI')) or 0.0) > 0.9 * self.vdd}
-        self.plant.step(dt, self.loads_state['heater'] is True, self.loads_state['pump'] is True, motor)
+        self.plant.step(dt, self.loads_state['heater'] is True, self.loads_state['pump'] is True, motor,
+                        valve_on=valve > 12.0, grinder_on=self.loads_state['grinder'] is True)
         self.t += dt
         self.ms += round(dt * 1000)
         if self.fw is not None:

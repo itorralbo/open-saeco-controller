@@ -4,6 +4,7 @@
 #define OSC_APP_H
 #include "bsp.h"
 #include "controller.h"
+#include "service.h"
 
 /* U601 (TPS3828-33) resets after 0.9 s at the earliest without a falling
  * edge on WDI; toggling every 100 ms gives one every 200 ms. */
@@ -18,4 +19,5 @@ void osc_app_poll(void);
 const osc_controller *osc_app_controller(void);
 const osc_inputs *osc_app_inputs(void);
 bool osc_app_link_ok(void);
+const osc_service *osc_app_service(void);
 #endif

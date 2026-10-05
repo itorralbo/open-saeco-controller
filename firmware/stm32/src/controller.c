@@ -1,7 +1,7 @@
 /* SPDX-License-Identifier: MIT */
 #include "controller.h"
 static void disable(osc_controller *c) {
-    const osc_outputs off = {false, false, false, false, false};
+    const osc_outputs off = {false, false, false, false, false, false, false};
     c->outputs = off;
 }
 void osc_init(osc_controller *c) {

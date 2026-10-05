@@ -5,7 +5,12 @@ El esquema usa un STM32G431RBT6 y ya fija sus pines
 ([core-design.md](../../hardware/controller/core-design.md)); startup,
 linker script y el puerto de `osc_hal.h` al micro (CubeMX/LL) siguen TBD.
 
-- `controller.c`: máquina de estados. Ningún estado actual autoriza cargas.
+- `controller.c`: máquina de estados. Ningún estado del controlador autoriza
+  cargas; solo lo hace una prueba de puesta a punto.
+- `service.c`: pruebas de puesta a punto ([protocolo](../common/protocol.md#pruebas-de-puesta-a-punto)).
+  Solo mueven cargas con el núcleo en SAFE_IDLE y el enlace vivo; cada una
+  tiene tiempo máximo, la puerta y nFAULT se vigilan en cada paso, y el bucle
+  principal deja de escribir sus salidas en cuanto el núcleo sale de SAFE_IDLE.
 - `osc_hal.h`: el poco acceso al hardware que necesita el BSP (modo y nivel de
   pin, ADC, contador de flancos, PWM, desactivar el *dead battery* de UCPD,
   UART, calibración de VREFINT, milisegundos). En host lo implementa
@@ -15,7 +20,8 @@ linker script y el puerto de `osc_hal.h` al micro (CubeMX/LL) siguen TBD.
   de convertir su pin en salida y quita el Rd de UCPD de PB4/PB6 antes de usarlos.
 - `app.c`: bucle principal. Conmuta el impulso del watchdog cada 100 ms (U601
   resetea a los 0,9 s como pronto), atiende el [protocolo v0](../common/protocol.md)
-  con el ESP32 (STATUS cada 100 ms, enlace perdido a los 350 ms), lee entradas,
+  con el ESP32 (STATUS cada 100 ms, enlace perdido a los 350 ms, TEST y
+  TEST_REPORT), lee entradas,
   ejecuta el controlador cada 10 ms y escribe las salidas. Tras el reset espera
   hasta 2 s en `OSC_BOOT` a que aparezca el ESP32; sin enlace pasa a `OSC_FAULT`,
   del que solo sale con CLEAR_FAULT. Los rails y la corriente se escalan con la

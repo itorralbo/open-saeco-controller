@@ -70,25 +70,25 @@ class Panel(unittest.TestCase):
         self.assertIn(b'<canvas id="lcd"', page)
         self.cmd(cmd='step', ms=1000)
         s = self.state()
-        self.assertEqual((s['stm']['state'], s['esp']['screen'], s['board']['lcd_on']), ('SAFE_IDLE', 'IDLE', True))
+        self.assertEqual((s['stm']['state'], s['esp']['page'], s['board']['lcd_on']), ('SAFE_IDLE', 'HOME', True))
         frame, headers = self.get('/api/frame')
         self.assertEqual(len(frame), 320 * 240 * 2)
-        self.assertEqual(frame[2 * (120 * 320 + 160):][:2], b'\x07\xe0')  # green, big endian RGB565
+        self.assertEqual(frame[2 * (2 * 320 + 160):][:2], b'\x07\xe0')  # green title bar, big endian RGB565
 
     def test_b_key_and_fault_injection(self):
-        self.cmd(cmd='press', sw='SW1', down=True)
+        self.cmd(cmd='press', sw='SW5', down=True)
         self.cmd(cmd='step', ms=60)
-        self.cmd(cmd='press', sw='SW1', down=False)
+        self.cmd(cmd='press', sw='SW5', down=False)
         self.cmd(cmd='step', ms=60)
         self.assertEqual(self.state()['esp']['last_reply'], {'type': 0x7F, 'for': 0x22, 'code': 3})
         self.cmd(cmd='door', closed=False)
         self.cmd(cmd='step', ms=200)
         s = self.state()
-        self.assertEqual((s['stm']['state'], s['esp']['screen']), ('FAULT', 'FAULT'))
+        self.assertEqual((s['stm']['state'], s['esp']['page']), ('FAULT', 'HOME'))
         self.cmd(cmd='door', closed=True)
-        self.cmd(cmd='press', sw='SW2', down=True)
+        self.cmd(cmd='press', sw='SW5', down=True)
         self.cmd(cmd='step', ms=60)
-        self.cmd(cmd='press', sw='SW2', down=False)
+        self.cmd(cmd='press', sw='SW5', down=False)
         self.cmd(cmd='step', ms=100)
         self.assertEqual(self.state()['stm']['state'], 'SAFE_IDLE')
 
@@ -100,11 +100,11 @@ class Panel(unittest.TestCase):
         s = self.state()
         self.assertTrue(s['stm']['link'] and s['esp']['link'], s)
         if s['stm']['state'] == 'FAULT':  # the link dropped: CLEAR_FAULT is needed
-            self.cmd(cmd='press', sw='SW2', down=True)
+            self.cmd(cmd='press', sw='SW5', down=True)
             self.cmd(cmd='step', ms=60)
-            self.cmd(cmd='press', sw='SW2', down=False)
+            self.cmd(cmd='press', sw='SW5', down=False)
             self.cmd(cmd='step', ms=100)
-        self.assertEqual((self.state()['stm']['state'], self.state()['esp']['screen']), ('SAFE_IDLE', 'IDLE'))
+        self.assertEqual((self.state()['stm']['state'], self.state()['esp']['page']), ('SAFE_IDLE', 'HOME'))
 
     def test_d_vcd_and_history(self):
         text = self.get('/api/vcd')[0].decode()

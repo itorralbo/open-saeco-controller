@@ -91,6 +91,7 @@ void osc_status_pack(const osc_status *s, uint8_t *payload) {
     put16(&payload[10], s->ntc_raw);
     put16(&payload[12], (uint16_t)(s->uptime_ms & 0xFFFFu));
     put16(&payload[14], (uint16_t)(s->uptime_ms >> 16));
+    put16(&payload[16], (uint16_t)s->boiler_dc);
 }
 
 bool osc_status_unpack(const uint8_t *payload, unsigned len, osc_status *s) {
@@ -103,5 +104,35 @@ bool osc_status_unpack(const uint8_t *payload, unsigned len, osc_status *s) {
     s->brew_ma = get16(&payload[8]);
     s->ntc_raw = get16(&payload[10]);
     s->uptime_ms = (uint32_t)get16(&payload[12]) | ((uint32_t)get16(&payload[14]) << 16);
+    s->boiler_dc = (int16_t)get16(&payload[16]);
+    return true;
+}
+
+static void put32(uint8_t *p, uint32_t v) {
+    put16(p, (uint16_t)(v & 0xFFFFu));
+    put16(p + 2, (uint16_t)(v >> 16));
+}
+
+static uint32_t get32(const uint8_t *p) { return (uint32_t)get16(p) | ((uint32_t)get16(p + 2) << 16); }
+
+void osc_test_report_pack(const osc_test_report *r, uint8_t *payload) {
+    unsigned i;
+    payload[0] = r->id;
+    payload[1] = r->phase;
+    payload[2] = r->step;
+    payload[3] = r->reason;
+    put32(&payload[4], r->elapsed_ms);
+    for (i = 0; i < OSC_TEST_VALUES; ++i) put32(&payload[8 + 4 * i], (uint32_t)r->value[i]);
+}
+
+bool osc_test_report_unpack(const uint8_t *payload, unsigned len, osc_test_report *r) {
+    unsigned i;
+    if (len != OSC_TEST_REPORT_LEN) return false;
+    r->id = payload[0];
+    r->phase = payload[1];
+    r->step = payload[2];
+    r->reason = payload[3];
+    r->elapsed_ms = get32(&payload[4]);
+    for (i = 0; i < OSC_TEST_VALUES; ++i) r->value[i] = (int32_t)get32(&payload[8 + 4 * i]);
     return true;
 }

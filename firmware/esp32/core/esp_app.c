@@ -47,6 +47,8 @@ static void handle(const osc_frame *f, uint32_t now) {
             v.have_status = true;
             last_status = now;
         }
+    } else if (f->type == OSC_MSG_TEST_REPORT) {
+        if (osc_test_report_unpack(f->payload, f->len, &v.report)) v.have_report = true;
     } else if ((f->type == OSC_MSG_ACK || f->type == OSC_MSG_ERROR) && f->len >= 1) {
         v.replies++;
         v.last_reply_type = f->type;
@@ -55,16 +57,28 @@ static void handle(const osc_frame *f, uint32_t now) {
     }
 }
 
+static void ctx(ui_ctx *c) {
+    c->link_ok = v.link_ok;
+    c->have_status = v.have_status;
+    c->have_report = v.have_report;
+    c->keypad_valid = v.keypad.valid;
+    c->status = &v.status;
+    c->report = &v.report;
+    c->last_reply_type = v.last_reply_type;
+    c->last_reply_for = v.last_reply_for;
+    c->last_reply_code = v.last_reply_code;
+    c->requests = v.requests;
+    c->replies = v.replies;
+    c->recoveries = v.recoveries;
+}
+
 static void keys(uint8_t presses) {
-    static const uint8_t recipe = 1;
-    if (presses & ESP_KEY_STANDBY) {
-        v.standby = !v.standby;
-        fp_set_led(&v.keypad, v.standby);
-    }
-    if (!v.link_ok) return; /* nothing to ask without a link */
-    if (presses & ESP_KEY_STOP) send(OSC_MSG_STOP, 0, 0);
-    if (presses & ESP_KEY_START) send(OSC_MSG_START_RECIPE, &recipe, 1);
-    if (presses & ESP_KEY_CLEAR_FAULT) send(OSC_MSG_CLEAR_FAULT, 0, 0);
+    ui_ctx c;
+    ui_request req;
+    const bool standby = v.ui.standby;
+    ctx(&c);
+    if (ui_keys(&v.ui, presses, &c, &req)) send(req.type, req.payload, req.len);
+    if (v.ui.standby != standby) fp_set_led(&v.keypad, v.ui.standby);
 }
 
 static void front(uint32_t now) {
@@ -116,19 +130,12 @@ static void front(uint32_t now) {
 }
 
 static void screen(void) {
-    static const uint16_t bg[] = {DISP_BLACK, DISP_GREY, DISP_BLUE, DISP_GREEN, DISP_RED, DISP_BLACK};
-    uint16_t bar = DISP_BLACK;
-    if (!v.have_status) v.screen = ESP_SCREEN_BOOT;
-    else if (!v.link_ok) v.screen = ESP_SCREEN_LINK_LOST;
-    else if (v.standby) v.screen = ESP_SCREEN_STANDBY;
-    else if (v.status.state == OSC_CORE_FAULT) v.screen = ESP_SCREEN_FAULT;
-    else if (v.status.state == OSC_CORE_SAFE_IDLE) v.screen = ESP_SCREEN_IDLE;
-    else v.screen = ESP_SCREEN_STARTING;
-    /* A refused START is a normal answer, shown in amber, not a link error. */
-    if (v.last_reply_type == OSC_MSG_ACK) bar = DISP_GREEN;
-    else if (v.last_reply_type == OSC_MSG_ERROR) bar = DISP_AMBER;
-    disp_show(&v.display, bg[v.screen], bar);
-    disp_backlight(&v.display, v.screen != ESP_SCREEN_STANDBY);
+    ui_ctx c;
+    osc_text_screen s;
+    ctx(&c);
+    ui_render(&v.ui, &c, &s);
+    disp_show(&v.display, &s);
+    disp_backlight(&v.display, !v.ui.standby);
 }
 
 void esp_app_init(void) {
@@ -141,6 +148,7 @@ void esp_app_init(void) {
     esp_hal_uart_init(BOARD_UART_TX_GPIO, BOARD_UART_RX_GPIO, OSC_PROTO_BAUD);
     esp_hal_gpio_mode(BOARD_KEY_INT_N_GPIO, ESP_GPIO_INPUT);
     v.front = ESP_FRONT_WAIT;
+    ui_init(&v.ui);
     send(OSC_MSG_HELLO, hello, 2);
 }
 
@@ -155,8 +163,8 @@ void esp_app_poll(void) {
         last_keepalive = now;
         send(OSC_MSG_KEEPALIVE, 0, 0);
     }
-    front(now);
     screen();
+    front(now);
 }
 
 const osc_esp_view *esp_app_view(void) { return &v; }

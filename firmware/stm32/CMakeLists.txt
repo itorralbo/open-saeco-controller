@@ -24,16 +24,18 @@ endif()
 add_test(NAME board_pins_distinct COMMAND test_board_pins)
 # BSP and main loop on the simulator's host HAL (sim/README.md, F1); the
 # tests in tests/sim build the same sources with sim/osc_sim/firmware.py.
-add_library(osc_sim_fw SHARED src/controller.c src/bsp.c src/app.c ../common/proto.c ../../sim/hal/hal_sim.c)
+add_library(osc_sim_fw SHARED src/controller.c src/bsp.c src/service.c src/app.c ../common/proto.c
+            ../../sim/hal/hal_sim.c)
 target_include_directories(osc_sim_fw PRIVATE include ../common ../../sim/hal)
 if(MSVC)
   target_compile_options(osc_sim_fw PRIVATE /W4 /WX)
 else()
   target_compile_options(osc_sim_fw PRIVATE -Wall -Wextra -Werror -pedantic)
+  target_link_libraries(osc_sim_fw PRIVATE m)  # NTC fit in bsp.c
 endif()
 # ESP32 interface core on its host HAL (F2), and the protocol it shares.
-add_library(osc_sim_esp SHARED ../esp32/core/frontpanel.c ../esp32/core/display.c ../esp32/core/esp_app.c
-            ../common/proto.c ../../sim/hal/hal_esp_sim.c)
+add_library(osc_sim_esp SHARED ../esp32/core/frontpanel.c ../esp32/core/display.c ../esp32/core/font5x7.c
+            ../esp32/core/ui.c ../esp32/core/esp_app.c ../common/proto.c ../../sim/hal/hal_esp_sim.c)
 target_include_directories(osc_sim_esp PRIVATE ../esp32/core ../esp32/main ../common ../../sim/hal)
 add_executable(test_proto ../../tests/test_proto.c ../common/proto.c)
 target_include_directories(test_proto PRIVATE ../common)

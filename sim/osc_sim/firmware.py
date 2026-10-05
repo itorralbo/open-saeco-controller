@@ -25,12 +25,14 @@ TARGETS = {
     'stm32': {
         'lib': 'libosc_fw',
         'sources': ['firmware/stm32/src/controller.c', 'firmware/stm32/src/bsp.c',
-                    'firmware/stm32/src/app.c', 'firmware/common/proto.c', 'sim/hal/hal_sim.c'],
+                    'firmware/stm32/src/app.c', 'firmware/stm32/src/service.c',
+                    'firmware/common/proto.c', 'sim/hal/hal_sim.c'],
         'include': ['firmware/stm32/include', 'firmware/common', 'sim/hal'],
     },
     'esp32': {
         'lib': 'libosc_esp',
         'sources': ['firmware/esp32/core/frontpanel.c', 'firmware/esp32/core/display.c',
+                    'firmware/esp32/core/font5x7.c', 'firmware/esp32/core/ui.c',
                     'firmware/esp32/core/esp_app.c', 'firmware/common/proto.c', 'sim/hal/hal_esp_sim.c'],
         'include': ['firmware/esp32/core', 'firmware/esp32/main', 'firmware/common', 'sim/hal'],
     },
@@ -86,7 +88,8 @@ class EspIO(ctypes.Structure):
 
 
 class Outputs(ctypes.Structure):
-    _fields_ = [(n, ctypes.c_bool) for n in ('heater', 'pump', 'valve', 'grinder', 'brew_motor')]
+    _fields_ = [(n, ctypes.c_bool) for n in ('heater', 'pump', 'valve', 'grinder', 'brew_motor',
+                                             'brew_forward', 'mains')]
 
 
 class Controller(ctypes.Structure):
@@ -96,7 +99,13 @@ class Controller(ctypes.Structure):
 class Status(ctypes.Structure):
     _fields_ = [('state', ctypes.c_uint8), ('inputs', ctypes.c_uint8), ('outputs', ctypes.c_uint16),
                 ('rail_12v_mv', ctypes.c_uint16), ('rail_24v_mv', ctypes.c_uint16),
-                ('brew_ma', ctypes.c_uint16), ('ntc_raw', ctypes.c_uint16), ('uptime_ms', ctypes.c_uint32)]
+                ('brew_ma', ctypes.c_uint16), ('ntc_raw', ctypes.c_uint16), ('uptime_ms', ctypes.c_uint32),
+                ('boiler_dc', ctypes.c_int16)]
+
+
+class TestReport(ctypes.Structure):
+    _fields_ = [('id', ctypes.c_uint8), ('phase', ctypes.c_uint8), ('step', ctypes.c_uint8),
+                ('reason', ctypes.c_uint8), ('elapsed_ms', ctypes.c_uint32), ('value', ctypes.c_int32 * 6)]
 
 
 class Keypad(ctypes.Structure):
@@ -106,25 +115,52 @@ class Keypad(ctypes.Structure):
                 ('nacks', ctypes.c_uint32)]
 
 
+TXT_COLS, TXT_ROWS = 26, 12
+
+
+class TextScreen(ctypes.Structure):
+    _fields_ = [('title', ctypes.c_char * (TXT_COLS + 1)), ('title_bg', ctypes.c_uint16),
+                ('line', (ctypes.c_char * (TXT_COLS + 1)) * TXT_ROWS), ('style', ctypes.c_uint8 * TXT_ROWS),
+                ('foot', ctypes.c_char * (TXT_COLS + 1))]
+
+    def lines(self):
+        return [bytes(self.line[i]).split(b'\0')[0].decode('latin-1') for i in range(TXT_ROWS)]
+
+    @property
+    def title_text(self):
+        return bytes(self.title).split(b'\0')[0].decode('latin-1')
+
+    @property
+    def foot_text(self):
+        return bytes(self.foot).split(b'\0')[0].decode('latin-1')
+
+
 class Display(ctypes.Structure):
     _fields_ = [('phase', ctypes.c_int), ('t', ctypes.c_uint32),
-                ('bg', ctypes.c_uint16), ('bar', ctypes.c_uint16),
-                ('shown_bg', ctypes.c_uint16), ('shown_bar', ctypes.c_uint16),
+                ('want', TextScreen), ('shown', TextScreen),
                 ('painted', ctypes.c_bool), ('backlight', ctypes.c_bool), ('frames', ctypes.c_uint32)]
+
+
+class Ui(ctypes.Structure):
+    _fields_ = [('page', ctypes.c_uint8), ('sel', ctypes.c_uint8), ('test', ctypes.c_uint8),
+                ('param', ctypes.c_uint16), ('entry_ml', ctypes.c_uint16), ('flow_ppl', ctypes.c_int32),
+                ('standby', ctypes.c_bool)]
 
 
 class EspView(ctypes.Structure):
     """Mirror of osc_esp_view (firmware/esp32/core/esp_app.h)."""
-    _fields_ = [('link_ok', ctypes.c_bool), ('have_status', ctypes.c_bool), ('standby', ctypes.c_bool),
-                ('status', Status), ('screen', ctypes.c_int), ('front', ctypes.c_int),
+    _fields_ = [('link_ok', ctypes.c_bool), ('have_status', ctypes.c_bool), ('have_report', ctypes.c_bool),
+                ('status', Status), ('report', TestReport), ('front', ctypes.c_uint8),
                 ('last_reply_type', ctypes.c_uint8), ('last_reply_code', ctypes.c_uint8),
                 ('last_reply_for', ctypes.c_uint8),
                 ('requests', ctypes.c_uint32), ('replies', ctypes.c_uint32), ('recoveries', ctypes.c_uint32),
-                ('keypad', Keypad), ('display', Display)]
+                ('ui', Ui), ('keypad', Keypad), ('display', Display)]
 
 
-SCREENS = ('BOOT', 'LINK_LOST', 'STARTING', 'IDLE', 'FAULT', 'STANDBY')
+PAGES = ('HOME', 'MENU', 'SETUP', 'CONFIRM', 'TEST', 'ENTRY', 'INFO')
 FRONT = ('WAIT', 'ON', 'POWER_OFF', 'POWER_ON')
+TEST_PHASES = ('IDLE', 'RUNNING', 'DONE', 'ABORTED', 'REFUSED')
+TESTS = ('NONE', 'INPUTS', 'BREW_UNIT', 'VALVE', 'RELAY', 'PUMP', 'HEATER', 'GRINDER')
 
 
 def compiler():
@@ -146,7 +182,7 @@ def build(target='stm32', out_dir=None):
     if lib.exists() and all(lib.stat().st_mtime >= p.stat().st_mtime for p in srcs + headers):
         return lib
     cmd = [cc, '-std=c99', '-Wall', '-Wextra', '-Werror', '-pedantic', '-O1', '-fPIC', '-shared',
-           *(f'-I{ROOT / d}' for d in spec['include']), *map(str, srcs), '-o', str(lib)]
+           *(f'-I{ROOT / d}' for d in spec['include']), *map(str, srcs), '-o', str(lib), '-lm']
     if os.environ.get('SDKROOT'):
         cmd[1:1] = ['-isysroot', os.environ['SDKROOT']]
     result = subprocess.run(cmd, capture_output=True, text=True)

@@ -49,11 +49,12 @@ class Session:
         orders = sorted(n for (m, n), r in self.checker.signals.items()
                         if m == 'stm32' and r.function in ('gpio_out', 'pwm'))
         self.orders = orders
+        self._orders_names = orders
         names = (['STM_NRST', 'WDI', 'STM_LINK', 'ESP_LINK', 'UI_POWER', 'LCD_BL', 'STBY_LED']
                  + [f'PB_{n}' for n in orders]
                  + ['HEATER', 'PUMP', 'GRINDER', 'MAINS', 'VALVE', 'BREW_FWD', 'BREW_REV']
-                 + KEYS + ['CORE_STATE', 'ESP_SCREEN'])
-        self.vcd = Recorder(names, widths={'CORE_STATE': 2, 'ESP_SCREEN': 3})
+                 + KEYS + ['CORE_STATE', 'ESP_PAGE', 'TEST_ID', 'TEST_PHASE'])
+        self.vcd = Recorder(names, widths={'CORE_STATE': 2, 'ESP_PAGE': 3, 'TEST_ID': 3, 'TEST_PHASE': 3})
         self._wdi = b.u601.pins['WDI']
 
     # -- running ----------------------------------------------------------------
@@ -116,8 +117,30 @@ class Session:
         for k in KEYS:
             out[k] = k in b.front.pressed
         out['CORE_STATE'] = firmware.STATES.index(fw.controller[0]) if fw.running else None
-        out['ESP_SCREEN'] = esp.view.screen if esp.running else None
+        out['ESP_PAGE'] = esp.view.ui.page if esp.running else None
+        rep = esp.view.report if esp.running and esp.view.have_report else None
+        out['TEST_ID'] = rep.id if rep else None
+        out['TEST_PHASE'] = rep.phase if rep else None
         return out
+
+    def order_levels(self):
+        """Level each STM32 order pin asks for: True active, False inactive, None released."""
+        fw, out = self.board.fw, {}
+        for n in self._orders_names:
+            r = self.checker.signals[('stm32', n)]
+            port, pin = ord(r.pin[1]) - ord('A'), int(r.pin[2:])
+            mode = fw.io.mode[port][pin] if fw.running else 0
+            if mode == 2:
+                high = bool(fw.io.odr[port][pin])
+            elif mode == 3:
+                high = fw.io.pwm[port][pin] >= 500
+            else:
+                out[n] = None
+                continue
+            out[n] = high == (r.spec.get('active', 'high') == 'high')
+        return out
+
+
 
     def _analog(self):
         b = self.board
@@ -149,15 +172,22 @@ class Session:
                 'stm': {'running': fw.running, 'state': st, 'link': fw.link_ok, 'outputs': outs,
                         'hung': fw.hung},
                 'esp': {'running': esp.running, 'hung': esp.hung,
-                        'screen': firmware.SCREENS[v.screen] if v else None,
+                        'page': firmware.PAGES[v.ui.page] if v else None,
+                        'title': v.display.want.title_text if v else '',
+                        'lines': v.display.want.lines() if v else [],
                         'front': firmware.FRONT[v.front] if v else None,
-                        'link': bool(v.link_ok) if v else False, 'standby': bool(v.standby) if v else False,
+                        'link': bool(v.link_ok) if v else False, 'standby': bool(v.ui.standby) if v else False,
                         'keypad_valid': bool(v.keypad.valid) if v else False,
                         'requests': v.requests if v else 0, 'replies': v.replies if v else 0,
                         'recoveries': v.recoveries if v else 0,
                         'last_reply': ({'type': v.last_reply_type, 'for': v.last_reply_for,
                                         'code': v.last_reply_code} if v and v.replies else None)},
-                'status': ({'rail_12v_mv': s.rail_12v_mv, 'rail_24v_mv': s.rail_24v_mv, 'brew_ma': s.brew_ma,
+                'test': ({'id': firmware.TESTS[v.report.id] if v.report.id < len(firmware.TESTS) else v.report.id,
+                          'phase': firmware.TEST_PHASES[v.report.phase], 'step': v.report.step,
+                          'reason': v.report.reason, 'elapsed_ms': v.report.elapsed_ms,
+                          'values': list(v.report.value)} if v and v.have_report else None),
+                'orders': self.order_levels(),
+                'status': ({'state': s.state, 'boiler_dc': s.boiler_dc, 'rail_12v_mv': s.rail_12v_mv, 'rail_24v_mv': s.rail_24v_mv, 'brew_ma': s.brew_ma,
                             'ntc_raw': s.ntc_raw, 'inputs': s.inputs, 'outputs': s.outputs,
                             'uptime_ms': s.uptime_ms} if s else None),
                 'board': {'nrst': b.nrst_high, 'ui_volts': round(b.ui_volts, 2),
@@ -169,7 +199,11 @@ class Session:
                 'plant': {'boiler_c': round(p.boiler_c, 2), 'flow_ml': round(p.flow_ml, 1),
                           'unit_pos': round(p.unit_pos, 3), 'motor_a': round(p.motor_amps, 3),
                           'door_closed': p.door_closed, 'unit_present': p.unit_present,
-                          'ntc_open': p.ntc_open, 'water_volts': p.water_volts},
+                          'ntc_open': p.ntc_open, 'water_volts': p.water_volts,
+                          'tank_ml': round(p.tank_ml), 'tank_capacity_ml': p.tank_capacity_ml,
+                          'beans_g': round(p.beans_g, 1), 'ground_g': round(p.ground_g, 1),
+                          'heater_on': p.heater_on, 'pump_on': p.pump_on, 'valve_on': p.valve_on,
+                          'grinder_on': p.grinder_on, 'pump_ml_s': p.pump_ml_s},
                 'faults': {'brew_fault': 'controller:U501' in b.faults, 'keypad_hang': b.front.tca.hung,
                            'uart_noise': b.uart_noise},
                 'pressed': sorted(b.front.pressed),
@@ -202,7 +236,11 @@ class Session:
             elif name == 'ntc_open':
                 p.ntc_open = bool(c.get('value'))
             elif name == 'water_volts':
-                p.water_volts = float(c.get('value', 2.0))
+                p.water_volts = None if c.get('value') is None else float(c['value'])
+            elif name == 'tank':
+                p.tank_ml = max(0.0, min(p.tank_capacity_ml, float(c.get('value', p.tank_capacity_ml))))
+            elif name == 'beans':
+                p.beans_g = max(0.0, float(c.get('value', 200)))
             elif name == 'stm_hang':
                 b.fw.hung = bool(c.get('value'))
             elif name == 'esp_hang':

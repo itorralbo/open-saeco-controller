@@ -2,6 +2,7 @@
 #include "bsp.h"
 #include "board_pins.h"
 #include "osc_hal.h"
+#include <math.h>
 
 #define PORT(s) BOARD_##s##_PORT
 #define PIN(s) BOARD_##s##_PIN
@@ -65,15 +66,31 @@ void bsp_read(osc_inputs *in) {
     in->vdda_mv = in->vrefint
         ? (uint16_t)((uint32_t)OSC_HAL_VREFINT_CAL_MV * osc_hal_vrefint_cal() / in->vrefint)
         : 3300u;
+    /* Rails through 200k/10k (x21); brew current through IPROPI 1000 uA/A
+     * into R510 = 2.4k (2.4 V/A); sim/board-report.md. */
+    in->rail_12v_mv = (uint16_t)(((uint32_t)in->rail_12v * in->vdda_mv * 21u) / 4095u);
+    in->rail_24v_mv = (uint16_t)(((uint32_t)in->rail_24v * in->vdda_mv * 21u) / 4095u);
+    in->brew_ma = (uint16_t)(((uint32_t)in->brew_current * in->vdda_mv * 10u) / (4095u * 24u));
+    in->boiler_dc = bsp_ntc_dc(in->ntc);
+}
+
+int16_t bsp_ntc_dc(uint16_t code) {
+    float r, t;
+    /* Outside 2-98 % of the range the line is open or shorted. */
+    if (code < 82u || code > 4013u) return OSC_TEMP_INVALID;
+    r = OSC_NTC_PULLUP_OHMS * (float)code / (4095.0f - (float)code);
+    t = 1.0f / (1.0f / 298.15f + logf(r / OSC_NTC_R25_OHMS) / OSC_NTC_BETA_K) - 273.15f;
+    return (int16_t)(t * 10.0f + (t >= 0.0f ? 0.5f : -0.5f));
 }
 
 void bsp_write(const osc_outputs *out) {
-    const bool mains = out->heater || out->pump || out->grinder;
+    const bool mains = out->mains || out->heater || out->pump || out->grinder;
     ORDER(HEATER_EN, out->heater);
     ORDER(PUMP_EN, out->pump);
     ORDER(GRINDER_EN, out->grinder);
     ORDER(MAINS_ARM, mains);
     ORDER(VALVE_EN, out->valve);
+    ORDER(BREW_DIR, out->brew_forward); /* direction before the bridge wakes */
     ORDER(BREW_SLEEP_N, out->brew_motor);
     osc_hal_pwm_set(PORT(BREW_PWM), PIN(BREW_PWM), out->brew_motor ? 1000u : 0u);
 }

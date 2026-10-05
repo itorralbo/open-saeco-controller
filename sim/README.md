@@ -10,7 +10,8 @@ de KiCad, así que un error de diseño aparece como un fallo de simulación.
 | F1 | STM32 en host contra la placa virtual: HAL, modelos de componentes y planta | Hecha; planta con valores supuestos |
 | F2 | ESP32 en host: ST7789 y TCA9534 virtuales, protocolo v0 | Hecha; LVGL queda para el puerto ESP-IDF |
 | F3 | Panel web local: frontal, pantalla, gráficas, inyección de fallos, VCD | Hecha |
-| F4 | Recetas y máquina de estados completa | Pendiente |
+| F4 | Menús y puesta a punto: pruebas de cargas y medidas, cafetera visual en el panel | Hecha; tiempos y corrientes de la planta supuestos |
+| F5 | Recetas y máquina de estados completa | Pendiente |
 
 ## F0: modelo de placa
 
@@ -164,7 +165,8 @@ dependencias externas y solo en 127.0.0.1:
   STATUS, cargas, planta y registro de eventos (watchdog, resets, backfeed).
 - Gráficas de caldera, rails y grupo.
 - Inyección: puerta, grupo, NTC abierto, nFAULT del DRV8876, STM32, ESP32 o
-  teclado colgados, ruido en la UART, rails en sus esquinas y sensor de agua;
+  teclado colgados, ruido en la UART, rails en sus esquinas, nivel del depósito,
+  café en la tolva y sensor de agua (forzado o según el depósito);
   pausa, paso de 100 ms, reinicio y velocidad.
 - [VCD](osc_sim/vcd.py) de las señales digitales (órdenes del STM32,
   `STM_NRST`, WDI, enlaces, cargas, teclas, estado del núcleo y pantalla), para
@@ -173,3 +175,34 @@ dependencias externas y solo en 127.0.0.1:
 API: `GET /api/state`, `/api/history`, `/api/frame` (RGB565 de 320 × 240),
 `/api/vcd`; `POST /api/cmd` con `{"cmd": ...}`. Los
 [escenarios](../tests/sim/test_f3.py) la recorren en un puerto efímero.
+
+## F4: menús y puesta a punto
+
+- El ESP32 pinta menús de texto ([`ui.c`](../firmware/esp32/core/ui.c)) y el
+  STM32 ejecuta las pruebas de [`service.c`](../firmware/stm32/src/service.c)
+  ([protocolo](../firmware/common/protocol.md#pruebas-de-puesta-a-punto)).
+- La [planta](osc_sim/plant.py) añade depósito (la bomba se queda sin caudal
+  vacío y el sensor JP22 sigue el nivel), tolva y molinillo, el estado de cada
+  carga y un arranque del motor con constante de tiempo, que da el pico de
+  arranque que mide la prueba del grupo.
+- El panel dibuja la cafetera: depósito, bomba, caudalímetro, caldera con el
+  calentador y el NTC, válvula, tolva y molinillo, grupo con su posición,
+  sentido y corriente, puerta, K701 y los tres triacs. Junto a cada carga, dos
+  pilotos: la orden del pin del STM32 y la carga realmente alimentada según el
+  netlist; una orden sin carga sale discontinua y una carga sin orden, en rojo.
+  El informe de la prueba en curso aparece con sus unidades, y el texto de la
+  pantalla también como texto.
+
+Qué mide cada prueba y qué no: la placa mide los rails, la corriente del grupo
+(IPROPI), el NTC, el caudalímetro y los finales de carrera; las corrientes de
+red (calentador, bomba, molinillo) y la de la válvula necesitan una pinza en la
+sesión de [caracterización](../docs/HD8911/characterization-plan.md), y las
+pruebas solo fijan el tiempo y la ventana.
+
+Los [escenarios](../tests/sim/test_f4.py) recorren los menús y cada prueba
+contra la planta: entradas, ciclo del grupo con I0 en 100-300 mA, válvula,
+relé y molinillo sin tocar otras cargas, bomba con calibración del
+caudalímetro, bomba sin agua (sin caudal), calentador hasta 90 °C con la
+sobreoscilación; y que se rechazan con la puerta abierta y se abortan con STOP,
+con volver, al abrir la puerta y si se cuelga el ESP32, con todas las cargas a
+cero.

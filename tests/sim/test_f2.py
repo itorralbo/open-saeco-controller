@@ -21,7 +21,9 @@ from osc_sim.plant import Plant  # noqa: E402
 CHECKER = Checker(System(load_contract(ROOT), ROOT))
 CHECKER.run()
 HAVE_CC = firmware.compiler() is not None
-GREEN, RED, GREY, AMBER = 0x07E0, 0xF800, 0x7BEF, 0xFD20
+GREEN, RED, GREY, AMBER, BLUE = 0x07E0, 0xF800, 0x7BEF, 0xFD20, 0x001F
+TITLE = {GREEN: 'IDLE', RED: 'FAULT', GREY: 'LINK_LOST', AMBER: 'SERVICE', BLUE: 'STARTING'}
+OK, MENU, STBY = 'SW5', 'SW6', 'SW4'  # provisional key map, firmware/esp32/core/ui.h
 
 
 def machine(corner=0, plant=None):
@@ -36,7 +38,12 @@ def up(b, seconds=1.0):
 
 
 def screen(b):
-    return firmware.SCREENS[b.esp.view.screen]
+    """State the interface shows, from the colour of its title bar."""
+    return TITLE.get(b.esp.view.display.want.title_bg, '?')
+
+
+def lines(b):
+    return b.esp.view.display.want.lines()
 
 
 def tap(b, sw, hold=0.06, after=0.06):
@@ -54,7 +61,8 @@ class Link(unittest.TestCase):
             self.assertTrue(up(b), b.events)
             self.assertEqual(screen(b), 'IDLE')
             lcd = b.front.lcd
-            self.assertEqual((lcd.pixel(160, 120), lcd.colmod, lcd.madctl), (GREEN, 0x55, 0x60))
+            self.assertEqual((lcd.pixel(160, 2), lcd.colmod, lcd.madctl), (GREEN, 0x55, 0x60))
+            self.assertIn('en reposo', lines(b)[0])
             self.assertEqual(b.kinds('backfeed') + b.kinds('undefined'), [])
             self.assertEqual((b.uart_dropped, b.esp.io.undefined_reads, b.esp.io.bad_calls), (0, 0, 0))
             self.assertEqual(b.front.tca.undefined, 0)
@@ -82,7 +90,7 @@ class Link(unittest.TestCase):
         b.fw.hung = True
         b.run(0.4)
         self.assertEqual(screen(b), 'LINK_LOST')
-        self.assertEqual(b.front.lcd.pixel(160, 120), GREY)
+        self.assertEqual(b.front.lcd.pixel(160, 2), GREY)
         # U601 resets the hung core; the reset clears the hang.
         self.assertTrue(b.run(3.0, until=lambda x: bool(x.kinds('watchdog'))))
         self.assertTrue(up(b, 2.0), b.events)
@@ -94,23 +102,23 @@ class Keys(unittest.TestCase):
     def test_start_is_refused_and_shown_as_a_normal_answer(self):
         b = machine()
         up(b)
-        tap(b, 'SW1')
+        tap(b, OK)
         v = b.esp.view
         self.assertEqual((v.last_reply_type, v.last_reply_for, v.last_reply_code), (0x7F, 0x22, 3))
         self.assertEqual(screen(b), 'IDLE')
-        self.assertEqual(b.front.lcd.pixel(160, 5), AMBER)
+        self.assertIn('aun no disponible', ' '.join(lines(b)))
         self.assertFalse(any(b.fw.controller[1].values()))
 
     def test_key_held_through_boot_is_ignored_until_released(self):
         b = machine()
-        b.press('SW1')
+        b.press(OK)
         up(b)
         b.run(0.3)
         self.assertEqual(b.esp.view.last_reply_for, 0x01)  # only the HELLO was answered
         self.assertFalse(b.esp.view.keypad.armed)
-        b.press('SW1', False)
+        b.press(OK, False)
         b.run(0.1)
-        tap(b, 'SW1')
+        tap(b, OK)
         self.assertEqual(b.esp.view.last_reply_for, 0x22)
 
     def test_bounces_shorter_than_the_debounce_do_not_count(self):
@@ -118,7 +126,7 @@ class Keys(unittest.TestCase):
         up(b)
         before = b.esp.view.requests
         for _ in range(5):
-            tap(b, 'SW1', hold=0.008, after=0.008)
+            tap(b, OK, hold=0.008, after=0.008)
         b.run(0.1)
         self.assertEqual(b.esp.view.requests, before)
 
@@ -129,23 +137,23 @@ class Keys(unittest.TestCase):
         plant.door_closed = False
         b.run(0.2)
         self.assertEqual((b.fw.controller[0], screen(b)), ('FAULT', 'FAULT'))
-        self.assertEqual(b.front.lcd.pixel(160, 120), RED)
-        tap(b, 'SW2')
+        self.assertEqual(b.front.lcd.pixel(160, 2), RED)
+        tap(b, OK)  # OK clears a fault from the home page
         self.assertEqual(b.fw.controller[0], 'FAULT')  # refused with the door open
         plant.door_closed = True
         b.run(0.1)
-        tap(b, 'SW2')
+        tap(b, OK)
         self.assertEqual((b.fw.controller[0], screen(b)), ('SAFE_IDLE', 'IDLE'))
 
     def test_standby_key_turns_the_backlight_off_and_the_led_on(self):
         b = machine()
         up(b)
-        tap(b, 'SW4')
+        tap(b, STBY)
         b.run(0.05)
         self.assertFalse(b.front.lcd.visible)
         led = b.out.lo.volts[b.tca_pins[7]]
         self.assertLess(led, 0.5)  # P7 low: the standby LED conducts
-        tap(b, 'SW4')
+        tap(b, STBY)
         b.run(0.05)
         self.assertTrue(b.front.lcd.visible)
 

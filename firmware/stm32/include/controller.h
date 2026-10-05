@@ -4,7 +4,9 @@
 #include <stdbool.h>
 typedef enum { OSC_BOOT, OSC_SAFE_IDLE, OSC_FAULT } osc_state;
 typedef enum { OSC_REJECTED_NOT_IMPLEMENTED } osc_result;
-typedef struct { bool heater, pump, valve, grinder, brew_motor; } osc_outputs;
+/* brew_forward drives the unit toward the work position; mains arms K701
+ * on its own (the BSP also arms it for heater, pump and grinder). */
+typedef struct { bool heater, pump, valve, grinder, brew_motor, brew_forward, mains; } osc_outputs;
 typedef struct { osc_state state; osc_outputs outputs; } osc_controller;
 void osc_init(osc_controller *c);
 void osc_tick(osc_controller *c, bool interlocks_ok, bool link_ok);

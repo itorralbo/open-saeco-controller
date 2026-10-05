@@ -35,12 +35,27 @@ class Plant:
     motor_v_per_unit_s: float = 39.0   # ASSUMED: ~3 s per full travel at 24 V
     motor_friction_a: float = 0.2
     motor_compression_a: float = 0.1
+    motor_tau_s: float = 0.03          # ASSUMED: mechanical time constant, sets the start peak
     unit_present: bool = True
     unit_pos: float = 0.0              # 0 = rest, 1 = work end stop
     # Valve: OLAB 6000BH/B0DN, 56.7 ohm measured.
     valve_ohms: float = 56.7
     door_closed: bool = True
-    water_volts: float = 2.0           # ASSUMED: JP22 output not measured
+    # Water tank and JP22 sensor: ASSUMED digital-like output until WL-01.
+    tank_ml: float = 1500.0
+    tank_capacity_ml: float = 1800.0
+    water_low_ml: float = 150.0
+    water_present_v: float = 2.0
+    water_absent_v: float = 0.3
+    water_override: float = None       # volts forced from the panel, None = follow the tank
+    # Grinder: ASSUMED 1.2 g/s until GR-07.
+    beans_g: float = 200.0
+    grind_g_per_s: float = 1.2
+    ground_g: float = 0.0
+    grinder_on: bool = False
+    valve_on: bool = False
+    pump_on: bool = False
+    heater_on: bool = False
     # State
     t: float = 0.0
     flow_ml: float = 0.0
@@ -78,16 +93,33 @@ class Plant:
         return out
 
     @property
+    def water_volts(self):
+        if self.water_override is not None:
+            return self.water_override
+        return self.water_present_v if self.tank_ml > self.water_low_ml else self.water_absent_v
+
+    @water_volts.setter
+    def water_volts(self, v):
+        self.water_override = v
+
+    @property
     def motor_amps(self):
         return self._motor_a
 
     # -- dynamics ---------------------------------------------------------------
-    def step(self, dt, heater_on, pump_on, motor_volts):
+    def step(self, dt, heater_on, pump_on, motor_volts, valve_on=False, grinder_on=False):
         """Advance dt seconds. motor_volts: J108.2 minus J108.1 (forward > 0)."""
         self.t += dt
+        self.heater_on, self.pump_on, self.valve_on, self.grinder_on = heater_on, pump_on, valve_on, grinder_on
         p = MAINS_V ** 2 / self.heater_ohms if heater_on else 0.0
-        flow = self.pump_ml_s if pump_on else 0.0
+        # The pump only moves water while the tank has some.
+        flow = self.pump_ml_s if pump_on and self.tank_ml > 0 else 0.0
+        self.tank_ml = max(0.0, self.tank_ml - flow * dt)
         self.flow_ml += flow * dt
+        if grinder_on and self.beans_g > 0:
+            g = min(self.beans_g, self.grind_g_per_s * dt)
+            self.beans_g -= g
+            self.ground_g += g
         loss = self.boiler_loss_w_per_k * (self.boiler_c - self.ambient_c)
         water = flow * WATER_J_PER_ML_K * (self.boiler_c - self.inlet_c)
         self.boiler_c += (p - loss - water) * dt / self.boiler_j_per_k
@@ -101,8 +133,11 @@ class Plant:
         elif stalled:
             self._motor_a, self._emf = abs(v) / self.motor_ohms, 0.0
         else:
+            # The back-EMF rises toward its running value with motor_tau_s:
+            # the start draws close to V/R, then falls to the load current.
             load = self.motor_friction_a + (self.motor_compression_a if self.unit_pos > 0.7 else 0.0)
-            i = min(load, abs(v) / self.motor_ohms)
-            emf = abs(v) - i * self.motor_ohms
-            self._motor_a, self._emf = i, direction * emf
+            run = max(0.0, abs(v) - load * self.motor_ohms)
+            emf = min(abs(self._emf), run) if self._emf * direction > 0 else 0.0
+            emf += (run - emf) * min(1.0, dt / self.motor_tau_s)
+            self._motor_a, self._emf = (abs(v) - emf) / self.motor_ohms, direction * emf
             self.unit_pos = min(1.0, max(0.0, self.unit_pos + direction * emf / self.motor_v_per_unit_s * dt))

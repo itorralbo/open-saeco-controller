@@ -889,3 +889,39 @@ digitales. Probado en el navegador integrado: arranque a SAFE_IDLE, puerta
 abierta a FALLO en rojo, gráficas y descarga del VCD. Con un 5 % de bytes
 corruptos en la UART el enlace llega a caer y el núcleo queda en FAULT hasta
 CLEAR_FAULT, como prevé el protocolo. `tests/sim` 59/59. Sin hardware.
+
+## Simulador F4: menús y puesta a punto, 2026-10-05
+
+El ESP32 tiene menús de texto (inicio, MENU, puesta a punto, información) con
+una fuente 5×7 propia, y el STM32 ejecuta siete pruebas de puesta a punto
+(`firmware/stm32/src/service.c`) pedidas con TEST e informadas con TEST_REPORT:
+entradas y sensores, ciclo del grupo (tiempo de ida, I0, pico de arranque,
+corriente al tope, vuelta, fallos del DRV8876), válvula, relé K701, bomba con
+calibración del caudalímetro, calentador hasta una consigna con la
+sobreoscilación, y molinillo. STATUS crece a 18 bytes con la temperatura de la
+caldera. El panel dibuja la cafetera con la orden de cada pin y la carga
+realmente alimentada según el netlist.
+
+Lo que el simulador encontró en el firmware nuevo, corregido con su escenario:
+
+- Con la puerta abierta a mitad de prueba el núcleo pasaba a FAULT antes que
+  la prueba y el informe decía "estado" en vez de "puerta". Ahora el motivo es
+  la causa que vio el núcleo (puerta o nFAULT).
+- El ciclo del grupo tardaba ~5 s con el rail de 24 V en su mínimo (planta
+  supuesta) frente a 6 s de tiempo máximo: margen del 20 %. Ahora 10 s; a rotor
+  bloqueado el motor consume V/R ≈ 0,44 A, por debajo del I_TRIP de ~1 A.
+- La bomba tenía 10 s como máximo, por debajo de los 20 s de 100 ml a 5 ml/s:
+  ahora 30 s. Textos de más de 26 caracteres en la pantalla y un `snprintf` que
+  GCC marcaba como truncable, corregidos.
+
+No apareció ningún error de circuito: con las pruebas moviendo cada carga, las
+reglas del modelo (accionamiento, back-feed, potencias, niveles) siguen a cero.
+
+Medidas que la placa no puede hacer: las corrientes de red (calentador, bomba,
+molinillo) y la de la válvula. Las pruebas fijan tiempo y ventana para medirlas
+con pinza en la caracterización.
+
+Resultado: modelo de placa 0 errores y 0 avisos; `tests/sim` 71/71 (12 de F4);
+CTest 3/3; GCC 15 con `-Wall -Wextra -Werror -pedantic` sin avisos. Probado en
+el navegador integrado: ciclo del grupo y bomba con K701, triac, caudal y el
+informe en vivo. Sin hardware.

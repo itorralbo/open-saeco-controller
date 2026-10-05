@@ -4,7 +4,7 @@
 #define CHECK(x) do { if (!(x)) { fprintf(stderr, "check failed at %d\n", __LINE__); return 1; } } while (0)
 static bool off(const osc_controller *c) {
     return !(c->outputs.heater || c->outputs.pump || c->outputs.valve ||
-             c->outputs.grinder || c->outputs.brew_motor);
+             c->outputs.grinder || c->outputs.brew_motor || c->outputs.mains);
 }
 int main(void) {
     osc_controller c;

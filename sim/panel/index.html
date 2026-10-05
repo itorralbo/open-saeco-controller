@@ -9,7 +9,7 @@
   --bg: #f4f2ee; --panel: #ffffff; --ink: #1d2126; --muted: #6a717b; --line: #dcd8d0;
   --accent: #2f6f9f; --ok: #2e8b57; --warn: #c7841a; --bad: #c0392b; --idle: #8a919a;
   --machine: #2b2f35; --machine-ink: #e9e6df; --key: #3c4148; --key-down: #6d8fb0;
-  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; --water: #3d8fd1;
 }
 @media (prefers-color-scheme: dark) {
   :root {
@@ -74,6 +74,41 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
 .log li { border-bottom: 1px dashed var(--line); padding: 2px 0; }
 .log .t { color: var(--muted); margin-right: 8px; }
 .note { color: var(--muted); font-size: 12px; margin: 8px 0 0; }
+.plantview { grid-column: 1 / -1; }
+.plantview .wrap { display: grid; gap: 16px; grid-template-columns: minmax(0, 1fr) 260px; align-items: start; }
+@media (max-width: 900px) { .plantview .wrap { grid-template-columns: minmax(0, 1fr); } }
+#mach { width: 100%; height: auto; display: block; }
+#mach text { font: 11px system-ui, sans-serif; fill: var(--ink); }
+#mach text.s { font-size: 10px; fill: var(--muted); }
+#mach text.v { font: 600 11px var(--mono); }
+#mach .body { fill: var(--panel); stroke: var(--muted); stroke-width: 1.5; }
+#mach .pipe { fill: none; stroke: var(--line); stroke-width: 6; stroke-linecap: round; stroke-linejoin: round; }
+#mach .pipe.flow { stroke: var(--water); stroke-dasharray: 8 6; animation: flow .6s linear infinite; }
+#mach .wire { fill: none; stroke: var(--muted); stroke-width: 1.5; }
+#mach .wire.live { stroke: var(--warn); stroke-width: 2.5; }
+#mach .water { fill: var(--water); opacity: .75; }
+#mach .act { fill: var(--panel); stroke: var(--muted); stroke-width: 2; }
+#mach .act.on { fill: var(--ok); stroke: var(--ok); }
+#mach .act.wait { stroke: var(--warn); stroke-dasharray: 4 3; }
+#mach .act.alarm { fill: var(--bad); stroke: var(--bad); }
+#mach .lamp { stroke: var(--muted); stroke-width: 1; fill: var(--panel); }
+#mach .lamp.on { fill: var(--ok); stroke: var(--ok); }
+#mach .lamp.order { fill: var(--accent); stroke: var(--accent); }
+#mach .lamp.alarm { fill: var(--bad); stroke: var(--bad); }
+#mach .spin { transform-box: fill-box; transform-origin: center; }
+#mach .spin.on { animation: spin .5s linear infinite; }
+#mach .coil { fill: none; stroke: var(--muted); stroke-width: 2.5; }
+#mach .coil.on { stroke: #ff5a1f; filter: drop-shadow(0 0 4px #ff5a1f); }
+@keyframes flow { to { stroke-dashoffset: -14; } }
+@keyframes spin { to { transform: rotate(360deg); } }
+@media (prefers-reduced-motion: reduce) { #mach .pipe.flow, #mach .spin.on { animation: none; } }
+.legend2 { display: flex; flex-wrap: wrap; gap: 12px; font-size: 12px; color: var(--muted); margin-top: 6px; }
+.legend2 i { display: inline-block; width: 10px; height: 10px; border-radius: 50%; vertical-align: -1px; margin-right: 4px; border: 1px solid var(--muted); }
+.report table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.report td { padding: 2px 0; border-bottom: 1px dashed var(--line); }
+.report td:last-child { text-align: right; font-family: var(--mono); }
+.lcdtext { font: 12px/1.35 var(--mono); white-space: pre; background: #050607; color: #e6e3dc; border-radius: 4px;
+           padding: 6px 8px; overflow-x: auto; margin: 8px 0 0; }
 </style>
 </head>
 <body>
@@ -91,7 +126,9 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
       <div class="keys" id="right"></div>
       <div class="bottom"><span class="led" id="led" title="LED STBY"></span><span id="mid"></span></div>
     </div>
-    <p class="note">Mantener pulsado = tecla pulsada. Mapa provisional: SW1 START, SW2 borrar fallo, SW4 standby, SW7 STOP.</p>
+    <p class="note">Mantener pulsado = tecla pulsada. Mapa provisional (firmware/esp32/core/ui.h): SW1 ▲, SW2 ▼, SW3 volver,
+      SW5 OK, SW6 MENU, SW7 STOP, SW4 standby. Puesta a punto: MENU › Puesta a punto.</p>
+    <pre class="lcdtext" id="lcdtext" aria-label="Texto de la pantalla"></pre>
   </section>
 
   <section>
@@ -120,7 +157,8 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
         <select id="c-noise"><option value="0">0</option><option value="0.01">1 %</option><option value="0.05">5 %</option><option value="0.2">20 %</option></select></label>
       <label>Rails
         <select id="c-corner"><option value="nom">nominal</option><option value="min">mínimo</option><option value="max">máximo</option></select></label>
-      <label>Sensor de agua <input type="range" min="0" max="3.3" step="0.1" id="c-water"></label>
+      <label>Sensor de agua forzado <input type="range" min="0" max="3.3" step="0.1" id="c-water"></label>
+      <label>Sensor de agua según depósito <button class="act" id="c-water-auto">auto</button></label>
       <label>Velocidad
         <select id="c-speed"><option>0.25</option><option>0.5</option><option selected>1</option><option>2</option><option>5</option><option>10</option></select></label>
     </div>
@@ -138,6 +176,106 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
     <ul class="log" id="log"></ul>
   </section>
 
+
+  <section class="plantview">
+    <h2>Cafetera</h2>
+    <div class="wrap">
+      <svg id="mach" viewBox="0 0 660 330" role="img" aria-label="Esquema de la cafetera con cargas y sensores">
+        <!-- mains side: K701 and the three triacs -->
+        <text x="20" y="22">230 V</text>
+        <path class="wire" id="w-l" d="M 56 18 H 92"/>
+        <g id="g-relay"><rect class="act" id="a-relay" x="92" y="8" width="54" height="20" rx="3"/>
+          <text x="119" y="22" text-anchor="middle">K701</text></g>
+        <path class="wire" id="w-bus" d="M 146 18 H 420"/>
+        <g><path class="wire" id="w-heat" d="M 190 18 V 44"/><rect class="act" id="a-heat" x="166" y="44" width="48" height="18" rx="3"/>
+          <text x="190" y="57" text-anchor="middle" class="s">Q calent.</text></g>
+        <g><path class="wire" id="w-pump" d="M 280 18 V 44"/><rect class="act" id="a-pumpq" x="256" y="44" width="48" height="18" rx="3"/>
+          <text x="280" y="57" text-anchor="middle" class="s">Q bomba</text></g>
+        <g><path class="wire" id="w-grind" d="M 420 18 V 44"/><rect class="act" id="a-grindq" x="396" y="44" width="48" height="18" rx="3"/>
+          <text x="420" y="57" text-anchor="middle" class="s">Q molino</text></g>
+
+        <!-- water path -->
+        <path class="pipe" id="p1" d="M 92 270 H 128"/>
+        <path class="pipe" id="p2" d="M 172 270 H 210"/>
+        <path class="pipe" id="p3" d="M 242 270 H 262"/>
+        <path class="pipe" id="p4" d="M 340 240 H 380"/>
+        <path class="pipe" id="p5" d="M 416 240 H 448"/>
+        <!-- tank -->
+        <rect class="body" x="22" y="110" width="70" height="180" rx="4"/>
+        <rect class="water" id="tank-w" x="24" y="200" width="66" height="88"/>
+        <path class="wire" d="M 18 268 H 26" /><circle class="lamp" id="l-water" cx="14" cy="268" r="4"/>
+        <text x="57" y="104" text-anchor="middle">Depósito</text>
+        <text x="57" y="306" text-anchor="middle" class="v" id="t-tank">—</text>
+        <!-- pump -->
+        <circle class="act" id="a-pump" cx="150" cy="270" r="22"/>
+        <path class="spin" id="s-pump" d="M 150 254 L 163 278 L 137 278 Z" fill="var(--panel)" stroke="var(--ink)" stroke-width="1.5"/>
+        <text x="150" y="306" text-anchor="middle">Bomba</text>
+        <path class="wire" id="w-pump2" d="M 280 62 V 80 H 150 V 248"/>
+        <!-- flow meter -->
+        <circle class="body" cx="226" cy="270" r="16"/>
+        <g id="s-flow"><path d="M 226 257 V 283 M 213 270 H 239" stroke="var(--ink)" stroke-width="2"/></g>
+        <circle class="lamp" id="l-flow" cx="226" cy="246" r="4"/>
+        <text x="226" y="306" text-anchor="middle">Caudalímetro</text>
+        <text x="226" y="320" text-anchor="middle" class="v" id="t-flow">—</text>
+        <!-- boiler -->
+        <rect class="body" id="boiler" x="262" y="200" width="78" height="96" rx="6"/>
+        <path class="coil" id="coil" d="M 272 278 l 8 -12 l 8 12 l 8 -12 l 8 12 l 8 -12 l 8 12 l 8 -12 l 8 12"/>
+        <path class="wire" id="w-heat2" d="M 190 62 V 180 H 300 V 200"/>
+        <circle class="lamp" id="l-ntc" cx="332" cy="210" r="4"/><text x="326" y="213" text-anchor="end" class="s">NTC</text>
+        <text x="301" y="232" text-anchor="middle" class="v" id="t-boiler">—</text>
+        <text x="301" y="314" text-anchor="middle">Caldera</text>
+        <!-- valve -->
+        <path class="act" id="a-valve" d="M 380 226 L 416 254 L 416 226 L 380 254 Z"/>
+        <text x="398" y="276" text-anchor="middle">Válvula</text>
+        <text x="398" y="290" text-anchor="middle" class="s">24 V</text>
+        <!-- grinder and hopper -->
+        <path class="body" d="M 470 70 H 560 L 535 112 H 495 Z"/>
+        <text x="515" y="64" text-anchor="middle">Tolva</text>
+        <text x="515" y="94" text-anchor="middle" class="v" id="t-beans">—</text>
+        <circle class="act" id="a-grind" cx="515" cy="132" r="18"/>
+        <g class="spin" id="s-grind"><path d="M 515 118 V 146 M 501 132 H 529 M 505 122 L 525 142 M 525 122 L 505 142" stroke="var(--ink)" stroke-width="1.5"/></g>
+        <text x="572" y="128">Molinillo</text>
+        <text x="572" y="142" class="v" id="t-ground">—</text>
+        <path class="wire" id="w-grind2" d="M 420 62 V 132 H 497"/>
+        <!-- brew unit -->
+        <rect class="body" x="448" y="166" width="134" height="130" rx="6"/>
+        <rect class="body" x="492" y="176" width="46" height="110" rx="3"/>
+        <rect id="piston" x="494" y="178" width="42" height="18" rx="2" fill="var(--muted)"/>
+        <text x="515" y="314" text-anchor="middle">Grupo</text>
+        <text x="460" y="184" class="s">reposo</text><text x="460" y="286" class="s">trabajo</text>
+        <circle class="lamp" id="l-unit" cx="560" cy="186" r="4"/><text x="568" y="189" class="s">pres.</text>
+        <circle class="lamp" id="l-work" cx="560" cy="276" r="4"/><text x="568" y="279" class="s">trab.</text>
+        <path id="dir" d="" fill="var(--ok)"/>
+        <rect class="act" id="a-motor" x="456" y="226" width="30" height="22" rx="3"/>
+        <text x="471" y="241" text-anchor="middle" class="s">M</text>
+        <text x="560" y="236" class="v" id="t-motor">—</text>
+        <!-- door -->
+        <rect class="body" x="600" y="166" width="44" height="130" rx="4"/>
+        <rect id="door" x="604" y="170" width="36" height="122" rx="3" fill="var(--muted)" opacity=".35"/>
+        <circle class="lamp" id="l-door" cx="622" cy="186" r="4"/>
+        <text x="622" y="314" text-anchor="middle">Puerta</text>
+        <!-- order/load lamps: O = STM32 order pin, R = load energised -->
+        <g id="ol"></g>
+      </svg>
+      <div>
+        <div class="legend2">
+          <span><i style="background:var(--ok);border-color:var(--ok)"></i>orden y carga</span>
+          <span><i style="border:2px dashed var(--warn)"></i>orden sin carga</span>
+          <span><i style="background:var(--bad);border-color:var(--bad)"></i>carga sin orden</span>
+        </div>
+        <div class="controls" style="margin-top:10px">
+          <label>Depósito (ml) <input type="range" min="0" max="1800" step="50" id="c-tank"></label>
+          <label>Café en tolva (g) <input type="range" min="0" max="300" step="10" id="c-beans"></label>
+        </div>
+        <div class="report" style="margin-top:12px">
+          <h2>Prueba de puesta a punto</h2>
+          <dl class="kv" id="test-head"></dl>
+          <table id="test-vals"></table>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <div class="charts">
     <section class="chart"><h2>Caldera</h2><canvas id="ch-boiler"></canvas><div class="legend" id="lg-boiler"></div></section>
     <section class="chart"><h2>Rails (STATUS)</h2><canvas id="ch-rails"></canvas><div class="legend" id="lg-rails"></div></section>
@@ -145,7 +283,7 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
   </div>
 </main>
 <script>
-const KEYS = {left: [['SW1','START'],['SW2','CLEAR'],['SW3','']], right: [['SW7','STOP'],['SW6',''],['SW5','']], mid: [['SW4','STBY']]};
+const KEYS = {left: [['SW1','▲'],['SW2','▼'],['SW3','volver']], right: [['SW7','STOP'],['SW6','MENU'],['SW5','OK']], mid: [['SW4','STBY']]};
 const $ = id => document.getElementById(id);
 async function cmd(c) {
   const r = await fetch('/api/cmd', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(c)});
@@ -167,6 +305,9 @@ $('c-noise').onchange = e => cmd({cmd: 'uart_noise', value: +e.target.value});
 $('c-corner').onchange = e => cmd({cmd: 'corner', value: e.target.value});
 $('c-speed').onchange = e => cmd({cmd: 'speed', value: +e.target.value});
 $('c-water').onchange = e => cmd({cmd: 'water_volts', value: +e.target.value});
+$('c-water-auto').onclick = () => cmd({cmd: 'water_volts', value: null});
+$('c-tank').onchange = e => cmd({cmd: 'tank', value: +e.target.value});
+$('c-beans').onchange = e => cmd({cmd: 'beans', value: +e.target.value});
 let paused = false;
 $('pause').onclick = () => cmd({cmd: 'pause', value: !paused});
 $('step').onclick = () => cmd({cmd: 'step', ms: 100});
@@ -177,8 +318,29 @@ const badge = (text, cls) => `<span class="badge ${cls || ''}">${text}</span>`;
 const kv = (el, rows) => { el.innerHTML = rows.map(([k, v]) => `<dt>${k}</dt><dd>${v}</dd>`).join(''); };
 const yes = v => v ? badge('sí', 'ok') : badge('no', 'bad');
 const STATE_CLS = {SAFE_IDLE: 'ok', BOOT: 'warn', FAULT: 'bad', RESET: 'bad'};
-const SCREEN_CLS = {IDLE: 'ok', STARTING: 'warn', BOOT: 'warn', FAULT: 'bad', LINK_LOST: 'bad', STANDBY: ''};
-const MSG = {0x01: 'HELLO', 0x20: 'STOP', 0x21: 'CLEAR_FAULT', 0x22: 'START', 0x23: 'UI_POWER'};
+const PHASE_CLS = {RUNNING: 'warn', DONE: 'ok', ABORTED: 'bad', REFUSED: 'bad', IDLE: ''};
+const PHASE_ES = {IDLE: 'sin prueba', RUNNING: 'en curso', DONE: 'terminada', ABORTED: 'abortada', REFUSED: 'rechazada'};
+const MSG = {0x01: 'HELLO', 0x20: 'STOP', 0x21: 'CLEAR_FAULT', 0x22: 'START', 0x23: 'UI_POWER', 0x24: 'TEST'};
+const REASON = ['ok', 'puerta abierta', 'estado', 'tiempo agotado', 'DRV8876', 'STOP', 'enlace perdido', 'NTC',
+  'límite de temperatura', 'sin grupo', 'sin caudal', 'parámetro', 'desconocida'];
+// Values of each set-up test (firmware/common/service_ids.h): label and unit.
+const DC = v => `${(v / 10).toFixed(1)} °C`, MV = v => `${(v / 1000).toFixed(2)} V`, MS = v => `${v} ms`,
+  MA = v => `${v} mA`, YN = v => v ? 'sí' : 'no', RAW = v => `${v}`;
+const TEST_FIELDS = {
+  INPUTS: ['Entradas y sensores', [['Puerta cerrada', YN], ['Grupo presente', YN], ['Grupo en trabajo', YN],
+           ['Agua (código ADC)', RAW], ['Caldera', DC], ['24 V', MV]]],
+  BREW_UNIT: ['Grupo: ciclo', [['Ida', MS], ['I0', MA], ['Pico de arranque', MA], ['I al tope', MA], ['Vuelta', MS],
+              ['Fallos DRV8876', RAW]]],
+  VALVE: ['Electroválvula', [['24 V antes', MV], ['24 V durante', MV], ['Tiempo', MS]]],
+  RELAY: ['Relé general K701', [['24 V antes', MV], ['24 V durante', MV], ['Tiempo', MS]]],
+  PUMP: ['Bomba y caudal', [['Tiempo', MS], ['Pulsos', RAW], ['Volumen nominal', v => `${(v / 10).toFixed(1)} ml`],
+         ['Caudal', v => `${(v / 100).toFixed(2)} ml/s`], ['Caldera al inicio', DC], ['Caldera al final', DC]]],
+  HEATER: ['Calentador', [['Inicio', DC], ['Fin de calentar', DC], ['Tiempo', MS],
+           ['Pendiente', v => `${(v / 100).toFixed(2)} °C/s`], ['Pico', DC], ['Sobreoscilación', v => `${(v / 10).toFixed(1)} K`]]],
+  GRINDER: ['Molinillo', [['Tiempo', MS], ['12 V durante', MV], ['24 V durante', MV]]],
+};
+const LCD_CHARS = {'\x01': 'Ñ', '\x02': '°', '\x03': '▲', '\x04': '▼', '\x05': '►', '\x06': '◄'};
+const lcdText = s => s.replace(/[\x01-\x06]/g, c => LCD_CHARS[c]);
 const ERR = {1: 'tipo desconocido', 2: 'longitud', 3: 'rechazado', 4: 'no implementado'};
 let lastPixels = -1, setOnce = false;
 
@@ -186,11 +348,14 @@ function render(s) {
   $('clock').textContent = `t = ${s.t.toFixed(3)} s`;
   $('run').textContent = s.paused ? 'en pausa' : `×${s.speed}`;
   paused = s.paused; $('pause').textContent = s.paused ? 'Seguir' : 'Pausa';
-  kv($('stm'), [['STM32', badge(s.stm.state, STATE_CLS[s.stm.state])], ['Enlace', yes(s.stm.link)],
-    ['Órdenes', Object.entries(s.stm.outputs).filter(([, v]) => v).map(([k]) => k).join(', ') || 'ninguna'],
+  const service = s.status && s.status.state === 3;  // OSC_CORE_SERVICE: a set-up test drives the loads
+  kv($('stm'), [['STM32', badge(s.stm.state, STATE_CLS[s.stm.state]) + (service ? ' ' + badge('PRUEBA', 'warn') : '')],
+    ['Enlace', yes(s.stm.link)],
+    ['Órdenes', Object.entries(s.orders || {}).filter(([k, v]) => v && !['UI_PWR_EN', 'WDT_KICK'].includes(k))
+      .map(([k]) => k).join(', ') || 'ninguna'],
     ['STM_NRST', s.board.nrst ? 'alto' : badge('bajo', 'bad')]]);
   const lr = s.esp.last_reply;
-  kv($('esp'), [['ESP32', s.esp.running ? badge(s.esp.screen, SCREEN_CLS[s.esp.screen]) : badge('arrancando', 'warn')],
+  kv($('esp'), [['ESP32', s.esp.running ? badge(s.esp.page, s.esp.link ? 'ok' : 'bad') : badge('arrancando', 'warn')],
     ['Enlace', yes(s.esp.link)], ['Frontal', `${s.esp.front}${s.esp.keypad_valid ? '' : ' · teclado inválido'}`],
     ['Peticiones / respuestas', `${s.esp.requests} / ${s.esp.replies}`],
     ['Última respuesta', lr ? `${lr.type === 0x7E ? 'ACK' : 'ERROR'} ${MSG[lr.for] || lr.for}${lr.code ? ' · ' + ERR[lr.code] : ''}` : '—']]);
@@ -199,7 +364,8 @@ function render(s) {
     ['12 V / 24 V (STATUS)', st ? `${(st.rail_12v_mv / 1000).toFixed(2)} / ${(st.rail_24v_mv / 1000).toFixed(2)} V` : '—'],
     ['Grupo (STATUS)', st ? `${st.brew_ma} mA` : '—'], ['NTC (código)', st ? st.ntc_raw : '—'],
     ['Bytes UART perdidos', s.board.uart_dropped]]);
-  kv($('plant'), [['Caldera', `${s.plant.boiler_c.toFixed(1)} °C`], ['Caudal', `${s.plant.flow_ml.toFixed(0)} ml`],
+  kv($('plant'), [['Caldera', `${s.plant.boiler_c.toFixed(1)} °C${st && st.boiler_dc > -32768 ? ` · STM ${(st.boiler_dc / 10).toFixed(1)} °C` : ''}`],
+    ['Caudal', `${s.plant.flow_ml.toFixed(0)} ml`],
     ['Grupo', `posición ${s.plant.unit_pos.toFixed(2)} · ${s.plant.motor_a.toFixed(2)} A`],
     ['Agua (sensor)', `${s.plant.water_volts.toFixed(1)} V`]]);
   const L = s.board.loads;
@@ -211,14 +377,84 @@ function render(s) {
   for (const k of ['SW1','SW2','SW3','SW4','SW5','SW6','SW7']) $('k-' + k).classList.toggle('down', s.pressed.includes(k));
   if (!setOnce) {
     $('c-door').checked = s.plant.door_closed; $('c-unit').checked = s.plant.unit_present;
-    $('c-water').value = s.plant.water_volts; setOnce = true;
+    $('c-water').value = s.plant.water_volts; $('c-tank').value = s.plant.tank_ml; $('c-beans').value = s.plant.beans_g;
+    setOnce = true;
   }
   $('c-ntc').checked = s.plant.ntc_open; $('c-drv').checked = s.faults.brew_fault;
   $('c-stm').checked = s.stm.hung; $('c-esp').checked = s.esp.hung; $('c-kp').checked = s.faults.keypad_hang;
   $('log').innerHTML = s.events.slice().reverse()
     .map(e => `<li><span class="t">${e.t.toFixed(3)}</span>${e.kind}${e.detail ? ' · ' + e.detail : ''}</li>`).join('');
   $('vcdn').textContent = `${s.vcd_changes} cambios en el VCD`;
+  $('lcdtext').textContent = s.esp.running && s.board.lcd_on
+    ? [lcdText(s.esp.title), ...s.esp.lines.map(lcdText)].join('\n').replace(/\n+$/, '') : '';
+  machine(s);
+  report(s.test);
   if (s.board.lcd_pixels !== lastPixels) { lastPixels = s.board.lcd_pixels; frame(); }
+}
+
+// Each load: is the STM32 ordering it, and is it really energised (netlist)?
+const look = (order, live) => live && order ? 'on' : live ? 'alarm' : order ? 'wait' : '';
+const setCls = (id, base, c) => { $(id).setAttribute('class', `${base}${c ? ' ' + c : ''}`); };
+function machine(s) {
+  const O = s.orders || {}, L = s.board.loads || {}, P = s.plant, st = s.status;
+  const motorLive = Math.abs(L.motor_v || 0) > 6, valveLive = (L.valve_v || 0) > 12;
+  const loads = {
+    relay: look(O.MAINS_ARM, L.mains), heat: look(O.HEATER_EN, L.heater), pump: look(O.PUMP_EN, L.pump),
+    grind: look(O.GRINDER_EN, L.grinder), valve: look(O.VALVE_EN, valveLive),
+    motor: look(O.BREW_PWM && O.BREW_SLEEP_N, motorLive),
+  };
+  setCls('a-relay', 'act', loads.relay); setCls('a-heat', 'act', loads.heat);
+  setCls('a-pumpq', 'act', loads.pump); setCls('a-pump', 'act', loads.pump);
+  setCls('a-grindq', 'act', loads.grind); setCls('a-grind', 'act', loads.grind);
+  setCls('a-valve', 'act', loads.valve); setCls('a-motor', 'act', loads.motor);
+  setCls('w-l', 'wire', 'live'); setCls('w-bus', 'wire', L.mains ? 'live' : '');
+  for (const [w, on] of [['w-heat', L.heater], ['w-heat2', L.heater], ['w-pump', L.pump], ['w-pump2', L.pump],
+                         ['w-grind', L.grinder], ['w-grind2', L.grinder]]) setCls(w, 'wire', on ? 'live' : '');
+  setCls('s-pump', 'spin', L.pump ? 'on' : ''); setCls('s-grind', 'spin', L.grinder && P.beans_g > 0 ? 'on' : '');
+  setCls('coil', 'coil', L.heater ? 'on' : '');
+  const flowing = L.pump && P.tank_ml > 0;
+  for (const id of ['p1', 'p2', 'p3', 'p4', 'p5']) setCls(id, 'pipe', flowing ? 'flow' : '');
+  // Tank level, sensor and flow meter.
+  const frac = Math.max(0, Math.min(1, P.tank_ml / P.tank_capacity_ml)), h = 176 * frac;
+  $('tank-w').setAttribute('y', 288 - h); $('tank-w').setAttribute('height', h);
+  $('t-tank').textContent = `${P.tank_ml} ml`;
+  setCls('l-water', 'lamp', P.water_volts > 1.0 ? 'on' : '');
+  $('s-flow').setAttribute('transform', `rotate(${(P.flow_ml * 1.925 * 90) % 360} 226 270)`);
+  $('t-flow').textContent = `${P.flow_ml.toFixed(0)} ml`;
+  setCls('l-flow', 'lamp', flowing ? 'on' : '');
+  // Boiler colour by temperature, NTC as the STM32 reads it.
+  const k = Math.max(0, Math.min(1, (P.boiler_c - 20) / 100));
+  $('boiler').style.fill = `rgb(${Math.round(70 + 185 * k)}, ${Math.round(110 - 40 * k)}, ${Math.round(160 - 120 * k)})`;
+  $('boiler').style.fillOpacity = 0.25 + 0.5 * k;
+  $('t-boiler').textContent = `${P.boiler_c.toFixed(1)} °C`;
+  setCls('l-ntc', 'lamp', st ? (st.boiler_dc > -32768 ? 'on' : 'alarm') : '');
+  // Grinder, brew unit and switches as the STM32 sees them (STATUS inputs).
+  $('t-beans').textContent = `${P.beans_g.toFixed(0)} g`;
+  $('t-ground').textContent = `${P.ground_g.toFixed(1)} g molido`;
+  $('piston').setAttribute('y', 178 + 88 * P.unit_pos);
+  $('piston').style.display = P.unit_present ? '' : 'none';
+  const v = L.motor_v || 0, y = 200 + 60 * P.unit_pos;
+  $('dir').setAttribute('d', !motorLive ? '' : v > 0 ? `M 546 ${y - 8} h 10 l -5 10 z` : `M 546 ${y + 2} h 10 l -5 -10 z`);
+  $('t-motor').textContent = `${(P.motor_a * 1000).toFixed(0)} mA`;
+  const inp = st ? st.inputs : 0;
+  setCls('l-unit', 'lamp', inp & 0x02 ? 'on' : ''); setCls('l-work', 'lamp', inp & 0x04 ? 'on' : '');
+  setCls('l-door', 'lamp', inp & 0x01 ? 'on' : 'alarm');
+  $('door').setAttribute('opacity', P.door_closed ? '.35' : '0');
+  // O/R lamps beside each load.
+  const ol = [['relay', 150, 10, O.MAINS_ARM, L.mains], ['heat', 218, 46, O.HEATER_EN, L.heater],
+    ['pump', 308, 46, O.PUMP_EN, L.pump], ['grind', 448, 46, O.GRINDER_EN, L.grinder],
+    ['valve', 420, 220, O.VALVE_EN, valveLive], ['motor', 458, 252, O.BREW_PWM && O.BREW_SLEEP_N, motorLive]];
+  $('ol').innerHTML = ol.map(([n, x, yy, o, r]) =>
+    `<circle class="lamp ${o ? 'order' : ''}" cx="${x + 4}" cy="${yy + 4}" r="3.5"><title>orden ${n}</title></circle>` +
+    `<circle class="lamp ${r ? (o ? 'on' : 'alarm') : ''}" cx="${x + 13}" cy="${yy + 4}" r="3.5"><title>carga ${n}</title></circle>`).join('');
+}
+
+function report(r) {
+  if (!r) { kv($('test-head'), [['Prueba', 'ninguna']]); $('test-vals').innerHTML = ''; return; }
+  const [name, fields] = TEST_FIELDS[r.id] || [String(r.id), []];
+  kv($('test-head'), [['Prueba', name], ['Fase', badge(PHASE_ES[r.phase] || r.phase, PHASE_CLS[r.phase])],
+    ['Paso', r.step], ['Motivo', REASON[r.reason] || r.reason], ['Transcurrido', `${(r.elapsed_ms / 1000).toFixed(1)} s`]]);
+  $('test-vals').innerHTML = fields.map(([label, f], i) => `<tr><td>${label}</td><td>${f(r.values[i])}</td></tr>`).join('');
 }
 
 const lcd = $('lcd').getContext('2d'), img = lcd.createImageData(320, 240);

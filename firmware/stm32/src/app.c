@@ -2,16 +2,12 @@
 #include "app.h"
 #include "osc_hal.h"
 #include "proto.h"
-
-/* ADC scaling from sim/board-report.md: rails through 200k/10k (x21), brew
- * current through IPROPI 1000 uA/A into R510 = 2.4k (2.4 V/A), both against
- * the VDDA that bsp_read() measured. */
-#define RAIL_MV(code, vdda) ((uint16_t)(((uint32_t)(code) * (vdda) * 21u) / 4095u))
-#define BREW_MA(code, vdda) ((uint16_t)(((uint32_t)(code) * (vdda) * 10u) / (4095u * 24u)))
+#include "service.h"
 
 static osc_controller ctl;
 static osc_inputs inputs;
 static osc_parser parser;
+static osc_service svc;
 static uint32_t last_toggle, last_control, last_status, last_rx, started;
 static bool link_seen, ui_on;
 static uint8_t tx_seq, last_type, last_seq;
@@ -38,6 +34,32 @@ static void reply(uint8_t seq, uint8_t type, osc_err_code err) {
     send(&f);
 }
 
+static void send_report(void) {
+    osc_frame f;
+    f.type = OSC_MSG_TEST_REPORT;
+    f.seq = tx_seq++;
+    f.len = OSC_TEST_REPORT_LEN;
+    osc_test_report_pack(&svc.r, f.payload);
+    send(&f);
+}
+
+static osc_err_code test_request(const osc_frame *f, uint32_t now) {
+    uint16_t param;
+    if (f->len < 1) return OSC_ERR_BAD_LENGTH;
+    if (f->payload[0] == OSC_TEST_NONE) {
+        svc_abort(&svc, OSC_REASON_STOP, now);
+        svc_init(&svc); /* clears the report */
+        return (osc_err_code)0;
+    }
+    param = f->len >= 3 ? (uint16_t)(f->payload[1] | (f->payload[2] << 8)) : 0u;
+    if (svc_start(&svc, f->payload[0], param, &inputs, ctl.state == OSC_SAFE_IDLE && link_ok(now), now)
+        != OSC_REASON_OK) {
+        send_report(); /* carries the reason */
+        return OSC_ERR_REJECTED;
+    }
+    return (osc_err_code)0;
+}
+
 static void handle(const osc_frame *f, uint32_t now) {
     osc_err_code err = (osc_err_code)0;
     last_rx = now;
@@ -54,6 +76,7 @@ static void handle(const osc_frame *f, uint32_t now) {
         else if (f->payload[0] != OSC_PROTO_VERSION) err = OSC_ERR_REJECTED;
         break;
     case OSC_MSG_STOP:
+        svc_abort(&svc, OSC_REASON_STOP, now);
         osc_stop(&ctl);
         break;
     case OSC_MSG_CLEAR_FAULT:
@@ -71,6 +94,9 @@ static void handle(const osc_frame *f, uint32_t now) {
             bsp_ui_power(ui_on);
         }
         break;
+    case OSC_MSG_TEST:
+        err = test_request(f, now);
+        break;
     default:
         err = OSC_ERR_UNKNOWN_TYPE;
         break;
@@ -86,17 +112,20 @@ static void send_status(uint32_t now) {
     osc_status s;
     const osc_outputs *o = &ctl.outputs;
     s.state = (uint8_t)ctl.state;
+    if (svc_running(&svc) && svc_drives(&svc)) s.state = OSC_CORE_SERVICE;
     s.inputs = (uint8_t)((inputs.door_closed ? OSC_IN_DOOR_CLOSED : 0u) |
                          (inputs.bu_present ? OSC_IN_BU_PRESENT : 0u) |
                          (inputs.bu_work ? OSC_IN_BU_WORK : 0u) |
                          (inputs.brew_fault ? OSC_IN_BREW_FAULT : 0u) |
                          (ui_on ? OSC_IN_UI_POWER : 0u));
     s.outputs = (uint16_t)((o->heater ? 1u : 0u) | (o->pump ? 2u : 0u) | (o->valve ? 4u : 0u) |
-                           (o->grinder ? 8u : 0u) | (o->brew_motor ? 16u : 0u));
-    s.rail_12v_mv = RAIL_MV(inputs.rail_12v, inputs.vdda_mv);
-    s.rail_24v_mv = RAIL_MV(inputs.rail_24v, inputs.vdda_mv);
-    s.brew_ma = BREW_MA(inputs.brew_current, inputs.vdda_mv);
+                           (o->grinder ? 8u : 0u) | (o->brew_motor ? 16u : 0u) |
+                           (o->brew_forward ? 32u : 0u) | (o->mains ? 64u : 0u));
+    s.rail_12v_mv = inputs.rail_12v_mv;
+    s.rail_24v_mv = inputs.rail_24v_mv;
+    s.brew_ma = inputs.brew_ma;
     s.ntc_raw = inputs.ntc;
+    s.boiler_dc = inputs.boiler_dc;
     s.uptime_ms = now - started;
     f.type = OSC_MSG_STATUS;
     f.seq = tx_seq++;
@@ -105,11 +134,33 @@ static void send_status(uint32_t now) {
     send(&f);
 }
 
+static void control(uint32_t now) {
+    bsp_read(&inputs);
+    /* Until the ESP32 first answers, the core waits in OSC_BOOT; after the
+     * grace time, or once the link has been up, a missing link is a fault
+     * like any other. */
+    if (link_seen || now - started >= OSC_LINK_BOOT_GRACE_MS)
+        osc_tick(&ctl, interlocks_ok(), link_ok(now));
+    if (svc_running(&svc)) {
+        if (!link_ok(now)) svc_abort(&svc, OSC_REASON_LINK, now);
+        else if (svc_drives(&svc) && ctl.state != OSC_SAFE_IDLE)
+            /* The core faulted first: report the cause it saw, if it is one of ours. */
+            svc_abort(&svc, !inputs.door_closed ? OSC_REASON_DOOR
+                            : inputs.brew_fault ? OSC_REASON_DRIVER : OSC_REASON_STATE, now);
+        else svc_poll(&svc, &inputs, now);
+    }
+    /* A test drives the outputs only from SAFE_IDLE; anything else is off. */
+    if (svc_running(&svc) && svc_drives(&svc) && ctl.state == OSC_SAFE_IDLE) bsp_write(&svc.out);
+    else bsp_write(&ctl.outputs);
+}
+
 void osc_app_init(void) {
-    const osc_inputs none = {false, false, false, false, 0, 0, 0, 0, 0, 0, 0, 3300};
+    const osc_inputs none = {false, false, false, false, 0, 0, 0, 0, 0, 0, 3300, 0, 0, 0, 0,
+                             OSC_TEMP_INVALID};
     bsp_init();
     osc_init(&ctl);
     osc_parser_init(&parser);
+    svc_init(&svc);
     inputs = none;
     started = last_toggle = last_control = last_status = last_rx = osc_hal_millis();
     link_seen = have_last = false;
@@ -129,20 +180,16 @@ void osc_app_poll(void) {
         if (osc_parser_feed(&parser, byte, &f)) handle(&f, now);
     if (now - last_control >= OSC_CONTROL_PERIOD_MS) {
         last_control = now;
-        bsp_read(&inputs);
-        /* Until the ESP32 first answers, the core waits in OSC_BOOT; after
-         * the grace time, or once the link has been up, a missing link is a
-         * fault like any other. */
-        if (link_seen || now - started >= OSC_LINK_BOOT_GRACE_MS)
-            osc_tick(&ctl, interlocks_ok(), link_ok(now));
-        bsp_write(&ctl.outputs);
+        control(now);
     }
     if (now - last_status >= OSC_PROTO_STATUS_PERIOD_MS) {
         last_status = now;
         send_status(now);
+        if (svc.r.id != OSC_TEST_NONE) send_report();
     }
 }
 
 const osc_controller *osc_app_controller(void) { return &ctl; }
 const osc_inputs *osc_app_inputs(void) { return &inputs; }
 bool osc_app_link_ok(void) { return link_ok(osc_hal_millis()); }
+const osc_service *osc_app_service(void) { return &svc; }
