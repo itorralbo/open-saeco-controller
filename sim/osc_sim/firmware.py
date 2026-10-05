@@ -2,13 +2,17 @@
 
 Each library holds the real sources (STM32: controller, BSP, main loop;
 ESP32: front panel, display and link core; both: protocol v0) on top of a
-host HAL in sim/hal. The compiler is $CC (default cc), with $SDKROOT as
-sysroot when set, the same flags as CMake. Each object loads its own copy
-of the library, so two boards never share globals.
+host HAL in sim/hal, with the same flags as CMake. The compiler is $CC when
+set (also from sim/.env); else zig cc from the ziglang package of
+sim/requirements.txt, the same on macOS, Windows and Linux; else cc, gcc or
+clang. $SDKROOT, if set, is the sysroot of a system compiler on macOS. Each
+object loads its own copy of the library, so two boards never share globals.
 """
 import atexit
 import ctypes
+import importlib.util
 import os
+import shlex
 import shutil
 import subprocess
 import sys
@@ -16,6 +20,25 @@ import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[2]
+ENV_FILE = ROOT / 'sim/.env'
+
+
+def load_env(path=ENV_FILE):
+    """KEY=VALUE lines of sim/.env into os.environ, without overriding the shell."""
+    if not path.exists():
+        return
+    for line in path.read_text(encoding='utf-8').splitlines():
+        line = line.strip()
+        if not line or line.startswith('#') or '=' not in line:
+            continue
+        key, value = (s.strip() for s in line.split('=', 1))
+        if len(value) >= 2 and value[0] == value[-1] and value[0] in '"\'':
+            value = value[1:-1]
+        if value:
+            os.environ.setdefault(key, value)
+
+
+load_env()
 PORTS, PINS, ADCS, CHANNELS, UART_BUF = 6, 16, 2, 20, 512
 ESP_GPIOS = 49
 MODES = ('analog', 'input', 'output', 'af')
@@ -164,7 +187,15 @@ TESTS = ('NONE', 'INPUTS', 'BREW_UNIT', 'VALVE', 'RELAY', 'PUMP', 'HEATER', 'GRI
 
 
 def compiler():
-    return os.environ.get('CC') or shutil.which('cc') or shutil.which('gcc') or shutil.which('clang')
+    """Command that runs the C compiler, as a list, or None."""
+    cc = os.environ.get('CC')
+    if cc:
+        # A path to a compiler may have spaces (C:\Program Files\...); else a command line.
+        return [cc] if Path(cc).is_file() else shlex.split(cc, posix=os.name != 'nt')
+    if importlib.util.find_spec('ziglang'):
+        return [sys.executable, '-m', 'ziglang', 'cc']
+    cc = shutil.which('cc') or shutil.which('gcc') or shutil.which('clang')
+    return [cc] if cc else None
 
 
 def build(target='stm32', out_dir=None):
@@ -172,7 +203,7 @@ def build(target='stm32', out_dir=None):
     spec = TARGETS[target]
     cc = compiler()
     if not cc:
-        raise RuntimeError('no C compiler: set CC')
+        raise RuntimeError('no C compiler: pip install -r sim/requirements.txt, or set CC (sim/.env)')
     out_dir = Path(out_dir or ROOT / 'build/sim')
     out_dir.mkdir(parents=True, exist_ok=True)
     ext = '.dylib' if sys.platform == 'darwin' else ('.dll' if os.name == 'nt' else '.so')
@@ -181,11 +212,13 @@ def build(target='stm32', out_dir=None):
     headers = [h for d in spec['include'] for h in (ROOT / d).glob('*.h')]
     if lib.exists() and all(lib.stat().st_mtime >= p.stat().st_mtime for p in srcs + headers):
         return lib
-    cmd = [cc, '-std=c99', '-Wall', '-Wextra', '-Werror', '-pedantic', '-O1', '-fPIC', '-shared',
+    zig = 'ziglang' in cc
+    cmd = [*cc, '-std=c99', '-Wall', '-Wextra', '-Werror', '-pedantic', '-O1', '-shared',
+           *([] if os.name == 'nt' else ['-fPIC']),
            *(f'-I{ROOT / d}' for d in spec['include']), *map(str, srcs), '-o', str(lib), '-lm']
-    if os.environ.get('SDKROOT'):
-        cmd[1:1] = ['-isysroot', os.environ['SDKROOT']]
-    result = subprocess.run(cmd, capture_output=True, text=True)
+    if os.environ.get('SDKROOT') and sys.platform == 'darwin' and not zig:
+        cmd[len(cc):len(cc)] = ['-isysroot', os.environ['SDKROOT']]
+    result = subprocess.run(cmd, capture_output=True, text=True, cwd=out_dir)
     if result.returncode:
         raise RuntimeError(result.stderr)
     return lib

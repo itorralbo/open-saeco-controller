@@ -13,6 +13,40 @@ de KiCad, así que un error de diseño aparece como un fallo de simulación.
 | F4 | Menús y puesta a punto: pruebas de cargas y medidas, cafetera visual en el panel | Hecha; tiempos y corrientes de la planta supuestos |
 | F5 | Recetas y máquina de estados completa | Pendiente |
 
+## Entorno (macOS, Windows y Linux)
+
+Hace falta Python 3.10 o posterior (CI usa 3.12). El código del simulador solo
+usa la biblioteca estándar; lo único externo es un compilador de C para los dos
+firmwares, y [`requirements.txt`](requirements.txt) lo trae con pip (`zig cc`,
+paquete `ziglang`): no hacen falta Xcode, MinGW ni Visual Studio.
+
+macOS / Linux:
+```
+python3 sim/setup_env.py
+source .venv/bin/activate
+```
+
+Windows (PowerShell):
+```
+py sim\setup_env.py
+.venv\Scripts\Activate.ps1
+```
+
+Si PowerShell no deja ejecutar `Activate.ps1`, basta con llamar a
+`.venv\Scripts\python` en lugar de `python`.
+
+[`setup_env.py`](setup_env.py) crea `.venv` en la raíz del repositorio, instala
+los requisitos, copia [`.env.example`](.env.example) a `sim/.env` si no existe
+y compila los dos firmwares para comprobar la cadena. Con el entorno activado,
+los comandos de abajo funcionan igual en los tres sistemas.
+
+`sim/.env` (ignorado por git) guarda lo propio de cada máquina, por ejemplo
+otro compilador (`CC`) o el SDK de macOS (`SDKROOT`) para un compilador del
+sistema; las variables ya definidas en la terminal mandan. Sin `CC`, el
+simulador usa `zig cc` si está instalado y si no `cc`, `gcc` o `clang`. CI
+pasa los escenarios en Windows y macOS con este entorno, y en Linux con el
+`cc` del sistema.
+
 ## F0: modelo de placa
 
 ```

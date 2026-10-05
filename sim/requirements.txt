@@ -1,0 +1,5 @@
+# Simulator (sim/README.md). Python 3.10+; the code itself uses only the
+# standard library. ziglang brings `zig cc`, which compiles both firmwares as
+# host libraries the same way on macOS, Windows and Linux, with no Xcode,
+# MinGW or Visual Studio. Install with: python sim/setup_env.py
+ziglang==0.16.0

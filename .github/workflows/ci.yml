@@ -16,3 +16,21 @@ jobs:
       - run: cmake -S firmware/stm32 -B build/host
       - run: cmake --build build/host
       - run: ctest --test-dir build/host --output-on-failure
+  sim:
+    # The simulator on the desktops it is meant for, with the toolchain of
+    # sim/requirements.txt (zig cc) instead of a system compiler.
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python sim/setup_env.py
+      - if: runner.os == 'Windows'
+        run: .venv\Scripts\python -m unittest discover -s tests/sim
+      - if: runner.os != 'Windows'
+        run: .venv/bin/python -m unittest discover -s tests/sim
