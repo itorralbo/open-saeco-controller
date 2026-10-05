@@ -364,12 +364,12 @@ mire a R701 y el nodo filtrado siga en línea recta hasta R703 y C701.
 
 ### Corte del frontal
 
-La huella de PS701 cierra este hueco por el este a x = 101,25 mm, así que todo
-lo que estaba al este de U302 se ha pasado al oeste o al norte. C307, que fija
-el tiempo de subida, estaba a 8 mm de su pin 4 y ahora está pegado a él; C308
-desacopla la entrada junto al pin 1 y C309 sostiene la salida conmutada. El raíl
-de 3,3 V llegaba al hueco por y = 43 mm y la columna de x = 91,6 mm; desde el
-2026-09-23 C308 y R301 bajan cada uno al plano de In2.Cu.
+Desde el 2026-10-05 U302 está justo debajo de J104 (4,5 / 17 mm, girado 90°),
+con las salidas hacia el norte; antes estaba en el bolsillo junto a PS701 y
+`3V3_UI` daba la vuelta por el borde superior (unos 144 mm). C307, que fija el
+tiempo de subida, está pegado a su pin 4; C308 desacopla la entrada bajo el
+pin 1, C309 sostiene la salida junto a la subida a J104.1 y R301 queda al este
+del enable. El pin 1, C308 y R301 bajan cada uno al plano de In2.Cu.
 
 ### Distribución de 3,3 V
 
@@ -849,13 +849,9 @@ ya no existe).
 - J109.1 cuelga de R401 por x = 27,3 mm, junto al retorno de la válvula, y
   entra en el pin por debajo del conector, entre J109.2 y J109.3.
 
-**3V3_UI.** U302 está en el bolsillo al este del tronco de 3,3 V y J104 en la
-esquina superior izquierda, así que el único recorrido libre es el borde
-superior: y = 0,8 mm, 0,4 mm de ancho, al norte del ramal de 3,3 V y de CC1
-del USB. El raíl sale del bolsillo bajo el tronco y sube por su lado oeste en
-x = 90 mm, baja por x = 3,3 mm al oeste del taladro del pestillo del WR-MM y
-entra en J104.1 por el oeste. Los dos saltos por B.Cu
-bajo el tronco y el ramal norte se quitaron con el plano de 3,3 V.
+**3V3_UI.** Sube recto desde U302 por x = 3,55 mm y entra en J104.1 en
+diagonal: unos 13 mm a 0,5 mm de ancho, todo en F.Cu. Lo que cruza la placa es
+la orden lenta de PB12 (ver *Corte del frontal* en el lado este del MCU).
 
 Pasillos que se han dejado libres para las señales:
 
@@ -935,8 +931,9 @@ Salidas de U602:
   llegar a R102.1.
 - **Reset**: la segunda rama de NRST cruza el contorno del encapsulado hasta
   J102.5, con sus dos vías dentro del contorno y fuera del anillo de 3,3 V.
-- **Corte del frontal**: PB12 baja en diagonal hasta el enable de U302 y salta
-  la espina de 3,3 V de x = 91,6 mm.
+- **Corte del frontal**: PB12 baja a B.Cu junto a su pad, cruza bajo el MCU,
+  va hacia el oeste por y = 27,25 mm por debajo del ESP32 y sube junto a R301
+  al enable de U302: unos 92 mm y dos vías.
 
 ### Puente H, telemetría y divisores
 

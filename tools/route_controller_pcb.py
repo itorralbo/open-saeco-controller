@@ -779,33 +779,28 @@ def route_3v3_buck(board):
 
 
 def route_ui_load_switch(board):
-    """TPS22918 that gates 3.3 V to the front panel.
+    """TPS22918 that gates 3.3 V to the front panel, just below J104.
 
-    PS701's footprint closes this pocket off at x = 101.25 mm, so the parts sit
-    west and north of the switch. Its 3.3 V input and R301 drop to the In2.Cu
-    plane in route_3v3_plane_drops.
+    The outputs face north and run straight up x = 3.55 mm to J104.1, with
+    C309 alongside; the rise capacitor sits on pin 4 and the input capacitor
+    below pin 1. Pin 1, C308 and R301 drop to the In2.Cu plane in
+    route_3v3_plane_drops. The PB12 enable arrives through route_mcu_east.
     """
-    gnd, v33 = '/GND_UI', '/3V3_CORE'
+    gnd, v33, ui = '/GND_UI', '/3V3_CORE', '/3V3_UI'
 
-    track(board, v33, (95.725, 50.05), (96.9, 50.05), width=0.5)
+    polyline(board, v33, [(3.55, 18.137), (3.55, 19.2), (2.6, 20.15)], width=0.5)
+    track(board, ui, (3.55, 15.863), (4.5, 15.863), width=0.5)
+    polyline(board, ui, [(3.55, 15.863), (3.55, 9.15), (6.2, 6.5)], width=0.5)
+    track(board, ui, (2.0, 12.775), (3.55, 12.775), width=0.5)
+    track(board, '/UI_RISE', (5.45, 15.863), (5.45, 14.075), width=PIN_WIDTH)
+    track(board, '/UI_PWR_EN', (5.45, 18.137), (6.975, 18.138), width=PIN_WIDTH)
 
-    polyline(board, '/UI_PWR_EN', [(95.275, 53.6), (96.2, 53.6), (96.2, 52.8),
-                                   (96.9, 52.8), (96.9, 52.2)],
-             width=PIN_WIDTH)
-    polyline(board, '/UI_RISE', [(99.638, 52.25), (99.488, 52.4), (98.4, 52.4),
-                                 (97.725, 53.075), (97.725, 53.4)],
-             width=PIN_WIDTH)
-    track(board, '/3V3_UI', (99.638, 51.0), (99.638, 50.05), width=0.5)
-    polyline(board, '/3V3_UI', [(99.638, 49.9), (99.0, 49.262), (99.0, 48.5),
-                                (97.5, 47.0), (97.5, 46.5), (96.9, 45.9)], width=0.5)
-
-    for start, point in (((93.725, 50.05), (92.6, 50.05)),
-                         ((96.9, 51.0), (96.275, 51.0)),
-                         ((99.275, 53.7), (100.4, 53.7)),
-                         ((98.275, 45.5), (99.4, 45.5))):
+    for start, point in (((4.5, 18.137), (4.5, 19.9)),
+                         ((5.45, 12.525), (5.45, 11.2)),
+                         ((2.0, 11.225), (2.0, 10.0)),
+                         ((2.6, 21.7), (2.6, 23.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
-
 
 
 def route_3v3_plane_drops(board):
@@ -828,7 +823,7 @@ def route_3v3_plane_drops(board):
             ((109.05, 41.0), (109.95, 41.0)),  # C305.1
             ((109.05, 36.0), (109.95, 36.0)),  # C304.1
             ((104.225, 44.0), (103.35, 44.0)),  # C306.1
-            ((93.675, 53.6), (92.8, 53.6)),  # R301.1
+            ((8.625, 18.138), (8.625, 16.8)),  # R301.1
             ((72.675, 50.2), (73.55, 50.2)),  # C109.1
             ((83.8, 35.875), (83.8, 36.75)),  # C104.1
             ((72.675, 51.8), (71.95, 51.1)),  # C108.1
@@ -842,7 +837,7 @@ def route_3v3_plane_drops(board):
             ((40.175, 48.6), (39.475, 49.3)),  # R101.1
             ((42.5, 6.975), (42.5, 7.85)),  # C202.1
             ((36.9, 85.425), (37.15, 84.55)),  # C604.1
-            ((95.275, 50.05), (96.15, 50.05)),  # C308.1
+            ((2.6, 20.15), (1.3, 20.15)),  # C308.1
             ((16.0, 59.825), (16.0, 60.7)),  # R409.1
             ((16.0, 52.825), (16.0, 53.7)),  # R407.1
             ((42.5, 10.375), (42.5, 11.25)),  # C203.1
@@ -1543,26 +1538,6 @@ def route_12v_rail(board):
 
 
 
-def route_ui_supply(board):
-    """Switched 3.3 V from the UI load switch to J104.1, along the top edge.
-
-    U302 sits in the pocket beside PS701 and J104 at the far top-left
-    corner, so the feed runs along the board's top edge, y = 0.8 mm, north
-    of the USB CC1 line. It leaves the pocket west and climbs x = 90 mm,
-    clear of the UART channel, then runs west to J104 and passes west of
-    the WR-MM latch hole to reach pin 1 from the west. The two B.Cu hops
-    it needed under the old 3.3 V spine are gone with the In2.Cu plane.
-    """
-    ui = '/3V3_UI'
-    polyline(board, ui, [(96.72, 45.5), (95.0, 45.5), (93.75, 44.25),
-                         (92.5, 44.25)], width=0.3)
-    track(board, ui, (92.5, 44.25), (90.75, 44.25), width=0.3)
-    polyline(board, ui, [(90.75, 44.25), (90.75, 43.75), (90.0, 43.0),
-                         (90.0, 10.0), (80.8, 0.8)], width=0.3)
-    polyline(board, ui, [(80.8, 0.8), (5.2, 0.8), (3.3, 2.7),
-                         (3.3, 6.5), (6.2, 6.5)], width=0.4)
-
-
 def route_supervisor_orders(board):
     """PB4, PB5, PB6 and PB7 from the north pad row to the supervisor side.
 
@@ -1790,9 +1765,8 @@ def route_mcu_east(board):
     goes down beside J102.1, round the north of the header's first pad and
     back under U101's north-east corner on B.Cu, and comes up between the
     two UART lines to reach R102.1 from the north-west. The reset pin gets
-    its second branch through the package outline to J102.5. PB12 runs
-    south-east to U302's enable, all on F.Cu now that the 3.3 V spine it
-    hopped at x = 91.6 mm is gone.
+    its second branch through the package outline to J102.5. PB12 crosses
+    the board on B.Cu to U302's enable under J104.
     """
     w = SIGNAL_WIDTH
     polyline(board, '/ESP_TO_STM', [(81.675, 38.25), (85.125, 38.25),
@@ -1827,12 +1801,18 @@ def route_mcu_east(board):
     polyline(board, nrst, [(76.875, 36.85), (78.225, 35.5), (80.125, 35.5),
                            (84.66, 30.965)], width=PIN_WIDTH)
 
+    # PB12 drops to B.Cu at the pad and crosses under the MCU, west along
+    # y = 27.25 mm below the ESP32 and down to U302's enable under J104.
     ui = '/UI_PWR_EN'
-    polyline(board, ui, [(81.675, 43.25), (82.75, 43.25), (90.8, 51.3),
-                         (90.8, 52.3)], width=w)
-    track(board, ui, (90.8, 52.3), (92.4, 52.3), width=w)
-    polyline(board, ui, [(92.4, 52.3), (93.975, 52.3), (95.275, 53.6)],
-             width=w)
+    track(board, ui, (81.675, 43.25), (82.9, 43.25), width=w)
+    via(board, ui, (82.9, 43.25))
+    # South of the two inner VSS vias at y = 44.65 mm, then up the diagonal
+    # between the NRST via and the sensor-bus vias.
+    polyline(board, ui, [(82.9, 43.25), (81.5, 44.65), (77.0, 44.65), (67.125, 34.775),
+                         (67.125, 30.625), (63.75, 27.25), (18.375, 27.25),
+                         (10.625, 19.5), (6.975, 19.5)], pcb.B_Cu, width=w)
+    via(board, ui, (6.975, 19.5))
+    track(board, ui, (6.975, 19.5), (6.975, 18.138), width=w)
 
 
 def route_rails_and_bridge(board):
@@ -2352,7 +2332,6 @@ def main():
     route_sensor_bus(board)
     route_esp_and_front(board)
     route_12v_rail(board)
-    route_ui_supply(board)
     route_3v3_plane_drops(board)
     selv_planes(board)
     stitches = selv_outer_fills(board)
@@ -2386,7 +2365,7 @@ def main():
                           'SWD header: SWDIO, SWCLK and SWO to J102',
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
                           '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',
-                          'UI supply: U302 to J104.1 along the top edge',
+                          'UI supply: U302 under J104, PB12 enable across the board',
                           'load bus: PA7, PC4, PC5 and PB11 to the gates on four B.Cu lanes',
                           'U602: reset input, brew sleep output to R505 and valve output to R511',
                           'MCU east and north: UART to R211/R212, BOOT0, reset to J102 and the UI switch',

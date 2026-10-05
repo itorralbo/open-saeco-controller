@@ -827,3 +827,20 @@ quedan por debajo del 60 %.
 
 Resultado: ERC 0; netlist 192/625; DRC 0 infracciones y 0 sin conectar, paridad
 solo MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 40/40.
+
+## U302 junto a J104, 2026-10-05
+
+Se recupera el cambio que estaba sin commit en el árbol de trabajo antes de
+traer `d059fb0` (guardado ese día en un stash): U302 (TPS22918) pasa del
+bolsillo junto a PS701 a justo debajo de J104 (4,5 / 17 mm, girado 90°), con
+C307, C308, C309 y R301 a su alrededor. `3V3_UI`, la alimentación conmutada del
+frontal, pasa de unos 144 mm de 0,4 mm por el borde superior de la placa a unos
+13 mm de 0,5 mm en F.Cu; lo que cruza ahora la placa es la orden lenta de PB12,
+en B.Cu por y = 27,25 mm con dos vías. Sobre el ruteo actual, PB12 pasa además
+al sur de las vías interiores de VSS27/VSS31 (y = 44,65 mm), que aparecieron con
+la corrección del pinout del STM32.
+
+Resultado: ERC 0; netlist 192/625; DRC con todas las severidades: 0 infracciones,
+0 sin conectar y paridad solo MH1–MH3 (1318 segmentos y 444 vías, 149 de
+cosido); modelo de placa 0 errores y 0 avisos. Serigrafía, PDF 1:1 y render
+regenerados.
