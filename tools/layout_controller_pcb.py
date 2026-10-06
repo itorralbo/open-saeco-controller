@@ -228,10 +228,11 @@ PLACE = {
     'U101': stm(0, 0, 0), 'U201': (54, 14.2, 0),
     'J101': (96, 6, 0), 'J102': (74.5, 31, 90), 'J103': (75, 10, 90),
     **HARNESS_CONNECTORS,
-    # JP8 is a LEOCO 3941P03 on the VH pitch it replaced. JP24 is a LEOCO
-    # 5001P02 at 5 mm, centred 0.5 mm east of the photographed JP24 so that
-    # its housing clears JP19's courtyard.
-    'J115': (59.04, 120.8, 0), 'J117': (91.0, 120.8, 0),
+    # JP8 is a LEOCO 3941P03 on the VH pitch it replaced, 1.35 mm south of
+    # the VH row since 2026-10-06 so that the standing F703 fits between it
+    # and Q708 (issue #1). JP24 is a LEOCO 5001P02 at 5 mm, centred 0.5 mm
+    # east of the photographed JP24 so that its housing clears JP19's courtyard.
+    'J115': (59.04, 122.15, 0), 'J117': (91.0, 120.8, 0),
     # JP17 is a TE 1971845-3 RAST 5 header, flush with the bottom edge like
     # J116. It sits 2.5 mm west of the photographed JP17 centre so that the
     # neutral to PS701 can climb between its polarizing post and the PE tabs
@@ -264,13 +265,15 @@ PLACE = {
     'R714': (43.3, 108.2, 0), 'R715': (43.3, 106.6, 180),
 
     # Grinder stage. U703 in the middle of the stack, Q708 on the west end
-    # of the heatsink's south face, F703 under it and the bridge between
-    # J115 and the bottom edge, where both DC pins reach JP8 directly. The
+    # of the heatsink's south face, F703 standing on end under it (a 5 x 20 mm
+    # Littelfuse 215, body over pad 1 below Q708.1, its gate run 1.2 mm north
+    # of the pads) and the bridge between J115 and the bottom edge, 1.2 mm
+    # lower since 2026-10-06, where both DC pins reach JP8 directly. The
     # LED driver takes the flow filter's old place beside U703; R717 holds
     # the raw order low next to U604, whose second gate the grinder uses.
     'U703': (47.19, 100.72, 0), 'Q708': (64.06, 109.5, 0),
-    'R721': (58.86, 99.0, 180), 'F703': (66.5, 113.8, 0),
-    'BR701': (58.75, 130.8, 0),
+    'R721': (58.86, 99.0, 180), 'F703': (64.06, 114.1, 0),
+    'BR701': (58.75, 132.0, 0),
     # U704 measures the grinder current on JP8's + line and straddles the
     # barrier below U702: input pads east, from BR701's + up to JP8.1, and
     # the 3.3 V side west. The only free stretch of barrier; J106 and J105

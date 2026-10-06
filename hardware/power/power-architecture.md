@@ -3,7 +3,9 @@
 Estado: integrada en el esquema y en la PCB ruteada, sin ensayar. La placa
 sustituye a la original y contiene en la misma tarjeta la entrada de 230 V, sus
 protecciones, la fuente aislada, las salidas de red y la electrónica SELV. Falta
-el filtro EMI y cerrar los valores de F701, F702 y RV701.
+el filtro EMI, RV701, el valor de F702 y el margen de carga de F701; el poder de
+corte de los tres fusibles de red está fijado (ver
+[corriente de defecto supuesta](#corriente-de-defecto-supuesta-y-fusibles-de-red)).
 
 ## Dominios obligatorios
 
@@ -198,9 +200,11 @@ Topología, la de la original con dos cambios de pieza:
 
 1. Q708, un BTA24-800BW, corta la fase ya armada por K701 (`LOAD_L_ENABLED`).
    Va en el mismo perfil que calentador y bomba, en el extremo oeste.
-2. F703, un fusible T4A de acción retardada (JDT JFC2410-1400TS, C136386,
-   2410, 250 V), entre el triac y el puente. El fusible propio es decisión del
-   propietario; pasó de T2A a T4A con el cambio a 3 A, en la misma huella.
+2. F703, un fusible T4A de acción retardada entre el triac y el puente. El
+   fusible propio es decisión del propietario; pasó de T2A a T4A con el cambio a
+   3 A. Desde el 2026-10-06 es un Littelfuse 0215004.MXEP (C178840), 5 × 20 mm
+   cerámico de 1500 A a 250 VAC, montado de pie junto a Q708: el JDT
+   JFC2410-1400TS que había solo cortaba 50 A (issue #1).
 3. BR701, un puente KBP410, rectifica después del fusible. JP8 recibe polaridad
    fija (blanco = +, negro = −) y queda sin tensión en cuanto el triac se abre.
    No hay condensador de bus, así que no hace falta resistencia de descarga.
@@ -240,9 +244,14 @@ de 100 °C en la cápsula, el puente pasa a cuatro diodos discretos, como en la
 original.
 
 El bloqueo lo sigue cortando el firmware. Con 3,4 A no funden ni F701 (T10A) ni
-F703 (T4A); F703 solo protege ante un puente o un bobinado en corto, sin
-llevarse por delante la máquina entera. Su poder de corte es de 50 A a 250 V,
-bajo para una rama de red: F701 sigue siendo la protección principal.
+F703 (T4A). F703 está para un puente o un bobinado en corto: un diodo del
+puente en corto, con Q708 conduciendo, cierra un camino de baja impedancia
+entre fase y neutro en uno de los semiciclos, y F703, el fusible más pequeño de
+ese lazo, es el que tiene que interrumpirlo. Hasta el 2026-10-06 era un
+JFC2410 de 50 A de poder de corte y este texto decía que F701 seguía siendo la
+protección principal; no lo es para este fallo. Lo que está y no está
+demostrado se resume en
+[corriente de defecto supuesta](#corriente-de-defecto-supuesta-y-fusibles-de-red).
 
 ### Corriente del molinillo
 
@@ -304,6 +313,85 @@ exista el control del calentador. No sustituye a F701: es una regla de
 dimensionado, y un fallo del firmware que la incumpla solo sobrecarga F701 un
 110–120 % durante los segundos de un molido.
 
+## Corriente de defecto supuesta y fusibles de red
+
+**Desde el 2026-10-06** (issue #1). En un cortocircuito el fusible con menos
+I²t de fusión del lazo abre primero y tiene que interrumpir solo la corriente;
+otro fusible aguas arriba no le ayuda a cortarla. Por eso cada fusible de red
+necesita su propio poder de corte, al menos la corriente de defecto prevista en
+el punto de instalación.
+
+**Hipótesis de diseño: 1500 A a 250 VAC.** Es el nivel de alto poder de corte
+(«H») de IEC 60127-2, no un máximo medido ni normalizado para la instalación.
+No se deriva del circuito: de las resistencias del lazo solo se conocen las de
+los fusibles (6,6 mΩ de F701 y 18,5 mΩ de F703 en frío, hoja Littelfuse 215);
+el cable de la máquina, la instalación y el cobre de la placa no se han medido.
+Queda en `mains.prospective_fault` del contrato
+(`firmware/common/signals.json`) y debe confirmarse en la revisión de seguridad
+con el mercado de destino.
+
+| Fusible | Pieza | Poder de corte | I²t de fusión nominal (10 In) |
+|---|---|---:|---:|
+| F701, entrada | Littelfuse 0215010.MXP (C142733), T10AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 333,6 A²s |
+| F702, fuente | Littelfuse 0215001.MXP (C142715), T1AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 1,52 A²s |
+| F703, molinillo | Littelfuse 0215004.MXEP (C178840), T4AH axial, de pie | 1500 A a 250 VAC | 46,96 A²s |
+
+Fuente: Littelfuse 215 Series (revisión 01/12/17), *Electrical Characteristic
+Specifications by Item*: 1500 A a 250 VAC de 0,125 a 12 A. F702 se cambia por
+la misma razón que F703: un fallo en la entrada de PS701 es un cortocircuito de
+red tras el fusible más pequeño de su lazo. La regla `fuse-breaking` del modelo
+de placa recorre fase y neutro a través de fusibles, contactos, triacs, puentes
+y el conductor de U704 y falla si un fusible de ese lado no corta la corriente
+supuesta o no tiene el dato en `sim/reference/devices.json`.
+
+Se separan dos requisitos, como pide la revisión de la issue:
+
+1. **Despejar el fallo sin peligro.** Los tres fusibles tienen el poder de corte
+   supuesto. Queda validar la interrupción con medios adecuados, no solo con la
+   hoja de datos.
+2. **Que el puente y el triac sobrevivan.** No está demostrado. El I²t de
+   fusión nominal de F703 (46,96 A²s, medido a 10 In) ya supera los 35 A²s del
+   KBP410 (MDD, rev. 2024A3, para 3–8,3 ms), y el de despeje es mayor. Un
+   cortocircuito en el lado de continua (JP8 o el motor) puede destruir el
+   puente antes de que abra F703; el fallo pasa entonces a ser el de fase a
+   neutro del punto 1. Para el BTA24 (340 A²s a 10 ms, ST DS2112) el dato de
+   fusión queda por debajo, pero Littelfuse no publica el I²t de despeje a
+   esas corrientes, así que tampoco está demostrado.
+
+**Selectividad con F701.** El cociente de los I²t de fusión nominales es 7,1
+(333,6 frente a 46,96 A²s), pero solo a 10 In. Para que F703 abra sin fundir
+F701 hace falta que su I²t total de despeje a la corriente de fallo quede por
+debajo del I²t de prearco de F701 a esa misma corriente, y ese dato no está
+publicado. La selectividad queda sin demostrar y se retira la afirmación de
+que F703 despeja un corto «sin llevarse por delante la máquina entera».
+
+**F702.** Su valor de 1 A sigue provisional: tiene que aguantar sin envejecer
+la irrupción del IRM-30 en frío (45 A típicos a 230 VAC, hoja Mean Well), cuyo
+I²t de pulso falta por medir (PS-03).
+
+**Margen de carga de F701, abierto.** Las pinzas Littelfuse 111 501 están
+indicadas «para corrientes de hasta 10 A» (catálogo de clips Littelfuse) y el
+fusible es de 10 A, con un 95 % aproximado a 60 °C según la curva de la hoja.
+Solo el calentador consume 8,4 A a 230 V y 9,2 A a 253 V; con el reparto de
+molido el total ronda 9,7 A a 230 V. El propietario debe decidir el margen
+(otras pinzas y un fusible mayor de la misma serie, o un límite de carga).
+
+**Montaje de F703.** El JFC2410 no se podía cambiar por un 5 × 20 mm en
+horizontal: al sur de Q708 solo quedaban 4,6 mm. El 0215004.MXEP va de pie con
+el cuerpo sobre el pad 1, bajo Q708.1, y la patilla lejana doblada hasta el
+pad 2, a 5,08 mm. Littelfuse pide al menos 1,5 mm entre placa y casquillo y el
+doblez a más de 1,0 mm del casquillo; la patilla de vuelta va enfundada. Mide
+unos 25 mm de alto, menos que el perfil de 35 mm, y se suelda a mano o por ola
+(la hoja lo excluye del reflujo). Para hacerle sitio, J115 (JP8) baja 1,35 mm,
+hacia la posición fotografiada y dentro de los ±1,5 mm asignados, BR701 baja
+1,2 mm y la puerta de la bomba pasa a y = 117,2 mm. Hay que comprobar con el
+mazo que JP8 sigue entrando.
+
+**Para cerrar la issue** faltan: confirmar la hipótesis de 1500 A, el valor de
+F702, el margen de F701, la protección del puente (requisito 2) y un ensayo de
+interrupción de la rama del molinillo con una fuente de corriente prospectiva
+conocida.
+
 ## Estado seguro
 
 El calentador tiene dos medios de corte en serie que no dependen de un único
@@ -329,7 +417,8 @@ ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
    JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la IRM-30-24.
-3. Cerrar F701, F702, RV701 y el filtro EMI.
+3. Cerrar RV701, el filtro EMI, el valor de F702, el margen de carga de F701 y
+   el ensayo de interrupción de los fusibles de red.
 4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
 5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
    eléctrica independiente y el plan de puesta en marcha.

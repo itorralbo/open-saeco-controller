@@ -202,6 +202,44 @@
       "swing": [0.01, 0.05],
       "rout": 5.0,
       "abs_max": {"VS": 6.0}
+    },
+    "0215004.MXEP": {
+      "kind": "fuse",
+      "source": "Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item: 4 A, 250 V, interrupting rating 1500 A at 250 VAC (0.125-12 A), nominal cold resistance 0.0185 ohm, nominal melting I2t 46.96 A2s (I2t test at 10x rated current).",
+      "rated_a": 4,
+      "rated_v": 250,
+      "breaking_a": 1500,
+      "breaking_v": 250,
+      "melting_i2t": 46.96,
+      "cold_ohms": 0.0185
+    },
+    "0215010.MXP": {
+      "kind": "fuse",
+      "source": "Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item: 10 A, 250 V, interrupting rating 1500 A at 250 VAC (0.125-12 A), nominal cold resistance 0.0066 ohm, nominal melting I2t 333.565 A2s (I2t test at 10x rated current).",
+      "rated_a": 10,
+      "rated_v": 250,
+      "breaking_a": 1500,
+      "breaking_v": 250,
+      "melting_i2t": 333.565,
+      "cold_ohms": 0.0066
+    },
+    "0215001.MXP": {
+      "kind": "fuse",
+      "source": "Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item: 1 A, 250 V, interrupting rating 1500 A at 250 VAC (0.125-12 A), nominal cold resistance 0.1515 ohm, nominal melting I2t 1.52 A2s (I2t test at 10x rated current).",
+      "rated_a": 1,
+      "rated_v": 250,
+      "breaking_a": 1500,
+      "breaking_v": 250,
+      "melting_i2t": 1.52,
+      "cold_ohms": 0.1515
+    },
+    "JFC2410-1400TS": {
+      "kind": "fuse",
+      "source": "JDT JFC2410TS datasheet, Performance Specification: JFC2410-1400TS 4 A, 250 V, breaking capacity 50 A (F703 until 2026-10-06; kept so the fuse-breaking mutation test can put it back).",
+      "rated_a": 4,
+      "rated_v": 250,
+      "breaking_a": 50,
+      "breaking_v": 250
     }
   }
 }

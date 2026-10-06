@@ -198,6 +198,16 @@ class Mutations(unittest.TestCase):
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'
         self.expect(b, 'tvs', 'U502.VDD')
 
+    def test_mains_fuse_below_the_fault_current(self):
+        b = baseline()  # the JFC2410 that was F703 breaks 50 A, not 1500 A
+        b['controller'].components['F703'].fields['mpn'] = 'JFC2410-1400TS'
+        self.expect(b, 'fuse-breaking', 'F703 (JFC2410-1400TS) corta 50 A')
+
+    def test_mains_fuse_without_a_breaking_rating(self):
+        b = baseline()  # F701 had no part, so no rating, until 2026-10-06
+        b['controller'].components['F701'].fields['mpn'] = ''
+        self.expect(b, 'fuse-breaking', 'F701 (sin MPN)')
+
     def test_resistor_over_its_rating(self):
         b = baseline()  # the catalogue's 100 mW 1k back in the 12 V LED feed
         b['controller'].components['R709'].fields['lcsc'] = 'C21190'

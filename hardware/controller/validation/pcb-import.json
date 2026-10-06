@@ -1,5 +1,5 @@
 {
-  "status": "new_footprints_staged_not_fabricable",
+  "status": "synchronized_preserving_existing_placement_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -283,7 +283,7 @@
       "numbered_pads": 2
     },
     "F703": {
-      "footprint": "OpenSaeco:Fuse_2410_JDT_JFC2410",
+      "footprint": "OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm",
       "numbered_pads": 2
     },
     "J101": {
@@ -796,13 +796,8 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [
-    "C407",
-    "C703",
-    "R412",
-    "U704"
-  ],
-  "tracks": 1782,
+  "newly_staged_footprints": [],
+  "tracks": 1813,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

@@ -145,9 +145,9 @@ J117,JP24 PUMP / 230VAC,OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical,owner_iden
 J118,JP17 MAINS / L-N,OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-3,C5169636,Extended,TBD
 J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
-F701,T10A / 250V MAIN / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,
+F701,T10AH / 250V MAIN,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate_load_margin_open,Littelfuse,0215010.MXP,C142733,Extended,Economic and Standard
 RV701,275VAC MOV / energy TBD,Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm,mpn_and_energy_tbd,,,,,
-F702,T1A / PSU / provisional,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,rating_and_holder_tbd,,,,,
+F702,T1AH / PSU / value pending inrush,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate_value_pending_inrush,Littelfuse,0215001.MXP,C142715,Extended,Economic and Standard
 PS701,IRM-30-24,OpenSaeco:MeanWell_IRM-30_THT,candidate_pending_motor_current_validation,MEAN WELL,IRM-30-24,C6280124,Extended,Economic and Standard
 J121,24V INTERNAL SELECT / OPEN FOR BENCH,Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,normally_closed_open_for_external_24V,,,,,
 U303,AP63200WU-7 / 24V to 12V,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63200WU-7,C2071868,Extended,TBD
@@ -193,7 +193,7 @@ R720,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,ROHM Semicon,
 U703,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
 Q708,BTA24-800BWRG / grinder,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
-F703,T4A / 250V grinder,OpenSaeco:Fuse_2410_JDT_JFC2410,candidate,Shenzhen JDT Fuse,JFC2410-1400TS,C136386,Extended,Economic and Standard
+F703,T4AH / 250V grinder,OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm,candidate,Littelfuse,0215004.MXEP,C178840,Extended,Economic and Standard
 BR701,KBP410 / grinder bridge,Diode_THT:Diode_Bridge_Vishay_KBPM,candidate,MDD(Microdiode Semiconductor),KBP410,C840747,Extended,Economic and Standard
 U704,TMCS1133B4AQDVGR / grinder current,OpenSaeco:TI_DVG0010A_SOIC-10W_HV,candidate,Texas Instruments,TMCS1133B4AQDVGR,C36873216,Extended,TBD
 C703,100nF / U704 VS,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard

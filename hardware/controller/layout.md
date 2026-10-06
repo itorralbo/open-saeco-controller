@@ -737,15 +737,30 @@ mismo día redimensionada a 3 A; ver
 [power-architecture.md](../power/power-architecture.md#etapa-del-molinillo).
 Las piezas son las del calentador y la bomba: MOC3083 (U703), BTA24 (Q708), una
 ERJ-P08 de 390 Ω (R721) y un BSS138LT1G (Q707). Además lleva el puente KBP410
-(BR701) y el fusible T4A (F703).
+(BR701) y el fusible T4A (F703), desde el 2026-10-06 un Littelfuse 0215004.MXEP
+de 5 × 20 mm y 1500 A de poder de corte montado de pie (issue #1).
+
+**Cambio del 2026-10-06.** El JFC2410 (2410, 50 A) ocupaba 8,6 × 3,6 mm entre
+Q708 y J115, y entre sus courtyards solo quedaban 4,65 mm: un 5 × 20 mm en
+horizontal pide unos 26 mm. El fusible axial va de pie con su huella
+`OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm`: el cuerpo de
+5,5 mm sobre el pad 1, en (64,06; 114,1), bajo Q708.1, y la patilla doblada en
+el pad 2, 5,08 mm al este. Los pads quedan a 1,2 mm de la puerta del molinillo,
+que sigue en y = 111,85 mm por B.Cu, la separación de clase entre pads de red.
+Para que el cuerpo quepa, J115 baja 1,35 mm (a y = 122,15 mm, hacia el JP8
+fotografiado y dentro de los ±1,5 mm asignados) y BR701 baja 1,2 mm
+(y = 132 mm). La puerta de la bomba, que pasaba por y = 116 mm justo debajo, va
+ahora por y = 117,2 mm y empieza su diagonal en x = 73 mm, a 2,5 mm del enlace
+B.Cu de la lengüeta 1 de JP19. La etiqueta JP8 MOLINILLO baja 1,7 mm.
 
 Colocación:
 
 - Tres optos en la barrera vertical, de K701 a J106: calentador, molinillo y
   bomba. Sobran 0,7 mm. U703 queda en medio, en y = 100,72 mm, con R721 en el
   carril a su altura.
-- Q708 en el extremo oeste de la cara sur del perfil. La salida baja a F703,
-  justo debajo, y la salida del fusible rodea J115 por el este hasta el puente.
+- Q708 en el extremo oeste de la cara sur del perfil. La salida baja recta a
+  F703, de pie justo debajo, y la salida del fusible rodea J115 por el este
+  hasta el puente.
 - BR701 entre J115 y el borde inferior. El + (pin 1) sube a JP8.1 y el −
   (pin 4) a JP8.3. Son los dos pines exteriores, así que el cableado conserva la
   polaridad: blanco +, negro −.
@@ -765,7 +780,8 @@ Ruteado:
   1,2 mm después, en la fase con fusible, el neutro del puente y las dos
   salidas de continua. Son unos 12 K a 3 A en 1 oz (IPC-2221). Para ganar
   sitio, el + sube recto a JP8.1 en x = 58 mm, la fase con fusible rodea J115
-  por y = 124,1 mm y el neutro por y = 127,85 mm.
+  por y = 125,3 mm y el neutro por y = 129,05 mm (124,1 y 127,85 mm hasta el
+  2026-10-06).
 - 12 V para R720 desde la alimentación B.Cu de la bomba, junto a R716.
 - La salida de la segunda puerta de U604 (pin 3) mira al oeste. Baja a B.Cu
   junto al pin, rodea las vías de masa y la pata B.Cu del enclavamiento del

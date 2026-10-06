@@ -66,6 +66,7 @@ class Checker:
         self.check_ui_domain()
         self.check_backfeed()
         self.check_tvs()
+        self.check_fuses()
         drive.check(self)
         order = {'error': 0, 'warning': 1, 'info': 2}
         self.findings.sort(key=lambda f: order[f.severity])
@@ -570,6 +571,54 @@ class Checker:
                                  f'{ref} ({comp.mpn}) no empieza a conducir hasta {p["vbr"][1]} V (VBR máx.) y '
                                  f'{who}, en {rail.split(":")[1]}, admite {volts:g} V como máximo absoluto.',
                                  f'{board}:{ref}')
+
+    def check_fuses(self):
+        """Every fuse on the mains side must break the prospective fault current.
+
+        The mains side is whatever the phase and the neutral reach through
+        fuses, relay contacts, triacs, bridges and current-sensor conductors,
+        all taken as closed (parts.FAULT_PATHS): in a fault any of them may
+        conduct. In a short circuit the fuse with the least melting I2t opens
+        first and has to interrupt the current on its own, so each one needs a
+        breaking capacity, at its voltage, of at least the contract's
+        prospective fault current (mains.prospective_fault). Ratings come from
+        sim/reference/devices.json; a fuse without one fails.
+        """
+        mains = self.c.get('mains', {})
+        need = mains.get('prospective_fault')
+        if not need:
+            return
+        dev = json.loads((self.s.root / 'sim/reference/devices.json').read_text(encoding='utf-8'))['parts']
+        start = [self.s.find(mains[k]) for k in ('phase', 'neutral') if k in mains]
+        seen, todo, fuses = set(start), list(start), set()
+        while todo:
+            g = todo.pop()
+            for node in self.s.members.get(g, []):
+                comp = self.s.comp(node.board, node.ref)
+                name = self.s.physical_name(node)
+                for group in parts.FAULT_PATHS.get(comp.part, ()):
+                    if name not in group:
+                        continue
+                    if comp.part == 'FUSE':
+                        fuses.add((node.board, node.ref))
+                    for num in comp.pins:
+                        other = Node(node.board, node.ref, num)
+                        net = self.s.net_of(other)
+                        if self.s.physical_name(other) in group and net and net not in seen:
+                            seen.add(net)
+                            todo.append(net)
+        for board, ref in sorted(fuses):
+            comp = self.s.comp(board, ref)
+            p = dev.get(comp.mpn, {})
+            if p.get('kind') != 'fuse' or 'breaking_a' not in p:
+                self.add('error', 'fuse-breaking',
+                         f'{ref} ({comp.mpn or "sin MPN"}) está en el lado de red y su poder de corte no '
+                         'consta en sim/reference/devices.json.', f'{board}:{ref}')
+            elif p['breaking_a'] < need['amps'] or p['breaking_v'] < need['volts']:
+                self.add('error', 'fuse-breaking',
+                         f'{ref} ({comp.mpn}) corta {p["breaking_a"]:g} A a {p["breaking_v"]:g} V y la red '
+                         f'puede dar {need["amps"]:g} A a {need["volts"]:g} V: en un cortocircuito el fusible '
+                         'más pequeño del lazo es el que tiene que interrumpirlo.', f'{board}:{ref}')
 
     def check_ui_domain(self):
         """Logic pull-ups on another rail than the MCU's: back-feed when it is off."""

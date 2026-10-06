@@ -128,7 +128,8 @@ El límite resistivo derivado es 0,44 A a 24 V.
 |---|---|---|---|---|---|
 | PS-01 | N1 | Consumo simultáneo de 24 V | Grupo en movimiento + válvula + lógica, en banco | Fuente de banco con registro | Confirma el IRM-30-24 (31 W) |
 | PS-02 | N2 | Consumo de la original en espera y en cada fase | Placa original | Medidor de potencia de enchufe | Presupuesto total y F701 |
-| PS-03 | N2 | Corriente de entrada al enchufar | Placa original y prototipo | Pinza Hall + osciloscopio | Fusible F702 e inrush del IRM-30 |
+| PS-03 | N2 | Corriente de entrada al enchufar | Placa original y prototipo | Pinza Hall + osciloscopio | Valor de F702: I²t del pulso de irrupción del IRM-30 frente a los 1,52 A²s del 0215001 |
+| PS-04 | Laboratorio | Interrupción de los fusibles de red y selectividad | Placa de prueba sin máquina: rama del molinillo con BR701 sustituido por un puente de cobre, y entrada de PS701 en corto; fuente con corriente prospectiva conocida de hasta 1500 A a 250 VAC | Laboratorio de ensayo de fusibles; osciloscopio con sonda de corriente | Requisito 1 de la [issue #1](../../hardware/power/power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red): F703 y F702 abren sin peligro y sin fundir F701 |
 | TH-01 | N2 | Temperatura del aire dentro de la máquina | Junto a la placa, tras 5 cafés seguidos | Termopar | Ambiente para toda la térmica |
 | TH-02 | N2 | Temperatura de la placa original | Mismas condiciones que TH-01 | Cámara térmica sin abrir, por rejillas, o termopar fijado antes | Referencia para el prototipo |
 

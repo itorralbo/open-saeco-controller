@@ -10,7 +10,7 @@ Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 |---|---|---|---|
 | Bomba | JP24 | 37, 59 | ULKA EP5/S GW, 220–230 V AC, 48 W; LEOCO 5001P020013, 2 vías a 5,00 mm (no disponible en JLCPCB); BTA24 + MOC3083 (Q704/U702), orden PB11 vía U604; dV/dt por medir |
 | Electroválvula de vapor | JP3 | 37, 59 | OLAB 6000BH/B0DN 24 V DC/10 W; HR A2506WV-05P; JP3.1 cuadrado=+24 V, JP3.2=retorno; 56,7 Ω y 0,073 V en modo diodo en ambos sentidos; [low-side experimental incorporado](../hardware/power/valve-driver.md), orden PA7 vía U602 |
-| Molino | JP8 | 37, 59 | Motor V3.2, 68 Ω medidos; servicio a 320 V DC; LEOCO 3941P03*000, 3 vías a 3,96 mm (no disponible en JLCPCB); BTA24 + MOC3083 + T4A + KBP410 (Q708/U703/F703/BR701), orden PC4 vía U604; dimensionado a 3 A, marcha por medir |
+| Molino | JP8 | 37, 59 | Motor V3.2, 68 Ω medidos; servicio a 320 V DC; LEOCO 3941P03*000, 3 vías a 3,96 mm (no disponible en JLCPCB); BTA24 + MOC3083 + T4AH de 1500 A + KBP410 (Q708/U703/F703/BR701), orden PC4 vía U604; dimensionado a 3 A, marcha por medir |
 | Temperatura | JP13 | 37, 59 | NTC `996530073428`; HR A2506WV-02P; tabla disponible, R25≈49,9 kΩ/B≈4037 K derivados; PA3 (ADC1_IN4) |
 | Caudalímetro | JP5 | 37, 59 | Digmesa 932-9521-B, 3,8–20 V, NPN OC, ≈1925 pulsos/l; HR A2506WV-03P; vista cenital: 1 señal, 2 GND, 3 VCC; PA2 (TIM2_CH3) |
 | Presencia/posición grupo | JP16 | 35–36, 59 | 8 posiciones: motor, puente y dos micros; presencia en PC2 y trabajo en PA0; orden físico, NO/NC y carcasa TBD |
