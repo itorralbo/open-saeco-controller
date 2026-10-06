@@ -192,6 +192,16 @@
       "voh_16ma": 2.4,
       "vol_16ma": 0.4,
       "io_max": 0.016
+    },
+    "TMCS1133B4AQDVGR": {
+      "kind": "hall_current",
+      "source": "TI SBOSAG0E, pin functions and 6.9: B4 option 100 mV/A, VOUT 1.65 V at 0 A with VS 3.3 V (VS/2 assumed for other VS), linear -15.5 to 15.5 A at 3.3 V, RIN 0.7 mOhm, swing VS-0.05 V and GND+0.01 V, VS 3 to 5.5 V; output resistance not given, 5 Ohm stand-in.",
+      "sensitivity_v_per_a": 0.1,
+      "rin": 0.0007,
+      "vs_min": 3.0,
+      "swing": [0.01, 0.05],
+      "rout": 5.0,
+      "abs_max": {"VS": 6.0}
     }
   }
 }

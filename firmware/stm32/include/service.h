@@ -17,6 +17,8 @@
 #define SVC_INPUTS_MS 3000u
 #define SVC_BREW_TIMEOUT_MS 10000u /* travel ASSUMED ~3 s at 24 V, ~5 s at the min rail (BU-03) */
 #define SVC_BREW_PEAK_MS 200u    /* start peak window, then the running mean */
+#define SVC_DOSE_I0_MS 1000u     /* I0 for the dose check: the first second of travel, before the press */
+#define SVC_DOSE_GRIND_MS 6000u  /* default grind of the dose test: ~7 g at the ASSUMED 1.2 g/s */
 #define SVC_VALVE_MS 2000u
 #define SVC_RELAY_MS 1000u
 #define SVC_PUMP_MAX_MS 30000u
@@ -32,6 +34,8 @@ typedef struct {
     uint16_t param;
     uint32_t t0, t_step, edges0;
     int32_t acc, n, peak;
+    /* Grinder current in 100 ms blocks (osc_grinder_verdict). */
+    int32_t zero, blk_acc, blk_n, loaded, loaded_n, light;
 } osc_service;
 
 void svc_init(osc_service *s);

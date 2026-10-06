@@ -92,6 +92,7 @@ void osc_status_pack(const osc_status *s, uint8_t *payload) {
     put16(&payload[12], (uint16_t)(s->uptime_ms & 0xFFFFu));
     put16(&payload[14], (uint16_t)(s->uptime_ms >> 16));
     put16(&payload[16], (uint16_t)s->boiler_dc);
+    put16(&payload[18], (uint16_t)s->grinder_ma);
 }
 
 bool osc_status_unpack(const uint8_t *payload, unsigned len, osc_status *s) {
@@ -105,6 +106,7 @@ bool osc_status_unpack(const uint8_t *payload, unsigned len, osc_status *s) {
     s->ntc_raw = get16(&payload[10]);
     s->uptime_ms = (uint32_t)get16(&payload[12]) | ((uint32_t)get16(&payload[14]) << 16);
     s->boiler_dc = (int16_t)get16(&payload[16]);
+    s->grinder_ma = (int16_t)get16(&payload[18]);
     return true;
 }
 

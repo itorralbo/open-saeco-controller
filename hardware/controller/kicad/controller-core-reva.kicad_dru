@@ -50,6 +50,10 @@
   (condition "A.insideArea('mains device pitch Q704') && B.insideArea('mains device pitch Q704')")
   (constraint clearance (min 0.6mm)))
 
+(rule "mains_device_pitch_U704"
+  (condition "A.insideArea('mains device pitch U704') && B.insideArea('mains device pitch U704')")
+  (constraint clearance (min 0.6mm)))
+
 (rule "ground_fill_spokes"
   (condition "A.Type == 'Pad' && A.NetName == '/GND_UI'")
   (constraint min_resolved_spokes 1))

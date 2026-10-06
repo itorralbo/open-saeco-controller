@@ -150,6 +150,8 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
       <label>Grupo presente <input type="checkbox" data-cmd="unit_present" id="c-unit"></label>
       <label>NTC abierto <input type="checkbox" data-cmd="ntc_open" id="c-ntc"></label>
       <label>Fallo del DRV8876 (nFAULT) <input type="checkbox" data-cmd="brew_fault" id="c-drv"></label>
+      <label>Muelas atascadas <input type="checkbox" data-cmd="grinder_jam" id="c-jam"></label>
+      <label>Conducto de café tapado <input type="checkbox" data-cmd="chute_blocked" id="c-chute"></label>
       <label>STM32 colgado <input type="checkbox" data-cmd="stm_hang" id="c-stm"></label>
       <label>ESP32 colgado <input type="checkbox" data-cmd="esp_hang" id="c-esp"></label>
       <label>Teclado colgado <input type="checkbox" data-cmd="keypad_hang" id="c-kp"></label>
@@ -236,12 +238,14 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
         <g class="spin" id="s-grind"><path d="M 515 118 V 146 M 501 132 H 529 M 505 122 L 525 142 M 525 122 L 505 142" stroke="var(--ink)" stroke-width="1.5"/></g>
         <text x="572" y="128">Molinillo</text>
         <text x="572" y="142" class="v" id="t-ground">—</text>
+        <text x="515" y="161" text-anchor="middle" class="v" id="t-gcur">—</text>
         <path class="wire" id="w-grind2" d="M 420 62 V 132 H 497"/>
         <!-- brew unit -->
         <rect class="body" x="448" y="166" width="134" height="130" rx="6"/>
         <rect class="body" x="492" y="176" width="46" height="110" rx="3"/>
         <rect id="piston" x="494" y="178" width="42" height="18" rx="2" fill="var(--muted)"/>
         <text x="515" y="314" text-anchor="middle">Grupo</text>
+        <text x="515" y="326" text-anchor="middle" class="s" id="t-chamber">—</text>
         <text x="460" y="184" class="s">reposo</text><text x="460" y="286" class="s">trabajo</text>
         <circle class="lamp" id="l-unit" cx="560" cy="186" r="4"/><text x="568" y="189" class="s">pres.</text>
         <circle class="lamp" id="l-work" cx="560" cy="276" r="4"/><text x="568" y="279" class="s">trab.</text>
@@ -280,6 +284,7 @@ a.act { padding: 6px 10px; border-radius: 6px; border: 1px solid var(--accent); 
     <section class="chart"><h2>Caldera</h2><canvas id="ch-boiler"></canvas><div class="legend" id="lg-boiler"></div></section>
     <section class="chart"><h2>Rails (STATUS)</h2><canvas id="ch-rails"></canvas><div class="legend" id="lg-rails"></div></section>
     <section class="chart"><h2>Grupo</h2><canvas id="ch-brew"></canvas><div class="legend" id="lg-brew"></div></section>
+    <section class="chart"><h2>Molinillo</h2><canvas id="ch-grind"></canvas><div class="legend" id="lg-grind"></div></section>
   </div>
 </main>
 <script>
@@ -322,7 +327,8 @@ const PHASE_CLS = {RUNNING: 'warn', DONE: 'ok', ABORTED: 'bad', REFUSED: 'bad', 
 const PHASE_ES = {IDLE: 'sin prueba', RUNNING: 'en curso', DONE: 'terminada', ABORTED: 'abortada', REFUSED: 'rechazada'};
 const MSG = {0x01: 'HELLO', 0x20: 'STOP', 0x21: 'CLEAR_FAULT', 0x22: 'START', 0x23: 'UI_POWER', 0x24: 'TEST'};
 const REASON = ['ok', 'puerta abierta', 'estado', 'tiempo agotado', 'DRV8876', 'STOP', 'enlace perdido', 'NTC',
-  'límite de temperatura', 'sin grupo', 'sin caudal', 'parámetro', 'desconocida'];
+  'límite de temperatura', 'sin grupo', 'sin caudal', 'parámetro', 'desconocida', 'sin café en la tolva',
+  'molinillo atascado', 'cámara sin café'];
 // Values of each set-up test (firmware/common/service_ids.h): label and unit.
 const DC = v => `${(v / 10).toFixed(1)} °C`, MV = v => `${(v / 1000).toFixed(2)} V`, MS = v => `${v} ms`,
   MA = v => `${v} mA`, YN = v => v ? 'sí' : 'no', RAW = v => `${v}`;
@@ -337,7 +343,11 @@ const TEST_FIELDS = {
          ['Caudal', v => `${(v / 100).toFixed(2)} ml/s`], ['Caldera al inicio', DC], ['Caldera al final', DC]]],
   HEATER: ['Calentador', [['Inicio', DC], ['Fin de calentar', DC], ['Tiempo', MS],
            ['Pendiente', v => `${(v / 100).toFixed(2)} °C/s`], ['Pico', DC], ['Sobreoscilación', v => `${(v / 10).toFixed(1)} K`]]],
-  GRINDER: ['Molinillo', [['Tiempo', MS], ['12 V durante', MV], ['24 V durante', MV]]],
+  GRINDER: ['Molinillo', [['Tiempo', MS], ['Pico de arranque', MA], ['I moliendo', MA], ['I final', MA],
+            ['Cero del sensor', MA], ['24 V durante', MV]]],
+  DOSE: ['Dosis: moler y prensar', [['Molido', MS], ['I molinillo', MA],
+         ['Molinillo', v => ['ok', 'sin grano', 'atasco'][v] || v], ['I0 del grupo', MA],
+         ['Subida al prensar', MA], ['Dosis en la cámara', YN]]],
 };
 const LCD_CHARS = {'\x01': 'Ñ', '\x02': '°', '\x03': '▲', '\x04': '▼', '\x05': '►', '\x06': '◄'};
 const lcdText = s => s.replace(/[\x01-\x06]/g, c => LCD_CHARS[c]);
@@ -381,6 +391,7 @@ function render(s) {
     setOnce = true;
   }
   $('c-ntc').checked = s.plant.ntc_open; $('c-drv').checked = s.faults.brew_fault;
+  $('c-jam').checked = s.plant.grinder_jammed; $('c-chute').checked = s.plant.chute_blocked;
   $('c-stm').checked = s.stm.hung; $('c-esp').checked = s.esp.hung; $('c-kp').checked = s.faults.keypad_hang;
   $('log').innerHTML = s.events.slice().reverse()
     .map(e => `<li><span class="t">${e.t.toFixed(3)}</span>${e.kind}${e.detail ? ' · ' + e.detail : ''}</li>`).join('');
@@ -431,6 +442,8 @@ function machine(s) {
   // Grinder, brew unit and switches as the STM32 sees them (STATUS inputs).
   $('t-beans').textContent = `${P.beans_g.toFixed(0)} g`;
   $('t-ground').textContent = `${P.ground_g.toFixed(1)} g molido`;
+  $('t-gcur').textContent = `${(P.grinder_a * 1000).toFixed(0)} mA` + (st ? ` · U704 ${st.grinder_ma} mA` : '');
+  $('t-chamber').textContent = `cámara ${P.chamber_g.toFixed(1)} g`;
   $('piston').setAttribute('y', 178 + 88 * P.unit_pos);
   $('piston').style.display = P.unit_present ? '' : 'none';
   const v = L.motor_v || 0, y = 200 + 60 * P.unit_pos;
@@ -453,7 +466,7 @@ function report(r) {
   if (!r) { kv($('test-head'), [['Prueba', 'ninguna']]); $('test-vals').innerHTML = ''; return; }
   const [name, fields] = TEST_FIELDS[r.id] || [String(r.id), []];
   kv($('test-head'), [['Prueba', name], ['Fase', badge(PHASE_ES[r.phase] || r.phase, PHASE_CLS[r.phase])],
-    ['Paso', r.step], ['Motivo', REASON[r.reason] || r.reason], ['Transcurrido', `${(r.elapsed_ms / 1000).toFixed(1)} s`]]);
+    ['Paso', r.step], ['Motivo', r.reason ? badge(REASON[r.reason] || r.reason, 'bad') : 'ok'], ['Transcurrido', `${(r.elapsed_ms / 1000).toFixed(1)} s`]]);
   $('test-vals').innerHTML = fields.map(([label, f], i) => `<tr><td>${label}</td><td>${f(r.values[i])}</td></tr>`).join('');
 }
 
@@ -504,6 +517,8 @@ async function plots() {
     chart('ch-boiler', h, [{key: 'boiler_c', label: 'temperatura', color: '#d9534f'}], '°C');
     chart('ch-rails', h, [{key: 'rail_12v', label: '12 V', color: '#2f6f9f'}, {key: 'rail_24v', label: '24 V', color: '#c7841a'}], 'V');
     chart('ch-brew', h, [{key: 'motor_a', label: 'motor (planta)', color: '#2e8b57'}], 'A');
+    chart('ch-grind', h, [{key: 'grinder_a', label: 'media (planta)', color: '#8e6cc0'},
+                          {key: 'grinder_stm_a', label: 'U704 (STATUS)', color: '#c7841a'}], 'A');
   } catch (e) {}
 }
 poll(); plots();

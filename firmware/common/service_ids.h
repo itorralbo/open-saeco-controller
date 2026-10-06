@@ -29,9 +29,16 @@ typedef enum {
      * (NT-02/03): start 0.1 degC, end of heating 0.1 degC, heating time ms,
      * rate 0.01 degC/s, peak 0.1 degC, overshoot 0.1 degC. */
     OSC_TEST_HEATER = 6,
-    /* Grinder for the parameter in ms, at most OSC_GRINDER_MAX_ON_MS
-     * (GR-02/03/04 with a clamp): on time ms, 12 V and 24 V during mV. */
+    /* Grinder for the parameter in ms, at most OSC_GRINDER_MAX_ON_MS, with
+     * U704 (GR-02/03/04/08): on time ms, start peak mA, loaded mean mA, last
+     * 100 ms mean mA, zero offset mA, 24 V during mV. Stops early on an empty
+     * hopper (NO_BEANS) or jammed burrs (JAM). */
     OSC_TEST_GRINDER = 7,
+    /* Grind the parameter in ms, then press with the brew unit and back
+     * (BU-05): grind ms, loaded grinder mean mA, grinder verdict
+     * (osc_grind_verdict), I0 mA, compression rise mA at the stop, dose
+     * present 0/1. DONE with NO_DOSE when the chamber stayed empty. */
+    OSC_TEST_DOSE = 8,
     OSC_TEST_COUNT
 } osc_test_id;
 
@@ -56,6 +63,9 @@ typedef enum {
     OSC_REASON_UNIT = 9,       /* brew unit missing */
     OSC_REASON_NO_FLOW = 10,   /* pump without flow pulses: dry or blocked */
     OSC_REASON_PARAM = 11,     /* parameter out of range */
-    OSC_REASON_UNKNOWN = 12    /* no such test */
+    OSC_REASON_UNKNOWN = 12,   /* no such test */
+    OSC_REASON_NO_BEANS = 13,  /* grinder running light: hopper empty */
+    OSC_REASON_JAM = 14,       /* grinder stalled: burrs jammed */
+    OSC_REASON_NO_DOSE = 15    /* the brew unit pressed an empty chamber */
 } osc_test_reason;
 #endif

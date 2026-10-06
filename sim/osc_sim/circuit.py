@@ -194,7 +194,7 @@ class Circuit:
 
     # -- evaluation -----------------------------------------------------------
     def evaluate(self, rails, drives=(), loads=(), supervisor_reset=False, faults=(), vf_low=False,
-                 bridge_amps=None):
+                 bridge_amps=None, sense_amps=None):
         """Operating point of the boards.
 
         rails: {net: volts} for every supply (including ground).
@@ -205,12 +205,15 @@ class Circuit:
         faults: refs of open-drain fault outputs pulled low (DRV8876 nFAULT).
         vf_low: LEDs at their lowest forward drop (highest current) instead of the highest.
         bridge_amps: {ref: load current} of each H-bridge, mirrored on IPROPI.
+        sense_amps: {ref: current from IN+ to IN-} of each Hall current sensor.
         """
         amps = bridge_amps or {}
-        return Outcome(*(self._solve(rails, drives, loads, supervisor_reset, faults, x_on, vf_low, amps)
+        sense = sense_amps or {}
+        return Outcome(*(self._solve(rails, drives, loads, supervisor_reset, faults, x_on, vf_low, amps, sense)
                          for x_on in (False, True)))
 
-    def _solve(self, rails, drives, loads, supervisor_reset, faults, x_on, vf_low, bridge_amps):
+    def _solve(self, rails, drives, loads, supervisor_reset, faults, x_on, vf_low, bridge_amps,
+               sense_amps=None):
         fixed = {self.s.find(n) if n in self.s._parent else n: v for n, v in rails.items()}
         states = {d.ref: OFF for d in self.devices}
         why = {}
@@ -302,6 +305,15 @@ class Circuit:
                         vr(pin['A'], pin['K'], vf, DIODE_RD)
                 elif k == 'relay':
                     edges.append((pin['COIL_A'], pin['COIL_B'], p['coil_ohms'] * (1 + p['coil_tol'])))
+                elif k == 'hall_current':
+                    # VS/2 plus the sensitivity times the input current, inside
+                    # the output swing; Hi-Z below the minimum supply.
+                    edges.append((pin['IN+'], pin['IN-'], p['rin']))
+                    vs = fixed.get(pin['VS'], 0.0)
+                    if vs >= p['vs_min']:
+                        lo, hi = p['swing']
+                        vo = vs / 2 + p['sensitivity_v_per_a'] * (sense_amps or {}).get(d.ref, 0.0)
+                        src(f'{d.ref}.VOUT', pin['VOUT'], min(vs - hi, max(lo, vo)), p['rout'])
             v = nodal(edges, fx, inject)
 
             def vget(net):
@@ -458,6 +470,9 @@ class Circuit:
                     links.append((d.pins['A2'], d.pins['A1']))
         for b in self.bridges:
             links += [(b['AC1'], b['+'])]
+        for d in self.devices:
+            if d.kind == 'hall_current':
+                links.append((d.pins['IN+'], d.pins['IN-']))
         adj = {}
         for a, b in links:
             adj.setdefault(a, set()).add(b)

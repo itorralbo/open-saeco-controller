@@ -55,8 +55,9 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
 - Etapas de calentador (U701/Q703), bomba (U702/Q704) y molinillo
   (U703/Q708/F703/BR701): MOC3083 de cruce por cero y BTA24 tras K701, con el
   LED de cada opto gobernado por un BSS138LT1G desde 12 V. Órdenes PC5, PB11 y PC4
-  a través de U603/U604. Detalle en
-  [power-architecture.md](../power/power-architecture.md).
+  a través de U603/U604. U704 (TMCS1133B4A) mide la corriente del molinillo en
+  la línea + de JP8, cruzando la barrera, y la lleva a PA6 por R412/C407. Detalle
+  en [power-architecture.md](../power/power-architecture.md).
 
 JP8 y JP24 son J115 y J117, las LEOCO 3941P03*000 y 5001P020013 identificadas
 por el propietario, con huella según el plano del fabricante. JP19 es J116 y JP17

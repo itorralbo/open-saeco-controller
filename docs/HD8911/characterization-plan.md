@@ -58,7 +58,7 @@ se queda. Si no, se cambia a cuatro diodos discretos.
 | GR-05 | N2 | Tensión en JP8 y dV/dt en el triac al apagar | Prototipo; captura de apagado | Sonda diferencial de alta tensión | Si Q708 necesita snubber RC |
 | GR-06 | N2 | Temperatura de cápsula de Q708 y BR701 | Prototipo; 5 moliendas de 10 s cada 30 s, y luego 10 moliendas seguidas | Termopar tipo K fijado con cinta de Kapton | Térmica del puente al aire y del perfil compartido; criterio: puente < 100 °C |
 | GR-07 | N2 | Gramos por segundo | Por ajuste de molido; pesar 3 moliendas de 5 s | Báscula de 0,1 g | Tiempo de molido por dosis |
-| GR-08 | N2 | Corriente con muelas casi vacías | Grano acabándose durante la molienda; registro continuo | Pinza Hall + registrador | Separación entre «falta de grano» y marcha normal; decide si hace falta sensor de corriente |
+| GR-08 | N2 | Corriente con muelas casi vacías | Grano acabándose durante la molienda; registro continuo | Pinza Hall + registrador | Separación entre «falta de grano» y marcha normal; fija los umbrales de U704 (`OSC_GRINDER_*`), que mide la placa desde el 2026-10-06 |
 | GR-09 | N0 | Continuidad del mazo de JP8 y aislamiento a PE | Desconectado | Multímetro; medidor de aislamiento a 500 V DC | Integridad del mazo y del motor |
 
 ## Grupo de infusión (JP16) y autodosis

@@ -34,7 +34,10 @@ class Plant:
     motor_ohms: float = 54.7
     motor_v_per_unit_s: float = 39.0   # ASSUMED: ~3 s per full travel at 24 V
     motor_friction_a: float = 0.2
-    motor_compression_a: float = 0.1
+    # Pressing the dose: base plus a share per gram in the chamber, ASSUMED
+    # until BU-05 (manual: I0 + 55 to 200 mA with coffee; 7 g -> ~0.1 A).
+    motor_compression_a: float = 0.02
+    motor_compression_a_per_g: float = 0.012
     motor_tau_s: float = 0.03          # ASSUMED: mechanical time constant, sets the start peak
     unit_present: bool = True
     unit_pos: float = 0.0              # 0 = rest, 1 = work end stop
@@ -48,10 +51,20 @@ class Plant:
     water_present_v: float = 2.0
     water_absent_v: float = 0.3
     water_override: float = None       # volts forced from the panel, None = follow the tank
-    # Grinder: ASSUMED 1.2 g/s until GR-07.
+    # Grinder: ASSUMED 1.2 g/s until GR-07. V3.2 motor on rectified mains
+    # through U704; mean currents ASSUMED until GR-02/03/08, the stall from
+    # the 68 Ohm winding: 230 V x 0.9 / 68 = 3.0 A mean.
     beans_g: float = 200.0
     grind_g_per_s: float = 1.2
     ground_g: float = 0.0
+    chamber_g: float = 0.0             # ground coffee waiting in the brew chamber
+    grinder_loaded_a: float = 0.9      # ASSUMED, grinding
+    grinder_free_a: float = 0.45       # ASSUMED, running light (hopper empty)
+    grinder_stall_a: float = 230.0 * 0.9 / 68.0
+    grinder_tau_s: float = 0.15        # ASSUMED, inrush decay
+    mains_hz: float = 50.0
+    grinder_jammed: bool = False       # fault: burrs blocked
+    chute_blocked: bool = False        # fault: ground coffee does not reach the chamber
     grinder_on: bool = False
     valve_on: bool = False
     pump_on: bool = False
@@ -62,6 +75,8 @@ class Plant:
     log: list = field(default_factory=list)
     _motor_a: float = 0.0
     _emf: float = 0.0
+    _grind_a: float = 0.0
+    _pressed: bool = False
 
     # -- electrical view ------------------------------------------------------
     def ntc_ohms(self):
@@ -106,20 +121,42 @@ class Plant:
     def motor_amps(self):
         return self._motor_a
 
+    @property
+    def grinder_mean_amps(self):
+        return self._grind_a if self.grinder_on else 0.0
+
+    @property
+    def grinder_amps(self):
+        """Current in JP8's + line now: full-wave rectified, mean grinder_mean_amps."""
+        return self.grinder_mean_amps * math.pi / 2 * abs(math.sin(2 * math.pi * self.mains_hz * self.t))
+
     # -- dynamics ---------------------------------------------------------------
     def step(self, dt, heater_on, pump_on, motor_volts, valve_on=False, grinder_on=False):
         """Advance dt seconds. motor_volts: J108.2 minus J108.1 (forward > 0)."""
         self.t += dt
-        self.heater_on, self.pump_on, self.valve_on, self.grinder_on = heater_on, pump_on, valve_on, grinder_on
+        was_grinding = self.grinder_on
+        self.heater_on, self.pump_on, self.valve_on = heater_on, pump_on, valve_on
         p = MAINS_V ** 2 / self.heater_ohms if heater_on else 0.0
         # The pump only moves water while the tank has some.
         flow = self.pump_ml_s if pump_on and self.tank_ml > 0 else 0.0
         self.tank_ml = max(0.0, self.tank_ml - flow * dt)
         self.flow_ml += flow * dt
-        if grinder_on and self.beans_g > 0:
-            g = min(self.beans_g, self.grind_g_per_s * dt)
-            self.beans_g -= g
-            self.ground_g += g
+        if grinder_on:
+            if self.grinder_jammed:
+                target = self.grinder_stall_a
+            else:
+                target = self.grinder_loaded_a if self.beans_g > 0 else self.grinder_free_a
+                g = min(self.beans_g, self.grind_g_per_s * dt)
+                self.beans_g -= g
+                self.ground_g += g
+                if not self.chute_blocked:
+                    self.chamber_g += g
+            if not was_grinding:
+                self._grind_a = self.grinder_stall_a  # starts as a stalled rotor
+            self._grind_a += (target - self._grind_a) * min(1.0, dt / self.grinder_tau_s)
+        else:
+            self._grind_a = 0.0
+        self.grinder_on = grinder_on
         loss = self.boiler_loss_w_per_k * (self.boiler_c - self.ambient_c)
         water = flow * WATER_J_PER_ML_K * (self.boiler_c - self.inlet_c)
         self.boiler_c += (p - loss - water) * dt / self.boiler_j_per_k
@@ -135,9 +172,16 @@ class Plant:
         else:
             # The back-EMF rises toward its running value with motor_tau_s:
             # the start draws close to V/R, then falls to the load current.
-            load = self.motor_friction_a + (self.motor_compression_a if self.unit_pos > 0.7 else 0.0)
+            press = self.motor_compression_a + self.motor_compression_a_per_g * self.chamber_g
+            load = self.motor_friction_a + (press if self.unit_pos > 0.7 else 0.0)
             run = max(0.0, abs(v) - load * self.motor_ohms)
             emf = min(abs(self._emf), run) if self._emf * direction > 0 else 0.0
             emf += (run - emf) * min(1.0, dt / self.motor_tau_s)
             self._motor_a, self._emf = (abs(v) - emf) / self.motor_ohms, direction * emf
             self.unit_pos = min(1.0, max(0.0, self.unit_pos + direction * emf / self.motor_v_per_unit_s * dt))
+        # Back at rest after pressing, the unit drops the spent dose.
+        if self.unit_pos >= 0.95:
+            self._pressed = True
+        elif self.unit_pos <= 0.02 and self._pressed:
+            self._pressed = False
+            self.chamber_g = 0.0

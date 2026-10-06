@@ -150,6 +150,10 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C407": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "C501": {
       "footprint": "Capacitor_SMD:CP_Elec_6.3x7.7",
       "numbered_pads": 2
@@ -211,6 +215,10 @@
       "numbered_pads": 2
     },
     "C702": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C703": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -538,6 +546,10 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R412": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R501": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -777,14 +789,20 @@
     "U703": {
       "footprint": "OpenSaeco:DIP-6_W7.62mm_BarrierSlot",
       "numbered_pads": 6
+    },
+    "U704": {
+      "footprint": "OpenSaeco:TI_DVG0010A_SOIC-10W_HV",
+      "numbered_pads": 10
     }
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "C606",
-    "U606"
+    "C407",
+    "C703",
+    "R412",
+    "U704"
   ],
-  "tracks": 1762,
+  "tracks": 1782,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

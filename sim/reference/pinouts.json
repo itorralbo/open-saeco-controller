@@ -66,6 +66,11 @@
       "source": "TI SCES538, pin functions, DBV: 1 A, 2 B, 3 GND, 4 Y, 5 VCC.",
       "pins": {"1": "A", "2": "B", "3": "GND", "4": "Y", "5": "VCC"}
     },
+    "TMCS1133B4AQDVGR": {
+      "source": "TI SBOSAG0E, table 5-1, DVG: 1 IN+, 2 IN-, 3 GND, 4 ALERT, 5 NC, 6 VOUT, 7 OC, 8 VOC, 9-10 VS.",
+      "pins": {"1": "IN+", "2": "IN-", "3": "GND", "4": "~{ALERT}", "5": "NC", "6": "VOUT", "7": "~{OC}",
+               "8": "VOC", "9": "VS", "10": "VS"}
+    },
     "TCA9534PWR": {
       "source": "KiCad 10 Interface_Expansion TCA9534 (TI SCPS197D).",
       "pins": {

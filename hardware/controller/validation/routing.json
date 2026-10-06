@@ -27,6 +27,7 @@
     "pump enable: PB11, U604 first gate, R713 pull-down and R714",
     "grinder stage: optocoupler, triac, fuse, bridge, LED loop and JP8",
     "grinder enable: U604 second gate, R717 pull-down and R718",
+    "grinder current: U704 to PA6 through R412/C407",
     "SWD header: SWDIO, SWCLK and SWO to J102",
     "supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm",
     "12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers",
@@ -39,8 +40,8 @@
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense",
     "SELV ground fills on F.Cu and B.Cu, stitched to In1.Cu; no fill on the mains side"
   ],
-  "track_segments": 1334,
-  "vias": 448,
-  "stitching_vias": 149,
+  "track_segments": 1360,
+  "vias": 452,
+  "stitching_vias": 147,
   "remaining_blocks": []
 }

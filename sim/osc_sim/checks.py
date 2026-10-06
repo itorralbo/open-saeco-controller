@@ -416,6 +416,37 @@ class Checker:
         ends = ', '.join(f'{t} °C → {volts(t):.3f} V' for t in a['range_c'])
         self.analog.append((r.name, f'{ends}; ' + '; '.join(rows)))
 
+    def _analog_hall(self, r, a, g, vref, lsb):
+        """Isolated Hall sensor: VS/2 plus sensitivity x current, through the filter."""
+        board, ref = a['device'].split(':')
+        comp = self.s.comp(board, ref)
+        p = json.loads((self.s.root / 'sim/reference/devices.json').read_text(encoding='utf-8'))['parts'][comp.mpn]
+        vs_pad = next(Node(board, ref, n) for n in comp.pins if self.s.physical_name(Node(board, ref, n)) == 'VS')
+        vs = self.s.voltages.get(self.s.net_of(vs_pad))
+        vout = self.s.net_of(self.s.node_by_name(board, ref, 'VOUT'))
+        if vs is None or vs < p['vs_min']:
+            self.add('error', 'analog', f'{r.mcu}.{r.name}: {ref}.VS no está en un rail de al menos {p["vs_min"]} V.', r.pad)
+            return
+        ins = [self.s.net_of(self.s.node_by_name(board, ref, x)) for x in ('IN+', 'IN-')]
+        load = self.s.net_of(self.s.endpoint(a['senses']))
+        if ins[0] == ins[1] or load not in ins:
+            self.add('error', 'analog', f'{r.mcu}.{r.name}: {a["senses"]} no está en serie con la entrada de '
+                     f'{ref} (IN+ {ins[0]}, IN- {ins[1]}): el sensor no ve su corriente.', r.pad)
+        per = p['sensitivity_v_per_a']
+        lo_sw, hi_sw = p['swing']
+        rows = []
+        for amps in a['range_a']:
+            v = vs / 2 + per * amps
+            v_adc = dc.solve(self.s, [g], fixed={vout: v})[g]
+            rows.append(f'{amps:g} A → {v_adc:.3f} V')
+            if not lo_sw <= v <= vs - hi_sw:
+                self.add('error', 'analog', f'{r.mcu}.{r.name}: a {amps:g} A {ref} saldría de su excursión '
+                         f'({v:.2f} V).', r.pad)
+            if v_adc > vref:
+                self.add('error', 'analog', f'{r.mcu}.{r.name}: a {amps:g} A el ADC ve {v_adc:.2f} V (> {vref} V).', r.pad)
+        self.analog.append((r.name, f'{per * 1000:.0f} mV/A sobre {vs / 2:.2f} V; ' + ', '.join(rows) +
+                                    f'; {lsb / per * 1000:.1f} mA/LSB'))
+
     def _analog_ipropi(self, r, a, g, vref, lsb):
         vr = self.s.find(a['vref_net'])
         v_vref = dc.solve(self.s, [vr])[vr]

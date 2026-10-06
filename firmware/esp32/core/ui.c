@@ -5,7 +5,7 @@
 #include "font5x7.h"
 
 /* How a test value is shown. */
-enum { F_NONE, F_YESNO, F_RAW, F_MS, F_S, F_MA, F_DC, F_MV, F_ML10, F_MLPS, F_RATE, F_COUNT };
+enum { F_NONE, F_YESNO, F_RAW, F_MS, F_S, F_MA, F_DC, F_MV, F_ML10, F_MLPS, F_RATE, F_COUNT, F_GRIND };
 
 typedef struct {
     const char *label;
@@ -53,15 +53,22 @@ static const test_info tests[OSC_TEST_COUNT] = {
      {{"Inicio", F_DC}, {"Fin calentar", F_DC}, {"Tiempo", F_S}, {"Ritmo", F_RATE}, {"Pico", F_DC},
       {"Sobreoscilacion", F_DC}}},
     {"Molinillo",
-     {"Muele el tiempo indicado.", "Mida la corriente en JP8", "con la pinza. Tolva con o", "sin grano segun el ensayo.", "(GR-02/03/04)"},
+     {"Muele el tiempo indicado", "y mide la corriente: para", "si falta grano o se atasca", "Tolva con grano.", "(GR-02/03/04/08)"},
      "Tiempo", "ms", 3000, 500, 10000, 500,
-     {{"Tiempo", F_MS}, {"12 V", F_MV}, {"24 V", F_MV}, {0, F_NONE}, {0, F_NONE}, {0, F_NONE}}},
+     {{"Tiempo", F_MS}, {"Pico arranque", F_MA}, {"I moliendo", F_MA}, {"I final", F_MA},
+      {"Cero sensor", F_MA}, {"24 V", F_MV}}},
+    {"Dosis: moler y prensar",
+     {"Muele y prensa la dosis", "con el grupo; avisa si no", "llega cafe a la camara.", "Sin agua. Tolva con grano.", "(BU-05)"},
+     "Molido", "ms", 6000, 500, 10000, 500,
+     {{"Molido", F_MS}, {"I molinillo", F_MA}, {"Molinillo", F_GRIND}, {"I0 grupo", F_MA},
+      {"Subida al prensar", F_MA}, {"Dosis", F_YESNO}}},
 };
 
+/* Shown after "Motivo: " on one 26-character line: 18 characters at most. */
 static const char *const reasons[] = {
     "", "puerta abierta", "control ocupado", "tiempo agotado", "fallo del driver", "parada",
-    "enlace perdido", "NTC abierto/corto", "limite de temperatura", "grupo ausente", "sin caudal",
-    "parametro", "prueba desconocida"};
+    "enlace perdido", "NTC abierto/corto", "limite temperatura", "grupo ausente", "sin caudal",
+    "parametro", "prueba desconocida", "sin cafe en tolva", "molino atascado", "camara sin cafe"};
 
 static const char *const menu_items[] = {"Preparar cafe", "Puesta a punto", "Informacion", "Borrar fallo",
                                         "Volver"};
@@ -199,6 +206,7 @@ bool ui_keys(osc_ui *u, uint8_t k, const ui_ctx *c, ui_request *req) {
 static void fmt_value(char *out, size_t n, uint8_t fmt, int32_t v) {
     switch (fmt) {
     case F_YESNO: snprintf(out, n, "%s", v ? "si" : "no"); break;
+    case F_GRIND: snprintf(out, n, "%s", v == 2 ? "atasco" : v == 1 ? "sin grano" : "ok"); break;
     case F_MS: snprintf(out, n, "%ld ms", (long)v); break;
     case F_S: snprintf(out, n, "%ld.%01ld s", (long)(v / 1000), (long)((v % 1000) / 100)); break;
     case F_MA: snprintf(out, n, "%ld mA", (long)v); break;

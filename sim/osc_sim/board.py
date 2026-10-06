@@ -225,12 +225,15 @@ class VirtualBoard:
         loads = tuple(tuple(_round(x) for x in el) for el in self.plant_loads())
         asserting = self.sup.asserting(self.t)
         amps = _round(self.plant.motor_amps)
+        # U704 sees the grinder's full-wave current; 10 mA steps keep the cache useful.
+        grind = round(self.plant.grinder_amps, 2)
         faults = tuple(sorted(self.faults))
-        key = (drives, loads, asserting, amps, faults)
+        key = (drives, loads, asserting, amps, grind, faults)
         out = self._cache.get(key)
         if out is None:
             out = self.circuit.evaluate(self.rails, drives, loads, supervisor_reset=asserting,
-                                        bridge_amps={'controller:U501': amps}, faults=faults)
+                                        bridge_amps={'controller:U501': amps},
+                                        sense_amps={'controller:U704': grind}, faults=faults)
             if len(self._cache) > 4096:
                 self._cache.clear()
             self._cache[key] = out

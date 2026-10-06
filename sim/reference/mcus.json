@@ -3,7 +3,7 @@
   "STM32G431RBT6": {
     "family": "stm32",
     "sources": {
-      "signals": "ST STM32_open_pin_data mcu/STM32G431R(6-8-B)Tx.xml, checked 2026-10-01",
+      "signals": "ST STM32_open_pin_data mcu/STM32G431R(6-8-B)Tx.xml, checked 2026-10-01; PA6 from DS12589 table 13 (LQFP64 pin 20: ADC2_IN3, OPAMP2_VOUT), checked 2026-10-06",
       "af": "Zephyr hal_stm32 dts/st/g4/stm32g431r(6-8-b)tx-pinctrl.dtsi and ST GPIO-STM32G43x_gpio_v1_0_Modes.xml, checked 2026-10-01",
       "reset": "RM0440: GPIOs reset to analog mode except the debug pins (PA13 pull-up, PA14 pull-down, PA15 pull-up, PB4 pull-up, PB3 floating)"
     },
@@ -12,6 +12,7 @@
       "PA1": ["ADC1_IN2", "ADC2_IN2", "TIM2_CH2", "GPIO"],
       "PA2": ["ADC1_IN3", "TIM2_CH3:AF1", "TIM15_CH1", "USART2_TX", "LPUART1_TX", "GPIO"],
       "PA3": ["ADC1_IN4", "TIM2_CH4", "TIM15_CH2", "USART2_RX", "GPIO"],
+      "PA6": ["ADC2_IN3", "TIM3_CH1", "TIM16_CH1", "SPI1_MISO", "GPIO"],
       "PA7": ["ADC2_IN4", "TIM1_CH1N", "TIM3_CH2", "TIM17_CH1", "SPI1_MOSI", "GPIO"],
       "PA9": ["USART1_TX:AF7", "TIM1_CH2", "TIM2_CH3", "I2C2_SCL", "UCPD1_DBCC1", "GPIO"],
       "PA10": ["USART1_RX:AF7", "TIM1_CH3", "TIM2_CH4", "UCPD1_DBCC2", "GPIO"],

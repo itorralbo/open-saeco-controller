@@ -30,5 +30,17 @@ int main(void) {
     CHECK(osc_heater_cycles_allowed(false) == OSC_HEATER_WINDOW_CYCLES);
     CHECK(osc_heater_cycles_allowed(true) == 3u);
     CHECK(osc_heater_cycles_allowed(true) < OSC_HEATER_WINDOW_CYCLES);
+    /* Grinder current: stall, light running and a drop from the loaded current. */
+    CHECK(osc_grinder_verdict(900, 0) == OSC_GRIND_OK);
+    CHECK(osc_grinder_verdict(3000, 900) == OSC_GRIND_JAM);
+    CHECK(osc_grinder_verdict(OSC_GRINDER_JAM_MA, 0) == OSC_GRIND_JAM);
+    CHECK(osc_grinder_verdict(450, 0) == OSC_GRIND_EMPTY);
+    CHECK(osc_grinder_verdict(650, 1000) == OSC_GRIND_EMPTY);  /* 65 % of the loaded current */
+    CHECK(osc_grinder_verdict(800, 1000) == OSC_GRIND_OK);
+    CHECK(osc_grinder_verdict(650, 0) == OSC_GRIND_OK);        /* no reference yet */
+    /* Dose: the press raises the brew-unit current over I0. */
+    CHECK(osc_dose_present(200, 300));
+    CHECK(!osc_dose_present(200, 220));
+    CHECK(osc_dose_present(200, 200 + OSC_DOSE_MIN_RISE_MA));
     return 0;
 }

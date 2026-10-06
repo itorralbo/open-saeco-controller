@@ -40,7 +40,8 @@ Qué comprueba cada regla: [README del simulador](README.md).
 | stm32 | BU_WORK_N | `BU_WORK_N` | 12 | PA0 |  |  | R410 |
 | stm32 | DOOR_CLOSED_N | `DOOR_CLOSED_N` | 13 | PA1 |  |  | R406 |
 | stm32 | FLOW | `FLOW_TIM` | 14 | PA2 | TIM2_CH3 AF1 |  | R404 |
-| stm32 | GRINDER_EN | `GRINDER_EN_RAW` | 22 | PC4 |  | low | U604 → R718 → Q707 → U703 → Q708 → F703 → BR701 |
+| stm32 | GRINDER_CURRENT | `GRINDER_CURRENT_ADC` | 20 | PA6 | ADC2_IN3 |  | R412 |
+| stm32 | GRINDER_EN | `GRINDER_EN_RAW` | 22 | PC4 |  | low | U604 → R718 → Q707 → U703 → Q708 → F703 → BR701 → U704 |
 | stm32 | HEATER_EN | `HEATER_EN_RAW` | 23 | PC5 |  | low | U603 → R707 → Q705 → U701 → Q703 |
 | stm32 | MAINS_ARM | `MAINS_ARM_RAW` | 60 | PB7 |  | low | U603 → R801 → Q701 → K701 |
 | stm32 | NTC | `NTC_ADC` | 17 | PA3 | ADC1_IN4 |  | R402 |
@@ -60,6 +61,7 @@ Qué comprueba cada regla: [README del simulador](README.md).
 |---|---|
 | BREW_CURRENT | VREF 2.425 V; regulación a 1.01 A; 2.400 V/A; 0.34 mA/LSB |
 | NTC | 0 °C → 3.212 V, 150 °C → 0.537 V; 90 °C: 1.600 V, 0.032 °C/LSB; 125 °C: 0.863 V, 0.050 °C/LSB |
+| GRINDER_CURRENT | 100 mV/A sobre 1.65 V; 0 A → 1.650 V, 4.8 A → 2.130 V; 8.1 mA/LSB |
 | RAIL_12V | 15 V → 0.714 V; fondo de escala 69.3 V; 16.9 mV/LSB |
 | RAIL_24V | 28 V → 1.333 V; fondo de escala 69.3 V; 16.9 mV/LSB |
 

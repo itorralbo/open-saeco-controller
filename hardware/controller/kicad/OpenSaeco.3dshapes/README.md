@@ -27,6 +27,7 @@ el script.
 | `Relay_SPST_Omron_G5RL-1A-E-TV8` | K701 | Planta de 29 x 12,7 mm de la serigrafía; 15,7 mm de alto según la serie G5RL, sin cotejar con el plano. |
 | `MeanWell_IRM-30_THT` | PS701 | Caja de 69,5 x 39 x 24 mm del plano Mean Well IRM-30. |
 | `USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical` | J110 | Carcasa de 8,94 x 3,16 x 6,40 mm del plano HRO; sin contactos internos. |
+| `TI_DVG0010A_SOIC-10W_HV` | U704 | Cuerpo de 7,5 x 10,3 mm y 2,65 mm de alto del plano TI 4226847/C; patas simplificadas. |
 | `Fuse_2410_JDT_JFC2410` | F703 | Cuerpo de 6,1 x 2,5 mm de la hoja JDT JFC2410; altura de 1,2 mm estimada. |
 | `ESP32-S3-WROOM-1U` | U201 | Planta de 18 x 19,2 mm de la huella; 3,2 mm de alto según la hoja Espressif, sin cotejar; blindaje y U.FL simplificados. |
 | `L_Bourns-SRN6028` | L301 | Bloque de 6,0 x 6,0 x 2,8 mm según la serie Bourns SRN6028, sin cotejar con el plano. |

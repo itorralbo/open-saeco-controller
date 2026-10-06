@@ -139,7 +139,10 @@ DEVICE_PITCH_AREAS = {
     'R712': (55.3, 110.8, 61.2, 114.5),
     # Triac rows: grinder, heater, pump.
     'Q708': (62.5, 108.2, 70.7, 110.8), 'Q703': (73.7, 108.2, 81.9, 110.8),
-    'Q704': (85.2, 108.2, 92.8, 110.8)}
+    'Q704': (85.2, 108.2, 92.8, 110.8),
+    # The two input pads of the grinder current sensor, 0.67 mm apart: the
+    # same conductor on either side of its 0.7 mOhm leadframe.
+    'U704': (54.6, 123.9, 57.0, 133.9)}
 DEVICE_PITCH_ZONE_NAME = 'mains device pitch'
 
 
@@ -267,7 +270,15 @@ PLACE = {
     # the raw order low next to U604, whose second gate the grinder uses.
     'U703': (47.19, 100.72, 0), 'Q708': (64.06, 109.5, 0),
     'R721': (58.86, 99.0, 180), 'F703': (66.5, 113.8, 0),
-    'BR701': (58.0, 130.8, 0),
+    'BR701': (58.75, 130.8, 0),
+    # U704 measures the grinder current on JP8's + line and straddles the
+    # barrier below U702: input pads east, from BR701's + up to JP8.1, and
+    # the 3.3 V side west. The only free stretch of barrier; J106 and J105
+    # moved west and BR701 east (2026-10-06) to fit its 11.9 mm courtyard.
+    'U704': (50.8, 128.9, 180), 'C703': (43.3, 132.7, 90),
+    # The 1.6 kHz filter of its output sits at PA6, in the free pocket
+    # south-west of the STM32 between R704 and the bulk decoupling.
+    'R412': (66.0, 48.3, 0), 'C407': (68.6, 49.6, 270),
     'Q707': (39.6, 104.2, 0), 'R718': (36.6, 103.9, 270),
     'R719': (36.8, 106.8, 0), 'R720': (42.6, 101.6, 0),
     'R717': (35.0, 89.3, 270),

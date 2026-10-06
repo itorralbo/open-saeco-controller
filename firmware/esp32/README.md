@@ -23,7 +23,9 @@ spi_master, uart, ledc) sigue TBD. En host la ejecuta el
   de [`service_ids.h`](../common/service_ids.h): cada una explica qué hace y qué
   preparar, deja ajustar su parámetro (ml, °C o ms), y muestra en vivo paso,
   tiempo y valores. Tras la de bomba se introduce el volumen pesado y calcula
-  los pulsos por litro del caudalímetro.
+  los pulsos por litro del caudalímetro. La de molinillo muestra la corriente
+  y para si falta grano o se atasca; la de dosis muele, prensa y dice si llegó
+  café a la cámara.
 - `esp_app.c`: enlace con el STM32 ([protocolo v0](../common/protocol.md)),
   STATUS y TEST_REPORT, teclas hacia `ui.c` y su pantalla hacia `display.c`.
   Si el teclado no responde durante 1 s pide al STM32 apagar y encender el

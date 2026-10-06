@@ -84,6 +84,8 @@ C405,100nF / WORK filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603K
 J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,photo_candidate_owner_pinout,JST,B3B-PH-K-S(LF)(SN),C131339,Extended,TBD
 R411,1k / WATER serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
+R412,1k / GRINDER I serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+C407,100nF / GRINDER I filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J112,24V_ACTUATOR_INPUT / JST XH,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
 F303,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D304,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
@@ -193,3 +195,5 @@ R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ER
 Q708,BTA24-800BWRG / grinder,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
 F703,T4A / 250V grinder,OpenSaeco:Fuse_2410_JDT_JFC2410,candidate,Shenzhen JDT Fuse,JFC2410-1400TS,C136386,Extended,Economic and Standard
 BR701,KBP410 / grinder bridge,Diode_THT:Diode_Bridge_Vishay_KBPM,candidate,MDD(Microdiode Semiconductor),KBP410,C840747,Extended,Economic and Standard
+U704,TMCS1133B4AQDVGR / grinder current,OpenSaeco:TI_DVG0010A_SOIC-10W_HV,candidate,Texas Instruments,TMCS1133B4AQDVGR,C36873216,Extended,TBD
+C703,100nF / U704 VS,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard

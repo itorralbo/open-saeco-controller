@@ -123,7 +123,7 @@ class Status(ctypes.Structure):
     _fields_ = [('state', ctypes.c_uint8), ('inputs', ctypes.c_uint8), ('outputs', ctypes.c_uint16),
                 ('rail_12v_mv', ctypes.c_uint16), ('rail_24v_mv', ctypes.c_uint16),
                 ('brew_ma', ctypes.c_uint16), ('ntc_raw', ctypes.c_uint16), ('uptime_ms', ctypes.c_uint32),
-                ('boiler_dc', ctypes.c_int16)]
+                ('boiler_dc', ctypes.c_int16), ('grinder_ma', ctypes.c_int16)]
 
 
 class TestReport(ctypes.Structure):
@@ -183,7 +183,9 @@ class EspView(ctypes.Structure):
 PAGES = ('HOME', 'MENU', 'SETUP', 'CONFIRM', 'TEST', 'ENTRY', 'INFO')
 FRONT = ('WAIT', 'ON', 'POWER_OFF', 'POWER_ON')
 TEST_PHASES = ('IDLE', 'RUNNING', 'DONE', 'ABORTED', 'REFUSED')
-TESTS = ('NONE', 'INPUTS', 'BREW_UNIT', 'VALVE', 'RELAY', 'PUMP', 'HEATER', 'GRINDER')
+TESTS = ('NONE', 'INPUTS', 'BREW_UNIT', 'VALVE', 'RELAY', 'PUMP', 'HEATER', 'GRINDER', 'DOSE')
+REASONS = ('OK', 'DOOR', 'STATE', 'TIMEOUT', 'DRIVER', 'STOP', 'LINK', 'SENSOR', 'LIMIT', 'UNIT',
+           'NO_FLOW', 'PARAM', 'UNKNOWN', 'NO_BEANS', 'JAM', 'NO_DOSE')
 
 
 def compiler():

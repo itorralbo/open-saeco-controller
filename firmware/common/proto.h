@@ -55,7 +55,7 @@ typedef struct {
 #define OSC_CORE_SERVICE 3u /* a set-up test drives the outputs */
 
 /* STATUS payload, little endian on the wire (osc_status_pack/unpack). */
-#define OSC_STATUS_LEN 18u
+#define OSC_STATUS_LEN 20u
 #define OSC_IN_DOOR_CLOSED 0x01u
 #define OSC_IN_BU_PRESENT 0x02u
 #define OSC_IN_BU_WORK 0x04u
@@ -69,6 +69,7 @@ typedef struct {
     uint16_t ntc_raw;    /* ADC code */
     uint32_t uptime_ms;
     int16_t boiler_dc;   /* boiler temperature in 0.1 degC from the NTC fit; -32768 = invalid */
+    int16_t grinder_ma;  /* grinder current, uncalibrated zero (U704) */
 } osc_status;
 
 /* Set-up tests (firmware/common/service.h): the STM32 runs them, bounded and

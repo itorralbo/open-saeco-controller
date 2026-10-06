@@ -1,7 +1,7 @@
 # Validación nativa — controller-core-reva
 
 KiCad 10.0.6. ERC: 0 errores y 0 avisos, sin exclusiones.
-Netlist nativa cotejada: 194 componentes, 632 pines.
+Netlist nativa cotejada: 198 componentes, 648 pines.
 
 Configuración estándar de KiCad: no se ejecutan los controles opcionales
 footprint_filter, four_way_junction, simulation_model_issue, single_global_label. No se han añadido supresiones.

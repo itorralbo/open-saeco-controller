@@ -558,6 +558,20 @@
       "url": "https://jlcpcb.com/partdetail/C403723",
       "selection": "candidate_not_released"
     },
+    "TMCS1133B4AQDVGR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "TMCS1133B4AQDVGR",
+      "lcsc": "C36873216",
+      "specification": "isolated Hall-effect current sensor, 100 mV/A about VS/2 at 3.3 V (±15.5 A linear), 0.7 mOhm input, 5 kVrms reinforced isolation, 8.1 mm creepage/clearance on the HV land pattern, SOIC-10 wide (DVG); grinder current, empty hopper and jammed burrs",
+      "footprint": "OpenSaeco:TI_DVG0010A_SOIC-10W_HV",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 163,
+      "stock_checked_on": "2026-10-06",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; PCBA type not yet verified; alternate TMCS1123B4AQDVGR (C30955591, 40 in stock), same package and pinout",
+      "url": "https://jlcpcb.com/partdetail/C36873216",
+      "selection": "candidate_not_released"
+    },
     "CONN:JST_XH_2_V": {
       "manufacturer": "JST",
       "mpn": "B2B-XH-A(LF)(SN)",

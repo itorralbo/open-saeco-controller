@@ -80,7 +80,7 @@ def main():
                      3:'BREW_DIR_RAW',21:'VALVE_EN_RAW',22:'GRINDER_EN_RAW',
                      23:'HEATER_EN_RAW',33:'PUMP_EN_RAW',60:'MAINS_ARM_RAW',
                      5:'BREW_PWM_RAW',57:'WATCHDOG_KICK_RAW',58:'BREW_SLEEP_RAW',
-                     59:'BREW_FAULT_N'}.items():
+                     59:'BREW_FAULT_N',20:'GRINDER_CURRENT_ADC'}.items():
         assert nets['U101'][str(pin)] == net
     assert nets['U201']['2'] == v
     for pin in (1,40,41):
@@ -208,6 +208,16 @@ def main():
     # since the TPS3828 latches RESET on a WDI pulse during reset.
     assert nets['U606'] == {'1':'STM_NRST','2':'WATCHDOG_KICK','3':g,'4':'WATCHDOG_WDI','5':v}
     assert nets['C606'] == {'1':v,'2':g}
+    # Grinder current (2026-10-06): JP8's + line runs through U704's input,
+    # IN+ from the bridge, IN- to JP8.1; unused OC/ALERT grounded, VOC at VS.
+    assert nets['U704'] == {'1':'GRINDER_DC_PLUS','2':'GRINDER_DC_SENSED','3':g,'4':g,
+                            '5':None,'6':'GRINDER_CURRENT_RAW','7':g,'8':v,'9':v,'10':v}
+    assert nets['J115']['1'] == 'GRINDER_DC_SENSED' and nets['BR701']['1'] == 'GRINDER_DC_PLUS'
+    assert nets['C703'] == {'1':v,'2':g}
+    assert nets['R412'] == {'1':'GRINDER_CURRENT_RAW','2':'GRINDER_CURRENT_ADC'}
+    assert nets['C407'] == {'1':'GRINDER_CURRENT_ADC','2':g}
+    assert fields['U704']['Footprint'] == 'OpenSaeco:TI_DVG0010A_SOIC-10W_HV'
+    assert fields['U704']['lcsc'] == 'C36873216'
     # The gates take reset through U605, a Schmitt buffer: STM_NRST's RC edge
     # is far slower than the LVC2G08 inputs allow.
     assert nets['U605'] == {'1':None,'2':'STM_NRST','3':g,'4':'STM_NRST_BUF','5':v}

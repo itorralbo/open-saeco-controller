@@ -228,15 +228,27 @@ API: `GET /api/state`, `/api/history`, `/api/frame` (RGB565 de 320 × 240),
   pantalla también como texto.
 
 Qué mide cada prueba y qué no: la placa mide los rails, la corriente del grupo
-(IPROPI), el NTC, el caudalímetro y los finales de carrera; las corrientes de
-red (calentador, bomba, molinillo) y la de la válvula necesitan una pinza en la
-sesión de [caracterización](../docs/HD8911/characterization-plan.md), y las
-pruebas solo fijan el tiempo y la ventana.
+(IPROPI), la del molinillo (U704), el NTC, el caudalímetro y los finales de
+carrera; las corrientes del calentador, la bomba y la válvula necesitan una
+pinza en la sesión de [caracterización](../docs/HD8911/characterization-plan.md),
+y las pruebas solo fijan el tiempo y la ventana.
+
+Corriente del molinillo (2026-10-06): U704 entra en el modelo de placa como
+dispositivo `hall_current` (su entrada es un conductor de 0,7 mΩ en la línea +
+de JP8, su salida VS/2 + 100 mV/A) y la comprobación analógica `hall` exige que
+JP8 esté en serie con él y que el rango quepa en el ADC. La planta da la
+corriente rectificada de 100 Hz del motor: arranque como rotor bloqueado,
+marcha con grano, en vacío y bloqueo (valores supuestos), y una cámara que
+recibe el molido y que el grupo vacía al volver a reposo; la corriente al
+prensar crece con los gramos. El panel la dibuja junto al molinillo, con dos
+fallos nuevos: muelas atascadas y conducto tapado.
 
 Los [escenarios](../tests/sim/test_f4.py) recorren los menús y cada prueba
 contra la planta: entradas, ciclo del grupo con I0 en 100-300 mA, válvula,
 relé y molinillo sin tocar otras cargas, bomba con calibración del
 caudalímetro, bomba sin agua (sin caudal), calentador hasta 90 °C con la
-sobreoscilación; y que se rechazan con la puerta abierta y se abortan con STOP,
-con volver, al abrir la puerta y si se cuelga el ESP32, con todas las cargas a
+sobreoscilación; molinillo con su corriente, tolva que se vacía a mitad,
+sin grano desde el principio y muelas bloqueadas; dosis prensada y conducto
+tapado; y que se rechazan con la puerta abierta y se abortan con STOP, con
+volver, al abrir la puerta y si se cuelga el ESP32, con todas las cargas a
 cero.

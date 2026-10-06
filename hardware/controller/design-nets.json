@@ -31,7 +31,7 @@
         "17": "NTC_ADC",
         "18": null,
         "19": null,
-        "20": null,
+        "20": "GRINDER_CURRENT_ADC",
         "21": "VALVE_EN_RAW",
         "22": "GRINDER_EN_RAW",
         "23": "HEATER_EN_RAW",
@@ -1435,6 +1435,36 @@
       }
     },
     {
+      "reference": "R412",
+      "value": "1k / GRINDER I serie",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "GRINDER_CURRENT_RAW",
+        "2": "GRINDER_CURRENT_ADC"
+      }
+    },
+    {
+      "reference": "C407",
+      "value": "100nF / GRINDER I filtro",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "GRINDER_CURRENT_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "J112",
       "value": "24V_ACTUATOR_INPUT / JST XH",
       "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
@@ -2281,7 +2311,7 @@
       "jlc_class": null,
       "pcba_type": "hand_solder_or_consigned",
       "pins": {
-        "1": "GRINDER_DC_PLUS",
+        "1": "GRINDER_DC_SENSED",
         "2": null,
         "3": "GRINDER_DC_MINUS"
       }
@@ -3153,6 +3183,44 @@
         "3": "MAINS_N",
         "1": "GRINDER_DC_PLUS",
         "4": "GRINDER_DC_MINUS"
+      }
+    },
+    {
+      "reference": "U704",
+      "value": "TMCS1133B4AQDVGR / grinder current",
+      "footprint": "OpenSaeco:TI_DVG0010A_SOIC-10W_HV",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TMCS1133B4AQDVGR",
+      "lcsc": "C36873216",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "pins": {
+        "1": "GRINDER_DC_PLUS",
+        "2": "GRINDER_DC_SENSED",
+        "10": "3V3_CORE",
+        "9": "3V3_CORE",
+        "8": "3V3_CORE",
+        "7": "GND_UI",
+        "6": "GRINDER_CURRENT_RAW",
+        "5": null,
+        "4": "GND_UI",
+        "3": "GND_UI"
+      }
+    },
+    {
+      "reference": "C703",
+      "value": "100nF / U704 VS",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
       }
     }
   ]

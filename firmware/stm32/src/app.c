@@ -126,6 +126,7 @@ static void send_status(uint32_t now) {
     s.brew_ma = inputs.brew_ma;
     s.ntc_raw = inputs.ntc;
     s.boiler_dc = inputs.boiler_dc;
+    s.grinder_ma = inputs.grinder_ma;
     s.uptime_ms = now - started;
     f.type = OSC_MSG_STATUS;
     f.seq = tx_seq++;
@@ -156,7 +157,7 @@ static void control(uint32_t now) {
 
 void osc_app_init(void) {
     const osc_inputs none = {false, false, false, false, 0, 0, 0, 0, 0, 0, 3300, 0, 0, 0, 0,
-                             OSC_TEMP_INVALID};
+                             OSC_TEMP_INVALID, 0, 0};
     bsp_init();
     osc_init(&ctl);
     osc_parser_init(&parser);
@@ -172,6 +173,7 @@ void osc_app_poll(void) {
     const uint32_t now = osc_hal_millis();
     uint8_t byte;
     osc_frame f;
+    bsp_sample();
     if (now - last_toggle >= OSC_WDT_TOGGLE_MS) {
         last_toggle = now;
         bsp_watchdog_toggle();

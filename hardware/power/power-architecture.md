@@ -242,17 +242,40 @@ original.
 El bloqueo lo sigue cortando el firmware. Con 3,4 A no funden ni F701 (T10A) ni
 F703 (T4A); F703 solo protege ante un puente o un bobinado en corto, sin
 llevarse por delante la máquina entera. Su poder de corte es de 50 A a 250 V,
-bajo para una rama de red: F701 sigue siendo la protección principal. Queda
-abierta una decisión para el propietario:
+bajo para una rama de red: F701 sigue siendo la protección principal.
 
-- **Medida de corriente.** El manual la usa para detectar falta de grano
-  (corriente baja) y muelas bloqueadas (alta); ver
-  [components.md](../../docs/HD8911/components.md#grupo-de-infusión-y-autodosis).
-  Con F703 a 4 A, es la única forma de detectar un bloqueo antes del tiempo
-  máximo de molido. Exige un sensor con aislamiento reforzado porque el bus
-  está en el lado de red. Con 4,8 A de pico en bloqueo, el rango útil es de
-  ±5 A. No se añade hasta medir el motor real y ver cuánto se separan las dos
-  corrientes.
+### Corriente del molinillo
+
+**Añadida el 2026-10-06, a petición del propietario.** El manual la usa para
+detectar falta de grano (corriente baja) y muelas bloqueadas (alta); ver
+[components.md](../../docs/HD8911/components.md#grupo-de-infusión-y-autodosis).
+Con F703 a 4 A es además la única forma de cortar un bloqueo antes del tiempo
+máximo de molido.
+
+- U704, un TI TMCS1133B4AQDVGR (C36873216, Extended; 163 en stock el
+  2026-10-06; alternativa TMCS1123B4AQDVGR, misma cápsula), Hall con
+  aislamiento reforzado de 5 kVrms (UL 1577, IEC 62368-1), en la línea + de
+  JP8: IN+ desde el + de BR701 e IN- hacia JP8.1 (`GRINDER_DC_SENSED`). Su
+  conductor de 0,7 mΩ disipa 6 mW a 3 A.
+- 100 mV/A sobre VS/2 con VS = 3V3_CORE, lineal hasta ±15,5 A: 0–4,8 A (pico
+  de bloqueo) dan 1,65–2,13 V, 8,1 mA/LSB. VS es también la VDDA del ADC, así
+  que el cero sigue a la tensión de referencia.
+- Cruza la barrera como los optos: la huella usa el patrón HV del plano TI
+  (`OpenSaeco:TI_DVG0010A_SOIC-10W_HV`), 8,1 mm de aire y de fuga entre las
+  dos filas, que cumple la regla de 8 mm sin ranura.
+- OC y ALERT a masa y VOC a VS: el comparador de sobrecorriente no se usa.
+- La salida va a PA6 (ADC2_IN3) por R412 (1 kΩ) y C407 (100 nF) junto al
+  STM32: paso bajo de 1,6 kHz. La corriente es una onda rectificada de
+  100 Hz; el firmware muestrea cada milisegundo y promedia periodos enteros.
+- El firmware toma el cero con el motor parado, ignora 300 ms de arranque y
+  juzga bloques de 100 ms: bloqueo por encima de 2 A; falta de grano por
+  debajo de 550 mA o del 75 % de la corriente con carga de los primeros
+  bloques, dos bloques seguidos. Umbrales SUPUESTOS hasta GR-02, GR-03 y
+  GR-08.
+
+Como respaldo, la prueba de dosis mira la corriente del grupo al prensar
+(IPROPI, ya en la placa): con café en la cámara sube sobre I0 (manual: +55 a
+200 mA); sin café apenas cambia. Detecta también un conducto tapado.
 
 No hay snubber RC en Q708 por la misma razón que en la bomba: hay que medir el
 dV/dt en el apagado con el motor real (GR-05).

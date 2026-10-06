@@ -34,7 +34,7 @@ SOF 0xA5 | VER | TYPE | SEQ | LEN | PAYLOAD[LEN] | CRC16 lo | CRC16 hi
 |---|---|---|---|---|
 | HELLO | 0x01 | ESP → STM | versión, rol | ACK, o ERROR si la versión no es 0 |
 | KEEPALIVE | 0x02 | ESP → STM | — | ninguna |
-| STATUS | 0x10 | STM → ESP | `osc_status`, 18 bytes | — |
+| STATUS | 0x10 | STM → ESP | `osc_status`, 20 bytes | — |
 | TEST_REPORT | 0x11 | STM → ESP | `osc_test_report`, 32 bytes | — |
 | STOP | 0x20 | ESP → STM | — | ACK; todas las cargas a cero |
 | CLEAR_FAULT | 0x21 | ESP → STM | — | ACK, o ERROR 3 si puerta/fallo/enlace no lo permiten |
@@ -53,8 +53,9 @@ de comunicación.
 entradas (bit 0 puerta cerrada, 1 grupo presente, 2 grupo en trabajo, 3 fallo del
 DRV8876, 4 frontal alimentado), salidas (bit 0 calentador, 1 bomba, 2 válvula,
 3 molinillo, 4 motor del grupo), 12 V y 24 V en mV, corriente del grupo en mA,
-código ADC del NTC, tiempo desde el arranque en ms y temperatura de la caldera
-en décimas de °C (int16, −32768 con el NTC abierto o en corto).
+código ADC del NTC, tiempo desde el arranque en ms, temperatura de la caldera
+en décimas de °C (int16, −32768 con el NTC abierto o en corto) y corriente del
+molinillo en mA (int16, U704, cero sin calibrar).
 Los rails y la corriente se escalan con la VDDA que el STM32 mide contra VREFINT.
 
 ## Tiempos
@@ -70,7 +71,8 @@ Los rails y la corriente se escalan con la VDDA que el STM32 mide contra VREFINT
 
 `TEST` arranca una prueba acotada de
 [`service_ids.h`](service_ids.h) (`firmware/stm32/src/service.c`): entradas,
-ciclo del grupo, válvula, relé K701, bomba y caudal, calentador y molinillo.
+ciclo del grupo, válvula, relé K701, bomba y caudal, calentador, molinillo y
+dosis (moler y prensar).
 El STM32 la rechaza (ERROR 3 y un informe `REFUSED` con el motivo) si el núcleo
 no está en SAFE_IDLE, ya corre otra, falta la puerta o el grupo, el NTC no lee o
 el parámetro se sale de rango. Mientras corre, `TEST_REPORT` sale cada 100 ms y
@@ -78,7 +80,9 @@ al terminar: prueba, fase (0 ninguna, 1 en curso, 2 terminada, 3 abortada,
 4 rechazada), paso, motivo, ms transcurridos y seis valores int32 cuyo
 significado fija `service_ids.h`. STOP, la pérdida del enlace, la puerta
 abierta, nFAULT del DRV8876, el límite de temperatura o el tiempo máximo la
-abortan con todas las cargas a cero; nada se reanuda solo. Una prueba con
+abortan con todas las cargas a cero; nada se reanuda solo. El molinillo para
+además por falta de grano (motivo 13) o muelas bloqueadas (14), y la prueba de
+dosis termina con el motivo 15 si el grupo prensa una cámara vacía. Una prueba con
 cargas pasa por K701 con 100 ms de margen antes y después del triac.
 
 Pendientes: STREAM, sesión y límites de receta. Ver

@@ -151,7 +151,9 @@ class Session:
                 'rail_12v': s.rail_12v_mv / 1000 if s else None,
                 'rail_24v': s.rail_24v_mv / 1000 if s else None,
                 'brew_ma': s.brew_ma if s else None,
-                'motor_a': round(self.plant.motor_amps, 3), 'ui_v': round(b.ui_volts, 2)}
+                'motor_a': round(self.plant.motor_amps, 3), 'ui_v': round(b.ui_volts, 2),
+                'grinder_a': round(self.plant.grinder_mean_amps, 3),
+                'grinder_stm_a': s.grinder_ma / 1000 if s else None}
 
     def led_on(self):
         net = self.board.tca_pins[7]
@@ -184,10 +186,11 @@ class Session:
                                         'code': v.last_reply_code} if v and v.replies else None)},
                 'test': ({'id': firmware.TESTS[v.report.id] if v.report.id < len(firmware.TESTS) else v.report.id,
                           'phase': firmware.TEST_PHASES[v.report.phase], 'step': v.report.step,
-                          'reason': v.report.reason, 'elapsed_ms': v.report.elapsed_ms,
+                          'reason': v.report.reason,
+                          'reason_name': firmware.REASONS[v.report.reason] if v.report.reason < len(firmware.REASONS) else '', 'elapsed_ms': v.report.elapsed_ms,
                           'values': list(v.report.value)} if v and v.have_report else None),
                 'orders': self.order_levels(),
-                'status': ({'state': s.state, 'boiler_dc': s.boiler_dc, 'rail_12v_mv': s.rail_12v_mv, 'rail_24v_mv': s.rail_24v_mv, 'brew_ma': s.brew_ma,
+                'status': ({'state': s.state, 'boiler_dc': s.boiler_dc, 'grinder_ma': s.grinder_ma, 'rail_12v_mv': s.rail_12v_mv, 'rail_24v_mv': s.rail_24v_mv, 'brew_ma': s.brew_ma,
                             'ntc_raw': s.ntc_raw, 'inputs': s.inputs, 'outputs': s.outputs,
                             'uptime_ms': s.uptime_ms} if s else None),
                 'board': {'nrst': b.nrst_high, 'ui_volts': round(b.ui_volts, 2),
@@ -202,6 +205,8 @@ class Session:
                           'ntc_open': p.ntc_open, 'water_volts': p.water_volts,
                           'tank_ml': round(p.tank_ml), 'tank_capacity_ml': p.tank_capacity_ml,
                           'beans_g': round(p.beans_g, 1), 'ground_g': round(p.ground_g, 1),
+                          'chamber_g': round(p.chamber_g, 1), 'grinder_a': round(p.grinder_mean_amps, 3),
+                          'grinder_jammed': p.grinder_jammed, 'chute_blocked': p.chute_blocked,
                           'heater_on': p.heater_on, 'pump_on': p.pump_on, 'valve_on': p.valve_on,
                           'grinder_on': p.grinder_on, 'pump_ml_s': p.pump_ml_s},
                 'faults': {'brew_fault': 'controller:U501' in b.faults, 'keypad_hang': b.front.tca.hung,
@@ -241,6 +246,10 @@ class Session:
                 p.tank_ml = max(0.0, min(p.tank_capacity_ml, float(c.get('value', p.tank_capacity_ml))))
             elif name == 'beans':
                 p.beans_g = max(0.0, float(c.get('value', 200)))
+            elif name == 'grinder_jam':
+                p.grinder_jammed = bool(c.get('value'))
+            elif name == 'chute_blocked':
+                p.chute_blocked = bool(c.get('value'))
             elif name == 'stm_hang':
                 b.fw.hung = bool(c.get('value'))
             elif name == 'esp_hang':

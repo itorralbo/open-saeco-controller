@@ -232,6 +232,18 @@ def fuseholder_111():
     return parts
 
 
+def soic10w_dvg():
+    """TI DVG0010A: 7.5 x 10.3 mm body, 2.65 mm max height (TI drawing
+    4226847/C); two wide input leads on the west, eight on the east."""
+    parts = [(BLACK, box(-3.75, 3.75, -5.15, 5.15, 0.1, 2.5))]
+    for y in (-2.54, 2.54):
+        parts.append((TIN, box(-5.2, -3.75, y-2.11, y+2.11, 0, 0.25)))
+    for n in range(8):
+        y = 4.445-n*1.27
+        parts.append((TIN, box(3.75, 5.2, y-0.2, y+0.2, 0, 0.25)))
+    return parts
+
+
 # footprint: (library, parts or stock STEP, scope note for the README)
 SCOPE = {
     'HR_A2506WV-02P_1x02_P2.50mm_Vertical': ('OpenSaeco', hr_a2506(2),
@@ -258,6 +270,8 @@ SCOPE = {
         'Caja de 69,5 x 39 x 24 mm del plano Mean Well IRM-30.'),
     'USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical': ('OpenSaeco', usb_c_vertical(),
         'Carcasa de 8,94 x 3,16 x 6,40 mm del plano HRO; sin contactos internos.'),
+    'TI_DVG0010A_SOIC-10W_HV': ('OpenSaeco', soic10w_dvg(),
+        'Cuerpo de 7,5 x 10,3 mm y 2,65 mm de alto del plano TI 4226847/C; patas simplificadas.'),
     'Fuse_2410_JDT_JFC2410': ('OpenSaeco', fuse_2410(),
         'Cuerpo de 6,1 x 2,5 mm de la hoja JDT JFC2410; altura de 1,2 mm estimada.'),
     'ESP32-S3-WROOM-1U': ('RF_Module', esp32_s3_wroom_1u(),

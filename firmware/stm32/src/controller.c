@@ -29,3 +29,13 @@ bool osc_clear_fault(osc_controller *c, bool interlocks_ok, bool link_ok) {
 unsigned osc_heater_cycles_allowed(bool grinder_on) {
     return grinder_on ? OSC_HEATER_CYCLES_WHILE_GRINDING : OSC_HEATER_WINDOW_CYCLES;
 }
+
+osc_grind_verdict osc_grinder_verdict(int mean_ma, int loaded_ma) {
+    if (mean_ma >= OSC_GRINDER_JAM_MA) return OSC_GRIND_JAM;
+    if (mean_ma < OSC_GRINDER_EMPTY_MA) return OSC_GRIND_EMPTY;
+    if (loaded_ma > 0 && (long)mean_ma * 100 < (long)loaded_ma * OSC_GRINDER_EMPTY_DROP_PCT)
+        return OSC_GRIND_EMPTY;
+    return OSC_GRIND_OK;
+}
+
+bool osc_dose_present(int i0_ma, int stop_ma) { return stop_ma - i0_ma >= OSC_DOSE_MIN_RISE_MA; }

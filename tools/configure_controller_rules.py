@@ -44,7 +44,7 @@ DRU_RULES = f'''(version 1)
 # One rule per device area drawn by layout_controller_pcb.py, so that only
 # two items inside the same device's area are relaxed.
 DEVICE_PITCH_REFS = ('U701', 'U703', 'U702', 'R710', 'R721', 'R712',
-                     'Q708', 'Q703', 'Q704')
+                     'Q708', 'Q703', 'Q704', 'U704')
 OPTO_SLOT_REFS = ('U701', 'U703', 'U702')
 for _ref in DEVICE_PITCH_REFS:
     _area = f'mains device pitch {_ref}'
@@ -107,7 +107,7 @@ CLASS_NETS = {
         '/HEATER_AC_SWITCHED', '/HEATER_GATE_FEED', '/HEATER_TRIAC_GATE',
         '/GRINDER_AC_SWITCHED', '/GRINDER_AC_FUSED', '/GRINDER_GATE_FEED',
         '/GRINDER_TRIAC_GATE',
-        '/GRINDER_DC_PLUS', '/GRINDER_DC_MINUS',
+        '/GRINDER_DC_PLUS', '/GRINDER_DC_SENSED', '/GRINDER_DC_MINUS',
         # The protective conductor belongs to the primary domain for spacing:
         # it must keep the same 8 mm from anything SELV.
         '/PROTECTIVE_EARTH',

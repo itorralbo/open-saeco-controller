@@ -157,6 +157,22 @@ def power_symbols():
         ('1', '+', 'passive', 7.62, 2.54, 180),
         ('4', '-', 'passive', 7.62, -2.54, 180),
     ], 5.08, 5.08)
+    # Isolated Hall current sensor in the DVG SOIC-10 (TMCS1133): the input
+    # conductor between pins 1 and 2, the low-voltage side on pins 3-10.
+    # ~OC and ~ALERT are open drain; drawn passive because the board ties
+    # both to ground as the datasheet asks when they are unused.
+    d.DEFS['TMCS1133'] = ([
+        ('1', 'IN+', 'passive', -10.16, 2.54, 0),
+        ('2', 'IN-', 'passive', -10.16, -2.54, 0),
+        ('10', 'VS', 'power_in', 10.16, 8.89, 180),
+        ('9', 'VS', 'power_in', 10.16, 6.35, 180),
+        ('8', 'VOC', 'input', 10.16, 3.81, 180),
+        ('7', '~{OC}', 'passive', 10.16, 1.27, 180),
+        ('6', 'VOUT', 'output', 10.16, -1.27, 180),
+        ('5', 'NC', 'no_connect', 10.16, -3.81, 180),
+        ('4', '~{ALERT}', 'passive', 10.16, -6.35, 180),
+        ('3', 'GND', 'power_in', 10.16, -8.89, 180),
+    ], 7.62, 10.16)
     d.DEFS['NMOS_SOT23'] = ([
         ('1', 'G', 'input', -7.62, 0, 0),
         ('2', 'S', 'power_in', 7.62, -3.81, 180),
@@ -219,7 +235,8 @@ def main():
            'PF0': 'BREW_PWM_RAW', 'PB5': 'BREW_SLEEP_RAW',
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
            'PB7': 'MAINS_ARM_RAW', 'PC5': 'HEATER_EN_RAW',
-           'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW'}
+           'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW',
+           'PA6': 'GRINDER_CURRENT_ADC'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO42': 'ESP_TX_RAW', 'IO2': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -412,6 +429,12 @@ def main():
           status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
+    # Grinder current from U704 (TMCS1133B4A, 100 mV/A about 1.65 V): a
+    # 1.6 kHz low-pass at the ADC pin against what the long run picks up;
+    # the full-wave 100 Hz current is averaged in firmware.
+    d.passive('R412','R','1k / GRINDER I serie',610,575,'GRINDER_CURRENT_RAW','GRINDER_CURRENT_ADC')
+    d.passive('C407','C','100nF / GRINDER I filtro',680,575,'GRINDER_CURRENT_ADC',g)
+    d.note('PA6 ADC2_IN3: corriente del molinillo, 1,65 V + 0,1 V/A (U704, etapa 18).',470,592,1.2)
     d.note('PC3 ADC12_IN9/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
     d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
     d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_ACT_RAW',g],
@@ -531,7 +554,7 @@ def main():
     # 3941P03*000 (3.96 mm) and the 5001P020013 (5.00 mm). JLCPCB does not
     # stock either, so they are soldered by hand or consigned.
     d.add('J115','J3','JP8 GRINDER / 320VDC',1100,641,
-          ['GRINDER_DC_PLUS',None,'GRINDER_DC_MINUS'],
+          ['GRINDER_DC_SENSED',None,'GRINDER_DC_MINUS'],
           'OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical',
           status='owner_identified_not_stocked_by_jlcpcb', part_key='CONN:LEOCO_3941P03')
     # Owner: only tabs 1 and 3 are wired, and they are the two ends of the
@@ -748,6 +771,17 @@ def main():
            '230/68 = 3,4 A ef.: lo corta el firmware; F703 T4A cubre cortos.',870,1092,1.1)
     d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido '
            'intermitente (<=10 s y pausa). Medir en el prototipo.',870,1100,1.1)
+    # Grinder current, owner's decision on 2026-10-06: the original machine
+    # reads it to tell an empty hopper (low) from jammed burrs (high). U704
+    # carries the + line of JP8 through its 0.7 mOhm input and straddles the
+    # barrier; 5 kVrms reinforced, 8.1 mm between its two pad rows. Unused
+    # overcurrent comparator: VOC to VS, OC and ALERT to ground (datasheet).
+    d.add('U704','TMCS1133','TMCS1133B4AQDVGR / grinder current',1180,1140,
+          ['GRINDER_DC_PLUS','GRINDER_DC_SENSED',v,v,v,g,'GRINDER_CURRENT_RAW',None,g,g],
+          'OpenSaeco:TI_DVG0010A_SOIC-10W_HV',part_key='TMCS1133B4AQDVGR')
+    d.passive('C703','C','100nF / U704 VS',1240,1140,v,g)
+    d.note('U704: Hall aislado reforzado 5 kVrms, 100 mV/A sobre 1,65 V (±15,5 A). '
+           'Falta de grano = corriente baja; muelas bloqueadas = alta.',870,1160,1.1)
 
     d.add('#FLG115','PWR_FLAG','Relay-enabled load phase',1045,792,['LOAD_L_ENABLED'])
     d.add('#FLG116','PWR_FLAG','Mains neutral endpoint',1085,792,['MAINS_N'])

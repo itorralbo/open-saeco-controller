@@ -9,7 +9,9 @@ Only control flow is modelled here; F1 adds the electrical behaviour.
 SERIES = {'R', 'L', 'FUSE'}
 
 # Pads joined inside the part (a protector's flow-through lines).
-THROUGH = {'USBLC6': (('1', '6'), ('3', '4'))}
+THROUGH = {'USBLC6': (('1', '6'), ('3', '4')),
+           # Hall current sensor: IN+ and IN- are one 0.7 mOhm conductor.
+           'TMCS1133': (('1', '2'),)}
 
 ARCS = {
     'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')},

@@ -625,7 +625,7 @@ def route_sensors(board):
     track(board, '/DOOR_CLOSED_N', (18.0, 71.825), (21.0, 71.775), width=PIN_WIDTH)
 
     # NTC (JP13): raw net up the gap between the pull-up and the series part.
-    polyline(board, '/NTC_RAW', [(29.0, 125.3), (29.5, 124.8), (29.5, 106.5), (29.8, 106.5),
+    polyline(board, '/NTC_RAW', [(28.75, 125.3), (29.5, 124.55), (29.5, 106.5), (29.8, 106.5),
                                  (30.4, 105.9), (31.0, 105.825)], width=PIN_WIDTH)
     polyline(board, '/NTC_RAW', [(29.5, 106.5), (29.5, 103.5), (28.0, 103.5),
                                  (28.0, 103.9)], width=PIN_WIDTH)
@@ -636,7 +636,7 @@ def route_sensors(board):
     # Flow meter (JP5): the raw net climbs west of MH2 to the filter column,
     # where the pull-up and the series resistor both face it with their raw
     # pad. The filtered net drops straight to C402.
-    polyline(board, '/FLOW_RAW', [(38.2, 125.3), (38.2, 122.0), (35.3, 119.1),
+    polyline(board, '/FLOW_RAW', [(37.0, 125.3), (37.0, 120.8), (35.3, 119.1),
                                   (35.3, 112.0), (33.6, 110.3), (33.6, 109.2),
                                   (32.725, 109.2)], width=PIN_WIDTH)
     polyline(board, '/FLOW_RAW', [(33.6, 110.3), (33.6, 111.0), (32.725, 111.0)],
@@ -652,11 +652,11 @@ def route_sensors(board):
     polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (19.725, 115.9), (20.5, 115.9),
                                      (21.375, 116.775), (22.0, 116.775)], width=PIN_WIDTH)
 
-    for start, point in (((31.5, 125.3), (33.2, 125.3)),
+    for start, point in (((31.25, 125.3), (33.2, 125.3)),
                          # East, not north: the grinder's gate order runs
                          # above the NTC row at y = 103 mm.
                          ((34.0, 104.225), (34.9, 104.225)),
-                         ((40.7, 125.3), (40.7, 122.4)),
+                         ((39.5, 125.3), (39.5, 122.4)),
                          ((32.725, 112.8), (33.675, 113.75)),
                          ((23.0, 128.2), (24.425, 126.775)),
                          ((22.0, 115.225), (23.4, 115.225)),
@@ -1248,7 +1248,7 @@ def route_pump_stage(board):
 
     # LED loop on the SELV side. 12 V comes from JP5 pin 3 on B.Cu along the
     # plane edge; the gate network sits north of Q706, clear of MH2.
-    polyline(board, '/12V_PROTECTED', [(43.2, 125.3), (45.3, 123.2),
+    polyline(board, '/12V_PROTECTED', [(42.0, 125.3), (45.3, 122.0),
                                        (45.3, 108.4)], pcb.B_Cu, width=0.5)
     via(board, '/12V_PROTECTED', (45.3, 108.4))
     track(board, '/12V_PROTECTED', (45.3, 108.4), (45.3, 109.775), width=0.5)
@@ -1418,17 +1418,67 @@ def route_grinder_stage(board):
     polyline(board, '/GRINDER_AC_SWITCHED', [(64.06, 110.8), (64.06, 112.8),
                                              (63.75, 113.1)], width=1.9)
     polyline(board, '/GRINDER_AC_FUSED', [(69.25, 113.8), (71.0, 115.55),
-                                          (71.0, 124.1), (61.85, 124.1),
-                                          (61.85, 129.7)], width=1.2)
-    polyline(board, '/MAINS_N', [(79.25, 126.55), (77.95, 127.85), (66.9, 127.85),
-                                 (65.7, 129.05), (65.7, 130.8)], width=1.2)
+                                          (71.0, 124.1), (62.6, 124.1),
+                                          (62.6, 129.7)], width=1.2)
+    polyline(board, '/MAINS_N', [(79.25, 126.55), (77.95, 127.85), (67.65, 127.85),
+                                 (66.45, 129.05), (66.45, 130.8)], width=1.2)
 
-    # Bridge to JP8: + on F.Cu west of the fused phase, straight up into
-    # J115.1; - on B.Cu.
-    track(board, '/GRINDER_DC_PLUS', (58.0, 130.8), (58.0, 121.5), width=1.2)
-    polyline(board, '/GRINDER_DC_MINUS', [(69.55, 130.8), (69.55, 124.0),
+    # Bridge to JP8 through U704: + on F.Cu west into the sensor's IN+ pad,
+    # out of IN- and up into J115.1; - on B.Cu.
+    track(board, '/GRINDER_DC_PLUS', (58.75, 130.8), (55.9, 130.8), width=1.2)
+    polyline(board, '/GRINDER_DC_SENSED', [(56.0, 125.2), (56.0, 124.0), (59.04, 120.96),
+                                           (59.04, 120.8)], width=1.2)
+    polyline(board, '/GRINDER_DC_MINUS', [(70.3, 130.8), (70.3, 124.75),
                                           (66.96, 121.41), (66.96, 120.8)],
              pcb.B_Cu, width=1.2)
+    route_grinder_sensor(board)
+
+
+def route_grinder_sensor(board):
+    """U704's 3.3 V side, west of the barrier.
+
+    Pins 3-10 run north to south: GND, ALERT (to ground), NC, VOUT, OC (to
+    ground), VOC and the two VS pins (3.3 V). Ground pins drop to In1.Cu,
+    the three 3.3 V pins share one track down to C703 and a plane drop.
+    VOUT leaves west towards the STM32 (route_grinder_current).
+    """
+    gnd, v33 = '/GND_UI', '/3V3_CORE'
+    x = 45.5
+    track(board, gnd, (x, 124.455), (x, 125.725), width=0.3)
+    track(board, gnd, (x, 125.09), (44.2, 125.09), width=0.3)
+    via(board, gnd, (44.2, 125.09))
+    track(board, gnd, (x, 129.535), (44.2, 129.535), width=0.3)
+    via(board, gnd, (44.2, 129.535))
+    track(board, v33, (x, 130.805), (x, 133.345), width=0.3)
+    track(board, v33, (x, 133.345), (43.3, 133.345), width=0.3)
+    track(board, v33, (x, 132.5), (44.4, 132.5), width=0.3)
+    via(board, v33, (44.4, 132.5))
+    track(board, gnd, (43.3, 131.925), (42.35, 131.925), width=0.3)
+    via(board, gnd, (42.35, 131.925))
+
+
+def route_grinder_current(board):
+    """U704's output to PA6 through the R412/C407 filter beside the STM32.
+
+    The order bus and the 24 V trunk wall off the south of the MCU on both
+    layers, so the line leaves PA6 west on F.Cu to the filter, drops to B.Cu
+    north of the bus lanes, runs west along y = 45.2/44.8 mm, down the west
+    side at x = 18.9 mm and back east under JP13 and JP5 to the sensor.
+    Path found with the scratch A* over the dumped copper (2026-10-06).
+    C407 grounds into the decoupling ground track at x = 70.8 mm.
+    """
+    w = SIGNAL_WIDTH
+    adc, raw, gnd = '/GRINDER_CURRENT_ADC', '/GRINDER_CURRENT_RAW', '/GND_UI'
+    polyline(board, adc, [(73.75, 45.675), (73.75, 47.7), (73.15, 48.3),
+                          (66.775, 48.3)], width=w)
+    track(board, gnd, (68.6, 50.375), (70.8, 50.375), width=PIN_WIDTH)
+    polyline(board, raw, [(65.225, 48.3), (64.5, 47.575), (64.5, 44.5)], width=w)
+    via(board, raw, (64.5, 44.5))
+    polyline(board, raw, [(64.5, 44.5), (63.8, 45.2), (40.8, 45.2), (40.4, 44.8),
+                          (28.2, 44.8), (18.9, 54.1), (18.9, 115.2), (27.7, 124.0),
+                          (33.5, 124.0)], pcb.B_Cu, width=w)
+    via(board, raw, (33.5, 124.0))
+    polyline(board, raw, [(33.5, 124.0), (37.765, 128.265), (45.925, 128.265)], width=w)
 
 
 def route_grinder_enable(board):
@@ -2354,6 +2404,7 @@ def main():
     route_pump_enable(board)
     route_grinder_stage(board)
     route_grinder_enable(board)
+    route_grinder_current(board)
     route_debug_header(board)
     route_supervisor_orders(board)
     route_load_bus(board)
@@ -2394,6 +2445,7 @@ def main():
                           'pump enable: PB11, U604 first gate, R713 pull-down and R714',
                           'grinder stage: optocoupler, triac, fuse, bridge, LED loop and JP8',
                           'grinder enable: U604 second gate, R717 pull-down and R718',
+                          'grinder current: U704 to PA6 through R412/C407',
                           'SWD header: SWDIO, SWCLK and SWO to J102',
                           'supervisor orders: PB4 kick, PB5 sleep, PB6 fault and PB7 arm',
                           '12 V: buck to J101 and F301, protected rail to J114, D303 and the load drivers',

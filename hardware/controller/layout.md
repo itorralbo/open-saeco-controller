@@ -31,8 +31,12 @@ IMG_1101 para confirmar el sentido de entrada lateral. Se fija esta relación:
 | JP14 | J107, puerta/cajón | izquierdo | 3,0 / 73,5 | 90° |
 | JP3 | J113, electroválvula | inferior | 3,5 / 125,3 | 0° |
 | JP22 | J109, nivel de agua | inferior | 19,0 / 128,2 | 0° |
-| JP13 | J105, NTC | inferior | 29,0 / 125,3 | 0° |
-| JP5 | J106, caudalímetro | inferior | 38,2 / 125,3 | 0° |
+| JP13 | J105, NTC | inferior | 28,75 / 125,3 | 0° |
+| JP5 | J106, caudalímetro | inferior | 37,0 / 125,3 | 0° |
+
+Desde el 2026-10-06 J106 está 1,2 mm más al oeste y J105 0,25 mm, con el
+acuerdo del propietario, para que U704 quepa en la barrera (ver «Corriente del
+molinillo»). J106 queda a 1,5 mm de la foto, dentro de la incertidumbre.
 
 La incertidumbre de posición asignada es ±1,5 mm. J104 ocupa la zona de JP21,
 pero no reproduce su interfaz: desde el 2026-10-01 es el Würth WR-MM 690367181672
@@ -773,6 +777,37 @@ Ruteado:
 
 Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
 triac. Tampoco hay snubber en Q708.
+
+### Corriente del molinillo
+
+Añadida el 2026-10-06 (ver
+[power-architecture.md](../power/power-architecture.md#corriente-del-molinillo)).
+U704 tiene que cruzar la barrera, y de K701 a J106 los tres optos la llenan.
+El único tramo libre es el de debajo de U702, entre J106 y BR701, justo donde
+el + de BR701 sube a JP8.1:
+
+- U704 en (50,8; 128,9), girado 180°: las dos patas de entrada al este (IN+
+  abajo, frente al + de BR701; IN- arriba, hacia JP8.1) y las ocho de 3,3 V
+  al oeste. Su patio de 11,9 mm no cabía: J106 pasa 1,2 mm al oeste, J105
+  0,25 mm (para que sus serigrafías no se toquen) y BR701 0,75 mm al este.
+- Huella con el patrón HV de TI: 8,1 mm entre filas, sin ranura. Área
+  `mains device pitch U704` para las dos patas de entrada, a 0,67 mm entre sí:
+  son el mismo conductor a ambos lados de 0,7 mΩ.
+- El + de BR701 entra en IN+ por F.Cu a 1,2 mm; `GRINDER_DC_SENSED` sale de
+  IN- por x = 56 mm, fuera de la banda, y sube en diagonal a JP8.1.
+- Lado de 3,3 V: GND y ALERT juntos y a una vía de masa, OC a otra; VOC y
+  los dos VS en una pista hasta C703, con su bajada al plano.
+- VOUT a PA6. El bus de órdenes en B.Cu (y = 54,6–55,8 mm) y el tronco de 24 V
+  en F.Cu (y = 55,1 mm y luego x = 46,4 mm) cierran el sur del STM32 en las
+  dos capas, así que la línea sale de PA6 por F.Cu hacia el oeste hasta
+  R412/C407, entre R704 y el desacoplo; baja a B.Cu al norte de los carriles,
+  va al oeste por y = 45,2/44,8 mm, baja por x = 18,9 mm y vuelve al este
+  bajo JP13 y JP5 hasta U704. Unos 150 mm y dos vías, encontrados con el A*
+  sobre el cobre volcado. C407 va a la pista de masa del desacoplo en
+  x = 70,8 mm.
+- Rerouteados por el cambio: NTC_RAW, FLOW_RAW, las masas de J105/J106, los
+  12 V de J106.3 a la bomba (B.Cu), la fase con fusible y el neutro de BR701
+  y el - a JP8.3.
 
 ### Fase de cargas bajo el perfil
 

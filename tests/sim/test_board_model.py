@@ -208,6 +208,18 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'U601', '4', 'WATCHDOG_KICK')
         self.expect(b, 'wdi-reset', 'U601.WDI')
 
+    def test_grinder_sensor_without_supply(self):
+        b = baseline()  # U704's VS pads left off the 3.3 V rail
+        for pad in ('9', '10'):
+            set_net(b['controller'], 'U704', pad, 'U704_VS')
+        self.expect(b, 'analog', 'GRINDER_CURRENT')
+
+    def test_grinder_current_bypassing_the_sensor(self):
+        b = baseline()  # JP8's + back on the bridge, U704's input shorted
+        set_net(b['controller'], 'J115', '1', 'GRINDER_DC_PLUS')
+        set_net(b['controller'], 'U704', '2', 'GRINDER_DC_PLUS')
+        self.expect(b, 'analog', 'U704')
+
     def test_unclaimed_mcu_net(self):
         b = baseline()
         set_net(b['controller'], 'U101', '42', 'SPARE')

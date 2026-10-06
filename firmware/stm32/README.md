@@ -11,6 +11,10 @@ linker script y el puerto de `osc_hal.h` al micro (CubeMX/LL) siguen TBD.
   Solo mueven cargas con el núcleo en SAFE_IDLE y el enlace vivo; cada una
   tiene tiempo máximo, la puerta y nFAULT se vigilan en cada paso, y el bucle
   principal deja de escribir sus salidas en cuanto el núcleo sale de SAFE_IDLE.
+  El molinillo se juzga por su corriente (U704) en bloques de 100 ms con
+  `osc_grinder_verdict()`: falta de grano o bloqueo; la dosis, por la subida
+  de la corriente del grupo al prensar con `osc_dose_present()`. Umbrales en
+  `controller.h`, supuestos hasta caracterizar el motor.
 - `osc_hal.h`: el poco acceso al hardware que necesita el BSP (modo y nivel de
   pin, ADC, contador de flancos, PWM, desactivar el *dead battery* de UCPD,
   UART, calibración de VREFINT, milisegundos). En host lo implementa
@@ -22,7 +26,9 @@ linker script y el puerto de `osc_hal.h` al micro (CubeMX/LL) siguen TBD.
   resetea a los 0,9 s como pronto), atiende el [protocolo v0](../common/protocol.md)
   con el ESP32 (STATUS cada 100 ms, enlace perdido a los 350 ms, TEST y
   TEST_REPORT), lee entradas,
-  ejecuta el controlador cada 10 ms y escribe las salidas. Tras el reset espera
+  ejecuta el controlador cada 10 ms y escribe las salidas. La corriente del
+  molinillo se muestrea en cada vuelta (1 ms, `bsp_sample()`) y se promedia por
+  tick: es una onda rectificada de 100 Hz que un muestreo cada 10 ms aliasaría. Tras el reset espera
   hasta 2 s en `OSC_BOOT` a que aparezca el ESP32; sin enlace pasa a `OSC_FAULT`,
   del que solo sale con CLEAR_FAULT. Los rails y la corriente se escalan con la
   VDDA medida contra VREFINT y su calibración de fábrica, no con 3,3 V supuestos.

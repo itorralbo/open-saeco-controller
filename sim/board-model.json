@@ -356,6 +356,24 @@
   },
   {
    "mcu": "stm32",
+   "name": "GRINDER_CURRENT",
+   "net": "GRINDER_CURRENT_ADC",
+   "function": "adc",
+   "pad": "controller:U101.20",
+   "pin": "PA6",
+   "periph": "ADC2_IN3",
+   "af": null,
+   "adc": [
+    2,
+    3
+   ],
+   "path": [
+    "controller:R412"
+   ],
+   "reset_level": null
+  },
+  {
+   "mcu": "stm32",
    "name": "GRINDER_EN",
    "net": "GRINDER_EN_RAW",
    "function": "gpio_out",
@@ -371,7 +389,8 @@
     "controller:U703",
     "controller:Q708",
     "controller:F703",
-    "controller:BR701"
+    "controller:BR701",
+    "controller:U704"
    ],
    "reset_level": "low"
   },
@@ -763,6 +782,7 @@
     "controller:C604.1",
     "controller:C605.1",
     "controller:C606.1",
+    "controller:C703.1",
     "controller:J102.1",
     "controller:J103.1",
     "controller:J109.1",
@@ -795,7 +815,10 @@
     "controller:U603.8",
     "controller:U604.8",
     "controller:U605.5",
-    "controller:U606.5"
+    "controller:U606.5",
+    "controller:U704.10",
+    "controller:U704.8",
+    "controller:U704.9"
    ]
   },
   "controller:3V3_UI": {
@@ -1302,6 +1325,7 @@
     "controller:C404.2",
     "controller:C405.2",
     "controller:C406.2",
+    "controller:C407.2",
     "controller:C501.2",
     "controller:C502.2",
     "controller:C505.2",
@@ -1316,6 +1340,7 @@
     "controller:C606.2",
     "controller:C701.2",
     "controller:C702.2",
+    "controller:C703.2",
     "controller:D302.2",
     "controller:J101.2",
     "controller:J102.3",
@@ -1394,6 +1419,9 @@
     "controller:U604.4",
     "controller:U605.3",
     "controller:U606.3",
+    "controller:U704.3",
+    "controller:U704.4",
+    "controller:U704.7",
     "front:C1.2",
     "front:C11.2",
     "front:C12.2",
@@ -1446,6 +1474,29 @@
     "controller:Q708.1"
    ]
   },
+  "controller:GRINDER_CURRENT_ADC": {
+   "aliases": [
+    "controller:GRINDER_CURRENT_ADC"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:C407.1",
+    "controller:R412.2",
+    "controller:U101.20"
+   ]
+  },
+  "controller:GRINDER_CURRENT_RAW": {
+   "aliases": [
+    "controller:GRINDER_CURRENT_RAW"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:R412.1",
+    "controller:U704.6"
+   ]
+  },
   "controller:GRINDER_DC_MINUS": {
    "aliases": [
     "controller:GRINDER_DC_MINUS"
@@ -1465,7 +1516,18 @@
    "volts": null,
    "pins": [
     "controller:BR701.1",
-    "controller:J115.1"
+    "controller:U704.1"
+   ]
+  },
+  "controller:GRINDER_DC_SENSED": {
+   "aliases": [
+    "controller:GRINDER_DC_SENSED"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:J115.1",
+    "controller:U704.2"
    ]
   },
   "controller:GRINDER_EN_INTERLOCK": {
@@ -3325,6 +3387,23 @@
     }
    }
   },
+  "controller:C407": {
+   "part": "C",
+   "value": "100nF / GRINDER I filtro",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GRINDER_CURRENT_ADC"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
   "controller:C501": {
    "part": "C",
    "value": "100uF / 35V motor bulk",
@@ -3589,6 +3668,23 @@
      "symbol": "",
      "physical": "",
      "net": "controller:RAIL_24V_ADC"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C703": {
+   "part": "C",
+   "value": "100nF / U704 VS",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
     },
     "2": {
      "symbol": "",
@@ -4375,7 +4471,7 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:GRINDER_DC_PLUS"
+     "net": "controller:GRINDER_DC_SENSED"
     },
     "2": {
      "symbol": "2",
@@ -5314,6 +5410,23 @@
     }
    }
   },
+  "controller:R412": {
+   "part": "R",
+   "value": "1k / GRINDER I serie",
+   "mpn": "0603WAF1001T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GRINDER_CURRENT_RAW"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GRINDER_CURRENT_ADC"
+    }
+   }
+  },
   "controller:R501": {
    "part": "R",
    "value": "33 / EN",
@@ -6148,7 +6261,7 @@
     "20": {
      "symbol": "PA6",
      "physical": "PA6",
-     "net": null
+     "net": "controller:GRINDER_CURRENT_ADC"
     },
     "21": {
      "symbol": "PA7",
@@ -7201,6 +7314,63 @@
      "symbol": "MT_IN",
      "physical": "MT_IN",
      "net": "controller:GRINDER_GATE_FEED"
+    }
+   }
+  },
+  "controller:U704": {
+   "part": "TMCS1133",
+   "value": "TMCS1133B4AQDVGR / grinder current",
+   "mpn": "TMCS1133B4AQDVGR",
+   "pins": {
+    "1": {
+     "symbol": "IN+",
+     "physical": "IN+",
+     "net": "controller:GRINDER_DC_PLUS"
+    },
+    "2": {
+     "symbol": "IN-",
+     "physical": "IN-",
+     "net": "controller:GRINDER_DC_SENSED"
+    },
+    "3": {
+     "symbol": "GND",
+     "physical": "GND",
+     "net": "controller:GND_UI"
+    },
+    "4": {
+     "symbol": "~{ALERT}",
+     "physical": "~{ALERT}",
+     "net": "controller:GND_UI"
+    },
+    "5": {
+     "symbol": "NC",
+     "physical": "NC",
+     "net": null
+    },
+    "6": {
+     "symbol": "VOUT",
+     "physical": "VOUT",
+     "net": "controller:GRINDER_CURRENT_RAW"
+    },
+    "7": {
+     "symbol": "~{OC}",
+     "physical": "~{OC}",
+     "net": "controller:GND_UI"
+    },
+    "8": {
+     "symbol": "VOC",
+     "physical": "VOC",
+     "net": "controller:3V3_CORE"
+    },
+    "9": {
+     "symbol": "VS",
+     "physical": "VS",
+     "net": "controller:3V3_CORE"
+    },
+    "10": {
+     "symbol": "VS",
+     "physical": "VS",
+     "net": "controller:3V3_CORE"
     }
    }
   },

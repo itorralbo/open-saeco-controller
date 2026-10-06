@@ -16,6 +16,10 @@ typedef struct {
     /* Engineering units, from the codes above and the board's dividers. */
     uint16_t rail_12v_mv, rail_24v_mv, brew_ma;
     int16_t boiler_dc;   /* 0.1 degC; OSC_TEMP_INVALID when the NTC is open or shorted */
+    /* Grinder current: mean of the samples since the last read (U704, 100 mV/A
+     * about VS/2; VS is 3V3_CORE, the ADC's own VDDA). */
+    uint16_t grinder;    /* mean raw ADC code */
+    int16_t grinder_ma;
 } osc_inputs;
 
 #define OSC_TEMP_INVALID (-32768)
@@ -33,6 +37,9 @@ void bsp_init(void);
 /* One edge on WDI; U601 needs a falling edge at least every 0.9 s. */
 void bsp_watchdog_toggle(void);
 void bsp_read(osc_inputs *in);
+/* Called every poll (1 ms): samples the grinder current, a full-wave 100 Hz
+ * waveform that a 10 ms control tick alone would alias. */
+void bsp_sample(void);
 /* Loads, mains arm and the brew bridge from the controller's outputs. */
 void bsp_write(const osc_outputs *out);
 void bsp_ui_power(bool on);

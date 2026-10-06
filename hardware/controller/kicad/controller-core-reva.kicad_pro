@@ -710,6 +710,10 @@
       },
       {
         "netclass": "Mains",
+        "pattern": "/GRINDER_DC_SENSED"
+      },
+      {
+        "netclass": "Mains",
         "pattern": "/GRINDER_DC_MINUS"
       },
       {

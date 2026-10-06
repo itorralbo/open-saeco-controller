@@ -83,7 +83,7 @@
 <path d="M 67.31 125.73 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="126.03" font-size="0.9" text-anchor="start" fill="#213b50">PA6</text>
 <text x="65.36999999999999" y="125.23" font-size="0.65" text-anchor="middle" fill="#213b50">20</text>
-<text x="62.23" y="126.03" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="61.83" y="125.23" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_CURRENT_ADC</text>
 <path d="M 67.31 129.54 H 62.23" stroke="#27856d" stroke-width=".22"/>
 <text x="68.00999999999999" y="129.84" font-size="0.9" text-anchor="start" fill="#213b50">PA7</text>
 <text x="65.36999999999999" y="129.04" font-size="0.65" text-anchor="middle" fill="#213b50">21</text>
@@ -1380,6 +1380,21 @@
 <text x="671.4300000000001" y="543.06" font-size="0.9" text-anchor="end" fill="#23745f">WATER_LEVEL</text>
 <path d="M 681.99 543.56 H 687.07" stroke="#27856d" stroke-width=".22"/>
 <text x="687.47" y="543.06" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="607.0600000000001" y="574.31" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="609.6" y="569.31" font-size="1.05" text-anchor="middle" fill="#213b50">R412</text>
+<text x="609.6" y="571.81" font-size="1.05" text-anchor="middle" fill="#213b50">1k / GRINDER I serie</text>
+<path d="M 607.0600000000001 575.31 H 601.98" stroke="#27856d" stroke-width=".22"/>
+<text x="601.58" y="574.81" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_CURRENT_RAW</text>
+<path d="M 612.14 575.31 H 617.22" stroke="#27856d" stroke-width=".22"/>
+<text x="617.62" y="574.81" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_CURRENT_ADC</text>
+<path d="M 676.9100000000001 575.31 H 678.815 M 680.085 575.31 H 681.99 M 678.815 573.81 V 576.81 M 680.085 573.81 V 576.81" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="679.45" y="568.81" font-size="1.05" text-anchor="middle" fill="#213b50">C407</text>
+<text x="679.45" y="571.31" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / GRINDER I filtro</text>
+<path d="M 676.9100000000001 575.31 H 671.83" stroke="#27856d" stroke-width=".22"/>
+<text x="671.4300000000001" y="574.81" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_CURRENT_ADC</text>
+<path d="M 681.99 575.31 H 687.07" stroke="#27856d" stroke-width=".22"/>
+<text x="687.47" y="574.81" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="470" y="592" font-size="1.2" text-anchor="start" fill="#213b50">PA6 ADC2_IN3: corriente del molinillo, 1,65 V + 0,1 V/A (U704, etapa 18).</text>
 <text x="470" y="562" font-size="1.2" text-anchor="start" fill="#213b50">PC3 ADC12_IN9/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.</text>
 <text x="870" y="36" font-size="1.8" text-anchor="start" fill="#213b50">11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A</text>
 <rect x="900.43" y="56.515" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
@@ -2012,7 +2027,7 @@
 <path d="M 1094.74 637.54 H 1089.66" stroke="#27856d" stroke-width=".22"/>
 <text x="1095.4399999999998" y="637.8399999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="1092.8" y="637.04" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="1089.26" y="637.04" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
+<text x="1089.26" y="637.04" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_SENSED</text>
 <path d="M 1094.74 641.35 H 1089.66" stroke="#27856d" stroke-width=".22"/>
 <text x="1095.4399999999998" y="641.65" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="1092.8" y="640.85" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
@@ -2709,6 +2724,57 @@
 <text x="1311.0400000000002" y="1062.49" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_DC_MINUS</text>
 <text x="870" y="1092" font-size="1.1" text-anchor="start" fill="#213b50">Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware; F703 T4A cubre cortos.</text>
 <text x="870" y="1100" font-size="1.1" text-anchor="start" fill="#213b50">BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido intermitente (&lt;=10 s y pausa). Medir en el prototipo.</text>
+<rect x="1172.21" y="1130.3" width="15.24" height="20.32" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1179.83" y="1125.3" font-size="1.05" text-anchor="middle" fill="#213b50">U704</text>
+<text x="1179.83" y="1127.8" font-size="1.05" text-anchor="middle" fill="#213b50">TMCS1133B4AQDVGR / grinder current</text>
+<path d="M 1172.21 1137.92 H 1167.13" stroke="#27856d" stroke-width=".22"/>
+<text x="1172.9099999999999" y="1138.22" font-size="0.9" text-anchor="start" fill="#213b50">IN+</text>
+<text x="1170.27" y="1137.42" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1166.73" y="1137.42" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_PLUS</text>
+<path d="M 1172.21 1143.0 H 1167.13" stroke="#27856d" stroke-width=".22"/>
+<text x="1172.9099999999999" y="1143.3" font-size="0.9" text-anchor="start" fill="#213b50">IN-</text>
+<text x="1170.27" y="1142.5" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1166.73" y="1142.5" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_SENSED</text>
+<path d="M 1187.4499999999998 1131.57 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1131.87" font-size="0.9" text-anchor="end" fill="#213b50">VS</text>
+<text x="1189.39" y="1131.07" font-size="0.65" text-anchor="middle" fill="#213b50">10</text>
+<text x="1192.93" y="1131.07" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 1187.4499999999998 1134.11 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1134.4099999999999" font-size="0.9" text-anchor="end" fill="#213b50">VS</text>
+<text x="1189.39" y="1133.61" font-size="0.65" text-anchor="middle" fill="#213b50">9</text>
+<text x="1192.93" y="1133.61" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 1187.4499999999998 1136.65 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1136.95" font-size="0.9" text-anchor="end" fill="#213b50">VOC</text>
+<text x="1189.39" y="1136.15" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
+<text x="1192.93" y="1136.15" font-size="0.9" text-anchor="start" fill="#23745f">3V3_CORE</text>
+<path d="M 1187.4499999999998 1139.19 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1139.49" font-size="0.9" text-anchor="end" fill="#213b50">~{OC}</text>
+<text x="1189.39" y="1138.69" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
+<text x="1192.93" y="1138.69" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1187.4499999999998 1141.73 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1142.03" font-size="0.9" text-anchor="end" fill="#213b50">VOUT</text>
+<text x="1189.39" y="1141.23" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="1192.93" y="1141.23" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_CURRENT_RAW</text>
+<path d="M 1187.4499999999998 1144.27 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1144.57" font-size="0.9" text-anchor="end" fill="#213b50">NC</text>
+<text x="1189.39" y="1143.77" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="1192.53" y="1144.57" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<path d="M 1187.4499999999998 1146.81 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1147.11" font-size="0.9" text-anchor="end" fill="#213b50">~{ALERT}</text>
+<text x="1189.39" y="1146.31" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="1192.93" y="1146.31" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1187.4499999999998 1149.35 H 1192.53" stroke="#27856d" stroke-width=".22"/>
+<text x="1186.75" y="1149.6499999999999" font-size="0.9" text-anchor="end" fill="#213b50">GND</text>
+<text x="1189.39" y="1148.85" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="1192.93" y="1148.85" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 1236.98 1140.46 H 1238.885 M 1240.155 1140.46 H 1242.06 M 1238.885 1138.96 V 1141.96 M 1240.155 1138.96 V 1141.96" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1239.52" y="1133.96" font-size="1.05" text-anchor="middle" fill="#213b50">C703</text>
+<text x="1239.52" y="1136.46" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / U704 VS</text>
+<path d="M 1236.98 1140.46 H 1231.9" stroke="#27856d" stroke-width=".22"/>
+<text x="1231.5" y="1139.96" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 1242.06 1140.46 H 1247.14" stroke="#27856d" stroke-width=".22"/>
+<text x="1247.5400000000002" y="1139.96" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="870" y="1160" font-size="1.1" text-anchor="start" fill="#213b50">U704: Hall aislado reforzado 5 kVrms, 100 mV/A sobre 1,65 V (±15,5 A). Falta de grano = corriente baja; muelas bloqueadas = alta.</text>
 <rect x="1042.67" y="791.21" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1045.21" y="786.21" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG115</text>
 <text x="1045.21" y="788.71" font-size="1.05" text-anchor="middle" fill="#213b50">Relay-enabled load phase</text>

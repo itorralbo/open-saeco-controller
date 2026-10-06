@@ -13,6 +13,7 @@
 #define ADC(s) osc_hal_adc_read(BOARD_##s##_ADC, BOARD_##s##_ADC_CHANNEL)
 
 static bool kick;
+static uint32_t grinder_sum, grinder_n;
 
 static void output(unsigned port, unsigned pin, bool level) {
     osc_hal_pin_write(port, pin, level);
@@ -42,6 +43,12 @@ void bsp_init(void) {
     osc_hal_pin_mode(PORT(UART_TX), PIN(UART_TX), OSC_PIN_AF, BOARD_UART_TX_AF);
     osc_hal_pin_mode(PORT(UART_RX), PIN(UART_RX), OSC_PIN_AF, BOARD_UART_RX_AF);
     kick = false;
+    grinder_sum = grinder_n = 0;
+}
+
+void bsp_sample(void) {
+    grinder_sum += ADC(GRINDER_CURRENT);
+    grinder_n++;
 }
 
 void bsp_watchdog_toggle(void) {
@@ -72,6 +79,12 @@ void bsp_read(osc_inputs *in) {
     in->rail_24v_mv = (uint16_t)(((uint32_t)in->rail_24v * in->vdda_mv * 21u) / 4095u);
     in->brew_ma = (uint16_t)(((uint32_t)in->brew_current * in->vdda_mv * 10u) / (4095u * 24u));
     in->boiler_dc = bsp_ntc_dc(in->ntc);
+    if (!grinder_n) bsp_sample();
+    in->grinder = (uint16_t)((grinder_sum + grinder_n / 2u) / grinder_n);
+    grinder_sum = grinder_n = 0;
+    /* 100 mV/A: 10 mA per mV from VDDA/2. */
+    in->grinder_ma = (int16_t)(((int32_t)in->grinder * in->vdda_mv * 10 + 2047) / 4095 -
+                               (int32_t)in->vdda_mv * 5);
 }
 
 int16_t bsp_ntc_dc(uint16_t code) {

@@ -72,8 +72,9 @@
       "function": "boiler NTC",
       "edge": "bottom",
       "entry_direction": "bottom",
-      "footprint_origin_mm": [29.0, 125.3],
-      "rotation_deg": 0
+      "footprint_origin_mm": [28.75, 125.3],
+      "rotation_deg": 0,
+      "note": "0.25 mm west of the photographed pin 1 (2026-10-06) so that J106, moved west for U704 (the grinder current sensor), keeps its courtyard and silkscreen clear of it"
     },
     {
       "original_reference": "JP5",
@@ -81,9 +82,9 @@
       "function": "flowmeter",
       "edge": "bottom",
       "entry_direction": "bottom",
-      "footprint_origin_mm": [38.2, 125.3],
+      "footprint_origin_mm": [37.0, 125.3],
       "rotation_deg": 0,
-      "note": "0.3 mm west of the photographed pin 1 so that the HR A2506WV-03P courtyard clears U702"
+      "note": "1.5 mm west of the photographed pin 1: 0.3 mm so that the HR A2506WV-03P courtyard clears U702 and, since 2026-10-06 with the owner's agreement, 1.2 mm more so that U704 (grinder current sensor) fits across the barrier between it and BR701"
     }
   ],
   "required_power_connector_placements": [

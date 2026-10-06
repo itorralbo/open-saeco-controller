@@ -925,3 +925,48 @@ Resultado: modelo de placa 0 errores y 0 avisos; `tests/sim` 71/71 (12 de F4);
 CTest 3/3; GCC 15 con `-Wall -Wextra -Werror -pedantic` sin avisos. Probado en
 el navegador integrado: ciclo del grupo y bomba con K701, triac, caudal y el
 informe en vivo. Sin hardware.
+
+## Corriente del molinillo y prueba de dosis, 2026-10-06
+
+A petición del propietario, la placa mide la corriente del molinillo para
+saber cuándo falta grano (el motor gira en vacío) o se bloquean las muelas.
+Detalle en [power-architecture.md](../hardware/power/power-architecture.md#corriente-del-molinillo)
+y [layout.md](../hardware/controller/layout.md#corriente-del-molinillo).
+
+- **U704**, TI TMCS1133B4AQDVGR (C36873216, Extended, 163 en stock hoy;
+  alternativa TMCS1123B4AQDVGR, C30955591): Hall con aislamiento reforzado de
+  5 kVrms en la línea + de JP8, 100 mV/A sobre VS/2. Cruza la barrera bajo
+  U702 con el patrón HV de TI (8,1 mm entre filas). Para que su patio de
+  11,9 mm cupiera, J106 (JP5) pasa 1,2 mm al oeste, J105 (JP13) 0,25 mm y
+  BR701 0,75 mm al este; J106 queda a 1,5 mm de la foto, dentro de la
+  incertidumbre asignada.
+- La salida llega a **PA6** (ADC2_IN3, de la tabla 13 de DS12589) por R412 y
+  C407 (1,6 kHz) junto al STM32: unos 150 mm y dos vías, rodeando por el
+  oeste el bus de órdenes y el tronco de 24 V, que cierran el sur del MCU.
+- Firmware: muestreo cada 1 ms y media por tick; cero con el motor parado;
+  bloqueo por encima de 2 A, falta de grano por debajo de 550 mA o del 75 %
+  de la corriente con carga. Nueva prueba **Dosis**: muele, prensa con el
+  grupo y comprueba que la corriente al prensar sube al menos 40 mA sobre I0
+  (manual: +55 a 200 mA). Umbrales supuestos hasta GR-02/03/08 y BU-05.
+  STATUS pasa a 20 bytes con la corriente del molinillo.
+
+Lo que encontraron las comprobaciones, corregido con su prueba:
+
+- El modelo de placa dio `GRINDER_EN no llega a J115.1` en cuanto U704 se
+  puso en la línea: el modelo no sabía que su entrada es un conductor. Ahora
+  `hall_current` lo une, y la comprobación `hall` falla si JP8 no está en
+  serie con el sensor o si VS no tiene alimentación (dos pruebas de mutación).
+- Los motivos de la pantalla de prueba se cortaban a 18 caracteres tras
+  «Motivo: »: «límite de temperatura» ya salía truncado. Acortados, con una
+  prueba que los mide.
+- La comprobación de dosis medía I0 sobre todo el recorrido, prensado
+  incluido, y con 3 s de molido (3,6 g) la subida quedaba en 41 mA frente a
+  15 mA sin café. Ahora I0 sale del primer segundo y la prueba muele 6 s por
+  defecto: 107 mA con café frente a 21 mA sin él.
+
+Resultado: ERC 0; netlist 198 componentes y 648 pines; DRC con todas las
+severidades: 0 infracciones, 0 sin conectar y paridad solo MH1–MH3 (1360
+segmentos y 452 vías, 147 de cosido); modelo de placa 0 errores y 0 avisos;
+`tests/sim` 83/83; CTest 3/3; GCC 15 sin avisos. Serigrafía, PDF 1:1 y render
+regenerados. Panel probado en el navegador integrado con la prueba de dosis.
+Sin hardware.
