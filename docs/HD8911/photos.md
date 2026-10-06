@@ -227,4 +227,19 @@ Conclusiones:
 - F2 de 2 A protegía un flyback propio, con otra irrupción; no fija el valor de
   F702 para el IRM-30, que sigue pendiente de PS-03.
 
-Para el margen de carga de F701 falta leer en la placa el amperaje de F1.
+### Lectura del propietario sobre la pieza, 2026-10-06
+
+El propietario leyó los casquillos en la placa. Para ver el de F1 tuvo que
+desmontarlo, porque el marcaje queda hacia la placa.
+
+| Fusible | Marcaje leído | Interpretación |
+|---|---|---|
+| F1, entrada | «L(E?)12AH250V P» | 12 A, alto poder de corte («H»), 250 V. «L(E?)» encaja con el logotipo de Littelfuse, que en su serie 215 imprime logo y valores en el mismo casquillo, pero no está confirmado. No aparece la letra de la curva (T), y la «P» final queda sin interpretar |
+| F2, fuente | «E?T2AH250…» | T2AH250V: retardado, 2 A, alto poder de corte |
+
+Con esto la clase H queda confirmada en los dos fusibles por el marcaje y no
+solo por el cuerpo cerámico. El fabricante dio 12 A al mismo calentador que la
+Rev A, y por eso F701 pasa de 10 A a 12 A (Littelfuse 0215012.MXEP), soldado en
+horizontal como F1; ver
+[corriente de defecto supuesta](../../hardware/power/power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red).
+El F1 desmontado queda fuera de la placa original.

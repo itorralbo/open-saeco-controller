@@ -211,7 +211,7 @@ DP por B.Cu justo antes de los pads.
 - Fase: une las dos patas de J118.1 y sube por el paso entre el disipador y PS701 hasta F701 (3 mm en
   cada cara). PSU_L baja desde F702 por el mismo paso hasta PS701.1 (1 mm). Las dos
   pistas van anidadas y separadas 2,5 mm; por eso F702 está encima de F701.
-- Fase protegida: une las dos pinzas de F701 y F702, RV701 y los dos pads COM
+- Fase protegida: une el pad oeste de F701, las pinzas de F702, RV701 y los dos pads COM
   de K701. El par COM de K701 se une por B.Cu para dejar sitio a la unión del par
   NO (`LOAD_L_ENABLED`), que baja a los triacs de las tres cargas.
 - Neutro: sale de la pata este de J118.3, junto al borde, y sube a 1,5 mm por
@@ -226,8 +226,12 @@ Las fases que llevan la corriente de carga (unos 10 A) van duplicadas: 3 mm en
 F.Cu y 3 mm en B.Cu, unidas por pads THT y vías de cosido de 1,6/0,8 mm. Son unos
 6 mm de cobre de 1 oz, frente a los ≈4,7 mm que pide IPC-2221 para 10 A con 20 °C
 de calentamiento. Se decidió así el 2026-09-19 porque sale más barato en JLCPCB
-que pasar a 2 oz. El tramo corto que une las pinzas de F701 y la curva superior,
-unos 10 mm, quedan solo en F.Cu, porque el neutro cruza por B.Cu justo encima.
+que pasar a 2 oz. Desde el 2026-10-06 F701 es un fusible axial de 12 A tumbado
+sobre taladros a 27,5 mm (como el F1 original), con el pad 1 en el extremo de la
+subida de fase, en (96,5; 74); el pad 2 queda a 0,4 mm del courtyard de K701 y
+llega a la fase protegida con 3 mm por cada cara. Solo los 3 mm finales de la
+subida quedan en F.Cu, porque el neutro cruza por B.Cu en y = 70,5 mm; antes
+eran unos 10 mm hasta las pinzas.
 
 ## Salida de 24 V
 

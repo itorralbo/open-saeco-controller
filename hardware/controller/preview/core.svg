@@ -2097,7 +2097,7 @@
 <text x="1143.87" y="767.85" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
 <rect x="831.85" y="638.58" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="834.39" y="633.58" font-size="1.05" text-anchor="middle" fill="#213b50">F701</text>
-<text x="834.39" y="636.08" font-size="1.05" text-anchor="middle" fill="#213b50">T10AH / 250V MAIN</text>
+<text x="834.39" y="636.08" font-size="1.05" text-anchor="middle" fill="#213b50">T12AH / 250V MAIN</text>
 <path d="M 831.85 640.08 H 826.77" stroke="#27856d" stroke-width=".22"/>
 <text x="832.55" y="640.38" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="829.91" y="639.58" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>

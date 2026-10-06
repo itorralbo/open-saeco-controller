@@ -200,6 +200,20 @@ def fuse_axial_vertical():
             (TIN, box(4.75, 5.41, -0.33, 0.33, -1.5, z1+1.66))]
 
 
+def fuse_axial_horizontal():
+    """Littelfuse 215 axial (0215xxx.XEP) lying flat over 27.5 mm holes:
+    5.5 x 21.5 mm body, 1.5 mm above the board, caps 1.5 mm long and 0.8 mm
+    leads bent down to the pads (215 datasheet, revised 01/12/17)."""
+    z0, z1 = 1.5, 7.0
+    return [(GLASS, box(4.5, 23.0, -2.75, 2.75, z0, z1)),
+            (TIN, box(3.0, 4.5, -2.75, 2.75, z0, z1)),
+            (TIN, box(23.0, 24.5, -2.75, 2.75, z0, z1)),
+            (TIN, box(-0.4, 3.0, -0.4, 0.4, 3.85, 4.65)),
+            (TIN, box(24.5, 27.9, -0.4, 0.4, 3.85, 4.65)),
+            (TIN, box(-0.4, 0.4, -0.4, 0.4, -1.5, 4.65)),
+            (TIN, box(27.1, 27.9, -0.4, 0.4, -1.5, 4.65))]
+
+
 def inductor(sx, sy, h, pads):
     """Shielded SMD power inductor drawn as a block on its two terminals."""
     parts = [(BLACK, box(-sx/2, sx/2, -sy/2, sy/2, 0.05, h))]
@@ -279,6 +293,8 @@ SCOPE = {
         'Carcasa de 8,94 x 3,16 x 6,40 mm del plano HRO; sin contactos internos.'),
     'TI_DVG0010A_SOIC-10W_HV': ('OpenSaeco', soic10w_dvg(),
         'Cuerpo de 7,5 x 10,3 mm y 2,65 mm de alto del plano TI 4226847/C; patas simplificadas.'),
+    'Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm': ('OpenSaeco', fuse_axial_horizontal(),
+        'Cuerpo de 5,5 x 21,5 mm tumbado, 1,5 mm sobre la placa, de la hoja Littelfuse 215; casquillos y patillas simplificados.'),
     'Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm': ('OpenSaeco', fuse_axial_vertical(),
         'Cuerpo de 5,5 x 21,5 mm de pie, 1,5 mm sobre la placa, de la hoja Littelfuse 215; patilla doblada simplificada.'),
     'ESP32-S3-WROOM-1U': ('RF_Module', esp32_s3_wroom_1u(),

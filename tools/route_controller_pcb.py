@@ -274,14 +274,15 @@ def route_mains_input(board):
     # J118 is a TE 1971845-3: tab 1, the phase, solders through two tails at
     # 103.75 and 108.75 mm, y = 121.55, which are linked, and leaves north
     # from the west one. B.Cu doubles the phase up to y = 77: N crosses on
-    # B.Cu above that, so the last 3 mm bend and the F701 clip link stay on
-    # F.Cu only.
+    # B.Cu above that, so the last 3 mm into F701's pad stay on F.Cu only.
+    # Since 2026-10-06 F701 is an axial fuse lying flat with pad 1 on the
+    # end of this run, so the 9.5 mm F.Cu-only link to the old clips is gone.
     for layer in (pcb.F_Cu, pcb.B_Cu):
         track(board, l_in, (103.75, 121.55), (108.75, 121.55), layer,
               width=MAINS_PHASE_WIDTH)
         track(board, l_in, (103.75, 121.55), (103.75, 118.00), layer, width=2.2)
     polyline(board, l_in, [(103.75, 118.00), (99.50, 118.00), (96.50, 115.00),
-                           (96.50, 74.00), (87.00, 74.00)], width=MAINS_PHASE_WIDTH)
+                           (96.50, 74.00)], width=MAINS_PHASE_WIDTH)
     polyline(board, l_in, [(103.75, 118.00), (99.50, 118.00), (96.50, 115.00),
                            (96.50, 77.00)], pcb.B_Cu, width=MAINS_PHASE_WIDTH)
     for point in [(102.00, 118.00), (96.50, 110.00), (96.50, 101.00),
@@ -291,12 +292,12 @@ def route_mains_input(board):
                             (104.35, 113.15), (106.30, 113.15)],
              width=MAINS_LIGHT_WIDTH)
 
-    # Fused phase: both fuse clips, the MOV and the doubled K701 COM pads.
-    # Every end is a THT pad, so both layers meet there; one stitching via
-    # mid-way along the K701 link.
+    # Fused phase: F701's west pad, F702's clips, the MOV and the doubled
+    # K701 COM pads. Every end is a THT pad, so both layers meet there; one
+    # stitching via mid-way along the K701 link.
     for layer in (pcb.F_Cu, pcb.B_Cu):
         for start, end in [((72.00, 67.00), (77.00, 67.00)),
-                           ((72.00, 74.00), (77.00, 74.00)),
+                           ((69.00, 74.00), (72.00, 74.00)),
                            ((72.00, 67.00), (72.00, 80.00))]:
             track(board, l_fused, start, end, layer, width=MAINS_PHASE_WIDTH)
         polyline(board, l_fused, [(57.00, 73.25), (57.00, 67.50), (72.00, 67.50)],

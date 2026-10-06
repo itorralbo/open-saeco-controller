@@ -3916,8 +3916,8 @@
   },
   "controller:F701": {
    "part": "FUSE",
-   "value": "T10AH / 250V MAIN",
-   "mpn": "0215010.MXP",
+   "value": "T12AH / 250V MAIN",
+   "mpn": "0215012.MXEP",
    "pins": {
     "1": {
      "symbol": "1",

@@ -240,6 +240,16 @@
       "rated_v": 250,
       "breaking_a": 50,
       "breaking_v": 250
+    },
+    "0215012.MXEP": {
+      "kind": "fuse",
+      "source": "Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item: 12 A, 250 V, interrupting rating 1500 A at 250 VAC (0.125-12 A), nominal cold resistance 0.0061 ohm, nominal melting I2t 515.5 A2s (I2t test at 10x rated current).",
+      "rated_a": 12,
+      "rated_v": 250,
+      "breaking_a": 1500,
+      "breaking_v": 250,
+      "melting_i2t": 515.5,
+      "cold_ohms": 0.0061
     }
   }
 }
