@@ -1012,8 +1012,12 @@ Lo que no queda demostrado y sigue abierto en la issue:
   el I²t de despeje a la corriente de fallo no está publicado.
 - **Valor de F702** frente a la irrupción del IRM-30 (PS-03) y **margen de carga
   de F701**: pinzas de 10 A frente a 8,4–9,2 A solo del calentador.
-- **Ensayo de interrupción** (PS-04, en laboratorio) y comprobación con el mazo
-  de que JP8 entra 1,35 mm más al sur.
+- **Ensayo de interrupción** (PS-04, en laboratorio). El propietario confirmó el
+  mismo día que el mazo de JP8 llega de sobra 1,35 mm más al sur.
+
+Las fotos de la original (F1 y F2 de clase H, sin fusible del molinillo y con un
+puente de 1N400x) respaldan la hipótesis de 1500 A y que se acepte el requisito 2
+como en la original; ver [fotos](HD8911/photos.md#fusibles-y-puente-del-molinillo-2026-10-06).
 
 Resultado: ERC 0 en las dos placas; netlist 198 componentes y 648 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo

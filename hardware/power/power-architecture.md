@@ -384,13 +384,23 @@ doblez a más de 1,0 mm del casquillo; la patilla de vuelta va enfundada. Mide
 unos 25 mm de alto, menos que el perfil de 35 mm, y se suelda a mano o por ola
 (la hoja lo excluye del reflujo). Para hacerle sitio, J115 (JP8) baja 1,35 mm,
 hacia la posición fotografiada y dentro de los ±1,5 mm asignados, BR701 baja
-1,2 mm y la puerta de la bomba pasa a y = 117,2 mm. Hay que comprobar con el
-mazo que JP8 sigue entrando.
+1,2 mm y la puerta de la bomba pasa a y = 117,2 mm. El propietario confirmó el
+2026-10-06 que el mazo de JP8 llega de sobra en la nueva posición.
 
-**Para cerrar la issue** faltan: confirmar la hipótesis de 1500 A, el valor de
-F702, el margen de F701, la protección del puente (requisito 2) y un ensayo de
-interrupción de la rama del molinillo con una fuente de corriente prospectiva
-conocida.
+**Lo que dice la placa original** ([fotos](../../docs/HD8911/photos.md#fusibles-y-puente-del-molinillo-2026-10-06)).
+Sus dos fusibles de red, F1 y F2, son 5 × 20 mm cerámicos de clase H (se lee
+«…H250» en F1 y casi seguro T2AH250V en F2), así que la hipótesis de 1500 A
+coincide con la clase que eligió el fabricante; no mide la corriente prospectiva.
+No tenía fusible propio del molinillo, y su puente eran cuatro 1N400x de 1 A, que
+ningún fusible de red podía proteger de un corto en continua: aceptaba sacrificar
+el puente y despejar con F1, lo mismo que se acepta en el requisito 2.
+
+**Para cerrar la issue** faltan: confirmar la hipótesis de 1500 A en la
+revisión de seguridad (con el precedente de la original), aceptar por escrito
+que el requisito 2 no se cumple, como en la original, el valor de F702 (PS-03),
+el margen de F701 (con el amperaje de F1 de la original como referencia) y el
+ensayo de interrupción de la rama del molinillo con una fuente de corriente
+prospectiva conocida (PS-04).
 
 ## Estado seguro
 

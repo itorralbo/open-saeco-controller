@@ -748,7 +748,8 @@ horizontal pide unos 26 mm. El fusible axial va de pie con su huella
 el pad 2, 5,08 mm al este. Los pads quedan a 1,2 mm de la puerta del molinillo,
 que sigue en y = 111,85 mm por B.Cu, la separación de clase entre pads de red.
 Para que el cuerpo quepa, J115 baja 1,35 mm (a y = 122,15 mm, hacia el JP8
-fotografiado y dentro de los ±1,5 mm asignados) y BR701 baja 1,2 mm
+fotografiado y dentro de los ±1,5 mm asignados; el propietario confirmó que el
+mazo llega de sobra) y BR701 baja 1,2 mm
 (y = 132 mm). La puerta de la bomba, que pasaba por y = 116 mm justo debajo, va
 ahora por y = 117,2 mm y empieza su diagonal en x = 73 mm, a 2,5 mm del enlace
 B.Cu de la lengüeta 1 de JP19. La etiqueta JP8 MOLINILLO baja 1,7 mm.

@@ -194,3 +194,37 @@ de 5,7, 8,3 y 13,1 mm; JP24 tiene los pines a 5 mm y JP8 conserva el paso de
 orientación están en el [layout](../../hardware/controller/layout.md#jp3-jp5-jp13-jp8-y-jp24).
 El conector del enlace con el frontal lo identificó el 2026-10-01 en las dos placas, con un cable plano 1:1 de 16 hilos; los 20 contactos contados en la foto de JP21 eran un error.
 Siguen sin identificar JP14, JP16 y JP22.
+
+## Fusibles y puente del molinillo, 2026-10-06
+
+Revisión de IMG_1085 a IMG_1089 a resolución completa para la
+[issue #1](https://github.com/itorralbo/open-saeco-controller/issues/1)
+(poder de corte de los fusibles de red). Son lecturas de marcajes parciales en
+foto, no medidas.
+
+| Pieza | Foto | Lo que se ve | Lectura |
+|---|---|---|---|
+| F2, rama de la fuente | IMG_1088, IMG_1089 | 5 × 20 mm de cuerpo cerámico opaco, patillas axiales soldadas en vertical; casquillos «…2AH2…» y «…5HV» | Casi seguro T2AH250V: alto poder de corte («H») |
+| F1, entrada | IMG_1085, IMG_1086, IMG_1089 | 5 × 20 mm cerámico, axial y soldado junto a L5/L7; casquillo «…H250» | Alto poder de corte, 250 V; el amperaje queda en la cara oculta del casquillo |
+| D16/D23, D17/D22, D18/D20, D19/D21 | IMG_1085, IMG_1087 | Cuatro diodos axiales en encapsulado DO-41; se lee «1N4…» en D19/D21 y D18/D20 | Familia 1N400x, 1 A: el puente del molinillo |
+
+Conclusiones:
+
+- Los dos fusibles de red de la original son de clase H, como la hipótesis de
+  1500 A a 250 VAC de la Rev A (IEC 60127-2). No mide la corriente prospectiva
+  de la instalación, pero es la clase que eligió el fabricante para esta misma
+  máquina.
+- La original no tiene fusible propio del molinillo: solo F1 y F2. Un corto en
+  su rama lo despejaba F1, así que la selectividad F703/F701 de la Rev A va más
+  allá de la original.
+- Un 1N400x aguanta unos 30 A de pico no repetitivo, así que F1 no podía
+  proteger el puente de un corto en el lado de continua. La original
+  sacrificaba el puente y dejaba el despeje al fusible, lo mismo que se acepta
+  en la Rev A (requisito 2 de la issue).
+- Con diodos de 1 A, cada uno con la mitad de la corriente continua, la marcha
+  del motor original no debería pasar de 1–2 A. Es un indicio a favor de la
+  envolvente de 3 A, no una medida: siguen haciendo falta GR-02 y GR-03.
+- F2 de 2 A protegía un flyback propio, con otra irrupción; no fija el valor de
+  F702 para el IRM-30, que sigue pendiente de PS-03.
+
+Para el margen de carga de F701 falta leer en la placa el amperaje de F1.
