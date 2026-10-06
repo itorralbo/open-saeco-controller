@@ -11,6 +11,6 @@
   [proyectos KiCad](kicad-workflow.md).
 
 La principal no es fabricable: faltan la comprobación 1:1 de conectores, la
-identificación de JP14, JP16 y JP22, los valores de F701/F702/RV701, el filtro
+identificación de JP14, JP16 y JP22, RV701, el valor de F702 y el margen de F701, el filtro
 EMI y la revisión independiente de aislamiento y seguridad. No generar sus
 Gerbers hasta cerrarlos.

@@ -1000,8 +1000,8 @@
       "stock_checked_on": "2026-10-05",
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; same JFC2410TS series and 2410 outline as the T2A it replaces",
       "url": "https://jlcpcb.com/partdetail/C136386",
-      "selection": "candidate_not_released",
-      "selection_note": "Owner's fuse for the grinder (2026-09-23), resized to T4A when the stage moved from an assumed 1 A to 3 A: a 3 A run loads it to 75 %, where a T2A would sit at 150 %. It rides through the 3.4 A start and clears a shorted bridge or winding, but a 3.4 A stall is only 85 % of its rating and never blows it; the stall is the firmware's to cut. Breaking capacity is 50 A at 250 V, low for a mains branch; F701 upstream remains the main protection. Same footprint as the T2A (JFC2410-1200TS, C136382) it replaces."
+      "selection": "superseded_insufficient_breaking_capacity",
+      "selection_note": "Superseded on 2026-10-06 by the Littelfuse 0215004.MXEP (issue #1): its 50 A at 250 V breaking capacity cannot clear the shorted-bridge fault F703 is there for. Kept for the record; the board model fails if it returns to a mains branch. Owner's fuse for the grinder (2026-09-23), resized to T4A when the stage moved from an assumed 1 A to 3 A: a 3 A run loads it to 75 %, where a T2A would sit at 150 %. It rides through the 3.4 A start and clears a shorted bridge or winding, but a 3.4 A stall is only 85 % of its rating and never blows it; the stall is the firmware's to cut. Breaking capacity is 50 A at 250 V, low for a mains branch; F701 upstream remains the main protection. Same footprint as the T2A (JFC2410-1200TS, C136382) it replaces."
     },
     "AP63200WU-7": {
       "manufacturer": "Diodes Incorporated",
@@ -1124,6 +1124,54 @@
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; an earlier JLCPCB page confirmed SMT assembly support",
       "url": "https://jlcpcb.com/partdetail/AIDECAPACITOR-0603C0G560J500NT/C49326334",
       "selection": "candidate_supply_pending"
+    },
+    "FUSE:0215004.MXEP": {
+      "manufacturer": "Littelfuse",
+      "mpn": "0215004.MXEP",
+      "lcsc": "C178840",
+      "specification": "4 A time-lag 5 x 20 mm ceramic fuse, 215 series, 250 VAC, 1500 A at 250 VAC interrupting rating (IEC 60127-2 sheet 5, \"H\"); nominal cold resistance 0.0185 ohm, nominal melting I2t 46.96 A2s at 10 In, 0.65 mm axial leads; grinder branch F703",
+      "footprint": "OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 974,
+      "available_order_qty_observed": 974,
+      "stock_checked_on": "2026-10-06",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
+      "url": "https://jlcpcb.com/partdetail/C178840",
+      "selection": "candidate_not_released",
+      "selection_note": "Replaces the JDT JFC2410-1400TS (50 A at 250 V) on 2026-10-06, issue #1: a shorted BR701 diode puts the mains across the bridge through Q708, and F703, the smallest fuse in that loop, is the one that has to break it. Axial-lead version (0.65 mm leads, 5.5 x 21.5 mm body), mounted on end beside Q708: the only free spot near the grinder path is 4.6 mm wide, too small for a horizontal 5 x 20 mm body. Littelfuse asks for at least 1.5 mm between board and cap and the lead bend at least 1.0 mm from the cap; the returning lead is sleeved. Not for reflow: hand or wave soldered. Its nominal melting I2t (46.96 A2s) is above the KBP410 I2t rating (35 A2s), so it does not demonstrate that the bridge survives a short on the DC side."
+    },
+    "FUSE:0215010.MXP": {
+      "manufacturer": "Littelfuse",
+      "mpn": "0215010.MXP",
+      "lcsc": "C142733",
+      "specification": "10 A time-lag 5 x 20 mm ceramic fuse, 215 series, 250 VAC, 1500 A at 250 VAC interrupting rating (IEC 60127-2 sheet 5, \"H\"); nominal cold resistance 0.0066 ohm, nominal melting I2t 333.565 A2s at 10 In; main input F701, in two Littelfuse 01110501Z clips (C151075)",
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 10369,
+      "available_order_qty_observed": 10366,
+      "stock_checked_on": "2026-10-06",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
+      "url": "https://jlcpcb.com/partdetail/C142733",
+      "selection": "candidate_not_released",
+      "selection_note": "Main fuse F701 since 2026-10-06 (issue #1): the 10 A rating it had, now with a stated 1500 A breaking capacity. Holder: two Littelfuse 111 501 spring-brass clips (01110501Z, LCSC C151075, 5132 in stock on 2026-10-06), which the Littelfuse clip catalogue rates \"for current levels up to 10 amperes\". Open: with the heater (8.4 A at 230 V, 9.2 A at 253 V) and the other loads the continuous current reaches the clip rating and most of the fuse rating; the 215 re-rating curve gives about 95 % at 60 C. Margin to be decided by the owner (see power-architecture.md)."
+    },
+    "FUSE:0215001.MXP": {
+      "manufacturer": "Littelfuse",
+      "mpn": "0215001.MXP",
+      "lcsc": "C142715",
+      "specification": "1 A time-lag 5 x 20 mm ceramic fuse, 215 series, 250 VAC, 1500 A at 250 VAC interrupting rating (IEC 60127-2 sheet 5, \"H\"); nominal cold resistance 0.1515 ohm, nominal melting I2t 1.520 A2s at 10 In; PS701 branch F702, in two Littelfuse 01110501Z clips (C151075)",
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1769,
+      "available_order_qty_observed": 1749,
+      "stock_checked_on": "2026-10-06",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
+      "url": "https://jlcpcb.com/partdetail/C142715",
+      "selection": "candidate_not_released",
+      "selection_note": "PSU fuse F702 since 2026-10-06 (issue #1): a fault in PS701 is a mains short behind the smallest fuse in its loop, so it needs the same breaking capacity as F703. The 1 A value is still provisional: it has to ride through the IRM-30 cold-start inrush (45 A typical at 230 VAC, Mean Well spec) without ageing, and that pulse I2t is not yet known."
     }
   }
 }

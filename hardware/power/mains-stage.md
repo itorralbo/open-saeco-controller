@@ -49,7 +49,8 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
 | Optotriac calentador, bomba y molinillo | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
-| Fusible molino | JDT JFC2410-1400TS | C136386 | T4A, 250 V, 2410; entre Q708 y el puente. Fusible propio por decisión del propietario del 2026-09-23; T4A desde que la etapa se dimensiona a 3 A |
+| Fusible molino | Littelfuse 0215004.MXEP | C178840 | T4A, 250 VAC, 5 × 20 mm cerámico axial de 1500 A de poder de corte, de pie junto a Q708; entre Q708 y el puente. Fusible propio por decisión del propietario del 2026-09-23; T4A desde que la etapa se dimensiona a 3 A; sustituye el 2026-10-06 al JDT JFC2410-1400TS (50 A, issue #1) |
+| Fusibles de entrada y fuente | Littelfuse 0215010.MXP / 0215001.MXP | C142733 / C142715 | T10A y T1A, 5 × 20 mm cerámicos de 1500 A a 250 VAC, cada uno en dos pinzas Littelfuse 01110501Z (C151075, hasta 10 A) |
 | Puente molino | MDD KBP410 | C840747 | 4 A, 1000 V, 90 A de pico; a 3 A disipa ≈ 5 W y solo vale para molidos de hasta 10 s con pausa. Un GBU no cabe. Sustituye al GBU8K |
 
 El mismo BTA24 es candidato provisional para bomba y molinillo para reducir
@@ -80,14 +81,20 @@ un opto de 600 o 400 V.
 
 ## Protección y reglas pendientes de cerrar
 
-- F701 es un fusible retardado reemplazable de 5 × 20 mm, provisionalmente
-  T10A/250 V, que se ajustará
-  después de medir calentador, bomba y molinillo en el peor caso permitido. Con
+- Los tres fusibles de red cortan 1500 A a 250 VAC, la corriente de defecto
+  supuesta; ver [corriente de defecto supuesta](power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red),
+  que separa lo demostrado de lo que falta (protección del puente,
+  selectividad y ensayo de interrupción).
+- F701 es un fusible retardado reemplazable de 5 × 20 mm, Littelfuse
+  0215010.MXP (T10AH), en pinzas de 10 A. Su margen de carga está abierto: se
+  ajustará después de medir calentador, bomba y molinillo en el peor caso
+  permitido. Con
   el molinillo a 3 A la suma llegaría a 11,6 A; el firmware limita el
   calentador al 60 % mientras se muele y el total queda en ≈ 9,7 A (ver
   [reparto de corriente](power-architecture.md#reparto-de-corriente-en-la-fase-de-cargas)).
-- F702 protege solo la rama de la fuente; provisionalmente T1A, se dimensionará
-  con el pico de entrada del IRM-30 y la recomendación del fabricante.
+- F702 protege solo la rama de la fuente: Littelfuse 0215001.MXP (T1AH). El
+  valor de 1 A sigue provisional y se dimensionará con el pico de entrada del
+  IRM-30 y la recomendación del fabricante.
 - RV701 es un MOV de 275 VAC en disco de 15,5 mm, coordinado con F701; falta
   seleccionar MPN y energía.
 - El filtro EMI se copiará funcionalmente, no por aspecto. Falta medir/identificar

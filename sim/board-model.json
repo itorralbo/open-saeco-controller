@@ -3916,8 +3916,8 @@
   },
   "controller:F701": {
    "part": "FUSE",
-   "value": "T10A / 250V MAIN / provisional",
-   "mpn": "",
+   "value": "T10AH / 250V MAIN",
+   "mpn": "0215010.MXP",
    "pins": {
     "1": {
      "symbol": "1",
@@ -3933,8 +3933,8 @@
   },
   "controller:F702": {
    "part": "FUSE",
-   "value": "T1A / PSU / provisional",
-   "mpn": "",
+   "value": "T1AH / PSU / value pending inrush",
+   "mpn": "0215001.MXP",
    "pins": {
     "1": {
      "symbol": "1",
@@ -3950,8 +3950,8 @@
   },
   "controller:F703": {
    "part": "FUSE",
-   "value": "T4A / 250V grinder",
-   "mpn": "JFC2410-1400TS",
+   "value": "T4AH / 250V grinder",
+   "mpn": "0215004.MXEP",
    "pins": {
     "1": {
      "symbol": "1",

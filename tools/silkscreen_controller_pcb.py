@@ -60,7 +60,7 @@ LABELS = {
 # JP17 stands upright in the strip between its polarizing post and JP1, and
 # JP19, boxed in by JP8, JP24 and JP17, points back at its block from under
 # JP24 in the smaller size. An optional fourth value is the text size.
-LABEL_AT = {'J115': (71.1, 121.4, 90.0), 'J104': (23.5, 11.2, 0.0),
+LABEL_AT = {'J115': (71.1, 123.1, 90.0), 'J104': (23.5, 11.2, 0.0),
             'J118': (117.6, 125.5, 90.0), 'J116': (93.8, 133.6, 0.0, 0.8)}
 # Pin marks: (reference, pad, text), straight above or below their pin.
 PIN_MARKS = (('J115', '1', '+'), ('J115', '3', '-'),

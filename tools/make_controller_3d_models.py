@@ -185,12 +185,19 @@ def usb_c_vertical():
     return parts
 
 
-def fuse_2410():
-    """JDT JFC2410: 6.1 x 2.5 mm (footprint, from the datasheet); 1.2 mm
-    height estimated."""
-    return [(NYLON, box(-2.4, 2.4, -1.25, 1.25, 0, 1.2)),
-            (TIN, box(-3.05, -2.4, -1.25, 1.25, 0, 1.2)),
-            (TIN, box(2.4, 3.05, -1.25, 1.25, 0, 1.2))]
+def fuse_axial_vertical():
+    """Littelfuse 215 axial (0215xxx.XEP) on end: 5.5 mm body, 21.5 mm long,
+    1.5 mm above the board, caps at both ends and the far lead bent back
+    down to pad 2 at 5.08 mm (215 datasheet, revised 01/12/17)."""
+    import math
+    ring = [(2.75*math.cos(2*math.pi*k/16), 2.75*math.sin(2*math.pi*k/16)) for k in range(16)]
+    z0, z1 = 1.5, 23.0
+    return [(GLASS, prism(ring, z0+1.0, z1-1.0)),
+            (TIN, prism(ring, z0, z0+1.0)),
+            (TIN, prism(ring, z1-1.0, z1)),
+            (TIN, box(-0.33, 0.33, -0.33, 0.33, -1.5, z0)),
+            (TIN, box(-0.33, 5.41, -0.33, 0.33, z1+1.0, z1+1.66)),
+            (TIN, box(4.75, 5.41, -0.33, 0.33, -1.5, z1+1.66))]
 
 
 def inductor(sx, sy, h, pads):
@@ -272,8 +279,8 @@ SCOPE = {
         'Carcasa de 8,94 x 3,16 x 6,40 mm del plano HRO; sin contactos internos.'),
     'TI_DVG0010A_SOIC-10W_HV': ('OpenSaeco', soic10w_dvg(),
         'Cuerpo de 7,5 x 10,3 mm y 2,65 mm de alto del plano TI 4226847/C; patas simplificadas.'),
-    'Fuse_2410_JDT_JFC2410': ('OpenSaeco', fuse_2410(),
-        'Cuerpo de 6,1 x 2,5 mm de la hoja JDT JFC2410; altura de 1,2 mm estimada.'),
+    'Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm': ('OpenSaeco', fuse_axial_vertical(),
+        'Cuerpo de 5,5 x 21,5 mm de pie, 1,5 mm sobre la placa, de la hoja Littelfuse 215; patilla doblada simplificada.'),
     'ESP32-S3-WROOM-1U': ('RF_Module', esp32_s3_wroom_1u(),
         'Planta de 18 x 19,2 mm de la huella; 3,2 mm de alto según la hoja Espressif, sin cotejar; blindaje y U.FL simplificados.'),
     'L_Bourns-SRN6028': ('Inductor_SMD', inductor(6.0, 6.0, 2.8,

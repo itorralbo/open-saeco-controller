@@ -970,3 +970,53 @@ segmentos y 452 vías, 147 de cosido); modelo de placa 0 errores y 0 avisos;
 `tests/sim` 83/83; CTest 3/3; GCC 15 sin avisos. Serigrafía, PDF 1:1 y render
 regenerados. Panel probado en el navegador integrado con la prueba de dosis.
 Sin hardware.
+
+## Poder de corte de los fusibles de red, 2026-10-06
+
+Corrección de la [issue #1](https://github.com/itorralbo/open-saeco-controller/issues/1),
+con los matices de la revisión del propietario. F703, el fusible del
+molinillo, era un JDT JFC2410-1400TS con 50 A de poder de corte a 250 V, y lo
+que tiene que despejar es un diodo de BR701 en corto, un camino de baja
+impedancia entre fase y neutro a través de Q708. En un cortocircuito el
+fusible más pequeño del lazo abre primero y tiene que interrumpir solo la
+corriente: F701 aguas arriba no lo sustituye. F702 tenía el mismo problema en
+la entrada de PS701, y F701 no tenía pieza.
+
+Corrección:
+
+- **Hipótesis de corriente de defecto**: 1500 A a 250 VAC, el nivel «H» de
+  IEC 60127-2, en `mains.prospective_fault` del contrato. No es un máximo
+  medido ni normalizado y queda para la revisión de seguridad.
+- **F703**: Littelfuse 0215004.MXEP (C178840, 974 en stock hoy), T4A de
+  5 × 20 mm cerámico axial, 1500 A a 250 VAC (hoja 215, rev. 01/12/17). Va de
+  pie con una huella nueva, `Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm`,
+  porque entre Q708 y J115 solo quedaban 4,65 mm. J115 baja 1,35 mm, BR701
+  1,2 mm, la puerta de la bomba pasa a y = 117,2 mm y la etiqueta de JP8
+  1,7 mm.
+- **F701 y F702**: Littelfuse 0215010.MXP (C142733) y 0215001.MXP (C142715),
+  1500 A a 250 VAC, cada uno en dos pinzas Littelfuse 01110501Z (C151075, «hasta
+  10 A»). Huella sin cambios.
+- **Regla nueva `fuse-breaking`** del modelo de placa: recorre fase y neutro a
+  través de fusibles, contactos, triacs, puentes y el conductor de U704, y
+  falla si un fusible de ese lado corta menos de la corriente supuesta o no
+  tiene su poder de corte en `sim/reference/devices.json`. Dos pruebas de
+  mutación: F703 de vuelta al JFC2410 y F701 sin pieza.
+
+Lo que no queda demostrado y sigue abierto en la issue:
+
+- **Protección del puente**: el I²t de fusión nominal de F703 (46,96 A²s a
+  10 In) supera los 35 A²s del KBP410; un corto en el lado de continua puede
+  destruir el puente antes de que abra el fusible. Para el BTA24 (340 A²s) falta
+  el I²t de despeje.
+- **Selectividad F703/F701**: los I²t de fusión nominales están en 1 : 7,1, pero
+  el I²t de despeje a la corriente de fallo no está publicado.
+- **Valor de F702** frente a la irrupción del IRM-30 (PS-03) y **margen de carga
+  de F701**: pinzas de 10 A frente a 8,4–9,2 A solo del calentador.
+- **Ensayo de interrupción** (PS-04, en laboratorio) y comprobación con el mazo
+  de que JP8 entra 1,35 mm más al sur.
+
+Resultado: ERC 0 en las dos placas; netlist 198 componentes y 648 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 85/85. Serigrafía,
+modelos 3D, PDF 1:1, mapa de conectores y render regenerados. Sin hardware
+fabricado ni ensayado.

@@ -34,6 +34,16 @@ AND_GATES = {'DUAL_AND': {'1Y': ('1A', '1B'), '2Y': ('2A', '2B')}}
 # Non-inverting buffers: their output carries the input's logic level.
 BUFFERS = {'SCHMITT_BUF': {'Y': 'A'}}
 
+# Terminals a mains fault current can flow between, every switch taken as
+# closed: a fuse, both relay contacts, a triac's main terminals, the four
+# terminals of a bridge (a shorted diode joins them) and a Hall sensor's
+# input conductor. The fuse-breaking check walks them from phase and neutral.
+FAULT_PATHS = {'FUSE': (('1', '2'),),
+               'RELAY_G5RL': (('COM_A', 'NO_A'), ('COM_B', 'NO_B')),
+               'TRIAC_TO220': (('A1', 'A2'),),
+               'BRIDGE_KBP': (('AC1', 'AC2', '+', '-'),),
+               'TMCS1133': (('IN+', 'IN-'),)}
+
 # Switching regulators and the pin that switches; an external supply must not
 # reach it through series parts (back-feed through the high-side body diode).
 SWITCH_NODES = {'AP63200': 'SW', 'AP63203': 'SW'}

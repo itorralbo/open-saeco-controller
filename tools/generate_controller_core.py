@@ -587,19 +587,24 @@ def main():
     d.add('J120','J1','JP9 PE INPUT',1155,768,['PROTECTIVE_EARTH'],
           'OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical',
           status='candidate', part_key='CONN:TE_FASTON_63824-1')
-    # Main input protection and the isolated supply. Values for F701/F702/RV701
-    # remain provisional until the complete inrush and fault-current budget exists.
-    d.add('F701','FUSE','T10A / 250V MAIN / provisional',835,640,
+    # Main input protection and the isolated supply. Every mains fuse must
+    # break the prospective short-circuit current assumed at the inlet
+    # (1500 A at 250 VAC, firmware/common/signals.json), so all three are
+    # Littelfuse 215 time-lag ceramic parts, IEC 60127-2 sheet 5 "H"
+    # (1500 A at 250 VAC up to 12 A). F701 and F702 sit in two Littelfuse
+    # 111 501 clips each (01110501Z, rated 10 A). RV701 and the F702 value
+    # remain provisional until the inrush and MOV energy budget exists.
+    d.add('F701','FUSE','T10AH / 250V MAIN',835,640,
           ['MAINS_L_IN','MAINS_L_FUSED'],
           'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
-          status='rating_and_holder_tbd')
+          status='candidate_load_margin_open', part_key='FUSE:0215010.MXP')
     d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
           ['MAINS_L_FUSED','MAINS_N'],
           'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')
-    d.add('F702','FUSE','T1A / PSU / provisional',835,690,
+    d.add('F702','FUSE','T1AH / PSU / value pending inrush',835,690,
           ['MAINS_L_FUSED','PSU_L_FUSED'],
           'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
-          status='rating_and_holder_tbd')
+          status='candidate_value_pending_inrush', part_key='FUSE:0215001.MXP')
     d.add('PS701','ACDC4','IRM-30-24',930,676,
           ['PSU_L_FUSED','MAINS_N',g,'24V_INTERNAL_RAW'],
           'OpenSaeco:MeanWell_IRM-30_THT',
@@ -759,16 +764,21 @@ def main():
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
     # F703 is the grinder's own fuse, owner's decision on 2026-09-23. With the
     # stage sized for 3 A it is a 4 A time-lag part, 75 % loaded: it carries a
-    # 3 A run and the 3.4 A start, and a shorted bridge or winding blows it
-    # without taking F701 and the whole machine with it. A stall does not.
-    d.add('F703','FUSE','T4A / 250V grinder',1270,1030,
+    # 3 A run and the 3.4 A start. A shorted bridge diode puts the mains
+    # across the bridge through Q708, and F703, the smallest fuse in that
+    # loop, has to break it: since 2026-10-06 it is a Littelfuse 215 "H"
+    # (1500 A at 250 VAC), not the JFC2410 (50 A). It stands on end beside
+    # Q708, the only place a 5 x 20 mm body fits. Whether it also saves the
+    # bridge or F701 is not shown (issue #1, power-architecture.md).
+    d.add('F703','FUSE','T4AH / 250V grinder',1270,1030,
           ['GRINDER_AC_SWITCHED','GRINDER_AC_FUSED'],
-          'OpenSaeco:Fuse_2410_JDT_JFC2410', part_key='FUSE:JFC2410-1400TS')
+          'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm',
+          part_key='FUSE:0215004.MXEP')
     d.add('BR701','BRIDGE_KBP','KBP410 / grinder bridge',1300,1060,
           ['GRINDER_AC_FUSED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
           'Diode_THT:Diode_Bridge_Vishay_KBPM', part_key='BRIDGE:KBP410')
     d.note('Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = '
-           '230/68 = 3,4 A ef.: lo corta el firmware; F703 T4A cubre cortos.',870,1092,1.1)
+           '230/68 = 3,4 A ef.: lo corta el firmware; F703 T4AH (1500 A) despeja un puente en corto.',870,1092,1.1)
     d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido '
            'intermitente (<=10 s y pausa). Medir en el prototipo.',870,1100,1.1)
     # Grinder current, owner's decision on 2026-10-06: the original machine
@@ -788,7 +798,7 @@ def main():
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
-    d.note('Siguiente: filtro EMI, valores de F701/F702/RV701 y medidas de caracterización del molino.',12,804)
+    d.note('Siguiente: filtro EMI, valor de F702 (irrupción), RV701, margen de F701 y medidas del molino.',12,804)
     d.note('Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

@@ -1277,9 +1277,12 @@ def route_pump_stage(board):
 
     # Gate from pin 4 to Q704 on the back layer.
     opto_stubs(board, 'U702', {4: '/PUMP_TRIAC_GATE'}, pcb.B_Cu)
+    # It runs south of the standing F703 since 2026-10-06: y = 117.2 keeps
+    # 2 mm to the fuse pads and 3.5 mm to J115's pins, and the diagonal
+    # leaves at x = 73 to keep 2.5 mm to the B.Cu link of JP19's tab 1.
     polyline(board, '/PUMP_TRIAC_GATE', [(OPTO_MAINS_STUB_END, 118.54),
-                                         (58.84, 116.0), (74.0, 116.0),
-                                         (77.4, 112.6), (91.54, 112.6),
+                                         (57.64, 117.2), (73.0, 117.2),
+                                         (77.6, 112.6), (91.54, 112.6),
                                          (91.54, 110.3)], pcb.B_Cu,
              width=PIN_WIDTH)
 
@@ -1372,7 +1375,8 @@ def route_grinder_stage(board):
     On the mains side the feed goes to R721 in the lane and the gate leaves
     pin 4 on B.Cu, straight down the barrier side of the lane and east under
     the triac row to Q708, the west device on the heatsink. Q708 switches
-    the phase into F703, the fuse into the bridge under J115, and the bridge
+    the phase into F703, a 5 x 20 mm fuse standing on end under it, the fuse
+    into the bridge under J115, and the bridge
     gives JP8 its polarity: + on pin 1, - on pin 3. The minus run climbs on
     B.Cu under the fused phase and the neutral, which come in from the east.
     """
@@ -1411,25 +1415,29 @@ def route_grinder_stage(board):
                                             (69.14, 111.85), (69.14, 110.3)],
              pcb.B_Cu, width=PIN_WIDTH)
 
-    # Switched phase into the fuse, fused phase round J115's east side to
-    # the bridge, neutral from JP19's tab 3 to the other AC pin. Widths are
-    # for the 3 A the stage is sized for since 2026-09-23: 1.9 mm into the
-    # fuse, 1.2 mm after it, all within about 12 K on 1 oz.
-    polyline(board, '/GRINDER_AC_SWITCHED', [(64.06, 110.8), (64.06, 112.8),
-                                             (63.75, 113.1)], width=1.9)
-    polyline(board, '/GRINDER_AC_FUSED', [(69.25, 113.8), (71.0, 115.55),
-                                          (71.0, 124.1), (62.6, 124.1),
-                                          (62.6, 129.7)], width=1.2)
-    polyline(board, '/MAINS_N', [(79.25, 126.55), (77.95, 127.85), (67.65, 127.85),
-                                 (66.45, 129.05), (66.45, 130.8)], width=1.2)
+    # Switched phase straight down from Q708.1 into the standing F703 (pad 1
+    # under its body), fused phase from the bent lead's pad round J115's east
+    # side to the bridge, neutral from JP19's tab 3 to the other AC pin.
+    # Widths are for the 3 A the stage is sized for since 2026-09-23: 1.9 mm
+    # into the fuse, 1.2 mm after it, all within about 12 K on 1 oz. Since
+    # 2026-10-06 (issue #1) the fuse pads sit 1.2 mm south of the gate run
+    # and J115 and BR701 moved 1.35 and 1.2 mm south to make room.
+    track(board, '/GRINDER_AC_SWITCHED', (64.06, 110.8), (64.06, 114.1), width=1.9)
+    polyline(board, '/GRINDER_AC_FUSED', [(69.14, 114.1), (71.0, 115.96),
+                                          (71.0, 125.3), (62.6, 125.3),
+                                          (62.6, 130.9)], width=1.2)
+    polyline(board, '/MAINS_N', [(79.25, 126.55), (77.95, 127.85), (73.85, 127.85),
+                                 (72.65, 129.05), (67.65, 129.05),
+                                 (66.45, 130.25), (66.45, 132.0)], width=1.2)
 
     # Bridge to JP8 through U704: + on F.Cu west into the sensor's IN+ pad,
     # out of IN- and up into J115.1; - on B.Cu.
-    track(board, '/GRINDER_DC_PLUS', (58.75, 130.8), (55.9, 130.8), width=1.2)
-    polyline(board, '/GRINDER_DC_SENSED', [(56.0, 125.2), (56.0, 124.0), (59.04, 120.96),
-                                           (59.04, 120.8)], width=1.2)
-    polyline(board, '/GRINDER_DC_MINUS', [(70.3, 130.8), (70.3, 124.75),
-                                          (66.96, 121.41), (66.96, 120.8)],
+    polyline(board, '/GRINDER_DC_PLUS', [(58.75, 132.0), (57.55, 130.8),
+                                         (55.9, 130.8)], width=1.2)
+    polyline(board, '/GRINDER_DC_SENSED', [(56.0, 125.2), (59.04, 122.16),
+                                           (59.04, 122.15)], width=1.2)
+    polyline(board, '/GRINDER_DC_MINUS', [(70.3, 132.0), (70.3, 125.5),
+                                          (66.96, 122.16), (66.96, 122.15)],
              pcb.B_Cu, width=1.2)
     route_grinder_sensor(board)
 

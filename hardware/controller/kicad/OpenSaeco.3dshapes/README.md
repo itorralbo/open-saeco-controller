@@ -28,7 +28,7 @@ el script.
 | `MeanWell_IRM-30_THT` | PS701 | Caja de 69,5 x 39 x 24 mm del plano Mean Well IRM-30. |
 | `USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical` | J110 | Carcasa de 8,94 x 3,16 x 6,40 mm del plano HRO; sin contactos internos. |
 | `TI_DVG0010A_SOIC-10W_HV` | U704 | Cuerpo de 7,5 x 10,3 mm y 2,65 mm de alto del plano TI 4226847/C; patas simplificadas. |
-| `Fuse_2410_JDT_JFC2410` | F703 | Cuerpo de 6,1 x 2,5 mm de la hoja JDT JFC2410; altura de 1,2 mm estimada. |
+| `Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm` | F703 | Cuerpo de 5,5 x 21,5 mm de pie, 1,5 mm sobre la placa, de la hoja Littelfuse 215; patilla doblada simplificada. |
 | `ESP32-S3-WROOM-1U` | U201 | Planta de 18 x 19,2 mm de la huella; 3,2 mm de alto según la hoja Espressif, sin cotejar; blindaje y U.FL simplificados. |
 | `L_Bourns-SRN6028` | L301 | Bloque de 6,0 x 6,0 x 2,8 mm según la serie Bourns SRN6028, sin cotejar con el plano. |
 | `L_Bourns_SRP7028A_7.3x6.6mm` | L302 | Planta de 7,3 x 6,6 mm de la huella; 2,8 mm de alto según la serie SRP7028A, sin cotejar. |

@@ -70,7 +70,7 @@ NEW_POSITIONS = {
     'R701': (86, 12), 'R702': (82, 12), 'R703': (78, 12), 'C701': (74, 12),
     'R704': (105, 7), 'R705': (111, 7), 'R706': (117, 7), 'C702': (123, 7),
     'J114': (106, 101),
-    'J115': (59.04, 120.8), 'J117': (91.0, 120.8),
+    'J115': (59.04, 122.15), 'J117': (91.0, 120.8),
     'J118': (107.5, 126.55),
     'F701': (128, 52), 'RV701': (119, 55), 'F702': (128, 27),
     'PS701': (105, 89), 'J121': (66, 104),
@@ -89,7 +89,7 @@ NEW_POSITIONS = {
     'C604': (36.9, 86.2),
     # Grinder stage, staged at its reviewed places.
     'U703': (47.19, 100.72), 'Q708': (64.06, 109.5), 'R721': (58.86, 99.0),
-    'F703': (66.5, 113.8), 'BR701': (58.0, 130.8),
+    'F703': (64.06, 114.1), 'BR701': (58.75, 132.0),
     'Q707': (39.6, 104.2), 'R717': (35.0, 89.3), 'R718': (36.6, 103.9),
     'R719': (36.8, 106.8), 'R720': (42.6, 101.6),
     # Grinder current sensor across the barrier and the ADC filter.
@@ -101,6 +101,10 @@ NEW_POSITIONS = {
 # layout_controller_pcb.py then places it. Pads are re-netted below as usual.
 FOOTPRINT_REPLACEMENTS = {
     'U201': ('RF_Module:ESP32-S3-WROOM-1', 'RF_Module:ESP32-S3-WROOM-1U'),
+    # The grinder fuse becomes a 1500 A Littelfuse 215 standing on end
+    # (2026-10-06, issue #1): the JDT 2410 breaks only 50 A.
+    'F703': ('OpenSaeco:Fuse_2410_JDT_JFC2410',
+             'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm'),
     # JP19 identified by the owner as TE 1971845-4; its drawing replaces the
     # provisional round-hole pattern.
     'J116': ('OpenSaeco:FASTON_4Tab_6.3x0.8mm_P5.00mm_Column',
