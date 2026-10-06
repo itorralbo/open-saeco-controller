@@ -297,7 +297,7 @@ PLACE = {
     # PS701 carries L and PSU_L between J118, the fuses and PS701.
     # F702 (PSU branch) sits above F701 so that L_IN and PSU_L run nested down
     # the gap without crossing. J121 is turned so 24V_ACT_RAW leaves on the left.
-    'PS701': (121.3, 82.4, 90), 'F701': (92, 74, 180), 'F702': (72, 67, 0),
+    'PS701': (121.3, 82.4, 90), 'F701': (96.5, 74, 180), 'F702': (72, 67, 0),
     'RV701': (72, 80, 0), 'J121': (108.5, 45.2, 180),
 
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.

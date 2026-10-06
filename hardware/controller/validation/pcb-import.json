@@ -275,7 +275,7 @@
       "numbered_pads": 2
     },
     "F701": {
-      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "footprint": "OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm",
       "numbered_pads": 2
     },
     "F702": {

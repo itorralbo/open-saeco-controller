@@ -103,6 +103,10 @@ FOOTPRINT_REPLACEMENTS = {
     'U201': ('RF_Module:ESP32-S3-WROOM-1', 'RF_Module:ESP32-S3-WROOM-1U'),
     # The grinder fuse becomes a 1500 A Littelfuse 215 standing on end
     # (2026-10-06, issue #1): the JDT 2410 breaks only 50 A.
+    # F701 goes to 12 A like the original F1, above what the 10 A clips
+    # take, so it is soldered flat with axial leads (2026-10-06, issue #1).
+    'F701': ('Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
+             'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm'),
     'F703': ('OpenSaeco:Fuse_2410_JDT_JFC2410',
              'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm'),
     # JP19 identified by the owner as TE 1971845-4; its drawing replaces the

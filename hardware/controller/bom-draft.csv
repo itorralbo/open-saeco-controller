@@ -145,7 +145,7 @@ J117,JP24 PUMP / 230VAC,OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical,owner_iden
 J118,JP17 MAINS / L-N,OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-3,C5169636,Extended,TBD
 J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
-F701,T10AH / 250V MAIN,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate_load_margin_open,Littelfuse,0215010.MXP,C142733,Extended,Economic and Standard
+F701,T12AH / 250V MAIN,OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm,candidate,Littelfuse,0215012.MXEP,C142789,Extended,Economic and Standard
 RV701,275VAC MOV / energy TBD,Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm,mpn_and_energy_tbd,,,,,
 F702,T1AH / PSU / value pending inrush,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate_value_pending_inrush,Littelfuse,0215001.MXP,C142715,Extended,Economic and Standard
 PS701,IRM-30-24,OpenSaeco:MeanWell_IRM-30_THT,candidate_pending_motor_current_validation,MEAN WELL,IRM-30-24,C6280124,Extended,Economic and Standard

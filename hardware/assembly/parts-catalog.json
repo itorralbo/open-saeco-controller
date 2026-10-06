@@ -1154,8 +1154,8 @@
       "stock_checked_on": "2026-10-06",
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
       "url": "https://jlcpcb.com/partdetail/C142733",
-      "selection": "candidate_not_released",
-      "selection_note": "Main fuse F701 since 2026-10-06 (issue #1): the 10 A rating it had, now with a stated 1500 A breaking capacity. Holder: two Littelfuse 111 501 spring-brass clips (01110501Z, LCSC C151075, 5132 in stock on 2026-10-06), which the Littelfuse clip catalogue rates \"for current levels up to 10 amperes\". Open: with the heater (8.4 A at 230 V, 9.2 A at 253 V) and the other loads the continuous current reaches the clip rating and most of the fuse rating; the 215 re-rating curve gives about 95 % at 60 C. Margin to be decided by the owner (see power-architecture.md)."
+      "selection": "superseded_by_12A",
+      "selection_note": "Superseded on 2026-10-06 by the 0215012.MXEP: the original board uses 12 A in F1, and 10 A in 10 A clips left no margin over the heater current. Main fuse F701 since 2026-10-06 (issue #1): the 10 A rating it had, now with a stated 1500 A breaking capacity. Holder: two Littelfuse 111 501 spring-brass clips (01110501Z, LCSC C151075, 5132 in stock on 2026-10-06), which the Littelfuse clip catalogue rates \"for current levels up to 10 amperes\". Open: with the heater (8.4 A at 230 V, 9.2 A at 253 V) and the other loads the continuous current reaches the clip rating and most of the fuse rating; the 215 re-rating curve gives about 95 % at 60 C. Margin to be decided by the owner (see power-architecture.md)."
     },
     "FUSE:0215001.MXP": {
       "manufacturer": "Littelfuse",
@@ -1172,6 +1172,22 @@
       "url": "https://jlcpcb.com/partdetail/C142715",
       "selection": "candidate_not_released",
       "selection_note": "PSU fuse F702 since 2026-10-06 (issue #1): a fault in PS701 is a mains short behind the smallest fuse in its loop, so it needs the same breaking capacity as F703. The 1 A value is still provisional: it has to ride through the IRM-30 cold-start inrush (45 A typical at 230 VAC, Mean Well spec) without ageing, and that pulse I2t is not yet known."
+    },
+    "FUSE:0215012.MXEP": {
+      "manufacturer": "Littelfuse",
+      "mpn": "0215012.MXEP",
+      "lcsc": "C142789",
+      "specification": "12 A time-lag 5 x 20 mm ceramic fuse, 215 series, 250 VAC, 1500 A at 250 VAC interrupting rating (IEC 60127-2 sheet 5, \"H\"); nominal cold resistance 0.0061 ohm, nominal melting I2t 515.5 A2s at 10 In, 0.8 mm axial leads; main input F701",
+      "footprint": "OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 556,
+      "available_order_qty_observed": 556,
+      "stock_checked_on": "2026-10-06",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
+      "url": "https://jlcpcb.com/partdetail/C142789",
+      "selection": "candidate_not_released",
+      "selection_note": "Main fuse F701 since 2026-10-06 (issue #1). The original HD8911 board has a ceramic 5 x 20 mm fuse marked 12AH250V in F1 (owner, read on the part he removed), so the maker gave the same heater 12 A. A 10 A fuse in 10 A clips left no margin over the 8.4 A (230 V) to 9.2 A (253 V) heater current, and 12 A is above what the Littelfuse 111 501 clips take, so it is soldered flat with axial leads like the original F1, over 27.5 mm holes. It keeps the 1500 A at 250 VAC breaking capacity and raises the nominal melting I2t ratio to F703 from 7.1 to 11. Not for reflow: hand or wave soldered."
     }
   }
 }

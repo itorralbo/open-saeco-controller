@@ -3,7 +3,7 @@
 Estado: integrada en el esquema y en la PCB ruteada, sin ensayar. La placa
 sustituye a la original y contiene en la misma tarjeta la entrada de 230 V, sus
 protecciones, la fuente aislada, las salidas de red y la electrónica SELV. Falta
-el filtro EMI, RV701, el valor de F702 y el margen de carga de F701; el poder de
+el filtro EMI, RV701 y el valor de F702; el poder de
 corte de los tres fusibles de red está fijado (ver
 [corriente de defecto supuesta](#corriente-de-defecto-supuesta-y-fusibles-de-red)).
 
@@ -243,7 +243,7 @@ cabe: pide unos 22 mm de largo y entre la banda de barrera y JP19 hay unos
 de 100 °C en la cápsula, el puente pasa a cuatro diodos discretos, como en la
 original.
 
-El bloqueo lo sigue cortando el firmware. Con 3,4 A no funden ni F701 (T10A) ni
+El bloqueo lo sigue cortando el firmware. Con 3,4 A no funden ni F701 (T12A) ni
 F703 (T4A). F703 está para un puente o un bobinado en corto: un diodo del
 puente en corto, con Q708 conduciendo, cierra un camino de baja impedancia
 entre fase y neutro en uno de los semiciclos, y F703, el fusible más pequeño de
@@ -291,7 +291,7 @@ dV/dt en el apagado con el motor real (GR-05).
 
 ## Reparto de corriente en la fase de cargas
 
-Todas las cargas de red pasan por F701 (T10A), K701 y JP17. JP17 es un TE
+Todas las cargas de red pasan por F701 (T12A desde el 2026-10-06), K701 y JP17. JP17 es un TE
 1971845-3 de 16 A por contacto, así que el límite lo pone F701. En el peor caso
 suman 8,4 A del calentador, 3 A del
 molinillo y unos 0,2 A de la bomba: 11,6 A. Por eso, desde el 2026-09-23 el
@@ -299,7 +299,7 @@ firmware aplica una regla de reparto:
 
 - Mientras el molinillo está encendido, el calentador conduce como máximo
   **3 ciclos completos de red de cada 5** (60 %). Su corriente eficaz baja a
-  8,4 × √0,6 ≈ 6,5 A, y el total queda en unos 9,7 A, por debajo de F701.
+  8,4 × √0,6 ≈ 6,5 A, y el total queda en unos 9,7 A, el 81 % de F701.
 - Se cuentan ciclos completos, no semiciclos, para no meter componente continua
   en la red. Los MOC3083 de cruce por cero ya conmutan así.
 - Un molido dura como máximo 10 s, así que el calentador pierde como mucho 4 s
@@ -310,8 +310,9 @@ Las constantes están en `firmware/stm32/include/controller.h`
 `OSC_GRINDER_MAX_ON_MS`) y `osc_heater_cycles_allowed()` tiene su prueba en
 CTest. El núcleo todavía no conmuta cargas: la regla queda fijada para cuando
 exista el control del calentador. No sustituye a F701: es una regla de
-dimensionado, y un fallo del firmware que la incumpla solo sobrecarga F701 un
-110–120 % durante los segundos de un molido.
+dimensionado. Con el F701 de 12 A, un fallo del firmware que la incumpla lo
+carga con unos 11,6 A a 230 V (97 %) y unos 12,7 A a 253 V (106 %) durante los
+segundos de un molido; hasta el 2026-10-06, con 10 A, eran 116–127 %.
 
 ## Corriente de defecto supuesta y fusibles de red
 
@@ -324,7 +325,7 @@ el punto de instalación.
 **Hipótesis de diseño: 1500 A a 250 VAC.** Es el nivel de alto poder de corte
 («H») de IEC 60127-2, no un máximo medido ni normalizado para la instalación.
 No se deriva del circuito: de las resistencias del lazo solo se conocen las de
-los fusibles (6,6 mΩ de F701 y 18,5 mΩ de F703 en frío, hoja Littelfuse 215);
+los fusibles (6,1 mΩ de F701 y 18,5 mΩ de F703 en frío, hoja Littelfuse 215);
 el cable de la máquina, la instalación y el cobre de la placa no se han medido.
 Queda en `mains.prospective_fault` del contrato
 (`firmware/common/signals.json`) y debe confirmarse en la revisión de seguridad
@@ -332,7 +333,7 @@ con el mercado de destino.
 
 | Fusible | Pieza | Poder de corte | I²t de fusión nominal (10 In) |
 |---|---|---:|---:|
-| F701, entrada | Littelfuse 0215010.MXP (C142733), T10AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 333,6 A²s |
+| F701, entrada | Littelfuse 0215012.MXEP (C142789), T12AH axial, soldado en horizontal | 1500 A a 250 VAC | 515,5 A²s |
 | F702, fuente | Littelfuse 0215001.MXP (C142715), T1AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 1,52 A²s |
 | F703, molinillo | Littelfuse 0215004.MXEP (C178840), T4AH axial, de pie | 1500 A a 250 VAC | 46,96 A²s |
 
@@ -358,8 +359,9 @@ Se separan dos requisitos, como pide la revisión de la issue:
    fusión queda por debajo, pero Littelfuse no publica el I²t de despeje a
    esas corrientes, así que tampoco está demostrado.
 
-**Selectividad con F701.** El cociente de los I²t de fusión nominales es 7,1
-(333,6 frente a 46,96 A²s), pero solo a 10 In. Para que F703 abra sin fundir
+**Selectividad con F701.** El cociente de los I²t de fusión nominales es 11
+(515,5 frente a 46,96 A²s; 7,1 con el F701 de 10 A que hubo antes), pero solo a
+10 In. Para que F703 abra sin fundir
 F701 hace falta que su I²t total de despeje a la corriente de fallo quede por
 debajo del I²t de prearco de F701 a esa misma corriente, y ese dato no está
 publicado. La selectividad queda sin demostrar y se retira la afirmación de
@@ -369,12 +371,18 @@ que F703 despeja un corto «sin llevarse por delante la máquina entera».
 la irrupción del IRM-30 en frío (45 A típicos a 230 VAC, hoja Mean Well), cuyo
 I²t de pulso falta por medir (PS-03).
 
-**Margen de carga de F701, abierto.** Las pinzas Littelfuse 111 501 están
-indicadas «para corrientes de hasta 10 A» (catálogo de clips Littelfuse) y el
-fusible es de 10 A, con un 95 % aproximado a 60 °C según la curva de la hoja.
-Solo el calentador consume 8,4 A a 230 V y 9,2 A a 253 V; con el reparto de
-molido el total ronda 9,7 A a 230 V. El propietario debe decidir el margen
-(otras pinzas y un fusible mayor de la misma serie, o un límite de carga).
+**Margen de carga de F701: 12 A, como la original.** El F1 de la placa
+original lleva «12AH250V» (lectura del propietario sobre la pieza desmontada,
+ver [fotos](../../docs/HD8911/photos.md#fusibles-y-puente-del-molinillo-2026-10-06)):
+el fabricante dio 12 A al mismo calentador. Con 10 A en pinzas de 10 A
+(Littelfuse 111 501, «para corrientes de hasta 10 A») no había margen sobre los
+8,4 A a 230 V y 9,2 A a 253 V del calentador solo. Desde el 2026-10-06 F701 es
+un Littelfuse 0215012.MXEP (C142789), de la misma serie y el mismo poder de
+corte, y como pasa de los 10 A de las pinzas va soldado en horizontal con
+patillas axiales, igual que el F1 original. Con el reparto de molido la carga
+ronda los 9,7 A a 230 V, el 81 % de su valor; la curva de la hoja lo rebaja
+a un 95 % aproximado a 60 °C, que deja unos 11,4 A. F702 sigue en sus pinzas,
+con 1 A muy por debajo de los 10 A que admiten.
 
 **Montaje de F703.** El JFC2410 no se podía cambiar por un 5 × 20 mm en
 horizontal: al sur de Q708 solo quedaban 4,6 mm. El 0215004.MXEP va de pie con
@@ -388,9 +396,10 @@ hacia la posición fotografiada y dentro de los ±1,5 mm asignados, BR701 baja
 2026-10-06 que el mazo de JP8 llega de sobra en la nueva posición.
 
 **Lo que dice la placa original** ([fotos](../../docs/HD8911/photos.md#fusibles-y-puente-del-molinillo-2026-10-06)).
-Sus dos fusibles de red, F1 y F2, son 5 × 20 mm cerámicos de clase H (se lee
-«…H250» en F1 y casi seguro T2AH250V en F2), así que la hipótesis de 1500 A
-coincide con la clase que eligió el fabricante; no mide la corriente prospectiva.
+Sus dos fusibles de red, F1 y F2, son 5 × 20 mm cerámicos de clase H (el
+propietario leyó «12AH250V» en F1 y «T2AH250…» en F2 sobre las piezas), así que
+la hipótesis de 1500 A coincide con la clase que eligió el fabricante; no mide
+la corriente prospectiva.
 No tenía fusible propio del molinillo, y su puente eran cuatro 1N400x de 1 A, que
 ningún fusible de red podía proteger de un corto en continua: aceptaba sacrificar
 el puente y despejar con F1, lo mismo que se acepta en el requisito 2.
@@ -398,8 +407,7 @@ el puente y despejar con F1, lo mismo que se acepta en el requisito 2.
 **Para cerrar la issue** faltan: confirmar la hipótesis de 1500 A en la
 revisión de seguridad (con el precedente de la original), aceptar por escrito
 que el requisito 2 no se cumple, como en la original, el valor de F702 (PS-03),
-el margen de F701 (con el amperaje de F1 de la original como referencia) y el
-ensayo de interrupción de la rama del molinillo con una fuente de corriente
+y el ensayo de interrupción de la rama del molinillo con una fuente de corriente
 prospectiva conocida (PS-04).
 
 ## Estado seguro
@@ -427,8 +435,8 @@ ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
    JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la IRM-30-24.
-3. Cerrar RV701, el filtro EMI, el valor de F702, el margen de carga de F701 y
-   el ensayo de interrupción de los fusibles de red.
+3. Cerrar RV701, el filtro EMI, el valor de F702 y el ensayo de interrupción
+   de los fusibles de red.
 4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
 5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
    eléctrica independiente y el plan de puesta en marcha.

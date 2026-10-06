@@ -1010,8 +1010,9 @@ Lo que no queda demostrado y sigue abierto en la issue:
   el I²t de despeje.
 - **Selectividad F703/F701**: los I²t de fusión nominales están en 1 : 7,1, pero
   el I²t de despeje a la corriente de fallo no está publicado.
-- **Valor de F702** frente a la irrupción del IRM-30 (PS-03) y **margen de carga
-  de F701**: pinzas de 10 A frente a 8,4–9,2 A solo del calentador.
+- **Valor de F702** frente a la irrupción del IRM-30 (PS-03). El **margen de
+  carga de F701**, con pinzas de 10 A frente a 8,4–9,2 A solo del calentador,
+  se cerró el mismo día (ver abajo).
 - **Ensayo de interrupción** (PS-04, en laboratorio). El propietario confirmó el
   mismo día que el mazo de JP8 llega de sobra 1,35 mm más al sur.
 
@@ -1024,3 +1025,27 @@ con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 85/85. Serigrafía,
 modelos 3D, PDF 1:1, mapa de conectores y render regenerados. Sin hardware
 fabricado ni ensayado.
+
+## F701 de 12 A como el F1 original, 2026-10-06
+
+El propietario leyó «12AH250V» en el F1 de la placa original, que tuvo que
+desmontar, y «T2AH250…» en F2 ([fotos](HD8911/photos.md#lectura-del-propietario-sobre-la-pieza-2026-10-06)).
+El fabricante dio 12 A al mismo calentador, y el F701 de 10 A en pinzas de 10 A
+no dejaba margen sobre sus 8,4–9,2 A.
+
+- **F701**: Littelfuse **0215012.MXEP** (C142789, 556 en stock hoy), T12AH, de
+  1500 A a 250 VAC. Como pasa de los 10 A de las pinzas Littelfuse 111 501, va
+  soldado en horizontal con patillas axiales, igual que el F1 original, con la
+  huella nueva `Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm`. El pad 1
+  cae en el extremo de la subida de fase, en (96,5; 74), y el pad 2, a 0,4 mm
+  del courtyard de K701, llega a la fase protegida. Desaparece el tramo de unos
+  10 mm de fase solo en F.Cu hasta las pinzas; quedan 3 mm. El 0215010.MXP pasa
+  a sustituido en el catálogo.
+- Con el reparto de molido la carga ronda 9,7 A a 230 V, el 81 % de F701. La
+  relación de I²t de fusión nominales con F703 sube de 7,1 a 11; la
+  selectividad sigue sin demostrar por falta del I²t de despeje.
+
+Resultado: ERC 0 en las dos placas; netlist 198 componentes y 648 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 85/85; CTest 3/3.
+Modelos 3D, PDF 1:1, mapa de conectores y render regenerados. Sin hardware.

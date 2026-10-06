@@ -591,13 +591,17 @@ def main():
     # break the prospective short-circuit current assumed at the inlet
     # (1500 A at 250 VAC, firmware/common/signals.json), so all three are
     # Littelfuse 215 time-lag ceramic parts, IEC 60127-2 sheet 5 "H"
-    # (1500 A at 250 VAC up to 12 A). F701 and F702 sit in two Littelfuse
-    # 111 501 clips each (01110501Z, rated 10 A). RV701 and the F702 value
-    # remain provisional until the inrush and MOV energy budget exists.
-    d.add('F701','FUSE','T10AH / 250V MAIN',835,640,
+    # (1500 A at 250 VAC up to 12 A). F701 is 12 A like F1 on the original
+    # board (owner's reading, "12AH250V", 2026-10-06): the heater alone draws
+    # 8.4-9.2 A, so 10 A in 10 A clips had no margin. Above 10 A the clips
+    # no longer apply, so it is soldered flat with axial leads, as F1 was.
+    # F702 sits in two Littelfuse 111 501 clips (01110501Z, rated 10 A).
+    # RV701 and the F702 value remain provisional until the inrush and MOV
+    # energy budget exists.
+    d.add('F701','FUSE','T12AH / 250V MAIN',835,640,
           ['MAINS_L_IN','MAINS_L_FUSED'],
-          'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
-          status='candidate_load_margin_open', part_key='FUSE:0215010.MXP')
+          'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm',
+          status='candidate', part_key='FUSE:0215012.MXEP')
     d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
           ['MAINS_L_FUSED','MAINS_N'],
           'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')

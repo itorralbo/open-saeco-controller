@@ -2394,12 +2394,12 @@
     },
     {
       "reference": "F701",
-      "value": "T10AH / 250V MAIN",
-      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
-      "status": "candidate_load_margin_open",
+      "value": "T12AH / 250V MAIN",
+      "footprint": "OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm",
+      "status": "candidate",
       "manufacturer": "Littelfuse",
-      "mpn": "0215010.MXP",
-      "lcsc": "C142733",
+      "mpn": "0215012.MXEP",
+      "lcsc": "C142789",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
