@@ -204,6 +204,22 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'D308', '2', '24V_ACT_RAW')
         self.expect(b, 'reverse-polarity', 'D308.K')
 
+    def test_probe_header_rail_next_to_rail(self):
+        b = baseline()  # the 3.3 V probe moved next to the 12 V one
+        set_net(b['controller'], 'J114', '3', 'PROBE_3V3')
+        set_net(b['controller'], 'J114', '2', 'GND_UI')
+        self.expect(b, 'probe-header', 'J114.3 (PROBE_3V3) y J114.4 (PROBE_12V) son contiguos')
+
+    def test_probe_header_pin_straight_on_a_rail(self):
+        b = baseline()  # J114.4 on 12V_PROTECTED, as before 2026-10-07
+        set_net(b['controller'], 'J114', '4', '12V_PROTECTED')
+        self.expect(b, 'probe-header', 'J114.4 (12V_PROTECTED) llega a')
+
+    def test_probe_header_pin_on_an_adc_node(self):
+        b = baseline()  # the 24 V telemetry node back on J114.6
+        set_net(b['controller'], 'J114', '6', 'RAIL_24V_ADC')
+        self.expect(b, 'probe-header', 'U101.PC1')
+
     def test_tvs_breaks_down_above_what_it_protects(self):
         b = baseline()  # the SMAJ18A starts at 20-22.1 V, over U502's 20 V VDD
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'

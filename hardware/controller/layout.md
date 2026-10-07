@@ -393,7 +393,8 @@ del enable. El pin 1, C308 y R301 bajan cada uno al plano de In2.Cu.
 
 Desde el 2026-09-23 el 3,3 V es un plano en In2.Cu (`route_3v3_plane_drops`):
 cada condensador de desacoplo y cada grupo de pads baja a él con su propia vía,
-y los pads THT (J102.1, J103.1, J109.1 y J114.2) lo tocan directamente. C111
+y los pads THT (J102.1, J103.1 y J109.1) lo tocan directamente; J114.2
+también hasta el 2026-10-07, cuando pasó a la sonda de 3,3 V tras R723. C111
 (VBAT) cuelga del anillo del STM32. La pista de 3,3 V pasó de 506 mm a 143 mm y
 dejó B.Cu. Lo que sigue describe la espina que sustituyó, porque explica la
 posición de F301 y de algunas rutas vecinas.
@@ -1035,6 +1036,18 @@ Salidas de U602:
   desaparece el extremo suelto intencional.
 - **Telemetría**: PF1 baja por la franja directo a J114.5. La de 24 V salía de
   PA5 por B.Cu hasta J114.6; con el bus de sensores pasó a PC1.
+- **J114 como cabecera de sondas** (2026-10-07, issue #4): los pines quedan
+  GND, sonda de 3,3 V, GND, sonda de 12 V, GND y sonda de 24 V. Los pads ya no
+  hacen de unión:
+  - el 12 V se une en una vía sobre la cabecera, en (54,35; 38,6), de la que
+    salen la diagonal por B.Cu a D303 y la bajada en F.Cu entre J114.3 y J114.4
+    hasta R701 y R724;
+  - PF1 baja entre J114.4 y J114.5 a una vía en (56,89; 41,5) y llega al
+    nodo filtrado por B.Cu;
+  - PC1 rodea J114.6 por B.Cu hasta la vía del divisor;
+  - la rama de 24 V de x = 62,5 mm termina en R725, al este de J114.6.
+  R723 va bajo J114.2, entre la orden de sleep y la de armado de red, con su
+  propia vía al plano de 3,3 V.
 
 ### Paso a cuatro capas (2026-09-23)
 

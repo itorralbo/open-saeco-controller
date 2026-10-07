@@ -481,7 +481,10 @@
     2,
     10
    ],
-   "path": [],
+   "path": [
+    "controller:R702",
+    "controller:R701"
+   ],
    "reset_level": null
   },
   {
@@ -497,7 +500,10 @@
     1,
     7
    ],
-   "path": [],
+   "path": [
+    "controller:R705",
+    "controller:R704"
+   ],
    "reset_level": null
   },
   {
@@ -664,11 +670,11 @@
     "controller:D303.1",
     "controller:D307.1",
     "controller:J106.3",
-    "controller:J114.3",
     "controller:R701.1",
     "controller:R709.1",
     "controller:R716.1",
     "controller:R720.1",
+    "controller:R724.1",
     "controller:U301.2",
     "controller:U301.3",
     "controller:U502.1"
@@ -686,10 +692,10 @@
     "controller:D701.1",
     "controller:F303.1",
     "controller:F304.1",
-    "controller:J114.4",
     "controller:J121.2",
     "controller:K701.1",
     "controller:R704.1",
+    "controller:R725.1",
     "controller:U303.2",
     "controller:U303.3"
    ]
@@ -808,7 +814,6 @@
     "controller:J102.1",
     "controller:J103.1",
     "controller:J109.1",
-    "controller:J114.2",
     "controller:L301.2",
     "controller:R101.1",
     "controller:R201.1",
@@ -821,6 +826,7 @@
     "controller:R409.1",
     "controller:R507.1",
     "controller:R508.1",
+    "controller:R723.1",
     "controller:U101.1",
     "controller:U101.16",
     "controller:U101.28",
@@ -1385,6 +1391,8 @@
     "controller:J110.SH",
     "controller:J112.2",
     "controller:J114.1",
+    "controller:J114.3",
+    "controller:J114.5",
     "controller:PS701.3",
     "controller:Q501.2",
     "controller:Q701.2",
@@ -1992,6 +2000,39 @@
     "controller:R402.1"
    ]
   },
+  "controller:PROBE_12V": {
+   "aliases": [
+    "controller:PROBE_12V"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:J114.4",
+    "controller:R724.2"
+   ]
+  },
+  "controller:PROBE_24V": {
+   "aliases": [
+    "controller:PROBE_24V"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:J114.6",
+    "controller:R725.2"
+   ]
+  },
+  "controller:PROBE_3V3": {
+   "aliases": [
+    "controller:PROBE_3V3"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:J114.2",
+    "controller:R723.2"
+   ]
+  },
   "controller:PROTECTIVE_EARTH": {
    "aliases": [
     "controller:PROTECTIVE_EARTH"
@@ -2112,7 +2153,6 @@
    "volts": null,
    "pins": [
     "controller:C701.1",
-    "controller:J114.5",
     "controller:R702.2",
     "controller:R703.1",
     "controller:U101.6"
@@ -2137,7 +2177,6 @@
    "volts": null,
    "pins": [
     "controller:C702.1",
-    "controller:J114.6",
     "controller:R705.2",
     "controller:R706.1",
     "controller:U101.9"
@@ -4484,7 +4523,7 @@
   },
   "controller:J114": {
    "part": "J6",
-   "value": "POWER MONITOR / MEASURE ONLY",
+   "value": "POWER PROBE / MEASURE ONLY",
    "mpn": "HX PH254-01-06-Z-L11.5 through hole header",
    "pins": {
     "1": {
@@ -4495,27 +4534,27 @@
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:3V3_CORE"
+     "net": "controller:PROBE_3V3"
     },
     "3": {
      "symbol": "3",
      "physical": "3",
-     "net": "controller:12V_PROTECTED"
+     "net": "controller:GND_UI"
     },
     "4": {
      "symbol": "4",
      "physical": "4",
-     "net": "controller:24V_ACT_RAW"
+     "net": "controller:PROBE_12V"
     },
     "5": {
      "symbol": "5",
      "physical": "5",
-     "net": "controller:RAIL_12V_ADC"
+     "net": "controller:GND_UI"
     },
     "6": {
      "symbol": "6",
      "physical": "6",
-     "net": "controller:RAIL_24V_ADC"
+     "net": "controller:PROBE_24V"
     }
    }
   },
@@ -6160,6 +6199,57 @@
      "symbol": "",
      "physical": "",
      "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:R723": {
+   "part": "R",
+   "value": "10k / J114 3V3 probe",
+   "mpn": "0603WAF1002T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:PROBE_3V3"
+    }
+   }
+  },
+  "controller:R724": {
+   "part": "R",
+   "value": "10k / J114 12V probe",
+   "mpn": "0603WAF1002T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:12V_PROTECTED"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:PROBE_12V"
+    }
+   }
+  },
+  "controller:R725": {
+   "part": "R",
+   "value": "10k / J114 24V probe",
+   "mpn": "0603WAF1002T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:24V_ACT_RAW"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:PROBE_24V"
     }
    }
   },

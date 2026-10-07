@@ -8,7 +8,7 @@ import math
 import re
 from dataclasses import dataclass, field
 
-from . import dc, drive, parts
+from . import dc, drive, netlist, parts
 from .model import Node
 
 
@@ -66,6 +66,7 @@ class Checker:
         self.check_ui_domain()
         self.check_backfeed()
         self.check_reverse_polarity()
+        self.check_probe_headers()
         self.check_tvs()
         self.check_fuses()
         drive.check(self)
@@ -579,6 +580,45 @@ class Checker:
                 self.add('error', 'reverse-polarity',
                          f'{pin} llega sin diodo serie a {", ".join(sorted(set(bad)))}: con el cable '
                          'invertido solo la limitación de la fuente los protege.', pin)
+
+    def check_probe_headers(self):
+        """A probing header must survive a probe that slips onto the next pin.
+
+        For every header in probe_headers.refs: two neighbouring pins may not
+        carry two different non-ground nets, and each non-ground pin has to
+        reach the board only through resistors of at least probe_headers.
+        min_ohms. Then a slip joins a rail to ground through that resistor,
+        never two rails, and never puts a rail on an MCU pin.
+        """
+        spec = self.c.get('probe_headers', {})
+        floor = spec.get('min_ohms', 0)
+        ground = {g for g, v in self.s.voltages.items() if v == 0}
+        for where in spec.get('refs', []):
+            board, ref = where.split(':')
+            comp = self.s.comp(board, ref)
+            order = sorted(comp.pins, key=lambda n: int(n) if n.isdigit() else n)
+            nets = [self.s.net_of(Node(board, ref, n)) for n in order]
+            for a, b, na, nb in zip(order, order[1:], nets, nets[1:]):
+                if na and nb and na != nb and na not in ground and nb not in ground:
+                    self.add('error', 'probe-header',
+                             f'{ref}.{a} ({na.split(":")[1]}) y {ref}.{b} ({nb.split(":")[1]}) son '
+                             'contiguos: una punta que resbale une dos tensiones distintas.', where)
+            for num, g in zip(order, nets):
+                if not g or g in ground:
+                    continue
+                direct = []
+                for node in self.s.members.get(g, []):
+                    if (node.board, node.ref) == (board, ref):
+                        continue
+                    part = self.s.comp(node.board, node.ref)
+                    ohms = netlist.resistance(part.value) if part.part == 'R' else None
+                    if ohms is None or ohms < floor:
+                        direct.append(f'{node.ref}.{self.s.physical_name(node) or node.pin}')
+                if direct:
+                    shown = ', '.join(sorted(direct)[:4]) + (f' y {len(direct) - 4} más' if len(direct) > 4 else '')
+                    self.add('error', 'probe-header',
+                             f'{ref}.{num} ({g.split(":")[1]}) llega a {shown} sin una resistencia serie de '
+                             f'al menos {floor:g} Ω: una punta que resbale a masa la cortocircuita.', where)
 
     def check_tvs(self):
         """A TVS must stay off on its rail and start conducting below what it protects.

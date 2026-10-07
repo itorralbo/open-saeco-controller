@@ -718,6 +718,18 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R723": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R724": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R725": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -805,10 +817,11 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "D308",
-    "F306"
+    "R723",
+    "R724",
+    "R725"
   ],
-  "tracks": 1812,
+  "tracks": 1816,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

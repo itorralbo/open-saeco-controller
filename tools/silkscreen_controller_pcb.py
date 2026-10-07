@@ -63,8 +63,11 @@ LABELS = {
 LABEL_AT = {'J115': (71.1, 123.1, 90.0), 'J104': (23.5, 11.2, 0.0),
             'J118': (117.6, 125.5, 90.0), 'J116': (93.8, 133.6, 0.0, 0.8)}
 # Pin marks: (reference, pad, text), straight above or below their pin.
+# J114 gets its whole pin-out (issue #4): ground between every rail.
 PIN_MARKS = (('J115', '1', '+'), ('J115', '3', '-'),
-             ('J118', '1', 'L'), ('J118', '3', 'N'))
+             ('J118', '1', 'L'), ('J118', '3', 'N'),
+             ('J114', '1', 'G'), ('J114', '2', '3V3'), ('J114', '3', 'G'),
+             ('J114', '4', '12'), ('J114', '5', 'G'), ('J114', '6', '24'))
 # Marks for tabs stacked in a column, beside their row instead: (x, y).
 # JP24's 5 mm header leaves too little room west of JP17's tab 1, so L goes
 # east of it, before the JP17 label; N stays west of tab 3.

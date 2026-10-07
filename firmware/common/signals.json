@@ -31,6 +31,11 @@
     "sources": "AP63203 VFB 3.27-3.33 V plus ripple; U303 11.8 V (VFB 0.792-0.808 V, 1 % divider) or the J101 bench supply, less D301; IRM-30-24 24 V -10 %/+10 % plus margin, as RAIL_24V; 24V_BREW and 24V_VALVE less one SS34; USB VBUS 5 V -5 %/+10 % with a service cable plugged"
   },
   "mains": {"phase": "controller:MAINS_L_FUSED", "neutral": "controller:MAINS_N", "prospective_fault": {"amps": 1500, "volts": 250, "source": "Design assumption accepted by the owner on 2026-10-07, not a measured maximum (issue #1; hardware/power/power-architecture.md, Corriente de defecto supuesta): the IEC 60127-2 high-breaking-capacity level, 1500 A at 250 VAC, the class of the original board's mains fuses. Above it the installation's 16 A breaker backs the fuse up. Every fuse on the mains side must break it."}},
+  "probe_headers": {
+    "_doc": "Bench probing headers: neighbouring pins never carry two different non-ground nets, and each rail pin reaches the board through at least min_ohms (issue #4).",
+    "refs": ["controller:J114"],
+    "min_ohms": 1000
+  },
   "external_limits": [
     {"pin": "controller:J106.3", "volts": 20.0, "source": "Digmesa FHKSC 932-9521-B supply 3.8-20 V (docs/verification.md)"}
   ],
@@ -107,10 +112,10 @@
          "from": "controller:U704.VOUT",
          "analog": {"kind": "hall", "device": "controller:U704", "senses": "controller:J115.1", "range_a": [0, 4.8],
                     "source": "JP8 + line through U704 (TMCS1133B4A); 4.8 A is the stall peak, 230 V x 1.41 / 68 Ohm (hardware/power/power-architecture.md)"}},
-        {"name": "RAIL_12V", "net": "RAIL_12V_ADC", "function": "adc", "from": "controller:J114.5",
+        {"name": "RAIL_12V", "net": "RAIL_12V_ADC", "function": "adc", "from": "controller:R701.1",
          "analog": {"kind": "divider", "source_net": "controller:12V_PROTECTED", "range_v": [0, 15],
                     "source": "SMAJ15A (D302) standoff voltage as the highest steady input"}},
-        {"name": "RAIL_24V", "net": "RAIL_24V_ADC", "function": "adc", "from": "controller:J114.6",
+        {"name": "RAIL_24V", "net": "RAIL_24V_ADC", "function": "adc", "from": "controller:R704.1",
          "analog": {"kind": "divider", "source_net": "controller:24V_ACT_RAW", "range_v": [0, 28],
                     "source": "IRM-30-24 at its +10 % trim plus margin; J112 bench supply alike"}},
         {"name": "UART_TX", "net": "STM_TX_RAW", "function": "uart_tx", "periph": "USART1_TX",

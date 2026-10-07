@@ -2312,8 +2312,53 @@
       }
     },
     {
+      "reference": "R723",
+      "value": "10k / J114 3V3 probe",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "PROBE_3V3"
+      }
+    },
+    {
+      "reference": "R724",
+      "value": "10k / J114 12V probe",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "PROBE_12V"
+      }
+    },
+    {
+      "reference": "R725",
+      "value": "10k / J114 24V probe",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "2": "PROBE_24V"
+      }
+    },
+    {
       "reference": "J114",
-      "value": "POWER MONITOR / MEASURE ONLY",
+      "value": "POWER PROBE / MEASURE ONLY",
       "footprint": "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical",
       "status": "candidate",
       "manufacturer": "hanxia",
@@ -2323,11 +2368,11 @@
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "GND_UI",
-        "2": "3V3_CORE",
-        "3": "12V_PROTECTED",
-        "4": "24V_ACT_RAW",
-        "5": "RAIL_12V_ADC",
-        "6": "RAIL_24V_ADC"
+        "2": "PROBE_3V3",
+        "3": "GND_UI",
+        "4": "PROBE_12V",
+        "5": "GND_UI",
+        "6": "PROBE_24V"
       }
     },
     {
