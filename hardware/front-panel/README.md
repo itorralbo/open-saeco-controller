@@ -121,7 +121,7 @@ el adaptador y las señales disponibles, no solo cambiar el controlador software
 
 U1 no dispone de reset externo: recuperar I²C y reescribir configuración puede
 no bastar tras ciertos fallos de alimentación. La principal incorpora un corte
-TPS22918 para `3V3_UI`; quedan por ensayar la secuencia de apagado y la prevención
+TPS2553 con límite de corriente para `3V3_UI`; quedan por ensayar la secuencia de apagado y la prevención
 de alimentación parásita por GPIO con el display y el arnés definitivos.
 
 ## Comprobación y edición

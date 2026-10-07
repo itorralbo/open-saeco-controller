@@ -1195,3 +1195,39 @@ Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
 infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
 --self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 90/90;
 CTest 3/3. Sin hardware.
+
+## Límite de corriente en las alimentaciones que salen de la placa, 2026-10-07
+
+Issue #8: J109.1 (JP22) salía directo de `3V3_CORE`, J106.3 (JP5) de
+`12V_PROTECTED` y J104.1 (frontal) de U302, un TPS22918 sin límite de corriente
+ni apagado térmico. Un corto en un mazo hundía el raíl de los dos MCU o podía
+abrir F301, que no se rearma, y el reset no aislaba el frontal porque R301 lo
+mantiene encendido.
+
+- **J104.1**: U302 pasa a **TPS2553DBVR** (C55266). R304 = 49,9 kΩ fija
+  475–565 mA (TI SLVS841F, 7.5), por debajo de 1,5 A del WR-MM y del límite de
+  U301, con apagado térmico. R305 = 1 kΩ descarga `3V3_UI` como hacía el QOD
+  del TPS22918 y gasta 3,3 mA. El arranque suave interno sustituye a C307, que
+  se retira. FAULT queda sin conectar.
+- **J109.1**: **U304**, otro TPS2553, con R306 = 210 kΩ (110–150 mA), C409 en
+  la entrada y C410 junto al conector, bajo J113. El consumo del sensor sigue
+  sin medir (WL-01); 110 mA es el mínimo garantizado.
+- **J106.3**: **R413**, 390 Ω anti-surge de 0,66 W (`R:390_1206_500V`), con
+  C408. Con menos de 8 mA, al Digmesa le quedan unos 7,9 V de los 3,8 V que
+  necesita; un corto se queda en 32 mA y 0,4 W. Se descartó un regulador de
+  corriente NSI45015: con 100 mm² de cobre (600 °C/W) un corto lo calentaba
+  unos 135 °C. La rama de 12 V del LED de la bomba termina ahora en R413 y no en
+  el pad de JP5.
+- **Regla `offboard-supply`** en el modelo de placa (`offboard_supplies` del
+  contrato: J104.1, J106.3 y J109.1, 100 Ω mínimo): cada salida debe venir de un
+  interruptor con `current_limited` en `devices.json` o solo a través de
+  resistencias suficientes. Tres pruebas de mutación: J106.3 y J109.1 de vuelta
+  a sus raíles y U302 de vuelta al TPS22918. El simulador acepta ahora los dos
+  juegos de nombres de pin de un interruptor de carga (VIN/ON/VOUT e IN/EN/OUT).
+- **PS-08** nuevo: cortos de 5 s en cada salida, comprobando que los raíles no
+  caen, que ningún MCU se reinicia y que F301 sigue entero.
+
+Resultado: ERC 0 en las dos placas; netlist 212 componentes y 680 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 93/93; CTest 3/3. Sin hardware.

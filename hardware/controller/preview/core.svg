@@ -926,12 +926,12 @@
 <text x="814.47" y="101.1" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="610" y="145" font-size="1.2" text-anchor="start" fill="#213b50">Fusible + bloqueo de polaridad + TVS. J101 entra por F305/D307, en OR con U303 por F301/D301.</text>
 <text x="610" y="151" font-size="1.2" text-anchor="start" fill="#213b50">J101 solo desde una fuente AC/DC aislada y certificada; en la máquina los 12V salen de U303 (hoja 15).</text>
-<text x="610" y="174" font-size="1.8" text-anchor="start" fill="#213b50">08 / Corte y descarga del frontal — TPS22918, 2A</text>
+<text x="610" y="174" font-size="1.8" text-anchor="start" fill="#213b50">08 / Corte y limitación del frontal — TPS2553, 0,5 A</text>
 <rect x="684.53" y="200.66" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="689.61" y="195.66" font-size="1.05" text-anchor="middle" fill="#213b50">U302</text>
-<text x="689.61" y="198.16" font-size="1.05" text-anchor="middle" fill="#213b50">TPS22918DBVR</text>
+<text x="689.61" y="198.16" font-size="1.05" text-anchor="middle" fill="#213b50">TPS2553DBVR / UI 0.5A limit</text>
 <path d="M 684.53 203.2 H 679.45" stroke="#27856d" stroke-width=".22"/>
-<text x="685.23" y="203.5" font-size="0.9" text-anchor="start" fill="#213b50">VIN</text>
+<text x="685.23" y="203.5" font-size="0.9" text-anchor="start" fill="#213b50">IN</text>
 <text x="682.59" y="202.7" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
 <text x="679.0500000000001" y="202.7" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 684.53 207.01 H 679.45" stroke="#27856d" stroke-width=".22"/>
@@ -939,21 +939,21 @@
 <text x="682.59" y="206.51" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
 <text x="679.0500000000001" y="206.51" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
 <path d="M 684.53 210.82 H 679.45" stroke="#27856d" stroke-width=".22"/>
-<text x="685.23" y="211.12" font-size="0.9" text-anchor="start" fill="#213b50">ON</text>
+<text x="685.23" y="211.12" font-size="0.9" text-anchor="start" fill="#213b50">EN</text>
 <text x="682.59" y="210.32" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="679.0500000000001" y="210.32" font-size="0.9" text-anchor="end" fill="#23745f">UI_PWR_EN</text>
 <path d="M 694.69 203.2 H 699.77" stroke="#27856d" stroke-width=".22"/>
-<text x="693.99" y="203.5" font-size="0.9" text-anchor="end" fill="#213b50">VOUT</text>
+<text x="693.99" y="203.5" font-size="0.9" text-anchor="end" fill="#213b50">OUT</text>
 <text x="696.63" y="202.7" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
 <text x="700.17" y="202.7" font-size="0.9" text-anchor="start" fill="#23745f">3V3_UI</text>
 <path d="M 694.69 207.01 H 699.77" stroke="#27856d" stroke-width=".22"/>
-<text x="693.99" y="207.31" font-size="0.9" text-anchor="end" fill="#213b50">QOD</text>
+<text x="693.99" y="207.31" font-size="0.9" text-anchor="end" fill="#213b50">ILIM</text>
 <text x="696.63" y="206.51" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
-<text x="700.17" y="206.51" font-size="0.9" text-anchor="start" fill="#23745f">3V3_UI</text>
+<text x="700.17" y="206.51" font-size="0.9" text-anchor="start" fill="#23745f">UI_ILIM</text>
 <path d="M 694.69 210.82 H 699.77" stroke="#27856d" stroke-width=".22"/>
-<text x="693.99" y="211.12" font-size="0.9" text-anchor="end" fill="#213b50">CT</text>
+<text x="693.99" y="211.12" font-size="0.9" text-anchor="end" fill="#213b50">~{FAULT}</text>
 <text x="696.63" y="210.32" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="700.17" y="210.32" font-size="0.9" text-anchor="start" fill="#23745f">UI_RISE</text>
+<text x="699.77" y="211.12" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <rect x="622.3000000000001" y="217.44" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="624.84" y="212.44" font-size="1.05" text-anchor="middle" fill="#213b50">R301</text>
 <text x="624.84" y="214.94" font-size="1.05" text-anchor="middle" fill="#213b50">100k</text>
@@ -961,13 +961,20 @@
 <text x="616.82" y="217.94" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
 <path d="M 627.38 218.44 H 632.46" stroke="#27856d" stroke-width=".22"/>
 <text x="632.86" y="217.94" font-size="0.9" text-anchor="start" fill="#23745f">UI_PWR_EN</text>
-<path d="M 748.0300000000001 218.44 H 749.9350000000001 M 751.205 218.44 H 753.11 M 749.9350000000001 216.94 V 219.94 M 751.205 216.94 V 219.94" stroke="#213b50" stroke-width=".25" fill="none"/>
-<text x="750.57" y="211.94" font-size="1.05" text-anchor="middle" fill="#213b50">C307</text>
-<text x="750.57" y="214.44" font-size="1.05" text-anchor="middle" fill="#213b50">1nF / CT</text>
+<rect x="748.0300000000001" y="217.44" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="750.57" y="212.44" font-size="1.05" text-anchor="middle" fill="#213b50">R304</text>
+<text x="750.57" y="214.94" font-size="1.05" text-anchor="middle" fill="#213b50">49.9k / UI ILIM 0.5A</text>
 <path d="M 748.0300000000001 218.44 H 742.95" stroke="#27856d" stroke-width=".22"/>
-<text x="742.5500000000001" y="217.94" font-size="0.9" text-anchor="end" fill="#23745f">UI_RISE</text>
+<text x="742.5500000000001" y="217.94" font-size="0.9" text-anchor="end" fill="#23745f">UI_ILIM</text>
 <path d="M 753.11 218.44 H 758.19" stroke="#27856d" stroke-width=".22"/>
 <text x="758.59" y="217.94" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="836.9300000000001" y="217.44" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="839.47" y="212.44" font-size="1.05" text-anchor="middle" fill="#213b50">R305</text>
+<text x="839.47" y="214.94" font-size="1.05" text-anchor="middle" fill="#213b50">1k / UI discharge</text>
+<path d="M 836.9300000000001 218.44 H 831.85" stroke="#27856d" stroke-width=".22"/>
+<text x="831.45" y="217.94" font-size="0.9" text-anchor="end" fill="#23745f">3V3_UI</text>
+<path d="M 842.01 218.44 H 847.09" stroke="#27856d" stroke-width=".22"/>
+<text x="847.49" y="217.94" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <path d="M 622.3000000000001 195.58 H 624.205 M 625.475 195.58 H 627.38 M 624.205 194.08 V 197.08 M 625.475 194.08 V 197.08" stroke="#213b50" stroke-width=".25" fill="none"/>
 <text x="624.84" y="189.08" font-size="1.05" text-anchor="middle" fill="#213b50">C308</text>
 <text x="624.84" y="191.58" font-size="1.05" text-anchor="middle" fill="#213b50">1uF / switch input</text>
@@ -983,7 +990,7 @@
 <path d="M 797.56 195.58 H 802.64" stroke="#27856d" stroke-width=".22"/>
 <text x="803.04" y="195.08" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="610" y="244" font-size="1.2" text-anchor="start" fill="#213b50">PB12 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.</text>
-<text x="610" y="250" font-size="1.2" text-anchor="start" fill="#213b50">QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.</text>
+<text x="610" y="250" font-size="1.2" text-anchor="start" fill="#213b50">ILIM 475-565 mA y apagado térmico; R305 descarga el frontal al apagarlo. FAULT sin conectar.</text>
 <text x="610" y="276" font-size="1.8" text-anchor="start" fill="#213b50">09 / USB-C de servicio — datos ESP32 y alimentación de banco opcional</text>
 <rect x="640.08" y="308.61" width="20.32" height="35.56" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="650.24" y="303.61" font-size="1.05" text-anchor="middle" fill="#213b50">J110</text>
@@ -1208,6 +1215,20 @@
 <path d="M 147.32 463.55 H 152.4" stroke="#27856d" stroke-width=".22"/>
 <text x="152.8" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="20" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA3 ADC1_IN4. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.</text>
+<rect x="327.65999999999997" y="504.46" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="330.2" y="499.46" font-size="1.05" text-anchor="middle" fill="#213b50">R413</text>
+<text x="330.2" y="501.96" font-size="1.05" text-anchor="middle" fill="#213b50">390 / FLOW VCC limit</text>
+<path d="M 327.65999999999997 505.46 H 322.58" stroke="#27856d" stroke-width=".22"/>
+<text x="322.18" y="504.96" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 332.74 505.46 H 337.82" stroke="#27856d" stroke-width=".22"/>
+<text x="338.21999999999997" y="504.96" font-size="0.9" text-anchor="start" fill="#23745f">FLOW_VCC</text>
+<path d="M 382.27 505.46 H 384.175 M 385.445 505.46 H 387.35 M 384.175 503.96 V 506.96 M 385.445 503.96 V 506.96" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="384.81" y="498.96" font-size="1.05" text-anchor="middle" fill="#213b50">C408</text>
+<text x="384.81" y="501.46" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / FLOW VCC</text>
+<path d="M 382.27 505.46 H 377.19" stroke="#27856d" stroke-width=".22"/>
+<text x="376.79" y="504.96" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_VCC</text>
+<path d="M 387.35 505.46 H 392.43" stroke="#27856d" stroke-width=".22"/>
+<text x="392.83" y="504.96" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="287.02000000000004" y="437.515" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="292.1" y="432.515" font-size="1.05" text-anchor="middle" fill="#213b50">J106</text>
 <text x="292.1" y="435.015" font-size="1.05" text-anchor="middle" fill="#213b50">JP5 FLOW ADAPTER / VCC-GND-OC</text>
@@ -1222,7 +1243,7 @@
 <path d="M 287.02000000000004 448.31 H 281.94" stroke="#27856d" stroke-width=".22"/>
 <text x="287.72" y="448.61" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="285.08000000000004" y="447.81" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="281.54" y="447.81" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<text x="281.54" y="447.81" font-size="0.9" text-anchor="end" fill="#23745f">FLOW_VCC</text>
 <rect x="382.27" y="429.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="384.81" y="424.53" font-size="1.05" text-anchor="middle" fill="#213b50">R403</text>
 <text x="384.81" y="427.03" font-size="1.05" text-anchor="middle" fill="#213b50">4.7k / FLOW pull-up</text>
@@ -1245,7 +1266,7 @@
 <path d="M 387.35 463.55 H 392.43" stroke="#27856d" stroke-width=".22"/>
 <text x="392.83" y="463.05" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="245" y="486" font-size="1.2" text-anchor="start" fill="#213b50">PA2 TIM2_CH3. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.</text>
-<text x="245" y="493" font-size="1.2" text-anchor="start" fill="#213b50">Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V_PROTECTED; pull-up separado a 3V3.</text>
+<text x="245" y="493" font-size="1.2" text-anchor="start" fill="#213b50">Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V por R413 (390 Ω); pull-up separado a 3V3.</text>
 <rect x="514.3499999999999" y="440.055" width="10.16" height="10.16" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="519.43" y="435.055" font-size="1.05" text-anchor="middle" fill="#213b50">J107</text>
 <text x="519.43" y="437.555" font-size="1.05" text-anchor="middle" fill="#213b50">JP14 DOOR / contacto seco</text>
@@ -1358,13 +1379,61 @@
 <text x="813.1999999999999" y="504.96" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="660" y="530" font-size="1.1" text-anchor="start" fill="#213b50">PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,</text>
 <text x="660" y="536" font-size="1.1" text-anchor="start" fill="#213b50">V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.</text>
+<rect x="575.31" y="505.46" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="580.39" y="500.46" font-size="1.05" text-anchor="middle" fill="#213b50">U304</text>
+<text x="580.39" y="502.96" font-size="1.05" text-anchor="middle" fill="#213b50">TPS2553DBVR / JP22 0.13A limit</text>
+<path d="M 575.31 508.0 H 570.23" stroke="#27856d" stroke-width=".22"/>
+<text x="576.01" y="508.3" font-size="0.9" text-anchor="start" fill="#213b50">IN</text>
+<text x="573.37" y="507.5" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="569.83" y="507.5" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 575.31 511.81 H 570.23" stroke="#27856d" stroke-width=".22"/>
+<text x="576.01" y="512.11" font-size="0.9" text-anchor="start" fill="#213b50">GND</text>
+<text x="573.37" y="511.31" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="569.83" y="511.31" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 575.31 515.62 H 570.23" stroke="#27856d" stroke-width=".22"/>
+<text x="576.01" y="515.92" font-size="0.9" text-anchor="start" fill="#213b50">EN</text>
+<text x="573.37" y="515.12" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="569.83" y="515.12" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 585.47 508.0 H 590.55" stroke="#27856d" stroke-width=".22"/>
+<text x="584.77" y="508.3" font-size="0.9" text-anchor="end" fill="#213b50">OUT</text>
+<text x="587.41" y="507.5" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="590.9499999999999" y="507.5" font-size="0.9" text-anchor="start" fill="#23745f">WATER_VCC</text>
+<path d="M 585.47 511.81 H 590.55" stroke="#27856d" stroke-width=".22"/>
+<text x="584.77" y="512.11" font-size="0.9" text-anchor="end" fill="#213b50">ILIM</text>
+<text x="587.41" y="511.31" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="590.9499999999999" y="511.31" font-size="0.9" text-anchor="start" fill="#23745f">WATER_ILIM</text>
+<path d="M 585.47 515.62 H 590.55" stroke="#27856d" stroke-width=".22"/>
+<text x="584.77" y="515.92" font-size="0.9" text-anchor="end" fill="#213b50">~{FAULT}</text>
+<text x="587.41" y="515.12" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="590.55" y="515.92" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<rect x="647.7" y="500.65" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="650.24" y="495.65" font-size="1.05" text-anchor="middle" fill="#213b50">R306</text>
+<text x="650.24" y="498.15" font-size="1.05" text-anchor="middle" fill="#213b50">210k / JP22 ILIM 0.13A</text>
+<path d="M 647.7 501.65 H 642.62" stroke="#27856d" stroke-width=".22"/>
+<text x="642.22" y="501.15" font-size="0.9" text-anchor="end" fill="#23745f">WATER_ILIM</text>
+<path d="M 652.78 501.65 H 657.86" stroke="#27856d" stroke-width=".22"/>
+<text x="658.26" y="501.15" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 647.7 519.43 H 649.605 M 650.875 519.43 H 652.78 M 649.605 517.93 V 520.93 M 650.875 517.93 V 520.93" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="650.24" y="512.93" font-size="1.05" text-anchor="middle" fill="#213b50">C409</text>
+<text x="650.24" y="515.43" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / JP22 switch input</text>
+<path d="M 647.7 519.43 H 642.62" stroke="#27856d" stroke-width=".22"/>
+<text x="642.22" y="518.93" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 652.78 519.43 H 657.86" stroke="#27856d" stroke-width=".22"/>
+<text x="658.26" y="518.93" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 717.5500000000001 510.54 H 719.455 M 720.725 510.54 H 722.63 M 719.455 509.04 V 512.04 M 720.725 509.04 V 512.04" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="720.09" y="504.04" font-size="1.05" text-anchor="middle" fill="#213b50">C410</text>
+<text x="720.09" y="506.54" font-size="1.05" text-anchor="middle" fill="#213b50">1uF / JP22 VCC</text>
+<path d="M 717.5500000000001 510.54 H 712.47" stroke="#27856d" stroke-width=".22"/>
+<text x="712.07" y="510.04" font-size="0.9" text-anchor="end" fill="#23745f">WATER_VCC</text>
+<path d="M 722.63 510.54 H 727.71" stroke="#27856d" stroke-width=".22"/>
+<text x="728.11" y="510.04" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="514.3499999999999" y="528.955" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="519.43" y="523.955" font-size="1.05" text-anchor="middle" fill="#213b50">J109</text>
 <text x="519.43" y="526.455" font-size="1.05" text-anchor="middle" fill="#213b50">JP22 WATER / RED-WHITE-BLACK</text>
 <path d="M 514.3499999999999 532.13 H 509.27" stroke="#27856d" stroke-width=".22"/>
 <text x="515.05" y="532.43" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="512.41" y="531.63" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="508.87" y="531.63" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<text x="508.87" y="531.63" font-size="0.9" text-anchor="end" fill="#23745f">WATER_VCC</text>
 <path d="M 514.3499999999999 535.94 H 509.27" stroke="#27856d" stroke-width=".22"/>
 <text x="515.05" y="536.24" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="512.41" y="535.44" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>

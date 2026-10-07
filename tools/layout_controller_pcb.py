@@ -369,6 +369,14 @@ PLACE = {
     # C302 is the switcher's input HF capacitor, so it sits under the package
     # bridging the input pins to the ground pin instead of 8 mm away by C301.
     'C302': (97, 39, 0),
+    # Issue #8: U302 is now a TPS2553 with R304 setting its limit where the
+    # rise capacitor C307 was, and R305 bleeding 3V3_UI beside C309. U304
+    # limits the JP22 feed below J113 with R306, C409 and C410, and R413
+    # with C408 limits the JP5 feed north of J106.
+    'R304': (5.45, 13.3, 90), 'R305': (1.95, 15.08, 270),
+    'U304': (12.5, 131.0, 0), 'R306': (16.2, 132.4, 0),
+    'C409': (9.6, 130.5, 270), 'C410': (14.97, 128.4, 180),
+    'R413': (41.2, 120.2, 180), 'C408': (40.25, 118.2, 0),
     # C315 is U301's VIN capacitor, right behind C302 (issue #3); C301 stays
     # as the rail's bulk by D301 and D307.
     'C315': (97, 41.3, 0),
@@ -376,9 +384,10 @@ PLACE = {
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
     # UI load switch, just below J104 so the switched 3.3 V reaches pin 1 in
     # a few millimetres; the slow PB12 enable crosses the board instead. The
-    # outputs face north, C307 sits on pin 4, C308 below pin 1, C309 beside
-    # the output run and the R301 pull-up east of the enable pin.
-    'U302': (4.5, 17.0, 90), 'R301': (7.8, 18.138, 180), 'C307': (5.45, 13.3, 90),
+    # output faces north, R304 (current limit) sits above pin 5, C308 below
+    # pin 1, C309 beside the output run with R305 under it, and the R301
+    # pull-up east of the enable pin.
+    'U302': (4.5, 17.0, 90), 'R301': (7.8, 18.138, 180),
     'C308': (2.6, 20.925, 270), 'C309': (2.0, 12.0, 90),
 
     # Passive sensor interfaces follow the original harness connector zones.

@@ -21,7 +21,7 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | Interfaz y comunicaciones, antena externa U.FL | ESP32-S3-WROOM-1U-N8R8 | [C2980300](https://jlcpcb.com/partdetail/3401552-ESP32_S3_WROOM_1UN8R8/C2980300) | 1.441 | 1.303 | Standard Only |
 | Botones frontal | TCA9534PWR | [C783615](https://jlcpcb.com/partdetail/C783615) | 15.097 | 14.950 | Economic / Standard |
 | Regulador 3,3 V / 2 A | AP63203WU-7 | [C780769](https://jlcpcb.com/partdetail/C780769) | 17.624 | 13.514 | Economic / Standard |
-| Corte alimentación frontal | TPS22918DBVR | [C131941](https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941) | 12.926 | 12.338 | Economic / Standard |
+| Corte y límite de alimentación del frontal y de JP22 (×2) | TPS2553DBVR | [C55266](https://jlcpcb.com/partdetail/C55266) | 57.596 | 56.686 | Economic / Standard |
 | Puente H motor del grupo | DRV8876PWPR | [C575551](https://www.lcsc.com/product-detail/C575551.html) | 29.841 | 29.572 | Extended; categoría JLC por verificar |
 | Driver de puerta de válvula, candidato | UCC27517DBVR | [C99395](https://www.lcsc.com/product-detail/C99395.html) | 49.012 | 46.195 | Extended; categoría JLC por verificar |
 | MOSFET de válvula, candidato | UMW SI2308A, 60 V/3 A | [C347491](https://www.lcsc.com/product-detail/C347491.html) | 517.717 | 514.495 | Extended; categoría JLC por verificar |
@@ -96,7 +96,7 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal](../controller/bom-draft.csv): 205 posiciones. 200 tienen MPN y
+- [Principal](../controller/bom-draft.csv): 212 posiciones. 207 tienen MPN y
   código LCSC; J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
   las vende; RV701 tiene valor provisional y ninguna pieza; J111 y J121 son
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:

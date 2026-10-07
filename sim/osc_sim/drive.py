@@ -8,7 +8,7 @@ The levels come from sim/osc_sim/circuit.py, so a gate below the voltage at
 which its MOSFET is specified, a logic input between VIL and VIH or an opto
 below its IFT shows up here as an undefined load.
 """
-from . import netlist
+from . import netlist, parts
 from .circuit import ON, OFF, X, Circuit
 from .model import Node
 
@@ -30,7 +30,7 @@ class Bench:
         board, ref = spec['ref'].split(':')
         self.mcu_board, self.mcu_ref = board, ref
         self.caps = checker.mcu_ref[self.s.comp(board, ref).mpn]
-        self.switched = {d.pins['VOUT'] for d in self.circuit.devices if d.kind == 'load_switch'}
+        self.switched = {parts.switch_pins(d.pins)[2] for d in self.circuit.devices if d.kind == 'load_switch'}
         self.nrst = self.s.find(self.c['interlock_net'])
 
     def rails(self, corner=None):
@@ -153,7 +153,7 @@ def margins(bench, active, inactive):
             rows.append(f'{ref} {on.states[key]}: ' + ', '.join(
                 f'{n} {v[d.pins[n]]:.2f} V' for n in ('nSLEEP', 'EN/IN1', 'PH/IN2')) + f' (VIH {p["vih"]} V)')
         elif d.kind == 'load_switch':
-            rows.append(f'{ref} ON {v[d.pins["ON"]]:.2f} V ≥ {p["vih"]} V')
+            rows.append(f'{ref} ON {v[parts.switch_pins(d.pins)[1]]:.2f} V ≥ {p["vih"]} V')
         elif d.kind == 'triac':
             rows.append(f'{ref} disparado')
     return '; '.join(rows)

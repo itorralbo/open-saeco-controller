@@ -121,17 +121,21 @@ def main():
     assert nets['L301'] == {'1':'SW_NODE','2':v}
     for ref in ('C304','C305','C306'):
         assert nets[ref] == {'1':v,'2':g}
-    assert nets['U302'] == {'1':v,'2':g,'3':'UI_PWR_EN','6':'3V3_UI',
-                            '5':'3V3_UI','4':'UI_RISE'}
+    # U302 limits the front-panel feed (issue #8): 49.9k sets 475-565 mA and
+    # R305 discharges 3V3_UI when off; FAULT is left open.
+    assert nets['U302'] == {'1':v,'2':g,'3':'UI_PWR_EN','6':'3V3_UI','5':'UI_ILIM','4':None}
     assert nets['R301'] == {'1':v,'2':'UI_PWR_EN'}
-    assert nets['C307'] == {'1':'UI_RISE','2':g}
+    assert nets['R304'] == {'1':'UI_ILIM','2':g}
+    assert nets['R305'] == {'1':'3V3_UI','2':g}
     assert nets['C308'] == {'1':v,'2':g}
     assert nets['C309'] == {'1':'3V3_UI','2':g}
     assert nets['J105'] == {'1':'NTC_RAW','2':g}
     assert nets['R401'] == {'1':v,'2':'NTC_RAW'}
     assert nets['R402'] == {'1':'NTC_RAW','2':'NTC_ADC'}
     assert nets['C401'] == {'1':'NTC_ADC','2':g}
-    assert nets['J106'] == {'1':'FLOW_RAW','2':g,'3':'12V_PROTECTED'}
+    assert nets['J106'] == {'1':'FLOW_RAW','2':g,'3':'FLOW_VCC'}
+    assert nets['R413'] == {'1':'12V_PROTECTED','2':'FLOW_VCC'}
+    assert nets['C408'] == {'1':'FLOW_VCC','2':g}
     assert nets['R403'] == {'1':v,'2':'FLOW_RAW'}
     assert nets['R404'] == {'1':'FLOW_RAW','2':'FLOW_TIM'}
     assert nets['C402'] == {'1':'FLOW_TIM','2':g}
@@ -148,7 +152,9 @@ def main():
         assert nets[refs[0]] == {'1':v,'2':raw}
         assert nets[refs[1]] == {'1':raw,'2':conditioned}
         assert nets[refs[2]] == {'1':conditioned,'2':g}
-    assert nets['J109'] == {'1':v,'2':'WATER_RAW','3':g}
+    assert nets['J109'] == {'1':'WATER_VCC','2':'WATER_RAW','3':g}
+    assert nets['U304'] == {'1':v,'2':g,'3':v,'6':'WATER_VCC','5':'WATER_ILIM','4':None}
+    assert nets['R306'] == {'1':'WATER_ILIM','2':g}
     assert nets['R411'] == {'1':'WATER_RAW','2':'WATER_LEVEL'}
     assert nets['C406'] == {'1':'WATER_LEVEL','2':g}
     assert nets['J110'] == {

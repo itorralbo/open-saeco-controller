@@ -220,6 +220,21 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'J114', '6', 'RAIL_24V_ADC')
         self.expect(b, 'probe-header', 'U101.PC1')
 
+    def test_flow_sensor_fed_straight_from_the_rail(self):
+        b = baseline()  # J106.3 on 12V_PROTECTED, as before 2026-10-07
+        set_net(b['controller'], 'J106', '3', '12V_PROTECTED')
+        self.expect(b, 'offboard-supply', 'controller:J106.3 (12V_PROTECTED)')
+
+    def test_water_sensor_fed_straight_from_the_plane(self):
+        b = baseline()  # J109.1 on 3V3_CORE, as before 2026-10-07
+        set_net(b['controller'], 'J109', '1', '3V3_CORE')
+        self.expect(b, 'offboard-supply', 'controller:J109.1 (3V3_CORE)')
+
+    def test_front_panel_switch_without_current_limit(self):
+        b = baseline()  # the TPS22918 that was U302 has no current limit
+        b['controller'].components['U302'].fields['mpn'] = 'TPS22918DBVR'
+        self.expect(b, 'offboard-supply', 'controller:J104.1 (3V3_UI)')
+
     def test_tvs_breaks_down_above_what_it_protects(self):
         b = baseline()  # the SMAJ18A starts at 20-22.1 V, over U502's 20 V VDD
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'

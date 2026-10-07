@@ -32,7 +32,7 @@ NEW_POSITIONS = {
     'C301': (60, 15), 'C302': (65, 15), 'U301': (58, 25),
     'C303': (64, 25), 'L301': (50, 25), 'C304': (42, 23),
     'C305': (42, 28), 'C306': (45, 34), 'U302': (75, 25),
-    'R301': (75, 18), 'C307': (67, 32), 'C308': (69, 18),
+    'R301': (75, 18), 'C308': (69, 18),
     'C309': (84, 23),
     'R401': (10, 75), 'R402': (15, 75), 'C401': (20, 75),
     'R403': (10, 82), 'R404': (15, 82), 'C402': (20, 82),
@@ -51,6 +51,9 @@ NEW_POSITIONS = {
     'J112': (130, 6), 'F303': (108, 14), 'D304': (116, 14),
     'F306': (112.5, 12.4), 'D308': (112.5, 18.6),
     'C315': (97, 41.3), 'C316': (122.5, 7.5),
+    'R304': (5.45, 13.3), 'R305': (1.95, 15.08), 'U304': (12.5, 131.0),
+    'R306': (16.2, 132.4), 'C409': (9.6, 130.5), 'C410': (14.97, 128.4),
+    'R413': (41.2, 120.2), 'C408': (40.4, 118.2),
     'C501': (130, 21), 'C502': (120, 21), 'U501': (130, 43),
     'C503': (136, 38), 'C504': (136, 45),
     'R501': (126, 56), 'R502': (134, 56),
@@ -174,6 +177,9 @@ FOOTPRINT_REPLACEMENTS['J104'] = (
 FOOTPRINT_REPLACEMENTS['J110'] = (
     'Connector_USB:USB_C_Receptacle_HRO_TYPE-C-31-M-12',
     'OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical')
+# Footprints the schematic dropped on purpose; anything else that vanishes
+# still stops the sync. C307 was the TPS22918's rise-time capacitor (issue #8).
+REMOVED = {'C307'}
 NEW_ORIENTATIONS = {'J110': 180, 'F701': 90, 'F702': 90, 'PS701': 180}
 REFERENCE_POSITIONS = {
     'J110': (34, 4), 'U203': (32, 10.5), 'R224': (34, 20),
@@ -219,6 +225,9 @@ def main():
 
     desired = {c.attrib['ref']: c for c in xml.findall('components/comp')
                if c.findtext('footprint')}
+    for fp in list(board.GetFootprints()):
+        if fp.GetReference() in REMOVED and fp.GetReference() not in desired:
+            board.Delete(fp)
     existing = {fp.GetReference(): fp for fp in board.GetFootprints()
                 if not fp.GetReference().startswith('MH')}
     before_placement = {ref: (fp.GetPosition(), fp.GetOrientationDegrees())

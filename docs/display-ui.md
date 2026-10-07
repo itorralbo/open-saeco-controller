@@ -129,7 +129,7 @@ de estados implementada.
 
 - BL bajo y CS alto durante init; aplicar reset y tiempos del panel antes de habilitar imagen.
 - Sin reset externo del TCA9534: prever recuperación de I²C y reescritura de config tras fallo de bus.
-- El corte de `3V3_UI` en la principal (TPS22918) permite reinicio limpio del frontal; **TBD** ensayar
+- El corte de `3V3_UI` en la principal (TPS2553, limitado a 475–565 mA) permite reinicio limpio del frontal; **TBD** ensayar
   secuencia de apagado y prevención de backfeed por GPIO con display y arnés definitivos.
 - Pantalla de FALLO legible sin depender de estados previos; watchdog de la tarea de UI.
 

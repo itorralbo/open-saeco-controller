@@ -14,7 +14,7 @@ import json
 from collections import deque
 from dataclasses import dataclass, field
 
-from . import netlist
+from . import netlist, parts
 from .model import Node
 
 ON, OFF, X = True, False, None
@@ -291,10 +291,11 @@ class Circuit:
                         i_load = abs(bridge_amps.get(d.ref, 0.0))
                         inject[pin['IPROPI']] = inject.get(pin['IPROPI'], 0.0) + p['aipropi'] * i_load
                 elif k == 'load_switch':
+                    vin, _, vout = parts.switch_pins(pin)
                     if on[d.ref]:
-                        fx[pin['VOUT']] = fixed.get(pin['VIN'], 0.0)
+                        fx[vout] = fixed.get(vin, 0.0)
                     else:
-                        fx[pin['VOUT']] = 0.0  # QOD tied to VOUT discharges the rail
+                        fx[vout] = 0.0  # QOD on VOUT, or a bleed resistor, discharges the rail
                 elif k == 'supervisor':
                     if supervisor_reset:
                         src(f'{d.ref}.RST', pin['~{RESET}'], 0.0, p['vol'] / p['iol'])
@@ -405,10 +406,11 @@ class Circuit:
                         why[d.ref] = f'{_short(d.ref)}: ' + ', '.join(f'{n}={_fmt(vget(pin[n]))}' for n in lv) + \
                                      f' (VIH {p["vih"]} V, VIL {p["vil"]} V)'
                 elif k == 'load_switch':
-                    st = level(vget(pin['ON']), p['vih'], p['vil'])
+                    _, en, _ = parts.switch_pins(pin)
+                    st = level(vget(en), p['vih'], p['vil'])
                     new[d.ref] = st
                     if st is X:
-                        why[d.ref] = f'{_short(d.ref)}: ON = {_fmt(vget(pin["ON"]))}'
+                        why[d.ref] = f'{_short(d.ref)}: ON = {_fmt(vget(en))}'
                 elif k == 'supervisor':
                     new[d.ref] = ON if supervisor_reset else OFF
                 elif k == 'opto_triac':

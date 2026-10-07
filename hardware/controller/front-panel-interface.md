@@ -85,7 +85,9 @@ enlace con el STM32.
 
 ## Condiciones eléctricas pendientes de cierre
 
-- `3V3_UI` sale de U302 (TPS22918, 2 A, con rampa por C307 y descarga QOD).
+- `3V3_UI` sale de U302 (TPS2553, límite de 475–565 mA y apagado térmico, con
+  arranque suave interno y descarga por R305 de 1 kΩ). Desde el 2026-10-07 (issue
+  #8); antes era un TPS22918 sin límite de corriente.
   Falta calcular el rail con consumo máximo e inrush del display elegido, caída
   del cable y consumo del resto de electrónica. No hay presupuesto de corriente cerrado.
   `3V3_UI` va por un solo contacto (pin 1) y el WR-MM admite 1,5 A por contacto,
