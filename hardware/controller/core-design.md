@@ -214,7 +214,9 @@ evita que se crucen las pistas del motor; el motor es de continua y el signo de
 DIR para cada sentido se fijará en el ensayo del grupo. La numeración física del
 conector sigue siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF
 entre CPH y CPL siguen la aplicación de referencia de TI. C501=100 µF/35 V es un
-bulk inicial, no un dimensionado cerrado.
+bulk inicial, no un dimensionado cerrado. C502=100 nF es el bypass de VM; desde
+el 2026-10-07 (issue #5) está a unos 5 mm del pin 11 y no a 11 mm, con su propia
+vía de masa.
 
 J112 exige 24 V DC aislados y limitados. Desde el 2026-10-07 (issue #6) entra
 por su propio fusible F306 (prosemi 1206TD-2A) y un SS34, D308, antes de unirse

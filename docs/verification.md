@@ -1165,3 +1165,33 @@ Resultado: ERC 0 en las dos placas; netlist 205 componentes y 662 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
 0 avisos; `tests/sim` 90/90; CTest 3/3. Sin hardware.
+
+## Bypass de VM del DRV8876, 2026-10-07
+
+Issue #5: C502 (100 nF, bypass de VM) estaba a 11,2 mm de cobre del pin 11 y su
+masa volvía al plano por una vía en (38,2; 48,0). El lazo encerraba unos
+6 × 8 mm. TI (SLVSDS7, §10.1) pide el bypass de VM tan cerca del integrado como
+sea posible.
+
+- Bajo el pin 11 no cabe un condensador: OUT2, VM, VCP, CPH y CPL salen de
+  pines contiguos a 0,65 mm, y la bomba de carga (C503 a 3,6 mm y C504 a
+  5,5 mm) ya ocupa el hueco inmediato. Como pedía la revisión, se conservan sus
+  lazos.
+- **C502** pasa a (31,85; 44,9), colgado del nodo de VM bajo C503: unos 5,4 mm
+  de cobre desde el pin 11. Su masa baja al plano por una vía propia a 1,1 mm
+  del pad. El lazo queda en unos 3 × 4,5 mm. OUT2 gira primero al oeste por
+  y = 41,9 mm para dejarle sitio.
+- **VM** sale con el ancho del pad (0,3 mm) y pasa a 0,5 mm en cuanto deja la
+  fila. Como señalaba la revisión, ensanchar hasta el propio pin invadiría la
+  separación con VCP (clase Switching, 0,25 mm).
+- **`check_controller_pcb.py`** gana U501: un condensador de ≤ 1 µF entre VM y
+  PGND a menos de 6 mm de los pines 11 y 9. La prueba propia devuelve C502 a su
+  sitio anterior y espera el fallo.
+- **Pendiente**: VM en arranque, inversión y frenado y la limitación de
+  corriente con el motor real (BU-0x), y si el bulk absorbe la energía que D304
+  no deja volver a la fuente.
+
+Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
+infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
+--self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 90/90;
+CTest 3/3. Sin hardware.
