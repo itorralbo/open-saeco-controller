@@ -805,28 +805,58 @@ def route_3v3_buck(board):
 
 
 def route_ui_load_switch(board):
-    """TPS22918 that gates 3.3 V to the front panel, just below J104.
+    """TPS2553 that gates and limits 3.3 V to the front panel, below J104.
 
-    The outputs face north and run straight up x = 3.55 mm to J104.1, with
-    C309 alongside; the rise capacitor sits on pin 4 and the input capacitor
-    below pin 1. Pin 1, C308 and R301 drop to the In2.Cu plane in
-    route_3v3_plane_drops. The PB12 enable arrives through route_mcu_east.
+    The output faces north and runs straight up x = 3.55 mm to J104.1, with
+    C309 alongside and R305, the discharge resistor, under it. R304 sets the
+    current limit from pin 5 where the TPS22918's rise capacitor was (issue
+    #8); FAULT on pin 4 stays open. Pin 1, C308 and R301 drop to the In2.Cu
+    plane in route_3v3_plane_drops. The PB12 enable arrives through
+    route_mcu_east.
     """
     gnd, v33, ui = '/GND_UI', '/3V3_CORE', '/3V3_UI'
 
     polyline(board, v33, [(3.55, 18.137), (3.55, 19.2), (2.6, 20.15)], width=0.5)
-    track(board, ui, (3.55, 15.863), (4.5, 15.863), width=0.5)
     polyline(board, ui, [(3.55, 15.863), (3.55, 9.15), (6.2, 6.5)], width=0.5)
     track(board, ui, (2.0, 12.775), (3.55, 12.775), width=0.5)
-    track(board, '/UI_RISE', (5.45, 15.863), (5.45, 14.075), width=PIN_WIDTH)
+    track(board, ui, (2.0, 12.775), (1.95, 14.255), width=PIN_WIDTH)
+    polyline(board, '/UI_ILIM', [(4.5, 15.863), (4.5, 15.0), (5.45, 14.125)], width=PIN_WIDTH)
     track(board, '/UI_PWR_EN', (5.45, 18.137), (6.975, 18.138), width=PIN_WIDTH)
 
     for start, point in (((4.5, 18.137), (4.5, 19.9)),
-                         ((5.45, 12.525), (5.45, 11.2)),
+                         ((5.45, 12.475), (5.45, 11.2)),
+                         ((1.95, 15.905), (1.95, 17.0)),
                          ((2.0, 11.225), (2.0, 10.0)),
                          ((2.6, 21.7), (2.6, 23.0))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
+
+
+def route_water_feed(board):
+    """U304, the current-limited JP22 feed below J113 (issue #8).
+
+    IN and EN take 3.3 V from the plane on their own vias, C409 sits on the
+    input pins, and OUT runs to J109.1 through C410. R306 on pin 5 sets the
+    110-150 mA limit; FAULT on pin 4 stays open.
+    """
+    gnd, v33, out = '/GND_UI', '/3V3_CORE', '/WATER_VCC'
+    polyline(board, v33, [(11.363, 130.05), (10.3, 130.05), (9.975, 129.725),
+                          (9.6, 129.725), (8.6, 129.725)], width=PIN_WIDTH)
+    via(board, v33, (8.6, 129.725))
+    track(board, v33, (11.363, 131.95), (10.55, 132.8), width=PIN_WIDTH)
+    via(board, v33, (10.55, 132.8))
+    polyline(board, gnd, [(11.363, 131.0), (10.2, 131.0), (9.925, 131.275),
+                          (9.6, 131.275), (9.6, 132.3)], width=PIN_WIDTH)
+    via(board, gnd, (9.6, 132.3))
+    polyline(board, out, [(13.637, 130.05), (14.6, 130.05), (15.745, 128.905),
+                          (15.745, 128.4), (16.3, 127.845), (18.645, 127.845),
+                          (19.0, 128.2)], width=0.3)
+    track(board, gnd, (14.195, 128.4), (13.4, 128.4), width=PIN_WIDTH)
+    via(board, gnd, (13.4, 128.4))
+    polyline(board, '/WATER_ILIM', [(13.637, 131.0), (14.4, 131.0), (15.375, 131.975),
+                                    (15.375, 132.4)], width=PIN_WIDTH)
+    track(board, gnd, (17.025, 132.4), (17.9, 132.4), width=PIN_WIDTH)
+    via(board, gnd, (17.9, 132.4))
 
 
 def route_3v3_plane_drops(board):
@@ -1275,8 +1305,18 @@ def route_pump_stage(board):
 
     # LED loop on the SELV side. 12 V comes from JP5 pin 3 on B.Cu along the
     # plane edge; the gate network sits north of Q706, clear of MH2.
-    polyline(board, '/12V_PROTECTED', [(42.0, 125.3), (45.3, 122.0),
-                                       (45.3, 108.4)], pcb.B_Cu, width=0.5)
+    # Since issue #8 the run no longer ends on JP5 pin 3: it comes up to
+    # R413, the 390 ohm that limits the flow sensor's feed, and C408 decouples
+    # FLOW_VCC on the sensor side.
+    polyline(board, '/12V_PROTECTED', [(45.3, 108.4), (45.3, 119.0), (44.1, 120.2)],
+             pcb.B_Cu, width=0.5)
+    via(board, '/12V_PROTECTED', (44.1, 120.2))
+    track(board, '/12V_PROTECTED', (44.1, 120.2), (42.663, 120.2), width=0.5)
+    polyline(board, '/FLOW_VCC', [(39.737, 120.2), (39.737, 121.4), (42.0, 123.663),
+                                  (42.0, 125.3)], width=0.3)
+    polyline(board, '/FLOW_VCC', [(39.475, 118.2), (39.737, 118.46), (39.737, 120.2)],
+             width=0.3)
+    track(board, gnd, (41.025, 118.2), (42.862, 118.2), width=PIN_WIDTH)
     via(board, '/12V_PROTECTED', (45.3, 108.4))
     track(board, '/12V_PROTECTED', (45.3, 108.4), (45.3, 109.775), width=0.5)
     polyline(board, '/PUMP_LED_ANODE', [(45.3, 111.425), (45.85, 111.975),
@@ -2444,6 +2484,7 @@ def main():
     route_12v_buck(board)
     route_3v3_buck(board)
     route_ui_load_switch(board)
+    route_water_feed(board)
     route_logic_grounds(board)
     route_reset_tree(board)
     route_wdi_gate(board)
@@ -2483,7 +2524,8 @@ def main():
                           'sensor harness side: NTC, flow, water, door and contacts',
                           '24 V to 12 V buck: switch node, output bank and feedback',
                           '12 V to 3.3 V buck, its input side and the 12 V telemetry',
-                          'UI load switch',
+                          'UI load switch (TPS2553, current limited)',
+                          'JP22 feed: U304 current-limited switch below J113',
                           '3.3 V: an In2.Cu plane drop for every pad group',
                           'USB and ESP32 ground pins into the plane',
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',

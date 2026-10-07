@@ -67,6 +67,7 @@ class Checker:
         self.check_backfeed()
         self.check_reverse_polarity()
         self.check_probe_headers()
+        self.check_offboard_supplies()
         self.check_tvs()
         self.check_fuses()
         drive.check(self)
@@ -619,6 +620,39 @@ class Checker:
                     self.add('error', 'probe-header',
                              f'{ref}.{num} ({g.split(":")[1]}) llega a {shown} sin una resistencia serie de '
                              f'al menos {floor:g} Ω: una punta que resbale a masa la cortocircuita.', where)
+
+    def check_offboard_supplies(self):
+        """A supply that leaves the board through a harness must be limited.
+
+        Each pin in offboard_supplies.pins has to be fed either by the output
+        of a current-limited switch (devices.json current_limited) or only
+        through resistors of at least offboard_supplies.min_ohms. A short in
+        the harness then stays on that branch instead of collapsing the rail
+        both MCUs run from, or opening a one-shot fuse upstream (issue #8).
+        """
+        spec = self.c.get('offboard_supplies', {})
+        floor = spec.get('min_ohms', 0)
+        dev = json.loads((self.s.root / 'sim/reference/devices.json').read_text(encoding='utf-8'))['parts']
+        for pin in spec.get('pins', []):
+            g = self.s.net_of(self.s.endpoint(pin))
+            limited, direct = False, []
+            for node in self.s.members.get(g, []):
+                part = self.s.comp(node.board, node.ref)
+                name = self.s.physical_name(node)
+                p = dev.get(part.mpn, {})
+                if p.get('current_limited') and name in ('OUT', 'VOUT'):
+                    limited = True
+                elif part.part == 'R':
+                    ohms = netlist.resistance(part.value)
+                    if ohms is None or ohms < floor:
+                        direct.append(f'{node.ref} ({part.value})')
+                elif part.part not in ('C',) and not part.part.startswith('J'):
+                    direct.append(f'{node.ref}.{name or node.pin}')
+            if direct and not limited:
+                what = ', '.join(sorted(direct)[:4]) + (f' y {len(direct) - 4} más' if len(direct) > 4 else '')
+                self.add('error', 'offboard-supply',
+                         f'{pin} ({g.split(":")[1]}) sale de la placa sin límite de corriente: llega a {what} '
+                         f'sin un interruptor limitado ni una resistencia serie de al menos {floor:g} Ω.', pin)
 
     def check_tvs(self):
         """A TVS must stay off on its rail and start conducting below what it protects.

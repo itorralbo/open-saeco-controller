@@ -26,6 +26,7 @@ ARCS = {
     'RELAY_G5RL': {'NO_A': ('COIL_A', 'COIL_B'), 'NO_B': ('COIL_A', 'COIL_B')},
     'BRIDGE_KBP': {'+': ('AC1', 'AC2'), '-': ('AC1', 'AC2')},
     'TPS22918': {'VOUT': ('ON',)},
+    'TPS2553': {'OUT': ('EN',)},
     'TPS3828DBV': {'~{RESET}': ('WDI', '~{MR}')},
 }
 
@@ -47,6 +48,18 @@ FAULT_PATHS = {'FUSE': (('1', '2'),),
 # Switching regulators and the pin that switches; an external supply must not
 # reach it through series parts (back-feed through the high-side body diode).
 SWITCH_NODES = {'AP63200': 'SW', 'AP63203': 'SW'}
+
+# Load switches name their pins after the datasheet: (input, enable, output).
+LOAD_SWITCH_PINS = (('VIN', 'ON', 'VOUT'), ('IN', 'EN', 'OUT'))
+
+
+def switch_pins(pins):
+    """(input, enable, output) nets of a load switch, whichever names it uses."""
+    for names in LOAD_SWITCH_PINS:
+        if all(n in pins for n in names):
+            return tuple(pins[n] for n in names)
+    raise KeyError(f'load switch without {LOAD_SWITCH_PINS}: {sorted(pins)}')
+
 
 SUPPLY_NAMES = {'VDD', 'VCC', 'VM', 'VIN', 'VBAT', '3V3', 'VDDA', 'VREF+'}
 GROUND_NAMES = {'GND', 'VSS', 'VSSA', 'PGND', 'EP', 'PAD', 'EP_GND'}

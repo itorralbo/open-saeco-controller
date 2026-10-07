@@ -57,6 +57,16 @@ def power_symbols():
         ('5', 'QOD', 'passive', 7.62, 0, 180),
         ('4', 'CT', 'output', 7.62, -3.81, 180),
     ], 5.08, 6.35)
+    # TPS2553 (TI SLVS841F): current-limited switch, EN active high,
+    # thermal shutdown; FAULT is open drain and left unconnected here.
+    d.DEFS['TPS2553'] = ([
+        ('1', 'IN', 'power_in', -7.62, 3.81, 0),
+        ('2', 'GND', 'power_in', -7.62, 0, 0),
+        ('3', 'EN', 'input', -7.62, -3.81, 0),
+        ('6', 'OUT', 'power_out', 7.62, 3.81, 180),
+        ('5', 'ILIM', 'passive', 7.62, 0, 180),
+        ('4', '~{FAULT}', 'open_collector', 7.62, -3.81, 180),
+    ], 5.08, 6.35)
     two = [('1', '1', 'passive', -5.08, 0, 0),
            ('2', '2', 'passive', 5.08, 0, 180)]
     # Diode order is A=2 on the left, K=1 on the right, matching KiCad convention.
@@ -345,17 +355,23 @@ def main():
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
     d.note('Fusible + bloqueo de polaridad + TVS. J101 entra por F305/D307, en OR con U303 por F301/D301.',610,145,1.2)
     d.note('J101 solo desde una fuente AC/DC aislada y certificada; en la máquina los 12V salen de U303 (hoja 15).',610,151,1.2)
-    d.note('08 / Corte y descarga del frontal — TPS22918, 2A',610,174,1.8)
-    d.add('U302','TPS22918','TPS22918DBVR',690,207,
-          [v,g,'UI_PWR_EN','3V3_UI','3V3_UI','UI_RISE'],
-          'Package_TO_SOT_SMD:SOT-23-6')
+    # Since issue #8 the front-panel feed is current limited: a short in the
+    # ribbon used to collapse 3V3_CORE through the TPS22918, which has
+    # neither a current limit nor thermal shutdown. R304 = 49.9k sets
+    # 475-565 mA (SLVS841F 7.5), under the 1.5 A of the WR-MM contacts and
+    # far under U301's limit, so both MCUs stay up. The TPS2553 does not
+    # discharge its output when off, so R305 does what QOD did.
+    d.note('08 / Corte y limitación del frontal — TPS2553, 0,5 A',610,174,1.8)
+    d.add('U302','TPS2553','TPS2553DBVR / UI 0.5A limit',690,207,
+          [v,g,'UI_PWR_EN','3V3_UI','UI_ILIM',None],
+          'Package_TO_SOT_SMD:SOT-23-6',part_key='TPS2553DBVR')
     d.passive('R301','R','100k',625,218,v,'UI_PWR_EN')
-    d.add('C307','C','1nF / CT',750,218,['UI_RISE',g],
-          'Capacitor_SMD:C_0603_1608Metric',part_key='C:1nF')
+    d.passive('R304','R','49.9k / UI ILIM 0.5A',750,218,'UI_ILIM',g)
+    d.passive('R305','R','1k / UI discharge',840,218,'3V3_UI',g)
     d.passive('C308','C','1uF / switch input',625,196,v,g)
     d.passive('C309','C','10uF / switch output',795,196,'3V3_UI',g)
     d.note('PB12 controla UI_PWR_EN; pull-up mantiene el frontal encendido durante reset.',610,244,1.2)
-    d.note('QOD unido a VOUT; CT=1nF limita inrush. Verificar rampa y descarga con el display final.',610,250,1.2)
+    d.note('ILIM 475-565 mA y apagado térmico; R305 descarga el frontal al apagarlo. FAULT sin conectar.',610,250,1.2)
 
     d.note('09 / USB-C de servicio — datos ESP32 y alimentación de banco opcional',610,276,1.8)
     d.add('J110','USB_C_16','USB-C SERVICE / USB 2.0',650,326,
@@ -397,15 +413,23 @@ def main():
     d.passive('C401','C','100nF / NTC filtro',145,464,'NTC_ADC',g)
     d.note('PA3 ADC1_IN4. NTC a masa; abierto≈3V3, corto≈0V. Usar tabla del manual.',20,486,1.2)
 
+    # The flow sensor's feed leaves the board, so it gets its own limit
+    # (issue #8): the Digmesa draws under 8 mA and works from 3.8 V, so
+    # 390 ohm still leaves it about 7.9 V at 11 V, and a short in the
+    # harness draws 32 mA (0.4 W in the 0.66 W anti-surge part) instead of
+    # pulling 12V_PROTECTED down or opening F301.
+    d.add('R413','R','390 / FLOW VCC limit',330,505,['12V_PROTECTED','FLOW_VCC'],
+          'Resistor_SMD:R_1206_3216Metric',part_key='R:390_1206_500V')
+    d.passive('C408','C','100nF / FLOW VCC',385,505,'FLOW_VCC',g)
     d.add('J106','J3','JP5 FLOW ADAPTER / VCC-GND-OC',292,445,
-          ['FLOW_RAW',g,'12V_PROTECTED'],
+          ['FLOW_RAW',g,'FLOW_VCC'],
           'OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical',
           status='owner_identified_owner_pinout', part_key='CONN:HR_A2506WV_3_V')
     d.passive('R403','R','4.7k / FLOW pull-up',385,430,v,'FLOW_RAW')
     d.passive('R404','R','1k / FLOW serie',385,447,'FLOW_RAW','FLOW_TIM')
     d.passive('C402','C','10nF / FLOW filtro',385,464,'FLOW_TIM',g)
     d.note('PA2 TIM2_CH3. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.',245,486,1.2)
-    d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V_PROTECTED; pull-up separado a 3V3.',245,493,1.2)
+    d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V por R413 (390 Ω); pull-up separado a 3V3.',245,493,1.2)
 
     d.add('J107','J2','JP14 DOOR / contacto seco',520,445,['DOOR_RAW',g],
           'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
@@ -429,8 +453,17 @@ def main():
     d.note('PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
     d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.',660,536,1.1)
 
+    # JP22 feed through its own current-limited switch (issue #8): R306 =
+    # 210k sets 110-150 mA, plenty for a level sensor and far under U301's
+    # limit, so a harness short no longer takes 3V3_CORE and both MCUs down.
+    d.add('U304','TPS2553','TPS2553DBVR / JP22 0.13A limit',580,512,
+          [v,g,v,'WATER_VCC','WATER_ILIM',None],
+          'Package_TO_SOT_SMD:SOT-23-6',part_key='TPS2553DBVR')
+    d.passive('R306','R','210k / JP22 ILIM 0.13A',650,502,'WATER_ILIM',g)
+    d.passive('C409','C','100nF / JP22 switch input',650,520,v,g)
+    d.passive('C410','C','1uF / JP22 VCC',720,510,'WATER_VCC',g)
     d.add('J109','J3','JP22 WATER / RED-WHITE-BLACK',520,536,
-          [v,'WATER_RAW',g],
+          ['WATER_VCC','WATER_RAW',g],
           'Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical',
           status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')

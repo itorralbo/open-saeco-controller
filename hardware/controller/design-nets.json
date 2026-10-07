@@ -820,12 +820,12 @@
     },
     {
       "reference": "U302",
-      "value": "TPS22918DBVR",
+      "value": "TPS2553DBVR / UI 0.5A limit",
       "footprint": "Package_TO_SOT_SMD:SOT-23-6",
       "status": "candidate",
       "manufacturer": "Texas Instruments",
-      "mpn": "TPS22918DBVR",
-      "lcsc": "C131941",
+      "mpn": "TPS2553DBVR",
+      "lcsc": "C55266",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
@@ -833,8 +833,8 @@
         "2": "GND_UI",
         "3": "UI_PWR_EN",
         "6": "3V3_UI",
-        "5": "3V3_UI",
-        "4": "UI_RISE"
+        "5": "UI_ILIM",
+        "4": null
       }
     },
     {
@@ -853,17 +853,32 @@
       }
     },
     {
-      "reference": "C307",
-      "value": "1nF / CT",
-      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "reference": "R304",
+      "value": "49.9k / UI ILIM 0.5A",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
       "status": "candidate",
-      "manufacturer": "Samsung Electro-Mechanics",
-      "mpn": "CL10B102KB8NNNC",
-      "lcsc": "C1588",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF4992T5E",
+      "lcsc": "C23184",
       "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
-        "1": "UI_RISE",
+        "1": "UI_ILIM",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R305",
+      "value": "1k / UI discharge",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1001T5E",
+      "lcsc": "C21190",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_UI",
         "2": "GND_UI"
       }
     },
@@ -1172,6 +1187,36 @@
       }
     },
     {
+      "reference": "R413",
+      "value": "390 / FLOW VCC limit",
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "PANASONIC",
+      "mpn": "ERJ-P08J391V",
+      "lcsc": "C2086379",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "FLOW_VCC"
+      }
+    },
+    {
+      "reference": "C408",
+      "value": "100nF / FLOW VCC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "FLOW_VCC",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "J106",
       "value": "JP5 FLOW ADAPTER / VCC-GND-OC",
       "footprint": "OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical",
@@ -1184,7 +1229,7 @@
       "pins": {
         "1": "FLOW_RAW",
         "2": "GND_UI",
-        "3": "12V_PROTECTED"
+        "3": "FLOW_VCC"
       }
     },
     {
@@ -1404,6 +1449,70 @@
       }
     },
     {
+      "reference": "U304",
+      "value": "TPS2553DBVR / JP22 0.13A limit",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "status": "candidate",
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS2553DBVR",
+      "lcsc": "C55266",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI",
+        "3": "3V3_CORE",
+        "6": "WATER_VCC",
+        "5": "WATER_ILIM",
+        "4": null
+      }
+    },
+    {
+      "reference": "R306",
+      "value": "210k / JP22 ILIM 0.13A",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF2103T5E",
+      "lcsc": "C22952",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_ILIM",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C409",
+      "value": "100nF / JP22 switch input",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C410",
+      "value": "1uF / JP22 VCC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL10A105KB8NNNC",
+      "lcsc": "C15849",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_VCC",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "J109",
       "value": "JP22 WATER / RED-WHITE-BLACK",
       "footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
@@ -1414,7 +1523,7 @@
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
-        "1": "3V3_CORE",
+        "1": "WATER_VCC",
         "2": "WATER_RAW",
         "3": "GND_UI"
       }

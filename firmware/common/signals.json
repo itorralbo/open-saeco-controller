@@ -31,6 +31,11 @@
     "sources": "AP63203 VFB 3.27-3.33 V plus ripple; U303 11.8 V (VFB 0.792-0.808 V, 1 % divider) or the J101 bench supply, less D301; IRM-30-24 24 V -10 %/+10 % plus margin, as RAIL_24V; 24V_BREW and 24V_VALVE less one SS34; USB VBUS 5 V -5 %/+10 % with a service cable plugged"
   },
   "mains": {"phase": "controller:MAINS_L_FUSED", "neutral": "controller:MAINS_N", "prospective_fault": {"amps": 1500, "volts": 250, "source": "Design assumption accepted by the owner on 2026-10-07, not a measured maximum (issue #1; hardware/power/power-architecture.md, Corriente de defecto supuesta): the IEC 60127-2 high-breaking-capacity level, 1500 A at 250 VAC, the class of the original board's mains fuses. Above it the installation's 16 A breaker backs the fuse up. Every fuse on the mains side must break it."}},
+  "offboard_supplies": {
+    "_doc": "Supply pins that leave the board through a harness or the front-panel cable: each needs a current-limited switch or a series resistor of at least min_ohms (issue #8).",
+    "pins": ["controller:J104.1", "controller:J106.3", "controller:J109.1"],
+    "min_ohms": 100
+  },
   "probe_headers": {
     "_doc": "Bench probing headers: neighbouring pins never carry two different non-ground nets, and each rail pin reaches the board through at least min_ohms (issue #4).",
     "refs": ["controller:J114"],

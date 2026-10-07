@@ -26,9 +26,15 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   3,3 V y corte controlado del rail del frontal.
 - Divisor y filtro del NTC JP13 hacia PA3/ADC1_IN4, con diagnóstico de abierto/corto.
 - Alimentación a 12 V y entrada open collector del caudalímetro JP5 hacia
-  PA2/TIM2_CH3; pinout físico 1=señal, 2=GND y 3=VCC.
+  PA2/TIM2_CH3; pinout físico 1=señal, 2=GND y 3=VCC. Desde el 2026-10-07
+  (issue #8) la alimentación sale por R413 (390 Ω, anti-surge de 0,66 W) con
+  C408 junto al conector. El Digmesa gasta menos de 8 mA y funciona desde
+  3,8 V, así que le quedan unos 7,9 V con 11 V en el raíl. Un corto en el mazo
+  se queda en 32 mA y 0,4 W, sin hundir `12V_PROTECTED` ni abrir F301.
 - Sensor de agua JP22 alimentado a 3,3 V y señal filtrada hacia PC3/ADC12_IN9;
-  orden rojo=VCC, blanco=señal y negro=GND.
+  orden rojo=VCC, blanco=señal y negro=GND. Desde el 2026-10-07 lo alimenta
+  U304, otro TPS2553, con R306 = 210 kΩ: 110–150 mA, de sobra para un sensor
+  de nivel y lejos del límite de U301.
 - Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
 - J105 y J106 son HR A2506WV-02P/-03P, identificadas por el propietario;
@@ -101,10 +107,17 @@ de C301 (25 V X5R 0805). Su capacidad efectiva no se ha leído en la curva de
 polarización de Samsung: queda para la medida del rizado de VIN.
 `3V3_CORE` alimenta ambos procesadores.
 
-U302 (TPS22918DBVR) genera `3V3_UI` desde `3V3_CORE`. PB12 del STM32 controla
-`UI_PWR_EN`; R301=100 kΩ lo mantiene activo durante reset. C307=1 nF controla la
-rampa y QOD queda unido a VOUT para descargar el frontal al apagarlo. Esta rama
-permite cortar el frontal y reduce su corriente de arranque. La rampa, descarga y
+U302 (TPS2553DBVR desde el 2026-10-07, issue #8) genera `3V3_UI` desde
+`3V3_CORE`. PB12 del STM32 controla `UI_PWR_EN`; R301=100 kΩ lo mantiene activo
+durante reset. R304=49,9 kΩ limita la corriente a 475–565 mA (TI SLVS841F, 7.5),
+por debajo de 1,5 A de los contactos WR-MM y del límite de U301. Además, el
+TPS2553 tiene apagado térmico. Un corto en el cable del frontal se queda en
+U302 y no hunde `3V3_CORE`, así que los dos MCU siguen vivos aunque el reset no
+aísle el frontal. El TPS22918 que había no tenía límite de corriente ni apagado
+térmico. El TPS2553 no descarga su salida al apagarse: R305=1 kΩ lo hace, como
+el QOD del TPS22918, y gasta 3,3 mA con el frontal encendido. Su arranque suave
+interno sustituye a C307. FAULT queda sin conectar. Esta rama permite cortar el
+frontal y reduce su corriente de arranque. La rampa, descarga y
 posible backfeed deben medirse con el display definitivo. `GND_UI` es la masa
 lógica común; el aislamiento lo da PS701 (o la fuente de banco de J101/J112).
 

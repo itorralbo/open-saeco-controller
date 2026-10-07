@@ -1,6 +1,21 @@
 {
   "status": "draft_not_for_order",
   "parts": {
+    "R:210k": {
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF2103T5E",
+      "lcsc": "C22952",
+      "specification": "210k 1% 100mW 0603; R306, TPS2553 current limit 110-150 mA for the JP22 feed (TI SLVS841F 7.5)",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 404263,
+      "available_order_qty_observed": 396366,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
+      "url": "https://jlcpcb.com/partdetail/C22952",
+      "selection": "candidate_not_released"
+    },
     "R:10k": {
       "manufacturer": "UNI-ROYAL",
       "mpn": "0603WAF1002T5E",
@@ -318,6 +333,22 @@
       "selection": "candidate_not_released",
       "selection_note": "Bench fuse F306 since 2026-10-07 (issue #6): J112 feeds the whole 24V_ACT_RAW rail on the bench, so the fuse carries the brew motor up to its 1 A ITRIP, the valve (0.42 A) and the 12 V buck, about 1.6 A at worst; the 1 A part on J101 would not."
     },
+    "TPS2553DBVR": {
+      "manufacturer": "Texas Instruments",
+      "mpn": "TPS2553DBVR",
+      "lcsc": "C55266",
+      "specification": "Current-limited power-distribution switch, 2.5-6.5 V, 85 mOhm, EN active high, constant-current limit set by RILIM (75 mA-1.7 A), thermal shutdown 135 C in current limit, open-drain FAULT, SOT-23-6 (TI SLVS841F)",
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 57596,
+      "available_order_qty_observed": 56686,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from TI SLVS841F",
+      "url": "https://jlcpcb.com/partdetail/C55266",
+      "selection": "candidate_not_released",
+      "selection_note": "U302 (front panel, RILIM 49.9k: 475-565 mA) and U304 (JP22 sensor, RILIM 210k: 110-150 mA) since 2026-10-07 (issue #8). Replaces the TPS22918DBVR on U302, which has no current limit or thermal shutdown. No output discharge: R305 (1k) bleeds 3V3_UI when off, close to the TPS22918 QOD it replaces."
+    },
     "D:SS34": {
       "manufacturer": "YONGYUTAI",
       "mpn": "SS34",
@@ -436,7 +467,8 @@
       "stock_checked_on": "2026-10-05",
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
       "url": "https://jlcpcb.com/partdetail/TexasInstruments-TPS22918DBVR/C131941",
-      "selection": "candidate_not_released"
+      "selection": "superseded_by_TPS2553",
+      "selection_note": "U302 until 2026-10-07. Superseded by the TPS2553DBVR (issue #8): no current limit and no thermal shutdown, so a short in the front-panel ribbon collapsed 3V3_CORE."
     },
     "DRV8876PWPR": {
       "manufacturer": "Texas Instruments",

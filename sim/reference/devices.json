@@ -113,6 +113,14 @@
       "aipropi": 0.001,
       "t_wake_s": 0.001
     },
+    "TPS2553DBVR": {
+      "kind": "load_switch",
+      "source": "TI SLVS841F, 7.3 and 7.5: VIH (EN) 1.1 V min, VIL 0.66 V max; rDS(on) 135 mOhm max (DBV, 125 C). Current limit set by RILIM, thermal shutdown. U302 and U304 since 2026-10-07 (issue #8).",
+      "vih": 1.1,
+      "vil": 0.66,
+      "ron": 0.135,
+      "current_limited": true
+    },
     "TPS22918DBVR": {
       "kind": "load_switch",
       "source": "TI SLVSD76C, 6.5: VIH,ON 1 V min, VIL,ON 0.5 V max; RON 53 mOhm typical at VIN 3.3 V.",

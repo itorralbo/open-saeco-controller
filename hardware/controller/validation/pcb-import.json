@@ -94,10 +94,6 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
-    "C307": {
-      "footprint": "Capacitor_SMD:C_0603_1608Metric",
-      "numbered_pads": 2
-    },
     "C308": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
@@ -159,6 +155,18 @@
       "numbered_pads": 2
     },
     "C407": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C408": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C409": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "C410": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -518,6 +526,18 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R304": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R305": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R306": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R401": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -564,6 +584,10 @@
     },
     "R412": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R413": {
+      "footprint": "Resistor_SMD:R_1206_3216Metric",
       "numbered_pads": 2
     },
     "R501": {
@@ -774,6 +798,10 @@
       "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
       "numbered_pads": 6
     },
+    "U304": {
+      "footprint": "Package_TO_SOT_SMD:SOT-23-6",
+      "numbered_pads": 6
+    },
     "U501": {
       "footprint": "Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm",
       "numbered_pads": 17
@@ -825,10 +853,16 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "C315",
-    "C316"
+    "C408",
+    "C409",
+    "C410",
+    "R304",
+    "R305",
+    "R306",
+    "R413",
+    "U304"
   ],
-  "tracks": 1831,
+  "tracks": 1837,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

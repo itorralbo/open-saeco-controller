@@ -14,7 +14,8 @@
     "sensor harness side: NTC, flow, water, door and contacts",
     "24 V to 12 V buck: switch node, output bank and feedback",
     "12 V to 3.3 V buck, its input side and the 12 V telemetry",
-    "UI load switch",
+    "UI load switch (TPS2553, current limited)",
+    "JP22 feed: U304 current-limited switch below J113",
     "3.3 V: an In2.Cu plane drop for every pad group",
     "USB and ESP32 ground pins into the plane",
     "reset tree: MCU, pull-up, filter, SWD header and the gates",
@@ -40,8 +41,8 @@
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense",
     "SELV ground fills on F.Cu and B.Cu, stitched to In1.Cu; no fill on the mains side"
   ],
-  "track_segments": 1382,
-  "vias": 455,
-  "stitching_vias": 146,
+  "track_segments": 1411,
+  "vias": 460,
+  "stitching_vias": 144,
   "remaining_blocks": []
 }

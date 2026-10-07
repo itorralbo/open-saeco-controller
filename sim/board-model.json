@@ -670,7 +670,7 @@
     "controller:D302.1",
     "controller:D303.1",
     "controller:D307.1",
-    "controller:J106.3",
+    "controller:R413.1",
     "controller:R701.1",
     "controller:R709.1",
     "controller:R716.1",
@@ -806,6 +806,7 @@
     "controller:C305.1",
     "controller:C306.1",
     "controller:C308.1",
+    "controller:C409.1",
     "controller:C601.1",
     "controller:C602.1",
     "controller:C603.1",
@@ -815,7 +816,6 @@
     "controller:C703.1",
     "controller:J102.1",
     "controller:J103.1",
-    "controller:J109.1",
     "controller:L301.2",
     "controller:R101.1",
     "controller:R201.1",
@@ -839,6 +839,8 @@
     "controller:U201.2",
     "controller:U301.1",
     "controller:U302.1",
+    "controller:U304.1",
+    "controller:U304.3",
     "controller:U601.3",
     "controller:U601.5",
     "controller:U602.8",
@@ -861,7 +863,7 @@
    "pins": [
     "controller:C309.1",
     "controller:J104.1",
-    "controller:U302.5",
+    "controller:R305.1",
     "controller:U302.6",
     "front:C1.1",
     "front:C2.1",
@@ -1314,6 +1316,18 @@
     "controller:U101.14"
    ]
   },
+  "controller:FLOW_VCC": {
+   "aliases": [
+    "controller:FLOW_VCC"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:C408.1",
+    "controller:J106.3",
+    "controller:R413.2"
+   ]
+  },
   "controller:GND_UI": {
    "aliases": [
     "controller:GND_UI",
@@ -1343,7 +1357,6 @@
     "controller:C304.2",
     "controller:C305.2",
     "controller:C306.2",
-    "controller:C307.2",
     "controller:C308.2",
     "controller:C309.2",
     "controller:C310.2",
@@ -1358,6 +1371,9 @@
     "controller:C405.2",
     "controller:C406.2",
     "controller:C407.2",
+    "controller:C408.2",
+    "controller:C409.2",
+    "controller:C410.2",
     "controller:C501.2",
     "controller:C502.2",
     "controller:C505.2",
@@ -1408,6 +1424,9 @@
     "controller:R224.2",
     "controller:R226.2",
     "controller:R303.2",
+    "controller:R304.2",
+    "controller:R305.2",
+    "controller:R306.2",
     "controller:R502.2",
     "controller:R504.2",
     "controller:R506.2",
@@ -1440,6 +1459,7 @@
     "controller:U301.4",
     "controller:U302.2",
     "controller:U303.4",
+    "controller:U304.2",
     "controller:U501.15",
     "controller:U501.16",
     "controller:U501.17",
@@ -2329,6 +2349,17 @@
     "controller:U301.5"
    ]
   },
+  "controller:UI_ILIM": {
+   "aliases": [
+    "controller:UI_ILIM"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:R304.1",
+    "controller:U302.5"
+   ]
+  },
   "controller:UI_PWR_EN": {
    "aliases": [
     "controller:UI_PWR_EN"
@@ -2339,17 +2370,6 @@
     "controller:R301.2",
     "controller:U101.34",
     "controller:U302.3"
-   ]
-  },
-  "controller:UI_RISE": {
-   "aliases": [
-    "controller:UI_RISE"
-   ],
-   "rail": false,
-   "volts": null,
-   "pins": [
-    "controller:C307.1",
-    "controller:U302.4"
    ]
   },
   "controller:USB_BENCH_ENABLE": {
@@ -2598,6 +2618,17 @@
     "controller:U606.4"
    ]
   },
+  "controller:WATER_ILIM": {
+   "aliases": [
+    "controller:WATER_ILIM"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:R306.1",
+    "controller:U304.5"
+   ]
+  },
   "controller:WATER_LEVEL": {
    "aliases": [
     "controller:WATER_LEVEL"
@@ -2619,6 +2650,18 @@
    "pins": [
     "controller:J109.2",
     "controller:R411.1"
+   ]
+  },
+  "controller:WATER_VCC": {
+   "aliases": [
+    "controller:WATER_VCC"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:C410.1",
+    "controller:J109.1",
+    "controller:U304.6"
    ]
   },
   "front:KEY_1_N": {
@@ -3214,23 +3257,6 @@
     }
    }
   },
-  "controller:C307": {
-   "part": "C",
-   "value": "1nF / CT",
-   "mpn": "CL10B102KB8NNNC",
-   "pins": {
-    "1": {
-     "symbol": "",
-     "physical": "",
-     "net": "controller:UI_RISE"
-    },
-    "2": {
-     "symbol": "",
-     "physical": "",
-     "net": "controller:GND_UI"
-    }
-   }
-  },
   "controller:C308": {
    "part": "C",
    "value": "1uF / switch input",
@@ -3495,6 +3521,57 @@
      "symbol": "",
      "physical": "",
      "net": "controller:GRINDER_CURRENT_ADC"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C408": {
+   "part": "C",
+   "value": "100nF / FLOW VCC",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:FLOW_VCC"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C409": {
+   "part": "C",
+   "value": "100nF / JP22 switch input",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C410": {
+   "part": "C",
+   "value": "1uF / JP22 VCC",
+   "mpn": "CL10A105KB8NNNC",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:WATER_VCC"
     },
     "2": {
      "symbol": "",
@@ -4311,7 +4388,7 @@
     "3": {
      "symbol": "3",
      "physical": "3",
-     "net": "controller:12V_PROTECTED"
+     "net": "controller:FLOW_VCC"
     }
    }
   },
@@ -4387,7 +4464,7 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:3V3_CORE"
+     "net": "controller:WATER_VCC"
     },
     "2": {
      "symbol": "2",
@@ -5356,6 +5433,57 @@
     }
    }
   },
+  "controller:R304": {
+   "part": "R",
+   "value": "49.9k / UI ILIM 0.5A",
+   "mpn": "0603WAF4992T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:UI_ILIM"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:R305": {
+   "part": "R",
+   "value": "1k / UI discharge",
+   "mpn": "0603WAF1001T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_UI"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:R306": {
+   "part": "R",
+   "value": "210k / JP22 ILIM 0.13A",
+   "mpn": "0603WAF2103T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:WATER_ILIM"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
   "controller:R401": {
    "part": "R",
    "value": "4.7k / NTC pull-up",
@@ -5557,6 +5685,23 @@
      "symbol": "",
      "physical": "",
      "net": "controller:GRINDER_CURRENT_ADC"
+    }
+   }
+  },
+  "controller:R413": {
+   "part": "R",
+   "value": "390 / FLOW VCC limit",
+   "mpn": "ERJ-P08J391V",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:12V_PROTECTED"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:FLOW_VCC"
     }
    }
   },
@@ -6956,13 +7101,13 @@
    }
   },
   "controller:U302": {
-   "part": "TPS22918",
-   "value": "TPS22918DBVR",
-   "mpn": "TPS22918DBVR",
+   "part": "TPS2553",
+   "value": "TPS2553DBVR / UI 0.5A limit",
+   "mpn": "TPS2553DBVR",
    "pins": {
     "1": {
-     "symbol": "VIN",
-     "physical": "VIN",
+     "symbol": "IN",
+     "physical": "IN",
      "net": "controller:3V3_CORE"
     },
     "2": {
@@ -6971,23 +7116,23 @@
      "net": "controller:GND_UI"
     },
     "3": {
-     "symbol": "ON",
-     "physical": "ON",
+     "symbol": "EN",
+     "physical": "EN",
      "net": "controller:UI_PWR_EN"
     },
     "4": {
-     "symbol": "CT",
-     "physical": "CT",
-     "net": "controller:UI_RISE"
+     "symbol": "~{FAULT}",
+     "physical": "~{FAULT}",
+     "net": null
     },
     "5": {
-     "symbol": "QOD",
-     "physical": "QOD",
-     "net": "controller:3V3_UI"
+     "symbol": "ILIM",
+     "physical": "ILIM",
+     "net": "controller:UI_ILIM"
     },
     "6": {
-     "symbol": "VOUT",
-     "physical": "VOUT",
+     "symbol": "OUT",
+     "physical": "OUT",
      "net": "controller:3V3_UI"
     }
    }
@@ -7026,6 +7171,43 @@
      "symbol": "BST",
      "physical": "BST",
      "net": "controller:BUCK12_BST"
+    }
+   }
+  },
+  "controller:U304": {
+   "part": "TPS2553",
+   "value": "TPS2553DBVR / JP22 0.13A limit",
+   "mpn": "TPS2553DBVR",
+   "pins": {
+    "1": {
+     "symbol": "IN",
+     "physical": "IN",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "GND",
+     "physical": "GND",
+     "net": "controller:GND_UI"
+    },
+    "3": {
+     "symbol": "EN",
+     "physical": "EN",
+     "net": "controller:3V3_CORE"
+    },
+    "4": {
+     "symbol": "~{FAULT}",
+     "physical": "~{FAULT}",
+     "net": null
+    },
+    "5": {
+     "symbol": "ILIM",
+     "physical": "ILIM",
+     "net": "controller:WATER_ILIM"
+    },
+    "6": {
+     "symbol": "OUT",
+     "physical": "OUT",
+     "net": "controller:WATER_VCC"
     }
    }
   },

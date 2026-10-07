@@ -42,6 +42,10 @@
       "source": "TI SLUSAY4D, section 7 Pin Configuration and Functions, UCC27517 DBV.",
       "pins": {"1": "VDD", "2": "GND", "3": "IN+", "4": "IN-", "5": "OUT"}
     },
+    "TPS2553DBVR": {
+      "source": "TI SLVS841F, section 6 Pin Configuration and Functions, DBV.",
+      "pins": {"1": "IN", "2": "GND", "3": "EN", "4": "~{FAULT}", "5": "ILIM", "6": "OUT"}
+    },
     "TPS22918DBVR": {
       "source": "TI SLVSD76C, section 5 Pin Configuration and Functions, DBV.",
       "pins": {"1": "VIN", "2": "GND", "3": "ON", "4": "CT", "5": "QOD", "6": "VOUT"}
