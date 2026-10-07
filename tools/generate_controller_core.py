@@ -470,6 +470,16 @@ def main():
           'Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical',
           status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
+    # Issue #7: with JP22 unplugged PC3 floats. The bias waits for WL-01 (an
+    # open-collector output needs the pull-up, a push-pull one a weak
+    # pull-down to read "absent"), so both footprints are reserved and
+    # neither is fitted.
+    d.add('R415','R','100k / WATER pull-up DNP',560,555,['WATER_VCC','WATER_RAW'],
+          'Resistor_SMD:R_0603_1608Metric',status='dnp_value_after_wl01',
+          part_key='R:100k',dnp=True)
+    d.add('R416','R','100k / WATER pull-down DNP',680,555,['WATER_RAW',g],
+          'Resistor_SMD:R_0603_1608Metric',status='dnp_value_after_wl01',
+          part_key='R:100k',dnp=True)
     d.passive('C406','C','10nF / WATER filtro',680,543,'WATER_LEVEL',g)
     # Grinder current from U704 (TMCS1133B4A, 100 mV/A about 1.65 V): a
     # 1.6 kHz low-pass at the ADC pin against what the long run picks up;

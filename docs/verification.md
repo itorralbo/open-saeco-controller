@@ -1290,3 +1290,26 @@ Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
 infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
 --self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 94/94;
 CTest 3/3. Sin hardware.
+
+## Huellas DNP para polarizar JP22, 2026-10-07
+
+Issue #7: con JP22 desconectado o un hilo roto, PC3 queda al aire. El valor
+depende de la salida del sensor, que WL-01 todavía no ha medido, así que se
+reservan las dos opciones sin montar:
+
+- **R415**, 100 kΩ de `WATER_VCC` a `WATER_RAW` (pull-up, para una salida de
+  colector abierto), y **R416**, 100 kΩ de `WATER_RAW` a GND (pull-down, para
+  que una salida push-pull desconectada lea cero). 0603, en línea sobre J109.
+- El generador admite `dnp=True`; la huella lleva el atributo DNP y KiCad lo
+  marca en el netlist. El simulador deja fuera los componentes DNP, con una
+  prueba que falla si los vuelve a cargar.
+- `check_controller_core.py` comprueba sus redes; el paquete JLCPCB los lista
+  como no montados.
+
+La issue #7 sigue abierta: falta elegir cuál se monta y su valor tras WL-01, y
+la comprobación de firmware del nivel «ausente».
+
+Resultado: ERC 0 en las dos placas; netlist 217 componentes y 690 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 95/95. Sin hardware.

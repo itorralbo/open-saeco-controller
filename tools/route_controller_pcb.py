@@ -671,6 +671,12 @@ def route_sensors(board):
              pcb.B_Cu, width=PIN_WIDTH)
     polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (19.725, 115.9), (20.5, 115.9),
                                      (21.375, 116.775), (22.0, 116.775)], width=PIN_WIDTH)
+    # DNP bias pair above J109 (issue #7): each end drops straight into its
+    # header pin on F.Cu; R416's GND pad joins the fill.
+    track(board, '/WATER_RAW', (20.425, 124.8), (22.075, 124.8), width=PIN_WIDTH)
+    track(board, '/WATER_RAW', (21.0, 124.8), (21.0, 128.2), width=PIN_WIDTH)
+    polyline(board, '/WATER_VCC', [(18.775, 124.8), (18.775, 126.3), (19.0, 126.525),
+                                   (19.0, 128.2)], width=PIN_WIDTH)
 
     for start, point in (((31.25, 125.3), (33.2, 125.3)),
                          # East, not north: the grinder's gate order runs

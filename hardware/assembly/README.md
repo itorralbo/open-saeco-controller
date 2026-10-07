@@ -96,8 +96,8 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal](../controller/bom-draft.csv): 215 posiciones. 210 tienen MPN y
-  código LCSC; J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
+- [Principal](../controller/bom-draft.csv): 217 posiciones. 212 tienen MPN y
+  código LCSC, de ellas R415 y R416 sin montar (DNP, issue #7); J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
   las vende; RV701 tiene valor provisional y ninguna pieza; J111 y J121 son
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:
   F701 de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el

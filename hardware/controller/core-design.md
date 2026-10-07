@@ -34,7 +34,10 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
 - Sensor de agua JP22 alimentado a 3,3 V y señal filtrada hacia PC3/ADC12_IN9;
   orden rojo=VCC, blanco=señal y negro=GND. Desde el 2026-10-07 lo alimenta
   U304, otro TPS2553, con R306 = 210 kΩ: 110–150 mA, de sobra para un sensor
-  de nivel y lejos del límite de U301.
+  de nivel y lejos del límite de U301. Con JP22 desconectado PC3 queda al aire
+  (issue #7): R415 (pull-up a `WATER_VCC`) y R416 (pull-down a GND), de
+  100 kΩ, tienen huella y no se montan hasta que WL-01 diga si la salida es
+  de colector abierto o push-pull.
 - Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
 - J105 y J106 son HR A2506WV-02P/-03P, identificadas por el propietario;

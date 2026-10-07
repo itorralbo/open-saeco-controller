@@ -158,6 +158,9 @@ def main():
     assert nets['U304'] == {'1':v,'2':g,'3':v,'6':'WATER_VCC','5':'WATER_ILIM','4':None}
     assert nets['R306'] == {'1':'WATER_ILIM','2':g}
     assert nets['R411'] == {'1':'WATER_RAW','2':'WATER_LEVEL'}
+    # Issue #7: JP22 bias footprints, reserved and unfitted until WL-01.
+    assert nets['R415'] == {'1':'WATER_VCC','2':'WATER_RAW'}
+    assert nets['R416'] == {'1':'WATER_RAW','2':g}
     assert nets['C406'] == {'1':'WATER_LEVEL','2':g}
     assert nets['J110'] == {
         'A1':g,'A4':'USB_VBUS','A5':'USB_CC1','A6':'USB_DP_PORT',

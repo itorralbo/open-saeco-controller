@@ -403,6 +403,9 @@ PLACE = {
     # y = 71.8 mm lane west of it, so the pull-up cannot be fed from below.
     'R405': (15, 71, 270), 'R406': (18, 71, 270), 'C403': (21, 71, 90),
     'R411': (19, 116, 90), 'C406': (22, 116, 90),
+    # JP22 bias (issue #7), both DNP: in line above J109, sharing the
+    # WATER_RAW pad pair over J109.2; R415 ends over J109.1 (WATER_VCC).
+    'R415': (19.6, 124.8, 0), 'R416': (22.9, 124.8, 0),
     'R407': (16, 52, 90), 'R408': (19, 52, 270), 'C404': (22, 52, 90),
     'R409': (16, 59, 90), 'R410': (19, 59, 270), 'C405': (22, 59, 90),
 

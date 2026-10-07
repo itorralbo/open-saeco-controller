@@ -116,7 +116,7 @@ def note(text, x, y, size=1.5):
     svg_text(x, y, text, size)
 
 
-def add(ref, kind, value, x, y, nets, footprint='', status='candidate', part_key=None):
+def add(ref, kind, value, x, y, nets, footprint='', status='candidate', part_key=None, dnp=False):
     pins, width, height = DEFS[kind]
     # Every pin and wire endpoint must land on KiCad's 50 mil connection grid.
     # Odd/even pin counts give different symbol-center offsets.
@@ -136,7 +136,7 @@ def add(ref, kind, value, x, y, nets, footprint='', status='candidate', part_key
     properties += [prop(field, val, x, y, True) for field, val in sourcing.items() if val]
     objects.append(
         f'(symbol (lib_id "OpenSaeco:{kind}") (at {x} {y} 0) (unit 1)'
-        f' (in_bom {physical}) (on_board {physical}) (dnp no) (uuid {uid(ref)})'
+        f' (in_bom {physical}) (on_board {physical}) (dnp {"yes" if dnp else "no"}) (uuid {uid(ref)})'
         + ''.join(properties)
         + ''.join(f'(pin {q(p[0])} (uuid {uid(ref+"/"+p[0])}))' for p in pins)
         + f'(instances (project "{PROJECT}" (path "/{uid("root")}"'

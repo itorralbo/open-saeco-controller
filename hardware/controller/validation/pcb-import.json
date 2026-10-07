@@ -1,5 +1,5 @@
 {
-  "status": "synchronized_preserving_existing_placement_not_fabricable",
+  "status": "new_footprints_staged_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -594,6 +594,14 @@
       "footprint": "Resistor_SMD:R_1206_3216Metric",
       "numbered_pads": 2
     },
+    "R415": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "R416": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R501": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
@@ -864,7 +872,10 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [],
+  "newly_staged_footprints": [
+    "R415",
+    "R416"
+  ],
   "tracks": 1880,
   "outline": true,
   "mounting_holes_preserved": [

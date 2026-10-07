@@ -345,8 +345,10 @@ MH2, para dejar su sitio junto a U703 al driver del molinillo; la señal en brut
 sube desde JP5 por el oeste de MH2. Los pines 3 y 4 de
 JP16 quedan puenteados. El contacto de trabajo pasa por B.Cu bajo la fila del
 contacto de presencia y sube junto a su divisor; el nivel de agua baja de R411
-a B.Cu y va recto bajo el retorno de la válvula hasta J109. Cada condensador de
-filtro baja al plano por su propia vía.
+a B.Cu y va recto bajo el retorno de la válvula hasta J109. R415 y R416 (DNP,
+issue #7) van en línea sobre J109: el pad común de `WATER_RAW` baja por F.Cu a
+J109.2, R415 a J109.1 y el pad de masa de R416 se une al relleno. Cada
+condensador de filtro baja al plano por su propia vía.
 
 ### Buck de 24 V a 12 V
 

@@ -1544,6 +1544,36 @@
       }
     },
     {
+      "reference": "R415",
+      "value": "100k / WATER pull-up DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "dnp_value_after_wl01",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_VCC",
+        "2": "WATER_RAW"
+      }
+    },
+    {
+      "reference": "R416",
+      "value": "100k / WATER pull-down DNP",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "dnp_value_after_wl01",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1003T5E",
+      "lcsc": "C25803",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "WATER_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "C406",
       "value": "10nF / WATER filtro",
       "footprint": "Capacitor_SMD:C_0603_1608Metric",

@@ -52,6 +52,13 @@ class Baseline(unittest.TestCase):
         self.assertEqual(s.gnet('front', 'KEY_SDA'), s.gnet('controller', 'KEY_SDA'))
         self.assertIn(s.find('controller:3V3_UI'), s.rails)
 
+    def test_unfitted_parts_are_left_out(self):
+        # R415/R416 (JP22 bias) are DNP until WL-01: the circuit must not see them.
+        b = netlist.load(ROOT / CONTRACT['boards']['controller'], 'controller')
+        self.assertNotIn('R415', b.components)
+        self.assertNotIn('R416', b.components)
+        self.assertEqual(sorted(b.nets['WATER_RAW']), [('J109', '2'), ('R411', '1')])
+
 
 class Mutations(unittest.TestCase):
     def expect(self, boards, code, text):

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-07T21:23:45</date>
+    <date>2026-10-07T21:50:45</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -4802,6 +4802,72 @@
         </unit>
       </units>
     </comp>
+    <comp ref="R415">
+      <value>100k / WATER pull-up DNP</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <property name="dnp"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>8f2ae061-bce8-5349-aad4-b0a592360aae</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="R416">
+      <value>100k / WATER pull-down DNP</value>
+      <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
+      <fields>
+        <field name="manufacturer">UNI-ROYAL</field>
+        <field name="mpn">0603WAF1003T5E</field>
+        <field name="lcsc">C25803</field>
+        <field name="jlc_class">Basic</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Resistor_SMD:R_0603_1608Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="R" description=""/>
+      <property name="manufacturer" value="UNI-ROYAL"/>
+      <property name="mpn" value="0603WAF1003T5E"/>
+      <property name="lcsc" value="C25803"/>
+      <property name="jlc_class" value="Basic"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <property name="dnp"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>7662f6f9-a8ba-5f56-a20c-fd0be5cc88e8</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
     <comp ref="R501">
       <value>33 / EN</value>
       <footprint>Resistor_SMD:R_0603_1608Metric</footprint>
@@ -8227,6 +8293,7 @@
       <node ref="R304" pin="2" pintype="passive"/>
       <node ref="R305" pin="2" pintype="passive"/>
       <node ref="R306" pin="2" pintype="passive"/>
+      <node ref="R416" pin="2" pintype="passive"/>
       <node ref="R502" pin="2" pintype="passive"/>
       <node ref="R504" pin="2" pintype="passive"/>
       <node ref="R506" pin="2" pintype="passive"/>
@@ -8724,10 +8791,13 @@
     <net code="151" name="/WATER_RAW" class="Default">
       <node ref="J109" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="R411" pin="1" pintype="passive"/>
+      <node ref="R415" pin="2" pintype="passive"/>
+      <node ref="R416" pin="1" pintype="passive"/>
     </net>
     <net code="152" name="/WATER_VCC" class="Default">
       <node ref="C410" pin="1" pintype="passive"/>
       <node ref="J109" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="R415" pin="1" pintype="passive"/>
       <node ref="U304" pin="6" pinfunction="OUT_6" pintype="power_out"/>
     </net>
     <net code="153" name="unconnected-(J104-Pad16)" class="Default">

@@ -55,7 +55,12 @@ def load(path, name):
         libparts[lp.get('part')] = {} if pins is None else {
             p.get('num'): (p.get('name') or '', p.get('type')) for p in pins}
     comps = {}
+    # Footprints reserved but not fitted (KiCad DNP) are not in the circuit.
+    unfitted = {c.get('ref') for c in root.find('components')
+                if any(p.get('name') == 'dnp' for p in c.findall('property'))}
     for c in root.find('components'):
+        if c.get('ref') in unfitted:
+            continue
         part = c.find('libsource').get('part')
         fields = {f.get('name'): (f.text or '') for f in c.iter('field')}
         comp = Component(c.get('ref'), c.findtext('value'), part, fields)
@@ -65,7 +70,7 @@ def load(path, name):
     nets = {}
     for n in root.find('nets'):
         net = _net_name(n.get('name'))
-        nodes = [(x.get('ref'), x.get('pin')) for x in n]
+        nodes = [(x.get('ref'), x.get('pin')) for x in n if x.get('ref') not in unfitted]
         for ref, num in nodes:
             comps[ref].pins[num].net = net
         if net is not None:
