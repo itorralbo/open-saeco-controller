@@ -55,7 +55,7 @@ se queda. Si no, se cambia a cuatro diodos discretos.
 | GR-02 | N2 | Corriente de marcha sin grano | Tolva vacía, placa original, 5 s; media y eficaz en el cable de JP8 | Pinza DC/AC de efecto Hall | Umbral de «falta de grano» |
 | GR-03 | N2 | Corriente de marcha moliendo | Grano, ajustes de molido fino, medio y grueso; 3 repeticiones | Pinza Hall con salida a osciloscopio | Puente KBP410 (umbral 1,5 A) y tiempo máximo de molido |
 | GR-04 | N2 | Pico de arranque | Primeros 200 ms, 10 arranques; con la original y con el prototipo (cruce por cero) | Pinza Hall + osciloscopio | Pico real frente a los 4,8 A calculados; puente y triac |
-| GR-05 | N2 | Tensión en JP8 y dV/dt en el triac al apagar | Prototipo; captura de apagado | Sonda diferencial de alta tensión | Si Q708 necesita snubber RC |
+| GR-05 | N2 | Tensión en JP8 y dV/dt en el triac al apagar | Prototipo; captura de apagado | Sonda diferencial de alta tensión | Si Q708 necesita snubber RC: se montan C706 y R728 (huella DNP) |
 | GR-06 | N2 | Temperatura de cápsula de Q708 y BR701 | Prototipo; 5 moliendas de 10 s cada 30 s, y luego 10 moliendas seguidas | Termopar tipo K fijado con cinta de Kapton | Térmica del puente al aire y del perfil compartido; criterio: puente < 100 °C |
 | GR-07 | N2 | Gramos por segundo | Por ajuste de molido; pesar 3 moliendas de 5 s | Báscula de 0,1 g | Tiempo de molido por dosis |
 | GR-08 | N2 | Corriente con muelas casi vacías | Grano acabándose durante la molienda; registro continuo | Pinza Hall + registrador | Separación entre «falta de grano» y marcha normal; fija los umbrales de U704 (`OSC_GRINDER_*`), que mide la placa desde el 2026-10-06 |
@@ -90,7 +90,7 @@ El límite resistivo derivado es 0,44 A a 24 V.
 |---|---|---|---|---|---|
 | PU-01 | N0 | Diodo en serie y resistencia de la bobina | Desconectada; modo diodo en los dos sentidos | Multímetro | Confirma la semionda y el control por semiciclos |
 | PU-02 | N2 | Corriente eficaz y de pico | Placa original; salida libre y contra el café | Pinza Hall + osciloscopio | Supuesto de 0,4 A; fusible |
-| PU-03 | N2 | dV/dt al apagar | Prototipo | Sonda diferencial | Si Q704 necesita snubber RC |
+| PU-03 | N2 | dV/dt al apagar | Prototipo | Sonda diferencial | Si Q704 necesita snubber RC: se montan C705 y R727 (huella DNP) |
 | PU-04 | N2 | Caudal en función del salto de semiciclos | 25, 50, 75 y 100 %; agua a taza | Caudalímetro de la máquina + báscula | Tabla de preinfusión y caudal |
 | PU-05 | N2 | Presión de salida | Manómetro en la salida de café, con café real | Manómetro 0–16 bar | Límite de presión y perfil |
 | PU-06 | N2 | Temperatura del cuerpo de la bomba | Ciclo 2 min ON / 1 min OFF, 3 ciclos | Termopar | Protector térmico de 100 °C y límites de uso |

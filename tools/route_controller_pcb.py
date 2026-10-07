@@ -41,6 +41,8 @@ MAINS_VIA = 1.60
 MAINS_DRILL = 0.80
 MAINS_LIGHT_WIDTH = 1.0
 MAINS_N_WIDTH = 1.5
+# RC snubbers carry milliamps; the width only has to survive handling.
+SNUBBER_WIDTH = 0.5
 ACT_WIDTH = 1.0
 ACT_LANE_WIDTH = 0.8
 
@@ -1275,16 +1277,29 @@ def route_heater_stage(board):
     # B.Cu block under the foot, x = 59.2-77.6 and y = 88.3-107.25 mm: 2.5 mm
     # below and west of the heater gate, 1.2 mm above the triac pads. Q708
     # also takes its middle terminal from it; the drop stops in the top of
-    # the pad, 2.5 mm from the grinder gate under the row.
-    for y in (90.3, 94.05, 97.8, 101.55, 105.25):
-        track(board, '/LOAD_L_ENABLED', (61.2, y), (75.6, y), pcb.B_Cu, width=4.0)
-    track(board, '/LOAD_L_ENABLED', (66.6, 105.25), (66.6, 108.2), pcb.B_Cu,
+    # the pad, 2.5 mm from the grinder gate under the row. Its south-west
+    # corner (x < 70.5 mm below y = 96 mm) holds Q708's unfitted snubber:
+    # the heater current still comes down x = 70.5-77.6 mm, and a 2.5 mm
+    # strip at y = 106 mm, 2.5 mm below C706's snubber pad, takes the block
+    # west to Q708's drop and C706's phase pad.
+    for y, start in ((90.3, 61.2), (94.05, 61.2), (97.8, 72.5), (101.55, 72.5),
+                     (105.25, 72.5)):
+        track(board, '/LOAD_L_ENABLED', (start, y), (75.6, y), pcb.B_Cu, width=4.0)
+    track(board, '/LOAD_L_ENABLED', (72.5, 97.8), (72.5, 105.25), pcb.B_Cu, width=4.0)
+    track(board, '/LOAD_L_ENABLED', (66.6, 106.0), (72.5, 106.0), pcb.B_Cu, width=2.5)
+    track(board, '/LOAD_L_ENABLED', (66.6, 106.0), (66.6, 108.2), pcb.B_Cu,
           width=1.9)
     for point in [(60.25, 89.6), (60.25, 91.7), (60.25, 93.8), (60.25, 95.9),
-                  (60.25, 101.9), (60.25, 104.0), (63.0, 106.45),
-                  (64.9, 106.45), (68.4, 106.45), (71.2, 106.45),
+                  (68.4, 106.45), (71.2, 106.45),
                   (73.0, 106.45), (74.8, 106.45), (76.6, 106.45)]:
         via(board, '/LOAD_L_ENABLED', point, MAINS_VIA, MAINS_DRILL)
+    # Q708's RC snubber, DNP until GR-05 (C706 on the block, R728 west of
+    # it). The phase side drops into the top of Q708.1 from the north-west,
+    # 2.5 mm from the grinder gate under the row.
+    polyline(board, '/GRINDER_SNUBBER', [(62.5, 99.3), (64.55, 99.3), (66.5, 101.25)],
+             pcb.B_Cu, width=SNUBBER_WIDTH)
+    polyline(board, '/GRINDER_AC_SWITCHED', [(61.5, 104.963), (61.5, 107.4),
+                                             (63.5, 108.9)], pcb.B_Cu, width=SNUBBER_WIDTH)
 
     # Feed from pin 6 north to R710; gate from pin 4 down the lane on B.Cu.
     opto_stubs(board, 'U701', {6: '/HEATER_GATE_FEED'})
@@ -1386,6 +1401,15 @@ def route_pump_stage(board):
     # The neutral leaves the south half of pin 2 to hold 2.5 mm from the
     # phase bend north-east of JP24.
     track(board, '/MAINS_N', (96.0, 121.6), (96.0, 127.5), width=1.2)
+    # Q704's RC snubber, DNP until PU-03, on B.Cu above the pump triac: C705
+    # over the middle terminal, R727 to the west, its phase side into the top
+    # of Q704.1 from the north-west.
+    track(board, '/LOAD_L_ENABLED', (89.0, 105.35), (89.0, 108.6), pcb.B_Cu,
+          width=SNUBBER_WIDTH)
+    polyline(board, '/PUMP_SNUBBER', [(89.0, 101.25), (89.0, 100.0), (87.037, 98.037),
+                                      (84.5, 98.037)], pcb.B_Cu, width=SNUBBER_WIDTH)
+    polyline(board, '/PUMP_AC_SWITCHED', [(84.5, 103.963), (84.5, 107.8),
+                                          (85.75, 109.05)], pcb.B_Cu, width=SNUBBER_WIDTH)
 
 
 def route_pump_enable(board):

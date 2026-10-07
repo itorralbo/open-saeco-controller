@@ -830,6 +830,15 @@ def main():
           'Package_TO_SOT_THT:TO-220-3_Vertical', part_key='TRIAC:BTA24-800BWRG')
     d.note('Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir '
            'dV/dt en el apagado antes de liberar.',870,1010,1.1)
+    # Reserved RC snubber across MT1-MT2, unfitted: PU-03 measures the
+    # turn-off dV/dt and decides whether Q704 needs it and with which values.
+    # Bottom side, under the heatsink foot: 1812 for a 1 kV or X2 capacitor,
+    # 2512 for the resistor.
+    snubber = dict(status='dnp_after_dvdt_measurement', dnp=True)
+    d.add('C705','C','RC snubber C / Q704, DNP until PU-03',1320,955,
+          ['LOAD_L_ENABLED','PUMP_SNUBBER'],'Capacitor_SMD:C_1812_4532Metric',**snubber)
+    d.add('R727','R','RC snubber R / Q704, DNP until PU-03',1320,975,
+          ['PUMP_SNUBBER','PUMP_AC_SWITCHED'],'Resistor_SMD:R_2512_6332Metric',**snubber)
 
     # Grinder: V3.2 motor fed with rectified mains, 68 ohm winding. Its running
     # current has not been measured; since 2026-09-23 Rev A is sized for 3 A,
@@ -872,6 +881,12 @@ def main():
     d.add('BR701','BRIDGE_KBP','KBP410 / grinder bridge',1300,1060,
           ['GRINDER_AC_FUSED','MAINS_N','GRINDER_DC_PLUS','GRINDER_DC_MINUS'],
           'Diode_THT:Diode_Bridge_Vishay_KBPM', part_key='BRIDGE:KBP410')
+    # Same reservation for the grinder; GR-05 decides. The bridge after Q708
+    # makes its commutation harder than a plain inductive load.
+    d.add('C706','C','RC snubber C / Q708, DNP until GR-05',1360,1020,
+          ['LOAD_L_ENABLED','GRINDER_SNUBBER'],'Capacitor_SMD:C_1812_4532Metric',**snubber)
+    d.add('R728','R','RC snubber R / Q708, DNP until GR-05',1360,1040,
+          ['GRINDER_SNUBBER','GRINDER_AC_SWITCHED'],'Resistor_SMD:R_2512_6332Metric',**snubber)
     d.note('Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = '
            '230/68 = 3,4 A ef.: lo corta el firmware; F703 T4AH (1500 A) despeja un puente en corto.',870,1092,1.1)
     d.note('BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido '

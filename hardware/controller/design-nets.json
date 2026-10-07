@@ -3317,6 +3317,36 @@
       }
     },
     {
+      "reference": "C705",
+      "value": "RC snubber C / Q704, DNP until PU-03",
+      "footprint": "Capacitor_SMD:C_1812_4532Metric",
+      "status": "dnp_after_dvdt_measurement",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "LOAD_L_ENABLED",
+        "2": "PUMP_SNUBBER"
+      }
+    },
+    {
+      "reference": "R727",
+      "value": "RC snubber R / Q704, DNP until PU-03",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "status": "dnp_after_dvdt_measurement",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "PUMP_SNUBBER",
+        "2": "PUMP_AC_SWITCHED"
+      }
+    },
+    {
       "reference": "R717",
       "value": "10k / grinder arm pull-down",
       "footprint": "Resistor_SMD:R_0603_1608Metric",
@@ -3472,6 +3502,36 @@
         "3": "MAINS_N",
         "1": "GRINDER_DC_PLUS",
         "4": "GRINDER_DC_MINUS"
+      }
+    },
+    {
+      "reference": "C706",
+      "value": "RC snubber C / Q708, DNP until GR-05",
+      "footprint": "Capacitor_SMD:C_1812_4532Metric",
+      "status": "dnp_after_dvdt_measurement",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "LOAD_L_ENABLED",
+        "2": "GRINDER_SNUBBER"
+      }
+    },
+    {
+      "reference": "R728",
+      "value": "RC snubber R / Q708, DNP until GR-05",
+      "footprint": "Resistor_SMD:R_2512_6332Metric",
+      "status": "dnp_after_dvdt_measurement",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "GRINDER_SNUBBER",
+        "2": "GRINDER_AC_SWITCHED"
       }
     },
     {

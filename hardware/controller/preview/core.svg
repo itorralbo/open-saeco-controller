@@ -2772,6 +2772,20 @@
 <text x="1246.5400000000002" y="969.78" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="1250.0800000000002" y="969.78" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_TRIAC_GATE</text>
 <text x="870" y="1010" font-size="1.1" text-anchor="start" fill="#213b50">Sin snubber RC: triac snubberless y diodo serie en la bomba. Medir dV/dt en el apagado antes de liberar.</text>
+<path d="M 1316.99 955.04 H 1318.895 M 1320.165 955.04 H 1322.07 M 1318.895 953.54 V 956.54 M 1320.165 953.54 V 956.54" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1319.53" y="948.54" font-size="1.05" text-anchor="middle" fill="#213b50">C705</text>
+<text x="1319.53" y="951.04" font-size="1.05" text-anchor="middle" fill="#213b50">RC snubber C / Q704, DNP until PU-03</text>
+<path d="M 1316.99 955.04 H 1311.91" stroke="#27856d" stroke-width=".22"/>
+<text x="1311.51" y="954.54" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1322.07 955.04 H 1327.15" stroke="#27856d" stroke-width=".22"/>
+<text x="1327.5500000000002" y="954.54" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_SNUBBER</text>
+<rect x="1316.99" y="974.36" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1319.53" y="969.36" font-size="1.05" text-anchor="middle" fill="#213b50">R727</text>
+<text x="1319.53" y="971.86" font-size="1.05" text-anchor="middle" fill="#213b50">RC snubber R / Q704, DNP until PU-03</text>
+<path d="M 1316.99 975.36 H 1311.91" stroke="#27856d" stroke-width=".22"/>
+<text x="1311.51" y="974.86" font-size="0.9" text-anchor="end" fill="#23745f">PUMP_SNUBBER</text>
+<path d="M 1322.07 975.36 H 1327.15" stroke="#27856d" stroke-width=".22"/>
+<text x="1327.5500000000002" y="974.86" font-size="0.9" text-anchor="start" fill="#23745f">PUMP_AC_SWITCHED</text>
 <text x="870" y="1030" font-size="1.8" text-anchor="start" fill="#213b50">18 / Etapa del molinillo — V3.2, 68 ohm, 320 V DC; dimensionada a 3 A</text>
 <rect x="877.57" y="1050.56" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="880.11" y="1045.56" font-size="1.05" text-anchor="middle" fill="#213b50">R717</text>
@@ -2895,6 +2909,20 @@
 <text x="1304.8600000000001" y="1063.29" font-size="0.9" text-anchor="end" fill="#213b50">-</text>
 <text x="1307.5" y="1062.49" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
 <text x="1311.0400000000002" y="1062.49" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_DC_MINUS</text>
+<path d="M 1357.63 1019.81 H 1359.535 M 1360.805 1019.81 H 1362.71 M 1359.535 1018.31 V 1021.31 M 1360.805 1018.31 V 1021.31" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1360.17" y="1013.31" font-size="1.05" text-anchor="middle" fill="#213b50">C706</text>
+<text x="1360.17" y="1015.81" font-size="1.05" text-anchor="middle" fill="#213b50">RC snubber C / Q708, DNP until GR-05</text>
+<path d="M 1357.63 1019.81 H 1352.55" stroke="#27856d" stroke-width=".22"/>
+<text x="1352.1499999999999" y="1019.31" font-size="0.9" text-anchor="end" fill="#23745f">LOAD_L_ENABLED</text>
+<path d="M 1362.71 1019.81 H 1367.79" stroke="#27856d" stroke-width=".22"/>
+<text x="1368.19" y="1019.31" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_SNUBBER</text>
+<rect x="1357.63" y="1039.13" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1360.17" y="1034.13" font-size="1.05" text-anchor="middle" fill="#213b50">R728</text>
+<text x="1360.17" y="1036.63" font-size="1.05" text-anchor="middle" fill="#213b50">RC snubber R / Q708, DNP until GR-05</text>
+<path d="M 1357.63 1040.13 H 1352.55" stroke="#27856d" stroke-width=".22"/>
+<text x="1352.1499999999999" y="1039.63" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_SNUBBER</text>
+<path d="M 1362.71 1040.13 H 1367.79" stroke="#27856d" stroke-width=".22"/>
+<text x="1368.19" y="1039.63" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_AC_SWITCHED</text>
 <text x="870" y="1092" font-size="1.1" text-anchor="start" fill="#213b50">Q708 en el perfil del calentador y la bomba: ~2,5 W a 3 A. Bloqueo = 230/68 = 3,4 A ef.: lo corta el firmware; F703 T4AH (1500 A) despeja un puente en corto.</text>
 <text x="870" y="1100" font-size="1.1" text-anchor="start" fill="#213b50">BR701 KBP410 4 A / 1 kV, RthJA 55 C/W: ~5 W a 3 A, solo molido intermitente (&lt;=10 s y pausa). Medir en el prototipo.</text>
 <rect x="1172.21" y="1130.3" width="15.24" height="20.32" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
