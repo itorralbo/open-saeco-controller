@@ -30151,7 +30151,7 @@
 				)
 			)
 		)
-		(property "Value" "T1AH / PSU / value pending inrush"
+		(property "Value" "T2AH / PSU"
 			(at 10 3.5 0)
 			(layer "F.Fab")
 			(hide yes)
@@ -30201,7 +30201,7 @@
 				)
 			)
 		)
-		(property "mpn" "0215001.MXP"
+		(property "mpn" "0215002.MXP"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)
@@ -30213,7 +30213,7 @@
 				)
 			)
 		)
-		(property "lcsc" "C142715"
+		(property "lcsc" "C142716"
 			(at 0 0 0)
 			(layer "F.SilkS")
 			(hide yes)

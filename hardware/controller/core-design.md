@@ -161,7 +161,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
 | Fuente aislada | Confirmar IRM-30-24 con los consumos reales (PS-01 a PS-03) | Consumos simultáneos, temperatura interior |
-| Protección de red | Valor de F702, MOV RV701, filtro EMI y ensayo de interrupción (poder de corte de 1500 A y F701 de 12 A ya fijados) | Corriente de falta, inrush e identificación de L5/L7 de la original |
+| Protección de red | MOV RV701 y filtro EMI (fusibles de red cerrados en la issue #1: 1500 A, F701 de 12 A y F702 de 2 A) | Energía de sobretensión e identificación de L5/L7 de la original |
 | Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; J101 en OR con U303 por D307/D301 | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Comprobar enumeración y consumo de banco | Acceso mecánico y dominio aislado verificado |
@@ -270,10 +270,10 @@ del supervisor](../power/watchdog-interlock.md).
 PS701 es un Mean Well IRM-30-24 montado en la propia principal. F701 protege la
 entrada completa, F702 separa la rama de la fuente y RV701 limita sobretensiones.
 Desde el 2026-10-06 F701 y F702 son Littelfuse 215 de 1500 A a 250 VAC: F701
-de 12 A, axial y soldado como el F1 original, y F702 de 1 A en pinzas
+de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el F2 original, en pinzas
 01110501Z, como F703 en el molinillo (issue #1, [corriente de
 defecto supuesta](../power/power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red)).
-Siguen abiertos el valor de F702 (irrupción) y la energía del MOV. J121 se entrega puenteado para alimentar `24V_ACT_RAW`
+Sigue abierta la energía del MOV. J121 se entrega puenteado para alimentar `24V_ACT_RAW`
 desde PS701 y se abre antes de inyectar 24 V limitados por J112 durante el banco.
 
 U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación usa

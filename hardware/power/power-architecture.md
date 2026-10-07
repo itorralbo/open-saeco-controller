@@ -3,8 +3,8 @@
 Estado: integrada en el esquema y en la PCB ruteada, sin ensayar. La placa
 sustituye a la original y contiene en la misma tarjeta la entrada de 230 V, sus
 protecciones, la fuente aislada, las salidas de red y la electrónica SELV. Falta
-el filtro EMI, RV701 y el valor de F702; el poder de
-corte de los tres fusibles de red está fijado (ver
+el filtro EMI y RV701; los tres fusibles de red, su poder de corte y la
+issue #1 están resueltos (ver
 [corriente de defecto supuesta](#corriente-de-defecto-supuesta-y-fusibles-de-red)).
 
 ## Dominios obligatorios
@@ -328,13 +328,32 @@ No se deriva del circuito: de las resistencias del lazo solo se conocen las de
 los fusibles (6,1 mΩ de F701 y 18,5 mΩ de F703 en frío, hoja Littelfuse 215);
 el cable de la máquina, la instalación y el cobre de la placa no se han medido.
 Queda en `mains.prospective_fault` del contrato
-(`firmware/common/signals.json`) y debe confirmarse en la revisión de seguridad
-con el mercado de destino.
+(`firmware/common/signals.json`).
+
+**Hipótesis aceptada por el propietario el 2026-10-07** como base de diseño
+para una vivienda con instalación según el REBT, por tres razones:
+
+- Es la clase de los fusibles de red de la placa original (F1 «12AH250V» y F2
+  «T2AH250…», ver más abajo), y no cabe un poder de corte mayor en 5 × 20 mm.
+- La impedancia del bucle fase-neutro deja la corriente por debajo de 1500 A
+  (153 mΩ a 230 V) salvo muy cerca del cuadro. La ITC-BT-17 pide 4,5 kA de
+  poder de corte al interruptor general, unos 51 mΩ en el cuadro como peor
+  caso. El cable de la máquina suma unos 58 mΩ si es de 1 mm² y 1,5 m
+  (sección y longitud supuestas, sin medir), y cada metro de circuito de
+  2,5 mm² suma unos 15 mΩ. Solo un enchufe a menos de unos 3 m de un cuadro así
+  pasaría de 1500 A.
+- Por encima de 1500 A, el automático de 16 A del circuito dispara en su zona
+  magnética en menos de un semiciclo y respalda al fusible, el mismo supuesto
+  que la placa original.
+
+Medir la impedancia de bucle fase-neutro del enchufe con un comprobador de
+instalaciones (Zi o PSC; Zi ≥ 0,15 Ω confirma la hipótesis) queda como
+confirmación opcional, no como requisito.
 
 | Fusible | Pieza | Poder de corte | I²t de fusión nominal (10 In) |
 |---|---|---:|---:|
 | F701, entrada | Littelfuse 0215012.MXEP (C142789), T12AH axial, soldado en horizontal | 1500 A a 250 VAC | 515,5 A²s |
-| F702, fuente | Littelfuse 0215001.MXP (C142715), T1AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 1,52 A²s |
+| F702, fuente | Littelfuse 0215002.MXP (C142716), T2AH, en dos pinzas 01110501Z | 1500 A a 250 VAC | 11,68 A²s |
 | F703, molinillo | Littelfuse 0215004.MXEP (C178840), T4AH axial, de pie | 1500 A a 250 VAC | 46,96 A²s |
 
 Fuente: Littelfuse 215 Series (revisión 01/12/17), *Electrical Characteristic
@@ -348,8 +367,15 @@ supuesta o no tiene el dato en `sim/reference/devices.json`.
 Se separan dos requisitos, como pide la revisión de la issue:
 
 1. **Despejar el fallo sin peligro.** Los tres fusibles tienen el poder de corte
-   supuesto. Queda validar la interrupción con medios adecuados, no solo con la
-   hoja de datos.
+   supuesto, y se acredita con la certificación de cada referencia, no con un
+   ensayo propio (decisión del propietario, 2026-10-07). Según la tabla
+   *Agency Approvals* de la hoja Littelfuse 215, el certificado Semko 1517218
+   cubre de 0,125 a 12 A y el VDE 40013521 de 0,2 a 8 A; el VDE 40016610 de
+   12 A es solo para la versión de cartucho, así que F701 se apoya en el de
+   Semko. El ensayo de interrupción a 1500 A lo hace el fabricante en el
+   montaje de la norma, no en esta placa: lo propio de la Rev A es el montaje
+   (pinzas de F702, F701 soldado en horizontal y F703 de pie con la patilla
+   enfundada), descrito más abajo. PS-04 queda como ensayo opcional.
 2. **Que el puente y el triac sobrevivan.** No está demostrado. El I²t de
    fusión nominal de F703 (46,96 A²s, medido a 10 In) ya supera los 35 A²s del
    KBP410 (MDD, rev. 2024A3, para 3–8,3 ms), y el de despeje es mayor. Un
@@ -366,10 +392,21 @@ F701 hace falta que su I²t total de despeje a la corriente de fallo quede por
 debajo del I²t de prearco de F701 a esa misma corriente, y ese dato no está
 publicado. La selectividad queda sin demostrar y se retira la afirmación de
 que F703 despeja un corto «sin llevarse por delante la máquina entera».
+**No se exige** (decisión del propietario, 2026-10-07): la placa original no
+tenía fusible del molinillo y un corto en su rama fundía F1. Si se quiere el
+dato, Littelfuse da bajo petición el I²t total de despeje del 0215004 y el de
+prearco del 0215012 a la corriente de fallo.
 
-**F702.** Su valor de 1 A sigue provisional: tiene que aguantar sin envejecer
-la irrupción del IRM-30 en frío (45 A típicos a 230 VAC, hoja Mean Well), cuyo
-I²t de pulso falta por medir (PS-03).
+**F702: 2 A, como el F2 original** (decisión del propietario, 2026-10-07). Tiene
+que aguantar sin envejecer la irrupción del IRM-30 en frío: 45 A típicos a
+230 VAC según la hoja Mean Well, que no da la duración. Con una constante de
+tiempo de 0,3 a 0,5 ms, el pulso ronda Ipico² × τ / 2 = 0,3 a 0,5 A²s. Eso es
+del 20 al 33 % de los 1,52 A²s del 0215001 de 1 A que hubo antes, la zona en la
+que un fusible lento envejece en miles de encendidos, y del 3 al 4 % de los
+11,68 A²s del 0215002 de 2 A. El F2 original también era de 2 A y alimentaba un
+flyback propio. F702 solo despeja fallos: el IRM-30 consume unos 0,3 A
+eficaces. Su I²t de fusión nominal queda 44 veces por debajo del de F701.
+PS-03 pasa a ser una confirmación.
 
 **Margen de carga de F701: 12 A, como la original.** El F1 de la placa
 original lleva «12AH250V» (lectura del propietario sobre la pieza desmontada,
@@ -382,7 +419,7 @@ corte, y como pasa de los 10 A de las pinzas va soldado en horizontal con
 patillas axiales, igual que el F1 original. Con el reparto de molido la carga
 ronda los 9,7 A a 230 V, el 81 % de su valor; la curva de la hoja lo rebaja
 a un 95 % aproximado a 60 °C, que deja unos 11,4 A. F702 sigue en sus pinzas,
-con 1 A muy por debajo de los 10 A que admiten.
+con 2 A muy por debajo de los 10 A que admiten.
 
 **Montaje de F703.** El JFC2410 no se podía cambiar por un 5 × 20 mm en
 horizontal: al sur de Q708 solo quedaban 4,6 mm. El 0215004.MXEP va de pie con
@@ -404,11 +441,16 @@ No tenía fusible propio del molinillo, y su puente eran cuatro 1N400x de 1 A, q
 ningún fusible de red podía proteger de un corto en continua: aceptaba sacrificar
 el puente y despejar con F1, lo mismo que se acepta en el requisito 2.
 
-**Para cerrar la issue** faltan: confirmar la hipótesis de 1500 A en la
-revisión de seguridad (con el precedente de la original), aceptar por escrito
-que el requisito 2 no se cumple, como en la original, el valor de F702 (PS-03),
-y el ensayo de interrupción de la rama del molinillo con una fuente de corriente
-prospectiva conocida (PS-04).
+**Requisito 2 aceptado.** El propietario aceptó por escrito el 2026-10-06 que
+un cortocircuito en el lado de continua del molinillo puede destruir BR701 antes
+de que abra F703, igual que la original perdía sus 1N400x antes de que abriera
+F1. El requisito que se exige es el 1: que el fallo resultante se despeje sin
+peligro.
+
+**Issue resuelta en el diseño el 2026-10-07.** El propietario aceptó la hipótesis de 1500 A,
+el requisito 2 como en la original, F702 de 2 A y el requisito 1 acreditado
+con la certificación de los fusibles, sin exigir selectividad. PS-03 y PS-04
+quedan en el plan de caracterización como confirmaciones opcionales.
 
 ## Estado seguro
 
@@ -435,8 +477,7 @@ ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
    JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la IRM-30-24.
-3. Cerrar RV701, el filtro EMI, el valor de F702 y el ensayo de interrupción
-   de los fusibles de red.
+3. Cerrar RV701 y el filtro EMI.
 4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
 5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
    eléctrica independiente y el plan de puesta en marcha.

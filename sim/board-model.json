@@ -3933,8 +3933,8 @@
   },
   "controller:F702": {
    "part": "FUSE",
-   "value": "T1AH / PSU / value pending inrush",
-   "mpn": "0215001.MXP",
+   "value": "T2AH / PSU",
+   "mpn": "0215002.MXP",
    "pins": {
     "1": {
      "symbol": "1",

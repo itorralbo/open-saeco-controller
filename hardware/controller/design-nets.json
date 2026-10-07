@@ -2424,12 +2424,12 @@
     },
     {
       "reference": "F702",
-      "value": "T1AH / PSU / value pending inrush",
+      "value": "T2AH / PSU",
       "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
-      "status": "candidate_value_pending_inrush",
+      "status": "candidate",
       "manufacturer": "Littelfuse",
-      "mpn": "0215001.MXP",
-      "lcsc": "C142715",
+      "mpn": "0215002.MXP",
+      "lcsc": "C142716",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {

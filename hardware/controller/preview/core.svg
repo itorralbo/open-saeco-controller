@@ -2119,7 +2119,7 @@
 <text x="842.41" y="664.98" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_N</text>
 <rect x="831.85" y="688.11" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="834.39" y="683.11" font-size="1.05" text-anchor="middle" fill="#213b50">F702</text>
-<text x="834.39" y="685.61" font-size="1.05" text-anchor="middle" fill="#213b50">T1AH / PSU / value pending inrush</text>
+<text x="834.39" y="685.61" font-size="1.05" text-anchor="middle" fill="#213b50">T2AH / PSU</text>
 <path d="M 831.85 689.61 H 826.77" stroke="#27856d" stroke-width=".22"/>
 <text x="832.55" y="689.91" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="829.91" y="689.11" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2798,5 +2798,5 @@
 <text x="1151.49" y="833.89" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
 <text x="650" y="806" font-size="1.0" text-anchor="start" fill="#213b50">PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.</text>
 <text x="870" y="817" font-size="1.0" text-anchor="start" fill="#213b50">JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.</text>
-<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: filtro EMI, valor de F702 (irrupción), RV701, margen de F701 y medidas del molino.</text>
+<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: filtro EMI, RV701 y medidas del molino.</text>
 <text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.</text></g></svg>
