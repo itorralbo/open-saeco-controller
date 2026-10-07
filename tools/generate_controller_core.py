@@ -73,6 +73,9 @@ def power_symbols():
     d.DEFS['DIODE'] = ([('2', 'A', 'passive', -5.08, 0, 0),
                          ('1', 'K', 'passive', 5.08, 0, 180)], 2.54, 1.5)
     d.DEFS['FUSE'] = (two, 2.54, 1.5)
+    # A thermistor is its own symbol, not 'R', so the board model's DC
+    # solver leaves it out and the analog check puts its curve in instead.
+    d.DEFS['NTC'] = (two, 2.54, 1.5)
     d.DEFS['L'] = (two, 2.54, 1.5)
     d.DEFS['MOV'] = (two, 2.54, 1.5)
     d.DEFS['ACDC4'] = ([
@@ -246,7 +249,7 @@ def main():
            'PB4': 'WATCHDOG_KICK_RAW', 'PB6': 'BREW_FAULT_N',
            'PB7': 'MAINS_ARM_RAW', 'PC5': 'HEATER_EN_RAW',
            'PB11': 'PUMP_EN_RAW', 'PC4': 'GRINDER_EN_RAW',
-           'PA6': 'GRINDER_CURRENT_ADC'}
+           'PA6': 'GRINDER_CURRENT_ADC', 'PB14': 'HS_NTC_ADC'}
     esp = {'GND': g, 'EP_GND': g, '3V3': v, 'EN': 'ESP_EN', 'IO0': 'ESP_BOOT0',
            'IO42': 'ESP_TX_RAW', 'IO2': 'STM_TO_ESP', 'TXD0': 'ESP_DEBUG_TX',
            'RXD0': 'ESP_DEBUG_RX', 'IO4': 'KEY_SDA', 'IO5': 'KEY_SCL',
@@ -606,6 +609,16 @@ def main():
           'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
+    # Air temperature above the triac heatsink (issue #2). The profile only
+    # reaches about 8 K/W in its volume, so the firmware derates the heater
+    # from a thermal model fed by this reading. RT701 sits on the SELV edge
+    # of the barrier straight above the heatsink column: it never touches the
+    # profile, which is separated from mains only by the triacs' insulation.
+    d.add('RT701','NTC','10k B3380 / heatsink air',640,752,['HS_NTC_ADC',g],
+          'Resistor_SMD:R_0603_1608Metric',part_key='NTC:NCP18XH103F03RB')
+    d.passive('R726','R','10k / heatsink NTC pull-up',500,752,v,'HS_NTC_ADC')
+    d.passive('C704','C','100nF / heatsink NTC',570,752,'HS_NTC_ADC',g)
+    d.note('PB14=ADC1_IN5: aire sobre el disipador (RT701), para limitar el calentador.',470,766,1.1)
     d.note('J114: GND, 3V3, GND, 12V, GND, 24V, cada raíl por 10k. Solo medida; ADC en C701/C702.',470,736,1.1)
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
     # Owner, 2026-09-29: JP8 and JP24 are LEOCO friction-lock headers, the

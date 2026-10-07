@@ -152,6 +152,9 @@ R723,10k / J114 3V3 probe,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,060
 R724,10k / J114 12V probe,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R725,10k / J114 24V probe,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 J114,POWER PROBE / MEASURE ONLY,Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical,candidate,hanxia,HX PH254-01-06-Z-L11.5 through hole header,C52016393,Extended,Economic and Standard
+RT701,10k B3380 / heatsink air,Resistor_SMD:R_0603_1608Metric,candidate,Murata Electronics,NCP18XH103F03RB,C13564,Extended,Economic and Standard
+R726,10k / heatsink NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
+C704,100nF / heatsink NTC,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J115,JP8 GRINDER / 320VDC,OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,3941P03*000,,,hand_solder_or_consigned
 J116,JP19 HEATER / 1900W 27R5,OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-4,C2149727,Extended,Standard
 J117,JP24 PUMP / 230VAC,OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,5001P020013,,,hand_solder_or_consigned

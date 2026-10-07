@@ -415,6 +415,24 @@
   },
   {
    "mcu": "stm32",
+   "name": "HEATSINK_AIR",
+   "net": "HS_NTC_ADC",
+   "function": "adc",
+   "pad": "controller:U101.36",
+   "pin": "PB14",
+   "periph": "ADC1_IN5",
+   "af": null,
+   "adc": [
+    1,
+    5
+   ],
+   "path": [
+    "controller:R726"
+   ],
+   "reset_level": null
+  },
+  {
+   "mcu": "stm32",
    "name": "MAINS_ARM",
    "net": "MAINS_ARM_RAW",
    "function": "gpio_out",
@@ -829,6 +847,7 @@
     "controller:R507.1",
     "controller:R508.1",
     "controller:R723.1",
+    "controller:R726.1",
     "controller:U101.1",
     "controller:U101.16",
     "controller:U101.28",
@@ -1389,6 +1408,7 @@
     "controller:C701.2",
     "controller:C702.2",
     "controller:C703.2",
+    "controller:C704.2",
     "controller:D302.2",
     "controller:J101.2",
     "controller:J102.3",
@@ -1447,6 +1467,7 @@
     "controller:R719.2",
     "controller:R722.2",
     "controller:R802.2",
+    "controller:RT701.2",
     "controller:U101.15",
     "controller:U101.27",
     "controller:U101.31",
@@ -1751,6 +1772,19 @@
    "pins": [
     "controller:Q703.3",
     "controller:U701.4"
+   ]
+  },
+  "controller:HS_NTC_ADC": {
+   "aliases": [
+    "controller:HS_NTC_ADC"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:C704.1",
+    "controller:R726.2",
+    "controller:RT701.1",
+    "controller:U101.36"
    ]
   },
   "controller:KEY_INT_N": {
@@ -3861,6 +3895,23 @@
      "symbol": "",
      "physical": "",
      "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C704": {
+   "part": "C",
+   "value": "100nF / heatsink NTC",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:HS_NTC_ADC"
     },
     "2": {
      "symbol": "",
@@ -6436,6 +6487,23 @@
     }
    }
   },
+  "controller:R726": {
+   "part": "R",
+   "value": "10k / heatsink NTC pull-up",
+   "mpn": "0603WAF1002T5E",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:3V3_CORE"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:HS_NTC_ADC"
+    }
+   }
+  },
   "controller:R801": {
    "part": "R",
    "value": "33 / relay gate",
@@ -6466,6 +6534,23 @@
     "2": {
      "symbol": "",
      "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:RT701": {
+   "part": "NTC",
+   "value": "10k B3380 / heatsink air",
+   "mpn": "NCP18XH103F03RB",
+   "pins": {
+    "1": {
+     "symbol": "1",
+     "physical": "1",
+     "net": "controller:HS_NTC_ADC"
+    },
+    "2": {
+     "symbol": "2",
+     "physical": "2",
      "net": "controller:GND_UI"
     }
    }
@@ -6670,7 +6755,7 @@
     "36": {
      "symbol": "PB14",
      "physical": "PB14",
-     "net": null
+     "net": "controller:HS_NTC_ADC"
     },
     "37": {
      "symbol": "PB15",

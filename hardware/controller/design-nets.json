@@ -47,7 +47,7 @@
         "33": "PUMP_EN_RAW",
         "34": "UI_PWR_EN",
         "35": null,
-        "36": null,
+        "36": "HS_NTC_ADC",
         "37": null,
         "38": null,
         "39": null,
@@ -2497,6 +2497,51 @@
         "4": "PROBE_12V",
         "5": "GND_UI",
         "6": "PROBE_24V"
+      }
+    },
+    {
+      "reference": "RT701",
+      "value": "10k B3380 / heatsink air",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "Murata Electronics",
+      "mpn": "NCP18XH103F03RB",
+      "lcsc": "C13564",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HS_NTC_ADC",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "R726",
+      "value": "10k / heatsink NTC pull-up",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "UNI-ROYAL",
+      "mpn": "0603WAF1002T5E",
+      "lcsc": "C25804",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "3V3_CORE",
+        "2": "HS_NTC_ADC"
+      }
+    },
+    {
+      "reference": "C704",
+      "value": "100nF / heatsink NTC",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "HS_NTC_ADC",
+        "2": "GND_UI"
       }
     },
     {

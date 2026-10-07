@@ -1230,4 +1230,37 @@ mantiene encendido.
 Resultado: ERC 0 en las dos placas; netlist 212 componentes y 680 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
-0 avisos; `tests/sim` 93/93; CTest 3/3. Sin hardware.
+0 avisos; `tests/sim` 94/94; CTest 3/3. Sin hardware.
+
+## Disipador de los triacs y limitación térmica del calentador, 2026-10-07
+
+Issue #2: el diseño pedía ≈ 5 °C/W al disipador, pero el perfil reservado
+(33 × 21 × 35 mm) solo da del orden de 6–8 °C/W. Con 8 °C/W, Q703 llega a 125 °C
+en continuo con 39 °C de aire a 253 V. El propietario decidió mantener el
+volumen y limitar el calentador por temperatura.
+
+- **Clase del perfil**: ≈ 8 °C/W. El Fischer SK 657 de 37,5 mm (36,8 × 25 mm,
+  algo mayor que el hueco) da 7,75 K/W anodizado en negro y vertical. La
+  referencia exacta queda para la mecánica.
+- **RT701** (Murata NCP18XH103F03RB, C13564), R726 (10 kΩ) y C704 (100 nF) en el
+  borde SELV de la barrera, sobre la columna del disipador, hacia **PB14**
+  (ADC1_IN5, añadido a `sim/reference/mcus.json` desde el XML de pines de ST).
+  No toca el perfil, que solo está separado de la red por el aislamiento de los
+  triacs. Señal `HEATSINK_AIR` en el contrato: el modelo de placa da
+  0,03–0,07 °C/LSB entre 40 y 80 °C y 2,44–0,20 V entre 0 y 120 °C.
+- **Firmware**: `osc_heatsink_step()` integra un modelo de primer orden del
+  perfil (8 °C/W, 30 J/K) con la potencia de cada triac.
+  `osc_heater_cycles_thermal()` quita ciclos al calentador por encima de 105 °C
+  de unión estimada, hasta ninguno a 120 °C; con RT701 fuera de su ventana se
+  supone aire a 70 °C. Las pruebas de CTest cubren un calentamiento corto en
+  frío (sin limitar), una hora con aire a 60 °C y bomba (limitado, nunca
+  apagado, por debajo del corte), el sensor caído y el corte. Simulado con aire
+  a 25, 40, 50 y 60 °C, el ciclo en régimen es del 88, 70, 60 y 45 %, y la
+  primera reducción llega a los 8,6, 4,4, 3 y 2 minutos.
+- **TH-03** nuevo: descalcificación y vapor con termopares en Q703, el perfil,
+  RT701 y PS701 (carcasa y aire local) para fijar las constantes.
+
+Resultado: ERC 0 en las dos placas; netlist 215 componentes y 686 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 94/94; CTest 3/3. Sin hardware.

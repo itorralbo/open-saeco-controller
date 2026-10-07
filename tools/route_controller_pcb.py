@@ -859,6 +859,22 @@ def route_water_feed(board):
     via(board, gnd, (17.9, 132.4))
 
 
+def route_heatsink_ntc(board):
+    """RT701, the air sensor above the triac heatsink, to PB14 (issue #2).
+
+    The divider sits on the SELV edge of the barrier band, straight above
+    the heatsink column; its node runs up x = 88.825 mm, west along
+    y = 47.6 mm and up x = 83.7 mm, clear of R102's trace, into pin 36.
+    """
+    gnd, v33, node = '/GND_UI', '/3V3_CORE', '/HS_NTC_ADC'
+    track(board, node, (88.825, 53.6), (88.825, 49.6), width=PIN_WIDTH)
+    polyline(board, node, [(88.825, 49.6), (88.825, 47.6), (83.7, 47.6), (83.7, 42.25),
+                           (81.67, 42.25)], width=SIGNAL_WIDTH)
+    for pad, net in (((87.175, 53.6), gnd), ((87.175, 51.6), v33), ((87.175, 49.6), gnd)):
+        track(board, net, pad, (86.3, pad[1]), width=PIN_WIDTH)
+        via(board, net, (86.3, pad[1]))
+
+
 def route_3v3_plane_drops(board):
     """Tie every 3.3 V pad group to the In2.Cu plane.
 
@@ -2485,6 +2501,7 @@ def main():
     route_3v3_buck(board)
     route_ui_load_switch(board)
     route_water_feed(board)
+    route_heatsink_ntc(board)
     route_logic_grounds(board)
     route_reset_tree(board)
     route_wdi_gate(board)
@@ -2526,6 +2543,7 @@ def main():
                           '12 V to 3.3 V buck, its input side and the 12 V telemetry',
                           'UI load switch (TPS2553, current limited)',
                           'JP22 feed: U304 current-limited switch below J113',
+                          'heatsink air: RT701 divider on the barrier edge to PB14',
                           '3.3 V: an In2.Cu plane drop for every pad group',
                           'USB and ESP32 ground pins into the plane',
                           'reset tree: MCU, pull-up, filter, SWD header and the gates',

@@ -110,10 +110,53 @@ Números que hay que respetar:
 |---|---:|
 | Corriente de carga | 8,36 A eficaces |
 | Disipación estimada del triac | ≈ 8 W |
-| Resistencia térmica máxima del disipador | ≈ 5 °C/W |
+| Resistencia térmica del disipador | ≈ 8 °C/W en el volumen disponible; el calentador se limita por temperatura (ver abajo) |
 | Corriente del LED del opto | 10,5 mA desde 12 V con 1 kΩ (9,5–11,5 mA en el peor caso) |
 | Potencia en la resistencia del LED | hasta 120 mW: ROHM ESR03EZPF1001, 0603 de 250 mW |
 | Pico por la puerta con 390 Ω (R710) | 0,83 A, por debajo del 1 A admisible del opto |
+
+**Presupuesto térmico y limitación del calentador** (issue #2, 2026-10-07)
+
+El objetivo de 5 °C/W no cabe en el volumen del disipador: 33 × 21 mm de pie y
+35 mm de alto, entre el carril de fase y la subida de entrada. Un perfil de
+catálogo comparable ronda los 8 °C/W: el Fischer SK 657 de 37,5 mm, de
+36,8 × 25 mm y algo mayor, da 7,75 K/W anodizado en negro y vertical. El
+propietario decidió el 2026-10-07 mantener el volumen y limitar el calentador
+por temperatura. La referencia concreta del perfil queda para la mecánica.
+
+Con RθJC 1,7 °C/W (ST DS2112), interfaz con pasta 0,5 °C/W y 8 °C/W de perfil,
+el calentador en continuo (7,5 W a 230 V y 8,4 W a 253 V) lleva Q703 a 125 °C
+con 48 °C y 39 °C de aire, respectivamente. Las tandas de café y los
+calentamientos cortos no llegan al régimen: el perfil, de unos 30 J/K, tiene
+una constante de tiempo de unos 4 minutos. El vapor y la descalcificación sí.
+
+- **RT701** (Murata NCP18XH103F03RB, 10 kΩ, B 3380 K) mide el aire en el borde
+  SELV de la barrera, justo encima de la columna del disipador, y llega a PB14
+  (ADC1_IN5) con R726 (10 kΩ) y C704. No toca el perfil: este solo está separado
+  de la red por el aislamiento interno de los triacs, y un sensor sobre él
+  necesitaría aislamiento reforzado. Lo que mide es el aire, no la unión.
+- **Firmware**: `osc_heatsink_step()` integra un modelo de primer orden del
+  perfil (`firmware/stm32/include/controller.h`). Entran el aire de RT701 y la
+  potencia de cada triac: 8,4 W el calentador a su ciclo, 0,3 W la bomba y
+  2,5 W el molinillo. Con eso estima la unión con el calentador a plena
+  potencia. Por encima de 105 °C le quita ciclos de la ventana de 5, hasta
+  ninguno a 120 °C. Si RT701 sale de su ventana, se supone aire a 70 °C.
+- **Resultado del modelo**, una hora de calentador con bomba:
+
+  | Aire | Primera reducción | Ciclo medio | Perfil |
+  |---|---:|---:|---:|
+  | 25 °C | 8,6 min | 88 % | ≈ 87 °C |
+  | 40 °C | 4,4 min | 70 % | ≈ 89 °C |
+  | 50 °C | 3 min | 60 % | ≈ 93 °C |
+  | 60 °C | 2 min | 45 % | ≈ 93 °C |
+
+  Las pruebas de CTest comprueban que el bucle no pasa del corte y que no
+  apaga el calentador del todo.
+- **Supuesto hasta TH-03**: 8 °C/W, 30 J/K y la correlación entre RT701 y el
+  perfil. TH-03 los mide en una descalcificación, con termopares en la
+  lengüeta de Q703, el perfil, RT701, la carcasa de PS701 y el aire junto a
+  ella. PS701 queda a 6 mm del perfil: su curva de reducción (100 % hasta 50 °C,
+  50 % a 70 °C) se refiere al aire local, que TH-03 también mide.
 
 El LED no se ataca desde un GPIO: el MOC3083 garantiza disparo a 5 mA y desde
 3,3 V con las resistencias del catálogo no se llega con margen. Se usa el mismo
