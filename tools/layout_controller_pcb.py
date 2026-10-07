@@ -354,6 +354,10 @@ PLACE = {
     'F301': (85, 27, 0), 'D301': (95, 27, 0), 'D302': (103, 27, 0),
     # J101's own fuse and OR diode, east of the buck output's run to F301.
     'F305': (101, 19, 0), 'D307': (105, 22.5, 180),
+    # J112's own fuse and polarity Schottky (issue #6) sit in the 24 V lane
+    # straight below the connector, so U303, C310 and every 24V_ACT_RAW load
+    # hang off the lane below D308.
+    'F306': (112.5, 12.4, 270), 'D308': (112.5, 18.6, 90),
     'C301': (110, 27, 0), 'U301': (97, 36, 0),
     # C302 is the switcher's input HF capacitor, so it sits under the package
     # bridging the input pins to the ground pin instead of 8 mm away by C301.

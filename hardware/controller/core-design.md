@@ -36,8 +36,9 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   2026-09-24 no confirma. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
-- J112 recibe 24 V DC aislados para los actuadores; F303/D304/C501 forman la
-  rama protegida del motor del grupo y F304/D305 la rama separada de válvula.
+- J112 recibe 24 V DC aislados para los actuadores y entra por su propio
+  fusible F306 (2 A) y Schottky D308; F303/D304/C501 forman la rama protegida
+  del motor del grupo y F304/D305 la rama separada de válvula.
 - PS701 integra la alimentación de red como módulo IRM-30-24; U303 deriva 12 V,
   y K701 corta de forma general la fase entregada a las cargas peligrosas.
 - U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
@@ -208,8 +209,20 @@ conector sigue siendo candidata hasta probar el arnés. C503=100 nF entre VCP y 
 entre CPH y CPL siguen la aplicación de referencia de TI. C501=100 µF/35 V es un
 bulk inicial, no un dimensionado cerrado.
 
-J112 exige 24 V DC aislados y limitados. F303 es de 1 A y D304 protege contra
-polaridad inversa. No se ha añadido un TVS al rail de motor: su tensión de trabajo
+J112 exige 24 V DC aislados y limitados. Desde el 2026-10-07 (issue #6) entra
+por su propio fusible F306 (prosemi 1206TD-2A) y un SS34, D308, antes de unirse
+a `24V_ACT_RAW`, igual que J101 por F305/D307. Antes solo las ramas del grupo
+(F303/D304) y de la válvula (F304/D305) bloqueaban la polaridad inversa: con el
+cable invertido, −24 V llegaban a VIN y EN de U303 (mínimo absoluto −0,3 V) y
+polarizaban en directo D701 y el diodo interno de Q701, con solo la limitación
+de la fuente como protección. F306 lleva toda la placa en banco: el motor hasta
+su ITRIP de 1 A, la válvula (0,42 A) y el buck de 12 V, unos 1,6 A en el peor
+caso, así que es de 2 A y no de 1 A como F305. D308 cae unos 0,5 V a 1 A
+(≈ 0,5 W en SMA). La fuente interna no pasa por ellos: PS701 se une por J121,
+que se sigue abriendo antes de conectar una fuente en J112. La regla
+`reverse-polarity` del modelo de placa recorre cada entrada de banco cableada a
+mano y falla si un cable invertido alcanza algo más que el ánodo de un diodo
+serie. No se ha añadido un TVS al rail de motor: su tensión de trabajo
 y energía deben elegirse con la tolerancia y respuesta transitoria de la fuente
 real para no superar los 40 V absolutos del DRV8876. El catálogo registra todas
 las piezas como candidatas, no liberadas para compra. Se usa la huella estándar

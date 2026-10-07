@@ -1,5 +1,5 @@
 {
-  "status": "synchronized_preserving_existing_placement_not_fabricable",
+  "status": "new_footprints_staged_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -250,6 +250,10 @@
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
     },
+    "D308": {
+      "footprint": "Diode_SMD:D_SMA",
+      "numbered_pads": 2
+    },
     "D701": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -271,6 +275,10 @@
       "numbered_pads": 2
     },
     "F305": {
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "F306": {
       "footprint": "Fuse:Fuse_1206_3216Metric",
       "numbered_pads": 2
     },
@@ -796,7 +804,10 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [],
+  "newly_staged_footprints": [
+    "D308",
+    "F306"
+  ],
   "tracks": 1812,
   "outline": true,
   "mounting_holes_preserved": [

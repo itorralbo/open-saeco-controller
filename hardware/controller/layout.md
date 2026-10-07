@@ -370,7 +370,11 @@ nodo de conmutación y del arranque.
 La troncal de 24 V subía a x = 107,85 mm, justo entre la bobina y la columna de
 condensadores de salida, así que todos los enlaces de 3,3 V la cruzaban. Se ha
 llevado a la columna vacía de x = 112,5 mm, al este de esos condensadores, y
-baja a J112 por un ramal corto. Los condensadores de salida se quedan junto a la
+baja a J112 por un ramal corto. Desde el 2026-10-07 (issue #6) esa columna
+termina en el cátodo de D308 (y = 20,6 mm): F306 y D308 van en ella, de pie bajo
+J112, y el buck de 12 V y C310 toman `24V_ACT_RAW` por debajo del diodo, en
+y = 23,5 mm, y suben por B.Cu en x = 115,6 mm, bajo el carril de 12 V de
+y = 14 mm. Los condensadores de salida se quedan junto a la
 bobina, que es donde deben estar.
 
 La telemetría de 12 V queda ruteada: R702 girado 270° para que el nodo medio

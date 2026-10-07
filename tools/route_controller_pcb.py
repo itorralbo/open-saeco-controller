@@ -333,11 +333,23 @@ def route_24v_output(board):
     # The lane runs up the empty column at x = 112.5 mm, east of the 3.3 V
     # output capacitors. It used to climb at x = 107.85 mm, straight between
     # the inductor and those capacitors, where every 3.3 V link crossed it.
+    # Since 2026-10-07 (issue #6) it ends at D308's cathode: J112 comes down
+    # through F306 and D308, so a reversed bench lead stops at the diode.
+    # The 12 V buck and C310 take the rail below D308 and climb back on B.Cu
+    # at x = 115.6 mm, east of the diode and under the 12 V run at y = 14.
+    bench, fused = '/24V_BENCH_RAW', '/24V_BENCH_FUSED'
     polyline(board, act, [(107.85, 45.20), (107.85, 43.6), (108.45, 43.0),
-                          (112.5, 43.0), (112.5, 9.50), (114.00, 9.50),
-                          (116.025, 7.475), (116.025, 5.00)],
+                          (112.5, 43.0), (112.5, 20.60)],
              width=ACT_LANE_WIDTH)
-    polyline(board, act, [(112.5, 11.0), (109.8, 8.3), (109.8, 8.0), (108.3, 8.0), (108.3, 6.6)],
+    polyline(board, bench, [(112.5, 11.0), (109.8, 8.3), (109.8, 8.0),
+                            (108.3, 8.0), (108.3, 6.6)],
+             width=ACT_LANE_WIDTH)
+    track(board, fused, (112.5, 13.80), (112.5, 16.60), width=ACT_LANE_WIDTH)
+    track(board, act, (112.5, 23.50), (115.6, 23.50), width=ACT_LANE_WIDTH)
+    via(board, act, (115.6, 23.50), 1.0, 0.5)
+    track(board, act, (115.6, 23.50), (115.6, 9.00), layer=pcb.B_Cu, width=ACT_LANE_WIDTH)
+    via(board, act, (115.6, 9.00), 1.0, 0.5)
+    polyline(board, act, [(115.6, 9.00), (116.025, 8.575), (116.025, 5.00)],
              width=ACT_LANE_WIDTH)
     polyline(board, act, [(116.025, 7.30), (120.20, 7.30), (121.362, 6.14)],
              width=ACT_LANE_WIDTH)

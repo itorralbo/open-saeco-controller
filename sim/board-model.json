@@ -682,16 +682,38 @@
    "volts": 24.0,
    "pins": [
     "controller:C310.1",
+    "controller:D308.1",
     "controller:D701.1",
     "controller:F303.1",
     "controller:F304.1",
-    "controller:J112.1",
     "controller:J114.4",
     "controller:J121.2",
     "controller:K701.1",
     "controller:R704.1",
     "controller:U303.2",
     "controller:U303.3"
+   ]
+  },
+  "controller:24V_BENCH_FUSED": {
+   "aliases": [
+    "controller:24V_BENCH_FUSED"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:D308.2",
+    "controller:F306.2"
+   ]
+  },
+  "controller:24V_BENCH_RAW": {
+   "aliases": [
+    "controller:24V_BENCH_RAW"
+   ],
+   "rail": false,
+   "volts": null,
+   "pins": [
+    "controller:F306.1",
+    "controller:J112.1"
    ]
   },
   "controller:24V_BREW": {
@@ -3812,6 +3834,23 @@
     }
    }
   },
+  "controller:D308": {
+   "part": "DIODE",
+   "value": "SS34 / bench polarity",
+   "mpn": "SS34",
+   "pins": {
+    "1": {
+     "symbol": "K",
+     "physical": "K",
+     "net": "controller:24V_ACT_RAW"
+    },
+    "2": {
+     "symbol": "A",
+     "physical": "A",
+     "net": "controller:24V_BENCH_FUSED"
+    }
+   }
+  },
   "controller:D701": {
    "part": "DIODE",
    "value": "SS34 / relay flyback",
@@ -3911,6 +3950,23 @@
      "symbol": "2",
      "physical": "2",
      "net": "controller:12V_BENCH_FUSED"
+    }
+   }
+  },
+  "controller:F306": {
+   "part": "FUSE",
+   "value": "2A / 72VDC bench",
+   "mpn": "1206TD-2A",
+   "pins": {
+    "1": {
+     "symbol": "1",
+     "physical": "1",
+     "net": "controller:24V_BENCH_RAW"
+    },
+    "2": {
+     "symbol": "2",
+     "physical": "2",
+     "net": "controller:24V_BENCH_FUSED"
     }
    }
   },
@@ -4385,7 +4441,7 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:24V_ACT_RAW"
+     "net": "controller:24V_BENCH_RAW"
     },
     "2": {
      "symbol": "2",

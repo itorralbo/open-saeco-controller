@@ -36,7 +36,9 @@
   ],
   "external_supplies": {
     "_doc": "Bench and service inputs that may be live while the on-board converters are not.",
-    "pins": ["controller:J101.1", "controller:J112.1", "controller:J110.A4"]
+    "pins": ["controller:J101.1", "controller:J112.1", "controller:J110.A4"],
+    "_unkeyed": "Bench inputs wired by hand, where a reversed lead is a plausible mistake; USB-C is keyed and symmetric.",
+    "unkeyed": ["controller:J101.1", "controller:J112.1"]
   },
   "loads": [
     {"name": "electroválvula", "between": ["controller:J113.1", "controller:J113.2"], "ohms": 56.7},
