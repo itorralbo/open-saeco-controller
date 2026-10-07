@@ -13,7 +13,7 @@ anulan todas las órdenes de carga y el armado del relé mientras hay reset.
 198 posiciones: 193 con MPN y código LCSC; J115 y J117 (LEOCO, que JLCPCB no
 tiene) con MPN y sin código; RV701 con valor provisional y sin pieza; J111 y
 J121, puentes de soldadura. Los tres fusibles de red son Littelfuse 215 de
-1500 A a 250 VAC (F702 en pinzas 01110501Z; F701, de 12 A, soldado). J105, J106 y J113 (JP13, JP5 y JP3)
+1500 A a 250 VAC (F702, de 2 A, en pinzas 01110501Z; F701, de 12 A, soldado). J105, J106 y J113 (JP13, JP5 y JP3)
 son HR A2506WV, JP8 y JP24 LEOCO 3941P03*000 y 5001P020013, JP17 y JP19 TE RAST 5
 1971845-3 y -4 y JP1/JP9 lengüetas TE 63824-1, todas identificadas por el
 propietario o casadas con sus fotos. J107–J109 (JP14, JP16 y JP22) siguen con
@@ -33,6 +33,6 @@ ESP32 para pantalla, botones, UART y USB. Dos divisores permiten leer por ADC lo
 rails de 12 V y 24 V, y J114 facilita su medida directa durante las pruebas.
 
 **No es fabricable.** Falta comprobar la placa impresa 1:1 contra la original y
-los mazos, identificar JP14, JP16 y JP22, cerrar RV701, el valor de F702 y el filtro EMI,
+los mazos, identificar JP14, JP16 y JP22, cerrar RV701 y el filtro EMI,
 medir las cargas y pasar una revisión independiente de aislamiento. Nada está
 ensayado. No trasladar pines de una placa de desarrollo al arnés sin verificación.

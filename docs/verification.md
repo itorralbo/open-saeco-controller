@@ -1049,3 +1049,33 @@ Resultado: ERC 0 en las dos placas; netlist 198 componentes y 648 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 85/85; CTest 3/3.
 Modelos 3D, PDF 1:1, mapa de conectores y render regenerados. Sin hardware.
+
+## F702 de 2 A y cierre de la issue #1, 2026-10-07
+
+El propietario decidió los puntos que quedaban abiertos de la issue #1 (ver
+[corriente de defecto supuesta](../hardware/power/power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red)):
+
+- **Hipótesis de 1500 A aceptada** como base de diseño. Es la clase H de los
+  fusibles de la original, y la impedancia de bucle de una vivienda la deja
+  por debajo de 1500 A salvo junto al cuadro (ITC-BT-17: 4,5 kA en el
+  interruptor general). Por encima, el automático de 16 A respalda en su zona
+  magnética. Medir la impedancia de bucle fase-neutro del enchufe queda como
+  confirmación opcional.
+- **Requisito 2 aceptado** (2026-10-06): un corto en continua puede destruir
+  BR701 antes de que abra F703, como en la original.
+- **Requisito 1** acreditado con la certificación IEC 60127-2 de cada
+  referencia (Semko 1517218 de 0,125 a 12 A; VDE 40013521 de 0,2 a 8 A), no
+  con un ensayo propio. **Selectividad F703/F701 no exigida**: la original no
+  la tenía. PS-04 pasa a ensayo opcional.
+- **F702**: Littelfuse **0215002.MXP** (C142716, 1819 en stock hoy), T2AH de
+  1500 A a 250 VAC, como el F2 original, en las mismas pinzas 01110501Z. La
+  irrupción del IRM-30 (45 A típicos, duración sin publicar) se estima en
+  0,3–0,5 A²s, el 3–4 % de sus 11,68 A²s de fusión nominal, frente al 20–33 %
+  del 0215001.MXP de 1 A, que pasa a sustituido. PS-03 queda como
+  confirmación.
+
+Resultado: ERC 0 en las dos placas; netlist 198 componentes y 648 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; modelo de placa 0 errores y 0 avisos (la regla `fuse-breaking` lee
+el nuevo F702); `tests/sim` 85/85; CTest 3/3. Solo cambian valor y pieza de
+F702; huella y ruteo, igual. Sin hardware.

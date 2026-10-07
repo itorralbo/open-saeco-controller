@@ -595,9 +595,12 @@ def main():
     # board (owner's reading, "12AH250V", 2026-10-06): the heater alone draws
     # 8.4-9.2 A, so 10 A in 10 A clips had no margin. Above 10 A the clips
     # no longer apply, so it is soldered flat with axial leads, as F1 was.
-    # F702 sits in two Littelfuse 111 501 clips (01110501Z, rated 10 A).
-    # RV701 and the F702 value remain provisional until the inrush and MOV
-    # energy budget exists.
+    # F702 sits in two Littelfuse 111 501 clips (01110501Z, rated 10 A) and
+    # is 2 A like F2 on the original board ("T2AH250...", which fed its own
+    # flyback): it has to ride through the IRM-30 cold-start inrush (45 A
+    # typical at 230 VAC) without ageing, and 1 A left too little I2t margin
+    # (owner's decision, 2026-10-07, issue #1). RV701 remains provisional
+    # until the MOV energy budget exists.
     d.add('F701','FUSE','T12AH / 250V MAIN',835,640,
           ['MAINS_L_IN','MAINS_L_FUSED'],
           'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm',
@@ -605,10 +608,10 @@ def main():
     d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
           ['MAINS_L_FUSED','MAINS_N'],
           'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')
-    d.add('F702','FUSE','T1AH / PSU / value pending inrush',835,690,
+    d.add('F702','FUSE','T2AH / PSU',835,690,
           ['MAINS_L_FUSED','PSU_L_FUSED'],
           'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
-          status='candidate_value_pending_inrush', part_key='FUSE:0215001.MXP')
+          status='candidate', part_key='FUSE:0215002.MXP')
     d.add('PS701','ACDC4','IRM-30-24',930,676,
           ['PSU_L_FUSED','MAINS_N',g,'24V_INTERNAL_RAW'],
           'OpenSaeco:MeanWell_IRM-30_THT',
@@ -802,7 +805,7 @@ def main():
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
-    d.note('Siguiente: filtro EMI, valor de F702 (irrupción), RV701, margen de F701 y medidas del molino.',12,804)
+    d.note('Siguiente: filtro EMI, RV701 y medidas del molino.',12,804)
     d.note('Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

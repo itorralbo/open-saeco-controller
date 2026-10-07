@@ -100,8 +100,8 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
   código LCSC; J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
   las vende; RV701 tiene valor provisional y ninguna pieza; J111 y J121 son
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:
-  F701 de 12 A, axial y soldado como el F1 original, y F702 de 1 A, con valor aún
-  provisional, en dos pinzas Littelfuse 01110501Z (C151075) que no son
+  F701 de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el
+  F2 original, en dos pinzas Littelfuse 01110501Z (C151075) que no son
   posiciones del esquema. J107–J109 (JP14, JP16 y JP22) son cabeceras
   candidatas sin confirmar.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.

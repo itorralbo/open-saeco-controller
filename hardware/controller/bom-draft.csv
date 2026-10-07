@@ -147,7 +147,7 @@ J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 F701,T12AH / 250V MAIN,OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm,candidate,Littelfuse,0215012.MXEP,C142789,Extended,Economic and Standard
 RV701,275VAC MOV / energy TBD,Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm,mpn_and_energy_tbd,,,,,
-F702,T1AH / PSU / value pending inrush,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate_value_pending_inrush,Littelfuse,0215001.MXP,C142715,Extended,Economic and Standard
+F702,T2AH / PSU,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate,Littelfuse,0215002.MXP,C142716,Extended,Economic and Standard
 PS701,IRM-30-24,OpenSaeco:MeanWell_IRM-30_THT,candidate_pending_motor_current_validation,MEAN WELL,IRM-30-24,C6280124,Extended,Economic and Standard
 J121,24V INTERNAL SELECT / OPEN FOR BENCH,Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,normally_closed_open_for_external_24V,,,,,
 U303,AP63200WU-7 / 24V to 12V,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63200WU-7,C2071868,Extended,TBD

@@ -1170,8 +1170,24 @@
       "stock_checked_on": "2026-10-06",
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
       "url": "https://jlcpcb.com/partdetail/C142715",
+      "selection": "superseded_by_2A",
+      "selection_note": "PSU fuse F702 from 2026-10-06 (issue #1). Superseded on 2026-10-07 by the 0215002.MXP (owner's decision): the IRM-30 cold-start inrush (45 A typical at 230 VAC, Mean Well spec) gives an estimated pulse I2t of 0.3-0.5 A2s for a 0.3-0.5 ms time constant, 20-33 % of this fuse's 1.52 A2s, where a time-lag fuse can age over thousands of switch-ons."
+    },
+    "FUSE:0215002.MXP": {
+      "manufacturer": "Littelfuse",
+      "mpn": "0215002.MXP",
+      "lcsc": "C142716",
+      "specification": "2 A time-lag 5 x 20 mm ceramic fuse, 215 series, 250 VAC, 1500 A at 250 VAC interrupting rating (IEC 60127-2 sheet 5, \"H\"); nominal cold resistance 0.0566 ohm, nominal melting I2t 11.68 A2s at 10 In; PS701 branch F702, in two Littelfuse 01110501Z clips (C151075)",
+      "footprint": "Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1819,
+      "available_order_qty_observed": 1813,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; ratings from the Littelfuse 215 Series datasheet (revised 01/12/17), Electrical Characteristic Specifications by Item",
+      "url": "https://jlcpcb.com/partdetail/C142716",
       "selection": "candidate_not_released",
-      "selection_note": "PSU fuse F702 since 2026-10-06 (issue #1): a fault in PS701 is a mains short behind the smallest fuse in its loop, so it needs the same breaking capacity as F703. The 1 A value is still provisional: it has to ride through the IRM-30 cold-start inrush (45 A typical at 230 VAC, Mean Well spec) without ageing, and that pulse I2t is not yet known."
+      "selection_note": "PSU fuse F702 since 2026-10-07 (issue #1, owner's decision): 2 A like F2 on the original board (\"T2AH250...\", read by the owner), which fed its own flyback. The estimated IRM-30 inrush pulse (0.3-0.5 A2s) is 3-4 % of its 11.68 A2s nominal melting I2t, against 20-33 % for the 1 A part, so PS-03 is a confirmation and no longer blocks the value. Still a fault fuse only: the IRM-30 draws about 0.3 A RMS. Nominal melting I2t ratio to F701 (515.5 A2s) is 44."
     },
     "FUSE:0215012.MXEP": {
       "manufacturer": "Littelfuse",

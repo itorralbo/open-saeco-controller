@@ -224,8 +224,10 @@ Conclusiones:
 - Con diodos de 1 A, cada uno con la mitad de la corriente continua, la marcha
   del motor original no debería pasar de 1–2 A. Es un indicio a favor de la
   envolvente de 3 A, no una medida: siguen haciendo falta GR-02 y GR-03.
-- F2 de 2 A protegía un flyback propio, con otra irrupción; no fija el valor de
-  F702 para el IRM-30, que sigue pendiente de PS-03.
+- F2 de 2 A protegía un flyback propio, con otra irrupción. No fija por sí solo
+  el valor de F702 para el IRM-30, pero el propietario decidió el 2026-10-07
+  usar el mismo valor de 2 A, con la irrupción estimada en el 3–4 % de su I²t
+  de fusión.
 
 ### Lectura del propietario sobre la pieza, 2026-10-06
 

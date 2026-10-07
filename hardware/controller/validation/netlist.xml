@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-06T21:05:08</date>
+    <date>2026-10-07T14:10:44</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -2235,12 +2235,12 @@
       </units>
     </comp>
     <comp ref="F702">
-      <value>T1AH / PSU / value pending inrush</value>
+      <value>T2AH / PSU</value>
       <footprint>Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal</footprint>
       <fields>
         <field name="manufacturer">Littelfuse</field>
-        <field name="mpn">0215001.MXP</field>
-        <field name="lcsc">C142715</field>
+        <field name="mpn">0215002.MXP</field>
+        <field name="lcsc">C142716</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal</field>
@@ -2249,8 +2249,8 @@
       </fields>
       <libsource lib="OpenSaeco" part="FUSE" description=""/>
       <property name="manufacturer" value="Littelfuse"/>
-      <property name="mpn" value="0215001.MXP"/>
-      <property name="lcsc" value="C142715"/>
+      <property name="mpn" value="0215002.MXP"/>
+      <property name="lcsc" value="C142716"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
