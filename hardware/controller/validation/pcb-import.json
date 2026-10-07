@@ -1,5 +1,5 @@
 {
-  "status": "new_footprints_staged_not_fabricable",
+  "status": "synchronized_preserving_existing_placement_not_fabricable",
   "kicad_version": "10.0.6",
   "imported": {
     "BR701": {
@@ -103,7 +103,7 @@
       "numbered_pads": 2
     },
     "C310": {
-      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "numbered_pads": 2
     },
     "C311": {
@@ -864,12 +864,8 @@
     }
   },
   "missing_footprints": [],
-  "newly_staged_footprints": [
-    "C704",
-    "R726",
-    "RT701"
-  ],
-  "tracks": 1871,
+  "newly_staged_footprints": [],
+  "tracks": 1880,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

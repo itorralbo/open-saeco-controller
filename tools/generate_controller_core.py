@@ -699,8 +699,10 @@ def main():
           'Package_TO_SOT_SMD:TSOT-23-6',part_key='AP63200WU-7')
     d.add('L302','L','10uH / 3.5A',870,732,['BUCK12_SW','12V_ISO_RAW'],
           'Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm',part_key='L:10uH_3.5A')
-    d.add('C310','C','10uF / 50V input',772,770,['24V_ACT_RAW',g],
-          'Capacitor_SMD:C_1206_3216Metric',part_key='C:10uF_50V_1206')
+    # 1210 rather than 1206: Samsung's DC-bias curves give the 1206 only
+    # 2.27 uF at 24 V and the 1210 4.8 uF.
+    d.add('C310','C','10uF / 50V input 1210',772,770,['24V_ACT_RAW',g],
+          'Capacitor_SMD:C_1210_3225Metric',part_key='C:10uF_50V_1210')
     # C316 bridges VIN and GND right at the pins, and C310 sits just under
     # it with its ground returning to pin 4 on F.Cu instead of through two
     # vias and the plane (issue #3).

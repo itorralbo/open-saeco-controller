@@ -369,7 +369,10 @@ conmutador, a 8,3 mm de pista de VIN, y su masa volvía por dos vías y el plano
 Ahora C316 (100 nF) puentea VIN y GND justo bajo los pines 3 y 4, a 1,7 mm, y
 C310 va debajo, a unos 4 mm. La troncal de 24 V entra primero en C310, después
 en C316 y por último en los pines. Las dos masas vuelven al pin 4 por F.Cu, y
-una sola vía al este de C310 baja al plano.
+una sola vía al este de C310 baja al plano. Desde el 2026-10-07 C310 es un
+1210 (CL32B106KBJNNNE) en (122,5; 9,85): a 24 V conserva 4,8 µF frente a los
+2,27 µF del 1206. Su courtyard llega a y = 11,5 mm, así que el logo de la
+serigrafía bajó 0,5 mm.
 
 ### Buck de 12 V a 3,3 V
 

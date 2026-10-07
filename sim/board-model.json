@@ -3327,8 +3327,8 @@
   },
   "controller:C310": {
    "part": "C",
-   "value": "10uF / 50V input",
-   "mpn": "CL31B106KBHNNNE",
+   "value": "10uF / 50V input 1210",
+   "mpn": "CL32B106KBJNNNE",
    "pins": {
     "1": {
      "symbol": "",

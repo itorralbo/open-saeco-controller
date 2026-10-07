@@ -2350,7 +2350,7 @@
 <text x="877.97" y="731.02" font-size="0.9" text-anchor="start" fill="#23745f">12V_ISO_RAW</text>
 <path d="M 769.62 769.62 H 771.525 M 772.795 769.62 H 774.6999999999999 M 771.525 768.12 V 771.12 M 772.795 768.12 V 771.12" stroke="#213b50" stroke-width=".25" fill="none"/>
 <text x="772.16" y="763.12" font-size="1.05" text-anchor="middle" fill="#213b50">C310</text>
-<text x="772.16" y="765.62" font-size="1.05" text-anchor="middle" fill="#213b50">10uF / 50V input</text>
+<text x="772.16" y="765.62" font-size="1.05" text-anchor="middle" fill="#213b50">10uF / 50V input 1210</text>
 <path d="M 769.62 769.62 H 764.54" stroke="#27856d" stroke-width=".22"/>
 <text x="764.14" y="769.12" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
 <path d="M 774.6999999999999 769.62 H 779.78" stroke="#27856d" stroke-width=".22"/>

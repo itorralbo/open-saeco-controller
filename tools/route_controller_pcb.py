@@ -350,9 +350,9 @@ def route_24v_output(board):
     track(board, act, (115.6, 23.50), (115.6, 9.00), layer=pcb.B_Cu, width=ACT_LANE_WIDTH)
     via(board, act, (115.6, 9.00), 1.0, 0.5)
     # Into C310 first, then C316 and the input pins (issue #3).
-    polyline(board, act, [(115.6, 9.00), (116.05, 9.45), (121.025, 9.45)],
+    polyline(board, act, [(115.6, 9.00), (116.45, 9.85), (121.025, 9.85)],
              width=ACT_LANE_WIDTH)
-    polyline(board, act, [(121.025, 9.45), (121.025, 8.55), (121.725, 7.85),
+    polyline(board, act, [(121.025, 9.85), (121.025, 8.55), (121.725, 7.85),
                           (121.725, 6.80), (121.362, 6.44), (121.362, 5.00)], width=0.5)
 
     polyline(board, act, [(107.85, 45.20), (107.85, 46.60), (103.40, 46.60),
@@ -727,8 +727,8 @@ def route_12v_buck(board):
     # Input loop: pin 4 to C316's and C310's ground pads on F.Cu, then one
     # via past C310 to the plane.
     polyline(board, gnd, [(123.638, 5.95), (123.638, 7.5), (123.975, 7.84),
-                          (123.975, 9.45), (125.1, 9.45)], width=0.5)
-    via(board, gnd, (125.1, 9.45))
+                          (123.975, 9.85), (125.25, 9.85)], width=0.5)
+    via(board, gnd, (125.25, 9.85))
 
     for start, point in (((139.0, 2.525), (136.8, 2.525)),
                          ((139.0, 9.025), (136.8, 9.025)),

@@ -1100,7 +1100,7 @@
       "manufacturer": "Samsung Electro-Mechanics",
       "mpn": "CL31B106KBHNNNE",
       "lcsc": "C89632",
-      "specification": "10uF 50V X7R 10%, 1206; AP63200 input",
+      "specification": "10uF 50V X7R 10%, 1206; C315, U301 input. Samsung DC-bias curve (Component Library, 25 C, 1 Vrms, 1 kHz, read 2026-10-07): 10.8 uF at 0 V, 5.0 uF at 12 V, 2.27 uF at 24 V",
       "footprint": "Capacitor_SMD:C_1206_3216Metric",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
@@ -1109,6 +1109,20 @@
       "stock_checked_on": "2026-10-05",
       "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
       "url": "https://jlcpcb.com/partdetail/90812-CL31B106KBHNNNE/C89632",
+      "selection": "candidate_not_released"
+    },
+    "C:10uF_50V_1210": {
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL32B106KBJNNNE",
+      "lcsc": "C138687",
+      "specification": "10uF 50V X7R 10%, 1210; C310, AP63200 input at 24 V. Samsung DC-bias curve (Component Library, 25 C, 1 Vrms, 1 kHz, read 2026-10-07): 10.8 uF at 0 V, 7.9 uF at 12 V, 4.8 uF at 24 V, twice the 1206",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 34001,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
+      "url": "https://jlcpcb.com/partdetail/C138687",
       "selection": "candidate_not_released"
     },
     "C:22uF_25V_1210": {

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-07T18:03:47</date>
+    <date>2026-10-07T21:23:45</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -827,22 +827,22 @@
       </units>
     </comp>
     <comp ref="C310">
-      <value>10uF / 50V input</value>
-      <footprint>Capacitor_SMD:C_1206_3216Metric</footprint>
+      <value>10uF / 50V input 1210</value>
+      <footprint>Capacitor_SMD:C_1210_3225Metric</footprint>
       <fields>
         <field name="manufacturer">Samsung Electro-Mechanics</field>
-        <field name="mpn">CL31B106KBHNNNE</field>
-        <field name="lcsc">C89632</field>
+        <field name="mpn">CL32B106KBJNNNE</field>
+        <field name="lcsc">C138687</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
-        <field name="Footprint">Capacitor_SMD:C_1206_3216Metric</field>
+        <field name="Footprint">Capacitor_SMD:C_1210_3225Metric</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="C" description=""/>
       <property name="manufacturer" value="Samsung Electro-Mechanics"/>
-      <property name="mpn" value="CL31B106KBHNNNE"/>
-      <property name="lcsc" value="C89632"/>
+      <property name="mpn" value="CL32B106KBJNNNE"/>
+      <property name="lcsc" value="C138687"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>

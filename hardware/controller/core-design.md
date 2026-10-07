@@ -102,9 +102,11 @@ y C303=100 nF entre BST y SW. C302 y C306 añaden desacoplo de alta frecuencia.
 Desde el 2026-10-07 (issue #3) el condensador de entrada que pide la hoja es
 C315 (10 µF/50 V X7R 1206, el mismo que C310), justo detrás de C302 entre VIN y
 GND. C301 queda como bulk del raíl junto a D301/D307, a unos 30 mm de pista del
-conmutador. A 12 V, C315 trabaja al 24 % de su tensión nominal, frente al 48 %
-de C301 (25 V X5R 0805). Su capacidad efectiva no se ha leído en la curva de
-polarización de Samsung: queda para la medida del rizado de VIN.
+conmutador. Según las curvas de polarización DC del Component Library de
+Samsung (25 °C, 1 Vrms, 1 kHz, leídas el 2026-10-07), a 12 V C315 conserva
+5,0 µF de 10,8 y C301 (25 V X5R 0805) 2,0 µF. Trabajar al 24 % de la tensión
+nominal no evita perder la mitad, pero C315 da 2,5 veces más que C301. El
+rizado real de VIN queda para PS-07.
 `3V3_CORE` alimenta ambos procesadores.
 
 U302 (TPS2553DBVR desde el 2026-10-07, issue #8) genera `3V3_UI` desde
@@ -321,7 +323,8 @@ Sigue abierta la energía del MOV. J121 se entrega puenteado para alimentar `24V
 desde PS701 y se abre antes de inyectar 24 V limitados por J112 durante el banco.
 
 U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación usa
-10 µH, 10 µF/50 V en entrada (C310) más 100 nF de alta frecuencia en los pines
+10 µH, 10 µF/50 V en entrada (C310, 1210 desde el 2026-10-07: la curva de
+Samsung da 4,8 µF a 24 V frente a 2,27 µF del 1206) más 100 nF de alta frecuencia en los pines
 (C316, desde el 2026-10-07), dos condensadores de 22 µF/25 V en salida y divisor
 330 kΩ/24 kΩ con 56 pF de avance. La tabla de 12 V del fabricante da 249 kΩ/18 kΩ
 (11,87 V), pero 249 kΩ es Extended en JLCPCB; el par Basic 330/24 kΩ da
