@@ -287,6 +287,16 @@ serie/pull-down unida por un salto sobre el pad de masa. OUT1 y OUT2, de 0,8 mm,
 bajan por la izquierda a x = 28 y 29,2 mm y entran en J108 a y = 62 y 64,5 mm,
 entre las filas de filtros. El pad expuesto baja al plano por cuatro vías.
 
+**Desacoplo de VM acercado el 2026-10-07** (issue #5). C502, el bypass de VM,
+estaba a 11,2 mm de cobre del pin 11, al otro lado del bus de 24 V, y su masa
+volvía por una vía en (38,2; 48,0). Bajo el pin 11 no cabe nada: OUT2, VM, VCP,
+CPH y CPL salen de pines contiguos a 0,65 mm. C502 pasa al hueco bajo C503,
+colgado del nodo de VM, a unos 5,4 mm del pin. Su masa baja al plano por una vía
+propia a 1,1 mm. Para hacerle sitio, OUT2 gira primero al oeste por y = 41,9 mm.
+VM sale del pin con el ancho del pad (0,3 mm) y pasa a 0,5 mm en cuanto deja la
+fila, no antes, para respetar la separación con VCP. C501 se queda donde está:
+al sur no hay más sitio.
+
 J102 y J103 ya no están en el hueco del puente H ni en la esquina superior
 derecha: J102 queda justo encima del STM32 (74,5/31 mm), en la salida natural de
 los pines 49–61, y J103 al lado del ESP32 (75/10 mm), cerca de sus pines de

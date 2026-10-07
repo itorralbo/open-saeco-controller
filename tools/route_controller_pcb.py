@@ -402,12 +402,15 @@ def route_h_bridge(board):
     polyline(board, out1, [(31.9, 34.125), (28.0, 38.0), (28.0, 62.0), (3.0, 62.0)],
              width=ACT_LANE_WIDTH)
     polyline(board, out2, [(33.375, 40.65), (33.375, 41.1), (32.6, 41.9)], width=0.4)
-    polyline(board, out2, [(32.6, 41.9), (29.2, 45.3), (29.2, 64.5), (3.0, 64.5)],
+    polyline(board, out2, [(32.6, 41.9), (31.4, 41.9), (29.2, 44.1), (29.2, 64.5), (3.0, 64.5)],
              width=ACT_LANE_WIDTH)
 
     # Charge pump and VM: pins 11-14 drop straight into C503 and C504.
-    polyline(board, vm, [(34.025, 40.6), (34.1, 41.7), (33.4, 42.4), (33.4, 42.9), (32.975, 42.9),
-                         (32.975, 43.3)], width=0.3)
+    # VM keeps a pad-width neck between OUT2 and VCP, then widens to 0.5 mm
+    # once clear of the row (issue #5).
+    polyline(board, vm, [(34.025, 40.6), (34.1, 41.7), (33.75, 42.05)], width=0.3)
+    polyline(board, vm, [(33.75, 42.05), (33.4, 42.4), (33.4, 42.9), (32.975, 42.9),
+                         (32.975, 43.3)], width=0.5)
     track(board, '/BREW_VCP', (34.675, 40.65), (34.675, 43.3))
     polyline(board, '/BREW_CPH', [(35.325, 40.65), (35.325, 44.4), (34.875, 44.85),
                                   (34.875, 45.2)])
@@ -416,9 +419,11 @@ def route_h_bridge(board):
     polyline(board, vm, [(43.0, 44.3), (43.0, 45.6), (42.2, 46.4), (32.975, 46.4),
                          (32.975, 43.775)], width=ACT_LANE_WIDTH)
     polyline(board, vm, [(32.975, 46.4), (31.6, 47.8), (31.6, 48.5)], width=ACT_LANE_WIDTH)
-    track(board, vm, (35.525, 46.4), (35.525, 47.6), width=0.5)
-    track(board, gnd, (37.075, 48.0), (38.0, 48.0), width=0.5)
-    via(board, gnd, (38.2, 48.0))
+    # C502 hangs off the VM node under C503; its ground drops to the plane
+    # on its own via just west of it.
+    track(board, vm, (32.975, 44.9), (32.625, 44.9), width=0.5)
+    track(board, gnd, (31.075, 44.9), (31.0, 43.8), width=0.5)
+    via(board, gnd, (31.0, 43.8))
     polyline(board, gnd, [(31.1, 56.95), (30.4, 56.95), (30.4, 58.5)], width=0.5)
     via(board, gnd, (30.4, 58.5))
     track(board, '/24V_BREW_FUSED', (39.1, 41.0), (39.1, 43.0), width=ACT_LANE_WIDTH)

@@ -402,7 +402,10 @@ PLACE = {
     # x = 28/29.2 mm and enter J108 at y = 62/64.5 mm between its filter rows.
     'U501': (35, 37, 270),
     'C503': (33.75, 43.3, 180), 'C504': (35.65, 45.2, 0),
-    'C501': (31.1, 52.5, 270), 'C502': (36.3, 48.0, 0),
+    # C502, the VM bypass, sits on the VM node right under C503 with its own
+    # ground via, about 5 mm of copper from pin 11 instead of 11 mm (issue
+    # #5). OUT2 bends west first to leave it room.
+    'C501': (31.1, 52.5, 270), 'C502': (31.85, 44.9, 180),
     # Control rows east of U501, 1.6 mm pitch, pull-downs first, then the
     # series resistors; the STM32 signals continue east above J114.
     'R510': (43.0, 29.4, 0), 'C506': (46.8, 29.4, 0),

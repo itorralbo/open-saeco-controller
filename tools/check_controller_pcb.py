@@ -1,10 +1,11 @@
 """Geometric checks on the routed controller PCB that the netlist cannot see.
 
-Buck input capacitors (issue #3): each converter needs a bulk ceramic and a
-small high-frequency one whose pads sit next to its VIN and GND pins, so the
-pulsed input current closes in a small loop. For every converter in
-DECOUPLING the nearest capacitor of each class, measured pin to pad in a
-straight line on both its VIN and GND sides, must be within the limit.
+Supply capacitors at the pins: each buck needs a bulk ceramic and a small
+high-frequency one next to its VIN and GND pins (issue #3), and the DRV8876
+a VM bypass next to VM and PGND (issue #5), so the pulsed current closes in
+a small loop. For every part in DECOUPLING the nearest capacitor of each
+class, measured pin to pad in a straight line on both its supply and ground
+sides, must be within the limit.
 
   python3 check_controller_pcb.py              check the board
   python3 check_controller_pcb.py --self-test  also check that the faults
@@ -29,6 +30,11 @@ DECOUPLING = {
              'classes': {'bulk': ((4.7, 100.0), 5.0), 'hf': ((0.01, 1.0), 3.0)}},
     'U303': {'vin': '3', 'gnd': '4',
              'classes': {'bulk': ((4.7, 100.0), 5.0), 'hf': ((0.01, 1.0), 3.0)}},
+    # DRV8876 VM (pin 11) and PGND (pin 9). TI SLVSDS7 10.1: the VM bypass
+    # "as close to the device as possible"; OUT2 and the charge-pump pins
+    # leave no room under pin 11 itself, so the limit is the pocket by C503.
+    'U501': {'vin': '11', 'gnd': '9',
+             'classes': {'hf': ((0.01, 1.0), 6.0)}},
 }
 SI = {'p': 1e-6, 'n': 1e-3, 'u': 1.0, 'µ': 1.0}
 
@@ -73,10 +79,10 @@ def check(board):
         for name, (_, limit) in spec['classes'].items():
             reach, cap = found.get(name, (math.inf, None))
             if cap is None:
-                errors.append(f'{ref}: no {name} input capacitor across {vnet} and {gnet}')
+                errors.append(f'{ref}: no {name} supply capacitor across {vnet} and {gnet}')
             elif reach > limit:
-                errors.append(f'{ref}: nearest {name} input capacitor {cap} is {reach:.1f} mm '
-                              f'from VIN/GND, limit {limit:g} mm')
+                errors.append(f'{ref}: nearest {name} supply capacitor {cap} is {reach:.1f} mm '
+                              f'from its supply and ground pins, limit {limit:g} mm')
     return errors
 
 
@@ -89,11 +95,13 @@ def self_test():
 
     cases = [
         # C315 removed from U301's pins: only C301, 30 mm of trace away, is left.
-        (lambda: moved('C315', (20.0, 125.0)), 'U301: nearest bulk input capacitor C301'),
+        (lambda: moved('C315', (20.0, 125.0)), 'U301: nearest bulk supply capacitor C301'),
         # C316 away from U303: it had no high-frequency capacitor at all.
-        (lambda: moved('C316', (20.0, 125.0)), 'U303: nearest hf input capacitor C316'),
+        (lambda: moved('C316', (20.0, 125.0)), 'U303: nearest hf supply capacitor C316'),
         # C310 back where it was, ground through two vias.
-        (lambda: moved('C310', (117.5, 5.0)), 'U303: nearest bulk input capacitor C310'),
+        (lambda: moved('C310', (117.5, 5.0)), 'U303: nearest bulk supply capacitor C310'),
+        # C502 back on the VM bus 11 mm of copper from pin 11 (issue #5).
+        (lambda: moved('C502', (36.3, 48.0)), 'U501: nearest hf supply capacitor C502'),
     ]
     failures = []
     for run, expected in cases:
