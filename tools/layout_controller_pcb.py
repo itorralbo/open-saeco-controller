@@ -260,6 +260,10 @@ PLACE = {
     # U702 and MH2. U604, the pump's reset gate, sits under Q701 like U603's
     # twin, where reset and 3.3 V are at hand; only its output runs south.
     'U702': (47.19, 113.46, 0), 'Q704': (86.46, 109.5, 0),
+    # Q704's unfitted RC snubber (PU-03) on the bottom side above it, under
+    # the heatsink foot, where B.Cu is free between the heater gate (x =
+    # 80.34 mm) and the incoming phase (x = 96.5 mm).
+    'C705': (89.0, 103.3, 90, 'bottom'), 'R727': (84.5, 101.0, 270, 'bottom'),
     'R712': (58.3, 113.0, 180),
     'R716': (45.3, 110.6, 270), 'Q706': (43.8, 116.0, 0),
     'R714': (43.3, 108.2, 0), 'R715': (43.3, 106.6, 180),
@@ -273,6 +277,9 @@ PLACE = {
     # the raw order low next to U604, whose second gate the grinder uses.
     'U703': (47.19, 100.72, 0), 'Q708': (64.06, 109.5, 0),
     'R721': (58.86, 99.0, 180), 'F703': (64.06, 114.1, 0),
+    # Q708's unfitted RC snubber (GR-05), bottom side above it, in a notch
+    # cut out of the west end of the B.Cu phase block (route script).
+    'C706': (66.6, 103.3, 90, 'bottom'), 'R728': (61.5, 102.0, 270, 'bottom'),
     'BR701': (58.75, 132.0, 0),
     # U704 measures the grinder current on JP8's + line and straddles the
     # barrier below U702: input pads east, from BR701's + up to JP8.1, and
@@ -477,14 +484,18 @@ def main():
     assert electrical == set(PLACE), sorted(electrical ^ set(PLACE))
     before_holes = {ref: footprints[ref].GetPosition() for ref in ('MH1','MH2','MH3')}
 
-    for ref, (x, y, rotation) in PLACE.items():
+    for ref, (x, y, rotation, *side) in PLACE.items():
         fp = footprints[ref]
+        bottom = side == ['bottom']
         fp.SetOrientationDegrees(0)
         fp.SetPosition(pcb.VECTOR2I(MM(x), MM(y)))
+        if fp.IsFlipped() != bottom:
+            fp.Flip(fp.GetPosition(), pcb.FLIP_DIRECTION_LEFT_RIGHT)
         fp.SetOrientationDegrees(rotation)
         fp.Reference().SetTextSize(pcb.VECTOR2I(MM(.8), MM(.8)))
         fp.Reference().SetTextThickness(MM(.12))
-        fp.Reference().SetLayer(pcb.F_Fab)
+        fp.Reference().SetLayer(pcb.B_Fab if bottom else pcb.F_Fab)
+        fp.Reference().SetMirrored(bottom)
         fp.Reference().SetPosition(fp.GetPosition())
 
     for item in board.GetDrawings():

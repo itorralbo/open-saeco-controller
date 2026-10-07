@@ -204,6 +204,8 @@ R716,1k / opto LED series,Resistor_SMD:R_0603_1608Metric,candidate,ROHM Semicon,
 U702,MOC3083 / zero-cross,OpenSaeco:DIP-6_W7.62mm_BarrierSlot,candidate,Lite-On,MOC3083,C10797,Extended,Economic and Standard
 R712,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ERJ-P08J391V,C2086379,Extended,Economic and Standard
 Q704,BTA24-800BWRG / pump,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
+C705,"RC snubber C / Q704, DNP until PU-03",Capacitor_SMD:C_1812_4532Metric,dnp_after_dvdt_measurement,,,,,
+R727,"RC snubber R / Q704, DNP until PU-03",Resistor_SMD:R_2512_6332Metric,dnp_after_dvdt_measurement,,,,,
 R717,10k / grinder arm pull-down,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 R718,33 / opto LED gate,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF330JT5E,C23140,Basic,Economic and Standard
 R719,100k / opto LED off,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
@@ -214,5 +216,7 @@ R721,390 / gate limit 500V,Resistor_SMD:R_1206_3216Metric,candidate,PANASONIC,ER
 Q708,BTA24-800BWRG / grinder,Package_TO_SOT_THT:TO-220-3_Vertical,candidate,STMicroelectronics,BTA24-800BWRG,C15293,Extended,Economic and Standard
 F703,T4AH / 250V grinder,OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Vertical_P5.08mm,candidate,Littelfuse,0215004.MXEP,C178840,Extended,Economic and Standard
 BR701,KBP410 / grinder bridge,Diode_THT:Diode_Bridge_Vishay_KBPM,candidate,MDD(Microdiode Semiconductor),KBP410,C840747,Extended,Economic and Standard
+C706,"RC snubber C / Q708, DNP until GR-05",Capacitor_SMD:C_1812_4532Metric,dnp_after_dvdt_measurement,,,,,
+R728,"RC snubber R / Q708, DNP until GR-05",Resistor_SMD:R_2512_6332Metric,dnp_after_dvdt_measurement,,,,,
 U704,TMCS1133B4AQDVGR / grinder current,OpenSaeco:TI_DVG0010A_SOIC-10W_HV,candidate,Texas Instruments,TMCS1133B4AQDVGR,C36873216,Extended,TBD
 C703,100nF / U704 VS,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
