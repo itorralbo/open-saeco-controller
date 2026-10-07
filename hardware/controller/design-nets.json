@@ -1475,8 +1475,38 @@
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
-        "1": "24V_ACT_RAW",
+        "1": "24V_BENCH_RAW",
         "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "F306",
+      "value": "2A / 72VDC bench",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "prosemi",
+      "mpn": "1206TD-2A",
+      "lcsc": "C2838912",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_BENCH_RAW",
+        "2": "24V_BENCH_FUSED"
+      }
+    },
+    {
+      "reference": "D308",
+      "value": "SS34 / bench polarity",
+      "footprint": "Diode_SMD:D_SMA",
+      "status": "candidate",
+      "manufacturer": "YONGYUTAI",
+      "mpn": "SS34",
+      "lcsc": "C2909963",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "2": "24V_BENCH_FUSED",
+        "1": "24V_ACT_RAW"
       }
     },
     {

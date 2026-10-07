@@ -437,9 +437,20 @@ def main():
     d.note('PA6 ADC2_IN3: corriente del molinillo, 1,65 V + 0,1 V/A (U704, etapa 18).',470,592,1.2)
     d.note('PC3 ADC12_IN9/GPIO. Pin 1 rojo=3V3, 2 blanco=señal, 3 negro=GND; salida por caracterizar.',470,562,1.2)
     d.note('11 / Motor del grupo 24V — DRV8876, PH/EN, límite candidato 1A',870,36,1.8)
-    d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_ACT_RAW',g],
+    d.add('J112','J2','24V_ACTUATOR_INPUT / JST XH',905,62,['24V_BENCH_RAW',g],
           'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
           status='candidate', part_key='CONN:JST_XH_2_V')
+    d.add('#FLG124','PWR_FLAG','Isolated 24V bench source / J112',940,48,['24V_BENCH_RAW'])
+    # J112 reaches 24V_ACT_RAW through its own fuse and Schottky, like J101:
+    # a reversed bench lead would otherwise put -24 V on U303's VIN and EN
+    # (abs. min -0.3 V) and forward-bias D701 and Q701's body diode (issue
+    # #6). Only the bench path carries them; PS701 joins through J121. The
+    # fuse covers the whole board on the bench: brew motor up to its 1 A
+    # ITRIP, valve 0.42 A and the 12 V buck.
+    d.add('F306','FUSE','2A / 72VDC bench',960,100,['24V_BENCH_RAW','24V_BENCH_FUSED'],
+          'Fuse:Fuse_1206_3216Metric',part_key='F:2A')
+    d.add('D308','DIODE','SS34 / bench polarity',1030,100,['24V_BENCH_FUSED','24V_ACT_RAW'],
+          'Diode_SMD:D_SMA',part_key='D:SS34')
     d.add('#FLG105','PWR_FLAG','Isolated 24V motor source / J112',1000,62,['24V_BREW'])
     d.add('F303','FUSE','1A / 72VDC',970,82,['24V_ACT_RAW','24V_BREW_FUSED'],
           'Fuse:Fuse_1206_3216Metric',part_key='F:1A')
@@ -473,7 +484,7 @@ def main():
     d.passive('C506','C','10nF / IPROPI',1040,255,'BREW_CURRENT_ADC',g)
     d.note('PF0 PWM (TIM1_CH3N), PC14 dirección, PB5 nSLEEP, PB6 nFAULT, PC0 ADC. PMODE/IMODE a GND.',870,280,1.1)
     d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
-    d.note('J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.',870,294,1.1)
+    d.note('J112 exige 24V DC aislados y limitados; F306/D308 la protegen contra polaridad inversa. Sobretensión pendiente.',870,294,1.1)
     d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
     d.add('J113','J5','JP3 VALVE / A2506',905,354,
           ['24V_VALVE','VALVE_RETURN',None,None,None],

@@ -169,7 +169,11 @@ def main():
     assert nets['F302'] == {'1':'USB_VBUS','2':'USB_VBUS_FUSED'}
     assert nets['J111'] == {'1':'USB_VBUS_FUSED','2':'USB_BENCH_ENABLE'}
     assert nets['D303'] == {'2':'USB_BENCH_ENABLE','1':'12V_PROTECTED'}
-    assert nets['J112'] == {'1':'24V_ACT_RAW','2':g}
+    # J112 has its own fuse and Schottky into 24V_ACT_RAW (issue #6): a
+    # reversed bench lead must not reach U303's VIN/EN or D701 and Q701.
+    assert nets['J112'] == {'1':'24V_BENCH_RAW','2':g}
+    assert nets['F306'] == {'1':'24V_BENCH_RAW','2':'24V_BENCH_FUSED'}
+    assert nets['D308'] == {'2':'24V_BENCH_FUSED','1':'24V_ACT_RAW'}
     assert nets['F303'] == {'1':'24V_ACT_RAW','2':'24V_BREW_FUSED'}
     assert nets['D304'] == {'2':'24V_BREW_FUSED','1':'24V_BREW'}
     assert nets['C501'] == {'1':'24V_BREW','2':g}
@@ -243,6 +247,8 @@ def main():
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),
             ('F302','Fuse:Fuse_1206_3216Metric','C163512'),
             ('J112','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
+            ('F306','Fuse:Fuse_1206_3216Metric','C2838912'),
+            ('D308','Diode_SMD:D_SMA','C2909963'),
             ('U501','Package_SO:HTSSOP-16-1EP_4.4x5mm_P0.65mm_EP3x3mm','C575551'),
             ('J113','OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical','C382535'),
             ('U502','Package_TO_SOT_SMD:SOT-23-5','C99395'),

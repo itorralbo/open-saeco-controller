@@ -1403,11 +1403,40 @@
 <path d="M 900.43 59.69 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="59.989999999999995" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="898.49" y="59.19" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="894.95" y="59.19" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<text x="894.95" y="59.19" font-size="0.9" text-anchor="end" fill="#23745f">24V_BENCH_RAW</text>
 <path d="M 900.43 63.5 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="63.8" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="898.49" y="63.0" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
 <text x="894.95" y="63.0" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<rect x="937.26" y="46.989999999999995" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="939.8" y="41.989999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG124</text>
+<text x="939.8" y="44.489999999999995" font-size="1.05" text-anchor="middle" fill="#213b50">Isolated 24V bench source / J112</text>
+<path d="M 937.26 48.26 H 932.18" stroke="#27856d" stroke-width=".22"/>
+<text x="937.9599999999999" y="48.559999999999995" font-size="0.9" text-anchor="start" fill="#213b50">pwr</text>
+<text x="935.32" y="47.76" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="931.78" y="47.76" font-size="0.9" text-anchor="end" fill="#23745f">24V_BENCH_RAW</text>
+<rect x="957.58" y="98.83" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="960.12" y="93.83" font-size="1.05" text-anchor="middle" fill="#213b50">F306</text>
+<text x="960.12" y="96.33" font-size="1.05" text-anchor="middle" fill="#213b50">2A / 72VDC bench</text>
+<path d="M 957.58 100.33 H 952.5" stroke="#27856d" stroke-width=".22"/>
+<text x="958.28" y="100.63" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="955.64" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="952.1" y="99.83" font-size="0.9" text-anchor="end" fill="#23745f">24V_BENCH_RAW</text>
+<path d="M 962.66 100.33 H 967.74" stroke="#27856d" stroke-width=".22"/>
+<text x="961.96" y="100.63" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="964.6" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="968.14" y="99.83" font-size="0.9" text-anchor="start" fill="#23745f">24V_BENCH_FUSED</text>
+<rect x="1027.43" y="98.83" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="1029.97" y="93.83" font-size="1.05" text-anchor="middle" fill="#213b50">D308</text>
+<text x="1029.97" y="96.33" font-size="1.05" text-anchor="middle" fill="#213b50">SS34 / bench polarity</text>
+<path d="M 1027.43 100.33 H 1022.35" stroke="#27856d" stroke-width=".22"/>
+<text x="1028.13" y="100.63" font-size="0.9" text-anchor="start" fill="#213b50">A</text>
+<text x="1025.49" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="1021.95" y="99.83" font-size="0.9" text-anchor="end" fill="#23745f">24V_BENCH_FUSED</text>
+<path d="M 1032.51 100.33 H 1037.59" stroke="#27856d" stroke-width=".22"/>
+<text x="1031.81" y="100.63" font-size="0.9" text-anchor="end" fill="#213b50">K</text>
+<text x="1034.45" y="99.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="1037.99" y="99.83" font-size="0.9" text-anchor="start" fill="#23745f">24V_ACT_RAW</text>
 <rect x="996.95" y="60.959999999999994" width="5.08" height="2.54" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="999.49" y="55.959999999999994" font-size="1.05" text-anchor="middle" fill="#213b50">#FLG105</text>
 <text x="999.49" y="58.459999999999994" font-size="1.05" text-anchor="middle" fill="#213b50">Isolated 24V motor source / J112</text>
@@ -1622,7 +1651,7 @@
 <text x="1048.15" y="254.77" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="870" y="280" font-size="1.1" text-anchor="start" fill="#213b50">PF0 PWM (TIM1_CH3N), PC14 dirección, PB5 nSLEEP, PB6 nFAULT, PC0 ADC. PMODE/IMODE a GND.</text>
 <text x="870" y="287" font-size="1.1" text-anchor="start" fill="#213b50">R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.</text>
-<text x="870" y="294" font-size="1.1" text-anchor="start" fill="#213b50">J112 exige 24V DC aislados. Protección de sobretensión pendiente de tolerancia/energía de la fuente.</text>
+<text x="870" y="294" font-size="1.1" text-anchor="start" fill="#213b50">J112 exige 24V DC aislados y limitados; F306/D308 la protegen contra polaridad inversa. Sobretensión pendiente.</text>
 <text x="870" y="326" font-size="1.8" text-anchor="start" fill="#213b50">12 / Electroválvula 24V — low-side, fusible propio y rueda libre</text>
 <rect x="900.43" y="343.53499999999997" width="10.16" height="21.59" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="905.51" y="338.53499999999997" font-size="1.05" text-anchor="middle" fill="#213b50">J113</text>

@@ -302,6 +302,22 @@
       "url": "https://jlcpcb.com/partdetail/prosemi-1206TD1A/C2838907",
       "selection": "candidate_not_released"
     },
+    "F:2A": {
+      "manufacturer": "prosemi",
+      "mpn": "1206TD-2A",
+      "lcsc": "C2838912",
+      "specification": "2A one-shot fuse, 72VDC, 50 A at 72 VDC breaking capacity, 1206; J112 bench 24 V input F306",
+      "footprint": "Fuse:Fuse_1206_3216Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1409,
+      "available_order_qty_observed": 1344,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
+      "url": "https://jlcpcb.com/partdetail/C2838912",
+      "selection": "candidate_not_released",
+      "selection_note": "Bench fuse F306 since 2026-10-07 (issue #6): J112 feeds the whole 24V_ACT_RAW rail on the bench, so the fuse carries the brew motor up to its 1 A ITRIP, the valve (0.42 A) and the 12 V buck, about 1.6 A at worst; the 1 A part on J101 would not."
+    },
     "D:SS34": {
       "manufacturer": "YONGYUTAI",
       "mpn": "SS34",

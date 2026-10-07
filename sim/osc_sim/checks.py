@@ -65,6 +65,7 @@ class Checker:
         self.check_keypad()
         self.check_ui_domain()
         self.check_backfeed()
+        self.check_reverse_polarity()
         self.check_tvs()
         self.check_fuses()
         drive.check(self)
@@ -534,6 +535,50 @@ class Checker:
                         if other and other not in seen:
                             seen.add(other)
                             todo.append(other)
+
+    def check_reverse_polarity(self):
+        """A hand-wired bench input must block a reversed lead before any device.
+
+        From each pin in external_supplies.unkeyed the check follows fuses and
+        inductors, the low-impedance series parts. On the nets it reaches, a
+        reversed supply may only meet a series diode's anode, a diode clamping
+        to ground, resistors, unpolarised capacitors, a relay coil and
+        connectors. Anything else (a converter's VIN, a flyback diode back to
+        a transistor, an electrolytic) sees the negative rail with only the
+        supply's current limit to protect it. Jumpers are not followed: the
+        bench rule opens J121 before an external supply goes in.
+        """
+        ground = {g for g, v in self.s.voltages.items() if v == 0}
+        for pin in self.c.get('external_supplies', {}).get('unkeyed', []):
+            start = self.s.net_of(self.s.endpoint(pin))
+            seen, todo, bad = {start}, [start], []
+            while todo:
+                g = todo.pop()
+                for node in self.s.members.get(g, []):
+                    comp = self.s.comp(node.board, node.ref)
+                    name = self.s.physical_name(node)
+                    others = [Node(node.board, node.ref, n) for n in comp.pins if n != node.pin]
+                    if comp.part in ('L', 'FUSE') and len(comp.pins) == 2:
+                        other = self.s.net_of(others[0])
+                        if other and other not in seen:
+                            seen.add(other)
+                            todo.append(other)
+                        continue
+                    if comp.part == 'DIODE' and name == 'A':
+                        continue
+                    if comp.part == 'DIODE' and name == 'K' and self.s.net_of(others[0]) in ground:
+                        continue
+                    if comp.part == 'R' or comp.part.startswith('J'):
+                        continue
+                    if comp.part == 'C' and ':CP_' not in comp.fields.get('Footprint', ''):
+                        continue
+                    if comp.part == 'RELAY_G5RL' and name.startswith('COIL'):
+                        continue
+                    bad.append(f'{node.ref}.{name or node.pin}')
+            if bad:
+                self.add('error', 'reverse-polarity',
+                         f'{pin} llega sin diodo serie a {", ".join(sorted(set(bad)))}: con el cable '
+                         'invertido solo la limitación de la fuente los protege.', pin)
 
     def check_tvs(self):
         """A TVS must stay off on its rail and start conducting below what it protects.

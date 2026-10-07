@@ -1079,3 +1079,32 @@ con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; modelo de placa 0 errores y 0 avisos (la regla `fuse-breaking` lee
 el nuevo F702); `tests/sim` 85/85; CTest 3/3. Solo cambian valor y pieza de
 F702; huella y ruteo, igual. Sin hardware.
+
+## Polaridad inversa en J112, 2026-10-07
+
+Issue #6: J112.1 iba directo a `24V_ACT_RAW`. Con el cable de banco invertido,
+−24 V llegaban a VIN y EN de U303 (AP63200, mínimo absoluto −0,3 V) y
+polarizaban en directo D701 y el diodo interno de Q701; solo F303/D304 y
+F304/D305 protegían sus ramas.
+
+- **F306** (prosemi 1206TD-2A, C2838912) y **D308** (SS34, C2909963) entre
+  J112.1 y `24V_ACT_RAW`, como F305/D307 en J101. F306 es de 2 A porque en banco
+  lleva toda la placa (motor hasta 1 A de ITRIP, válvula 0,42 A y buck de
+  12 V). PS701 sigue entrando por J121, que se abre antes de usar J112.
+- **PCB**: los dos van de pie en la columna de 24 V de x = 112,5 mm, bajo J112.
+  U303 y C310 toman el raíl por debajo de D308 y suben por B.Cu en
+  x = 115,6 mm.
+- **Regla `reverse-polarity`** en el modelo de placa: desde cada entrada de banco
+  cableada a mano (`external_supplies.unkeyed`: J101.1 y J112.1) sigue
+  fusibles y bobinas y falla si el cable invertido alcanza algo más que el ánodo
+  de un diodo serie, un TVS a masa, resistencias, condensadores no polarizados,
+  una bobina de relé o conectores. Sobre el diseño anterior señalaba D701.K,
+  U303.EN y U303.VIN. Dos pruebas de mutación: J112 directo al raíl y D308
+  invertido.
+- **PS-05** nuevo en el plan de caracterización: inversión en banco con la
+  fuente limitada y J121 abierto.
+
+Resultado: ERC 0 en las dos placas; netlist 200 componentes y 652 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 87/87; CTest 3/3.
+PDF 1:1 y render regenerados. Sin hardware.

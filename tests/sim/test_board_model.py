@@ -193,6 +193,17 @@ class Mutations(unittest.TestCase):
         set_net(b['controller'], 'J101', '1', '12V_ISO_RAW')
         self.expect(b, 'back-feed', 'U303.SW')
 
+    def test_bench_24v_without_polarity_diode(self):
+        b = baseline()  # J112 straight onto 24V_ACT_RAW, as before 2026-10-07
+        set_net(b['controller'], 'J112', '1', '24V_ACT_RAW')
+        self.expect(b, 'reverse-polarity', 'U303.VIN')
+
+    def test_bench_polarity_diode_reversed(self):
+        b = baseline()  # D308 fitted the wrong way round blocks nothing
+        set_net(b['controller'], 'D308', '1', '24V_BENCH_FUSED')
+        set_net(b['controller'], 'D308', '2', '24V_ACT_RAW')
+        self.expect(b, 'reverse-polarity', 'D308.K')
+
     def test_tvs_breaks_down_above_what_it_protects(self):
         b = baseline()  # the SMAJ18A starts at 20-22.1 V, over U502's 20 V VDD
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'

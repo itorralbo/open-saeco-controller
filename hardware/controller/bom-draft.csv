@@ -87,6 +87,8 @@ C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K5
 R412,1k / GRINDER I serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C407,100nF / GRINDER I filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J112,24V_ACTUATOR_INPUT / JST XH,Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical,candidate,JST,B2B-XH-A(LF)(SN),C158012,Extended,TBD
+F306,2A / 72VDC bench,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-2A,C2838912,Extended,Economic and Standard
+D308,SS34 / bench polarity,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 F303,1A / 72VDC,Fuse:Fuse_1206_3216Metric,candidate,prosemi,1206TD-1A,C2838907,Extended,Economic and Standard
 D304,SS34,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,Economic and Standard
 C501,100uF / 35V motor bulk,Capacitor_SMD:CP_Elec_6.3x7.7,candidate,Lelon,VZH101M1VTR-0607,C176683,Extended,Economic and Standard
