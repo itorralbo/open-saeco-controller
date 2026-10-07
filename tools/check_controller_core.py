@@ -7,6 +7,8 @@ import csv
 from datetime import date
 from pathlib import Path
 from check_front_panel import parse, children, one, point
+from export_controller_fab import not_assembled
+from jlc_fab import check_package
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -337,6 +339,9 @@ def main():
         print(f'{board}: {matched}/{len(props)} positions have recent positive stock; '
               f'{supply_pending} catalogued candidates need a supply refresh; '
               'remainder explicitly mechanical/DNP/TBD.')
+    with (ROOT/'hardware/controller/bom-draft.csv').open(newline='', encoding='utf-8') as f:
+        assembled = {p['reference'] for p in csv.DictReader(f) if not not_assembled(p)}
+    check_package(ROOT/'hardware/controller/fabrication', 'controller-core-reva', assembled)
     print('Core rail, UART, debug, passive inputs and sourcing checks pass. '
           'This checker does not run native ERC/DRC.')
 

@@ -118,6 +118,7 @@ kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/co
 kicad-cli pcb drc --schematic-parity --format json -o hardware/controller/validation/pcb/drc.json hardware/controller/kicad/controller-core-reva.kicad_pcb
 kicad-cli pcb drc --schematic-parity --severity-all --format json -o hardware/front-panel/validation/drc-staging.json hardware/front-panel/kicad/front-panel-reva.kicad_pcb
 python3 tools/export_front_panel_fab.py
+python3 tools/export_controller_fab.py
 ```
 
 Si el ejecutable no está en PATH, `validate_kicad.py` y `export_controller_print.py`

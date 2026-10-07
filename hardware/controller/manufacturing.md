@@ -1,6 +1,7 @@
 # Perfil de fabricación de la controladora
 
-Estado: perfil aplicado a la PCB ruteada; aún no liberado para fabricar.
+Estado: perfil aplicado a la PCB ruteada y [paquete JLCPCB candidato](#paquete-jlcpcb-candidato)
+generado; aún no liberado para fabricar.
 
 La principal es FR-4 de cuatro capas y 1,6 mm, el mismo espesor medido en la
 placa original. Se pasó de dos a cuatro capas el 2026-09-23: con dos, B.Cu era a
@@ -89,7 +90,44 @@ JP1/JP9 son TE 63824-1. La zona de red y bus rectificado no comparte relleno,
 vías ni retornos con el plano GND de SELV. La barrera inicial de 8 mm ya se
 comprueba en el DRC y se revisará antes de fabricar.
 
-## Antes de generar Gerbers
+## Paquete JLCPCB candidato
+
+`tools/export_controller_fab.py` lo escribe en [fabrication/](fabrication/) desde
+la PCB y la [BOM](bom-draft.csv). No es una liberación: el script lista al final
+lo que sigue abierto (hoy J107–J109, cabeceras candidatas por foto, y RV701, sin
+pieza elegida).
+
+| Archivo | Contenido |
+|---|---|
+| [controller-core-reva-gerbers.zip](fabrication/controller-core-reva-gerbers.zip) | Gerber de 4 capas (extensiones Protel, máscara restada de la serigrafía), trabajo `.gbrjob` con el apilado, Excellon en mm con PTH y NPTH separados, y mapas de taladros |
+| [controller-core-reva-bom-jlcpcb.csv](fabrication/controller-core-reva-bom-jlcpcb.csv) | 70 líneas / 210 posiciones: Comment, Designator, Footprint, LCSC Part # |
+| [controller-core-reva-cpl-jlcpcb.csv](fabrication/controller-core-reva-cpl-jlcpcb.csv) | Designator, Mid X, Mid Y, Layer, Rotation (todas Top) |
+| [controller-core-reva-not-assembled.csv](fabrication/controller-core-reva-not-assembled.csv) | Lo que JLCPCB no monta y por qué |
+
+Los PTH y NPTH van en ficheros separados: en uno solo, únicamente los comentarios
+del Excellon dicen qué agujero se metaliza. JLCPCB no monta:
+
+- J111 (DNP) y J121: puentes de soldadura, cobre sin pieza.
+- J115 y J117 (LEOCO de JP8 y JP24): sin código JLCPCB, se sueldan a mano o se aportan.
+- RV701: sin pieza hasta elegir el MOV.
+
+Opciones del pedido: 4 capas, 1,6 mm, apilado JLC04161H-7628 (1 oz exterior,
+0,5 oz interior), sin impedancia controlada. Montaje en la cara superior; hay
+piezas THT y el ESP32 es «Standard Only», así que va en montaje Standard.
+`check_controller_core.py` falla en CI si la BOM o el CPL dejan de coincidir con
+la BOM de diseño; no comprueba los Gerbers, que hay que regenerar tras cada
+cambio de la PCB.
+
+En la vista previa de JLCPCB, antes de confirmar: pin 1 de U101, U201 y de cada
+integrado; polaridad de diodos, puentes rectificadores y electrolíticos; y la
+boca de cada conector hacia el borde. Las rotaciones del CPL son las de KiCad;
+si una pieza sale girada, se corrige allí y se anota aquí.
+
+La huella de KiCad del ESP32-S3-WROOM-1U lleva 12 vías de 0,2 mm en el pad de
+masa central, sin tapar. Confirmar con JLCPCB el taladro de 0,2 mm y si la
+soldadura se escapa por ellas.
+
+## Antes de pedir
 
 - Pedir JLC04161H-7628 (1,6 mm, 1 oz exterior y 0,5 oz interior). La
   geometría USB ya está calculada con ese apilado.
@@ -103,3 +141,5 @@ comprueba en el DRC y se revisará antes de fabricar.
   orientación de conectores y acceso al USB.
 - Ejecutar ERC, DRC, paridad esquema/PCB y la prueba mecánica 1:1 con
   `preview/controller-top-1to1.pdf` impreso al 100 %.
+- Refrescar stock (`tools/refresh_jlc_stock.py`), regenerar el paquete y
+  revisarlo en el visor de Gerbers de JLCPCB.

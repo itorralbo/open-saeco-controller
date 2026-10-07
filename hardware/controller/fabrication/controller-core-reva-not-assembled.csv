@@ -1,0 +1,6 @@
+Designator,Value,Manufacturer,MPN,Reason
+J111,USB BENCH POWER / OPEN,,,"DNP: huella reservada, no se monta"
+J115,JP8 GRINDER / 320VDC,LEOCO,3941P03*000,Sin código JLCPCB: soldar a mano o aportar
+J117,JP24 PUMP / 230VAC,LEOCO,5001P020013,Sin código JLCPCB: soldar a mano o aportar
+J121,24V INTERNAL SELECT / OPEN FOR BENCH,,,"Puente de soldadura: cobre, no es una pieza"
+RV701,275VAC MOV / energy TBD,,,Pieza sin elegir

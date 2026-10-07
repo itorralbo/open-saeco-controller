@@ -24,7 +24,8 @@ lado SELV, y está [colocada y ruteada](layout.md) en las posiciones de la placa
 original: DRC con todas las severidades sin infracciones ni conexiones abiertas.
 La barrera red/SELV de 8 mm es una regla del DRC. Detalle del proyecto en
 [kicad-workflow.md](../kicad-workflow.md); reglas y apilado en
-[manufacturing.md](manufacturing.md); arquitectura de potencia en
+[manufacturing.md](manufacturing.md), con el [paquete JLCPCB candidato](fabrication/)
+(Gerbers, BOM y CPL, sin pedir); arquitectura de potencia en
 [power-architecture.md](../power/power-architecture.md); suministro en
 [assembly](../assembly/README.md).
 

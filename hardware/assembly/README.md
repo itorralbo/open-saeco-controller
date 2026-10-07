@@ -157,8 +157,10 @@ identifica Comment, Designator y Footprint. Añadiremos el código de componente
 para evitar coincidencias ambiguas. Las referencias de BOM y CPL deben coincidir;
 ver [guía de preparación](https://jlcpcb.com/help/article/advice-for-bom-and-cpl-files-preparation).
 
-La principal ya tiene posiciones y ruteo, pero no se generan su CPL ni sus
-Gerbers hasta cerrar la revisión (ver [manufacturing.md](../controller/manufacturing.md)).
+La principal tiene un paquete candidato en
+[controller/fabrication](../controller/fabrication/), generado por
+`tools/export_controller_fab.py`, con la lista de lo que JLCPCB no monta; no se
+pide hasta cerrar la revisión (ver [manufacturing.md](../controller/manufacturing.md#paquete-jlcpcb-candidato)).
 El frontal ya tiene Gerbers, BOM y CPL generados por
 `tools/export_front_panel_fab.py`, pendientes de revisión antes del pedido. Antes de cotizar, refrescar stock y cantidades con merma,
 revisar orientaciones en la vista de montaje y cerrar las piezas todavía pendientes.

@@ -85,7 +85,7 @@ sin alivio térmico y los de U1 solo por su pista a la vía.
 
 | Archivo | Contenido |
 |---|---|
-| [front-panel-reva-gerbers.zip](fabrication/front-panel-reva-gerbers.zip) | Gerber de 2 capas (extensiones Protel, máscara restada de la serigrafía), Excellon en mm y mapa de taladros |
+| [front-panel-reva-gerbers.zip](fabrication/front-panel-reva-gerbers.zip) | Gerber de 2 capas (extensiones Protel, máscara restada de la serigrafía), Excellon en mm con PTH y NPTH separados, y mapas de taladros |
 | [front-panel-reva-bom-jlcpcb.csv](fabrication/front-panel-reva-bom-jlcpcb.csv) | 13 líneas / 42 posiciones: Comment, Designator, Footprint, LCSC Part # |
 | [front-panel-reva-cpl-jlcpcb.csv](fabrication/front-panel-reva-cpl-jlcpcb.csv) | Designator, Mid X, Mid Y, Layer, Rotation (todas Top) |
 

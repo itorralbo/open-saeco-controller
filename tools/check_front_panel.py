@@ -8,6 +8,8 @@ import json
 import re
 from pathlib import Path
 
+from jlc_fab import check_package
+
 ROOT = Path(__file__).resolve().parents[1]
 BASE = ROOT / 'hardware/front-panel'
 
@@ -144,6 +146,7 @@ def main():
     with (BASE/'bom-draft.csv').open() as f:
         bom = list(csv.DictReader(f))
     assert len(bom) == len(refs) and {c['reference'] for c in bom} == refs
+    check_package(BASE/'fabrication', 'front-panel-reva', refs)
     print(f'Front panel: {len(refs)} components; draft pinout and RC networks match.')
     print('Not KiCad parsing/ERC, PCB/DRC, signal-integrity or hardware validation.')
 
