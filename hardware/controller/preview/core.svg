@@ -2020,35 +2020,56 @@
 <text x="701.91" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
 <path d="M 712.4699999999999 684.53 H 717.55" stroke="#27856d" stroke-width=".22"/>
 <text x="717.9499999999999" y="684.03" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
-<rect x="800.0999999999999" y="659.765" width="10.16" height="25.4" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
-<text x="805.18" y="654.765" font-size="1.05" text-anchor="middle" fill="#213b50">J114</text>
-<text x="805.18" y="657.265" font-size="1.05" text-anchor="middle" fill="#213b50">POWER MONITOR / MEASURE ONLY</text>
-<path d="M 800.0999999999999 662.94 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="663.24" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
-<text x="798.16" y="662.44" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="794.62" y="662.44" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
-<path d="M 800.0999999999999 666.75 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="667.05" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
-<text x="798.16" y="666.25" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="794.62" y="666.25" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
-<path d="M 800.0999999999999 670.56 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="670.8599999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
-<text x="798.16" y="670.06" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="794.62" y="670.06" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
-<path d="M 800.0999999999999 674.37 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="674.67" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
-<text x="798.16" y="673.87" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="794.62" y="673.87" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
-<path d="M 800.0999999999999 678.18 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="678.4799999999999" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
-<text x="798.16" y="677.68" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
-<text x="794.62" y="677.68" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_12V_ADC</text>
-<path d="M 800.0999999999999 681.99 H 795.02" stroke="#27856d" stroke-width=".22"/>
-<text x="800.8" y="682.29" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
-<text x="798.16" y="681.49" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
-<text x="794.62" y="681.49" font-size="0.9" text-anchor="end" fill="#23745f">RAIL_24V_ADC</text>
+<rect x="497.84" y="706.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="500.38" y="701.39" font-size="1.05" text-anchor="middle" fill="#213b50">R723</text>
+<text x="500.38" y="703.89" font-size="1.05" text-anchor="middle" fill="#213b50">10k / J114 3V3 probe</text>
+<path d="M 497.84 707.39 H 492.76" stroke="#27856d" stroke-width=".22"/>
+<text x="492.36" y="706.89" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 502.92 707.39 H 508.0" stroke="#27856d" stroke-width=".22"/>
+<text x="508.4" y="706.89" font-size="0.9" text-anchor="start" fill="#23745f">PROBE_3V3</text>
+<rect x="567.69" y="706.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="570.23" y="701.39" font-size="1.05" text-anchor="middle" fill="#213b50">R724</text>
+<text x="570.23" y="703.89" font-size="1.05" text-anchor="middle" fill="#213b50">10k / J114 12V probe</text>
+<path d="M 567.69 707.39 H 562.61" stroke="#27856d" stroke-width=".22"/>
+<text x="562.21" y="706.89" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 572.77 707.39 H 577.85" stroke="#27856d" stroke-width=".22"/>
+<text x="578.25" y="706.89" font-size="0.9" text-anchor="start" fill="#23745f">PROBE_12V</text>
+<rect x="637.5400000000001" y="706.39" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="640.08" y="701.39" font-size="1.05" text-anchor="middle" fill="#213b50">R725</text>
+<text x="640.08" y="703.89" font-size="1.05" text-anchor="middle" fill="#213b50">10k / J114 24V probe</text>
+<path d="M 637.5400000000001 707.39 H 632.46" stroke="#27856d" stroke-width=".22"/>
+<text x="632.0600000000001" y="706.89" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 642.62 707.39 H 647.7" stroke="#27856d" stroke-width=".22"/>
+<text x="648.1" y="706.89" font-size="0.9" text-anchor="start" fill="#23745f">PROBE_24V</text>
+<rect x="800.0999999999999" y="681.3549999999999" width="10.16" height="25.4" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="805.18" y="676.3549999999999" font-size="1.05" text-anchor="middle" fill="#213b50">J114</text>
+<text x="805.18" y="678.8549999999999" font-size="1.05" text-anchor="middle" fill="#213b50">POWER PROBE / MEASURE ONLY</text>
+<path d="M 800.0999999999999 684.53 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="684.8299999999999" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="798.16" y="684.03" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="794.62" y="684.03" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 800.0999999999999 688.34 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="688.64" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
+<text x="798.16" y="687.84" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="794.62" y="687.84" font-size="0.9" text-anchor="end" fill="#23745f">PROBE_3V3</text>
+<path d="M 800.0999999999999 692.15 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="692.4499999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
+<text x="798.16" y="691.65" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
+<text x="794.62" y="691.65" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 800.0999999999999 695.96 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="696.26" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
+<text x="798.16" y="695.46" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
+<text x="794.62" y="695.46" font-size="0.9" text-anchor="end" fill="#23745f">PROBE_12V</text>
+<path d="M 800.0999999999999 699.77 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="700.0699999999999" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
+<text x="798.16" y="699.27" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
+<text x="794.62" y="699.27" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<path d="M 800.0999999999999 703.58 H 795.02" stroke="#27856d" stroke-width=".22"/>
+<text x="800.8" y="703.88" font-size="0.9" text-anchor="start" fill="#213b50">6</text>
+<text x="798.16" y="703.08" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
+<text x="794.62" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">PROBE_24V</text>
 <text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
-<text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.</text>
+<text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114: GND, 3V3, GND, 12V, GND, 24V, cada raíl por 10k. Solo medida; ADC en C701/C702.</text>
 <text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Red, fuente aislada y conectores de potencia — misma PCB</text>
 <rect x="1094.74" y="634.365" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1099.82" y="629.365" font-size="1.05" text-anchor="middle" fill="#213b50">J115</text>

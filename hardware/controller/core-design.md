@@ -50,8 +50,9 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   `STM_NRST`; U605 (Schmitt) lo cuadra como `STM_NRST_BUF` y U602 solo permite
   activar `nSLEEP` y la válvula mientras reset esté inactivo. R603/R604 mantienen ambas órdenes a cero durante el arranque.
 - PF1/ADC2_IN10 y PC1/ADC2_IN7 miden las entradas de 12 V y 24 V mediante
-  divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone ambos rails y sus
-  señales ADC para medida en banco; no es una entrada de alimentación.
+  divisores 200 kΩ/10 kΩ y filtros de 100 nF. J114 expone 3,3 V, 12 V y 24 V
+  para medida en banco, cada uno entre dos masas y tras 10 kΩ; no es una
+  entrada de alimentación.
 
 - Etapas de calentador (U701/Q703), bomba (U702/Q704) y molinillo
   (U703/Q708/F703/BR701): MOC3083 de cruce por cero y BTA24 tras K701, con el
@@ -239,9 +240,18 @@ de tiempo aproximada de 0,95 ms. El firmware usará tiempos de muestreo largos y
 calibración con multímetro; estas entradas sirven para diagnóstico y brownout,
 no como instrumento de precisión.
 
-J114 ofrece GND, 3,3 V, 12 V protegidos, 24 V de entrada y las dos tensiones ADC.
-Se destina a osciloscopio/multímetro durante el banco; no se debe alimentar la
-placa a través de sus pines.
+J114 es GND, 3,3 V, GND, 12 V protegidos, GND y 24 V de entrada (serigrafía
+«G 3V3 G 12 G 24»). Se destina a osciloscopio/multímetro durante el banco; no se
+debe alimentar la placa a través de sus pines. Desde el 2026-10-07 (issue #4)
+cada raíl llega a su pin por 10 kΩ en 0603 (R723, R724 y R725, junto a la
+cabecera) y nunca hay dos raíles contiguos. Antes iban directos y contiguos:
+una punta que resbalara ponía 12 V en `3V3_CORE` (2↔3), 24 V en
+`12V_PROTECTED` (3↔4) o 24 V en PF1 (4↔5). Ahora un resbalón solo lleva un raíl
+a masa por 10 kΩ: 2,4 mA y 58 mW a 24 V, el 58 % de los 100 mW del 0603. Con un
+multímetro de 10 MΩ el error es del 0,1 %. Con una sonda de unos 15 pF el polo
+cae hacia 1 MHz, así que el rizado de los bucks se mide en sus condensadores y
+no en J114. Las dos tensiones ADC salieron de la cabecera: se miden en C701 y
+C702. La regla `probe-header` del modelo de placa lo comprueba.
 
 ### Driver de la electroválvula
 

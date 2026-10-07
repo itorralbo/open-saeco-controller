@@ -361,8 +361,10 @@ def route_24v_output(board):
              width=ACT_WIDTH)
     polyline(board, act, [(46.40, 55.10), (46.40, 42.00), (44.80, 40.40),
                           (41.90, 40.40)], width=ACT_WIDTH)
-    polyline(board, act, [(62.50, 55.10), (62.50, 42.80), (57.20, 42.80),
-                          (55.62, 41.22), (55.62, 40.00)], width=ACT_LANE_WIDTH)
+    # The branch up x = 62.5 mm feeds the 24 V divider and ends at R725, the
+    # 10k in series with J114.6 (issue #4); it no longer reaches the header.
+    polyline(board, act, [(62.50, 55.10), (62.50, 45.00), (62.60, 44.90),
+                          (62.60, 44.325)], width=ACT_LANE_WIDTH)
     # Below the relay coil the trunk drops at x = 43 mm, east of the flyback
     # diode and clear of the heater optocoupler's primary pads, and turns west
     # at y = 93 mm to the valve fuse. The heater LED pair hops under it.
@@ -1614,11 +1616,15 @@ def route_12v_rail(board):
                           (61.25, 32.0)],
              width=w)
     hop(v12, (61.25, 32.0), (61.25, 36.25), w)
-    polyline(board, v12, [(61.25, 36.25), (60.75, 36.75), (58.25, 36.75), (56.25, 38.75),
-                          (54.5, 38.75), (53.08, 40.0)], width=w)
+    # Since 2026-10-07 (issue #4) J114.3 is a ground pin, so the junction
+    # that used to be its pad is a via above the header, at (54.35, 38.6).
+    # The rail drops on F.Cu between J114.3 and J114.4 to R701 and R724.
+    polyline(board, v12, [(61.25, 36.25), (60.75, 36.75), (58.25, 36.75), (56.4, 38.6),
+                          (54.35, 38.6), (54.35, 41.4)], width=w)
+    via(board, v12, (54.35, 38.6))
 
-    # J114.3 to D303, under the H-bridge rows.
-    polyline(board, v12, [(53.08, 40.0), (50.0, 37.0), (49.5, 37.0),
+    # The junction to D303, under the H-bridge rows.
+    polyline(board, v12, [(54.35, 38.6), (51.6, 38.6), (50.0, 37.0), (49.5, 37.0),
                           (41.25, 28.75)], pcb.B_Cu, width=w)
     via(board, v12, (41.25, 28.75))
     polyline(board, v12, [(41.25, 28.75), (34.5, 28.75), (33.25, 27.5),
@@ -1920,14 +1926,14 @@ def route_rails_and_bridge(board):
     """Telemetry dividers under J114, their ADC inputs and the H-bridge orders.
 
     The dividers fill the pocket between J114 and the reset line. The 12 V
-    chain takes its input straight down from J114.3; its filtered node
-    reaches J114.5 by a short B.Cu hop under the 24 V branch that fences the
-    header's bottom edge. The 24 V chain takes its input from that branch at
-    x = 62.5 mm and its node sits under J114.6, joined to it on B.Cu.
+    chain takes its input from the rail's drop between J114.3 and J114.4; its
+    filtered node meets PF1 through a short B.Cu hop. The 24 V chain takes
+    its input from the branch at x = 62.5 mm, which ends at R725. J114 itself
+    only carries ground and the three probe pins behind R723-R725 (issue #4).
 
     PC14 (direction), PF0 (PWM) and PF1 (12 V telemetry) leave the top of
     the west row above the reset stub and run west in the band between the
-    supervisor orders and J114. PF1 drops into J114.5. The two H-bridge
+    supervisor orders and J114. PF1 drops between J114.4 and J114.5. The two H-bridge
     orders go down to B.Cu before the 12 V feed crosses the band, pass under
     the supervisor diagonals and come up inside the triangle they fence off,
     east of R503 and R501. PC0 (bridge current) drops to B.Cu below the reset
@@ -1940,8 +1946,19 @@ def route_rails_and_bridge(board):
     div12, adc12 = '/RAIL_12V_DIV', '/RAIL_12V_ADC'
     div24, adc24 = '/RAIL_24V_DIV', '/RAIL_24V_ADC'
 
-    # 12 V divider.
-    track(board, v12, (53.08, 40.0), (53.08, 42.575), width=0.3)
+    # 12 V divider, fed from the rail's drop between J114.3 and J114.4.
+    track(board, v12, (54.35, 41.4), (53.08, 42.575), width=0.3)
+
+    # J114 probe resistors (issue #4): R723 under J114.2 for 3.3 V, R724
+    # under J114.4 for 12 V and R725 east of J114.6 for 24 V.
+    polyline(board, v12, [(54.35, 41.4), (54.675, 41.725), (54.675, 42.75)], width=0.3)
+    polyline(board, '/PROBE_12V', [(56.325, 42.75), (56.325, 42.3), (55.62, 41.6),
+                                    (55.62, 40.0)], width=PIN_WIDTH)
+    track(board, '/PROBE_3V3', (50.54, 42.575), (50.54, 40.0), width=PIN_WIDTH)
+    track(board, '/3V3_CORE', (50.54, 44.225), (49.4, 44.4), width=PIN_WIDTH)
+    via(board, '/3V3_CORE', (49.4, 44.4))
+    polyline(board, '/PROBE_24V', [(62.6, 42.675), (62.6, 41.9), (61.3, 40.6),
+                                    (60.7, 40.0)], width=PIN_WIDTH)
     track(board, div12, (53.08, 44.225), (53.08, 45.575), width=w)
     polyline(board, adc12, [(53.08, 47.225), (53.305, 47.0), (54.575, 47.0)],
              width=w)
@@ -1949,8 +1966,9 @@ def route_rails_and_bridge(board):
     polyline(board, adc12, [(54.575, 47.0), (54.575, 45.225), (55.6, 44.2)],
              width=w)
     via(board, adc12, (55.6, 44.2))
-    polyline(board, adc12, [(55.6, 44.2), (58.16, 41.64), (58.16, 40.0)],
+    polyline(board, adc12, [(55.6, 44.2), (56.89, 42.91), (56.89, 41.5)],
              pcb.B_Cu, width=w)
+    via(board, adc12, (56.89, 41.5))
 
     # 24 V divider.
     track(board, act, (61.0, 49.225), (62.5, 49.225), width=0.3)
@@ -1959,8 +1977,6 @@ def route_rails_and_bridge(board):
     track(board, adc24, (59.575, 44.6), (59.525, 46.4), width=w)
     track(board, adc24, (61.0, 44.575), (61.0, 43.75), width=w)
     via(board, adc24, (61.0, 43.75))
-    polyline(board, adc24, [(60.7, 40.0), (61.0, 40.3), (61.0, 43.75)],
-             pcb.B_Cu, width=w)
 
     # The four low-side pads share one ground via.
     track(board, gnd, (57.925, 44.6), (57.975, 46.4), width=PIN_WIDTH)
@@ -1968,9 +1984,9 @@ def route_rails_and_bridge(board):
         track(board, gnd, pad, (57.1, 47.7), width=PIN_WIDTH)
     via(board, gnd, (57.1, 47.7))
 
-    # PF1, pin 6.
-    polyline(board, adc12, [(70.325, 38.75), (58.16, 38.75), (58.16, 40.0)],
-             width=w)
+    # PF1, pin 6, down between J114.4 and J114.5 to the B.Cu hop.
+    polyline(board, adc12, [(70.325, 38.75), (57.6, 38.75), (56.89, 39.46),
+                            (56.89, 41.5)], width=w)
 
     # PC14, pin 3, and PF0, pin 5.
     dir_, pwm = '/BREW_DIR_RAW', '/BREW_PWM_RAW'
@@ -2026,11 +2042,13 @@ def route_sensor_bus(board):
     present, work = '/BU_PRESENT_N', '/BU_WORK_N'
     door, flow, ntc = '/DOOR_CLOSED_N', '/FLOW_TIM', '/NTC_ADC'
 
-    # PC1, pin 9: 24 V telemetry, west on B.Cu to the J114.6 link.
+    # PC1, pin 9: 24 V telemetry, west on B.Cu and round J114.6 to the
+    # divider's via.
     polyline(board, adc24, [(70.325, 40.25), (67.6, 40.25), (67.1, 40.75)],
              width=w)
     via(board, adc24, (67.1, 40.75))
-    polyline(board, adc24, [(67.1, 40.75), (61.0, 40.75)], pcb.B_Cu, width=w)
+    polyline(board, adc24, [(67.1, 40.75), (62.1, 40.75), (62.1, 41.5),
+                            (61.0, 42.6), (61.0, 43.75)], pcb.B_Cu, width=w)
 
     # PC3, pin 11: water level, the outer lane. It runs down x = 19.4 mm
     # between the resistor and capacitor columns, west of the valve's 24 V hop.

@@ -554,12 +554,20 @@ def main():
     d.passive('R705','R','100k / 24V div B',570,684,'RAIL_24V_DIV','RAIL_24V_ADC')
     d.passive('R706','R','10k / 24V div low',640,684,'RAIL_24V_ADC',g)
     d.passive('C702','C','100nF / 24V ADC',710,684,'RAIL_24V_ADC',g)
-    d.add('J114','J6','POWER MONITOR / MEASURE ONLY',805,672,
-          [g,v,'12V_PROTECTED','24V_ACT_RAW','RAIL_12V_ADC','RAIL_24V_ADC'],
+    # J114 is a probing header (issue #4). Every rail pin sits between two
+    # grounds and reaches its rail through 10k at the header, so a probe that
+    # slips onto the next pin shorts a few mA to ground instead of joining two
+    # rails or driving an ADC pin. The ADC nodes are no longer on the header:
+    # probe them at C701 and C702. 10k in 0603 takes 24 V to ground at 58 mW.
+    d.passive('R723','R','10k / J114 3V3 probe',500,708,v,'PROBE_3V3')
+    d.passive('R724','R','10k / J114 12V probe',570,708,'12V_PROTECTED','PROBE_12V')
+    d.passive('R725','R','10k / J114 24V probe',640,708,'24V_ACT_RAW','PROBE_24V')
+    d.add('J114','J6','POWER PROBE / MEASURE ONLY',805,694,
+          [g,'PROBE_3V3',g,'PROBE_12V',g,'PROBE_24V'],
           'Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical',
           status='candidate', part_key='CONN:HDR_1X6_2.54')
     d.note('PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.',470,728,1.1)
-    d.note('J114 es de medida; no inyectar alimentación. 12V/24V comparten GND aislada de banco.',470,736,1.1)
+    d.note('J114: GND, 3V3, GND, 12V, GND, 24V, cada raíl por 10k. Solo medida; ADC en C701/C702.',470,736,1.1)
     d.note('15 / Red, fuente aislada y conectores de potencia — misma PCB',870,610,1.8)
     # Owner, 2026-09-29: JP8 and JP24 are LEOCO friction-lock headers, the
     # 3941P03*000 (3.96 mm) and the 5001P020013 (5.00 mm). JLCPCB does not

@@ -1108,3 +1108,29 @@ Resultado: ERC 0 en las dos placas; netlist 200 componentes y 652 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 87/87; CTest 3/3.
 PDF 1:1 y render regenerados. Sin hardware.
+
+## J114 a prueba de resbalones, 2026-10-07
+
+Issue #4: J114 llevaba GND, 3,3 V, 12 V, 24 V y los dos nodos ADC en pines
+contiguos y sin resistencia. Un resbalón de la punta ponía 12 V en `3V3_CORE`
+(2↔3), 24 V en `12V_PROTECTED` contra el SMAJ15A (3↔4) o 24 V en PF1 (4↔5).
+
+- **Nuevo orden**: GND, sonda de 3,3 V, GND, sonda de 12 V, GND y sonda de
+  24 V, con la serigrafía «G 3V3 G 12 G 24». Cada raíl llega por 10 kΩ en 0603
+  (R723, R724 y R725, catálogo `R:10k`): un resbalón a masa son 2,4 mA y 58 mW
+  a 24 V. Los nodos ADC se miden en C701 y C702.
+- **PCB**: misma huella y posición. El 12 V se une en una vía sobre la cabecera
+  y baja entre J114.3 y J114.4 a R701 y R724; PF1 baja entre J114.4 y J114.5;
+  PC1 rodea J114.6 por B.Cu; la rama de 24 V termina en R725. De paso, J114 deja
+  de solapar a C603 en el esquema.
+- **Regla `probe-header`** en el modelo de placa (`probe_headers` del contrato:
+  J114, 1 kΩ mínimo): falla si dos pines contiguos llevan tensiones distintas o
+  si un pin de raíl llega a algo sin una resistencia serie suficiente. Sobre el
+  diseño anterior señala los cuatro pares contiguos y los seis pines directos.
+  Tres pruebas de mutación. La telemetría del contrato pasa a seguirse desde
+  R701.1 y R704.1 en lugar de J114.5/J114.6.
+
+Resultado: ERC 0 en las dos placas; netlist 203 componentes y 658 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 90/90; CTest 3/3.
+PDF 1:1 y render regenerados. Sin hardware.

@@ -290,6 +290,10 @@ PLACE = {
     # its two VBUS columns can pass north of it.
     'J110': (36, 5.0, 0), 'J111': (21, 27, 0),
     'J112': (108, 6, 0), 'J114': (48, 40, 90),
+    # J114's probe resistors (issue #4), each straight under the pin it
+    # feeds: 3.3 V under J114.2, 12 V under J114.4 and 24 V east of J114.6
+    # at the end of the 24 V branch.
+    'R723': (50.54, 43.4, 90), 'R724': (55.5, 42.75, 0), 'R725': (62.6, 43.5, 90),
 
     # Mains domain: below/right of MAINS_BARRIER. PS701 stands on the right
     # edge with its AC pins beside J118 and its 24 V pins in SELV. Fuses and
@@ -426,9 +430,9 @@ PLACE = {
     'C601': (42.5, 53.05, 0), 'C602': (42.5, 61.025, 0),
 
     # 12/24 V diagnostic dividers in the pocket under the measurement header
-    # J114, which gives them both inputs and takes both outputs. The 12 V
-    # chain hangs under J114.3; the 24 V one sits on the 24 V branch at
-    # x = 62.5 mm with its filtered node under J114.6.
+    # J114. The 12 V chain hangs under J114.3, fed from the rail's drop
+    # between J114.3 and J114.4; the 24 V one sits on the 24 V branch at
+    # x = 62.5 mm. Since issue #4 neither node is on the header.
     'R701': (53.08, 43.4, 270), 'R702': (53.08, 46.4, 270),
     'R703': (55.4, 47.0, 0), 'C701': (55.4, 48.9, 0),
     'R704': (61.0, 48.4, 90), 'R705': (61.0, 45.4, 90),

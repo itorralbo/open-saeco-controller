@@ -240,8 +240,14 @@ def main():
                       ('R705','RAIL_24V_DIV','RAIL_24V_ADC'),
                       ('R706','RAIL_24V_ADC',g),('C702','RAIL_24V_ADC',g)]:
         assert nets[ref] == {'1':a,'2':b}
-    assert nets['J114'] == {'1':g,'2':v,'3':'12V_PROTECTED','4':'24V_ACT_RAW',
-                            '5':'RAIL_12V_ADC','6':'RAIL_24V_ADC'}
+    # J114 (issue #4): every rail pin between two grounds and behind 10k, so
+    # a slipped probe never joins two rails; the ADC nodes are off the header.
+    assert nets['J114'] == {'1':g,'2':'PROBE_3V3','3':g,'4':'PROBE_12V',
+                            '5':g,'6':'PROBE_24V'}
+    for ref, a, b in [('R723',v,'PROBE_3V3'),('R724','12V_PROTECTED','PROBE_12V'),
+                      ('R725','24V_ACT_RAW','PROBE_24V')]:
+        assert nets[ref] == {'1':a,'2':b}
+        assert fields[ref]['lcsc'] == 'C25804'
     for ref, footprint, lcsc in [
             ('J110','OpenSaeco:USB_C_Receptacle_HRO_TYPE-C-31-D-06_Vertical','C2689964'),
             ('U203','Package_TO_SOT_SMD:SOT-23-6','C7519'),

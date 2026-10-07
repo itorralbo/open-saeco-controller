@@ -104,6 +104,7 @@ Salidas (generadas, no editar):
 | `slow-edge` | Entrada lógica sin histéresis en una red RC más lenta que su Δt/Δv máximo |
 | `back-feed` | Entrada de alimentación externa que llega al nodo de conmutación de un buck por bobinas o fusibles, sin cruzar otro rail |
 | `reverse-polarity` | Entrada de banco cableada a mano (`external_supplies.unkeyed`) que, con el cable invertido, llega por fusibles o bobinas a algo distinto de un diodo serie, un TVS a masa, resistencias, condensadores no polarizados, una bobina de relé o conectores |
+| `probe-header` | Cabecera de medida (`probe_headers`) con dos tensiones distintas en pines contiguos o un pin de raíl sin resistencia serie de al menos `min_ohms` |
 | `tvs` | TVS que conduciría con el rail en su máximo (VWM) o que no empieza a conducir (VBR máx.) antes del máximo absoluto de lo que protege |
 | `resistor-power` | Resistencia que disipa más de su potencia nominal (catálogo o tamaño de huella) en el peor estado; aviso por encima del 60 % |
 | `wdi-reset` | Supervisor que enclava RESET ante un pulso en WDI (TPS382x sin A) cuyo WDI cambia, con RESET activo, según PB4 esté en alto, en bajo o liberado |

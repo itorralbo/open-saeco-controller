@@ -46,8 +46,8 @@ Qué comprueba cada regla: [README del simulador](README.md).
 | stm32 | MAINS_ARM | `MAINS_ARM_RAW` | 60 | PB7 |  | low | U603 → R801 → Q701 → K701 |
 | stm32 | NTC | `NTC_ADC` | 17 | PA3 | ADC1_IN4 |  | R402 |
 | stm32 | PUMP_EN | `PUMP_EN_RAW` | 33 | PB11 |  | low | U604 → R714 → Q706 → U702 → Q704 |
-| stm32 | RAIL_12V | `RAIL_12V_ADC` | 6 | PF1 | ADC2_IN10 |  |  |
-| stm32 | RAIL_24V | `RAIL_24V_ADC` | 9 | PC1 | ADC1_IN7 |  |  |
+| stm32 | RAIL_12V | `RAIL_12V_ADC` | 6 | PF1 | ADC2_IN10 |  | R702 → R701 |
+| stm32 | RAIL_24V | `RAIL_24V_ADC` | 9 | PC1 | ADC1_IN7 |  | R705 → R704 |
 | stm32 | UART_RX | `ESP_TO_STM` | 44 | PA10 | USART1_RX AF7 |  | R212 |
 | stm32 | UART_TX | `STM_TX_RAW` | 43 | PA9 | USART1_TX AF7 |  | R211 |
 | stm32 | UI_PWR_EN | `UI_PWR_EN` | 34 | PB12 |  | high | U302 |
