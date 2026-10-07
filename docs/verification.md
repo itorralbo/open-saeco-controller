@@ -1134,3 +1134,34 @@ Resultado: ERC 0 en las dos placas; netlist 203 componentes y 658 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; modelo de placa 0 errores y 0 avisos; `tests/sim` 90/90; CTest 3/3.
 PDF 1:1 y render regenerados. Sin hardware.
+
+## Condensadores de entrada de los bucks, 2026-10-07
+
+Issue #3: el bulk de entrada de U301, C301, estaba a unos 30 mm de pista de VIN,
+y U303 tenía un solo condensador, C310, a 8,3 mm, con la masa por dos vías y el
+plano. Diodes (DS41326) pide los condensadores de VIN tan cerca del integrado
+como sea posible.
+
+- **U301**: **C315** nuevo, 10 µF/50 V X7R 1206 (`C:10uF_50V_1206`, el mismo
+  que C310), justo detrás de C302, a unos 5 mm de pista de VIN, con la vía de
+  masa al este de su pad. C301 sigue como bulk del raíl junto a D301/D307.
+- **U303**: **C316** nuevo, 100 nF/50 V, entre los pines 3 y 4 a 1,7 mm, y C310
+  bajo él a unos 4 mm. La troncal entra primero en C310, después en C316 y
+  luego en los pines. Las masas vuelven al pin 4 por F.Cu, con una sola vía al
+  plano pasado C310.
+- **`tools/check_controller_pcb.py`**: comprobación geométrica nueva que se
+  ejecuta con el Python de KiCad. Para U301 y U303 exige un condensador de bulk
+  (≥ 4,7 µF) a menos de 5 mm de VIN y de GND, y uno de alta frecuencia
+  (≤ 1 µF) a menos de 3 mm, medidos en línea recta de pin a pad. Con
+  `--self-test` mueve C315, C316 y C310 en memoria y comprueba que cada caso
+  falla. Sobre la placa anterior señalaba C301 a 16,5 mm de U301 y U303 sin
+  condensador de alta frecuencia.
+- **Pendiente**: la capacidad efectiva a 12 V y 24 V no se ha leído en la curva
+  de polarización de Samsung, y el rizado de VIN en los pines durante el
+  arranque y los escalones de carga está sin medir. Un DRC limpio no valida
+  estabilidad ni EMI.
+
+Resultado: ERC 0 en las dos placas; netlist 205 componentes y 662 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 90/90; CTest 3/3. Sin hardware.

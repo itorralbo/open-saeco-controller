@@ -349,11 +349,11 @@ def route_24v_output(board):
     via(board, act, (115.6, 23.50), 1.0, 0.5)
     track(board, act, (115.6, 23.50), (115.6, 9.00), layer=pcb.B_Cu, width=ACT_LANE_WIDTH)
     via(board, act, (115.6, 9.00), 1.0, 0.5)
-    polyline(board, act, [(115.6, 9.00), (116.025, 8.575), (116.025, 5.00)],
+    # Into C310 first, then C316 and the input pins (issue #3).
+    polyline(board, act, [(115.6, 9.00), (116.05, 9.45), (121.025, 9.45)],
              width=ACT_LANE_WIDTH)
-    polyline(board, act, [(116.025, 7.30), (120.20, 7.30), (121.362, 6.14)],
-             width=ACT_LANE_WIDTH)
-    track(board, act, (121.362, 6.14), (121.362, 5.00), width=0.5)
+    polyline(board, act, [(121.025, 9.45), (121.025, 8.55), (121.725, 7.85),
+                          (121.725, 6.80), (121.362, 6.44), (121.362, 5.00)], width=0.5)
 
     polyline(board, act, [(107.85, 45.20), (107.85, 46.60), (103.40, 46.60),
                           (101.80, 48.20), (101.80, 55.10), (46.40, 55.10),
@@ -719,9 +719,13 @@ def route_12v_buck(board):
                           (134.725, 3.3)], width=PIN_WIDTH)
     track(board, out, (116.175, 1.2), (116.175, 2.2), width=PIN_WIDTH)
 
-    for start, point in (((118.975, 5.0), (118.975, 6.35)),
-                         ((123.638, 5.95), (123.638, 8.0)),
-                         ((139.0, 2.525), (136.8, 2.525)),
+    # Input loop: pin 4 to C316's and C310's ground pads on F.Cu, then one
+    # via past C310 to the plane.
+    polyline(board, gnd, [(123.638, 5.95), (123.638, 7.5), (123.975, 7.84),
+                          (123.975, 9.45), (125.1, 9.45)], width=0.5)
+    via(board, gnd, (125.1, 9.45))
+
+    for start, point in (((139.0, 2.525), (136.8, 2.525)),
                          ((139.0, 9.025), (136.8, 9.025)),
                          ((107.175, 2.2), (105.8, 2.2))):
         track(board, gnd, start, point, width=PIN_WIDTH)
@@ -758,6 +762,8 @@ def route_3v3_buck(board):
     track(board, v12, (109.05, 29.0), (109.05, 27.7), width=0.5)
     # Input HF capacitor: straight down from the second input pin.
     polyline(board, v12, [(95.4, 36.95), (95.7, 37.25), (95.7, 38.7), (96.3, 38.7)], width=0.5)
+    # And on to C315, the VIN capacitor right behind it (issue #3).
+    track(board, v12, (95.7, 38.7), (95.7, 41.3), width=0.5)
 
     # Switch and bootstrap nodes stay short and away from the sense line.
     polyline(board, '/SW_NODE', [(98.798, 36.0), (99.6, 36.0), (100.6, 37.0), (101.0, 37.0)],
@@ -780,8 +786,9 @@ def route_3v3_buck(board):
     # The switcher's ground pin reaches the plane through the input capacitor's
     # own pad, so the input loop closes in copper before it reaches a via.
     track(board, gnd, (98.138, 36.95), (98.138, 38.7), width=0.5)
-    polyline(board, gnd, [(98.0, 39.0), (98.6, 39.0), (99.2, 39.6)], width=0.5)
-    via(board, gnd, (99.2, 39.6))
+    polyline(board, gnd, [(98.0, 39.0), (98.475, 39.475), (98.475, 41.3),
+                          (99.7, 41.3)], width=0.5)
+    via(board, gnd, (99.7, 41.3))
 
     for start, point in (((110.95, 36.0), (110.95, 33.8)),
                          ((110.95, 41.0), (110.95, 38.5)),

@@ -38,6 +38,7 @@ D307,SS34 / bench OR,Diode_SMD:D_SMA,candidate,YONGYUTAI,SS34,C2909963,Extended,
 D302,SMAJ15A,Diode_SMD:D_SMA,candidate,Littelfuse,SMAJ15A,C148216,Extended,TBD
 C301,10uF / 25V input,Capacitor_SMD:C_0805_2012Metric,candidate,Samsung Electro-Mechanics,CL21A106KAYNNNE,C15850,Basic,Economic and Standard
 C302,100nF / input HF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
+C315,10uF / 50V U301 VIN,Capacitor_SMD:C_1206_3216Metric,candidate,Samsung Electro-Mechanics,CL31B106KBHNNNE,C89632,Extended,Economic and Standard
 U301,AP63203WU-7,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63203WU-7,C780769,Extended,Economic and Standard
 C303,100nF / bootstrap,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 L301,3.9uH,Inductor_SMD:L_Bourns-SRN6028,candidate,Bourns,SRN6028C-3R9M,C19947652,Extended,Economic and Standard
@@ -158,6 +159,7 @@ J121,24V INTERNAL SELECT / OPEN FOR BENCH,Jumper:SolderJumper-2_P1.3mm_Bridged_R
 U303,AP63200WU-7 / 24V to 12V,Package_TO_SOT_SMD:TSOT-23-6,candidate,Diodes Incorporated,AP63200WU-7,C2071868,Extended,TBD
 L302,10uH / 3.5A,Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm,candidate,Bourns,SRP7028A-100M,C2687402,Extended,TBD
 C310,10uF / 50V input,Capacitor_SMD:C_1206_3216Metric,candidate,Samsung Electro-Mechanics,CL31B106KBHNNNE,C89632,Extended,Economic and Standard
+C316,100nF / U303 VIN HF,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 C311,22uF / 25V output A,Capacitor_SMD:C_1210_3225Metric,candidate,CCTC,TCC1210X7R226K250MT,C49118556,Extended,Economic and Standard
 C312,22uF / 25V output B,Capacitor_SMD:C_1210_3225Metric,candidate,CCTC,TCC1210X7R226K250MT,C49118556,Extended,Economic and Standard
 C313,100nF / BST,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard

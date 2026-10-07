@@ -710,6 +710,21 @@
       }
     },
     {
+      "reference": "C315",
+      "value": "10uF / 50V U301 VIN",
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "status": "candidate",
+      "manufacturer": "Samsung Electro-Mechanics",
+      "mpn": "CL31B106KBHNNNE",
+      "lcsc": "C89632",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "12V_PROTECTED",
+        "2": "GND_UI"
+      }
+    },
+    {
       "reference": "U301",
       "value": "AP63203WU-7",
       "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
@@ -2587,6 +2602,21 @@
       "mpn": "CL31B106KBHNNNE",
       "lcsc": "C89632",
       "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "pins": {
+        "1": "24V_ACT_RAW",
+        "2": "GND_UI"
+      }
+    },
+    {
+      "reference": "C316",
+      "value": "100nF / U303 VIN HF",
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "status": "candidate",
+      "manufacturer": "YAGEO",
+      "mpn": "CC0603KRX7R9BB104",
+      "lcsc": "C14663",
+      "jlc_class": "Basic",
       "pcba_type": "Economic and Standard",
       "pins": {
         "1": "24V_ACT_RAW",

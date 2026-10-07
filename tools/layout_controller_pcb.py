@@ -305,7 +305,10 @@ PLACE = {
     'RV701': (72, 80, 0), 'J121': (108.5, 45.2, 180),
 
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
-    'C310': (117.5, 5, 0), 'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
+    # C316 bridges VIN and GND right under the pins and C310 sits under it,
+    # its ground back to pin 4 on F.Cu (issue #3).
+    'C310': (122.5, 9.45, 0), 'C316': (122.5, 7.5, 0),
+    'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
     'L302': (132, 5, 0), 'C311': (139, 4, 90), 'C312': (139, 10.5, 90),
     # Feedback divider on the top edge, north-west of the switcher. It used to
     # sit below it at y = 10 mm, where the 24 V lane that wraps round C310 to
@@ -366,6 +369,9 @@ PLACE = {
     # C302 is the switcher's input HF capacitor, so it sits under the package
     # bridging the input pins to the ground pin instead of 8 mm away by C301.
     'C302': (97, 39, 0),
+    # C315 is U301's VIN capacitor, right behind C302 (issue #3); C301 stays
+    # as the rail's bulk by D301 and D307.
+    'C315': (97, 41.3, 0),
     'C303': (102, 33, 0), 'L301': (104, 39, 0),
     'C304': (110, 36, 0), 'C305': (110, 41, 0), 'C306': (105, 44, 0),
     # UI load switch, just below J104 so the switched 3.3 V reaches pin 1 in

@@ -663,6 +663,7 @@
    "pins": [
     "controller:C301.1",
     "controller:C302.1",
+    "controller:C315.1",
     "controller:C507.1",
     "controller:C508.1",
     "controller:D301.1",
@@ -688,6 +689,7 @@
    "volts": 24.0,
    "pins": [
     "controller:C310.1",
+    "controller:C316.1",
     "controller:D308.1",
     "controller:D701.1",
     "controller:F303.1",
@@ -1347,6 +1349,8 @@
     "controller:C310.2",
     "controller:C311.2",
     "controller:C312.2",
+    "controller:C315.2",
+    "controller:C316.2",
     "controller:C401.2",
     "controller:C402.2",
     "controller:C403.2",
@@ -3343,6 +3347,40 @@
      "symbol": "",
      "physical": "",
      "net": "controller:BUCK12_FB"
+    }
+   }
+  },
+  "controller:C315": {
+   "part": "C",
+   "value": "10uF / 50V U301 VIN",
+   "mpn": "CL31B106KBHNNNE",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:12V_PROTECTED"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C316": {
+   "part": "C",
+   "value": "100nF / U303 VIN HF",
+   "mpn": "CC0603KRX7R9BB104",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:24V_ACT_RAW"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:GND_UI"
     }
    }
   },

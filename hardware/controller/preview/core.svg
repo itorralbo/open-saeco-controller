@@ -851,6 +851,13 @@
 <text x="766.6800000000001" y="76.97" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
 <path d="M 777.24 77.47 H 782.32" stroke="#27856d" stroke-width=".22"/>
 <text x="782.72" y="76.97" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 812.8000000000001 58.42 H 814.705 M 815.975 58.42 H 817.88 M 814.705 56.92 V 59.92 M 815.975 56.92 V 59.92" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="815.34" y="51.92" font-size="1.05" text-anchor="middle" fill="#213b50">C315</text>
+<text x="815.34" y="54.42" font-size="1.05" text-anchor="middle" fill="#213b50">10uF / 50V U301 VIN</text>
+<path d="M 812.8000000000001 58.42 H 807.72" stroke="#27856d" stroke-width=".22"/>
+<text x="807.32" y="57.92" font-size="0.9" text-anchor="end" fill="#23745f">12V_PROTECTED</text>
+<path d="M 817.88 58.42 H 822.96" stroke="#27856d" stroke-width=".22"/>
+<text x="823.36" y="57.92" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <rect x="674.37" y="104.14" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="679.45" y="99.14" font-size="1.05" text-anchor="middle" fill="#213b50">U301</text>
 <text x="679.45" y="101.64" font-size="1.05" text-anchor="middle" fill="#213b50">AP63203WU-7</text>
@@ -2253,6 +2260,13 @@
 <text x="764.14" y="769.12" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
 <path d="M 774.6999999999999 769.62 H 779.78" stroke="#27856d" stroke-width=".22"/>
 <text x="780.18" y="769.12" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<path d="M 769.62 789.94 H 771.525 M 772.795 789.94 H 774.6999999999999 M 771.525 788.44 V 791.44 M 772.795 788.44 V 791.44" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="772.16" y="783.44" font-size="1.05" text-anchor="middle" fill="#213b50">C316</text>
+<text x="772.16" y="785.94" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / U303 VIN HF</text>
+<path d="M 769.62 789.94 H 764.54" stroke="#27856d" stroke-width=".22"/>
+<text x="764.14" y="789.44" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
+<path d="M 774.6999999999999 789.94 H 779.78" stroke="#27856d" stroke-width=".22"/>
+<text x="780.18" y="789.44" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <path d="M 839.47 779.78 H 841.375 M 842.645 779.78 H 844.55 M 841.375 778.28 V 781.28 M 842.645 778.28 V 781.28" stroke="#213b50" stroke-width=".25" fill="none"/>
 <text x="842.01" y="773.28" font-size="1.05" text-anchor="middle" fill="#213b50">C311</text>
 <text x="842.01" y="775.78" font-size="1.05" text-anchor="middle" fill="#213b50">22uF / 25V output A</text>

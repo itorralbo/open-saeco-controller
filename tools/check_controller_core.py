@@ -173,6 +173,9 @@ def main():
     # reversed bench lead must not reach U303's VIN/EN or D701 and Q701.
     assert nets['J112'] == {'1':'24V_BENCH_RAW','2':g}
     assert nets['F306'] == {'1':'24V_BENCH_RAW','2':'24V_BENCH_FUSED'}
+    # Buck input capacitors at the pins (issue #3).
+    assert nets['C315'] == {'1':'12V_PROTECTED','2':g}
+    assert nets['C316'] == {'1':'24V_ACT_RAW','2':g}
     assert nets['D308'] == {'2':'24V_BENCH_FUSED','1':'24V_ACT_RAW'}
     assert nets['F303'] == {'1':'24V_ACT_RAW','2':'24V_BREW_FUSED'}
     assert nets['D304'] == {'2':'24V_BREW_FUSED','1':'24V_BREW'}

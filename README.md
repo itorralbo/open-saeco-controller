@@ -51,6 +51,8 @@ Con Python 3: `python tools/check_scaffold.py`.
 Conexiones del frontal: `python tools/check_front_panel.py` (no sustituye ERC).
 Núcleo y suministro: `python tools/check_controller_core.py` (no sustituye ERC/DRC).
 ERC y netlist nativos, con KiCad 10: `python3 tools/validate_kicad.py`.
+Geometría de la PCB principal (condensadores de entrada de los bucks), con el
+Python de KiCad desde `tools/`: `check_controller_pcb.py --self-test`.
 Coherencia firmware ↔ placas: `python tools/build_board_model.py --check`
 ([simulador](sim/README.md), [informe](sim/board-report.md)).
 Con CMake >= 3.20 y compilador C:
