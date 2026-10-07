@@ -354,13 +354,23 @@ cruzarse con nada, porque la troncal se mantiene a y ≥ 5 mm en todo su rodeo a
 C310. El extremo alto del divisor vuelve al pad de la bobina por una línea de
 sensado, sin corriente, pegada al borde superior.
 
+**Entrada recolocada el 2026-10-07** (issue #3). C310 estaba al oeste del
+conmutador, a 8,3 mm de pista de VIN, y su masa volvía por dos vías y el plano.
+Ahora C316 (100 nF) puentea VIN y GND justo bajo los pines 3 y 4, a 1,7 mm, y
+C310 va debajo, a unos 4 mm. La troncal de 24 V entra primero en C310, después
+en C316 y por último en los pines. Las dos masas vuelven al pin 4 por F.Cu, y
+una sola vía al este de C310 baja al plano.
+
 ### Buck de 12 V a 3,3 V
 
 C302, el condensador de entrada de alta frecuencia, estaba a 8 mm del
 conmutador, junto al bulk C301. Se ha llevado debajo del encapsulado, puenteando
 los pines de entrada con el de masa, que es donde cierra el lazo que conmuta. La
 masa del conmutador llega al plano a través del pad de ese condensador, así que
-el lazo se cierra en cobre antes de pasar por una vía.
+el lazo se cierra en cobre antes de pasar por una vía. Desde el 2026-10-07
+(issue #3) C315, el condensador de entrada de 10 µF, va justo debajo de C302
+(unos 5 mm de pista desde VIN), con la vía de masa al este de su pad; antes el
+bulk más cercano era C301, a unos 30 mm.
 
 12V_FUSED cruza por encima de D301 y 12V_PROTECTED sale por debajo, de modo que
 sobre los pads de los diodos no pasa ninguna pista ajena. La línea de sensado de

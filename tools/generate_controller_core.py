@@ -325,6 +325,12 @@ def main():
           'Capacitor_SMD:C_0805_2012Metric',part_key='C:10uF_25V_0805')
     d.add('C302','C','100nF / input HF',775,78,['12V_PROTECTED',g],
           'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
+    # C301 is the rail's bulk next to D301/D307, about 30 mm of trace from
+    # U301. Diodes asks for the VIN capacitor as close to the part as
+    # possible, so C315 sits right behind C302 across VIN and GND (issue #3).
+    # 50 V X7R so that 12 V is only a quarter of its rating.
+    d.add('C315','C','10uF / 50V U301 VIN',815,58,['12V_PROTECTED',g],
+          'Capacitor_SMD:C_1206_3216Metric',part_key='C:10uF_50V_1206')
     d.add('U301','AP63203','AP63203WU-7',680,110,
           [v,'12V_PROTECTED','12V_PROTECTED','BST_NODE','SW_NODE',g],
           'Package_TO_SOT_SMD:TSOT-23-6')
@@ -649,6 +655,11 @@ def main():
           'Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm',part_key='L:10uH_3.5A')
     d.add('C310','C','10uF / 50V input',772,770,['24V_ACT_RAW',g],
           'Capacitor_SMD:C_1206_3216Metric',part_key='C:10uF_50V_1206')
+    # C316 bridges VIN and GND right at the pins, and C310 sits just under
+    # it with its ground returning to pin 4 on F.Cu instead of through two
+    # vias and the plane (issue #3).
+    d.add('C316','C','100nF / U303 VIN HF',772,790,['24V_ACT_RAW',g],
+          'Capacitor_SMD:C_0603_1608Metric',part_key='C:100nF')
     d.add('C311','C','22uF / 25V output A',842,780,['12V_ISO_RAW',g],
           'Capacitor_SMD:C_1210_3225Metric',part_key='C:22uF_25V_1210')
     d.add('C312','C','22uF / 25V output B',880,780,['12V_ISO_RAW',g],

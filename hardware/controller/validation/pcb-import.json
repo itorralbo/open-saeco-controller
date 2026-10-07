@@ -126,6 +126,14 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C315": {
+      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "numbered_pads": 2
+    },
+    "C316": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "C401": {
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
@@ -817,11 +825,10 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "R723",
-    "R724",
-    "R725"
+    "C315",
+    "C316"
   ],
-  "tracks": 1816,
+  "tracks": 1831,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",
