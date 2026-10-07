@@ -1449,6 +1449,20 @@
 <text x="601.58" y="543.06" font-size="0.9" text-anchor="end" fill="#23745f">WATER_RAW</text>
 <path d="M 612.14 543.56 H 617.22" stroke="#27856d" stroke-width=".22"/>
 <text x="617.62" y="543.06" font-size="0.9" text-anchor="start" fill="#23745f">WATER_LEVEL</text>
+<rect x="557.5300000000001" y="553.99" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="560.07" y="548.99" font-size="1.05" text-anchor="middle" fill="#213b50">R415</text>
+<text x="560.07" y="551.49" font-size="1.05" text-anchor="middle" fill="#213b50">100k / WATER pull-up DNP</text>
+<path d="M 557.5300000000001 554.99 H 552.45" stroke="#27856d" stroke-width=".22"/>
+<text x="552.0500000000001" y="554.49" font-size="0.9" text-anchor="end" fill="#23745f">WATER_VCC</text>
+<path d="M 562.61 554.99 H 567.69" stroke="#27856d" stroke-width=".22"/>
+<text x="568.09" y="554.49" font-size="0.9" text-anchor="start" fill="#23745f">WATER_RAW</text>
+<rect x="676.9100000000001" y="553.99" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="679.45" y="548.99" font-size="1.05" text-anchor="middle" fill="#213b50">R416</text>
+<text x="679.45" y="551.49" font-size="1.05" text-anchor="middle" fill="#213b50">100k / WATER pull-down DNP</text>
+<path d="M 676.9100000000001 554.99 H 671.83" stroke="#27856d" stroke-width=".22"/>
+<text x="671.4300000000001" y="554.49" font-size="0.9" text-anchor="end" fill="#23745f">WATER_RAW</text>
+<path d="M 681.99 554.99 H 687.07" stroke="#27856d" stroke-width=".22"/>
+<text x="687.47" y="554.49" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <path d="M 676.9100000000001 543.56 H 678.815 M 680.085 543.56 H 681.99 M 678.815 542.06 V 545.06 M 680.085 542.06 V 545.06" stroke="#213b50" stroke-width=".25" fill="none"/>
 <text x="679.45" y="537.06" font-size="1.05" text-anchor="middle" fill="#213b50">C406</text>
 <text x="679.45" y="539.56" font-size="1.05" text-anchor="middle" fill="#213b50">10nF / WATER filtro</text>

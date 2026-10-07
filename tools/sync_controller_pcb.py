@@ -39,7 +39,7 @@ NEW_POSITIONS = {
     'R405': (10, 89), 'R406': (15, 89), 'C403': (20, 89),
     'R407': (10, 96), 'R408': (15, 96), 'C404': (20, 96),
     'R409': (10, 103), 'R410': (15, 103), 'C405': (20, 103),
-    'R411': (50, 116), 'C406': (56, 116),
+    'R411': (50, 116), 'C406': (56, 116), 'R415': (50, 120), 'R416': (56, 120),
     'J105': (5, 124), 'J106': (16, 124), 'J107': (30, 124),
     'J109': (42, 124), 'J108': (107.5, 124),
     'J110': (25, 4.45), 'U203': (25, 13.5),
@@ -277,6 +277,7 @@ def main():
         # Library jumpers may be marked BOM-excluded. The schematic remains the
         # source of assembly status, so keep board/schematic attributes in parity.
         fp.SetExcludedFromBOM(False)
+        fp.SetDNP(any(p.attrib['name'] == 'dnp' for p in component.findall('property')))
         fp.SetReference(ref)
         fp.SetValue(component.findtext('value'))
         fp.SetFPIDAsString(footprint)

@@ -91,6 +91,8 @@ C409,100nF / JP22 switch input,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,C
 C410,1uF / JP22 VCC,Capacitor_SMD:C_0603_1608Metric,candidate,Samsung Electro-Mechanics,CL10A105KB8NNNC,C15849,Basic,Economic and Standard
 J109,JP22 WATER / RED-WHITE-BLACK,Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical,photo_candidate_owner_pinout,JST,B3B-PH-K-S(LF)(SN),C131339,Extended,TBD
 R411,1k / WATER serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
+R415,100k / WATER pull-up DNP,Resistor_SMD:R_0603_1608Metric,dnp_value_after_wl01,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
+R416,100k / WATER pull-down DNP,Resistor_SMD:R_0603_1608Metric,dnp_value_after_wl01,UNI-ROYAL,0603WAF1003T5E,C25803,Basic,Economic and Standard
 C406,10nF / WATER filtro,Capacitor_SMD:C_0603_1608Metric,candidate,FH,0603B103K500NT,C57112,Basic,Economic and Standard
 R412,1k / GRINDER I serie,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1001T5E,C21190,Basic,Economic and Standard
 C407,100nF / GRINDER I filtro,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
