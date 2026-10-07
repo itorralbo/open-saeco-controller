@@ -1,8 +1,12 @@
 Designator,Value,Manufacturer,MPN,Reason
+C705,"RC snubber C / Q704, DNP until PU-03",,,"DNP: huella reservada, no se monta"
+C706,"RC snubber C / Q708, DNP until GR-05",,,"DNP: huella reservada, no se monta"
 J111,USB BENCH POWER / OPEN,,,"DNP: huella reservada, no se monta"
 J115,JP8 GRINDER / 320VDC,LEOCO,3941P03*000,Sin código JLCPCB: soldar a mano o aportar
 J117,JP24 PUMP / 230VAC,LEOCO,5001P020013,Sin código JLCPCB: soldar a mano o aportar
 J121,24V INTERNAL SELECT / OPEN FOR BENCH,,,"Puente de soldadura: cobre, no es una pieza"
 R415,100k / WATER pull-up DNP,UNI-ROYAL,0603WAF1003T5E,"DNP: huella reservada, no se monta"
 R416,100k / WATER pull-down DNP,UNI-ROYAL,0603WAF1003T5E,"DNP: huella reservada, no se monta"
+R727,"RC snubber R / Q704, DNP until PU-03",,,"DNP: huella reservada, no se monta"
+R728,"RC snubber R / Q708, DNP until GR-05",,,"DNP: huella reservada, no se monta"
 RV701,275VAC MOV / energy TBD,,,Pieza sin elegir

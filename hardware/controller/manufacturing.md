@@ -109,6 +109,8 @@ del Excellon dicen qué agujero se metaliza. JLCPCB no monta:
 
 - J111 (DNP) y J121: puentes de soldadura, cobre sin pieza.
 - R415 y R416 (DNP): polarización de JP22, a la espera de WL-01 (issue #7).
+- C705, R727, C706 y R728 (DNP, cara inferior): snubbers RC de Q704 y Q708, a
+  la espera de PU-03 y GR-05.
 - J115 y J117 (LEOCO de JP8 y JP24): sin código JLCPCB, se sueldan a mano o se aportan.
 - RV701: sin pieza hasta elegir el MOV.
 

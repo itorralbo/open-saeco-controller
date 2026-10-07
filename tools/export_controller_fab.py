@@ -35,6 +35,8 @@ def not_assembled(part):
 
 def open_item(part):
     """A position that must be settled before ordering, or None."""
+    if part['status'].startswith('dnp'):
+        return None
     if not part['mpn'] and not part['footprint'].startswith('Jumper:'):
         return 'sin pieza elegida'
     if part['status'].startswith('photo_candidate'):

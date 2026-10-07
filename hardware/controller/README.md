@@ -10,8 +10,8 @@ con su fusible; y las etapas de triac de calentador, bomba y molinillo detrás d
 un relé general K701. Un TPS3828 supervisa el STM32 y las puertas AND U602–U604
 anulan todas las órdenes de carga y el armado del relé mientras hay reset.
 
-217 posiciones: 212 con MPN y código LCSC, de ellas R415 y R416 sin montar
-(DNP); J115 y J117 (LEOCO, que JLCPCB no tiene) con MPN y sin código; RV701 con valor provisional y sin pieza; J111 y
+221 posiciones: 212 con MPN y código LCSC, de ellas R415 y R416 sin montar
+(DNP); C705, R727, C706 y R728, snubbers RC de los triacs sin montar y sin pieza; J115 y J117 (LEOCO, que JLCPCB no tiene) con MPN y sin código; RV701 con valor provisional y sin pieza; J111 y
 J121, puentes de soldadura. Los tres fusibles de red son Littelfuse 215 de
 1500 A a 250 VAC (F702, de 2 A, en pinzas 01110501Z; F701, de 12 A, soldado). J105, J106 y J113 (JP13, JP5 y JP3)
 son HR A2506WV, JP8 y JP24 LEOCO 3941P03*000 y 5001P020013, JP17 y JP19 TE RAST 5

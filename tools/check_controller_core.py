@@ -161,6 +161,11 @@ def main():
     # Issue #7: JP22 bias footprints, reserved and unfitted until WL-01.
     assert nets['R415'] == {'1':'WATER_VCC','2':'WATER_RAW'}
     assert nets['R416'] == {'1':'WATER_RAW','2':g}
+    # Unfitted RC snubbers across MT1-MT2 of the pump and grinder triacs.
+    for c, r, mid, switched in (('C705', 'R727', 'PUMP_SNUBBER', 'PUMP_AC_SWITCHED'),
+                                ('C706', 'R728', 'GRINDER_SNUBBER', 'GRINDER_AC_SWITCHED')):
+        assert nets[c] == {'1':'LOAD_L_ENABLED','2':mid}
+        assert nets[r] == {'1':mid,'2':switched}
     assert nets['C406'] == {'1':'WATER_LEVEL','2':g}
     assert nets['J110'] == {
         'A1':g,'A4':'USB_VBUS','A5':'USB_CC1','A6':'USB_DP_PORT',
@@ -317,7 +322,7 @@ def main():
             'dnp_open_by_default', 'mechanical_and_pinout_tbd',
             'rating_and_holder_tbd',
             'mpn_and_energy_tbd', 'normally_closed_open_for_external_24V',
-            'owner_identified_not_stocked_by_jlcpcb',
+            'owner_identified_not_stocked_by_jlcpcb', 'dnp_after_dvdt_measurement',
         }
         for ref, p in props.items():
             code = p.get('lcsc')

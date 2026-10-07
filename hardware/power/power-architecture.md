@@ -216,7 +216,9 @@ R713 mantiene la orden a cero en el arranque.
 No se pone snubber RC. El BTA24-800BW no lo necesita y, con el diodo en serie,
 la corriente llega a cero antes de que el triac tenga que bloquear. Hay que
 medir el dV/dt en el apagado con la bomba real antes de liberar la placa. Si
-hiciera falta, el snubber va entre A1 y A2 de Q704.
+hiciera falta, el snubber va entre A1 y A2 de Q704: desde el 2026-10-07 tiene
+huella sin montar (C705 en 1812 y R727 en 2512, cara inferior), y PU-03 decide
+si se monta y con qué valores.
 
 ## Etapa del molinillo
 
@@ -330,7 +332,9 @@ Como respaldo, la prueba de dosis mira la corriente del grupo al prensar
 200 mA); sin café apenas cambia. Detecta también un conducto tapado.
 
 No hay snubber RC en Q708 por la misma razón que en la bomba: hay que medir el
-dV/dt en el apagado con el motor real (GR-05).
+dV/dt en el apagado con el motor real (GR-05). El puente detrás del triac lo
+hace más exigente que una carga inductiva simple, así que C706 y R728 tienen
+huella sin montar entre A1 y A2, como en la bomba.
 
 ## Reparto de corriente en la fase de cargas
 

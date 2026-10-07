@@ -740,7 +740,11 @@ Enclavamiento ruteado:
   2026-09-23, sigue por B.Cu junto al driver del molinillo y llega a R714 por
   el oeste.
 
-No hay snubber RC en el triac; ver la nota de la etapa.
+No hay snubber RC montado en el triac; ver la nota de la etapa. C705 y R727
+(DNP, PU-03) van en la cara inferior sobre Q704, bajo el pie del perfil, donde
+B.Cu está libre entre la puerta del calentador (x = 80,34 mm) y la fase de
+entrada (x = 96,5 mm): C705 sobre el terminal central y R727 al oeste, con su
+lado de fase entrando en Q704.1 por arriba.
 
 ### Cabecera SWD
 
@@ -831,7 +835,9 @@ Ruteado:
   sale de PC4 y llega por el bus de órdenes.
 
 Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
-triac. Tampoco hay snubber en Q708.
+triac. Tampoco hay snubber montado en Q708: C706 y R728 (DNP, GR-05) ocupan la
+esquina suroeste del bloque de B.Cu bajo el perfil (ver
+[Fase de cargas bajo el perfil](#fase-de-cargas-bajo-el-perfil)).
 
 ### Corriente del molinillo
 
@@ -891,6 +897,17 @@ Ahora:
   elemento pasa a 1,9 mm en el stub y 3 mm en la diagonal hasta JP19.
 - Las salidas de los tres triacs empiezan 0,3 mm por debajo del pad, para
   mantener 2,5 mm con la franja más ancha.
+
+Desde el 2026-10-07 el bloque tiene un recorte en su esquina suroeste (x < 70,5
+mm por debajo de y = 96 mm) para el snubber sin montar de Q708. Las franjas de
+y = 97,8, 101,55 y 105,25 mm empiezan en x = 70,5 mm, unidas por una columna de
+4 mm; una franja de 2,5 mm en y = 106 mm lleva el bloque al oeste hasta la bajada
+de Q708 y al pad de fase de C706. Se quitan las vías del carril en y = 101,9 y
+104 mm y las de la franja en x = 63 y 64,9 mm; quedan cuatro en el carril y
+cinco en la franja. El calentador baja ahora por B.Cu en x = 70,5–77,6 mm. Una
+estimación por cuadrados de cobre deja en torno a una cuarta parte de su
+corriente, unos 2 A, en el carril y la franja de F.Cu al oeste de x = 70,5 mm,
+que ya no tienen B.Cu debajo; Q708 sigue tomando la fase también de B.Cu.
 
 Estimación IPC-2221 en 1 oz, que es conservadora en tramos cortos entre cobre
 ancho: con el calentador solo (8,6 A), unos 38 K en los 4 mm de 2,6 mm que

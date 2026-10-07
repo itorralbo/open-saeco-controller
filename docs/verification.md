@@ -1313,3 +1313,27 @@ Resultado: ERC 0 en las dos placas; netlist 217 componentes y 690 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
 0 avisos; `tests/sim` 95/95. Sin hardware.
+
+## Huellas DNP para los snubbers de Q704 y Q708, 2026-10-07
+
+Los dos triacs se dejaron sin snubber RC a la espera de medir el dV/dt en el
+apagado (PU-03, GR-05). Si hiciera falta, no había sitio para añadirlo sin
+rehacer la placa. Ahora las dos posiciones tienen huella sin montar entre A1 y
+A2, en la cara inferior y bajo el pie del perfil, sin pieza elegida:
+
+- **Q704**: C705 (1812, para un condensador de 1 kV o X2) y R727 (2512), sobre
+  el triac, donde B.Cu estaba libre.
+- **Q708**: C706 y R728, en un recorte de la esquina suroeste del bloque de
+  `LOAD_L_ENABLED` en B.Cu. El calentador sigue bajando por x = 70,5–77,6 mm;
+  se estima que unos 2 A de los 8,4 A pasan ahora por F.Cu al oeste del recorte.
+  La termografía del primer ensayo con carga ya estaba prevista.
+- Las redes `PUMP_SNUBBER` y `GRINDER_SNUBBER` son de clase `Mains`, así que
+  el DRC aplica los 2,5 mm entre pistas de red y los 8 mm a SELV.
+- `layout_controller_pcb.py` admite huellas en la cara inferior.
+  `check_controller_core.py` comprueba las redes de las cuatro piezas, y el
+  exportador no las cuenta como pendientes del pedido.
+
+Resultado: ERC 0 en las dos placas; netlist 221 componentes y 698 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 95/95. Sin hardware.

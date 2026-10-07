@@ -706,6 +706,14 @@
       },
       {
         "netclass": "Mains",
+        "pattern": "/PUMP_SNUBBER"
+      },
+      {
+        "netclass": "Mains",
+        "pattern": "/GRINDER_SNUBBER"
+      },
+      {
+        "netclass": "Mains",
         "pattern": "/GRINDER_DC_PLUS"
       },
       {
