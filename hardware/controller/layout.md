@@ -629,7 +629,11 @@ junto a PS701. El pie prohíbe cobre además de huellas en F.Cu y en las capas
 internas, porque la base del perfil apoya en la placa; B.Cu queda libre. Los taladros de sujeción se añadirán con la pieza
 concreta. Con ese volumen se espera del orden de 6–8 °C/W: suficiente para el
 ciclo real del termobloque, justo para calentamiento continuo. Hay que medirlo en
-una descalcificación.
+una descalcificación. Desde el 2026-10-07 (issue #2) se toma 8 °C/W y el firmware
+limita el calentador con el aire que mide RT701. RT701, R726 y C704 están en el
+borde SELV de la barrera, en (88; 49,6–53,6), sobre la columna del disipador, y
+su nodo llega a PB14 por x = 83,7 mm (ver la [arquitectura de
+potencia](../power/power-architecture.md)).
 
 Colocados: el triac del calentador Q703 contra la cara sur del perfil, el opto
 U701 cruzando la barrera y R710, la resistencia de puerta, en el carril.

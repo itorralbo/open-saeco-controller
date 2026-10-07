@@ -377,6 +377,9 @@ PLACE = {
     'U304': (12.5, 131.0, 0), 'R306': (16.2, 132.4, 0),
     'C409': (9.6, 130.5, 270), 'C410': (14.97, 128.4, 180),
     'R413': (41.2, 120.2, 180), 'C408': (40.25, 118.2, 0),
+    # Heatsink air sensor (issue #2): RT701 on the SELV edge of the barrier,
+    # straight above the heatsink column, with its pull-up and filter.
+    'RT701': (88.0, 53.6, 180), 'R726': (88.0, 51.6, 0), 'C704': (88.0, 49.6, 180),
     # C315 is U301's VIN capacitor, right behind C302 (issue #3); C301 stays
     # as the rail's bulk by D301 and D307.
     'C315': (97, 41.3, 0),

@@ -249,6 +249,11 @@ def main():
                       ('R705','RAIL_24V_DIV','RAIL_24V_ADC'),
                       ('R706','RAIL_24V_ADC',g),('C702','RAIL_24V_ADC',g)]:
         assert nets[ref] == {'1':a,'2':b}
+    # Heatsink air sensor (issue #2): RT701 to ground, R726 pull-up, PB14.
+    assert nets['RT701'] == {'1':'HS_NTC_ADC','2':g}
+    assert nets['R726'] == {'1':v,'2':'HS_NTC_ADC'}
+    assert nets['C704'] == {'1':'HS_NTC_ADC','2':g}
+    assert fields['RT701']['lcsc'] == 'C13564'
     # J114 (issue #4): every rail pin between two grounds and behind 10k, so
     # a slipped probe never joins two rails; the ADC nodes are off the header.
     assert nets['J114'] == {'1':g,'2':'PROBE_3V3','3':g,'4':'PROBE_12V',

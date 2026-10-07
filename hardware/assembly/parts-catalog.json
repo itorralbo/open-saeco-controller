@@ -349,6 +349,21 @@
       "selection": "candidate_not_released",
       "selection_note": "U302 (front panel, RILIM 49.9k: 475-565 mA) and U304 (JP22 sensor, RILIM 210k: 110-150 mA) since 2026-10-07 (issue #8). Replaces the TPS22918DBVR on U302, which has no current limit or thermal shutdown. No output discharge: R305 (1k) bleeds 3V3_UI when off, close to the TPS22918 QOD it replaces."
     },
+    "NTC:NCP18XH103F03RB": {
+      "manufacturer": "Murata Electronics",
+      "mpn": "NCP18XH103F03RB",
+      "lcsc": "C13564",
+      "specification": "NTC thermistor 10k 1%, B25/50 3380 K (B25/85 3434 K), 0603, -40 to +125 C; RT701, air above the triac heatsink (issue #2)",
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 236092,
+      "available_order_qty_observed": 230861,
+      "stock_checked_on": "2026-10-07",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
+      "url": "https://jlcpcb.com/partdetail/C13564",
+      "selection": "candidate_not_released"
+    },
     "D:SS34": {
       "manufacturer": "YONGYUTAI",
       "mpn": "SS34",

@@ -26,6 +26,36 @@ bool osc_clear_fault(osc_controller *c, bool interlocks_ok, bool link_ok);
 #define OSC_GRINDER_MAX_ON_MS 10000u
 unsigned osc_heater_cycles_allowed(bool grinder_on);
 
+/* Heater triac derating (issue #2, hardware/power/power-architecture.md).
+ * The heatsink only reaches about 8 K/W in the volume it has, so the heater
+ * cannot conduct continuously with warm air inside the machine: at 253 V it
+ * dissipates 8.4 W in Q703 and the junction would pass 125 C above 39 C of
+ * air. A first-order model of the profile, fed by the air temperature RT701
+ * reads above it and by the power each triac dissipates, estimates the
+ * junction at full heater power; above OSC_TJ_DERATE_C the heater loses
+ * cycles of the window, down to none at OSC_TJ_CUTOFF_C. Rth and the heat
+ * capacity are ASSUMED until TH-03 measures them in a descaling run. */
+#define OSC_HS_RTH_HA_C_PER_W 8.0f    /* profile to air, catalogue class for the volume */
+#define OSC_HS_RTH_JH_C_PER_W 2.2f    /* BTA24 junction to case 1.7 + greased interface 0.5 */
+#define OSC_HS_CAPACITY_J_PER_C 30.0f /* about 33 g of aluminium */
+#define OSC_HEATER_TRIAC_W 8.4f       /* 9.2 A at 253 V */
+#define OSC_PUMP_TRIAC_W 0.3f
+#define OSC_GRINDER_TRIAC_W 2.5f
+#define OSC_TJ_DERATE_C 105.0f
+#define OSC_TJ_CUTOFF_C 120.0f
+#define OSC_HS_AIR_FALLBACK_C 70.0f   /* RT701 open or shorted: assume hot air */
+typedef struct { float heatsink_c; bool primed; } osc_heatsink;
+void osc_heatsink_init(osc_heatsink *h);
+/* air_ok false (RT701 out of its window) uses the fallback air temperature.
+ * heater_frac is the share of cycles the heater conducted over dt_s. */
+void osc_heatsink_step(osc_heatsink *h, float air_c, bool air_ok, float heater_frac,
+                       bool pump_on, bool grinder_on, float dt_s);
+/* Heater triac junction if the heater conducted every cycle from now on. */
+float osc_heater_junction_full_c(const osc_heatsink *h);
+/* Cycles of OSC_HEATER_WINDOW_CYCLES the heater may conduct; the caller
+ * takes the lower of this and osc_heater_cycles_allowed(). */
+unsigned osc_heater_cycles_thermal(const osc_heatsink *h);
+
 /* Grinder current through U704 (hardware/power/power-architecture.md): the
  * original machine reads it to tell an empty hopper (the motor runs light)
  * from jammed burrs (it stalls). Means over 100 ms blocks after the inrush.

@@ -38,3 +38,8 @@ virtual. No usar este scaffolding como supervisor de seguridad.
 `osc_heater_cycles_allowed()` fija ya la regla de reparto de la fase de cargas
 (calentador a 3 de cada 5 ciclos mientras muele el molinillo); ver
 [power-architecture.md](../../hardware/power/power-architecture.md#reparto-de-corriente-en-la-fase-de-cargas).
+`osc_heatsink_step()` y `osc_heater_cycles_thermal()` añaden la limitación
+térmica del calentador (issue #2). Con el aire de RT701 (PB14) y la potencia de
+cada triac estiman la unión de Q703 y le quitan ciclos por encima de 105 °C,
+hasta ninguno a 120 °C. El llamador toma el menor de los dos límites.
+Constantes supuestas hasta TH-03.

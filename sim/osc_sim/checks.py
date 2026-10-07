@@ -413,6 +413,10 @@ class Checker:
         rows = []
         for t in a['check_c']:
             slope = abs(volts(t + 0.5) - volts(t - 0.5))
+            if slope == 0:
+                self.add('error', 'analog', f'{r.mcu}.{r.name}: la tensión no cambia con la temperatura '
+                         f'a {t} °C: el divisor de la NTC no tiene pull-up.', r.pad)
+                return
             res = lsb / slope
             rows.append(f'{t} °C: {volts(t):.3f} V, {res:.3f} °C/LSB')
             if res > a['max_c_per_lsb']:

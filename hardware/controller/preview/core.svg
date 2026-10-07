@@ -147,7 +147,7 @@
 <path d="M 97.78999999999999 64.77 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="65.07" font-size="0.9" text-anchor="end" fill="#213b50">PB14</text>
 <text x="99.73" y="64.27" font-size="0.65" text-anchor="middle" fill="#213b50">36</text>
-<text x="102.87" y="65.07" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="103.27000000000001" y="64.27" font-size="0.9" text-anchor="start" fill="#23745f">HS_NTC_ADC</text>
 <path d="M 97.78999999999999 68.58 H 102.87" stroke="#27856d" stroke-width=".22"/>
 <text x="97.09" y="68.88" font-size="0.9" text-anchor="end" fill="#213b50">PB15</text>
 <text x="99.73" y="68.08" font-size="0.65" text-anchor="middle" fill="#213b50">37</text>
@@ -2145,6 +2145,32 @@
 <text x="798.16" y="703.08" font-size="0.65" text-anchor="middle" fill="#213b50">6</text>
 <text x="794.62" y="703.08" font-size="0.9" text-anchor="end" fill="#23745f">PROBE_24V</text>
 <text x="470" y="728" font-size="1.1" text-anchor="start" fill="#213b50">PF1=ADC2_IN10, PC1=ADC2_IN7. Divisor 200k/10k: Vin=21×ADC; RC≈0,95ms.</text>
+<rect x="637.5400000000001" y="750.34" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="640.08" y="745.34" font-size="1.05" text-anchor="middle" fill="#213b50">RT701</text>
+<text x="640.08" y="747.84" font-size="1.05" text-anchor="middle" fill="#213b50">10k B3380 / heatsink air</text>
+<path d="M 637.5400000000001 751.84 H 632.46" stroke="#27856d" stroke-width=".22"/>
+<text x="638.24" y="752.14" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
+<text x="635.6" y="751.34" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
+<text x="632.0600000000001" y="751.34" font-size="0.9" text-anchor="end" fill="#23745f">HS_NTC_ADC</text>
+<path d="M 642.62 751.84 H 647.7" stroke="#27856d" stroke-width=".22"/>
+<text x="641.9200000000001" y="752.14" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
+<text x="644.56" y="751.34" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
+<text x="648.1" y="751.34" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<rect x="497.84" y="750.84" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
+<text x="500.38" y="745.84" font-size="1.05" text-anchor="middle" fill="#213b50">R726</text>
+<text x="500.38" y="748.34" font-size="1.05" text-anchor="middle" fill="#213b50">10k / heatsink NTC pull-up</text>
+<path d="M 497.84 751.84 H 492.76" stroke="#27856d" stroke-width=".22"/>
+<text x="492.36" y="751.34" font-size="0.9" text-anchor="end" fill="#23745f">3V3_CORE</text>
+<path d="M 502.92 751.84 H 508.0" stroke="#27856d" stroke-width=".22"/>
+<text x="508.4" y="751.34" font-size="0.9" text-anchor="start" fill="#23745f">HS_NTC_ADC</text>
+<path d="M 567.69 751.84 H 569.595 M 570.865 751.84 H 572.77 M 569.595 750.34 V 753.34 M 570.865 750.34 V 753.34" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="570.23" y="745.34" font-size="1.05" text-anchor="middle" fill="#213b50">C704</text>
+<text x="570.23" y="747.84" font-size="1.05" text-anchor="middle" fill="#213b50">100nF / heatsink NTC</text>
+<path d="M 567.69 751.84 H 562.61" stroke="#27856d" stroke-width=".22"/>
+<text x="562.21" y="751.34" font-size="0.9" text-anchor="end" fill="#23745f">HS_NTC_ADC</text>
+<path d="M 572.77 751.84 H 577.85" stroke="#27856d" stroke-width=".22"/>
+<text x="578.25" y="751.34" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
+<text x="470" y="766" font-size="1.1" text-anchor="start" fill="#213b50">PB14=ADC1_IN5: aire sobre el disipador (RT701), para limitar el calentador.</text>
 <text x="470" y="736" font-size="1.1" text-anchor="start" fill="#213b50">J114: GND, 3V3, GND, 12V, GND, 24V, cada raíl por 10k. Solo medida; ADC en C701/C702.</text>
 <text x="870" y="610" font-size="1.8" text-anchor="start" fill="#213b50">15 / Red, fuente aislada y conectores de potencia — misma PCB</text>
 <rect x="1094.74" y="634.365" width="10.16" height="13.969999999999999" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>

@@ -238,6 +238,10 @@
       "footprint": "Capacitor_SMD:C_0603_1608Metric",
       "numbered_pads": 2
     },
+    "C704": {
+      "footprint": "Capacitor_SMD:C_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -762,11 +766,19 @@
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
+    "R726": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
     "R801": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
     "R802": {
+      "footprint": "Resistor_SMD:R_0603_1608Metric",
+      "numbered_pads": 2
+    },
+    "RT701": {
       "footprint": "Resistor_SMD:R_0603_1608Metric",
       "numbered_pads": 2
     },
@@ -853,16 +865,11 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "C408",
-    "C409",
-    "C410",
-    "R304",
-    "R305",
-    "R306",
-    "R413",
-    "U304"
+    "C704",
+    "R726",
+    "RT701"
   ],
-  "tracks": 1837,
+  "tracks": 1871,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

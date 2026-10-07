@@ -235,6 +235,11 @@ class Mutations(unittest.TestCase):
         b['controller'].components['U302'].fields['mpn'] = 'TPS22918DBVR'
         self.expect(b, 'offboard-supply', 'controller:J104.1 (3V3_UI)')
 
+    def test_heatsink_ntc_without_pull_up(self):
+        b = baseline()  # RT701 with nothing to bias it: the reading is flat
+        del b['controller'].components['R726']
+        self.expect(b, 'analog', 'HEATSINK_AIR')
+
     def test_tvs_breaks_down_above_what_it_protects(self):
         b = baseline()  # the SMAJ18A starts at 20-22.1 V, over U502's 20 V VDD
         b['controller'].components['D302'].fields['mpn'] = 'SMAJ18A'

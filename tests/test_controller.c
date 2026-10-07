@@ -30,6 +30,38 @@ int main(void) {
     CHECK(osc_heater_cycles_allowed(false) == OSC_HEATER_WINDOW_CYCLES);
     CHECK(osc_heater_cycles_allowed(true) == 3u);
     CHECK(osc_heater_cycles_allowed(true) < OSC_HEATER_WINDOW_CYCLES);
+
+    /* Heater triac derating (issue #2). */
+    {
+        osc_heatsink h;
+        int s;
+        unsigned n = 0;
+        osc_heatsink_init(&h);
+        CHECK(osc_heater_cycles_thermal(&h) == 0u);   /* no reading yet: no heater */
+        /* A one-minute heat-up from cold air keeps full power. */
+        for (s = 0; s < 60; ++s) osc_heatsink_step(&h, 25.0f, true, 1.0f, false, false, 1.0f);
+        CHECK(osc_heater_cycles_thermal(&h) == OSC_HEATER_WINDOW_CYCLES);
+        /* An hour of descaling with hot air and the pump on: the loop settles
+         * below the cut-off, the heater is derated but not stopped. */
+        osc_heatsink_init(&h);
+        for (s = 0; s < 3600; ++s) {
+            n = osc_heater_cycles_thermal(&h);
+            if (s == 0) n = OSC_HEATER_WINDOW_CYCLES;
+            osc_heatsink_step(&h, 60.0f, true, (float)n / OSC_HEATER_WINDOW_CYCLES, true, false, 1.0f);
+            CHECK(osc_heater_junction_full_c(&h) < OSC_TJ_CUTOFF_C + 1.0f);
+        }
+        CHECK(n > 0u && n < OSC_HEATER_WINDOW_CYCLES);
+        /* Steady state: junction at the cycles granted stays under 125 C. */
+        CHECK(h.heatsink_c + (float)n / OSC_HEATER_WINDOW_CYCLES * OSC_HEATER_TRIAC_W *
+              OSC_HS_RTH_JH_C_PER_W < 125.0f);
+        /* A dead RT701 falls back to hot air and derates at once. */
+        osc_heatsink_init(&h);
+        for (s = 0; s < 600; ++s) osc_heatsink_step(&h, 0.0f, false, 1.0f, false, false, 1.0f);
+        CHECK(osc_heater_cycles_thermal(&h) < OSC_HEATER_WINDOW_CYCLES);
+        /* At the cut-off the heater stops. */
+        h.heatsink_c = OSC_TJ_CUTOFF_C;
+        CHECK(osc_heater_cycles_thermal(&h) == 0u);
+    }
     /* Grinder current: stall, light running and a drop from the loaded current. */
     CHECK(osc_grinder_verdict(900, 0) == OSC_GRIND_OK);
     CHECK(osc_grinder_verdict(3000, 900) == OSC_GRIND_JAM);
