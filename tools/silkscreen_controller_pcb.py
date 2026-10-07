@@ -26,7 +26,7 @@ REPORT = ROOT / 'hardware/controller/validation/silkscreen.json'
 MM = pcb.FromMM
 GROUP_NAME = 'silkscreen: logo, title and connector labels'
 
-LOGO_ORIGIN = (117.0, 11.5)
+LOGO_ORIGIN = (117.0, 12.0)  # 0.5 mm lower since C310 became a 1210
 TITLE = (('OPEN SAECO CONTROLLER', 1.1, 0.16), ('HD8911 · Rev A · 2026', 1.0, 0.15))
 TITLE_TOP = 25.8
 

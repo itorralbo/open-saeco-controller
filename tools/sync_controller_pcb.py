@@ -108,6 +108,8 @@ NEW_POSITIONS = {
 # layout_controller_pcb.py then places it. Pads are re-netted below as usual.
 FOOTPRINT_REPLACEMENTS = {
     'U201': ('RF_Module:ESP32-S3-WROOM-1', 'RF_Module:ESP32-S3-WROOM-1U'),
+    # C310 to 1210: twice the 1206's capacitance at 24 V of DC bias.
+    'C310': ('Capacitor_SMD:C_1206_3216Metric', 'Capacitor_SMD:C_1210_3225Metric'),
     # The grinder fuse becomes a 1500 A Littelfuse 215 standing on end
     # (2026-10-06, issue #1): the JDT 2410 breaks only 50 A.
     # F701 goes to 12 A like the original F1, above what the 10 A clips

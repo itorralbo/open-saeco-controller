@@ -1264,3 +1264,29 @@ Resultado: ERC 0 en las dos placas; netlist 215 componentes y 686 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
 0 avisos; `tests/sim` 94/94; CTest 3/3. Sin hardware.
+
+## C310 a 1210 por la polarización DC, 2026-10-07
+
+Curvas de polarización DC del Component Library de Samsung (25 °C, 1 Vrms,
+1 kHz), leídas con el navegador el 2026-10-07:
+
+| Pieza | Uso | 0 V | 12 V | 24 V |
+|---|---|---:|---:|---:|
+| CL31B106KBHNNNE (10 µF/50 V X7R 1206) | C315; C310 hasta ahora | 10,8 µF | 5,0 µF | 2,27 µF |
+| CL21A106KAYNNNE (10 µF/25 V X5R 0805) | C301 | 10,9 µF | 2,0 µF | — |
+| CL10B104KB8NNNE (100 nF/50 V X7R 0603, equivalente de C316) | — | 102 nF | 95 nF | 76 nF |
+| CL32B106KBJNNNE (10 µF/50 V X7R 1210) | C310 desde hoy | 10,8 µF | 7,9 µF | 4,8 µF |
+
+- **C310** pasa a **CL32B106KBJNNNE** (C138687): duplica la capacidad
+  efectiva en la entrada de U303. Va en (122,5; 9,85), con el ruteo y la vía de
+  masa ajustados, y el logo de la serigrafía baja 0,5 mm para dejarle sitio.
+- **C315** se queda en 1206: a 12 V da 5,0 µF, 2,5 veces lo que daba C301.
+  Corrige lo dicho en la issue #3: trabajar al 24 % de la tensión nominal no
+  evita perder la mitad.
+- Las curvas son típicas; el rizado de VIN en los pines sigue pendiente de
+  PS-07.
+
+Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
+infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
+--self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 94/94;
+CTest 3/3. Sin hardware.

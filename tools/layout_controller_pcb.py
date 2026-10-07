@@ -307,7 +307,7 @@ PLACE = {
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
     # C316 bridges VIN and GND right under the pins and C310 sits under it,
     # its ground back to pin 4 on F.Cu (issue #3).
-    'C310': (122.5, 9.45, 0), 'C316': (122.5, 7.5, 0),
+    'C310': (122.5, 9.85, 0), 'C316': (122.5, 7.5, 0),
     'U303': (122.5, 5, 0), 'C313': (125.7, 4.5, 270),
     'L302': (132, 5, 0), 'C311': (139, 4, 90), 'C312': (139, 10.5, 90),
     # Feedback divider on the top edge, north-west of the switcher. It used to

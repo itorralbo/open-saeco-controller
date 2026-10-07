@@ -2749,12 +2749,12 @@
     },
     {
       "reference": "C310",
-      "value": "10uF / 50V input",
-      "footprint": "Capacitor_SMD:C_1206_3216Metric",
+      "value": "10uF / 50V input 1210",
+      "footprint": "Capacitor_SMD:C_1210_3225Metric",
       "status": "candidate",
       "manufacturer": "Samsung Electro-Mechanics",
-      "mpn": "CL31B106KBHNNNE",
-      "lcsc": "C89632",
+      "mpn": "CL32B106KBJNNNE",
+      "lcsc": "C138687",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
