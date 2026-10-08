@@ -3,7 +3,8 @@
 Estado: integrada en el esquema y en la PCB ruteada, sin ensayar. La placa
 sustituye a la original y contiene en la misma tarjeta la entrada de 230 V, sus
 protecciones, la fuente aislada, las salidas de red y la electrónica SELV. Falta
-el filtro EMI y RV701; los tres fusibles de red, su poder de corte y la
+RV701; el filtro EMI de la Rev A es el X2 C707 (ver
+[etapa de red](mains-stage.md#arquitectura-de-rev-a)); los tres fusibles de red, su poder de corte y la
 issue #1 están resueltos (ver
 [corriente de defecto supuesta](#corriente-de-defecto-supuesta-y-fusibles-de-red)).
 
@@ -28,7 +29,7 @@ norma aplicable al electrodoméstico real.
 
 ```mermaid
 flowchart LR
-    L[JP17 L/N] --> P[Fusible + MOV + filtro EMI]
+    L[JP17 L/N] --> P[Fusible + MOV + X2]
     PE[JP9 PE] --> PEO[JP1 / caldera y chasis]
     P --> H[Conmutación aislada calentador]
     H --> JH[JP19 / 1900 W]
@@ -524,7 +525,8 @@ ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
    JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la IRM-30-24.
-3. Cerrar RV701 y el filtro EMI.
+3. Cerrar RV701 y medir la emisión conducida (EM-01) para decidir C708 y el
+   choque de modo común de la Rev B.
 4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
 5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión
    eléctrica independiente y el plan de puesta en marcha.

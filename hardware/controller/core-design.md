@@ -187,7 +187,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Bloque | Siguiente entrega | Dependencia |
 |---|---|---|
 | Fuente aislada | Confirmar IRM-30-24 con los consumos reales (PS-01 a PS-03) | Consumos simultáneos, temperatura interior |
-| Protección de red | MOV RV701 y filtro EMI (fusibles de red cerrados en la issue #1: 1500 A, F701 de 12 A y F702 de 2 A) | Energía de sobretensión e identificación de L5/L7 de la original |
+| Protección de red | MOV RV701 (fusibles de red cerrados en la issue #1: 1500 A, F701 de 12 A y F702 de 2 A; filtro EMI de la Rev A: X2 C707 y C708 DNP en el molinillo) | Energía de sobretensión; emisión conducida del prototipo (EM-01) para C708 y el choque de la Rev B |
 | Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; J101 en OR con U303 por D307/D301 | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Comprobar enumeración y consumo de banco | Acceso mecánico y dominio aislado verificado |

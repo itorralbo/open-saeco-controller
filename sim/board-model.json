@@ -1955,6 +1955,7 @@
    "rail": true,
    "volts": null,
    "pins": [
+    "controller:C707.1",
     "controller:F701.2",
     "controller:F702.1",
     "controller:K701.3",
@@ -1981,6 +1982,7 @@
    "volts": null,
    "pins": [
     "controller:BR701.3",
+    "controller:C707.2",
     "controller:J116.3",
     "controller:J117.2",
     "controller:J118.3",
@@ -3917,6 +3919,23 @@
      "symbol": "",
      "physical": "",
      "net": "controller:GND_UI"
+    }
+   }
+  },
+  "controller:C707": {
+   "part": "C",
+   "value": "56nF X2 / mains input",
+   "mpn": "GA355XR7GB563KW06L",
+   "pins": {
+    "1": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:MAINS_L_FUSED"
+    },
+    "2": {
+     "symbol": "",
+     "physical": "",
+     "net": "controller:MAINS_N"
     }
    }
   },

@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-07T22:04:23</date>
+    <date>2026-10-08T08:30:30</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -1983,6 +1983,61 @@
       <property name="dnp"/>
       <sheetpath names="/" tstamps="/"/>
       <tstamps>f5cbc041-8153-5903-8d9b-c14db6c96c77</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C707">
+      <value>56nF X2 / mains input</value>
+      <footprint>Capacitor_SMD:C_2220_5750Metric</footprint>
+      <fields>
+        <field name="manufacturer">Murata Electronics</field>
+        <field name="mpn">GA355XR7GB563KW06L</field>
+        <field name="lcsc">C161105</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
+        <field name="Footprint">Capacitor_SMD:C_2220_5750Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="manufacturer" value="Murata Electronics"/>
+      <property name="mpn" value="GA355XR7GB563KW06L"/>
+      <property name="lcsc" value="C161105"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>e4e5c931-bf52-5744-ba77-42ab5eec3fbc</tstamps>
+      <units>
+        <unit name="A">
+          <pins>
+            <pin num="1"/>
+            <pin num="2"/>
+          </pins>
+        </unit>
+      </units>
+    </comp>
+    <comp ref="C708">
+      <value>Motor suppression C / JP8, DNP until EMI test</value>
+      <footprint>Capacitor_SMD:C_2220_5750Metric</footprint>
+      <fields>
+        <field name="Footprint">Capacitor_SMD:C_2220_5750Metric</field>
+        <field name="Datasheet"/>
+        <field name="Description"/>
+      </fields>
+      <libsource lib="OpenSaeco" part="C" description=""/>
+      <property name="Sheetname" value="controller-core-reva"/>
+      <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
+      <property name="dnp"/>
+      <sheetpath names="/" tstamps="/"/>
+      <tstamps>741af539-54c2-564c-9841-c791215269cf</tstamps>
       <units>
         <unit name="A">
           <pins>
@@ -8457,6 +8512,7 @@
     </net>
     <net code="59" name="/GRINDER_DC_MINUS" class="Mains">
       <node ref="BR701" pin="4" pinfunction="-_4" pintype="passive"/>
+      <node ref="C708" pin="2" pintype="passive"/>
       <node ref="J115" pin="3" pinfunction="3_3" pintype="passive"/>
     </net>
     <net code="60" name="/GRINDER_DC_PLUS" class="Mains">
@@ -8464,6 +8520,7 @@
       <node ref="U704" pin="1" pinfunction="IN+_1" pintype="passive"/>
     </net>
     <net code="61" name="/GRINDER_DC_SENSED" class="Mains">
+      <node ref="C708" pin="1" pintype="passive"/>
       <node ref="J115" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="U704" pin="2" pinfunction="IN-_2" pintype="passive"/>
     </net>
@@ -8493,7 +8550,7 @@
       <node ref="Q707" pin="3" pinfunction="D_3" pintype="power_out"/>
       <node ref="U703" pin="2" pinfunction="K_2" pintype="passive"/>
     </net>
-    <net code="68" name="/GRINDER_SNUBBER" class="Default">
+    <net code="68" name="/GRINDER_SNUBBER" class="Mains">
       <node ref="C706" pin="2" pintype="passive"/>
       <node ref="R728" pin="1" pintype="passive"/>
     </net>
@@ -8595,6 +8652,7 @@
       <node ref="U603" pin="1" pinfunction="1A_1" pintype="input"/>
     </net>
     <net code="90" name="/MAINS_L_FUSED" class="Mains">
+      <node ref="C707" pin="1" pintype="passive"/>
       <node ref="F701" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="F702" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="K701" pin="3" pinfunction="COM_A_3" pintype="passive"/>
@@ -8607,6 +8665,7 @@
     </net>
     <net code="92" name="/MAINS_N" class="Mains">
       <node ref="BR701" pin="3" pinfunction="AC2_3" pintype="passive"/>
+      <node ref="C707" pin="2" pintype="passive"/>
       <node ref="J116" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="J117" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J118" pin="3" pinfunction="3_3" pintype="passive"/>
@@ -8692,7 +8751,7 @@
       <node ref="Q706" pin="3" pinfunction="D_3" pintype="power_out"/>
       <node ref="U702" pin="2" pinfunction="K_2" pintype="passive"/>
     </net>
-    <net code="111" name="/PUMP_SNUBBER" class="Default">
+    <net code="111" name="/PUMP_SNUBBER" class="Mains">
       <node ref="C705" pin="2" pintype="passive"/>
       <node ref="R727" pin="1" pintype="passive"/>
     </net>

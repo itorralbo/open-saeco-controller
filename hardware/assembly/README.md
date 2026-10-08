@@ -96,9 +96,11 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
 
 ## BOM de cada placa
 
-- [Principal](../controller/bom-draft.csv): 221 posiciones. 212 tienen MPN y
+- [Principal](../controller/bom-draft.csv): 223 posiciones. 213 tienen MPN y
   código LCSC, de ellas R415 y R416 sin montar (DNP, issue #7); C705, R727,
-  C706 y R728 son snubbers RC sin montar ni pieza elegida (PU-03 y GR-05); J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
+  C706 y R728 son snubbers RC sin montar ni pieza elegida (PU-03 y GR-05), y
+  C708 un condensador de supresión del molinillo en las mismas condiciones
+  (EM-01); C707 es el X2 de entrada, Murata GA355XR7GB563KW06L (C161105); J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
   las vende; RV701 tiene valor provisional y ninguna pieza; J111 y J121 son
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:
   F701 de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el

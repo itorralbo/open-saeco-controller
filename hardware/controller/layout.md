@@ -501,6 +501,12 @@ patas. Falta comprobar con una muestra que los salientes de codificación 1C/2D
 de la 1971845-3 no chocan con la carcasa del mazo; TE fabrica la serie con otras
 codificaciones si hiciera falta.
 
+El X2 de entrada, C707 (2220), va en la cara inferior bajo F701, entre la bajada
+de la fase protegida en x = 72 mm y la del neutro hacia RV701 en x = 82 mm: un
+tramo de 1 mm desde cada una llega a su pad. Un X2 radial no cabía junto a
+RV701: su pin este quedaba a menos de 2,5 mm de la fase de entrada en
+x = 96,5 mm.
+
 ### JP3, JP5, JP13, JP8 y JP24
 
 El propietario identificó el 2026-09-29 las cabeceras que casan con los mazos
@@ -838,6 +844,10 @@ Nuevas áreas `mains device pitch` en el carril (R710, R721 y R712) y una por
 triac. Tampoco hay snubber montado en Q708: C706 y R728 (DNP, GR-05) ocupan la
 esquina suroeste del bloque de B.Cu bajo el perfil (ver
 [Fase de cargas bajo el perfil](#fase-de-cargas-bajo-el-perfil)).
+
+C708 (DNP, 2220), la supresión del motor, va en la cara inferior bajo el cuerpo
+de JP8, con un pad bajo cada uno de los pines 1 y 3 y a 1,5 mm de los pads de
+BR701.
 
 ### Corriente del molinillo
 

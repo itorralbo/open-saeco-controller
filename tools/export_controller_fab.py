@@ -72,6 +72,12 @@ def main():
     print(f'{NAME}: {files} Gerber/drill files zipped; BOM {lines} lines / '
           f'{len(assembled)} positions; CPL {len(assembled)} placements; '
           f'{len(skipped)} positions not assembled by JLCPCB.')
+    bottom = sorted(p['Ref'] for p in placements
+                    if p['Side'] == 'bottom' and p['Ref'] not in skipped)
+    if bottom:
+        # One fitted part underneath means a two-sided assembly order, unless
+        # it is soldered by hand.
+        print(f'  assembled on the bottom side: {", ".join(bottom)}')
     pending = [(p['reference'], open_item(p)) for p in parts if open_item(p)]
     for ref, why in sorted(pending, key=lambda r: ref_key(r[0])):
         print(f'  open before ordering: {ref}: {why}')

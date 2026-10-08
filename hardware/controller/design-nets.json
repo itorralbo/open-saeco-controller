@@ -2591,6 +2591,21 @@
       }
     },
     {
+      "reference": "C708",
+      "value": "Motor suppression C / JP8, DNP until EMI test",
+      "footprint": "Capacitor_SMD:C_2220_5750Metric",
+      "status": "dnp_after_emission_measurement",
+      "manufacturer": "",
+      "mpn": "",
+      "lcsc": "",
+      "jlc_class": "",
+      "pcba_type": "",
+      "pins": {
+        "1": "GRINDER_DC_SENSED",
+        "2": "GRINDER_DC_MINUS"
+      }
+    },
+    {
       "reference": "J116",
       "value": "JP19 HEATER / 1900W 27R5",
       "footprint": "OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical",
@@ -2691,6 +2706,21 @@
       "lcsc": "",
       "jlc_class": "",
       "pcba_type": "",
+      "pins": {
+        "1": "MAINS_L_FUSED",
+        "2": "MAINS_N"
+      }
+    },
+    {
+      "reference": "C707",
+      "value": "56nF X2 / mains input",
+      "footprint": "Capacitor_SMD:C_2220_5750Metric",
+      "status": "candidate",
+      "manufacturer": "Murata Electronics",
+      "mpn": "GA355XR7GB563KW06L",
+      "lcsc": "C161105",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "MAINS_L_FUSED",
         "2": "MAINS_N"

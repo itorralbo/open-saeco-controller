@@ -2202,6 +2202,13 @@
 <text x="1095.4399999999998" y="645.4599999999999" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="1092.8" y="644.66" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
 <text x="1089.26" y="644.66" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_MINUS</text>
+<path d="M 1057.91 641.35 H 1059.815 M 1061.085 641.35 H 1062.99 M 1059.815 639.85 V 642.85 M 1061.085 639.85 V 642.85" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="1060.45" y="634.85" font-size="1.05" text-anchor="middle" fill="#213b50">C708</text>
+<text x="1060.45" y="637.35" font-size="1.05" text-anchor="middle" fill="#213b50">Motor suppression C / JP8, DNP until EMI test</text>
+<path d="M 1057.91 641.35 H 1052.83" stroke="#27856d" stroke-width=".22"/>
+<text x="1052.4299999999998" y="640.85" font-size="0.9" text-anchor="end" fill="#23745f">GRINDER_DC_SENSED</text>
+<path d="M 1062.99 641.35 H 1068.07" stroke="#27856d" stroke-width=".22"/>
+<text x="1068.47" y="640.85" font-size="0.9" text-anchor="start" fill="#23745f">GRINDER_DC_MINUS</text>
 <rect x="1149.3500000000001" y="664.845" width="10.16" height="17.78" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1154.43" y="659.845" font-size="1.05" text-anchor="middle" fill="#213b50">J116</text>
 <text x="1154.43" y="662.345" font-size="1.05" text-anchor="middle" fill="#213b50">JP19 HEATER / 1900W 27R5</text>
@@ -2283,6 +2290,13 @@
 <text x="836.23" y="665.78" font-size="0.9" text-anchor="end" fill="#213b50">2</text>
 <text x="838.87" y="664.98" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
 <text x="842.41" y="664.98" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_N</text>
+<path d="M 872.49 665.48 H 874.395 M 875.665 665.48 H 877.5699999999999 M 874.395 663.98 V 666.98 M 875.665 663.98 V 666.98" stroke="#213b50" stroke-width=".25" fill="none"/>
+<text x="875.03" y="658.98" font-size="1.05" text-anchor="middle" fill="#213b50">C707</text>
+<text x="875.03" y="661.48" font-size="1.05" text-anchor="middle" fill="#213b50">56nF X2 / mains input</text>
+<path d="M 872.49 665.48 H 867.41" stroke="#27856d" stroke-width=".22"/>
+<text x="867.01" y="664.98" font-size="0.9" text-anchor="end" fill="#23745f">MAINS_L_FUSED</text>
+<path d="M 877.5699999999999 665.48 H 882.65" stroke="#27856d" stroke-width=".22"/>
+<text x="883.05" y="664.98" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_N</text>
 <rect x="831.85" y="688.11" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="834.39" y="683.11" font-size="1.05" text-anchor="middle" fill="#213b50">F702</text>
 <text x="834.39" y="685.61" font-size="1.05" text-anchor="middle" fill="#213b50">T2AH / PSU</text>
@@ -2999,5 +3013,5 @@
 <text x="1151.49" y="833.89" font-size="0.9" text-anchor="end" fill="#23745f">PROTECTIVE_EARTH</text>
 <text x="650" y="806" font-size="1.0" text-anchor="start" fill="#213b50">PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.</text>
 <text x="870" y="817" font-size="1.0" text-anchor="start" fill="#213b50">JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.</text>
-<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: filtro EMI, RV701 y medidas del molino.</text>
+<text x="12" y="804" font-size="1.5" text-anchor="start" fill="#213b50">Siguiente: RV701, medidas del molino y emisión conducida (choque de modo común en Rev B si hace falta).</text>
 <text x="12" y="812" font-size="1.5" text-anchor="start" fill="#213b50">Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.</text></g></svg>

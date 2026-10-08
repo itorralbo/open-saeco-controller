@@ -17,7 +17,8 @@
   velocidad, framing, temporización y ensayos siguen pendientes.
 - La principal recibe 230 V en JP17 e integra fusibles, varistor, la fuente
   aislada IRM-30-24, el relé general y todas las etapas de potencia, igual que la
-  placa original; el filtro EMI está pendiente. J101 (12 V) y J112 (24 V) son
+  placa original; el filtro EMI de la Rev A es un X2 en la entrada, y el choque
+  de modo común espera a medir la emisión conducida. J101 (12 V) y J112 (24 V) son
   entradas auxiliares de banco; J121 separa la fuente interna de J112.
 - Las referencias confirman dos cargas a 24 V DC (grupo y válvula), dos a 230 V AC
   (calentador y bomba) y el molino a 320 V DC según el modo de servicio. El grupo

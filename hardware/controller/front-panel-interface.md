@@ -118,7 +118,7 @@ enlace con el STM32.
 | ESP32 y frontal | Módulo, alimentación con corte, J104/J1 WR-MM y contrato eléctrico, ruteados | Longitud de arnés, EMC y MPN del display |
 | STM32G431RBT6 | Todas las E/S asignadas y ruteadas | BSP y ensayo |
 | Sensores | Acondicionamiento con diagnóstico de abierto/corto | Salida de JP22, NO/NC de JP16 y conectores de JP14/JP16/JP22 |
-| Potencia | Etapas de 24 V y de red con corte general e interlock | Medidas de las cargas, fusibles, MOV, filtro EMI y ensayos |
+| Potencia | Etapas de 24 V y de red con corte general e interlock | Medidas de las cargas, MOV, emisión conducida y ensayos |
 | PCB principal | Colocación y ruteo completos, DRC limpio | Comprobación 1:1 y revisión de aislamiento |
 
 No derivar fuentes de motor ni referencias de driver de cifras no verificadas

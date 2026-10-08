@@ -10,8 +10,8 @@
 | A5 | Rev A funcional | Ciclo USB/web sin electrónica original y fallos validados |
 
 Prioridades: comprobar la principal en papel 1:1 contra la placa y los mazos,
-identificar JP14, JP16 y JP22, cerrar fusibles, MOV y filtro EMI, medir las
-cargas (ver el plan de caracterización), revisión de aislamiento, BSP, protocolo
+identificar JP14, JP16 y JP22, cerrar el MOV, medir las
+cargas y la emisión conducida (ver el plan de caracterización), revisión de aislamiento, BSP, protocolo
 y límites de receta.
 El frontal nuevo copia la mecánica de botones y usa una pantalla reemplazable:
 [PCB ruteada y paquete JLCPCB candidato](../hardware/front-panel/README.md), con

@@ -111,6 +111,11 @@ del Excellon dicen qué agujero se metaliza. JLCPCB no monta:
 - R415 y R416 (DNP): polarización de JP22, a la espera de WL-01 (issue #7).
 - C705, R727, C706 y R728 (DNP, cara inferior): snubbers RC de Q704 y Q708, a
   la espera de PU-03 y GR-05.
+- C708 (DNP, cara inferior): supresión del molinillo, a la espera de EM-01.
+
+C707, el X2 de entrada, es la única pieza montada en la cara inferior. Con él en
+el CPL el pedido es de montaje a doble cara; si sale más barato, se quita del
+CPL y se suelda a mano (2220).
 - J115 y J117 (LEOCO de JP8 y JP24): sin código JLCPCB, se sueldan a mano o se aportan.
 - RV701: sin pieza hasta elegir el MOV.
 
