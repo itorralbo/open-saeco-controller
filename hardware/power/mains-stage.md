@@ -57,7 +57,8 @@ descarga donde haya capacidad de bus suficiente para retener tensión peligrosa.
 | Función | Candidato | Código | Motivo y estado |
 |---|---|---|---|
 | Fuente 24 V | Mean Well IRM-30-24 | C6280124 | 85–264 VAC, 24 V/1,3 A, 31 W, encapsulada y aislada; montaje por ola disponible |
-| Corte general | Omron G5RL-1A-E-TV8 DC24 | C2896748 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola |
+| Corte general | Omron G5RL-1A-E-HR DC24 | C397236 | contacto NO, 16 A a 250 VAC, bobina 24 V; montaje por ola. Sustituye el 2026-10-08 al -E-TV8, sin stock: misma huella y bobina, los dos son los modelos de alta corriente de arranque de Omron |
+| Varistor de entrada | TDK B72214S0271K101 (S14K275) | C7502584 | 275 VAC, 4,5 kA (8/20), 71 J; el contorno S14 es la huella de RV701 |
 | Triac calentador | ST BTA24-800BWRG | C15293 | 25 A RMS, 800 V, TO-220AB aislado; requiere disipador calculado |
 | Optotriac calentador, bomba y molinillo | Lite-On MOC3083 | C10797 | cruce por cero, 800 V, DIP de 7,62 mm sobre ranura; conmutación completa y salto de semiciclos |
 | Fusible molino | Littelfuse 0215004.MXEP | C178840 | T4A, 250 VAC, 5 × 20 mm cerámico axial de 1500 A de poder de corte, de pie junto a Q708; entre Q708 y el puente. Fusible propio por decisión del propietario del 2026-09-23; T4A desde que la etapa se dimensiona a 3 A; sustituye el 2026-10-06 al JDT JFC2410-1400TS (50 A, issue #1) |
@@ -107,8 +108,12 @@ un opto de 600 o 400 V.
 - F702 protege solo la rama de la fuente: Littelfuse 0215002.MXP (T2AH), de
   2 A como el F2 original. Deja la irrupción estimada del IRM-30 en el 3–4 % de
   su I²t de fusión (ver [F702](power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red)).
-- RV701 es un MOV de 275 VAC en disco de 15,5 mm, coordinado con F701; falta
-  seleccionar MPN y energía.
+- RV701 es un TDK S14K275 (B72214S0271K101) desde el 2026-10-08: 275 VAC,
+  4,5 kA en 8/20 µs y 71 J, con homologación UL, CSA y VDE; su contorno es la
+  huella S14. Detrás de F701 (12 A, 1500 A de poder de corte): si el varistor
+  falla en corto, F701 lo despeja. Un impulso IEC 61000-4-5 de 1 kV entre fases
+  (fuente de 2 Ω) le hace pasar unos 150 A con el recorte en torno a 700 V:
+  unos pocos julios frente a sus 71 J.
 - Filtro EMI de la Rev A: C707, Murata GA355XR7GB563KW06L (56 nF, X2 de
   250 VAC, 2220), en la cara inferior bajo F701, con un pad sobre la fase
   protegida y el otro sobre el neutro. Es el mayor X2 SMD de JLCPCB; un X2

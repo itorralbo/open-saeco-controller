@@ -7,12 +7,29 @@ following the JLCPCB help pages for KiCad. Plain Python; needs kicad-cli
 orientation and polarity in the JLCPCB preview.
 """
 import csv
+import json
 import subprocess
 import tempfile
 import zipfile
 from pathlib import Path
 
-from validate_kicad import cli_path
+from validate_kicad import ROOT, cli_path
+
+STOCK = {p['lcsc']: p for p in json.loads(
+    (ROOT/'hardware/assembly/parts-catalog.json').read_text())['parts'].values()
+    if p.get('lcsc')}
+
+
+def out_of_stock(part):
+    """Why JLCPCB cannot place `part` for lack of stock, or None.
+
+    Reads the stock seen at the last tools/refresh_jlc_stock.py run.
+    """
+    seen = STOCK.get(part['lcsc'])
+    if seen and not seen['stock_observed']:
+        return (f"Sin stock en JLCPCB el {seen['stock_checked_on']}: "
+                'comprar aparte y soldar a mano o aportar')
+    return None
 
 
 def run(*args):
@@ -72,6 +89,16 @@ def write_bom(path, parts):
         for (comment, footprint, lcsc), refs in sorted(groups.items(), key=lambda g: g[1][0]):
             w.writerow([comment, ','.join(sorted(refs, key=ref_key)), footprint, lcsc])
     return len(groups)
+
+
+def write_not_assembled(path, parts, reasons):
+    with path.open('w', newline='', encoding='utf-8') as f:
+        w = csv.writer(f, lineterminator='\n')
+        w.writerow(['Designator', 'Value', 'Manufacturer', 'MPN', 'Reason'])
+        for p in sorted((p for p in parts if p['reference'] in reasons),
+                        key=lambda p: ref_key(p['reference'])):
+            w.writerow([p['reference'], p['value'], p['manufacturer'], p['mpn'],
+                        reasons[p['reference']]])
 
 
 def write_cpl(path, placements):

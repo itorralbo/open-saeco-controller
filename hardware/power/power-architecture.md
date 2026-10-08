@@ -62,7 +62,7 @@ J101 y J112 se conservan como entradas de banco. J121, un puente de soldadura
 que se fabrica cerrado, une la salida de PS701 al rail de 24 V y se abre antes de
 alimentar por J112. J101 entra a `12V_PROTECTED` por su propio fusible (F305) y
 Schottky (D307), en OR con la salida de U303 por F301/D301. Antes compartía nodo
-con la salida de U303: alimentado sin 24 V, el nodo SW del AP63200 quedaba por
+con la salida de U303: alimentado sin 24 V, el nodo SW del buck quedaba por
 encima de su VIN, fuera de su máximo absoluto, y su diodo interno devolvía
 tensión a `24V_ACT_RAW`. Lo detecta la regla `back-feed` del simulador.
 
@@ -504,7 +504,7 @@ quedan en el plan de caracterización como confirmaciones opcionales.
 
 El calentador tiene dos medios de corte en serie que no dependen de un único
 semiconductor ni de un único GPIO: el relé general normalmente abierto Omron
-`G5RL-1A-E-TV8 DC24` de 16 A, delante de las tres ramas de carga, y su propio
+`G5RL-1A-E-HR DC24` de 16 A, delante de las tres ramas de carga, y su propio
 triac. Los dos termostatos externos de 190 °C siguen en la cadena del
 calentador. Bomba y molino arrancan desactivados y sus órdenes cruzan la barrera
 por optotriacs. Con el MCU en reset, U603 y U604 retiran tanto la bobina del
@@ -525,7 +525,7 @@ ellas, las reglas de aislamiento en KiCad y el ruteo. Queda:
    JP19 (TE RAST 5), JP8 y JP24 (LEOCO) y la orientación de sus carcasas.
 2. Medir corriente de arranque, marcha, bloqueo y simultaneidad para confirmar o
    sustituir la IRM-30-24.
-3. Cerrar RV701 y medir la emisión conducida (EM-01) para decidir C708 y el
+3. Medir la emisión conducida (EM-01) para decidir C708 y el
    choque de modo común de la Rev B.
 4. Revisar corriente, calentamiento, separación, acceso USB y fallos simples.
 5. Generar un primer lote sin autorizar conexión a red hasta superar la revisión

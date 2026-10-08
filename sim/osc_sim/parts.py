@@ -47,7 +47,7 @@ FAULT_PATHS = {'FUSE': (('1', '2'),),
 
 # Switching regulators and the pin that switches; an external supply must not
 # reach it through series parts (back-feed through the high-side body diode).
-SWITCH_NODES = {'AP63200': 'SW', 'AP63203': 'SW'}
+SWITCH_NODES = {'AP63301': 'SW', 'AP63203': 'SW'}
 
 # Load switches name their pins after the datasheet: (input, enable, output).
 LOAD_SWITCH_PINS = (('VIN', 'ON', 'VOUT'), ('IN', 'EN', 'OUT'))

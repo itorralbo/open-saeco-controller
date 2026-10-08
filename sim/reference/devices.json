@@ -145,9 +145,9 @@
       "igt": 0.05,
       "vgt": 1.3
     },
-    "G5RL-1A-E-TV8 DC24": {
+    "G5RL-1A-E-HR DC24": {
       "kind": "relay",
-      "source": "Omron G5RL datasheet, high-inrush TV8 coil ratings: 24 VDC, 16.7 mA, 1440 Ohm +/-10 %, must operate 70 % max, must release 10 % min, 130 % max.",
+      "source": "Omron G5RL datasheet, high-inrush models G5RL-1(A)-E-HR and G5RL-1A(-E)-TV8, one coil table: 24 VDC, 16.7 mA, 1440 Ohm +/-10 %, must operate 70 % max, must release 10 % min, 130 % max.",
       "v_rated": 24.0,
       "coil_ohms": 1440,
       "coil_tol": 0.1,
@@ -163,9 +163,9 @@
         "EN": 35.0
       }
     },
-    "AP63200WU-7": {
+    "AP63301WU-7": {
       "kind": "regulator",
-      "source": "Diodes AP63200/1/3/5 datasheet, absolute maximum ratings: VIN and EN -0.3 to +35 V DC, VSW -1 V to VIN + 0.3 V.",
+      "source": "Diodes AP63300/AP63301 datasheet, absolute maximum ratings: VIN and EN -0.3 to +35 V DC (VIN +40 V for 400 ms), VSW -0.3 V to VIN + 0.3 V DC.",
       "abs_max": {
         "VIN": 35.0,
         "EN": 35.0

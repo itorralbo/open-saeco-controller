@@ -93,7 +93,7 @@ fábrica, une a `24V_ACT_RAW`: de ahí salen el motor del grupo, la válvula, la
 bobina de K701 y U303, que baja a 12 V sobre `12V_ISO_RAW`.
 En banco, J112 inyecta 24 V limitados con J121 abierto, y J101 12 V para la
 lógica sola. Hasta el 2026-10-05 J101 compartía nodo con la salida de U303: sin
-24 V, el nodo SW del AP63200 quedaba por encima de su VIN (máximo absoluto
+24 V, el nodo SW del buck quedaba por encima de su VIN (máximo absoluto
 VIN + 0,3 V) y su diodo interno devolvía tensión a `24V_ACT_RAW`. Ahora J101 y
 U303 se unen en OR por D307 y D301, y con 24 V presentes manda la tensión más
 alta sin que ninguna fuente alimente a la otra.
@@ -188,7 +188,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 |---|---|---|
 | Fuente aislada | Confirmar IRM-30-24 con los consumos reales (PS-01 a PS-03) | Consumos simultáneos, temperatura interior |
 | Protección de red | MOV RV701 (fusibles de red cerrados en la issue #1: 1500 A, F701 de 12 A y F702 de 2 A; filtro EMI de la Rev A: X2 C707 y C708 DNP en el molinillo) | Energía de sobretensión; emisión conducida del prototipo (EM-01) para C708 y el choque de la Rev B |
-| Alimentación lógica | Ensayar AP63200/AP63203, térmica, ripple y transitorios; J101 en OR con U303 por D307/D301 | Presupuesto de corriente y prototipo cargado |
+| Alimentación lógica | Ensayar AP63301/AP63203, térmica, ripple y transitorios; J101 en OR con U303 por D307/D301 | Presupuesto de corriente y prototipo cargado |
 | Frontal | Ensayar corte/descarga de 3V3_UI y prevención de backfeed | Display definitivo y comportamiento al apagar UI |
 | USB | Comprobar enumeración y consumo de banco | Acceso mecánico y dominio aislado verificado |
 | Supervisión | Ensayar el [watchdog e interlock implementados](../power/watchdog-interlock.md) | Firmware PB4, osciloscopio y análisis de fallos |
@@ -325,7 +325,11 @@ defecto supuesta](../power/power-architecture.md#corriente-de-defecto-supuesta-y
 Sigue abierta la energía del MOV. J121 se entrega puenteado para alimentar `24V_ACT_RAW`
 desde PS701 y se abre antes de inyectar 24 V limitados por J112 durante el banco.
 
-U303 (AP63200WU-7) convierte esos 24 V a `12V_ISO_RAW`. La red de aplicación usa
+U303 (AP63301WU-7) convierte esos 24 V a `12V_ISO_RAW`. Hasta el 2026-10-08 era
+un AP63200WU-7, sin stock en JLCPCB: el AP63301 es la versión de 3 A y PWM fijo
+de la misma familia, con el mismo encapsulado, patillaje y referencia de 0,8 V.
+Su límite de pico (4,5 A típicos, 4,9 A máximo) queda por debajo de los 6 A de
+saturación de L302. La red de aplicación usa
 10 µH, 10 µF/50 V en entrada (C310, 1210 desde el 2026-10-07: la curva de
 Samsung da 4,8 µF a 24 V frente a 2,27 µF del 1206) más 100 nF de alta frecuencia en los pines
 (C316, desde el 2026-10-07), dos condensadores de 22 µF/25 V en salida y divisor
@@ -334,7 +338,9 @@ Samsung da 4,8 µF a 24 V frente a 2,27 µF del 1206) más 100 nF de alta frecue
 0,8 × (1 + 330/24) = 11,80 V según la ecuación 6 de la hoja, y el avance de 56 pF
 queda dentro de los 10–220 pF que admite.
 
-K701 es un relé Omron G5RL-1A-E-TV8 DC24 normalmente abierto. Sus dos pads COM y
+K701 es un relé Omron G5RL-1A-E-HR DC24 normalmente abierto (hasta el
+2026-10-08, el -E-TV8, sin stock; Omron da a los dos el mismo plano y la misma
+bobina). Sus dos pads COM y
 sus dos pads NO se mantienen duplicados para repartir corriente. U603 exige a la
 vez `STM_NRST` inactivo y `MAINS_ARM_RAW`; Q701 (BSS138LT1G, especificado a
 VGS = 2,75 V, porque su puerta sale de los 3,3 V de U603) excita la bobina y D701
@@ -344,6 +350,7 @@ el calentador de 1900 W.
 
 La selección del buck sigue la
 [hoja de datos Diodes](https://www.diodes.com/datasheet/download/AP63200-AP63201-AP63203-AP63205.pdf)
+(AP63203) y la del [AP63300/AP63301](https://www.lcsc.com/datasheet/C2158003.pdf)
 y el corte del frontal la
 [hoja de datos TI](https://www.ti.com/lit/pdf/slvsd76). Las referencias y su
 instantánea de existencias están en el [catálogo de montaje](../assembly/parts-catalog.json).

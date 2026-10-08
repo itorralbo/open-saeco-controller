@@ -27,7 +27,8 @@ candidato**, pendiente de revisión antes de pedir. Ver [layout](layout.md).
 - [Registro mecánico fotogramétrico](mechanical.md), [datos](mechanical-source.json)
   y [plano 1:1 imprimible](validation/mechanical-1to1.svg).
 - [Selección de componentes y montaje JLCPCB](../assembly/README.md): 42 de 42
-  posiciones con MPN, código JLC y stock observado.
+  posiciones con MPN y código JLC; J1 (Würth WR-MM) sin stock en JLCPCB el
+  2026-10-08, se compra aparte y se suelda a mano.
 
 El circuito contiene alimentación externa de 3,3 V, un TCA9534PWR, siete canales
 de pulsador filtrados (los siete de la PCB original), el LED de standby en el octavo

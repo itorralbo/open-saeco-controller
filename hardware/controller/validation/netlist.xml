@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-08T08:30:30</date>
+    <date>2026-10-08T21:17:55</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -3322,12 +3322,12 @@
       </units>
     </comp>
     <comp ref="K701">
-      <value>G5RL-1A-E-TV8 DC24</value>
+      <value>G5RL-1A-E-HR DC24</value>
       <footprint>OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8</footprint>
       <fields>
         <field name="manufacturer">Omron Electronics</field>
-        <field name="mpn">G5RL-1A-E-TV8 DC24</field>
-        <field name="lcsc">C2896748</field>
+        <field name="mpn">G5RL-1A-E-HR DC24</field>
+        <field name="lcsc">C397236</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8</field>
@@ -3336,8 +3336,8 @@
       </fields>
       <libsource lib="OpenSaeco" part="RELAY_G5RL" description=""/>
       <property name="manufacturer" value="Omron Electronics"/>
-      <property name="mpn" value="G5RL-1A-E-TV8 DC24"/>
-      <property name="lcsc" value="C2896748"/>
+      <property name="mpn" value="G5RL-1A-E-HR DC24"/>
+      <property name="lcsc" value="C397236"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -6520,14 +6520,24 @@
       </units>
     </comp>
     <comp ref="RV701">
-      <value>275VAC MOV / energy TBD</value>
+      <value>S14K275 / 275VAC MOV</value>
       <footprint>Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm</footprint>
       <fields>
+        <field name="manufacturer">TDK</field>
+        <field name="mpn">B72214S0271K101</field>
+        <field name="lcsc">C7502584</field>
+        <field name="jlc_class">Extended</field>
+        <field name="pcba_type">Economic and Standard</field>
         <field name="Footprint">Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
       <libsource lib="OpenSaeco" part="MOV" description=""/>
+      <property name="manufacturer" value="TDK"/>
+      <property name="mpn" value="B72214S0271K101"/>
+      <property name="lcsc" value="C7502584"/>
+      <property name="jlc_class" value="Extended"/>
+      <property name="pcba_type" value="Economic and Standard"/>
       <property name="Sheetname" value="controller-core-reva"/>
       <property name="Sheetfile" value="controller-core-reva.kicad_sch"/>
       <sheetpath names="/" tstamps="/"/>
@@ -6815,22 +6825,22 @@
       </units>
     </comp>
     <comp ref="U303">
-      <value>AP63200WU-7 / 24V to 12V</value>
+      <value>AP63301WU-7 / 24V to 12V</value>
       <footprint>Package_TO_SOT_SMD:TSOT-23-6</footprint>
       <fields>
         <field name="manufacturer">Diodes Incorporated</field>
-        <field name="mpn">AP63200WU-7</field>
-        <field name="lcsc">C2071868</field>
+        <field name="mpn">AP63301WU-7</field>
+        <field name="lcsc">C2158003</field>
         <field name="jlc_class">Extended</field>
         <field name="pcba_type">TBD</field>
         <field name="Footprint">Package_TO_SOT_SMD:TSOT-23-6</field>
         <field name="Datasheet"/>
         <field name="Description"/>
       </fields>
-      <libsource lib="OpenSaeco" part="AP63200" description=""/>
+      <libsource lib="OpenSaeco" part="AP63301" description=""/>
       <property name="manufacturer" value="Diodes Incorporated"/>
-      <property name="mpn" value="AP63200WU-7"/>
-      <property name="lcsc" value="C2071868"/>
+      <property name="mpn" value="AP63301WU-7"/>
+      <property name="lcsc" value="C2158003"/>
       <property name="jlc_class" value="Extended"/>
       <property name="pcba_type" value="TBD"/>
       <property name="Sheetname" value="controller-core-reva"/>
@@ -7352,10 +7362,10 @@
         <pin num="4" name="+V" type="power_out"/>
       </pins>
     </libpart>
-    <libpart lib="OpenSaeco" part="AP63200">
+    <libpart lib="OpenSaeco" part="AP63203">
       <fields>
         <field name="Reference">A</field>
-        <field name="Value">AP63200</field>
+        <field name="Value">AP63203</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>
@@ -7369,10 +7379,10 @@
         <pin num="6" name="BST" type="passive"/>
       </pins>
     </libpart>
-    <libpart lib="OpenSaeco" part="AP63203">
+    <libpart lib="OpenSaeco" part="AP63301">
       <fields>
         <field name="Reference">A</field>
-        <field name="Value">AP63203</field>
+        <field name="Value">AP63301</field>
         <field name="Footprint"/>
         <field name="Datasheet"/>
         <field name="Description"/>

@@ -79,7 +79,7 @@ def main():
                                            svg_path.read_text(encoding='utf-8').splitlines())+'\n',
                                 encoding='utf-8')
         scope = ('Esquema completo de la principal: núcleo lógico, USB-C de servicio, fuente aislada '
-                 'IRM-30-24, selección de 24 V internos/externos, buck AP63200 de 24 V a 12 V, '
+                 'IRM-30-24, selección de 24 V internos/externos, buck AP63301 de 24 V a 12 V, '
                  'buck de 3,3 V, sensores, puente H DRV8876, etapa low-side de válvula y '
                  'etapas de triac de calentador, bomba y molinillo. '
                  'Un relé G5RL normalmente abierto corta la fase de las cargas y solo se arma '

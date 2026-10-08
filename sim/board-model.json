@@ -4874,8 +4874,8 @@
   },
   "controller:K701": {
    "part": "RELAY_G5RL",
-   "value": "G5RL-1A-E-TV8 DC24",
-   "mpn": "G5RL-1A-E-TV8 DC24",
+   "value": "G5RL-1A-E-HR DC24",
+   "mpn": "G5RL-1A-E-HR DC24",
    "pins": {
     "1": {
      "symbol": "COIL_A",
@@ -6576,8 +6576,8 @@
   },
   "controller:RV701": {
    "part": "MOV",
-   "value": "275VAC MOV / energy TBD",
-   "mpn": "",
+   "value": "S14K275 / 275VAC MOV",
+   "mpn": "B72214S0271K101",
    "pins": {
     "1": {
      "symbol": "1",
@@ -7242,9 +7242,9 @@
    }
   },
   "controller:U303": {
-   "part": "AP63200",
-   "value": "AP63200WU-7 / 24V to 12V",
-   "mpn": "AP63200WU-7",
+   "part": "AP63301",
+   "value": "AP63301WU-7 / 24V to 12V",
+   "mpn": "AP63301WU-7",
    "pins": {
     "1": {
      "symbol": "FB",
