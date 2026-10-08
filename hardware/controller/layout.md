@@ -73,7 +73,7 @@ encima de JP8/JP19/JP24.
 - Superior central: STM32 con su desacoplo, reset y SWD, y debajo J114, F303/D304,
   el divisor de 24 V y las series del LCD. Más a la derecha, el buck de 3,3 V y el
   corte del frontal.
-- Esquina superior derecha: entradas de banco J101/J112, buck AP63200 de 24 V a
+- Esquina superior derecha: entradas de banco J101/J112, buck AP63301 de 24 V a
   12 V y, debajo, el puente H DRV8876 con su columna de fallo, VREF e IPROPI.
 - Lateral izquierdo: JP16 y JP14 en sus zonas originales, sus filtros, las
   cabeceras de depuración, el watchdog e interlock (U601/U602) y el mando del
@@ -936,7 +936,7 @@ alimentación y cinco pads de masa sin vía. Dos eran fallos funcionales: el ani
 de VDD del STM32 no llegaba al buck, y la isla de 12 V de los LED de los optos,
 el caudalímetro y la puerta de la válvula no tenía fuente.
 
-**12 V.** La salida del AP63200 sale del banco por el sur de C312 y va hacia
+**12 V.** La salida del AP63301 sale del banco por el sur de C312 y va hacia
 el oeste por y = 14 mm hasta J101.1, con un salto por B.Cu bajo el carril de
 24 V. Desde J101 baja junto al tronco de 3,3 V y lo cruza por debajo, junto
 con el canal de la UART, hasta F301.1. El raíl protegido une cuatro islas:

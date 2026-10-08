@@ -1376,3 +1376,36 @@ Resultado: ERC 0 en las dos placas; netlist 223 componentes y 702 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
 0 avisos; `tests/sim` 95/95. Sin hardware.
+
+## Suministro para el pedido y RV701, 2026-10-08
+
+Stock refrescado para las 83 piezas del catálogo (`tools/refresh_jlc_stock.py`).
+Sin stock en JLCPCB: U303, K701, J104/J1 (Würth WR-MM) y J106 (HR A2506WV-03P);
+J113 (A2506WV-05P) tenía 3 y F702 9. LCSC tampoco tenía el relé ni las A2506,
+y ya no vende la WR-MM.
+
+- **U303** pasa a **AP63301WU-7** (C2158003, 5107 en stock): la versión de 3 A y
+  PWM fijo de la familia del AP63200, con el mismo TSOT-23-6, el mismo patillaje
+  (FB, EN, VIN, GND, SW, BST) y la misma referencia de 0,8 V, así que el divisor
+  330 k/24 k sigue dando 11,80 V. Su límite de pico es 4,5 A típico y 4,9 A
+  máximo (frente a 2,8/3,1 A), por debajo de los 6 A de saturación de L302
+  (SRP7028A-100M). Máximos absolutos iguales: VIN y EN a 35 V.
+- **K701** pasa a **G5RL-1A-E-HR DC24** (C397236, 639 en stock). Omron da a
+  G5RL-1A-E, -E-LN, -E-HR y -E-TV8 el mismo plano y los mismos taladros. -E-HR
+  y -E-TV8 son sus dos modelos de alta corriente de arranque, con la misma tabla
+  de bobina (24 V, 1440 Ω, 70 % para operar); solo cambia el listado UL TV-8.
+  El simulador lo detectó: con la referencia nueva no encontraba el modelo del
+  relé y daba por paradas las cuatro órdenes de carga. Se actualizó
+  `sim/reference/devices.json`.
+- **RV701** es un **TDK B72214S0271K101** (S14K275, C7502584): 275 VAC,
+  4,5 kA, 71 J, homologado UL, CSA y VDE. Su contorno (paso de 7,5 mm, disco de
+  15,5 mm, 5,0 mm de grueso) es la huella que ya tenía la placa.
+- Los dos exportadores sacan de la BOM y el CPL las piezas sin stock en la
+  última consulta y las listan en `*-not-assembled.csv` para comprarlas aparte:
+  hoy J104 y J106 en la principal y J1 en el frontal, todos THT. La CI falla si
+  el paquete no sigue al stock; se probó devolviendo stock a J106.
+
+Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
+infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
+--self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 95/95.
+Sin hardware.

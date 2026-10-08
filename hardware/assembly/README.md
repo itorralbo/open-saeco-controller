@@ -49,8 +49,9 @@ un valor `null` significa no observado, no cero ni disponibilidad garantizada.
 | JP8 | LEOCO 3941P03*000, 3 vías/3,96 mm, vertical | Sin código JLCPCB | — | — | Soldadura manual o pieza aportada |
 | JP17 | TE 1971845-3, RAST 5, 3 lengüetas 6,3 × 0,8 mm, 16 A, vertical | [C5169636](https://jlcpcb.com/partdetail/C5169636) | 233 | 233 | Extended; categoría JLC por verificar |
 | Fuente aislada integrada | Mean Well IRM-30-24, 24 V/1,3 A | [C6280124](https://jlcpcb.com/partdetail/MW_MEAN_WELL_Enterprises-IRM_3024/C6280124) | 12.970 | 12.658 | Economic / Standard; ola |
-| Relé general de cargas | Omron G5RL-1A-E-TV8 DC24, 16 A | [C2896748](https://jlcpcb.com/partdetail/OmronElectronics-G5RL_1A_E_TV8DC24/C2896748) | 0 | 0 | Economic / Standard; ola; sin stock |
-| Buck 24 V → 12 V | Diodes AP63200WU-7, 2 A | [C2071868](https://www.lcsc.com/product-detail/C2071868.html) | 0 | 0 | Extended; categoría JLC por verificar; sin stock |
+| Relé general de cargas | Omron G5RL-1A-E-HR DC24, 16 A (sustituye al -E-TV8, sin stock, el 2026-10-08) | [C397236](https://jlcpcb.com/partdetail/C397236) | 639 | 629 | Economic / Standard; ola |
+| Varistor de entrada RV701 | TDK B72214S0271K101 (S14K275), 275 VAC, 4,5 kA, 71 J | [C7502584](https://jlcpcb.com/partdetail/C7502584) | 322 | 239 | Economic / Standard; ola |
+| Buck 24 V → 12 V | Diodes AP63301WU-7, 3 A, PWM fijo (sustituye al AP63200WU-7, sin stock, el 2026-10-08) | [C2158003](https://jlcpcb.com/partdetail/C2158003) | 5.107 | 4.906 | Extended; categoría JLC por verificar |
 | Inductor buck 12 V | Bourns SRP7028A-100M, 10 µH/3,5 A | [C2687402](https://www.lcsc.com/product-detail/C2687402.html) | 4.948 | 4.894 | Extended; categoría JLC por verificar |
 | Entrada buck 24 V | Samsung CL31B106KBHNNNE, 10 µF/50 V X7R | [C89632](https://jlcpcb.com/partdetail/90812-CL31B106KBHNNNE/C89632) | 124.899 | 55.244 | Economic / Standard; Extended |
 | Salida buck 12 V, 2 unidades | CCTC TCC1210X7R226K250MT, 22 µF/25 V X7R | [C49118556](https://jlcpcb.com/partdetail/CCTC-TCC1210X7R226K250MT/C49118556) | 84.392 | 76.945 | Economic / Standard; Extended |
@@ -101,7 +102,7 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
   C706 y R728 son snubbers RC sin montar ni pieza elegida (PU-03 y GR-05), y
   C708 un condensador de supresión del molinillo en las mismas condiciones
   (EM-01); C707 es el X2 de entrada, Murata GA355XR7GB563KW06L (C161105); J115 y J117 (LEOCO) tienen MPN pero no código, porque JLCPCB no
-  las vende; RV701 tiene valor provisional y ninguna pieza; J111 y J121 son
+  las vende; RV701 es un TDK S14K275 desde el 2026-10-08; J111 y J121 son
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:
   F701 de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el
   F2 original, en dos pinzas Littelfuse 01110501Z (C151075) que no son

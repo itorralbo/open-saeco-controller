@@ -136,7 +136,7 @@ aislamiento. Los scripts de PCB requieren el Python incluido en KiCad y sus
 bibliotecas.
 
 Siguiente trabajo eléctrico: comprobar la principal impresa 1:1 contra la placa
-original y los mazos, identificar JP14, JP16 y JP22, cerrar RV701, medir la
+original y los mazos, identificar JP14, JP16 y JP22, medir la
 emisión conducida, revisar J101 frente a la salida de U303, y ensayar USB, watchdog,
 motor del grupo, válvula y etapas de red según el
 [plan de caracterización](../docs/HD8911/characterization-plan.md). Siguiente

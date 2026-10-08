@@ -2281,7 +2281,7 @@
 <text x="842.41" y="639.58" font-size="0.9" text-anchor="start" fill="#23745f">MAINS_L_FUSED</text>
 <rect x="831.85" y="663.98" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="834.39" y="658.98" font-size="1.05" text-anchor="middle" fill="#213b50">RV701</text>
-<text x="834.39" y="661.48" font-size="1.05" text-anchor="middle" fill="#213b50">275VAC MOV / energy TBD</text>
+<text x="834.39" y="661.48" font-size="1.05" text-anchor="middle" fill="#213b50">S14K275 / 275VAC MOV</text>
 <path d="M 831.85 665.48 H 826.77" stroke="#27856d" stroke-width=".22"/>
 <text x="832.55" y="665.78" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="829.91" y="664.98" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2340,7 +2340,7 @@
 <text x="997.82" y="648.47" font-size="0.9" text-anchor="end" fill="#23745f">24V_ACT_RAW</text>
 <rect x="802.64" y="732.79" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="807.72" y="727.79" font-size="1.05" text-anchor="middle" fill="#213b50">U303</text>
-<text x="807.72" y="730.29" font-size="1.05" text-anchor="middle" fill="#213b50">AP63200WU-7 / 24V to 12V</text>
+<text x="807.72" y="730.29" font-size="1.05" text-anchor="middle" fill="#213b50">AP63301WU-7 / 24V to 12V</text>
 <path d="M 802.64 735.33 H 797.56" stroke="#27856d" stroke-width=".22"/>
 <text x="803.34" y="735.63" font-size="0.9" text-anchor="start" fill="#213b50">FB</text>
 <text x="800.7" y="734.83" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
@@ -2530,7 +2530,7 @@
 <text x="743.35" y="755.15" font-size="0.9" text-anchor="start" fill="#23745f">24V_ACT_RAW</text>
 <rect x="1032.5100000000002" y="706.12" width="15.24" height="20.32" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="1040.13" y="701.12" font-size="1.05" text-anchor="middle" fill="#213b50">K701</text>
-<text x="1040.13" y="703.62" font-size="1.05" text-anchor="middle" fill="#213b50">G5RL-1A-E-TV8 DC24</text>
+<text x="1040.13" y="703.62" font-size="1.05" text-anchor="middle" fill="#213b50">G5RL-1A-E-HR DC24</text>
 <path d="M 1032.5100000000002 708.66 H 1027.43" stroke="#27856d" stroke-width=".22"/>
 <text x="1033.21" y="708.9599999999999" font-size="0.9" text-anchor="start" fill="#213b50">COIL_A</text>
 <text x="1030.57" y="708.16" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>

@@ -703,7 +703,7 @@ def route_sensors(board):
 
 
 def route_12v_buck(board):
-    """AP63200 24 V to 12 V stage in the top-right corner.
+    """AP63301 24 V to 12 V stage in the top-right corner.
 
     The switch node is kept short between U303, the bootstrap capacitor and
     L302; the output capacitors sit past the inductor and the feedback divider
@@ -1663,7 +1663,7 @@ def route_debug_header(board):
 
 
 def route_12v_rail(board):
-    """12 V from the AP63200 bank to F301, J101 to F305, and every 12 V_PROTECTED load.
+    """12 V from the AP63301 bank to F301, J101 to F305, and every 12 V_PROTECTED load.
 
     The buck output leaves the bank south of C312 and runs west along
     y = 14 mm, hopping under the 24 V lane, to x = 96 mm. From there it drops

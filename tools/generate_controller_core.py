@@ -46,9 +46,9 @@ def power_symbols():
         ('5', 'SW', 'power_out', 7.62, 0, 180),
         ('4', 'GND', 'power_in', 7.62, -3.81, 180),
     ], 5.08, 6.35)
-    # AP63200 shares package and pinout with AP63203 but exposes FB for an
+    # AP63301 shares package and pinout with AP63203 but exposes FB for an
     # adjustable 24 V -> 12 V stage.
-    d.DEFS['AP63200'] = d.DEFS['AP63203']
+    d.DEFS['AP63301'] = d.DEFS['AP63203']
     d.DEFS['TPS22918'] = ([
         ('1', 'VIN', 'power_in', -7.62, 3.81, 0),
         ('2', 'GND', 'power_in', -7.62, 0, 0),
@@ -686,15 +686,16 @@ def main():
     # is 2 A like F2 on the original board ("T2AH250...", which fed its own
     # flyback): it has to ride through the IRM-30 cold-start inrush (45 A
     # typical at 230 VAC) without ageing, and 1 A left too little I2t margin
-    # (owner's decision, 2026-10-07, issue #1). RV701 remains provisional
-    # until the MOV energy budget exists.
+    # (owner's decision, 2026-10-07, issue #1). RV701 is a TDK S14K275
+    # (2026-10-08): the footprint's own S14 outline, 275 VAC, 4.5 kA, 71 J;
+    # F701 clears it if it fails short.
     d.add('F701','FUSE','T12AH / 250V MAIN',835,640,
           ['MAINS_L_IN','MAINS_L_FUSED'],
           'OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm',
           status='candidate', part_key='FUSE:0215012.MXEP')
-    d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
+    d.add('RV701','MOV','S14K275 / 275VAC MOV',835,665,
           ['MAINS_L_FUSED','MAINS_N'],
-          'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')
+          'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',part_key='MOV:S14K275')
     # Rev A EMI filter (owner, 2026-10-08): an X2 across the fused input now
     # and a common-mode choke in Rev B if the prototype's conducted emissions
     # need one; a 10 A choke (33 x 23 mm) has no room on this board. PS701
@@ -718,10 +719,12 @@ def main():
           status='normally_closed_open_for_external_24V')
 
     # 24 V -> 12 V is required because the existing logic and valve gate driver
-    # cannot be fed directly from the IRM-30 output.
-    d.add('U303','AP63200','AP63200WU-7 / 24V to 12V',808,739,
+    # cannot be fed directly from the IRM-30 output. AP63301 since 2026-10-08:
+    # JLCPCB ran out of the AP63200. Same pinout and 0.8 V reference; its
+    # 4.9 A worst-case peak limit stays under L302's 6 A saturation.
+    d.add('U303','AP63301','AP63301WU-7 / 24V to 12V',808,739,
           ['BUCK12_FB','24V_ACT_RAW','24V_ACT_RAW','BUCK12_BST','BUCK12_SW',g],
-          'Package_TO_SOT_SMD:TSOT-23-6',part_key='AP63200WU-7')
+          'Package_TO_SOT_SMD:TSOT-23-6',part_key='AP63301WU-7')
     d.add('L302','L','10uH / 3.5A',870,732,['BUCK12_SW','12V_ISO_RAW'],
           'Inductor_SMD:L_Bourns_SRP7028A_7.3x6.6mm',part_key='L:10uH_3.5A')
     # 1210 rather than 1206: Samsung's DC-bias curves give the 1206 only
@@ -774,11 +777,11 @@ def main():
     d.passive('R802','R','100k / relay off',680,724,'MAINS_RELAY_GATE',g)
     d.add('D701','DIODE','SS34 / relay flyback',735,756,
           ['MAINS_RELAY_RETURN','24V_ACT_RAW'],'Diode_SMD:D_SMA',part_key='D:SS34')
-    d.add('K701','RELAY_G5RL','G5RL-1A-E-TV8 DC24',1040,716,
+    d.add('K701','RELAY_G5RL','G5RL-1A-E-HR DC24',1040,716,
           ['24V_ACT_RAW','MAINS_RELAY_RETURN','MAINS_L_FUSED','MAINS_L_FUSED',
            'LOAD_L_ENABLED','LOAD_L_ENABLED'],
           'OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8',
-          status='candidate_not_released',part_key='RELAY:G5RL-1A-E-TV8_24V')
+          status='candidate_not_released',part_key='RELAY:G5RL-1A-E-HR_24V')
     d.note('16 / Etapa del calentador — 1900 W, 27,5 ohm, 8,36 A',870,850,1.8)
     d.passive('R711','R','10k / heater arm pull-down',880,872,'HEATER_EN_RAW',g)
     d.passive('R707','R','33 / opto LED gate',940,872,'HEATER_EN_INTERLOCK','HEATER_LED_GATE')

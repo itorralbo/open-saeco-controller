@@ -91,8 +91,8 @@
       "source": "KiCad 10 Regulator_Switching AP63203WU.",
       "pins": {"1": "FB", "2": "EN", "3": "VIN|IN", "4": "GND", "5": "SW", "6": "BST"}
     },
-    "AP63200WU-7": {
-      "source": "KiCad 10 Regulator_Switching AP63200WU.",
+    "AP63301WU-7": {
+      "source": "Diodes AP63300/AP63301 datasheet pin description, TSOT26; same order as KiCad 10 Regulator_Switching AP63200WU.",
       "pins": {"1": "FB", "2": "EN", "3": "VIN|IN", "4": "GND", "5": "SW", "6": "BST"}
     },
     "USBLC6-2SC6": {

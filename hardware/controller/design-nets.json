@@ -2698,14 +2698,14 @@
     },
     {
       "reference": "RV701",
-      "value": "275VAC MOV / energy TBD",
+      "value": "S14K275 / 275VAC MOV",
       "footprint": "Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm",
-      "status": "mpn_and_energy_tbd",
-      "manufacturer": "",
-      "mpn": "",
-      "lcsc": "",
-      "jlc_class": "",
-      "pcba_type": "",
+      "status": "candidate",
+      "manufacturer": "TDK",
+      "mpn": "B72214S0271K101",
+      "lcsc": "C7502584",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
       "pins": {
         "1": "MAINS_L_FUSED",
         "2": "MAINS_N"
@@ -2775,12 +2775,12 @@
     },
     {
       "reference": "U303",
-      "value": "AP63200WU-7 / 24V to 12V",
+      "value": "AP63301WU-7 / 24V to 12V",
       "footprint": "Package_TO_SOT_SMD:TSOT-23-6",
       "status": "candidate",
       "manufacturer": "Diodes Incorporated",
-      "mpn": "AP63200WU-7",
-      "lcsc": "C2071868",
+      "mpn": "AP63301WU-7",
+      "lcsc": "C2158003",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
@@ -3041,12 +3041,12 @@
     },
     {
       "reference": "K701",
-      "value": "G5RL-1A-E-TV8 DC24",
+      "value": "G5RL-1A-E-HR DC24",
       "footprint": "OpenSaeco:Relay_SPST_Omron_G5RL-1A-E-TV8",
       "status": "candidate_not_released",
       "manufacturer": "Omron Electronics",
-      "mpn": "G5RL-1A-E-TV8 DC24",
-      "lcsc": "C2896748",
+      "mpn": "G5RL-1A-E-HR DC24",
+      "lcsc": "C397236",
       "jlc_class": "Extended",
       "pcba_type": "Economic and Standard",
       "pins": {
