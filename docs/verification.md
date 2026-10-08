@@ -1337,3 +1337,42 @@ Resultado: ERC 0 en las dos placas; netlist 221 componentes y 698 pines; DRC
 con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
 MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
 0 avisos; `tests/sim` 95/95. Sin hardware.
+
+## Filtro EMI de la Rev A, 2026-10-08
+
+La original filtra en tres sitios (IMG_1085): L5, un choque toroidal de modo
+común en la entrada general; un choque de modo común («2030R5») con el X C83 en
+la rama de su flyback; y L1/L2, choques de barra en serie con el molinillo. En
+la principal nueva:
+
+- La fuente es el IRM-30-24, que cumple la EN 55032 clase B, conducida y
+  radiada, sin componentes externos (hoja IRM-30-SPEC de Mean Well). No hace
+  falta el equivalente del filtro de la flyback.
+- Los triacs se disparan en el cruce por cero (MOC3083). El ruido que queda es
+  sobre todo el de las escobillas del molinillo.
+- Un choque de modo común de 10 A en stock en JLCPCB, el TDK B82724V2103U040
+  (C3211917; 3,3 mH, 9,2 mΩ, nominal a +70 °C), mide 33 × 23 × 30 mm. No hay
+  sitio en el lado de red: donde la original tenía L5 está ahora el IRM-30, y el
+  resto lo ocupan F701/F702, RV701, K701, el pie del perfil y los conectores.
+
+Decisión del propietario: en la Rev A, un X2 en la entrada; el choque, en la
+Rev B si la emisión conducida del prototipo lo pide.
+
+- **C707**, Murata GA355XR7GB563KW06L (C161105): 56 nF, X2 de 250 VAC, 2220,
+  entre `MAINS_L_FUSED` y `MAINS_N`, en la cara inferior bajo F701. Un X2
+  radial de 7,5 mm (KNSCHA MPX104K31B3KN20600) no cabía junto a RV701 a 2,5 mm
+  de la fase de entrada. Con 56 nF no hace falta resistencia de descarga: la
+  EN 60335-1 solo la pide por encima de 0,1 µF.
+- **C708**, DNP, 2220, sobre los bornes del motor del molinillo (J115.1 y
+  J115.3), en la cara inferior bajo JP8, sin pieza elegida.
+- EM-01 y EM-02 en el plan de caracterización: emisión conducida con LISN del
+  prototipo y de la original. Deciden C708 y el choque de la Rev B.
+- C707 es la única pieza montada en la cara inferior: el exportador lo avisa,
+  porque obliga a pedir montaje a doble cara o a soldarla a mano.
+- La serigrafía ya no trata los pads SMD de la cara inferior como obstáculos
+  de la superior; las etiquetas no cambian.
+
+Resultado: ERC 0 en las dos placas; netlist 223 componentes y 702 pines; DRC
+con todas las severidades: 0 infracciones, 0 sin conectar y paridad solo
+MH1–MH3; `check_controller_pcb.py --self-test` pasa; modelo de placa 0 errores y
+0 avisos; `tests/sim` 95/95. Sin hardware.

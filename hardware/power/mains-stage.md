@@ -9,7 +9,10 @@ La inspección de `docs/HD8911/photos/IMG_1085.HEIC` a `IMG_1089.HEIC` permite
 identificar la topología general sin asumir valores que no se leen:
 
 - `F1` y `F2`: dos fusibles cilíndricos de 5 × 20 mm;
-- `L5` y `L7`: filtrado de modo común/diferencial de la entrada;
+- `L5`: choque toroidal de modo común, de hilo grueso, en la entrada general;
+  junto a la fuente flyback, otro choque de modo común («2030R5») con el
+  condensador X `C83` filtra solo esa rama; `L1` y `L2`, choques de barra junto
+  a JP8, van en serie con el molinillo (IMG_1085, revisada el 2026-10-08);
 - `DB1`, `U4` y `TR1`: fuente flyback aislada con transformador de ferrita;
 - `ISO1` a `ISO7`: barrera optoaislada entre control y red;
 - tres semiconductores de potencia junto a disipadores en la zona `AC_LOADS`;
@@ -25,7 +28,7 @@ confirmará por continuidad antes de copiar detalles del circuito.
 ## Arquitectura de Rev A
 
 ```text
-JP17 L -- F701 --+-- RV701 a N -- K701 relé general --+-- Q703 -- JP19 calentador
+JP17 L -- F701 --+-- RV701 y C707 (X2) a N -- K701 relé general --+-- Q703 -- JP19 calentador
                  |                                    +-- Q704 -- JP24 bomba
                  |                                    +-- Q708 -- F703 -- BR701 -- JP8 molino DC
                  +-- F702 -- PS701 IRM-30-24 -- 24V_SELV
@@ -33,7 +36,15 @@ JP17 N ----------------------------------------------- N de cargas, PS701 y BR70
 JP9 PE ----------------------------------------------- JP1 PE
 ```
 
-El filtro EMI (L5/L7 en la original) todavía no está en el esquema.
+El filtro EMI de la Rev A es solo de modo diferencial: C707, un X2 de 56 nF
+entre la fase protegida y el neutro (decisión del propietario, 2026-10-08). El
+choque de modo común queda para la Rev B si la emisión conducida del prototipo
+lo pide (EM-01): uno de 10 A, como el TDK B82724V2103U040, mide 33 × 23 mm y
+30 mm de alto, y no queda sitio en el lado de red. Donde la original tenía L5
+está ahora el IRM-30-24, que cumple la EN 55032 clase B por sí solo. Los triacs
+conmutan en el cruce por cero, así que la fuente de ruido que queda son las
+escobillas del molinillo: C708, sin montar, reserva un condensador de supresión
+sobre sus bornes, en lugar de L1/L2.
 
 `K701` permanece abierto sin 24 V y su mando pasa por el interlock hardware. Los
 triacs se disparan mediante optotriacs; ninguna red de puerta cruza a la zona
@@ -98,8 +109,14 @@ un opto de 600 o 400 V.
   su I²t de fusión (ver [F702](power-architecture.md#corriente-de-defecto-supuesta-y-fusibles-de-red)).
 - RV701 es un MOV de 275 VAC en disco de 15,5 mm, coordinado con F701; falta
   seleccionar MPN y energía.
-- El filtro EMI se copiará funcionalmente, no por aspecto. Falta medir/identificar
-  L5/L7 o elegir un choque certificado con corriente suficiente.
+- Filtro EMI de la Rev A: C707, Murata GA355XR7GB563KW06L (56 nF, X2 de
+  250 VAC, 2220), en la cara inferior bajo F701, con un pad sobre la fase
+  protegida y el otro sobre el neutro. Es el mayor X2 SMD de JLCPCB; un X2
+  radial de 7,5 mm no cabía junto a RV701 a 2,5 mm de la fase de entrada. Con
+  56 nF no hace falta resistencia de descarga: la EN 60335-1 solo la pide por
+  encima de 0,1 µF. C708 (DNP, 2220) va sobre los bornes del motor del molinillo,
+  bajo JP8. EM-01 decide si se monta C708 y si la Rev B lleva choque de modo
+  común.
 - Cobre de 1 oz. Las pistas del calentador y de la fase general se duplican en
   las dos caras con vías de cosido, la opción más barata en JLCPCB (decisión del
   2026-09-19). La entrada de red ya sigue ese criterio. La fase de cargas no lo

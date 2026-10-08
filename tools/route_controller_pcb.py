@@ -318,6 +318,10 @@ def route_mains_input(board):
     polyline(board, neutral, [(111.80, 113.15), (111.80, 70.50), (82.00, 70.50),
                               (82.00, 79.70), (79.50, 82.20)], pcb.B_Cu,
              width=MAINS_N_WIDTH)
+    # C707, the input X2 on the bottom side under F701: one stub from the
+    # fused phase at x = 72 mm and one from the neutral at x = 82 mm.
+    track(board, l_fused, (72.00, 75.50), (74.85, 75.50), pcb.B_Cu, width=MAINS_LIGHT_WIDTH)
+    track(board, neutral, (79.95, 75.50), (82.00, 75.50), pcb.B_Cu, width=MAINS_LIGHT_WIDTH)
 
 
 def route_24v_output(board):
@@ -1552,6 +1556,11 @@ def route_grinder_stage(board):
     polyline(board, '/GRINDER_DC_MINUS', [(70.3, 132.0), (70.3, 125.5),
                                           (66.96, 122.16), (66.96, 122.15)],
              pcb.B_Cu, width=1.2)
+    # C708 (DNP) under JP8 on the bottom side, straight off pins 1 and 3.
+    polyline(board, '/GRINDER_DC_SENSED', [(59.04, 122.15), (60.45, 123.56), (60.45, 126.7)],
+             pcb.B_Cu, width=SNUBBER_WIDTH)
+    polyline(board, '/GRINDER_DC_MINUS', [(66.96, 122.15), (65.55, 123.56), (65.55, 126.7)],
+             pcb.B_Cu, width=SNUBBER_WIDTH)
     route_grinder_sensor(board)
 
 

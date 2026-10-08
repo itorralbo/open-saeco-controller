@@ -250,6 +250,14 @@
       "footprint": "Capacitor_SMD:C_1812_4532Metric",
       "numbered_pads": 2
     },
+    "C707": {
+      "footprint": "Capacitor_SMD:C_2220_5750Metric",
+      "numbered_pads": 2
+    },
+    "C708": {
+      "footprint": "Capacitor_SMD:C_2220_5750Metric",
+      "numbered_pads": 2
+    },
     "D301": {
       "footprint": "Diode_SMD:D_SMA",
       "numbered_pads": 2
@@ -889,12 +897,10 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [
-    "C705",
-    "C706",
-    "R727",
-    "R728"
+    "C707",
+    "C708"
   ],
-  "tracks": 1885,
+  "tracks": 1893,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

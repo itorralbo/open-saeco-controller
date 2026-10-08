@@ -236,6 +236,9 @@ def main():
     assert nets['U704'] == {'1':'GRINDER_DC_PLUS','2':'GRINDER_DC_SENSED','3':g,'4':g,
                             '5':None,'6':'GRINDER_CURRENT_RAW','7':g,'8':v,'9':v,'10':v}
     assert nets['J115']['1'] == 'GRINDER_DC_SENSED' and nets['BR701']['1'] == 'GRINDER_DC_PLUS'
+    # EMI (Rev A): X2 across the fused input, unfitted suppression C on JP8.
+    assert nets['C707'] == {'1':'MAINS_L_FUSED','2':'MAINS_N'}
+    assert nets['C708'] == {'1':'GRINDER_DC_SENSED','2':'GRINDER_DC_MINUS'}
     assert nets['C703'] == {'1':v,'2':g}
     assert nets['R412'] == {'1':'GRINDER_CURRENT_RAW','2':'GRINDER_CURRENT_ADC'}
     assert nets['C407'] == {'1':'GRINDER_CURRENT_ADC','2':g}
@@ -323,6 +326,7 @@ def main():
             'rating_and_holder_tbd',
             'mpn_and_energy_tbd', 'normally_closed_open_for_external_24V',
             'owner_identified_not_stocked_by_jlcpcb', 'dnp_after_dvdt_measurement',
+            'dnp_after_emission_measurement',
         }
         for ref, p in props.items():
             code = p.get('lcsc')

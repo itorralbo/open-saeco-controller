@@ -158,6 +158,7 @@ RT701,10k B3380 / heatsink air,Resistor_SMD:R_0603_1608Metric,candidate,Murata E
 R726,10k / heatsink NTC pull-up,Resistor_SMD:R_0603_1608Metric,candidate,UNI-ROYAL,0603WAF1002T5E,C25804,Basic,Economic and Standard
 C704,100nF / heatsink NTC,Capacitor_SMD:C_0603_1608Metric,candidate,YAGEO,CC0603KRX7R9BB104,C14663,Basic,Economic and Standard
 J115,JP8 GRINDER / 320VDC,OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,3941P03*000,,,hand_solder_or_consigned
+C708,"Motor suppression C / JP8, DNP until EMI test",Capacitor_SMD:C_2220_5750Metric,dnp_after_emission_measurement,,,,,
 J116,JP19 HEATER / 1900W 27R5,OpenSaeco:TE_RAST5_1971845-4_1x04_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-4,C2149727,Extended,Standard
 J117,JP24 PUMP / 230VAC,OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical,owner_identified_not_stocked_by_jlcpcb,LEOCO,5001P020013,,,hand_solder_or_consigned
 J118,JP17 MAINS / L-N,OpenSaeco:TE_RAST5_1971845-3_1x03_P5.00mm_Vertical,owner_identified,TE Connectivity,1971845-3,C5169636,Extended,TBD
@@ -165,6 +166,7 @@ J119,JP1 PE TO BOILER,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,
 J120,JP9 PE INPUT,OpenSaeco:TE_FASTON_63824-1_Tab_6.35mm_Vertical,candidate,TE Connectivity,63824-1,C575074,Extended,TBD
 F701,T12AH / 250V MAIN,OpenSaeco:Fuse_Littelfuse_0215_5x20mm_Axial_Horizontal_P27.50mm,candidate,Littelfuse,0215012.MXEP,C142789,Extended,Economic and Standard
 RV701,275VAC MOV / energy TBD,Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm,mpn_and_energy_tbd,,,,,
+C707,56nF X2 / mains input,Capacitor_SMD:C_2220_5750Metric,candidate,Murata Electronics,GA355XR7GB563KW06L,C161105,Extended,Economic and Standard
 F702,T2AH / PSU,Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal,candidate,Littelfuse,0215002.MXP,C142716,Extended,Economic and Standard
 PS701,IRM-30-24,OpenSaeco:MeanWell_IRM-30_THT,candidate_pending_motor_current_validation,MEAN WELL,IRM-30-24,C6280124,Extended,Economic and Standard
 J121,24V INTERNAL SELECT / OPEN FOR BENCH,Jumper:SolderJumper-2_P1.3mm_Bridged_RoundedPad1.0x1.5mm,normally_closed_open_for_external_24V,,,,,

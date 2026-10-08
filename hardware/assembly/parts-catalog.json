@@ -1281,6 +1281,22 @@
       "url": "https://jlcpcb.com/partdetail/C142789",
       "selection": "candidate_not_released",
       "selection_note": "Main fuse F701 since 2026-10-06 (issue #1). The original HD8911 board has a ceramic 5 x 20 mm fuse marked 12AH250V in F1 (owner, read on the part he removed), so the maker gave the same heater 12 A. A 10 A fuse in 10 A clips left no margin over the 8.4 A (230 V) to 9.2 A (253 V) heater current, and 12 A is above what the Littelfuse 111 501 clips take, so it is soldered flat with axial leads like the original F1, over 27.5 mm holes. It keeps the 1500 A at 250 VAC breaking capacity and raises the nominal melting I2t ratio to F703 from 7.1 to 11. Not for reflow: hand or wave soldered."
+    },
+    "CAP:X2_56nF_2220": {
+      "manufacturer": "Murata Electronics",
+      "mpn": "GA355XR7GB563KW06L",
+      "lcsc": "C161105",
+      "specification": "56 nF X2 safety MLCC, 250 VAC, X7R, 2220 (5.7 x 5.0 mm); mains input across L-N",
+      "footprint": "Capacitor_SMD:C_2220_5750Metric",
+      "jlc_class": "Extended",
+      "pcba_type": "Economic and Standard",
+      "stock_observed": 1987,
+      "available_order_qty_observed": 1987,
+      "stock_checked_on": "2026-10-08",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only",
+      "url": "https://jlcpcb.com/partdetail/C161105",
+      "selection": "candidate_not_released",
+      "selection_note": "Rev A EMI filter, owner's choice on 2026-10-08: an X2 across the input now, a common-mode choke in Rev B if the prototype's conducted emissions need it. The largest X2 in a JLCPCB-stocked SMD part; at no more than 0.1 uF EN 60335-1 asks for no discharge resistor. A radial X2 did not fit beside RV701 with 2.5 mm to the incoming phase, and on B.Cu under F701 the 2220 lands its pads on the fused phase and the neutral."
     }
   }
 }

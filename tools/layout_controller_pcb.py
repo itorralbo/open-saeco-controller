@@ -310,6 +310,12 @@ PLACE = {
     # the gap without crossing. J121 is turned so 24V_ACT_RAW leaves on the left.
     'PS701': (121.3, 82.4, 90), 'F701': (96.5, 74, 180), 'F702': (72, 67, 0),
     'RV701': (72, 80, 0), 'J121': (108.5, 45.2, 180),
+    # X2 of the Rev A EMI filter on the bottom side under F701, its pads on
+    # the fused phase (x = 72 mm) and the neutral (x = 82 mm) B.Cu runs.
+    'C707': (77.4, 75.5, 0, 'bottom'),
+    # Unfitted suppression C on the grinder motor, bottom side under JP8,
+    # between its two wired pins.
+    'C708': (63.0, 126.7, 0, 'bottom'),
 
     # 24 V to 12 V buck beside the J112 24 V entry, clear of the mains domain.
     # C316 bridges VIN and GND right under the pins and C310 sits under it,

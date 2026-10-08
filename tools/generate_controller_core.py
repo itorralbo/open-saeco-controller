@@ -638,6 +638,12 @@ def main():
           ['GRINDER_DC_SENSED',None,'GRINDER_DC_MINUS'],
           'OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical',
           status='owner_identified_not_stocked_by_jlcpcb', part_key='CONN:LEOCO_3941P03')
+    # Brush-noise suppression across the motor terminals, unfitted until the
+    # prototype's conducted emissions are measured (the original board had
+    # L1/L2 in the grinder leads). 2220 takes an X2/Y2 safety MLCC.
+    d.add('C708','C','Motor suppression C / JP8, DNP until EMI test',1060,641,
+          ['GRINDER_DC_SENSED','GRINDER_DC_MINUS'],'Capacitor_SMD:C_2220_5750Metric',
+          status='dnp_after_emission_measurement',dnp=True)
     # Owner: only tabs 1 and 3 are wired, and they are the two ends of the
     # same boiler element, so which is which does not matter. 1900 W element
     # measured at 27.5 ohm, so 8.4 A at 230 V.
@@ -689,6 +695,15 @@ def main():
     d.add('RV701','MOV','275VAC MOV / energy TBD',835,665,
           ['MAINS_L_FUSED','MAINS_N'],
           'Varistor:RV_Disc_D15.5mm_W5mm_P7.5mm',status='mpn_and_energy_tbd')
+    # Rev A EMI filter (owner, 2026-10-08): an X2 across the fused input now
+    # and a common-mode choke in Rev B if the prototype's conducted emissions
+    # need one; a 10 A choke (33 x 23 mm) has no room on this board. PS701
+    # meets EN 55032 class B on its own and the triacs switch at zero cross,
+    # so the grinder's brushes are the main source left. 56 nF keeps under
+    # the 0.1 uF above which EN 60335-1 wants a discharge resistor.
+    d.add('C707','C','56nF X2 / mains input',875,665,
+          ['MAINS_L_FUSED','MAINS_N'],'Capacitor_SMD:C_2220_5750Metric',
+          part_key='CAP:X2_56nF_2220')
     d.add('F702','FUSE','T2AH / PSU',835,690,
           ['MAINS_L_FUSED','PSU_L_FUSED'],
           'Fuse:Fuseholder_Clip-5x20mm_Littelfuse_111_Inline_P20.00x5.00mm_D1.05mm_Horizontal',
@@ -908,7 +923,7 @@ def main():
     d.add('#FLG123','PWR_FLAG','Protective earth bond',1160,834,['PROTECTIVE_EARTH'])
     d.note('PS701 está en la misma PCB. J121 se abre antes de inyectar 24V externos por J112.',650,806,1.0)
     d.note('JP17: negro=L y azul=N; JP8: blanco=+ y negro=-. Centro libre en ambos.',870,817,1.0)
-    d.note('Siguiente: filtro EMI, RV701 y medidas del molino.',12,804)
+    d.note('Siguiente: RV701, medidas del molino y emisión conducida (choque de modo común en Rev B si hace falta).',12,804)
     d.note('Contorno/taladros aceptados; PCB ruteada con DRC limpio, sin ensayar. JP14/JP16/JP22 sin identificar. BOM no liberada.',12,812)
     d.write_outputs('Open Saeco main logic + low-voltage power / INCOMPLETE - REVIEW ONLY','A0',1189,841)
 

@@ -98,7 +98,9 @@ class Placer:
         self.hard = []
         for fp in board.GetFootprints():
             for pad in fp.Pads():
-                self.hard.append(box_mm(pad.GetBoundingBox(), PAD_CLEARANCE))
+                # Bottom-side SMD pads do not reach the top silkscreen.
+                if pad.IsOnLayer(pcb.F_Cu):
+                    self.hard.append(box_mm(pad.GetBoundingBox(), PAD_CLEARANCE))
             for item in fp.GraphicalItems():
                 if item.GetLayer() == pcb.F_SilkS:
                     self.hard.append(box_mm(item.GetBoundingBox(), 0.15))
