@@ -787,7 +787,7 @@
    "pins": [
     "controller:D305.1",
     "controller:D306.1",
-    "controller:J113.1"
+    "controller:J113.5"
    ]
   },
   "controller:24V_VALVE_FUSED": {
@@ -1005,7 +1005,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.7",
+    "controller:J108.8",
     "controller:U501.8"
    ]
   },
@@ -1016,7 +1016,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.8",
+    "controller:J108.7",
     "controller:U501.10"
    ]
   },
@@ -1167,7 +1167,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.3",
+    "controller:J108.4",
     "controller:R407.2",
     "controller:R408.1"
    ]
@@ -1191,7 +1191,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.1",
+    "controller:J108.2",
     "controller:R409.2",
     "controller:R410.1"
    ]
@@ -1418,11 +1418,11 @@
     "controller:J104.2",
     "controller:J104.4",
     "controller:J104.6",
-    "controller:J105.2",
+    "controller:J105.1",
     "controller:J106.2",
     "controller:J107.1",
-    "controller:J108.2",
-    "controller:J108.4",
+    "controller:J108.1",
+    "controller:J108.3",
     "controller:J109.3",
     "controller:J110.A1",
     "controller:J110.A12",
@@ -2055,7 +2055,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J105.1",
+    "controller:J105.2",
     "controller:R401.2",
     "controller:R402.1"
    ]
@@ -2616,7 +2616,7 @@
    "volts": null,
    "pins": [
     "controller:D306.2",
-    "controller:J113.2",
+    "controller:J113.4",
     "controller:Q501.3"
    ]
   },
@@ -4431,12 +4431,12 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:NTC_RAW"
+     "net": "controller:GND_UI"
     },
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:GND_UI"
+     "net": "controller:NTC_RAW"
     }
    }
   },
@@ -4487,22 +4487,22 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:BU_WORK_RAW"
+     "net": "controller:GND_UI"
     },
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:GND_UI"
+     "net": "controller:BU_WORK_RAW"
     },
     "3": {
      "symbol": "3",
      "physical": "3",
-     "net": "controller:BU_PRESENT_RAW"
+     "net": "controller:GND_UI"
     },
     "4": {
      "symbol": "4",
      "physical": "4",
-     "net": "controller:GND_UI"
+     "net": "controller:BU_PRESENT_RAW"
     },
     "5": {
      "symbol": "5",
@@ -4517,12 +4517,12 @@
     "7": {
      "symbol": "7",
      "physical": "7",
-     "net": "controller:BREW_OUT1"
+     "net": "controller:BREW_OUT2"
     },
     "8": {
      "symbol": "8",
      "physical": "8",
-     "net": "controller:BREW_OUT2"
+     "net": "controller:BREW_OUT1"
     }
    }
   },
@@ -4682,12 +4682,12 @@
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:24V_VALVE"
+     "net": null
     },
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:VALVE_RETURN"
+     "net": null
     },
     "3": {
      "symbol": "3",
@@ -4697,12 +4697,12 @@
     "4": {
      "symbol": "4",
      "physical": "4",
-     "net": null
+     "net": "controller:VALVE_RETURN"
     },
     "5": {
      "symbol": "5",
      "physical": "5",
-     "net": null
+     "net": "controller:24V_VALVE"
     }
    }
   },

@@ -408,7 +408,9 @@ def main():
     d.note('10 / Entradas pasivas — JP13 y JP5 HR A2506; resto, huellas candidatas por foto', 12, 406, 1.8)
     # Owner, 2026-09-29: JP13, JP5 and JP3 are HR A2506 wafers (2.50 mm),
     # not JST XH; the board takes the same parts.
-    d.add('J105','J2','JP13 NTC / 2 vías',62,445,['NTC_RAW',g],
+    # Rib wall inside (owner, 2026-10-10): turned 180 deg, so the NTC's
+    # photographed pin 1 is pad 2.
+    d.add('J105','J2','JP13 NTC / 2 vías',62,445,[g,'NTC_RAW'],
           'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical',
           status='owner_identified', part_key='CONN:HR_A2506WV_2_V')
     d.passive('R401','R','4.7k / NTC pull-up',145,430,v,'NTC_RAW')
@@ -435,11 +437,10 @@ def main():
     d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V por R413 (390 Ω); pull-up separado a 3V3.',245,493,1.2)
 
     # Owner, 2026-10-10: JP14 and JP16 are HR A2506WV wafers like JP3/JP5/
-    # JP13, and JP22 a JST ZH B3B-ZR. On the left edge the A2506 turns to
-    # 270 deg so that its rib wall faces the board edge as on the bottom row;
-    # that puts pad 1 at the north end, so the pads keep their positions and
-    # nets and only their numbers run the other way (to be checked against
-    # the harness, docs/HD8911/photos.md).
+    # JP13, and JP22 a JST ZH B3B-ZR. The owner also read on the original
+    # which A2506 wall sits next to the pins (the rib side, 1.85 mm away):
+    # the board edge for JP5 and JP14, the inside for JP3, JP13 and JP16.
+    # J107 turns to 270 deg (pad 1 north) to put it on the edge.
     d.add('J107','J2','JP14 DOOR / A2506WV-02P',520,445,[g,'DOOR_RAW'],
           'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical',
           status='owner_identified', part_key='CONN:HR_A2506WV_2_V')
@@ -449,9 +450,11 @@ def main():
     d.note('PA1: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
     d.add('J108','J8','JP16 VISUAL V8..V1 / A2506WV-08P',705,457,
-          # V1 (pad 8) carries OUT2 and V2 (pad 7) OUT1, which keeps both
-          # motor leads uncrossed on the PCB.
-          ['BU_WORK_RAW',g,'BU_PRESENT_RAW',g,'BU_BRIDGE','BU_BRIDGE','BREW_OUT1','BREW_OUT2'],
+          # At 90 deg (rib inside) pad 8 is at the north end, next to JP21,
+          # where the harness puts V1, the red motor wire (owner, 2026-10-10;
+          # manual: V1 red = OUT1, V2 blue = OUT2). Each contact pair has one
+          # pad on ground.
+          [g,'BU_WORK_RAW',g,'BU_PRESENT_RAW','BU_BRIDGE','BU_BRIDGE','BREW_OUT2','BREW_OUT1'],
           'OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical',
           status='owner_identified_supply_pending', part_key='CONN:HR_A2506WV_8_V')
     d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
@@ -461,7 +464,7 @@ def main():
     d.passive('R410','R','1k / WORK serie',805,489,'BU_WORK_RAW','BU_WORK_N')
     d.passive('C405','C','100nF / WORK filtro',805,506,'BU_WORK_N',g)
     d.note('PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
-    d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: V1..V8 van en los pads 8..1 de la A2506.',660,536,1.1)
+    d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: V1..V8 en los pads 8..1, V1 junto a JP21.',660,536,1.1)
 
     # JP22 feed through its own current-limited switch (issue #8): R306 =
     # 210k sets 110-150 mA, plenty for a level sensor and far under U301's
@@ -545,8 +548,10 @@ def main():
     d.note('R510 y divisor R508/R509 fijan ITRIP≈1A; validar corriente, térmica, bulk y frenado.',870,287,1.1)
     d.note('J112 exige 24V DC aislados y limitados; F306/D308 la protegen contra polaridad inversa. Sobretensión pendiente.',870,294,1.1)
     d.note('12 / Electroválvula 24V — low-side, fusible propio y rueda libre',870,326,1.8)
+    # Rib wall inside (owner, 2026-10-10): the A2506 turns 180 deg and the
+    # photographed pin 1 (+24 V, JP3.1) lands on its pad 5.
     d.add('J113','J5','JP3 VALVE / A2506',905,354,
-          ['24V_VALVE','VALVE_RETURN',None,None,None],
+          [None,None,None,'VALVE_RETURN','24V_VALVE'],
           'OpenSaeco:HR_A2506WV-05P_1x05_P2.50mm_Vertical',
           status='owner_identified_owner_pinout', part_key='CONN:HR_A2506WV_5_V')
     d.add('F304','FUSE','1A / 72VDC',970,354,['24V_ACT_RAW','24V_VALVE_FUSED'],

@@ -388,7 +388,7 @@ PLACE = {
     # with C408 limits the JP5 feed north of J106.
     'R304': (5.45, 13.3, 90), 'R305': (1.95, 15.08, 270),
     'U304': (12.5, 131.0, 0), 'R306': (16.2, 132.4, 0),
-    'C409': (9.6, 130.5, 270), 'C410': (14.97, 128.4, 180),
+    'C409': (9.6, 130.5, 270), 'C410': (15.9, 130.14, 270),
     'R413': (41.2, 120.2, 180), 'C408': (40.25, 118.2, 0),
     # Heatsink air sensor (issue #2): RT701 on the SELV edge of the barrier,
     # straight above the heatsink column, with its pull-up and filter.

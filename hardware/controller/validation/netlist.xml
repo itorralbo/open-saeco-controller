@@ -2,7 +2,7 @@
 <export version="E">
   <design>
     <source>/Users/ignaciotorralbo/Developer/open-saeco-controller/hardware/controller/kicad/controller-core-reva.kicad_sch</source>
-    <date>2026-10-10T18:45:08</date>
+    <date>2026-10-10T19:07:23</date>
     <tool>Eeschema 10.0.6</tool>
     <sheet number="1" name="/" tstamps="/">
       <title_block>
@@ -8175,7 +8175,7 @@
     <net code="14" name="/24V_VALVE" class="Actuator">
       <node ref="D305" pin="1" pinfunction="K_1" pintype="passive"/>
       <node ref="D306" pin="1" pinfunction="K_1" pintype="passive"/>
-      <node ref="J113" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J113" pin="5" pinfunction="5_5" pintype="passive"/>
     </net>
     <net code="15" name="/24V_VALVE_FUSED" class="Actuator">
       <node ref="D305" pin="2" pinfunction="A_2" pintype="passive"/>
@@ -8219,11 +8219,11 @@
       <node ref="U501" pin="4" pinfunction="nFAULT_4" pintype="open_collector"/>
     </net>
     <net code="24" name="/BREW_OUT1" class="Actuator">
-      <node ref="J108" pin="7" pinfunction="7_7" pintype="passive"/>
+      <node ref="J108" pin="8" pinfunction="8_8" pintype="passive"/>
       <node ref="U501" pin="8" pinfunction="OUT1_8" pintype="power_out"/>
     </net>
     <net code="25" name="/BREW_OUT2" class="Actuator">
-      <node ref="J108" pin="8" pinfunction="8_8" pintype="passive"/>
+      <node ref="J108" pin="7" pinfunction="7_7" pintype="passive"/>
       <node ref="U501" pin="10" pinfunction="OUT2_10" pintype="power_out"/>
     </net>
     <net code="26" name="/BREW_PWM_RAW" class="Default">
@@ -8283,7 +8283,7 @@
       <node ref="U101" pin="10" pinfunction="PC2_10" pintype="bidirectional"/>
     </net>
     <net code="38" name="/BU_PRESENT_RAW" class="Default">
-      <node ref="J108" pin="3" pinfunction="3_3" pintype="passive"/>
+      <node ref="J108" pin="4" pinfunction="4_4" pintype="passive"/>
       <node ref="R407" pin="2" pintype="passive"/>
       <node ref="R408" pin="1" pintype="passive"/>
     </net>
@@ -8293,7 +8293,7 @@
       <node ref="U101" pin="12" pinfunction="PA0_12" pintype="bidirectional"/>
     </net>
     <net code="40" name="/BU_WORK_RAW" class="Default">
-      <node ref="J108" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J108" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="R409" pin="2" pintype="passive"/>
       <node ref="R410" pin="1" pintype="passive"/>
     </net>
@@ -8421,11 +8421,11 @@
       <node ref="J104" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J104" pin="4" pinfunction="4_4" pintype="passive"/>
       <node ref="J104" pin="6" pinfunction="6_6" pintype="passive"/>
-      <node ref="J105" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J105" pin="1" pinfunction="1_1" pintype="passive"/>
       <node ref="J106" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="J107" pin="1" pinfunction="1_1" pintype="passive"/>
-      <node ref="J108" pin="2" pinfunction="2_2" pintype="passive"/>
-      <node ref="J108" pin="4" pinfunction="4_4" pintype="passive"/>
+      <node ref="J108" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J108" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="J109" pin="3" pinfunction="3_3" pintype="passive"/>
       <node ref="J110" pin="A1" pinfunction="GND_A1" pintype="passive"/>
       <node ref="J110" pin="A12" pinfunction="GND_A12" pintype="passive"/>
@@ -8706,7 +8706,7 @@
       <node ref="U101" pin="17" pinfunction="PA3_17" pintype="bidirectional"/>
     </net>
     <net code="98" name="/NTC_RAW" class="Default">
-      <node ref="J105" pin="1" pinfunction="1_1" pintype="passive"/>
+      <node ref="J105" pin="2" pinfunction="2_2" pintype="passive"/>
       <node ref="R401" pin="2" pintype="passive"/>
       <node ref="R402" pin="1" pintype="passive"/>
     </net>
@@ -8936,7 +8936,7 @@
     </net>
     <net code="147" name="/VALVE_RETURN" class="Actuator">
       <node ref="D306" pin="2" pinfunction="A_2" pintype="passive"/>
-      <node ref="J113" pin="2" pinfunction="2_2" pintype="passive"/>
+      <node ref="J113" pin="4" pinfunction="4_4" pintype="passive"/>
       <node ref="Q501" pin="3" pinfunction="D_3" pintype="power_out"/>
     </net>
     <net code="148" name="/WATCHDOG_KICK" class="Default">
@@ -8982,14 +8982,14 @@
     <net code="157" name="unconnected-(J110-SBU2-PadB8)" class="Default">
       <node ref="J110" pin="B8" pinfunction="SBU2_B8" pintype="passive+no_connect"/>
     </net>
-    <net code="158" name="unconnected-(J113-Pad3)" class="Default">
+    <net code="158" name="unconnected-(J113-Pad1)" class="Default">
+      <node ref="J113" pin="1" pinfunction="1_1" pintype="passive+no_connect"/>
+    </net>
+    <net code="159" name="unconnected-(J113-Pad2)" class="Default">
+      <node ref="J113" pin="2" pinfunction="2_2" pintype="passive+no_connect"/>
+    </net>
+    <net code="160" name="unconnected-(J113-Pad3)" class="Default">
       <node ref="J113" pin="3" pinfunction="3_3" pintype="passive+no_connect"/>
-    </net>
-    <net code="159" name="unconnected-(J113-Pad4)" class="Default">
-      <node ref="J113" pin="4" pinfunction="4_4" pintype="passive+no_connect"/>
-    </net>
-    <net code="160" name="unconnected-(J113-Pad5)" class="Default">
-      <node ref="J113" pin="5" pinfunction="5_5" pintype="passive+no_connect"/>
     </net>
     <net code="161" name="unconnected-(J115-Pad2)" class="Default">
       <node ref="J115" pin="2" pinfunction="2_2" pintype="passive+no_connect"/>

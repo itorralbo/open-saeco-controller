@@ -384,7 +384,8 @@ def route_h_bridge(board):
     """DRV8876 at (35, 37) rotated 270 deg beside JP16.
 
     OUT1 leaves the top-left pin and OUT2 the bottom row; both drop down the
-    left of the driver and enter J108 between its filter rows. VM is fed from
+    left of the driver and enter J108 at its north end, where the harness has
+    the motor wires: OUT1 north of MH1, OUT2 south of it. VM is fed from
     D304 along y = 46.4 through C501/C502/C503 to pin 11. The control pins fan
     north and east into six 1.6 mm rows of resistors; each pull-down/series
     pair is joined by a wrap over the pull-down's ground pad.
@@ -405,10 +406,11 @@ def route_h_bridge(board):
 
     # Motor outputs, 0.8 mm after a pad-width stub.
     track(board, out1, (32.6, 34.125), (31.9, 34.125), width=0.4)
-    polyline(board, out1, [(31.9, 34.125), (28.0, 38.0), (28.0, 62.0), (3.0, 62.0)],
+    polyline(board, out1, [(31.9, 34.125), (28.0, 38.0), (28.0, 42.6), (27.4, 43.2),
+                           (8.3, 43.2), (4.5, 47.0), (3.5, 47.0)],
              width=ACT_LANE_WIDTH)
     polyline(board, out2, [(33.375, 40.65), (33.375, 41.1), (32.6, 41.9)], width=0.4)
-    polyline(board, out2, [(32.6, 41.9), (31.4, 41.9), (29.2, 44.1), (29.2, 64.5), (3.0, 64.5)],
+    polyline(board, out2, [(32.6, 41.9), (31.4, 41.9), (29.2, 44.1), (29.2, 49.5), (3.5, 49.5)],
              width=ACT_LANE_WIDTH)
 
     # Charge pump and VM: pins 11-14 drop straight into C503 and C504.
@@ -627,20 +629,20 @@ def route_sensors(board):
     """
     gnd = '/GND_UI'
 
-    # JP16 pins 3 and 4 are strapped: the brew-unit contact common.
-    track(board, '/BU_BRIDGE', (3.0, 59.5), (3.0, 57.0), width=PIN_WIDTH)
+    # JP16 from the harness (owner, 2026-10-10), north to south: the motor
+    # (V1 red, V2 blue), the strapped blacks V3/V4, the presence greens V5/V6
+    # and the work reds V7/V8. Pads 5 and 6 are strapped: the brew-unit
+    # contact common.
+    track(board, '/BU_BRIDGE', (3.5, 52.0), (3.5, 54.5), width=PIN_WIDTH)
 
-    # Brew-unit present and working contacts (JP16 pins 6 and 8).
-    polyline(board, '/BU_PRESENT_RAW', [(3.0, 52.0), (12.0, 52.0), (12.825, 51.175),
-                                        (19.0, 51.175)],
+    # Brew-unit present and working contacts (J108 pads 4 and 2), each with
+    # its other pad on the ground fill, east on F.Cu to their dividers.
+    polyline(board, '/BU_PRESENT_RAW', [(3.5, 57.0), (10.5, 57.0), (12.825, 54.675),
+                                        (12.825, 51.175), (19.0, 51.175)],
              width=PIN_WIDTH)
     track(board, '/BU_PRESENT_N', (19.0, 52.825), (22.0, 52.775), width=PIN_WIDTH)
-    # The working contact passes under the present-contact row on B.Cu and
-    # comes up beside the second divider.
-    polyline(board, '/BU_WORK_RAW', [(3.0, 47.0), (6.0, 47.0), (14.175, 55.175),
-                                     (14.175, 58.175)], pcb.B_Cu, width=PIN_WIDTH)
-    via(board, '/BU_WORK_RAW', (14.175, 58.175))
-    track(board, '/BU_WORK_RAW', (14.175, 58.175), (19.0, 58.175), width=PIN_WIDTH)
+    polyline(board, '/BU_WORK_RAW', [(3.5, 62.0), (12.5, 62.0), (14.175, 60.325),
+                                     (14.175, 58.175), (19.0, 58.175)], width=PIN_WIDTH)
     track(board, '/BU_WORK_N', (19.0, 59.825), (22.0, 59.775), width=PIN_WIDTH)
 
     # Door contact (JP14).
@@ -691,14 +693,14 @@ def route_sensors(board):
                          ((34.0, 104.225), (34.9, 104.225)),
                          ((39.5, 125.3), (39.5, 122.4)),
                          ((32.725, 112.8), (33.675, 113.75)),
-                         ((23.0, 128.2), (24.425, 126.775)),
+                         ((22.0, 128.2), (24.425, 126.775)),
                          ((22.0, 115.225), (23.4, 115.225)),
                          ((21.0, 70.225), (22.4, 70.225)),
                          ((3.0, 71.0), (4.8, 71.0)),
                          ((22.0, 51.225), (23.4, 51.225)),
                          ((22.0, 58.225), (23.4, 58.225)),
-                         ((3.0, 54.5), (4.8, 54.5)),
-                         ((3.0, 49.5), (4.8, 49.5))):
+                         ((3.5, 59.5), (5.3, 59.5)),
+                         ((3.5, 64.5), (5.3, 64.5))):
         track(board, gnd, start, point, width=PIN_WIDTH)
         via(board, gnd, point)
 
@@ -861,11 +863,12 @@ def route_water_feed(board):
     polyline(board, gnd, [(11.363, 131.0), (10.2, 131.0), (9.925, 131.275),
                           (9.6, 131.275), (9.6, 132.3)], width=PIN_WIDTH)
     via(board, gnd, (9.6, 132.3))
-    polyline(board, out, [(13.637, 130.05), (14.6, 130.05), (15.745, 128.905),
-                          (15.745, 128.4), (16.3, 127.845), (18.645, 127.845),
-                          (19.0, 128.2)], width=0.3)
-    track(board, gnd, (14.195, 128.4), (13.4, 128.4), width=PIN_WIDTH)
-    via(board, gnd, (13.4, 128.4))
+    # C410 stands upright between U304 and J109 since J113 turned round
+    # (2026-10-10) and took the room north of U304.
+    polyline(board, out, [(13.637, 130.05), (15.165, 130.05), (15.9, 129.315),
+                          (17.015, 128.2), (19.0, 128.2)], width=0.3)
+    track(board, gnd, (15.9, 130.965), (16.85, 130.965), width=PIN_WIDTH)
+    via(board, gnd, (16.85, 130.965))
     polyline(board, '/WATER_ILIM', [(13.637, 131.0), (14.4, 131.0), (15.375, 131.975),
                                     (15.375, 132.4)], width=PIN_WIDTH)
     track(board, gnd, (17.025, 132.4), (17.9, 132.4), width=PIN_WIDTH)

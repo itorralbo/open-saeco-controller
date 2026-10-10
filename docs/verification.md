@@ -1435,3 +1435,31 @@ Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
 infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
 --self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 95/95;
 CTest 3/3. Sin hardware: falta probar el acoplamiento con los mazos.
+
+## Orientación de las A2506 y orden de JP16 en la original, 2026-10-10
+
+El propietario leyó en la placa original de qué lado queda la pared cercana a los
+pines (la del nervio, a 1,85 mm; la otra, la de la pestaña, está a 3,05 mm, y las
+dos tienen la misma altura): al borde en JP5 y JP14, hacia dentro en JP3, JP13 y
+JP16. Con el mazo de JP16 enchufado, V1 (rojo, motor) queda en el extremo junto a
+JP21. El diagrama de conexiones del manual da el orden de JP16: rojo y azul
+(motor), dos negros puenteados, dos verdes (presencia) y dos rojos (trabajo).
+
+- J113 y J105 giran 180° y J108 vuelve a 90°. En J113 y J105 cada pad conserva
+  su posición y su red; cambia su número (J113: pad 5 = +24 V, pad 4 = retorno;
+  J105: pad 2 = NTC).
+- J108 cambia de orden físico: el motor pasa al extremo norte (pads 8 y 7, con
+  `BREW_OUT1` en el rojo, como dice el manual) y los contactos al sur. Se
+  rehacen sus pistas: `BREW_OUT1` rodea MH1 por el norte y `BREW_OUT2` por el
+  sur, y los contactos llegan por F.Cu a sus divisores. Fila corrida 0,5 mm al
+  este para que la pestaña no se salga de la placa.
+- C410 se pone de pie entre U304 y J109: J113 girado ocupaba su sitio.
+- Corregidos los stubs de masa que colgaban de los antiguos pads de masa de J108
+  y de J109.3.
+- Contrato del firmware, planta del simulador y aserciones con la nueva
+  numeración.
+
+Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
+infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
+--self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 95/95;
+CTest 3/3. Falta probar el acoplamiento con los mazos.

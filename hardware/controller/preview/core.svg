@@ -1188,11 +1188,11 @@
 <path d="M 57.15 443.23 H 52.07" stroke="#27856d" stroke-width=".22"/>
 <text x="57.849999999999994" y="443.53000000000003" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="55.21" y="442.73" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="51.67" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">NTC_RAW</text>
+<text x="51.67" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
 <path d="M 57.15 447.04 H 52.07" stroke="#27856d" stroke-width=".22"/>
 <text x="57.849999999999994" y="447.34000000000003" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="55.21" y="446.54" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="51.67" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="51.67" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">NTC_RAW</text>
 <rect x="142.24" y="429.53" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="144.78" y="424.53" font-size="1.05" text-anchor="middle" fill="#213b50">R401</text>
 <text x="144.78" y="427.03" font-size="1.05" text-anchor="middle" fill="#213b50">4.7k / NTC pull-up</text>
@@ -1306,19 +1306,19 @@
 <path d="M 699.77 443.23 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="443.53000000000003" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="697.83" y="442.73" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="694.2900000000001" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">BU_WORK_RAW</text>
+<text x="694.2900000000001" y="442.73" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
 <path d="M 699.77 447.04 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="447.34000000000003" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="697.83" y="446.54" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="694.2900000000001" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="694.2900000000001" y="446.54" font-size="0.9" text-anchor="end" fill="#23745f">BU_WORK_RAW</text>
 <path d="M 699.77 450.85 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="451.15000000000003" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="697.83" y="450.35" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
-<text x="694.2900000000001" y="450.35" font-size="0.9" text-anchor="end" fill="#23745f">BU_PRESENT_RAW</text>
+<text x="694.2900000000001" y="450.35" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
 <path d="M 699.77 454.66 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="454.96000000000004" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
 <text x="697.83" y="454.16" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="694.2900000000001" y="454.16" font-size="0.9" text-anchor="end" fill="#23745f">GND_UI</text>
+<text x="694.2900000000001" y="454.16" font-size="0.9" text-anchor="end" fill="#23745f">BU_PRESENT_RAW</text>
 <path d="M 699.77 458.47 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="458.77000000000004" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
 <text x="697.83" y="457.97" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
@@ -1330,11 +1330,11 @@
 <path d="M 699.77 466.09 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="466.39" font-size="0.9" text-anchor="start" fill="#213b50">7</text>
 <text x="697.83" y="465.59" font-size="0.65" text-anchor="middle" fill="#213b50">7</text>
-<text x="694.2900000000001" y="465.59" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT1</text>
+<text x="694.2900000000001" y="465.59" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT2</text>
 <path d="M 699.77 469.9 H 694.69" stroke="#27856d" stroke-width=".22"/>
 <text x="700.47" y="470.2" font-size="0.9" text-anchor="start" fill="#213b50">8</text>
 <text x="697.83" y="469.4" font-size="0.65" text-anchor="middle" fill="#213b50">8</text>
-<text x="694.2900000000001" y="469.4" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT2</text>
+<text x="694.2900000000001" y="469.4" font-size="0.9" text-anchor="end" fill="#23745f">BREW_OUT1</text>
 <rect x="802.64" y="419.37" width="5.08" height="2.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="805.18" y="414.37" font-size="1.05" text-anchor="middle" fill="#213b50">R407</text>
 <text x="805.18" y="416.87" font-size="1.05" text-anchor="middle" fill="#213b50">10k / PRES pull-up</text>
@@ -1378,7 +1378,7 @@
 <path d="M 807.7199999999999 505.46 H 812.8" stroke="#27856d" stroke-width=".22"/>
 <text x="813.1999999999999" y="504.96" font-size="0.9" text-anchor="start" fill="#23745f">GND_UI</text>
 <text x="660" y="530" font-size="1.1" text-anchor="start" fill="#213b50">PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,</text>
-<text x="660" y="536" font-size="1.1" text-anchor="start" fill="#213b50">V5/V6 verde presencia, V7/V8 rojo trabajo: V1..V8 van en los pads 8..1 de la A2506.</text>
+<text x="660" y="536" font-size="1.1" text-anchor="start" fill="#213b50">V5/V6 verde presencia, V7/V8 rojo trabajo: V1..V8 en los pads 8..1, V1 junto a JP21.</text>
 <rect x="575.31" y="505.46" width="10.16" height="12.7" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="580.39" y="500.46" font-size="1.05" text-anchor="middle" fill="#213b50">U304</text>
 <text x="580.39" y="502.96" font-size="1.05" text-anchor="middle" fill="#213b50">TPS2553DBVR / JP22 0.13A limit</text>
@@ -1749,11 +1749,11 @@
 <path d="M 900.43 346.71 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="347.01" font-size="0.9" text-anchor="start" fill="#213b50">1</text>
 <text x="898.49" y="346.21" font-size="0.65" text-anchor="middle" fill="#213b50">1</text>
-<text x="894.95" y="346.21" font-size="0.9" text-anchor="end" fill="#23745f">24V_VALVE</text>
+<text x="895.35" y="347.01" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 900.43 350.52 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="350.82" font-size="0.9" text-anchor="start" fill="#213b50">2</text>
 <text x="898.49" y="350.02" font-size="0.65" text-anchor="middle" fill="#213b50">2</text>
-<text x="894.95" y="350.02" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_RETURN</text>
+<text x="895.35" y="350.82" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
 <path d="M 900.43 354.33 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="354.63" font-size="0.9" text-anchor="start" fill="#213b50">3</text>
 <text x="898.49" y="353.83" font-size="0.65" text-anchor="middle" fill="#213b50">3</text>
@@ -1761,11 +1761,11 @@
 <path d="M 900.43 358.14 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="358.44" font-size="0.9" text-anchor="start" fill="#213b50">4</text>
 <text x="898.49" y="357.64" font-size="0.65" text-anchor="middle" fill="#213b50">4</text>
-<text x="895.35" y="358.44" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="894.95" y="357.64" font-size="0.9" text-anchor="end" fill="#23745f">VALVE_RETURN</text>
 <path d="M 900.43 361.95 H 895.35" stroke="#27856d" stroke-width=".22"/>
 <text x="901.13" y="362.25" font-size="0.9" text-anchor="start" fill="#213b50">5</text>
 <text x="898.49" y="361.45" font-size="0.65" text-anchor="middle" fill="#213b50">5</text>
-<text x="895.35" y="362.25" font-size="0.85" text-anchor="start" fill="#213b50">NC</text>
+<text x="894.95" y="361.45" font-size="0.9" text-anchor="end" fill="#23745f">24V_VALVE</text>
 <rect x="967.74" y="352.83" width="5.08" height="3.0" fill="#f3f7fa" stroke="#213b50" stroke-width=".25"/>
 <text x="970.28" y="347.83" font-size="1.05" text-anchor="middle" fill="#213b50">F304</text>
 <text x="970.28" y="350.33" font-size="1.05" text-anchor="middle" fill="#213b50">1A / 72VDC</text>

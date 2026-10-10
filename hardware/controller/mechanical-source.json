@@ -36,9 +36,9 @@
       "function": "brew motor and switches",
       "edge": "left",
       "entry_direction": "left",
-      "footprint_origin_mm": [3.0, 47.0],
-      "rotation_deg": 270,
-      "note": "Owner, 2026-10-10: HR A2506WV-08P. At 270 deg its rib wall faces the board edge as on the bottom row, which puts pad 1 at the north end of the same pad row the photographed header used (pad 1 was at y = 64.5 mm with the XH)."
+      "footprint_origin_mm": [3.5, 64.5],
+      "rotation_deg": 90,
+      "note": "Owner, 2026-10-10: HR A2506WV-08P with the wall next to the pins (rib side) inside, as on the original. Pad 8 at the north end, next to JP21, takes V1 (red motor wire). 0.5 mm east of the photographed row so that the flange side (3.05 mm from the pins) stays on the board."
     },
     {
       "original_reference": "JP14",
@@ -48,7 +48,7 @@
       "entry_direction": "left",
       "footprint_origin_mm": [3.0, 71.0],
       "rotation_deg": 270,
-      "note": "Owner, 2026-10-10: HR A2506WV-02P, at 270 deg like J108; pad 1 at the north end of the photographed pad pair."
+      "note": "Owner, 2026-10-10: HR A2506WV-02P with the wall next to the pins on the board edge, as on the original; at 270 deg pad 1 is the north one of the photographed pad pair."
     },
     {
       "original_reference": "JP3",
@@ -56,8 +56,9 @@
       "function": "24 V valve",
       "edge": "bottom",
       "entry_direction": "bottom",
-      "footprint_origin_mm": [3.5, 125.3],
-      "rotation_deg": 0
+      "footprint_origin_mm": [13.5, 125.3],
+      "rotation_deg": 180,
+      "note": "Owner, 2026-10-10: the wall next to the pins (rib side) is inside, so the A2506 turns 180 deg; the photographed pin 1 (+24 V) stays at x = 3.5 mm as pad 5"
     },
     {
       "original_reference": "JP22",
@@ -74,9 +75,9 @@
       "function": "boiler NTC",
       "edge": "bottom",
       "entry_direction": "bottom",
-      "footprint_origin_mm": [28.75, 125.3],
-      "rotation_deg": 0,
-      "note": "0.25 mm west of the photographed pin 1 (2026-10-06) so that J106, moved west for U704 (the grinder current sensor), keeps its courtyard and silkscreen clear of it"
+      "footprint_origin_mm": [31.25, 125.3],
+      "rotation_deg": 180,
+      "note": "Owner, 2026-10-10: wall next to the pins inside, so turned 180 deg; the photographed pin 1 is now pad 2 at x = 28.75 mm. 0.25 mm west of the photographed pin 1 (2026-10-06) so that J106, moved west for U704 (the grinder current sensor), keeps its courtyard and silkscreen clear of it"
     },
     {
       "original_reference": "JP5",
