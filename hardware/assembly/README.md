@@ -4,6 +4,42 @@ Preferencia del propietario, 2026-09-16: fabricar en JLCPCB o equivalente y dise
 con componentes disponibles. Se adopta desde la selección de componentes; no se
 esperará al final del layout para buscar referencias.
 
+## Colocación de componentes (2026-10-10)
+
+La [auditoría completa](placement-audit.md) registra las 265 referencias de las
+dos placas: 250 incluidas en montaje y 15 excluidas. De las montadas, 242 tienen
+correspondencia geométrica con los modelos públicos del visor de JLCPCB; L302
+se ha contrastado con el plano de Bourns, y siete posiciones de la principal
+requieren revisión. El [JSON](placement-audit.json) conserva
+la evidencia y la corrección por referencia, huella y código LCSC.
+
+Las convenciones de giro/cara inferior siguen Bouni, pero las correcciones se
+contrastan por código LCSC: U301 y U303, por ejemplo, no usan el mismo giro a
+pesar de compartir huella. No se cambia la geometría de la PCB para adaptar
+el visor. Las discrepancias físicas quedan bloqueadas y documentadas.
+
+Para repetir la auditoría después de cambios en PCB/BOM:
+
+```text
+python tools/fetch_jlc_placement_models.py <directorio-cache>
+<python-de-KiCad> tools/audit_jlc_placements.py <directorio-cache>
+python tools/export_front_panel_fab.py
+python tools/export_controller_fab.py --allow-unverified
+python -m unittest discover -s tests -p test_jlc_placements.py
+```
+
+La caché contiene las respuestas originales de terceros y no se incorpora al
+repositorio. Para refrescar una respuesta, usar un directorio de caché nuevo.
+El exportador verifica SHA-256 de la PCB (con saltos LF normalizados), identidad
+de la BOM y posición original; no reutiliza correcciones de una revisión anterior
+sin repetir la auditoría. El informe distingue ausencia de modelo, discrepancia
+geométrica y correspondencia. Esta última no equivale a aprobar la fabricación.
+
+La principal solo permite generar un archivo `-cpl-jlcpcb-review.csv` mientras
+haya pendientes; no se debe confirmar el montaje con ese archivo. El frontal
+conserva su nombre de CPL habitual. Ambos requieren comprobar la vista previa
+del pedido, especialmente pin 1, polaridad y boca de conectores.
+
 ## Catálogo trazable
 
 [parts-catalog.json](parts-catalog.json) registra MPN, fabricante, código JLC/LCSC,

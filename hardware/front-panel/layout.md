@@ -103,8 +103,12 @@ En la vista previa de montaje de JLCPCB comprobar, antes de confirmar:
   el que entra el pestillo del cable; la marca de pin 1 de la serigrafía queda debajo.
 - J2: boca del PH hacia el borde superior de la placa.
 
-Las rotaciones del CPL son las de KiCad; si la vista previa muestra una pieza girada,
-se corrige allí y se anota aquí.
+El CPL incorpora la [auditoría por componente](../assembly/placement-audit.md):
+U1 +270°, D1 +180° y J2 +180° con el centro trasladado 7 mm desde el pin 1
+en los ejes locales de la huella. SW1–SW7 conservan su giro; la comparación
+relaciona sus cuatro patas físicas con los dos contactos eléctricos.
+Las 41 posiciones montadas tienen correspondencia geométrica. Esto no sustituye
+la revisión de la previsualización del pedido ni las verificaciones mecánicas.
 
 ## Pendiente antes de pedir
 
@@ -129,4 +133,6 @@ python3 tools/export_front_panel_fab.py
 ```
 
 Freerouting no es determinista: cada ruteo nuevo exige repetir DRC y revisión visual.
+Si cambia la PCB, repetir también la auditoría de colocación descrita en
+[assembly](../assembly/README.md) antes de exportar.
 `FREEROUTING` permite indicar el ejecutable si no está en la ruta por defecto de Windows.

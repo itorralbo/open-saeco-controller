@@ -3,8 +3,8 @@
 Gerbers + Excellon drill (zipped) with a drill map, BOM (Comment, Designator,
 Footprint, LCSC Part #) and CPL (Designator, Mid X, Mid Y, Layer, Rotation)
 following the JLCPCB help pages for KiCad. Plain Python; needs kicad-cli
-(KICAD_CLI or PATH, as validate_kicad.py). Rotations are KiCad's: check
-orientation and polarity in the JLCPCB preview.
+(KICAD_CLI or PATH, as validate_kicad.py). CPL corrections require the versioned
+per-part audit; unresolved parts can only be exported to a review CPL.
 """
 import csv
 import json
@@ -14,6 +14,7 @@ import zipfile
 from pathlib import Path
 
 from validate_kicad import ROOT, cli_path
+from jlc_placement_corrections import RESOLVED, corrected_placements, load_audit, transform
 
 STOCK = {p['lcsc']: p for p in json.loads(
     (ROOT/'hardware/assembly/parts-catalog.json').read_text())['parts'].values()
@@ -110,6 +111,15 @@ def write_cpl(path, placements):
                         'Top' if p['Side'] == 'top' else 'Bottom', f"{float(p['Rot']) % 360:.1f}"])
 
 
+def prepare_cpl(board, out, name, placements, allow_unverified=False):
+    """Validate before exporting any files; choose a clearly marked review name."""
+    rows = corrected_placements(board, placements, allow_unverified=allow_unverified)
+    records = load_audit(board)
+    pending = [p['Ref'] for p in placements if records[p['Ref']]['fit']['status'] not in RESOLVED]
+    suffix = '-cpl-jlcpcb-review.csv' if pending else '-cpl-jlcpcb.csv'
+    return out/f'{name}{suffix}', rows, pending
+
+
 def check_package(out, name, refs):
     """Fail if the committed BOM or CPL in `out` does not place exactly `refs`.
 
@@ -117,9 +127,26 @@ def check_package(out, name, refs):
     """
     with (out/f'{name}-bom-jlcpcb.csv').open(newline='', encoding='utf-8') as f:
         bom = [r for row in csv.DictReader(f) for r in row['Designator'].split(',')]
-    with (out/f'{name}-cpl-jlcpcb.csv').open(newline='', encoding='utf-8') as f:
-        cpl = [row['Designator'] for row in csv.DictReader(f)]
+    board = out.parent/'kicad'/f'{name}.kicad_pcb'
+    records = load_audit(board)
+    pending = any(records[ref]['fit']['status'] not in RESOLVED for ref in refs)
+    suffix = '-cpl-jlcpcb-review.csv' if pending else '-cpl-jlcpcb.csv'
+    with (out/f'{name}{suffix}').open(newline='', encoding='utf-8') as f:
+        rows = list(csv.DictReader(f))
+        cpl = [row['Designator'] for row in rows]
     for label, found in (('BOM', bom), ('CPL', cpl)):
         assert len(found) == len(set(found)) and set(found) == set(refs), (
             f'{name} {label} is stale; re-run the fabrication export: '
             f'{sorted(set(found) ^ set(refs))}')
+    for row in rows:
+        record = records[row['Designator']]
+        native, fit = record['native'], record['fit']
+        expected = transform(native, fit) if fit['status'] in RESOLVED else (
+            native['x'], native['y'], native['angle'] % 360)
+        actual = (float(row['Mid X'].removesuffix('mm')), float(row['Mid Y'].removesuffix('mm')),
+                  float(row['Rotation']))
+        assert all(abs(a-b) <= .0001 for a, b in zip(actual, expected)), (
+            f'{name}:{row["Designator"]}: CPL differs from audited placement')
+        assert row['Layer'].lower() == native['side']
+    if pending:
+        assert not (out/f'{name}-cpl-jlcpcb.csv').exists(), 'Remove obsolete, unaudited CPL'

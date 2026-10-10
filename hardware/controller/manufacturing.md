@@ -94,7 +94,7 @@ comprueba en el DRC y se revisará antes de fabricar.
 
 `tools/export_controller_fab.py` lo escribe en [fabrication/](fabrication/) desde
 la PCB y la [BOM](bom-draft.csv). No es una liberación: el script lista al final
-lo que sigue abierto (hoy nada) y saca de la BOM de JLCPCB lo que no tenía stock
+lo que sigue abierto y saca de la BOM de JLCPCB lo que no tenía stock
 en la última consulta (`tools/refresh_jlc_stock.py`): hoy J104 (Würth WR-MM),
 J106 (HR A2506WV-03P) y J108 (HR A2506WV-08P), THT, que se compran aparte y se
 sueldan a mano. Los de J106 y J108 pueden salir de la placa original, que lleva
@@ -103,8 +103,8 @@ las mismas cabeceras.
 | Archivo | Contenido |
 |---|---|
 | [controller-core-reva-gerbers.zip](fabrication/controller-core-reva-gerbers.zip) | Gerber de 4 capas (extensiones Protel, máscara restada de la serigrafía), trabajo `.gbrjob` con el apilado, Excellon en mm con PTH y NPTH separados, y mapas de taladros |
-| [controller-core-reva-bom-jlcpcb.csv](fabrication/controller-core-reva-bom-jlcpcb.csv) | 70 líneas / 210 posiciones: Comment, Designator, Footprint, LCSC Part # |
-| [controller-core-reva-cpl-jlcpcb.csv](fabrication/controller-core-reva-cpl-jlcpcb.csv) | Designator, Mid X, Mid Y, Layer, Rotation (todas Top) |
+| [controller-core-reva-bom-jlcpcb.csv](fabrication/controller-core-reva-bom-jlcpcb.csv) | 69 líneas / 209 posiciones: Comment, Designator, Footprint, LCSC Part # |
+| [controller-core-reva-cpl-jlcpcb-review.csv](fabrication/controller-core-reva-cpl-jlcpcb-review.csv) | Solo revisión: correcciones contrastadas por código LCSC, siete posiciones pendientes; C707 en Bottom |
 | [controller-core-reva-not-assembled.csv](fabrication/controller-core-reva-not-assembled.csv) | Lo que JLCPCB no monta y por qué |
 
 Los PTH y NPTH van en ficheros separados: en uno solo, únicamente los comentarios
@@ -120,7 +120,6 @@ C707, el X2 de entrada, es la única pieza montada en la cara inferior. Con él 
 el CPL el pedido es de montaje a doble cara; si sale más barato, se quita del
 CPL y se suelda a mano (2220).
 - J115 y J117 (LEOCO de JP8 y JP24): sin código JLCPCB, se sueldan a mano o se aportan.
-- RV701: sin pieza hasta elegir el MOV.
 
 Opciones del pedido: 4 capas, 1,6 mm, apilado JLC04161H-7628 (1 oz exterior,
 0,5 oz interior), sin impedancia controlada. Montaje en la cara superior; hay
@@ -131,8 +130,19 @@ cambio de la PCB.
 
 En la vista previa de JLCPCB, antes de confirmar: pin 1 de U101, U201 y de cada
 integrado; polaridad de diodos, puentes rectificadores y electrolíticos; y la
-boca de cada conector hacia el borde. Las rotaciones del CPL son las de KiCad;
-si una pieza sale girada, se corrige allí y se anota aquí.
+boca de cada conector hacia el borde. Las rotaciones y centros del CPL incorporan
+la [auditoría por componente](../assembly/placement-audit.md), contrastada con
+los modelos públicos enlazados desde JLCPCB. La exportación normal se detiene
+si la PCB o la BOM cambiaron desde la auditoría o si hay colocaciones sin resolver.
+
+**El paquete principal no está liberado para montar:** K701 tiene una huella con
+20 mm entre columnas extremas donde el fabricante requiere 25 mm; F702 mezcla
+una huella de clips con el código de un fusible suelto. También requieren revisión
+J118, F701/F703 y los modelos ausentes de C314/F306. El informe explica cada
+caso. Para revisar las otras correcciones en el visor se genera expresamente
+`python tools/export_controller_fab.py --allow-unverified`; ese CPL lleva el
+sufijo `-review` y conserva las posiciones originales de los siete pendientes.
+Se ha retirado el CPL anterior sin correcciones para evitar confundirlo con este.
 
 La huella de KiCad del ESP32-S3-WROOM-1U lleva 12 vías de 0,2 mm en el pad de
 masa central, sin tapar. Confirmar con JLCPCB el taladro de 0,2 mm y si la

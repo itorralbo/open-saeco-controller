@@ -9,7 +9,9 @@ consigned. Parts still unchosen or only photo-matched are printed as open
 items; the package is not a release.
 Shared steps and formats in jlc_fab.py.
 """
-from jlc_fab import (export_gerbers, out_of_stock, positions, read_bom, ref_key,
+import argparse
+
+from jlc_fab import (export_gerbers, out_of_stock, positions, prepare_cpl, read_bom, ref_key,
                      write_bom, write_cpl, write_not_assembled)
 from validate_kicad import ROOT
 
@@ -46,6 +48,10 @@ def open_item(part):
 
 
 def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--allow-unverified', action='store_true',
+                        help='Write a review CPL with unresolved placements explicitly reported')
+    args = parser.parse_args()
     OUT.mkdir(exist_ok=True)
     parts = read_bom(BASE/'bom-draft.csv')
     placements = positions(BOARD)
@@ -59,9 +65,17 @@ def main():
     assembled = [p for p in parts if p['reference'] not in skipped]
     assert all(p['lcsc'] for p in assembled)
 
+    cpl_path, cpl_rows, pending = prepare_cpl(
+        BOARD, OUT, NAME, [p for p in placements if p['Ref'] not in skipped], args.allow_unverified)
+
     files = export_gerbers(BOARD, LAYERS, OUT/f'{NAME}-gerbers.zip')
     lines = write_bom(OUT/f'{NAME}-bom-jlcpcb.csv', assembled)
-    write_cpl(OUT/f'{NAME}-cpl-jlcpcb.csv', [p for p in placements if p['Ref'] not in skipped])
+    write_cpl(cpl_path, cpl_rows)
+    if pending:
+        (OUT/f'{NAME}-cpl-jlcpcb.csv').unlink(missing_ok=True)
+        print(f'  REVIEW ONLY: {cpl_path.name}; unresolved: {", ".join(pending)}')
+    else:
+        (OUT/f'{NAME}-cpl-jlcpcb-review.csv').unlink(missing_ok=True)
     write_not_assembled(OUT/f'{NAME}-not-assembled.csv', parts, skipped)
 
     print(f'{NAME}: {files} Gerber/drill files zipped; BOM {lines} lines / '
