@@ -195,9 +195,12 @@ orientación están en el [layout](../../hardware/controller/layout.md#jp3-jp5-j
 El conector del enlace con el frontal lo identificó el 2026-10-01 en las dos placas, con un cable plano 1:1 de 16 hilos; los 20 contactos contados en la foto de JP21 eran un error.
 El 2026-10-10 identificó los tres que faltaban: JP14 es una HR A2506WV-02P,
 JP16 una HR A2506WV-08P y JP22 una JST B3B-ZR (serie ZH, paso de 1,5 mm, como
-midió el nonio). En la placa nueva J107/J108 giran 270° para que la pared del
-nervio quede hacia el borde, como en JP3, JP5 y JP13; las fotos de la original
-(IMG_1085) apuntan a esa misma orientación, pero falta confirmarla con los mazos.
+midió el nonio). También leyó en la original qué pared de cada A2506 queda
+cerca de los pines: al borde en JP5 y JP14, hacia dentro en JP3, JP13 y JP16;
+y que el hilo rojo del motor (V1) de JP16 está en el extremo junto a JP21. La
+orientación que se dedujo antes de IMG_1085 para JP3, JP13 y JP16 era la
+contraria. Detalle en el
+[layout](../../hardware/controller/layout.md#jp14-jp16-y-jp22).
 
 ## Fusibles y puente del molinillo, 2026-10-06
 

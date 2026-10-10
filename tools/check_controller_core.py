@@ -131,7 +131,7 @@ def main():
     assert nets['R305'] == {'1':'3V3_UI','2':g}
     assert nets['C308'] == {'1':v,'2':g}
     assert nets['C309'] == {'1':'3V3_UI','2':g}
-    assert nets['J105'] == {'1':'NTC_RAW','2':g}
+    assert nets['J105'] == {'1':g,'2':'NTC_RAW'}
     assert nets['R401'] == {'1':v,'2':'NTC_RAW'}
     assert nets['R402'] == {'1':'NTC_RAW','2':'NTC_ADC'}
     assert nets['C401'] == {'1':'NTC_ADC','2':g}
@@ -145,10 +145,10 @@ def main():
     assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
     assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_CLOSED_N'}
     assert nets['C403'] == {'1':'DOOR_CLOSED_N','2':g}
-    # A2506 at 270 deg: pad 1 at the north end, V1 on pad 8.
-    assert nets['J108'] == {'1':'BU_WORK_RAW','2':g,'3':'BU_PRESENT_RAW','4':g,
+    # Harness order (owner, 2026-10-10): V1 red motor on pad 8 next to JP21.
+    assert nets['J108'] == {'1':g,'2':'BU_WORK_RAW','3':g,'4':'BU_PRESENT_RAW',
                             '5':'BU_BRIDGE','6':'BU_BRIDGE',
-                            '7':'BREW_OUT1','8':'BREW_OUT2'}
+                            '7':'BREW_OUT2','8':'BREW_OUT1'}
     for prefix, raw, conditioned in [('PRES','BU_PRESENT_RAW','BU_PRESENT_N'),
                                      ('WORK','BU_WORK_RAW','BU_WORK_N')]:
         refs = {'PRES':('R407','R408','C404'), 'WORK':('R409','R410','C405')}[prefix]
@@ -213,7 +213,7 @@ def main():
                       ('R510','BREW_CURRENT_ADC',g),('C505','BREW_VREF',g),
                       ('C506','BREW_CURRENT_ADC',g)]:
         assert nets[ref] == {'1':a,'2':b}
-    assert nets['J113'] == {'1':'24V_VALVE','2':'VALVE_RETURN','3':None,'4':None,'5':None}
+    assert nets['J113'] == {'1':None,'2':None,'3':None,'4':'VALVE_RETURN','5':'24V_VALVE'}
     assert nets['F304'] == {'1':'24V_ACT_RAW','2':'24V_VALVE_FUSED'}
     assert nets['D305'] == {'2':'24V_VALVE_FUSED','1':'24V_VALVE'}
     assert nets['D306'] == {'2':'VALVE_RETURN','1':'24V_VALVE'}

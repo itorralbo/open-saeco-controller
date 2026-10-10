@@ -42,8 +42,9 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
 - J105–J108 son HR A2506WV (-02P, -03P, -02P y -08P) y J109 una JST ZH B3B-ZR
   de 1,5 mm, todas identificadas por el propietario (JP14, JP16 y JP22 el
-  2026-10-10). J107 y J108 van a 270° para que la pared del nervio dé al borde,
-  como en la fila inferior; por eso V1..V8 de JP16 caen en los pads 8..1. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
+  2026-10-10). Cada A2506 se orienta con la pared cercana a los pines del lado
+  que tiene en la original (ver [layout](layout.md#jp14-jp16-y-jp22)); V1..V8 de
+  JP16 caen en los pads 8..1 de J108, con V1 junto a JP21. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
 - J112 recibe 24 V DC aislados para los actuadores y entra por su propio
@@ -54,7 +55,8 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
 - U501 implementa inversión, PWM, `nSLEEP`, diagnóstico `nFAULT`, límite de
   corriente candidato a 1 A y lectura `IPROPI` hacia el ADC del STM32.
 - PA7 gobierna la electroválvula mediante U502, Q501 y una entrada con pull-down.
-  J113 reproduce JP3: pin 1 a +24 V, pin 2 al retorno conmutado y 3–5 sin uso.
+  J113 reproduce JP3: el pin 1 de la original (pad 5 de J113) a +24 V, el 2
+  (pad 4) al retorno conmutado y el resto sin uso.
   D306 proporciona rueda libre externa.
 - U601 supervisa 3,3 V y PB4 como watchdog. Su salida open-drain comparte
   `STM_NRST`; U605 (Schmitt) lo cuadra como `STM_NRST_BUF` y U602 solo permite
@@ -228,10 +230,10 @@ automáticamente tras una sobrecorriente.
 PF0 gobierna EN/PWM con TIM1_CH3N, la salida complementaria usada sola.
 PC14 da la dirección, PB5 `nSLEEP`, PB6 lee `nFAULT` y PC0 (ADC12_IN6) mide
 `IPROPI`. PC14 está en el dominio de respaldo: salida lenta (2 MHz como máximo) y
-nunca como fuente de corriente; basta para una entrada lógica. V1/V2 de JP16 son `OUT2/OUT1`. Ese orden, con el DRV8876 girado 270°,
-evita que se crucen las pistas del motor; el motor es de continua y el signo de
-DIR para cada sentido se fijará en el ensayo del grupo. La numeración física del
-conector sigue siendo candidata hasta probar el arnés. C503=100 nF entre VCP y VM y C504=22 nF
+nunca como fuente de corriente; basta para una entrada lógica. V1/V2 de JP16 (rojo y azul) son `OUT1/OUT2`, como en la nota del manual, y
+están en el extremo de J108 junto a JP21 (propietario, 2026-10-10). El motor es
+de continua y el signo de DIR para cada sentido se fijará en el ensayo del
+grupo. C503=100 nF entre VCP y VM y C504=22 nF
 entre CPH y CPL siguen la aplicación de referencia de TI. C501=100 µF/35 V es un
 bulk inicial, no un dimensionado cerrado. C502=100 nF es el bypass de VM; desde
 el 2026-10-07 (issue #5) está a unos 5 mm del pin 11 y no a 11 mm, con su propia
@@ -289,8 +291,9 @@ de 12 V conduce Q501 (SI2308A, 60 V) a través de R513=33 Ω, con R514=100 kΩ e
 puerta y source. C507=100 nF y C508=1 µF desacoplan el driver. D306 (SS34) queda
 en paralelo con la bobina, cátodo a `24V_VALVE` y ánodo a `VALVE_RETURN`.
 
-J113 usa HR A2506WV-05P vertical, LCSC `C382535`, con pin 1 a +24 V y pin 2 al
-retorno conmutado; 3–5 quedan NC. La etapa se ha dibujado para probar la bobina
+J113 usa HR A2506WV-05P vertical, LCSC `C382535`, girada 180° como en la
+original: el pin 1 de JP3 (pad 5) a +24 V y el 2 (pad 4) al retorno conmutado;
+el resto queda NC. La etapa se ha dibujado para probar la bobina
 OLAB 6000BH/B0DN. Antes de liberarla deben medirse corriente en caliente, tiempo
 de liberación, tensión de drenador y temperatura del MOSFET.
 

@@ -3,8 +3,8 @@
 Destino, pieza y pin del MCU de cada conector en la Rev A. El diagrama del manual
 confirma destinos, número de posiciones y el color de cada hilo; los pinouts de
 JP3, JP5 y JP22 los trazó el propietario. JP14 y JP16 son HR A2506WV
-(propietario, 2026-10-10); en la placa nueva V1..V8 de JP16 caen en los pads
-8..1 de J108, y el orden físico de los hilos sigue por cotejar con el arnés.
+(propietario, 2026-10-10). En JP16, V1 (rojo, motor) está en el extremo junto a
+JP21; en la placa nueva V1..V8 caen en los pads 8..1 de J108.
 Página PDF indica índice desde 1, distinto de la numeración por capítulo.
 
 | Función | Conector documental | Manual, página PDF | Confirmado / pendiente |

@@ -565,19 +565,41 @@ El propietario identificó el 2026-10-10 los tres que faltaban:
 | JP16 | J108 | HR A2506WV-08P | 2,50 mm | C476906, sin stock |
 | JP22 | J109 | JST B3B-ZR (serie ZH) | 1,50 mm | C158001 |
 
-- J107 y J108 giran de 90° a 270°: así la pared del nervio da al borde
-  izquierdo, igual que la de JP3, JP5 y JP13 da al borde inferior. Las fotos de
-  la original apuntan a lo mismo. Con el giro el pad 1 pasa al extremo norte, así
-  que los pads siguen en las posiciones de las XH, con sus redes, y solo cambia
-  su número: V1..V8 de JP16 caen en los pads 8..1 y la puerta en el pad 2 de
-  J107. El ruteo no cambia; el contrato del firmware y la planta del simulador
-  siguen la nueva numeración.
+Las dos paredes de la A2506 tienen la misma altura; lo que las distingue es la
+distancia a los pines: 1,85 mm la del lado del nervio y 3,05 mm la de la
+pestaña. El propietario leyó en la original de qué lado queda la cercana:
+
+| Conector | Pared cercana | Rev A |
+|---|---|---|
+| JP3 (J113) | hacia dentro | 180°, pad 5 = +24 V en el pin 1 fotografiado |
+| JP5 (J106) | al borde | 0°, sin cambios |
+| JP13 (J105) | hacia dentro | 180°, pad 2 = NTC en el pin 1 fotografiado |
+| JP14 (J107) | al borde | 270°, pad 1 al norte |
+| JP16 (J108) | hacia dentro | 90°, pad 1 al sur |
+
+- En J113, J105 y J107 cada pad conserva la posición y la red que tenía; solo
+  cambia su número.
+- JP16 sí cambia: con el mazo enchufado en la original, V1 (rojo, motor) queda
+  en el extremo junto a JP21. Del norte al sur, J108 lleva el motor (pad 8
+  `BREW_OUT1`, rojo; pad 7 `BREW_OUT2`, azul), el puente de los negros (pads 6 y
+  5), la presencia (verdes: pad 4 `BU_PRESENT_RAW`, pad 3 a masa) y el trabajo
+  (rojos: pad 2 `BU_WORK_RAW`, pad 1 a masa). Es el orden del diagrama de
+  conexiones del manual, que marca el pin 1 en el extremo de trabajo. El motor
+  entra ahora por el norte: `BREW_OUT1` rodea MH1 por y = 43,2 mm y `BREW_OUT2`
+  pasa por debajo, por y = 49,5 mm; los dos contactos van por F.Cu a sus
+  divisores, sin la vía que tenía el de trabajo.
+- J108 se corre 0,5 mm al este (x = 3,5 mm) para que la pared de la pestaña,
+  hacia el borde, no se salga de la placa.
+- Con J113 girado su cuerpo baja 1,2 mm más hacia el borde y C410 pasa a estar
+  de pie entre U304 y J109.
 - J109 conserva el pin 1 en (19,0; 128,2); con el paso de 1,5 mm el pin 2 baja
   recto desde la vía de `WATER_RAW` en x = 20,5 mm y R415/R416 bajan a él por
   la misma x.
-- Pendiente: comprobar con los mazos que las carcasas entran en esta
-  orientación (pared del nervio hacia el borde) y que el orden de los hilos de
-  JP16 es el dibujado, con V1 (rojo) en el extremo sur.
+- Pendiente: probar el acoplamiento con los mazos reales antes de soldar.
+- La numeración de pines de la huella HR (pad 1 en el chaflán) no coincide con
+  la que la original marca con pad cuadrado en JP3. Solo importan la pared
+  cercana y la posición de cada hilo; para montar, se alinea el cuerpo con la
+  serigrafía, que dibuja la pared de cada lado.
 
 ### JP19, JP1 y JP9
 
