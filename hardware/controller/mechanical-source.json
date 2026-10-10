@@ -36,8 +36,9 @@
       "function": "brew motor and switches",
       "edge": "left",
       "entry_direction": "left",
-      "footprint_origin_mm": [3.0, 64.5],
-      "rotation_deg": 90
+      "footprint_origin_mm": [3.0, 47.0],
+      "rotation_deg": 270,
+      "note": "Owner, 2026-10-10: HR A2506WV-08P. At 270 deg its rib wall faces the board edge as on the bottom row, which puts pad 1 at the north end of the same pad row the photographed header used (pad 1 was at y = 64.5 mm with the XH)."
     },
     {
       "original_reference": "JP14",
@@ -45,8 +46,9 @@
       "function": "door and drawer switch",
       "edge": "left",
       "entry_direction": "left",
-      "footprint_origin_mm": [3.0, 73.5],
-      "rotation_deg": 90
+      "footprint_origin_mm": [3.0, 71.0],
+      "rotation_deg": 270,
+      "note": "Owner, 2026-10-10: HR A2506WV-02P, at 270 deg like J108; pad 1 at the north end of the photographed pad pair."
     },
     {
       "original_reference": "JP3",

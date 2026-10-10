@@ -555,6 +555,30 @@ Pendiente: comprobar con los mazos que las carcasas entran en la orientación
 dibujada, sobre todo el gancho de JP8, que decide qué pin es el +. JLCPCB tenía
 3 unidades de la A2506WV-05P y ninguna de la -03P el 2026-09-29.
 
+### JP14, JP16 y JP22
+
+El propietario identificó el 2026-10-10 los tres que faltaban:
+
+| Conector | Rev A | Pieza | Paso | Código |
+|---|---|---|---:|---|
+| JP14 | J107 | HR A2506WV-02P | 2,50 mm | C382532 |
+| JP16 | J108 | HR A2506WV-08P | 2,50 mm | C476906, sin stock |
+| JP22 | J109 | JST B3B-ZR (serie ZH) | 1,50 mm | C158001 |
+
+- J107 y J108 giran de 90° a 270°: así la pared del nervio da al borde
+  izquierdo, igual que la de JP3, JP5 y JP13 da al borde inferior. Las fotos de
+  la original apuntan a lo mismo. Con el giro el pad 1 pasa al extremo norte, así
+  que los pads siguen en las posiciones de las XH, con sus redes, y solo cambia
+  su número: V1..V8 de JP16 caen en los pads 8..1 y la puerta en el pad 2 de
+  J107. El ruteo no cambia; el contrato del firmware y la planta del simulador
+  siguen la nueva numeración.
+- J109 conserva el pin 1 en (19,0; 128,2); con el paso de 1,5 mm el pin 2 baja
+  recto desde la vía de `WATER_RAW` en x = 20,5 mm y R415/R416 bajan a él por
+  la misma x.
+- Pendiente: comprobar con los mazos que las carcasas entran en esta
+  orientación (pared del nervio hacia el borde) y que el orden de los hilos de
+  JP16 es el dibujado, con V1 (rojo) en el extremo sur.
+
 ### JP19, JP1 y JP9
 
 Datos del propietario (2026-09-20): de JP19 solo están cableadas las lengüetas 1

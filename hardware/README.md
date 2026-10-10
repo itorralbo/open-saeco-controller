@@ -10,7 +10,7 @@
 - [Selección para montaje JLCPCB](assembly/README.md) y
   [proyectos KiCad](kicad-workflow.md).
 
-La principal no es fabricable: faltan la comprobación 1:1 de conectores, la
-identificación de JP14, JP16 y JP22 y la revisión independiente de
-aislamiento y seguridad. Su paquete JLCPCB es candidato: no pedirlo hasta
+La principal no es fabricable: faltan la comprobación 1:1 de conectores y su
+acoplamiento con los mazos, y la revisión independiente de aislamiento y
+seguridad. Su paquete JLCPCB es candidato: no pedirlo hasta
 cerrarlos.

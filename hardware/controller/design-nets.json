@@ -1279,17 +1279,17 @@
     },
     {
       "reference": "J107",
-      "value": "JP14 DOOR / contacto seco",
-      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
-      "status": "photo_candidate",
-      "manufacturer": "JST",
-      "mpn": "B2B-XH-A(LF)(SN)",
-      "lcsc": "C158012",
+      "value": "JP14 DOOR / A2506WV-02P",
+      "footprint": "OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical",
+      "status": "owner_identified",
+      "manufacturer": "HR(Joint Tech Elec)",
+      "mpn": "A2506WV-02P",
+      "lcsc": "C382532",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
-        "1": "DOOR_RAW",
-        "2": "GND_UI"
+        "1": "GND_UI",
+        "2": "DOOR_RAW"
       }
     },
     {
@@ -1339,23 +1339,23 @@
     },
     {
       "reference": "J108",
-      "value": "JP16 VISUAL V1..V8 / XH-8",
-      "footprint": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
-      "status": "photo_candidate",
-      "manufacturer": "JST",
-      "mpn": "B8B-XH-A(LF)(SN)",
-      "lcsc": "C157972",
+      "value": "JP16 VISUAL V8..V1 / A2506WV-08P",
+      "footprint": "OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical",
+      "status": "owner_identified_supply_pending",
+      "manufacturer": "HR(Joint Tech Elec)",
+      "mpn": "A2506WV-08P",
+      "lcsc": "C476906",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {
-        "1": "BREW_OUT2",
-        "2": "BREW_OUT1",
-        "3": "BU_BRIDGE",
-        "4": "BU_BRIDGE",
-        "5": "GND_UI",
-        "6": "BU_PRESENT_RAW",
-        "7": "GND_UI",
-        "8": "BU_WORK_RAW"
+        "1": "BU_WORK_RAW",
+        "2": "GND_UI",
+        "3": "BU_PRESENT_RAW",
+        "4": "GND_UI",
+        "5": "BU_BRIDGE",
+        "6": "BU_BRIDGE",
+        "7": "BREW_OUT1",
+        "8": "BREW_OUT2"
       }
     },
     {
@@ -1515,11 +1515,11 @@
     {
       "reference": "J109",
       "value": "JP22 WATER / RED-WHITE-BLACK",
-      "footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
-      "status": "photo_candidate_owner_pinout",
+      "footprint": "Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical",
+      "status": "owner_identified_owner_pinout",
       "manufacturer": "JST",
-      "mpn": "B3B-PH-K-S(LF)(SN)",
-      "lcsc": "C131339",
+      "mpn": "B3B-ZR(LF)(SN)",
+      "lcsc": "C158001",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
       "pins": {

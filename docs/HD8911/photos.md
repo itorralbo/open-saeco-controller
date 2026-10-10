@@ -193,7 +193,11 @@ de 5,7, 8,3 y 13,1 mm; JP24 tiene los pines a 5 mm y JP8 conserva el paso de
 3,96 mm. Las huellas y su
 orientación están en el [layout](../../hardware/controller/layout.md#jp3-jp5-jp13-jp8-y-jp24).
 El conector del enlace con el frontal lo identificó el 2026-10-01 en las dos placas, con un cable plano 1:1 de 16 hilos; los 20 contactos contados en la foto de JP21 eran un error.
-Siguen sin identificar JP14, JP16 y JP22.
+El 2026-10-10 identificó los tres que faltaban: JP14 es una HR A2506WV-02P,
+JP16 una HR A2506WV-08P y JP22 una JST B3B-ZR (serie ZH, paso de 1,5 mm, como
+midió el nonio). En la placa nueva J107/J108 giran 270° para que la pared del
+nervio quede hacia el borde, como en JP3, JP5 y JP13; las fotos de la original
+(IMG_1085) apuntan a esa misma orientación, pero falta confirmarla con los mazos.
 
 ## Fusibles y puente del molinillo, 2026-10-06
 

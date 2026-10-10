@@ -1409,3 +1409,29 @@ Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
 infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
 --self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 95/95.
 Sin hardware.
+
+## JP14, JP16 y JP22 identificados, 2026-10-10
+
+El propietario identificó JP14 como HR A2506WV-02P, JP16 como HR A2506WV-08P y
+JP22 como JST B3B-ZR (cabecera de la serie ZH, paso de 1,5 mm, lo que ya medía
+el nonio).
+
+- J107 y J108 pasan a A2506 a 270°, con la pared del nervio hacia el borde como
+  en la fila inferior. Los pads quedan en las posiciones de las XH y con sus
+  redes; solo se invierte la numeración (pad k de J108 era el 9 − k). Se
+  actualizan las aserciones de `check_controller_core.py`, el contrato
+  `firmware/common/signals.json` y la planta del simulador; los seis tests que
+  fallaron con la numeración antigua vuelven a pasar.
+- Huella nueva `HR_A2506WV-08P_1x08_P2.50mm_Vertical`, del mismo plano HR que
+  las de 2, 3 y 5 vías, y su modelo 3D.
+- J109 pasa a `Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical`; se mueven
+  las bajadas de `WATER_RAW` a x = 20,5 mm.
+- La A2506WV-08P no tiene stock en JLCPCB: el exportador la saca del montaje
+  junto a J104 y J106. Ya no queda ninguna pieza pendiente de elegir.
+- `layout_controller_pcb.py` compara la rotación de los conectores módulo 360°
+  (KiCad lee 270° como −90°).
+
+Resultado: ERC 0 en las dos placas; DRC con todas las severidades: 0
+infracciones, 0 sin conectar y paridad solo MH1–MH3; `check_controller_pcb.py
+--self-test` pasa; modelo de placa 0 errores y 0 avisos; `tests/sim` 95/95;
+CTest 3/3. Sin hardware: falta probar el acoplamiento con los mazos.

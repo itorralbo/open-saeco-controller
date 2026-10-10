@@ -106,8 +106,9 @@ G431/G474 automáticamente: hay que revisar pinout, periféricos, memoria y firm
   puentes de cobre. F701 y F702 son Littelfuse 215 de 1500 A desde el 2026-10-06:
   F701 de 12 A, axial y soldado como el F1 original, y F702 de 2 A, como el
   F2 original, en dos pinzas Littelfuse 01110501Z (C151075) que no son
-  posiciones del esquema. J107–J109 (JP14, JP16 y JP22) son cabeceras
-  candidatas sin confirmar.
+  posiciones del esquema. J107 y J108 (JP14 y JP16) son HR A2506WV-02P y
+  -08P (C382532, C476906; la -08P sin stock) y J109 (JP22) una JST B3B-ZR
+  (C158001), identificadas por el propietario el 2026-10-10.
 - [Frontal](../front-panel/bom-draft.csv): 42 de 42 posiciones con MPN y código.
   Añadidos el 2026-09-18: pulsador HRO K2-1102SP-A4SC-04 6 × 6 × 4,3 mm (C83916,
   Extended; no hay 6 × 6 SMD Basic), JST B8B-PH-K-S(LF)(SN) vertical (C157974, Extended, sustituye el 2026-09-22 al lateral C157915),

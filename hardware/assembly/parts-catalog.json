@@ -635,26 +635,11 @@
       "url": "https://jlcpcb.com/partdetail/C36873216",
       "selection": "candidate_not_released"
     },
-    "CONN:JST_XH_2_V": {
-      "manufacturer": "JST",
-      "mpn": "B2B-XH-A(LF)(SN)",
-      "lcsc": "C158012",
-      "specification": "XH, 2 circuits, 2.50mm, vertical (top-entry) THT, 3A",
-      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
-      "jlc_class": "Extended",
-      "pcba_type": "TBD",
-      "stock_observed": 285583,
-      "available_order_qty_observed": 267227,
-      "stock_checked_on": "2026-10-08",
-      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
-      "url": "https://jlcpcb.com/partdetail/C158012",
-      "selection": "candidate_not_released"
-    },
     "CONN:HR_A2506WV_2_V": {
       "manufacturer": "HR(Joint Tech Elec)",
       "mpn": "A2506WV-02P",
       "lcsc": "C382532",
-      "specification": "A2506 wafer, 2 circuits, 2.50mm, vertical (top-entry) THT, 0.70 mm round pins, 3A 250V; JP13 boiler NTC",
+      "specification": "A2506 wafer, 2 circuits, 2.50mm, vertical (top-entry) THT, 0.70 mm round pins, 3A 250V; JP13 boiler NTC and JP14 door",
       "footprint": "OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical",
       "jlc_class": "Extended",
       "pcba_type": "TBD",
@@ -681,36 +666,6 @@
       "url": "https://jlcpcb.com/partdetail/C382533",
       "selection": "owner_identified_supply_pending",
       "selection_note": "The owner confirmed on 2026-09-29 that this is the header the original harness housing mates with. JLCPCB showed no stock on 2026-09-29; C9900130733 (A2506WV-03P-White, JLCPCB Assembly) is a listed alternative, also without stock."
-    },
-    "CONN:JST_XH_8_V": {
-      "manufacturer": "JST",
-      "mpn": "B8B-XH-A(LF)(SN)",
-      "lcsc": "C157972",
-      "specification": "XH, 8 circuits, 2.50mm, vertical (top-entry) THT, 3A",
-      "footprint": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
-      "jlc_class": "Extended",
-      "pcba_type": "TBD",
-      "stock_observed": 10018,
-      "available_order_qty_observed": 9223,
-      "stock_checked_on": "2026-10-08",
-      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
-      "url": "https://jlcpcb.com/partdetail/C157972",
-      "selection": "candidate_not_released"
-    },
-    "CONN:JST_PH_3_V": {
-      "manufacturer": "JST",
-      "mpn": "B3B-PH-K-S(LF)(SN)",
-      "lcsc": "C131339",
-      "specification": "PH, 3 circuits, 2.00mm, vertical (top-entry) THT, 2A",
-      "footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
-      "jlc_class": "Extended",
-      "pcba_type": "TBD",
-      "stock_observed": 215348,
-      "available_order_qty_observed": 198136,
-      "stock_checked_on": "2026-10-08",
-      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
-      "url": "https://jlcpcb.com/partdetail/C131339",
-      "selection": "candidate_not_released"
     },
     "CONN:HDR_1X6_2.54": {
       "manufacturer": "hanxia",
@@ -1315,6 +1270,53 @@
       "url": "https://jlcpcb.com/partdetail/C7502584",
       "selection": "candidate_not_released",
       "selection_note": "RV701 since 2026-10-08. The KiCad footprint is the S14 outline itself. Across the fused input behind F701 (12 A, 1500 A breaking): a varistor that fails short is cleared by F701. An IEC 61000-4-5 1 kV line-to-line surge (2 ohm source) drives about 150 A through it at its ~700 V clamp, a few joules against 71 J Wmax."
+    },
+    "CONN:HR_A2506WV_8_V": {
+      "manufacturer": "HR(Joint Tech Elec)",
+      "mpn": "A2506WV-08P",
+      "lcsc": "C476906",
+      "specification": "A2506 wafer, 8 circuits, 2.50mm, vertical (top-entry) THT, 0.70 mm round pins, 3A 250V; JP16 brew unit",
+      "footprint": "OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 0,
+      "available_order_qty_observed": 0,
+      "stock_checked_on": "2026-10-10",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C476906",
+      "selection": "owner_identified_supply_pending",
+      "selection_note": "JP16, owner-identified on 2026-10-10. JLCPCB had none; hand-soldered, or taken off the original board."
+    },
+    "CONN:JST_ZH_B3B-ZR_V": {
+      "manufacturer": "JST",
+      "mpn": "B3B-ZR(LF)(SN)",
+      "lcsc": "C158001",
+      "specification": "ZH header (mates ZHR-3), 3 circuits, 1.50mm, vertical (top-entry) THT, 1A 50V; JP22 water level",
+      "footprint": "Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 39845,
+      "available_order_qty_observed": 39622,
+      "stock_checked_on": "2026-10-10",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C158001",
+      "selection": "owner_identified",
+      "selection_note": "JP22, owner-identified on 2026-10-10; matches the 1.5 mm pitch measured with the caliper on 2026-09-24."
+    },
+    "CONN:JST_XH_2_V": {
+      "manufacturer": "JST",
+      "mpn": "B2B-XH-A(LF)(SN)",
+      "lcsc": "C158012",
+      "specification": "XH, 2 circuits, 2.50mm, vertical (top-entry) THT, 3A",
+      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "jlc_class": "Extended",
+      "pcba_type": "TBD",
+      "stock_observed": 285583,
+      "available_order_qty_observed": 267227,
+      "stock_checked_on": "2026-10-08",
+      "stock_evidence": "JLCPCB component list API (selectSmtComponentList), read-only; library type expand (Extended); PCBA type not yet verified",
+      "url": "https://jlcpcb.com/partdetail/C158012",
+      "selection": "candidate_not_released"
     }
   }
 }

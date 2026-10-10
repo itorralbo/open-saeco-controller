@@ -525,7 +525,8 @@ def main():
     for ref, (x, y, rotation) in HARNESS_CONNECTORS.items():
         actual = after[ref]
         assert actual.GetPosition() == pcb.VECTOR2I(MM(x), MM(y)), f'Connector moved: {ref}'
-        assert actual.GetOrientationDegrees() == rotation, f'Connector rotated: {ref}'
+        # KiCad reads 270 deg back as -90 deg.
+        assert actual.GetOrientationDegrees() % 360 == rotation % 360, f'Connector rotated: {ref}'
     result = {
         'status': 'mechanical_connector_placement_unrouted_not_fabricable',
         'kicad_version': pcb.GetBuildVersion(),
