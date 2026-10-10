@@ -15,9 +15,10 @@ el script.
 
 | Huella | Placa | Origen de las medidas |
 |---|---|---|
-| `HR_A2506WV-02P_1x02_P2.50mm_Vertical` | J105 | Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH). |
+| `HR_A2506WV-02P_1x02_P2.50mm_Vertical` | J105, J107 | Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH). |
 | `HR_A2506WV-03P_1x03_P2.50mm_Vertical` | J106 | Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH). |
 | `HR_A2506WV-05P_1x05_P2.50mm_Vertical` | J113 | Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH). |
+| `HR_A2506WV-08P_1x08_P2.50mm_Vertical` | J108 | Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH). |
 | `LEOCO_3941P03_1x03_P3.96mm_Vertical` | J115 | Planta del plano LEOCO 394105S; altura de 11 mm y rampa estimadas (familia VH). |
 | `LEOCO_5001P02_1x02_P5.00mm_Vertical` | J117 | Planta del plano LEOCO 500101S; altura de 11 mm y rampa estimadas. |
 | `TE_RAST5_1971845-3_1x03_P5.00mm_Vertical` | J118 | Carcasa 17,3 x 14,9 x 12,8 mm del plano TE C-1971845; paredes y lengüetas simplificadas. |

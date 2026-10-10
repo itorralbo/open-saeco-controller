@@ -1005,7 +1005,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.2",
+    "controller:J108.7",
     "controller:U501.8"
    ]
   },
@@ -1016,7 +1016,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.1",
+    "controller:J108.8",
     "controller:U501.10"
    ]
   },
@@ -1144,8 +1144,8 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.3",
-    "controller:J108.4"
+    "controller:J108.5",
+    "controller:J108.6"
    ]
   },
   "controller:BU_PRESENT_N": {
@@ -1167,7 +1167,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.6",
+    "controller:J108.3",
     "controller:R407.2",
     "controller:R408.1"
    ]
@@ -1191,7 +1191,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J108.8",
+    "controller:J108.1",
     "controller:R409.2",
     "controller:R410.1"
    ]
@@ -1237,7 +1237,7 @@
    "rail": false,
    "volts": null,
    "pins": [
-    "controller:J107.1",
+    "controller:J107.2",
     "controller:R405.2",
     "controller:R406.1"
    ]
@@ -1420,9 +1420,9 @@
     "controller:J104.6",
     "controller:J105.2",
     "controller:J106.2",
-    "controller:J107.2",
-    "controller:J108.5",
-    "controller:J108.7",
+    "controller:J107.1",
+    "controller:J108.2",
+    "controller:J108.4",
     "controller:J109.3",
     "controller:J110.A1",
     "controller:J110.A12",
@@ -4464,72 +4464,72 @@
   },
   "controller:J107": {
    "part": "J2",
-   "value": "JP14 DOOR / contacto seco",
-   "mpn": "B2B-XH-A(LF)(SN)",
+   "value": "JP14 DOOR / A2506WV-02P",
+   "mpn": "A2506WV-02P",
    "pins": {
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:DOOR_RAW"
+     "net": "controller:GND_UI"
     },
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:GND_UI"
+     "net": "controller:DOOR_RAW"
     }
    }
   },
   "controller:J108": {
    "part": "J8",
-   "value": "JP16 VISUAL V1..V8 / XH-8",
-   "mpn": "B8B-XH-A(LF)(SN)",
+   "value": "JP16 VISUAL V8..V1 / A2506WV-08P",
+   "mpn": "A2506WV-08P",
    "pins": {
     "1": {
      "symbol": "1",
      "physical": "1",
-     "net": "controller:BREW_OUT2"
+     "net": "controller:BU_WORK_RAW"
     },
     "2": {
      "symbol": "2",
      "physical": "2",
-     "net": "controller:BREW_OUT1"
+     "net": "controller:GND_UI"
     },
     "3": {
      "symbol": "3",
      "physical": "3",
-     "net": "controller:BU_BRIDGE"
+     "net": "controller:BU_PRESENT_RAW"
     },
     "4": {
      "symbol": "4",
      "physical": "4",
-     "net": "controller:BU_BRIDGE"
+     "net": "controller:GND_UI"
     },
     "5": {
      "symbol": "5",
      "physical": "5",
-     "net": "controller:GND_UI"
+     "net": "controller:BU_BRIDGE"
     },
     "6": {
      "symbol": "6",
      "physical": "6",
-     "net": "controller:BU_PRESENT_RAW"
+     "net": "controller:BU_BRIDGE"
     },
     "7": {
      "symbol": "7",
      "physical": "7",
-     "net": "controller:GND_UI"
+     "net": "controller:BREW_OUT1"
     },
     "8": {
      "symbol": "8",
      "physical": "8",
-     "net": "controller:BU_WORK_RAW"
+     "net": "controller:BREW_OUT2"
     }
    }
   },
   "controller:J109": {
    "part": "J3",
    "value": "JP22 WATER / RED-WHITE-BLACK",
-   "mpn": "B3B-PH-K-S(LF)(SN)",
+   "mpn": "B3B-ZR(LF)(SN)",
    "pins": {
     "1": {
      "symbol": "1",

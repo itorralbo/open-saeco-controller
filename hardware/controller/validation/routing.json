@@ -42,7 +42,7 @@
     "ESP32: LCD bus to R213-R218 under J104, keypad, UART, J103, EN and VBUS sense",
     "SELV ground fills on F.Cu and B.Cu, stitched to In1.Cu; no fill on the mains side"
   ],
-  "track_segments": 1442,
+  "track_segments": 1441,
   "vias": 457,
   "stitching_vias": 142,
   "remaining_blocks": []

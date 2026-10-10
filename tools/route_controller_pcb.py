@@ -673,14 +673,15 @@ def route_sensors(board):
     # valve return to the connector.
     track(board, '/WATER_RAW', (19.0, 117.0), (20.5, 118.5), width=PIN_WIDTH)
     via(board, '/WATER_RAW', (20.5, 118.5))
-    polyline(board, '/WATER_RAW', [(20.5, 118.5), (20.5, 127.7), (21.0, 128.2)],
-             pcb.B_Cu, width=PIN_WIDTH)
+    # J109 is a JST ZH B3B-ZR (1.5 mm) since 2026-10-10: pin 2 sits right
+    # under the drop.
+    track(board, '/WATER_RAW', (20.5, 118.5), (20.5, 128.2), pcb.B_Cu, width=PIN_WIDTH)
     polyline(board, '/WATER_LEVEL', [(19.0, 115.175), (19.725, 115.9), (20.5, 115.9),
                                      (21.375, 116.775), (22.0, 116.775)], width=PIN_WIDTH)
     # DNP bias pair above J109 (issue #7): each end drops straight into its
     # header pin on F.Cu; R416's GND pad joins the fill.
     track(board, '/WATER_RAW', (20.425, 124.8), (22.075, 124.8), width=PIN_WIDTH)
-    track(board, '/WATER_RAW', (21.0, 124.8), (21.0, 128.2), width=PIN_WIDTH)
+    track(board, '/WATER_RAW', (20.5, 124.8), (20.5, 128.2), width=PIN_WIDTH)
     polyline(board, '/WATER_VCC', [(18.775, 124.8), (18.775, 126.3), (19.0, 126.525),
                                    (19.0, 128.2)], width=PIN_WIDTH)
 

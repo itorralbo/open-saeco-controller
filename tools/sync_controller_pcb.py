@@ -167,6 +167,14 @@ for ref, (old, new) in {
                  'OpenSaeco:LEOCO_3941P03_1x03_P3.96mm_Vertical'),
         'J117': (_JST+'VH_B2P-VH_1x02_P3.96mm_Vertical',
                  'OpenSaeco:LEOCO_5001P02_1x02_P5.00mm_Vertical'),
+        # Owner, 2026-10-10: JP14 and JP16 are A2506 wafers too, and JP22 a
+        # JST ZH B3B-ZR at 1.5 mm.
+        'J107': (_JST+'XH_B2B-XH-A_1x02_P2.50mm_Vertical',
+                 'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical'),
+        'J108': (_JST+'XH_B8B-XH-A_1x08_P2.50mm_Vertical',
+                 'OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical'),
+        'J109': (_JST+'PH_B3B-PH-K_1x03_P2.00mm_Vertical',
+                 _JST+'ZH_B3B-ZR_1x03_P1.50mm_Vertical'),
         }.items():
     FOOTPRINT_REPLACEMENTS[ref] = (old, new)
 # Owner, 2026-10-01: the original front-panel link uses Wurth WR-MM

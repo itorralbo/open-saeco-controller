@@ -94,11 +94,11 @@ comprueba en el DRC y se revisará antes de fabricar.
 
 `tools/export_controller_fab.py` lo escribe en [fabrication/](fabrication/) desde
 la PCB y la [BOM](bom-draft.csv). No es una liberación: el script lista al final
-lo que sigue abierto (hoy J107–J109, cabeceras candidatas por foto) y saca de la
-BOM de JLCPCB lo que no tenía stock en la última consulta
-(`tools/refresh_jlc_stock.py`): hoy J104 (Würth WR-MM) y J106 (HR A2506WV-03P),
-THT, que se compran aparte y se sueldan a mano. El de J106 puede salir de la
-placa original, que lleva la misma cabecera.
+lo que sigue abierto (hoy nada) y saca de la BOM de JLCPCB lo que no tenía stock
+en la última consulta (`tools/refresh_jlc_stock.py`): hoy J104 (Würth WR-MM),
+J106 (HR A2506WV-03P) y J108 (HR A2506WV-08P), THT, que se compran aparte y se
+sueldan a mano. Los de J106 y J108 pueden salir de la placa original, que lleva
+las mismas cabeceras.
 
 | Archivo | Contenido |
 |---|---|

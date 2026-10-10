@@ -37,8 +37,9 @@ máquina ni medir la red. Anotar siempre desde qué lado se mira el conector.
 Las fotos de cavidades con calibre de JP5, JP13, JP14, JP16 y JP22 ya están en
 `photos/Conectores/`. La revisión con nonio del 2026-09-24 descartó XH y PH, y el
 propietario identificó después JP3, JP5 y JP13 como HR A2506WV (ver
-[photos.md](photos.md)). Para JP14, JP16 y JP22 falta todavía la familia; para
-todos, una comprobación real de acoplamiento con una muestra.
+[photos.md](photos.md)). El 2026-10-10
+identificó JP14 y JP16 (HR A2506WV-02P y -08P) y JP22 (JST ZH B3B-ZR); falta,
+para todos, una comprobación real de acoplamiento con una muestra.
 
 1. Frontal de cavidades, con la pestaña de retención visible.
 2. Lateral de placa y carcasa, con calibre o regla en el mismo plano.

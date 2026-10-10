@@ -119,8 +119,8 @@ comprobación 1:1 con la placa original y los mazos.
 > [layout](../../hardware/controller/layout.md)). El 2026-10-01 identificó el
 > conector del enlace con el frontal como Würth WR-MM 690367181672, de 16
 > contactos, en las dos placas, unidas por un cable plano 1:1 de 16 hilos; el
-> recuento fotográfico de 20 para JP21 era un error. JP14, JP16 y JP22 siguen
-> como candidatos.
+> recuento fotográfico de 20 para JP21 era un error. JP14, JP16 y JP22 los
+> identificó el 2026-10-10: HR A2506WV-02P, HR A2506WV-08P y JST ZH B3B-ZR.
 
 Estas identificaciones reducen la búsqueda de repuestos, pero continúan como
 candidatos. La huella se cerrará con una foto ortogonal de soldaduras o una medida

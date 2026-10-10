@@ -355,15 +355,15 @@
       "numbered_pads": 3
     },
     "J107": {
-      "footprint": "Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical",
+      "footprint": "OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical",
       "numbered_pads": 2
     },
     "J108": {
-      "footprint": "Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical",
+      "footprint": "OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical",
       "numbered_pads": 8
     },
     "J109": {
-      "footprint": "Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical",
+      "footprint": "Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical",
       "numbered_pads": 3
     },
     "J110": {
@@ -897,7 +897,7 @@
   },
   "missing_footprints": [],
   "newly_staged_footprints": [],
-  "tracks": 1899,
+  "tracks": 1898,
   "outline": true,
   "mounting_holes_preserved": [
     "MH1",

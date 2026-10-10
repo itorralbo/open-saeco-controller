@@ -141,13 +141,14 @@ def main():
     assert nets['R403'] == {'1':v,'2':'FLOW_RAW'}
     assert nets['R404'] == {'1':'FLOW_RAW','2':'FLOW_TIM'}
     assert nets['C402'] == {'1':'FLOW_TIM','2':g}
-    assert nets['J107'] == {'1':'DOOR_RAW','2':g}
+    assert nets['J107'] == {'1':g,'2':'DOOR_RAW'}
     assert nets['R405'] == {'1':v,'2':'DOOR_RAW'}
     assert nets['R406'] == {'1':'DOOR_RAW','2':'DOOR_CLOSED_N'}
     assert nets['C403'] == {'1':'DOOR_CLOSED_N','2':g}
-    assert nets['J108'] == {'1':'BREW_OUT2','2':'BREW_OUT1',
-                            '3':'BU_BRIDGE','4':'BU_BRIDGE','5':g,
-                            '6':'BU_PRESENT_RAW','7':g,'8':'BU_WORK_RAW'}
+    # A2506 at 270 deg: pad 1 at the north end, V1 on pad 8.
+    assert nets['J108'] == {'1':'BU_WORK_RAW','2':g,'3':'BU_PRESENT_RAW','4':g,
+                            '5':'BU_BRIDGE','6':'BU_BRIDGE',
+                            '7':'BREW_OUT1','8':'BREW_OUT2'}
     for prefix, raw, conditioned in [('PRES','BU_PRESENT_RAW','BU_PRESENT_N'),
                                      ('WORK','BU_WORK_RAW','BU_WORK_N')]:
         refs = {'PRES':('R407','R408','C404'), 'WORK':('R409','R410','C405')}[prefix]
@@ -295,9 +296,9 @@ def main():
     for ref, footprint, lcsc in [
             ('J105','OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical','C382532'),
             ('J106','OpenSaeco:HR_A2506WV-03P_1x03_P2.50mm_Vertical','C382533'),
-            ('J107','Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical','C158012'),
-            ('J108','Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical','C157972'),
-            ('J109','Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical','C131339')]:
+            ('J107','OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical','C382532'),
+            ('J108','OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical','C476906'),
+            ('J109','Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical','C158001')]:
         assert fields[ref]['Footprint'] == footprint and fields[ref]['lcsc'] == lcsc
     # JP8 and JP24 are the LEOCO headers the owner identified; JLCPCB lists
     # neither, so they carry no LCSC code.

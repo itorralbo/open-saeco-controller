@@ -273,6 +273,8 @@ SCOPE = {
         'Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH).'),
     'HR_A2506WV-05P_1x05_P2.50mm_Vertical': ('OpenSaeco', hr_a2506(5),
         'Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH).'),
+    'HR_A2506WV-08P_1x08_P2.50mm_Vertical': ('OpenSaeco', hr_a2506(8),
+        'Planta del plano HR A2506WV-XP; altura de 6,0 mm estimada (familia XH).'),
     'LEOCO_3941P03_1x03_P3.96mm_Vertical': ('OpenSaeco', leoco(3, 3.96, -1.99, 9.91),
         'Planta del plano LEOCO 394105S; altura de 11 mm y rampa estimadas (familia VH).'),
     'LEOCO_5001P02_1x02_P5.00mm_Vertical': ('OpenSaeco', leoco(2, 5.0, -2.5, 7.5),

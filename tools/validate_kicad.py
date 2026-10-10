@@ -88,9 +88,9 @@ def main():
                  if directory == 'controller' else
                  'Esquema completo del frontal. Declara alimentación externa por J1; no '
                  'valida la fuente ni la mecánica.')
-        remaining = ('Los GPIO sin asignar llevan NC. J105, J106 y J113 son HR A2506WV '
-                     'identificadas por el propietario; J107–J109 (JP14, JP16 y JP22) usan '
-                     'huellas candidatas XH/PH que la revisión con nonio no confirma. '
+        remaining = ('Los GPIO sin asignar llevan NC. J105–J108 y J113 son HR A2506WV y '
+                     'J109 una JST ZH B3B-ZR, identificadas por el propietario; falta '
+                     'comprobar el acoplamiento con los mazos. '
                      'JP16 V1/V2 llegan al puente H y '
                      'JP3.1/JP3.2 a la etapa de válvula. J112 requiere una fuente de 24 V '
                      'aislada limitada; corriente, frenado, térmica, liberación de válvula y '

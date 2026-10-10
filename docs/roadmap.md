@@ -10,7 +10,7 @@
 | A5 | Rev A funcional | Ciclo USB/web sin electrónica original y fallos validados |
 
 Prioridades: comprobar la principal en papel 1:1 contra la placa y los mazos,
-identificar JP14, JP16 y JP22, medir las
+comprobar el acoplamiento de las cabeceras con los mazos, medir las
 cargas y la emisión conducida (ver el plan de caracterización), revisión de aislamiento, BSP, protocolo
 y límites de receta.
 El frontal nuevo copia la mecánica de botones y usa una pantalla reemplazable:
@@ -62,7 +62,8 @@ Suministro: [catálogo JLCPCB](../hardware/assembly/README.md), con consulta fec
 JP17 es un TE RAST 5 1971845-3, identificado por el propietario. El
 2026-09-29 identificó también JP3, JP5 y JP13 (HR A2506WV, en JLCPCB) y JP8 y
 JP24 (LEOCO 3941P03*000 y 5001P020013, que JLCPCB no tiene: se sueldan a mano
-o se aportan). Quedan por identificar JP14, JP16 y JP22.
+o se aportan). El 2026-10-10 identificó JP14 y JP16 (HR A2506WV-02P y -08P) y
+JP22 (JST ZH B3B-ZR): ya no queda ningún conector sin identificar.
 Esto avanza el esquema de A3; no cierra A1, A2 ni la aceptación de A3.
 
 ## Verificaciones

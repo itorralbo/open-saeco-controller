@@ -276,8 +276,8 @@ class VirtualBoard:
         self._front(run)
         # Loads and the plant.
         live = lambda e: out.classify(self.s.net_of(self.s.endpoint(e)), 'live')  # noqa: E731
-        v1, v2 = run.volts.get(self.s.net_of(self.s.endpoint('controller:J108.2'))), \
-            run.volts.get(self.s.net_of(self.s.endpoint('controller:J108.1')))
+        v1, v2 = run.volts.get(self.s.net_of(self.s.endpoint('controller:J108.7'))), \
+            run.volts.get(self.s.net_of(self.s.endpoint('controller:J108.8')))
         motor = (v1 - v2) if v1 is not None and v2 is not None else 0.0
         vv = [run.volts.get(self.s.net_of(self.s.endpoint(e))) for e in ('controller:J113.1', 'controller:J113.2')]
         valve = vv[0] - vv[1] if None not in vv else 0.0

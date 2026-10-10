@@ -434,19 +434,26 @@ def main():
     d.note('PA2 TIM2_CH3. Pin 1 señal, 2 GND, 3 VCC; pin 1 es pad cuadrado/izquierda en vista cenital.',245,486,1.2)
     d.note('Digmesa 932-9521-B: NPN OC, 3,8–20V. VCC=12V por R413 (390 Ω); pull-up separado a 3V3.',245,493,1.2)
 
-    d.add('J107','J2','JP14 DOOR / contacto seco',520,445,['DOOR_RAW',g],
-          'Connector_JST:JST_XH_B2B-XH-A_1x02_P2.50mm_Vertical',
-          status='photo_candidate', part_key='CONN:JST_XH_2_V')
+    # Owner, 2026-10-10: JP14 and JP16 are HR A2506WV wafers like JP3/JP5/
+    # JP13, and JP22 a JST ZH B3B-ZR. On the left edge the A2506 turns to
+    # 270 deg so that its rib wall faces the board edge as on the bottom row;
+    # that puts pad 1 at the north end, so the pads keep their positions and
+    # nets and only their numbers run the other way (to be checked against
+    # the harness, docs/HD8911/photos.md).
+    d.add('J107','J2','JP14 DOOR / A2506WV-02P',520,445,[g,'DOOR_RAW'],
+          'OpenSaeco:HR_A2506WV-02P_1x02_P2.50mm_Vertical',
+          status='owner_identified', part_key='CONN:HR_A2506WV_2_V')
     d.passive('R405','R','10k / DOOR pull-up',605,430,v,'DOOR_RAW')
     d.passive('R406','R','1k / DOOR serie',605,447,'DOOR_RAW','DOOR_CLOSED_N')
     d.passive('C403','C','100nF / DOOR filtro',605,464,'DOOR_CLOSED_N',g)
     d.note('PA1: 0=cajón y puerta colocados; 1=abierto. Medido sin tensión.',490,486,1.2)
 
-    d.add('J108','J8','JP16 VISUAL V1..V8 / XH-8',705,457,
-          # OUT2 on V1 and OUT1 on V2 keep both motor leads uncrossed on the PCB.
-          ['BREW_OUT2','BREW_OUT1','BU_BRIDGE','BU_BRIDGE',g,'BU_PRESENT_RAW',g,'BU_WORK_RAW'],
-          'Connector_JST:JST_XH_B8B-XH-A_1x08_P2.50mm_Vertical',
-          status='photo_candidate', part_key='CONN:JST_XH_8_V')
+    d.add('J108','J8','JP16 VISUAL V8..V1 / A2506WV-08P',705,457,
+          # V1 (pad 8) carries OUT2 and V2 (pad 7) OUT1, which keeps both
+          # motor leads uncrossed on the PCB.
+          ['BU_WORK_RAW',g,'BU_PRESENT_RAW',g,'BU_BRIDGE','BU_BRIDGE','BREW_OUT1','BREW_OUT2'],
+          'OpenSaeco:HR_A2506WV-08P_1x08_P2.50mm_Vertical',
+          status='owner_identified_supply_pending', part_key='CONN:HR_A2506WV_8_V')
     d.passive('R407','R','10k / PRES pull-up',805,421,v,'BU_PRESENT_RAW')
     d.passive('R408','R','1k / PRES serie',805,438,'BU_PRESENT_RAW','BU_PRESENT_N')
     d.passive('C404','C','100nF / PRES filtro',805,455,'BU_PRESENT_N',g)
@@ -454,7 +461,7 @@ def main():
     d.passive('R410','R','1k / WORK serie',805,489,'BU_WORK_RAW','BU_WORK_N')
     d.passive('C405','C','100nF / WORK filtro',805,506,'BU_WORK_N',g)
     d.note('PC2 (presencia) / PA0 (trabajo) activos a 0. V1 rojo=OUT1, V2 azul=OUT2, V3/V4 puente,',660,530,1.1)
-    d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: vista manual, no numeración física.',660,536,1.1)
+    d.note('V5/V6 verde presencia, V7/V8 rojo trabajo: V1..V8 van en los pads 8..1 de la A2506.',660,536,1.1)
 
     # JP22 feed through its own current-limited switch (issue #8): R306 =
     # 210k sets 110-150 mA, plenty for a level sensor and far under U301's
@@ -467,8 +474,8 @@ def main():
     d.passive('C410','C','1uF / JP22 VCC',720,510,'WATER_VCC',g)
     d.add('J109','J3','JP22 WATER / RED-WHITE-BLACK',520,536,
           ['WATER_VCC','WATER_RAW',g],
-          'Connector_JST:JST_PH_B3B-PH-K_1x03_P2.00mm_Vertical',
-          status='photo_candidate_owner_pinout', part_key='CONN:JST_PH_3_V')
+          'Connector_JST:JST_ZH_B3B-ZR_1x03_P1.50mm_Vertical',
+          status='owner_identified_owner_pinout', part_key='CONN:JST_ZH_B3B-ZR_V')
     d.passive('R411','R','1k / WATER serie',610,543,'WATER_RAW','WATER_LEVEL')
     # Issue #7: with JP22 unplugged PC3 floats. The bias waits for WL-01 (an
     # open-collector output needs the pull-up, a push-pull one a weak

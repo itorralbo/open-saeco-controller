@@ -73,9 +73,9 @@ Cada orden activa con los rails al mínimo (sim/osc_sim/drive.py): lo que cambia
 
 | Señal | Carga | Cadena |
 |---|---|---|
-| BREW_DIR | J108.2 | U501 fwd: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 3.17 V (VIH 1.5 V) |
-| BREW_PWM | J108.1 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
-| BREW_SLEEP_N | J108.1 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
+| BREW_DIR | J108.7 | U501 fwd: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 3.17 V (VIH 1.5 V) |
+| BREW_PWM | J108.8 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
+| BREW_SLEEP_N | J108.8 | U501 rev: nSLEEP 3.17 V, EN/IN1 3.17 V, PH/IN2 0.00 V (VIH 1.5 V) |
 | GRINDER_EN | J115.1 | Q707 VGS 3.20 V ≥ 2.75 V; Q708 disparado; U703 IF 9.5 mA ≥ 5 mA |
 | HEATER_EN | J116.1 | Q703 disparado; Q705 VGS 3.20 V ≥ 2.75 V; U701 IF 9.5 mA ≥ 5 mA |
 | MAINS_ARM | Q703.A2 | K701 bobina 21.5 V ≥ 16.8 V; Q701 VGS 3.20 V ≥ 2.75 V |

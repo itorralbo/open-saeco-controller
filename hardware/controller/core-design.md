@@ -40,9 +40,10 @@ placa de sustitución, lógica, 24 V y red, pero nada está ensayado. La
   de colector abierto o push-pull.
 - Entradas activas a cero para JP14 (PA1) y los micros de presencia (PC2) y
   trabajo (PA0) de JP16, con pull-up, resistencia serie y filtro RC.
-- J105 y J106 son HR A2506WV-02P/-03P, identificadas por el propietario;
-  J107–J109 usan huellas candidatas JST XH/PH que la revisión con nonio del
-  2026-09-24 no confirma. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
+- J105–J108 son HR A2506WV (-02P, -03P, -02P y -08P) y J109 una JST ZH B3B-ZR
+  de 1,5 mm, todas identificadas por el propietario (JP14, JP16 y JP22 el
+  2026-10-10). J107 y J108 van a 270° para que la pared del nervio dé al borde,
+  como en la fila inferior; por eso V1..V8 de JP16 caen en los pads 8..1. Las vías V1/V2 de JP16 llegan a un DRV8876 para el motor del grupo.
 - J110 añade USB-C 2.0 nativo al ESP32, protección ESD, detección de VBUS y
   resistencias CC. J111 permite alimentación limitada de banco y queda abierto.
 - J112 recibe 24 V DC aislados para los actuadores y entra por su propio
@@ -196,7 +197,7 @@ de servicio y el protocolo se detallan en [USB de banco](../../docs/service-usb.
 | Motor del grupo | Ensayar DRV8876, corriente, bloqueo, inversión, frenado, ruido y térmica | Fuente 24 V limitada, motor real y firmware de fallo |
 | Electroválvula | Ensayar la [etapa low-side implementada](../power/valve-driver.md), corriente, liberación y transitorios | Fuente 24 V limitada, bobina real y osciloscopio |
 | Etapas de red | Ensayar calentador, bomba y molinillo | [Plan de caracterización](../../docs/HD8911/characterization-plan.md) y revisión de aislamiento |
-| Mecánica | Comprobación 1:1 y conectores de JP14, JP16 y JP22 | Placa original, mazos y muestras |
+| Mecánica | Comprobación 1:1 y acoplamiento de las cabeceras con los mazos | Placa original, mazos y muestras |
 
 ### Puente H del motor del grupo
 

@@ -94,15 +94,15 @@ class Plant:
         """Plant parts at the connector pins: ('r', a, b, ohms), ('vr', a, b, volts, ohms), ('src', a, volts, ohms)."""
         out = [('r', 'controller:J105.1', 'controller:J105.2', self.ntc_ohms()),
                ('r', 'controller:J113.1', 'controller:J113.2', self.valve_ohms),
-               # Back-EMF from J108.2 (BREW_OUT1) to J108.1 while the unit moves.
-               ('vr', 'controller:J108.2', 'controller:J108.1', self._emf, self.motor_ohms),
+               # Back-EMF from J108.7 (BREW_OUT1) to J108.8 while the unit moves.
+               ('vr', 'controller:J108.7', 'controller:J108.8', self._emf, self.motor_ohms),
                ('src', 'controller:J109.2', self.water_volts, 1000.0)]
         if self.door_closed:
-            out.append(('r', 'controller:J107.1', 'controller:J107.2', 0.05))
+            out.append(('r', 'controller:J107.2', 'controller:J107.1', 0.05))
         if self.unit_present:
-            out.append(('r', 'controller:J108.6', 'controller:J108.5', 0.05))
+            out.append(('r', 'controller:J108.3', 'controller:J108.4', 0.05))
         if self.unit_present and self.unit_pos >= 0.95:
-            out.append(('r', 'controller:J108.8', 'controller:J108.7', 0.05))
+            out.append(('r', 'controller:J108.1', 'controller:J108.2', 0.05))
         if self.flow_low():
             out.append(('r', 'controller:J106.1', 'controller:J106.2', 20.0))
         return out
@@ -132,7 +132,7 @@ class Plant:
 
     # -- dynamics ---------------------------------------------------------------
     def step(self, dt, heater_on, pump_on, motor_volts, valve_on=False, grinder_on=False):
-        """Advance dt seconds. motor_volts: J108.2 minus J108.1 (forward > 0)."""
+        """Advance dt seconds. motor_volts: J108.7 minus J108.8 (forward > 0)."""
         self.t += dt
         was_grinding = self.grinder_on
         self.heater_on, self.pump_on, self.valve_on = heater_on, pump_on, valve_on
